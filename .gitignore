@@ -8,6 +8,7 @@ scan.log
 scan.err.log
 .DS_Store
 .streamlit/secrets.toml
+.github_token
 
 # iOS / Xcode 生成物
 ios/QuantTrader.xcodeproj/
