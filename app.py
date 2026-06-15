@@ -1056,10 +1056,10 @@ def _score_gauge(score: float, grade: str) -> go.Figure:
             "axis": {"range": [0, 100]},
             "bar": {"color": color},
             "steps": [
-                {"range": [0, 40], "color": "#e74c3c22"},
-                {"range": [40, 55], "color": "#e67e2222"},
-                {"range": [55, 72], "color": "#f39c1222"},
-                {"range": [72, 100], "color": "#2ecc7122"},
+                {"range": [0, 40], "color": "#5c3a3a"},
+                {"range": [40, 55], "color": "#5c4a3a"},
+                {"range": [55, 72], "color": "#5c503a"},
+                {"range": [72, 100], "color": "#3a5c4a"},
             ],
         },
     ))

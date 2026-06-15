@@ -8,7 +8,7 @@ import Foundation
 ///      （自托管走 http 时，需保留 Info.plist 中的 ATS 例外，且手机与电脑在同一 Wi-Fi）
 enum AppConfig {
     /// ⬇️ 改成你自己的地址
-    static let serverURLString = "https://your-app.streamlit.app"
+    static let serverURLString = "https://quant-trader-fd3mch56aixtttm5rgyc6i.streamlit.app"
 
     static var serverURL: URL {
         URL(string: serverURLString) ?? URL(string: "https://streamlit.io")!
