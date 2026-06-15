@@ -58,6 +58,8 @@ streamlit run app.py
 
 启动后浏览器会自动打开 `http://localhost:8501`。
 
+**部署到云端 / 装进 iPhone**：见 [`DEPLOY.md`](DEPLOY.md)（GitHub 推送 → Streamlit Cloud → iOS 壳）。
+
 ---
 
 ## 使用说明
