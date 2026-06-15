@@ -1,0 +1,26 @@
+{
+  "watchlist": ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "TSLA", "SPY", "QQQ"],
+  "strategy": "双均线交叉",
+  "params": {"fast": 20, "slow": 60},
+  "allow_short": false,
+  "lookback_days": 400,
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  },
+  "paper": {
+    "enabled": false,
+    "account_file": "paper_account.json",
+    "initial": 100000,
+    "max_positions": 0,
+    "fee_bps": 5,
+    "slippage_bps": 2
+  }
+}

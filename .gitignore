@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+scan_history.csv
+paper_account.json
+scan.log
+scan.err.log
+.DS_Store
+.streamlit/secrets.toml
+
+# iOS / Xcode 生成物
+ios/QuantTrader.xcodeproj/
+ios/Sources/Info.plist
+ios/build/
+ios/DerivedData/
+*.xcuserstate
