@@ -1,7 +1,7 @@
 {
   "pool": "day_gainers",
   "pool_size": 50,
-  "custom_tickers": ["AAPL", "NVDA", "TSLA", "AMD", "META", "AMZN", "MSFT", "GOOGL", "COIN", "PLTR"],
+  "custom_tickers": ["SNDK", "MU", "WDC", "NVDA", "AMD", "AVGO", "SMCI", "PLTR", "COIN", "TSLA", "META", "AAPL"],
   "strategy": "趋势+动量双确认",
   "params": {"ma_window": 100, "mom_window": 60},
   "allow_short": false,

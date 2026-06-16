@@ -32,6 +32,7 @@ from quant import (
     regime,
     report as report_mod,
     screener,
+    screen_strategies,
     signals,
     strategies,
     validation,
@@ -997,6 +998,89 @@ def _fmt_dollar_m(x: float) -> str:
     return f"${float(x)/1e6:,.1f}M"
 
 
+DEFAULT_WATCHLIST = "SNDK, MU, WDC, NVDA, AMD, AVGO, SMCI, PLTR, COIN, TSLA, META, AAPL"
+
+
+def _tab_screen_preset_backtest(cfg: dict) -> None:
+    st.markdown("### 📚 命名选股策略库 · 近 3 年回测")
+    st.caption("每套策略均有名称与选股依据，可一键回测近 3 年调仓表现（盈利周期占比、夏普、回撤等）。")
+
+    preset_list = screen_strategies.list_presets()
+    preset_names = {p.id: p.name for p in preset_list}
+    sel_id = st.selectbox(
+        "选择命名策略",
+        list(preset_names.keys()),
+        format_func=lambda k: preset_names[k],
+        key="scr_preset_id",
+    )
+    preset = screen_strategies.get_preset(sel_id)
+    st.info(f"**策略依据：** {preset.rationale}")
+    pc1, pc2, pc3 = st.columns(3)
+    pc1.markdown(f"**股票池：** {screener.UNIVERSE_PRESETS.get(preset.pool, preset.pool)}")
+    pc2.markdown(f"**交易策略：** {preset.trading_strategy}")
+    pc3.markdown(f"**每 {preset.rebalance_days} 日选 {preset.top_picks} 只**")
+
+    if not st.button("📈 回测此选股策略（近 3 年）", type="primary", key="run_scr_preset_bt"):
+        return
+
+    with st.spinner("正在拉取行情并滚动回测（可能需要 1～2 分钟）…"):
+        try:
+            end_d = cfg["end"]
+            start_d = (pd.Timestamp(end_d) - pd.DateOffset(years=3)).strftime("%Y-%m-%d")
+            if preset.pool == "custom":
+                tickers = preset.custom_tickers
+            elif preset.pool == "sp500":
+                tickers = screener.fetch_sp500_tickers()[: preset.pool_size]
+            else:
+                tickers = screener.fetch_sp500_tickers()[:50]
+                st.caption("提示：涨幅榜/活跃榜历史池用标普50成分作回测代理。")
+            data, failed = get_multi_data(tickers, {**cfg, "start": start_d, "end": end_d})
+            if failed:
+                st.warning(f"部分标的拉取失败已忽略：{', '.join(failed[:8])}")
+            if not data:
+                st.error("❌ 无可用数据。")
+                return
+            bt_res = screen_strategies.backtest_screen_preset(
+                preset, data, max_years=3.0,
+                allow_short=cfg["allow_short"],
+                initial_capital=cfg["capital"],
+                fee_bps=cfg["fee_bps"],
+                slippage_bps=cfg["slippage_bps"],
+            )
+        except Exception as e:  # noqa: BLE001
+            st.error(f"❌ 回测失败：{e}")
+            return
+
+    if "error" in bt_res:
+        st.error(f"❌ {bt_res['error']}")
+        return
+
+    m1, m2, m3, m4, m5 = st.columns(5)
+    m1.metric("累计收益", fmt_pct(bt_res["累计收益率"]))
+    m2.metric("年化收益", fmt_pct(bt_res["年化收益率"]))
+    m3.metric("夏普比率", fmt_num(bt_res["夏普比率"]))
+    m4.metric("最大回撤", fmt_pct(bt_res["最大回撤"]))
+    m5.metric("盈利周期占比", fmt_pct(bt_res["盈利周期占比"]))
+    st.caption(
+        f"调仓 {bt_res['调仓次数']} 次 ｜ 期末权益 ${bt_res['期末权益']:,.0f} ｜ "
+        f"策略：{preset.name} + {preset.trading_strategy}"
+    )
+
+    eq = bt_res["权益曲线"]
+    if not eq.empty:
+        fig_eq = go.Figure()
+        fig_eq.add_trace(go.Scatter(x=eq["日期"], y=eq["权益"], name="策略权益", line=dict(color="#3498db", width=2)))
+        fig_eq.update_layout(height=360, template="plotly_dark", title=f"{preset.name} · 近3年权益曲线",
+                             margin=dict(l=10, r=10, t=40, b=10), yaxis_title="权益 (USD)")
+        st.plotly_chart(fig_eq, use_container_width=True)
+
+    detail = bt_res["调仓明细"].tail(20).copy()
+    detail["本期收益"] = detail["本期收益"].map(fmt_pct)
+    detail["累计权益"] = detail["累计权益"].map(lambda x: f"${x:,.0f}")
+    st.markdown("**最近调仓明细**")
+    st.dataframe(detail.iloc[::-1], use_container_width=True, hide_index=True)
+
+
 def tab_screener(cfg: dict) -> None:
     st.subheader("策略选股 · 条件筛选 + 批量回测")
     st.caption(
@@ -1004,6 +1088,29 @@ def tab_screener(cfg: dict) -> None:
         "看哪类股票在该策略下更有机会获利。"
     )
 
+    with st.expander("📜 历史选股记录", expanded=False):
+        hist = screener.load_screen_history(ROOT_DIR / "screen_history.csv")
+        if hist.empty:
+            st.caption("暂无记录。双击「每日选股_运行一次.command」后会写入 screen_history.csv。")
+        else:
+            summ = screener.summarize_screen_history(hist)
+            disp_h = summ.copy()
+            disp_h["平均策略收益"] = disp_h["平均策略收益"].map(fmt_pct)
+            disp_h["盈利占比"] = disp_h["盈利占比"].map(fmt_pct)
+            st.dataframe(disp_h, use_container_width=True, hide_index=True)
+            show_cols = [c for c in ["选股时间", "代码", "名称", "涨幅%", "行业", "策略累计收益", "当前信号"]
+                         if c in hist.columns]
+            st.caption(f"最近明细（共 {len(hist)} 条）")
+            recent = hist[show_cols].tail(30).copy()
+            if "策略累计收益" in recent.columns:
+                recent["策略累计收益"] = pd.to_numeric(recent["策略累计收益"], errors="coerce").map(fmt_pct)
+            st.dataframe(recent.iloc[::-1], use_container_width=True, hide_index=True)
+
+    st.divider()
+    _tab_screen_preset_backtest(cfg)
+
+    st.divider()
+    st.markdown("### 🔎 自定义条件选股")
     c1, c2, c3 = st.columns([1.2, 1, 1])
     pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
     pool_key = c1.selectbox(
@@ -1020,7 +1127,7 @@ def tab_screener(cfg: dict) -> None:
     if pool_key == "custom":
         custom_raw = st.text_input(
             "自定义代码（逗号分隔）",
-            value="AAPL, NVDA, TSLA, AMD, META, AMZN, MSFT, GOOGL, COIN, PLTR",
+            value=DEFAULT_WATCHLIST,
             key="scr_custom",
         )
 
@@ -1051,6 +1158,7 @@ def tab_screener(cfg: dict) -> None:
     params = _strategy_param_inputs(strat, "scr")
 
     if not st.button("🔎 开始选股并回测", type="primary", key="run_scr"):
+        st.caption("也可直接使用上方「命名策略库」一键回测。")
         return
 
     filters = screener.ScreenFilters(
@@ -1515,7 +1623,7 @@ def tab_precursor(cfg: dict) -> None:
     custom_raw = ""
     if pool_key == "custom":
         custom_raw = st.text_input("自定义代码（逗号分隔）",
-                                   value="AAPL, NVDA, AMD, TSLA, META, MSFT, GOOGL, AMZN, COIN, PLTR",
+                                   value=DEFAULT_WATCHLIST,
                                    key="pre_custom")
 
     use_spy = st.checkbox("相对强弱对比 SPY 基准", value=True, key="pre_spy")

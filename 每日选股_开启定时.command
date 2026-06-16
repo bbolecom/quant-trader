@@ -33,10 +33,10 @@ if [ -f "$PLIST_DST" ]; then
 fi
 
 # 询问每天运行的时间（小时，24 小时制）
-HOUR="$(osascript -e 'text returned of (display dialog "每天几点自动选股？（0-23，建议美股收盘后，按你电脑时区）" default answer "16" with title "每日选股 · 设定时间")' 2>/dev/null || echo "16")"
-MIN="$(osascript -e 'text returned of (display dialog "几分？（0-59）" default answer "35" with title "每日选股 · 设定时间")' 2>/dev/null || echo "35")"
-HOUR=$(echo "$HOUR" | tr -dc '0-9'); HOUR=${HOUR:-16}
-MIN=$(echo "$MIN" | tr -dc '0-9'); MIN=${MIN:-35}
+HOUR="$(osascript -e 'text returned of (display dialog "每天几点自动选股？（0-23，建议 5:30 美股收盘后）" default answer "5" with title "每日选股 · 设定时间")' 2>/dev/null || echo "5")"
+MIN="$(osascript -e 'text returned of (display dialog "几分？（0-59）" default answer "30" with title "每日选股 · 设定时间")' 2>/dev/null || echo "30")"
+HOUR=$(echo "$HOUR" | tr -dc '0-9'); HOUR=${HOUR:-5}
+MIN=$(echo "$MIN" | tr -dc '0-9'); MIN=${MIN:-30}
 
 cat > "$PLIST_DST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>

@@ -452,3 +452,33 @@ def run_screen(
     result["merged"] = merge_snapshot_backtest(filtered, bt)
     result["summary"] = summarize_backtest(bt)
     return result
+
+
+def load_screen_history(path: str | Path = "screen_history.csv") -> pd.DataFrame:
+    """读取每日选股历史 CSV（不存在则返回空表）。"""
+    p = Path(path)
+    if not p.exists():
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(p, encoding="utf-8-sig")
+    except Exception:  # noqa: BLE001
+        return pd.DataFrame()
+
+
+def summarize_screen_history(df: pd.DataFrame) -> pd.DataFrame:
+    """按选股批次汇总：入选数量、平均策略收益、盈利占比。"""
+    if df.empty or "选股时间" not in df.columns:
+        return pd.DataFrame()
+    g = df.groupby("选股时间", sort=False)
+    rows = []
+    for ts, grp in g:
+        ret = pd.to_numeric(grp.get("策略累计收益"), errors="coerce")
+        rows.append({
+            "选股时间": ts,
+            "股票池": grp["股票池"].iloc[0] if "股票池" in grp.columns else "",
+            "策略": grp["策略"].iloc[0] if "策略" in grp.columns else "",
+            "入选数": len(grp),
+            "平均策略收益": ret.mean(),
+            "盈利占比": (ret > 0).mean() if len(ret) else 0.0,
+        })
+    return pd.DataFrame(rows)
