@@ -24,11 +24,14 @@ from quant import (
     backtest,
     indicators as ind,
     optimize,
+    options as options_mod,
     paper,
     portfolio,
+    precursor,
     probability,
     regime,
     report as report_mod,
+    screener,
     signals,
     strategies,
     validation,
@@ -977,6 +980,439 @@ def _prob_basket(cfg: dict, strat_name: str, params: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# 标签页：策略选股（条件筛选 + 批量回测）
+# ---------------------------------------------------------------------------
+def _fmt_mcap(x: float) -> str:
+    if pd.isna(x):
+        return "-"
+    b = float(x) / 1e9
+    if b >= 1:
+        return f"{b:,.1f}B"
+    return f"{float(x)/1e6:,.0f}M"
+
+
+def _fmt_dollar_m(x: float) -> str:
+    if pd.isna(x):
+        return "-"
+    return f"${float(x)/1e6:,.1f}M"
+
+
+def tab_screener(cfg: dict) -> None:
+    st.subheader("策略选股 · 条件筛选 + 批量回测")
+    st.caption(
+        "先按涨幅、成交额、换手率、市值等条件筛出股票池，再对入选标的统一跑策略回测，"
+        "看哪类股票在该策略下更有机会获利。"
+    )
+
+    c1, c2, c3 = st.columns([1.2, 1, 1])
+    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_key = c1.selectbox(
+        "股票池来源",
+        list(pool_options.keys()),
+        format_func=lambda k: pool_options[k],
+        key="scr_pool",
+    )
+    pool_size = c2.number_input("初选数量", min_value=10, max_value=250, value=50, step=10, key="scr_size")
+    max_bt = c3.number_input("最多回测", min_value=5, max_value=50, value=20, step=5, key="scr_max_bt",
+                               help="筛选后按涨幅排序，取前 N 只做策略回测")
+
+    custom_raw = ""
+    if pool_key == "custom":
+        custom_raw = st.text_input(
+            "自定义代码（逗号分隔）",
+            value="AAPL, NVDA, TSLA, AMD, META, AMZN, MSFT, GOOGL, COIN, PLTR",
+            key="scr_custom",
+        )
+
+    st.markdown("**筛选条件**")
+    f1, f2, f3, f4 = st.columns(4)
+    lookback = f1.selectbox("涨幅统计周期", [1, 5, 10, 20, 60], index=3,
+                            format_func=lambda x: f"近 {x} 日", key="scr_lb")
+    gain_range = f2.slider("涨幅区间 (%)", -50.0, 200.0, (-10.0, 100.0), 1.0, key="scr_gain")
+    min_dollar_m = f3.number_input("成交额下限 (百万USD)", min_value=0.0, value=10.0, step=5.0, key="scr_dvol",
+                                   help="近均日成交额 = 收盘价 × 成交量 的均值")
+    turnover_range = f4.slider("换手率区间 (%)", 0.0, 50.0, (0.0, 20.0), 0.5, key="scr_to")
+
+    f5, f6 = st.columns(2)
+    mcap_range = f5.slider("市值区间 (十亿美元)", 0.0, 3000.0, (0.0, 500.0), 1.0, key="scr_mcap")
+    strat_name = f6.selectbox("回测策略", strategies.list_strategies(), key="scr_strat")
+
+    sector_labels = screener.SECTORS  # 英文 → 中文
+    selected_sectors_en = st.multiselect(
+        "行业筛选（留空 = 不限）",
+        options=list(sector_labels.keys()),
+        format_func=lambda k: f"{sector_labels[k]}（{k}）",
+        key="scr_sectors",
+        help="自定义/标普500池会逐只补拉行业数据，速度略慢；当日榜单池自带行业。",
+    )
+
+    strat = strategies.get_strategy(strat_name)
+    st.caption(strat.description)
+    params = _strategy_param_inputs(strat, "scr")
+
+    if not st.button("🔎 开始选股并回测", type="primary", key="run_scr"):
+        return
+
+    filters = screener.ScreenFilters(
+        min_gain_pct=gain_range[0],
+        max_gain_pct=gain_range[1],
+        min_dollar_vol_m=min_dollar_m,
+        min_turnover_pct=turnover_range[0],
+        max_turnover_pct=turnover_range[1],
+        min_mcap_b=mcap_range[0],
+        max_mcap_b=mcap_range[1],
+        lookback_days=int(lookback),
+        sectors=selected_sectors_en or None,
+    )
+    need_sector = bool(selected_sectors_en)
+
+    with st.spinner("正在拉取股票池并计算行情指标…"):
+        try:
+            if pool_key == "custom":
+                tickers = parse_tickers(custom_raw)
+                if not tickers:
+                    st.error("❌ 请至少输入一个股票代码。")
+                    return
+                snapshot = screener.build_snapshot_from_history(
+                    tickers, cfg["start"], cfg["end"], lookback_days=filters.lookback_days,
+                    with_sector=need_sector,
+                )
+            elif pool_key == "sp500":
+                tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+                snapshot = screener.build_snapshot_from_history(
+                    tickers, cfg["start"], cfg["end"], lookback_days=filters.lookback_days,
+                    with_sector=need_sector,
+                )
+            else:
+                snapshot = screener.fetch_yahoo_screen(pool_key, count=int(pool_size))
+                if snapshot.empty:
+                    st.error("❌ 未能从 Yahoo 获取选股数据，请稍后重试或换其他股票池。")
+                    return
+                if filters.lookback_days > 1:
+                    hist = screener.build_snapshot_from_history(
+                        snapshot["代码"].tolist(), cfg["start"], cfg["end"],
+                        lookback_days=filters.lookback_days,
+                    )
+                    if not hist.empty:
+                        sector_map = dict(zip(snapshot["代码"], snapshot.get("_行业EN", "")))
+                        name_map = dict(zip(snapshot["代码"], snapshot.get("名称", "")))
+                        hist["_行业EN"] = hist["代码"].map(sector_map).fillna("")
+                        hist["行业"] = hist["_行业EN"].map(screener.sector_cn)
+                        hist["名称"] = hist["代码"].map(name_map).fillna(hist["名称"])
+                        snapshot = hist
+        except DataError as e:
+            st.error(f"❌ {e}")
+            return
+
+    if snapshot.empty:
+        st.error("❌ 股票池为空，请检查网络或更换来源。")
+        return
+
+    filtered = screener.apply_filters(snapshot, filters)
+    st.info(f"初选 {len(snapshot)} 只 → 筛选后 **{len(filtered)}** 只符合条件")
+
+    if not filtered.empty and "行业" in filtered.columns:
+        sector_counts = filtered["行业"].replace("", "未知").value_counts()
+        if len(sector_counts) > 0:
+            fig_pie = go.Figure(go.Pie(
+                labels=sector_counts.index.tolist(),
+                values=sector_counts.values.tolist(),
+                hole=0.35,
+                textinfo="label+percent",
+            ))
+            fig_pie.update_layout(
+                height=320, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                title="筛选结果 · 行业分布",
+                showlegend=False,
+            )
+            st.plotly_chart(fig_pie, use_container_width=True)
+
+    if filtered.empty:
+        st.warning("没有标的满足当前筛选条件，请放宽涨幅、成交额、市值或行业条件后重试。")
+        disp_pre = snapshot.drop(columns=["_行业EN"], errors="ignore").copy()
+        disp_pre["涨幅%"] = disp_pre["涨幅%"].map(lambda x: f"{x:,.2f}%" if pd.notna(x) else "-")
+        disp_pre["成交额USD"] = disp_pre["成交额USD"].map(_fmt_dollar_m)
+        disp_pre["换手率%"] = disp_pre["换手率%"].map(lambda x: f"{x:,.2f}%" if pd.notna(x) else "-")
+        disp_pre["市值USD"] = disp_pre["市值USD"].map(_fmt_mcap)
+        st.markdown("**初选池概览（未通过筛选）**")
+        st.dataframe(disp_pre, use_container_width=True, hide_index=True)
+        return
+
+    targets = filtered["代码"].head(int(max_bt)).tolist()
+    with st.spinner(f"正在对 {len(targets)} 只标的运行「{strat_name}」回测…"):
+        bt = screener.backtest_universe(
+            targets,
+            cfg["start"],
+            cfg["end"],
+            strat_name,
+            params=params,
+            allow_short=cfg["allow_short"],
+            initial_capital=cfg["capital"],
+            fee_bps=cfg["fee_bps"],
+            slippage_bps=cfg["slippage_bps"],
+        )
+
+    if bt.empty:
+        st.error("❌ 回测未产生有效结果，请扩大日期范围或更换策略。")
+        return
+
+    merged = screener.merge_snapshot_backtest(filtered, bt)
+    summ = screener.summarize_backtest(bt)
+
+    st.markdown("**组合汇总（等权视角）**")
+    s1, s2, s3, s4, s5 = st.columns(5)
+    s1.metric("回测标的数", f"{int(summ.get('入选数量', 0))}")
+    s2.metric("平均累计收益", fmt_pct(summ.get("平均累计收益", 0)))
+    s3.metric("盈利占比", fmt_pct(summ.get("盈利标的占比", 0)))
+    s4.metric("平均夏普", fmt_num(summ.get("平均夏普", 0)))
+    s5.metric("平均最大回撤", fmt_pct(summ.get("平均最大回撤", 0)))
+    st.caption(
+        f"平均年化 {fmt_pct(summ.get('平均年化收益', 0))} ｜ "
+        f"平均超额 {fmt_pct(summ.get('平均超额收益', 0))} ｜ "
+        f"策略：{strat_name} ｜ 区间：{cfg['start']} ~ {cfg['end']}"
+    )
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=merged["代码"],
+        y=merged["策略累计收益"],
+        name="策略累计收益",
+        marker_color=["#2ecc71" if v >= 0 else "#e74c3c" for v in merged["策略累计收益"]],
+        text=[fmt_pct(v) for v in merged["策略累计收益"]],
+        textposition="outside",
+    ))
+    fig.update_layout(
+        height=360, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+        yaxis_tickformat=".0%", title="各标的策略累计收益",
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("**选股 + 回测明细**")
+    disp = merged.copy()
+    disp["涨幅%"] = disp["涨幅%"].map(lambda x: f"{x:,.2f}%" if pd.notna(x) else "-")
+    disp["成交额USD"] = disp["成交额USD"].map(_fmt_dollar_m)
+    disp["换手率%"] = disp["换手率%"].map(lambda x: f"{x:,.2f}%" if pd.notna(x) else "-")
+    disp["市值USD"] = disp["市值USD"].map(_fmt_mcap)
+    for col in ["策略累计收益", "策略年化收益", "基准收益", "超额收益", "最大回撤", "胜率"]:
+        if col in disp.columns:
+            disp[col] = disp[col].map(fmt_pct)
+    if "夏普比率" in disp.columns:
+        disp["夏普比率"] = disp["夏普比率"].map(fmt_num)
+    if "最新价" in disp.columns:
+        disp["最新价"] = disp["最新价"].map(lambda x: f"${x:,.2f}" if pd.notna(x) else "-")
+    st.dataframe(disp, use_container_width=True, hide_index=True)
+
+    csv = merged.to_csv(index=False).encode("utf-8-sig")
+    st.download_button("⬇️ 下载选股回测结果 (CSV)", csv, file_name="screener_backtest.csv", mime="text/csv")
+    st.caption("⚠️ 筛选基于历史与当日行情统计；回测收益不代表未来，小样本更易过拟合，请结合样本外验证使用。")
+
+
+# ---------------------------------------------------------------------------
+# 标签页：期权策略损益计算器
+# ---------------------------------------------------------------------------
+def _options_payoff_chart(res, spot: float, currency: str = "$") -> go.Figure:
+    p = res.prices
+    pay = res.payoff
+    pos = np.where(pay >= 0, pay, np.nan)
+    neg = np.where(pay < 0, pay, np.nan)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=p, y=pos, name="盈利区", line=dict(color="#2ecc71", width=2),
+                             fill="tozeroy", fillcolor="rgba(46,204,113,0.18)"))
+    fig.add_trace(go.Scatter(x=p, y=neg, name="亏损区", line=dict(color="#e74c3c", width=2),
+                             fill="tozeroy", fillcolor="rgba(231,76,60,0.18)"))
+    fig.add_hline(y=0, line=dict(color="#888", width=1))
+    fig.add_vline(x=spot, line=dict(color="#f1c40f", width=1, dash="dash"),
+                  annotation_text=f"现价 {currency}{spot:,.2f}", annotation_position="top")
+    for be in res.breakevens:
+        fig.add_vline(x=be, line=dict(color="#3498db", width=1, dash="dot"))
+    fig.update_layout(height=440, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                      xaxis_title="到期股价", yaxis_title="到期盈亏 (USD)",
+                      legend=dict(orientation="h", y=1.1))
+    return fig
+
+
+def tab_options(cfg: dict) -> None:
+    st.subheader("期权策略损益计算器")
+    mode = st.radio("模式", ["单策略损益", "多策略对比"], horizontal=True, key="opt_mode")
+    if mode == "多策略对比":
+        _tab_options_compare(cfg)
+        return
+
+    st.caption(
+        "输入行权价与权利金（按券商实际报价），画出到期盈亏图，给出最大盈利/亏损与盈亏平衡点。"
+        "仅计算到期损益结构，不含定价模型。每张合约 = 100 股。"
+    )
+
+    strat_name = st.selectbox("期权策略", options_mod.list_strategies(), key="opt_strat")
+    info = options_mod.STRATEGY_INFO[strat_name]
+    st.info(f"**观点**：{info['view']}　|　**风险**：{info['risk']}　|　**收益**：{info['reward']}\n\n{info['desc']}")
+
+    c0, c1 = st.columns(2)
+    spot = c0.number_input("标的现价 (USD)", min_value=0.01, value=float(cfg.get("opt_spot", 100.0)),
+                           step=1.0, key="opt_spot_in", help="可手动填，或点下方按钮自动拉取当前标的最新价")
+    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="opt_qty")
+
+    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="opt_fetch"):
+        df = get_data(cfg)
+        if df is not None and len(df):
+            st.session_state["opt_spot_fetched"] = float(df["Close"].iloc[-1])
+            st.rerun()
+    if "opt_spot_fetched" in st.session_state:
+        st.caption(f"已拉取 {cfg['ticker']} 最新价：${st.session_state['opt_spot_fetched']:,.2f}（请填入上方现价框）")
+
+    st.markdown("**各腿参数**")
+    legs: list = []
+
+    if strat_name == "买入认购 (Long Call)":
+        a, b = st.columns(2)
+        k = a.number_input("行权价 K", value=round(spot * 1.05, 2), step=1.0, key="oc_k")
+        prem = b.number_input("认购权利金/股", min_value=0.0, value=round(spot * 0.05, 2), step=0.1, key="oc_p")
+        legs = options_mod.long_call(k, prem, qty)
+    elif strat_name == "买入认沽 (Long Put)":
+        a, b = st.columns(2)
+        k = a.number_input("行权价 K", value=round(spot * 0.95, 2), step=1.0, key="op_k")
+        prem = b.number_input("认沽权利金/股", min_value=0.0, value=round(spot * 0.05, 2), step=0.1, key="op_p")
+        legs = options_mod.long_put(k, prem, qty)
+    elif strat_name == "备兑开仓 (Covered Call)":
+        a, b = st.columns(2)
+        k = a.number_input("认购行权价 K", value=round(spot * 1.1, 2), step=1.0, key="cc_k")
+        prem = b.number_input("收取的认购权利金/股", min_value=0.0, value=round(spot * 0.04, 2), step=0.1, key="cc_p")
+        legs = options_mod.covered_call(spot, k, prem, qty)
+    elif strat_name == "现金担保认沽 (Cash-Secured Put)":
+        a, b = st.columns(2)
+        k = a.number_input("认沽行权价 K", value=round(spot * 0.9, 2), step=1.0, key="csp_k")
+        prem = b.number_input("收取的认沽权利金/股", min_value=0.0, value=round(spot * 0.04, 2), step=0.1, key="csp_p")
+        legs = options_mod.cash_secured_put(k, prem, qty)
+    elif strat_name == "牛市认购价差 (Bull Call Spread)":
+        a, b, c, d = st.columns(4)
+        kl = a.number_input("买入行权价(低)", value=round(spot, 2), step=1.0, key="bcs_kl")
+        pl = b.number_input("买入权利金/股", min_value=0.0, value=round(spot * 0.06, 2), step=0.1, key="bcs_pl")
+        kh = c.number_input("卖出行权价(高)", value=round(spot * 1.15, 2), step=1.0, key="bcs_kh")
+        ph = d.number_input("卖出权利金/股", min_value=0.0, value=round(spot * 0.02, 2), step=0.1, key="bcs_ph")
+        legs = options_mod.bull_call_spread(kl, pl, kh, ph, qty)
+    elif strat_name == "熊市认沽价差 (Bear Put Spread)":
+        a, b, c, d = st.columns(4)
+        kh = a.number_input("买入行权价(高)", value=round(spot, 2), step=1.0, key="bps_kh")
+        ph = b.number_input("买入权利金/股", min_value=0.0, value=round(spot * 0.06, 2), step=0.1, key="bps_ph")
+        kl = c.number_input("卖出行权价(低)", value=round(spot * 0.85, 2), step=1.0, key="bps_kl")
+        pl = d.number_input("卖出权利金/股", min_value=0.0, value=round(spot * 0.02, 2), step=0.1, key="bps_pl")
+        legs = options_mod.bear_put_spread(kh, ph, kl, pl, qty)
+    elif strat_name == "领口 (Collar)":
+        a, b, c, d = st.columns(4)
+        pk = a.number_input("保护认沽行权价", value=round(spot * 0.9, 2), step=1.0, key="col_pk")
+        pp = b.number_input("认沽权利金/股(付)", min_value=0.0, value=round(spot * 0.03, 2), step=0.1, key="col_pp")
+        ck = c.number_input("卖出认购行权价", value=round(spot * 1.1, 2), step=1.0, key="col_ck")
+        cp = d.number_input("认购权利金/股(收)", min_value=0.0, value=round(spot * 0.03, 2), step=0.1, key="col_cp")
+        legs = options_mod.collar(spot, pk, pp, ck, cp, qty)
+    elif strat_name == "买入跨式 (Long Straddle)":
+        a, b, c = st.columns(3)
+        k = a.number_input("行权价 K(同)", value=round(spot, 2), step=1.0, key="ls_k")
+        cp = b.number_input("认购权利金/股", min_value=0.0, value=round(spot * 0.05, 2), step=0.1, key="ls_cp")
+        pp = c.number_input("认沽权利金/股", min_value=0.0, value=round(spot * 0.05, 2), step=0.1, key="ls_pp")
+        legs = options_mod.long_straddle(k, cp, pp, qty)
+    elif strat_name == "铁鹰 (Iron Condor)":
+        st.caption("从低到高四个行权价：买认沽 < 卖认沽 < 卖认购 < 买认购")
+        a, b, c, d = st.columns(4)
+        pl_k = a.number_input("买认沽行权", value=round(spot * 0.8, 2), step=1.0, key="ic_plk")
+        pl_p = a.number_input("买认沽权利金", min_value=0.0, value=round(spot * 0.01, 2), step=0.1, key="ic_plp")
+        ps_k = b.number_input("卖认沽行权", value=round(spot * 0.9, 2), step=1.0, key="ic_psk")
+        ps_p = b.number_input("卖认沽权利金", min_value=0.0, value=round(spot * 0.025, 2), step=0.1, key="ic_psp")
+        cs_k = c.number_input("卖认购行权", value=round(spot * 1.1, 2), step=1.0, key="ic_csk")
+        cs_p = c.number_input("卖认购权利金", min_value=0.0, value=round(spot * 0.025, 2), step=0.1, key="ic_csp")
+        cl_k = d.number_input("买认购行权", value=round(spot * 1.2, 2), step=1.0, key="ic_clk")
+        cl_p = d.number_input("买认购权利金", min_value=0.0, value=round(spot * 0.01, 2), step=0.1, key="ic_clp")
+        legs = options_mod.iron_condor(pl_k, pl_p, ps_k, ps_p, cs_k, cs_p, cl_k, cl_p, qty)
+
+    if not legs:
+        return
+
+    try:
+        res = options_mod.analyze(legs, spot, width=0.6)
+    except Exception as e:  # noqa: BLE001
+        st.error(f"❌ 计算失败：{e}")
+        return
+
+    m1, m2, m3, m4 = st.columns(4)
+    max_p = res.max_profit
+    max_l = res.max_loss
+    m1.metric("最大盈利", "≈ 无上限" if max_p > 5e7 else f"${max_p:,.0f}")
+    m2.metric("最大亏损", f"${max_l:,.0f}")
+    be_txt = " / ".join(f"${b:,.2f}" for b in res.breakevens) if res.breakevens else "无"
+    m3.metric("盈亏平衡点", be_txt)
+    net = res.net_cost
+    m4.metric("建仓现金流", f"{'收' if net >= 0 else '付'} ${abs(net):,.0f}",
+              help="正=净收权利金；负=净支出（含股票成本）")
+
+    st.plotly_chart(_options_payoff_chart(res, spot), use_container_width=True)
+
+    risk_reward = (max_p / abs(max_l)) if max_l < 0 and max_p < 5e7 else None
+    if risk_reward is not None:
+        st.caption(f"盈亏比（最大盈利 / 最大亏损）≈ {risk_reward:.2f}")
+
+    st.warning(
+        "⚠️ 这是**到期日**的理论损益，未计入时间价值、隐含波动率变化(IV)、提前行权与税费。"
+        "高波动个股期权很贵，实际盈亏请以券商报价为准。本工具仅供学习，不构成投资建议。"
+    )
+
+
+def _tab_options_compare(cfg: dict) -> None:
+    st.caption("选择多个策略，用相同现价与默认参数并排对比盈亏曲线与最大盈亏。")
+    c0, c1 = st.columns(2)
+    spot = c0.number_input("标的现价 (USD)", min_value=0.01, value=100.0, step=1.0, key="opt_cmp_spot")
+    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="opt_cmp_qty")
+    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="opt_cmp_fetch"):
+        df = get_data(cfg)
+        if df is not None and len(df):
+            st.session_state["opt_cmp_spot"] = float(df["Close"].iloc[-1])
+            st.rerun()
+    if "opt_cmp_spot" in st.session_state:
+        spot = float(st.session_state["opt_cmp_spot"])
+
+    picks = st.multiselect(
+        "对比策略（选 2~4 个）",
+        ["领口 (Collar)", "熊市认沽价差 (Bear Put Spread)", "买入认沽 (Long Put)",
+         "牛市认购价差 (Bull Call Spread)", "备兑开仓 (Covered Call)"],
+        default=["领口 (Collar)", "熊市认沽价差 (Bear Put Spread)"],
+        key="opt_cmp_picks",
+    )
+    if len(picks) < 2:
+        st.info("请至少选择 2 个策略进行对比。")
+        return
+
+    legs_map: dict[str, list] = {}
+    for name in picks:
+        if name == "领口 (Collar)":
+            legs_map[name] = options_mod.collar(spot, spot * 0.9, spot * 0.03, spot * 1.1, spot * 0.03, qty)
+        elif name == "熊市认沽价差 (Bear Put Spread)":
+            legs_map[name] = options_mod.bear_put_spread(spot, spot * 0.06, spot * 0.85, spot * 0.02, qty)
+        elif name == "买入认沽 (Long Put)":
+            legs_map[name] = options_mod.long_put(spot * 0.95, spot * 0.05, qty)
+        elif name == "牛市认购价差 (Bull Call Spread)":
+            legs_map[name] = options_mod.bull_call_spread(spot, spot * 0.06, spot * 1.15, spot * 0.02, qty)
+        elif name == "备兑开仓 (Covered Call)":
+            legs_map[name] = options_mod.covered_call(spot, spot * 1.1, spot * 0.04, qty)
+
+    table, results = options_mod.compare_results(legs_map, spot)
+    disp = table.copy()
+    disp["最大盈利"] = disp["最大盈利"].map(lambda x: "≈无上限" if x > 5e7 else f"${x:,.0f}")
+    disp["最大亏损"] = disp["最大亏损"].map(lambda x: f"${x:,.0f}")
+    disp["建仓现金流"] = disp["建仓现金流"].map(lambda x: f"{'收' if x >= 0 else '付'} ${abs(x):,.0f}")
+    disp["盈亏比"] = disp["盈亏比"].map(lambda x: f"{x:.2f}" if x is not None else "-")
+    st.dataframe(disp, use_container_width=True, hide_index=True)
+
+    fig = go.Figure()
+    colors = ["#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6"]
+    for i, (name, res) in enumerate(results.items()):
+        fig.add_trace(go.Scatter(x=res.prices, y=res.payoff, name=name, line=dict(color=colors[i % 5], width=2)))
+    fig.add_vline(x=spot, line=dict(color="#f1c40f", width=1, dash="dash"))
+    fig.add_hline(y=0, line=dict(color="#888", width=1))
+    fig.update_layout(height=440, template="plotly_dark", xaxis_title="到期股价", yaxis_title="到期盈亏 (USD)",
+                      margin=dict(l=10, r=10, t=30, b=10), legend=dict(orientation="h", y=1.12))
+    st.plotly_chart(fig, use_container_width=True)
+    st.caption("默认权利金为现价的估算比例，请替换为券商真实报价后再决策。")
+
+
+# ---------------------------------------------------------------------------
 # 标签页 9：策略推荐
 # ---------------------------------------------------------------------------
 def tab_recommend(cfg: dict) -> None:
@@ -1040,6 +1476,98 @@ def tab_recommend(cfg: dict) -> None:
 
     st.dataframe(disp.style.apply(_hl, axis=1), use_container_width=True, hide_index=True)
     st.caption("绿色 = 与当前市场高度契合；红色 = 不契合（不建议在当前环境使用）。推荐基于历史，仅供参考。")
+
+    st.divider()
+    st.markdown("**期权策略方向参考**（到期损益计算器可进一步模拟）")
+    owns = st.checkbox("我已持有该标的", key="rec_own_shares")
+    bearish = st.checkbox("我看跌 / 想对冲", key="rec_bearish")
+    opt_recs = options_mod.recommend_for_regime(
+        trend_label=reg.trend_label,
+        direction=reg.direction,
+        vol_pct=reg.vol_pct * 100,
+        owns_shares=owns,
+        bearish_view=bearish,
+    )
+    for name, reason in opt_recs[:3]:
+        st.markdown(f"- **{name}**：{reason}")
+
+
+# ---------------------------------------------------------------------------
+# 标签页：异动前兆选股
+# ---------------------------------------------------------------------------
+def tab_precursor(cfg: dict) -> None:
+    st.subheader("异动前兆选股 · 提前捕捉上涨/下跌迹象")
+    st.caption(
+        "扫描量能、波动收缩、趋势萌芽、相对强弱、MACD/RSI 等可量化前兆，"
+        "在大涨大跌前给出线索。分数越高，触发的看涨/看跌前兆越多。"
+    )
+
+    with st.expander("📖 全部前兆信号说明", expanded=False):
+        st.dataframe(precursor.list_catalog(), use_container_width=True, hide_index=True)
+
+    c1, c2, c3 = st.columns([1.2, 1, 1])
+    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_key = c1.selectbox("扫描股票池", list(pool_options.keys()),
+                            format_func=lambda k: pool_options[k], key="pre_pool")
+    pool_size = c2.number_input("扫描数量", 10, 150, 40, 10, key="pre_size")
+    min_score = c3.slider("最低前兆得分", 0.0, 5.0, 0.8, 0.1, key="pre_min")
+
+    custom_raw = ""
+    if pool_key == "custom":
+        custom_raw = st.text_input("自定义代码（逗号分隔）",
+                                   value="AAPL, NVDA, AMD, TSLA, META, MSFT, GOOGL, AMZN, COIN, PLTR",
+                                   key="pre_custom")
+
+    use_spy = st.checkbox("相对强弱对比 SPY 基准", value=True, key="pre_spy")
+
+    if not st.button("🔮 扫描异动前兆", type="primary", key="run_pre"):
+        return
+
+    with st.spinner("正在拉取行情并扫描前兆信号…"):
+        try:
+            end = cfg["end"]
+            start = cfg["start"]
+            if pool_key == "custom":
+                tickers = parse_tickers(custom_raw)
+            elif pool_key == "sp500":
+                tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+            else:
+                snap = screener.fetch_yahoo_screen(pool_key, count=int(pool_size))
+                tickers = snap["代码"].tolist() if not snap.empty else []
+            if not tickers:
+                st.error("❌ 股票池为空。")
+                return
+            data, failed = get_multi_data(tickers[: int(pool_size)], cfg)
+            if failed:
+                st.warning(f"以下标的拉取失败已忽略：{', '.join(failed)}")
+            bench = None
+            if use_spy:
+                spy_df = fetch_history("SPY", start=start, end=end)
+                bench = spy_df["Close"]
+            table = precursor.scan_universe(data, bench, min_score=float(min_score))
+        except DataError as e:
+            st.error(f"❌ {e}")
+            return
+
+    if table.empty:
+        st.warning("未发现达到得分阈值的异动前兆，请降低最低得分或扩大股票池。")
+        return
+
+    st.success(f"发现 **{len(table)}** 只标的存在异动前兆（按得分排序）")
+    disp = table.drop(columns=["_hits"], errors="ignore").copy()
+    disp["最新价"] = disp["最新价"].map(lambda x: f"${x:,.2f}" if pd.notna(x) else "-")
+    disp["近5日%"] = disp["近5日%"].map(lambda x: f"{x:+.1f}%")
+    disp["近20日%"] = disp["近20日%"].map(lambda x: f"{x:+.1f}%")
+    st.dataframe(disp, use_container_width=True, hide_index=True)
+
+    top = table.iloc[0]
+    st.markdown(f"**🏆 前兆最强：{top['代码']}**（得分 {top['前兆得分']}，偏向 {top['偏向']}）")
+    hits = top.get("_hits") or []
+    for h in hits:
+        icon = "🟢" if h.direction == "bull" else "🔴" if h.direction == "bear" else "🟡"
+        st.markdown(f"- {icon} **{h.name}**（强度 {h.strength:.0%}）：{h.description}")
+
+    st.caption("⚠️ 前兆≠预测；信号可能滞后或失效，请结合样本外验证与仓位管理。")
 
 
 # ---------------------------------------------------------------------------
@@ -1186,33 +1714,39 @@ def _render_trades(result: backtest.BacktestResult) -> None:
 # ---------------------------------------------------------------------------
 def main() -> None:
     st.title("📈 美股量化交易策略回测平台")
-    st.caption("自用 · 体检 / 推荐 / 回测 / 寻优 / 对比 / 组合 / 信号 / 验证 / 模拟 / 赚钱概率 · 数据来源：Yahoo Finance")
+    st.caption("自用 · 体检 / 推荐 / 前兆 / 回测 / 寻优 / 对比 / 组合 / 信号 / 验证 / 模拟 / 选股 / 概率 / 期权 · Yahoo Finance")
 
     cfg = sidebar()
     tabs = st.tabs(
-        ["📋 一键体检", "🧭 策略推荐", "🎯 单策略回测", "🔍 参数寻优", "📊 策略对比", "🧺 组合回测",
-         "🔔 信号扫描", "🧪 样本外验证", "💼 模拟交易", "💰 赚钱概率"]
+        ["📋 一键体检", "🧭 策略推荐", "🔮 异动前兆", "🎯 单策略回测", "🔍 参数寻优", "📊 策略对比", "🧺 组合回测",
+         "🔔 信号扫描", "🧪 样本外验证", "💼 模拟交易", "🔎 策略选股", "💰 赚钱概率", "🎲 期权策略"]
     )
     with tabs[0]:
         tab_report(cfg)
     with tabs[1]:
         tab_recommend(cfg)
     with tabs[2]:
-        tab_single(cfg)
+        tab_precursor(cfg)
     with tabs[3]:
-        tab_optimize(cfg)
+        tab_single(cfg)
     with tabs[4]:
-        tab_compare(cfg)
+        tab_optimize(cfg)
     with tabs[5]:
-        tab_portfolio(cfg)
+        tab_compare(cfg)
     with tabs[6]:
-        tab_signals(cfg)
+        tab_portfolio(cfg)
     with tabs[7]:
-        tab_validation(cfg)
+        tab_signals(cfg)
     with tabs[8]:
-        tab_paper(cfg)
+        tab_validation(cfg)
     with tabs[9]:
+        tab_paper(cfg)
+    with tabs[10]:
+        tab_screener(cfg)
+    with tabs[11]:
         tab_probability(cfg)
+    with tabs[12]:
+        tab_options(cfg)
 
 
 if __name__ == "__main__":

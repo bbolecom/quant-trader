@@ -1,6 +1,6 @@
 name: QuantTrader
 options:
-  bundleIdPrefix: com.example
+  bundleIdPrefix: com.bbolecom
   deploymentTarget:
     iOS: "15.0"
   createIntermediateGroups: true
@@ -34,7 +34,7 @@ targets:
           NSAllowsArbitraryLoads: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.example.quanttrader
+        PRODUCT_BUNDLE_IDENTIFIER: com.bbolecom.quanttrader
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  macOS launchd 定时任务模板：每个交易日收盘后自动选股并推送。
+  使用步骤：
+    1. 把下面的 /Users/Admin/Desktop/666 改成你的实际项目路径（若不同）。
+    2. 复制到 ~/Library/LaunchAgents/com.quant.screen.plist
+    3. 加载： launchctl load ~/Library/LaunchAgents/com.quant.screen.plist
+    4. 立即测试一次： launchctl start com.quant.screen
+    5. 卸载： launchctl unload ~/Library/LaunchAgents/com.quant.screen.plist
+  默认每天 16:35（美东收盘后请按你所在时区调整 Hour/Minute）。
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.quant.screen</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/Admin/Desktop/666/.venv/bin/python</string>
+        <string>/Users/Admin/Desktop/666/screen_daily.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/Admin/Desktop/666</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>16</integer>
+        <key>Minute</key>
+        <integer>35</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/Admin/Desktop/666/screen.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/Admin/Desktop/666/screen.err.log</string>
+</dict>
+</plist>

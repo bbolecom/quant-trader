@@ -1,0 +1,38 @@
+{
+  "pool": "day_gainers",
+  "pool_size": 50,
+  "custom_tickers": ["AAPL", "NVDA", "TSLA", "AMD", "META", "AMZN", "MSFT", "GOOGL", "COIN", "PLTR"],
+  "strategy": "趋势+动量双确认",
+  "params": {"ma_window": 100, "mom_window": 60},
+  "allow_short": false,
+  "max_backtest": 20,
+  "history_days": 500,
+  "notify_top": 10,
+  "filters": {
+    "min_gain_pct": 3.0,
+    "max_gain_pct": 100.0,
+    "min_dollar_vol_m": 50.0,
+    "min_turnover_pct": 0.0,
+    "max_turnover_pct": 30.0,
+    "min_mcap_b": 2.0,
+    "max_mcap_b": 1000.0,
+    "lookback_days": 20,
+    "sectors": []
+  },
+  "cost": {
+    "capital": 100000,
+    "fee_bps": 5,
+    "slippage_bps": 2
+  },
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

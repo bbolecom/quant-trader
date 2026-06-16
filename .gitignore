@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 scan_history.csv
+screen_history.csv
 paper_account.json
 scan.log
 scan.err.log
