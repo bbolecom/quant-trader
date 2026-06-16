@@ -65,27 +65,81 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    .main .block-container {padding-top: 2rem; max-width: 1500px;}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    html, body, [class*="css"] { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .main .block-container { padding-top: 1.2rem; max-width: 1480px; }
+    /* 品牌顶栏 */
+    .brand-hero {
+        display: flex; align-items: center; gap: 16px;
+        padding: 18px 22px; margin-bottom: 1rem;
+        background: linear-gradient(135deg, #1a1f2e 0%, #12151f 50%, #1a1220 100%);
+        border: 1px solid #ffffff14; border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+    .brand-hero img {
+        width: 56px; height: 56px; border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(231,76,60,.25);
+    }
+    .brand-hero h1 {
+        margin: 0; font-size: 1.55rem; font-weight: 700;
+        background: linear-gradient(90deg, #fff 0%, #e74c3c 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .brand-hero p { margin: 4px 0 0; color: #9aa4b2; font-size: 0.88rem; }
+    /* 指标卡片 */
     div[data-testid="stMetric"] {
-        background: #ffffff0d;
-        border: 1px solid #ffffff1a;
-        border-radius: 12px;
-        padding: 14px 16px;
+        background: linear-gradient(145deg, #ffffff0a, #ffffff04);
+        border: 1px solid #ffffff12; border-radius: 14px;
+        padding: 16px 18px; transition: border-color .2s;
     }
-    h1, h2, h3 {letter-spacing: .3px;}
-    /* 让顶部标签可横向滑动，适配手机窄屏 */
+    div[data-testid="stMetric"]:hover { border-color: #e74c3c44; }
+    div[data-testid="stMetricLabel"] { color: #9aa4b2 !important; font-size: 0.82rem !important; }
+    div[data-testid="stMetricValue"] { font-weight: 700 !important; }
+    /* 标签页 */
     div[data-testid="stTabs"] div[role="tablist"] {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch;
+        gap: 4px; background: #ffffff06; border-radius: 12px; padding: 6px;
+        border: 1px solid #ffffff0a;
     }
-    div[data-testid="stTabs"] button[role="tab"] {white-space: nowrap;}
-    /* 手机端收窄内边距、缩小标题，提升可读性 */
+    div[data-testid="stTabs"] button[role="tab"] {
+        white-space: nowrap; border-radius: 8px !important;
+        font-weight: 500; padding: 8px 14px !important;
+    }
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+        background: linear-gradient(135deg, #e74c3c33, #e74c3c11) !important;
+        border-color: #e74c3c55 !important;
+    }
+    /* 信息块 */
+    div[data-testid="stAlert"], .stInfo, .stSuccess, .stWarning {
+        border-radius: 12px !important;
+    }
+    /* 按钮 */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+        border: none !important; border-radius: 10px !important;
+        font-weight: 600 !important; box-shadow: 0 4px 14px rgba(231,76,60,.35);
+    }
+    .stButton > button[kind="primary"]:hover {
+        box-shadow: 0 6px 20px rgba(231,76,60,.5);
+    }
+    /* 侧边栏 */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0e1117 0%, #141824 100%);
+        border-right: 1px solid #ffffff0a;
+    }
+    section[data-testid="stSidebar"] .stMarkdown h1 {
+        font-size: 1.1rem !important; color: #e74c3c !important;
+    }
+    h1, h2, h3 { letter-spacing: .2px; }
+    h2 { color: #eef1f5 !important; border-left: 3px solid #e74c3c; padding-left: 10px; }
+    /* 表格 */
+    div[data-testid="stDataFrame"] { border-radius: 12px; overflow: hidden; border: 1px solid #ffffff0a; }
+    /* 手机适配 */
     @media (max-width: 640px) {
-        .main .block-container {padding: 1rem 0.6rem !important;}
-        div[data-testid="stMetricValue"] {font-size: 1.1rem !important;}
-        h1 {font-size: 1.5rem !important;}
-        h2 {font-size: 1.2rem !important;}
+        .main .block-container { padding: 0.8rem 0.5rem !important; }
+        .brand-hero { flex-direction: column; text-align: center; padding: 14px; }
+        .brand-hero h1 { font-size: 1.25rem !important; }
+        div[data-testid="stMetricValue"] { font-size: 1.05rem !important; }
     }
     </style>
     """,
@@ -149,8 +203,22 @@ def parse_tickers(raw: str) -> list[str]:
 # ---------------------------------------------------------------------------
 # 侧边栏 — 共享配置（标的、区间、资金、成本）
 # ---------------------------------------------------------------------------
+def _render_brand_header() -> None:
+    """品牌顶栏：Logo + 标题。"""
+    icon_path = ROOT_DIR / "assets" / "icon.png"
+    c1, c2 = st.columns([1, 11], gap="small")
+    with c1:
+        if icon_path.exists():
+            st.image(str(icon_path), width=64)
+        else:
+            st.markdown("## 📈")
+    with c2:
+        st.markdown("### 美股量化策略平台")
+        st.caption("体检 · 前兆选股 · 回测寻优 · 期权模拟 · 每日推送")
+
+
 def sidebar() -> dict:
-    st.sidebar.title("⚙️ 全局配置")
+    st.sidebar.markdown("### ⚙️ 全局配置")
 
     st.sidebar.subheader("标的与区间")
     ticker = st.sidebar.text_input(
@@ -1821,8 +1889,8 @@ def _render_trades(result: backtest.BacktestResult) -> None:
 # 主流程
 # ---------------------------------------------------------------------------
 def main() -> None:
-    st.title("📈 美股量化交易策略回测平台")
-    st.caption("自用 · 体检 / 推荐 / 前兆 / 回测 / 寻优 / 对比 / 组合 / 信号 / 验证 / 模拟 / 选股 / 概率 / 期权 · Yahoo Finance")
+    _render_brand_header()
+    st.caption("数据来源 Yahoo Finance · 自用研究工具，不构成投资建议")
 
     cfg = sidebar()
     tabs = st.tabs(
