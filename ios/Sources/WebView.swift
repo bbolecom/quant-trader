@@ -20,6 +20,10 @@ struct WebView: UIViewRepresentable {
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+        webView.isOpaque = false
+        webView.backgroundColor = .launchBackground
+        webView.scrollView.backgroundColor = .launchBackground
+        webView.underPageBackgroundColor = .launchBackground
 
         let refresh = UIRefreshControl()
         refresh.addTarget(context.coordinator,
