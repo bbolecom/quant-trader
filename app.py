@@ -38,6 +38,7 @@ from quant import (
     validation,
 )
 from quant.data import DataError, fetch_history
+import tiger_theme as theme
 
 ROOT_DIR = Path(__file__).resolve().parent
 PAPER_ACCOUNT_FILE = ROOT_DIR / "paper_account.json"
@@ -56,95 +57,13 @@ def _page_icon():
     return "📈"
 
 st.set_page_config(
-    page_title="美股量化策略回测平台",
+    page_title="量化策略 · Tiger Style",
     page_icon=_page_icon(),
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-    html, body, [class*="css"] { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-    .main .block-container { padding-top: 1.2rem; max-width: 1480px; }
-    /* 品牌顶栏 */
-    .brand-hero {
-        display: flex; align-items: center; gap: 16px;
-        padding: 18px 22px; margin-bottom: 1rem;
-        background: linear-gradient(135deg, #1a1f2e 0%, #12151f 50%, #1a1220 100%);
-        border: 1px solid #ffffff14; border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0,0,0,.35);
-    }
-    .brand-hero img {
-        width: 56px; height: 56px; border-radius: 14px;
-        box-shadow: 0 4px 16px rgba(231,76,60,.25);
-    }
-    .brand-hero h1 {
-        margin: 0; font-size: 1.55rem; font-weight: 700;
-        background: linear-gradient(90deg, #fff 0%, #e74c3c 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .brand-hero p { margin: 4px 0 0; color: #9aa4b2; font-size: 0.88rem; }
-    /* 指标卡片 */
-    div[data-testid="stMetric"] {
-        background: linear-gradient(145deg, #ffffff0a, #ffffff04);
-        border: 1px solid #ffffff12; border-radius: 14px;
-        padding: 16px 18px; transition: border-color .2s;
-    }
-    div[data-testid="stMetric"]:hover { border-color: #e74c3c44; }
-    div[data-testid="stMetricLabel"] { color: #9aa4b2 !important; font-size: 0.82rem !important; }
-    div[data-testid="stMetricValue"] { font-weight: 700 !important; }
-    /* 标签页 */
-    div[data-testid="stTabs"] div[role="tablist"] {
-        overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch;
-        gap: 4px; background: #ffffff06; border-radius: 12px; padding: 6px;
-        border: 1px solid #ffffff0a;
-    }
-    div[data-testid="stTabs"] button[role="tab"] {
-        white-space: nowrap; border-radius: 8px !important;
-        font-weight: 500; padding: 8px 14px !important;
-    }
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
-        background: linear-gradient(135deg, #e74c3c33, #e74c3c11) !important;
-        border-color: #e74c3c55 !important;
-    }
-    /* 信息块 */
-    div[data-testid="stAlert"], .stInfo, .stSuccess, .stWarning {
-        border-radius: 12px !important;
-    }
-    /* 按钮 */
-    .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
-        border: none !important; border-radius: 10px !important;
-        font-weight: 600 !important; box-shadow: 0 4px 14px rgba(231,76,60,.35);
-    }
-    .stButton > button[kind="primary"]:hover {
-        box-shadow: 0 6px 20px rgba(231,76,60,.5);
-    }
-    /* 侧边栏 */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0e1117 0%, #141824 100%);
-        border-right: 1px solid #ffffff0a;
-    }
-    section[data-testid="stSidebar"] .stMarkdown h1 {
-        font-size: 1.1rem !important; color: #e74c3c !important;
-    }
-    h1, h2, h3 { letter-spacing: .2px; }
-    h2 { color: #eef1f5 !important; border-left: 3px solid #e74c3c; padding-left: 10px; }
-    /* 表格 */
-    div[data-testid="stDataFrame"] { border-radius: 12px; overflow: hidden; border: 1px solid #ffffff0a; }
-    /* 手机适配 */
-    @media (max-width: 640px) {
-        .main .block-container { padding: 0.8rem 0.5rem !important; }
-        .brand-hero { flex-direction: column; text-align: center; padding: 14px; }
-        .brand-hero h1 { font-size: 1.25rem !important; }
-        div[data-testid="stMetricValue"] { font-size: 1.05rem !important; }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown(theme.inject_css(), unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
@@ -204,43 +123,52 @@ def parse_tickers(raw: str) -> list[str]:
 # 侧边栏 — 共享配置（标的、区间、资金、成本）
 # ---------------------------------------------------------------------------
 def _render_brand_header() -> None:
-    """品牌顶栏：Logo + 标题。"""
+    """老虎证券风格顶栏。"""
     icon_path = ROOT_DIR / "assets" / "icon.png"
-    c1, c2 = st.columns([1, 11], gap="small")
-    with c1:
-        if icon_path.exists():
-            st.image(str(icon_path), width=64)
-        else:
-            st.markdown("## 📈")
-    with c2:
-        st.markdown("### 美股量化策略平台")
-        st.caption("体检 · 前兆选股 · 回测寻优 · 期权模拟 · 每日推送")
+    logo_html = ""
+    if icon_path.exists():
+        import base64
+
+        b64 = base64.b64encode(icon_path.read_bytes()).decode()
+        logo_html = (
+            f'<img src="data:image/png;base64,{b64}" width="48" height="48" '
+            f'style="border-radius:12px;flex-shrink:0" alt="logo"/>'
+        )
+    st.markdown(
+        f'<div class="tiger-topbar">'
+        f'<div class="brand">{logo_html}'
+        f'<div><div class="brand-name">量化策略</div>'
+        f'<div class="brand-sub">研究 · 选股 · 回测 · 期权</div></div></div>'
+        f'<span class="brand-tag">PRO</span></div>',
+        unsafe_allow_html=True,
+    )
 
 
 def sidebar() -> dict:
-    st.sidebar.markdown("### ⚙️ 全局配置")
+    st.sidebar.markdown("### 交易设置")
 
-    st.sidebar.subheader("标的与区间")
+    st.sidebar.markdown("**标的**")
     ticker = st.sidebar.text_input(
-        "股票代码", value="AAPL", help="美股代码，如 AAPL、MSFT、NVDA、SPY"
+        "代码", value="AAPL", label_visibility="collapsed",
+        help="美股代码，如 AAPL、MSFT、NVDA",
     ).strip().upper()
 
     col1, col2 = st.sidebar.columns(2)
     default_start = (pd.Timestamp.today() - pd.DateOffset(years=3)).date()
-    start = col1.date_input("开始日期", value=default_start, max_value=date.today())
-    end = col2.date_input("结束日期", value=date.today(), max_value=date.today())
+    start = col1.date_input("开始", value=default_start, max_value=date.today())
+    end = col2.date_input("结束", value=date.today(), max_value=date.today())
 
     allow_short = st.sidebar.checkbox(
         "允许做空", value=False, help="开启后，离场信号将转为反向做空"
     )
 
-    st.sidebar.subheader("资金与成本")
+    st.sidebar.markdown("**资金与成本**")
     capital = st.sidebar.number_input("初始资金 (USD)", value=100_000, step=10_000, min_value=1_000)
-    fee_bps = st.sidebar.slider("手续费 (基点)", 0.0, 30.0, 5.0, 0.5, help="1 基点 = 0.01%")
-    slippage_bps = st.sidebar.slider("滑点 (基点)", 0.0, 30.0, 2.0, 0.5)
+    fee_bps = st.sidebar.slider("手续费 (bp)", 0.0, 30.0, 5.0, 0.5)
+    slippage_bps = st.sidebar.slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5)
 
     st.sidebar.divider()
-    st.sidebar.caption("⚠️ 回测基于历史数据，不构成投资建议。")
+    st.sidebar.caption("数据仅供参考，不构成投资建议")
 
     return {
         "ticker": ticker,
@@ -264,40 +192,40 @@ def price_chart(df: pd.DataFrame, strat_name: str, params: dict) -> go.Figure:
     fig.add_trace(
         go.Candlestick(
             x=df.index, open=df["Open"], high=df["High"], low=df["Low"], close=df["Close"],
-            name="K线", increasing_line_color="#e74c3c", decreasing_line_color="#2ecc71",
+            name="K线", increasing_line_color=theme.UP, decreasing_line_color=theme.DOWN,
         ),
         row=1, col=1,
     )
     close = df["Close"]
     if strat_name == "双均线交叉":
         fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("fast", 20))),
-                                 name=f"MA{int(params.get('fast', 20))}", line=dict(color="#f39c12", width=1.3)), row=1, col=1)
+                                 name=f"MA{int(params.get('fast', 20))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
         fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("slow", 60))),
-                                 name=f"MA{int(params.get('slow', 60))}", line=dict(color="#3498db", width=1.3)), row=1, col=1)
+                                 name=f"MA{int(params.get('slow', 60))}", line=dict(color=theme.BLUE, width=1.3)), row=1, col=1)
     elif strat_name == "布林带回归":
         b = ind.bollinger_bands(close, int(params.get("window", 20)), float(params.get("num_std", 2.0)))
-        fig.add_trace(go.Scatter(x=df.index, y=b["upper"], name="上轨", line=dict(color="#9b59b6", width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=b["mid"], name="中轨", line=dict(color="#f39c12", width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=b["lower"], name="下轨", line=dict(color="#9b59b6", width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=b["upper"], name="上轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=b["mid"], name="中轨", line=dict(color=theme.GOLD, width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=b["lower"], name="下轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
     elif strat_name == "唐奇安通道突破（海龟）":
         d = ind.donchian(df, int(params.get("entry", 20)))
         de = ind.donchian(df, int(params.get("exit", 10)))
-        fig.add_trace(go.Scatter(x=df.index, y=d["upper"], name="入场上轨", line=dict(color="#e74c3c", width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=de["lower"], name="离场下轨", line=dict(color="#2ecc71", width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=d["upper"], name="入场上轨", line=dict(color=theme.ORANGE, width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=de["lower"], name="离场下轨", line=dict(color=theme.UP, width=1)), row=1, col=1)
     elif strat_name == "肯特纳通道突破":
         k = ind.keltner(df, int(params.get("window", 20)), int(params.get("atr_window", 10)), float(params.get("mult", 2.0)))
-        fig.add_trace(go.Scatter(x=df.index, y=k["upper"], name="上轨", line=dict(color="#9b59b6", width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=k["mid"], name="中轨", line=dict(color="#f39c12", width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=k["lower"], name="下轨", line=dict(color="#9b59b6", width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=k["upper"], name="上轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=k["mid"], name="中轨", line=dict(color=theme.GOLD, width=1)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df.index, y=k["lower"], name="下轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
     elif strat_name == "ATR 跟踪止损趋势":
         fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("ma_window", 50))),
-                                 name=f"MA{int(params.get('ma_window', 50))}", line=dict(color="#f39c12", width=1.3)), row=1, col=1)
+                                 name=f"MA{int(params.get('ma_window', 50))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
     elif strat_name == "趋势+动量双确认":
         fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("ma_window", 100))),
-                                 name=f"MA{int(params.get('ma_window', 100))}", line=dict(color="#f39c12", width=1.3)), row=1, col=1)
-    colors = ["#e74c3c" if c >= o else "#2ecc71" for o, c in zip(df["Open"], df["Close"])]
+                                 name=f"MA{int(params.get('ma_window', 100))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
+    colors = [theme.UP if c >= o else theme.DOWN for o, c in zip(df["Open"], df["Close"])]
     fig.add_trace(go.Bar(x=df.index, y=df["Volume"], name="成交量", marker_color=colors, opacity=0.6), row=2, col=1)
-    fig.update_layout(height=520, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+    fig.update_layout(height=520, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       xaxis_rangeslider_visible=False, legend=dict(orientation="h", y=1.05))
     fig.update_yaxes(title_text="价格", row=1, col=1)
     fig.update_yaxes(title_text="成交量", row=2, col=1)
@@ -308,12 +236,12 @@ def equity_chart(result: backtest.BacktestResult, strat_name: str) -> go.Figure:
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.7, 0.3],
                         vertical_spacing=0.05, subplot_titles=("净值曲线", "回撤"))
     fig.add_trace(go.Scatter(x=result.equity.index, y=result.equity, name=f"{strat_name}",
-                             line=dict(color="#e74c3c", width=2)), row=1, col=1)
+                             line=dict(color=theme.ORANGE, width=2)), row=1, col=1)
     fig.add_trace(go.Scatter(x=result.benchmark.index, y=result.benchmark, name="买入持有基准",
-                             line=dict(color="#7f8c8d", width=1.5, dash="dot")), row=1, col=1)
+                             line=dict(color=theme.MUTED, width=1.5, dash="dot")), row=1, col=1)
     fig.add_trace(go.Scatter(x=result.drawdown.index, y=result.drawdown, name="回撤",
-                             fill="tozeroy", line=dict(color="#3498db", width=1)), row=2, col=1)
-    fig.update_layout(height=460, template="plotly_dark", margin=dict(l=10, r=10, t=40, b=10),
+                             fill="tozeroy", line=dict(color=theme.BLUE, width=1)), row=2, col=1)
+    fig.update_layout(height=460, template="tiger", margin=dict(l=10, r=10, t=40, b=10),
                       legend=dict(orientation="h", y=1.08))
     fig.update_yaxes(title_text="净值", row=1, col=1)
     fig.update_yaxes(title_text="回撤", tickformat=".0%", row=2, col=1)
@@ -322,11 +250,11 @@ def equity_chart(result: backtest.BacktestResult, strat_name: str) -> go.Figure:
 
 def compare_chart(curves: dict[str, pd.Series]) -> go.Figure:
     fig = go.Figure()
-    palette = ["#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c", "#e67e22"]
+    palette = theme.PALETTE
     for i, (name, eq) in enumerate(curves.items()):
         fig.add_trace(go.Scatter(x=eq.index, y=eq, name=name,
                                  line=dict(width=2, color=palette[i % len(palette)])))
-    fig.update_layout(height=480, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+    fig.update_layout(height=480, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       legend=dict(orientation="h", y=1.06), title="各策略净值曲线对比")
     fig.update_yaxes(title_text="净值")
     return fig
@@ -458,7 +386,7 @@ def _heatmap(table: pd.DataFrame, x: str, y: str, metric: str) -> go.Figure:
     pivot = table.pivot_table(index=y, columns=x, values=metric, aggfunc="mean")
     fig = go.Figure(go.Heatmap(z=pivot.values, x=pivot.columns, y=pivot.index,
                                colorscale="RdYlGn", colorbar=dict(title=metric)))
-    fig.update_layout(height=420, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+    fig.update_layout(height=420, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       xaxis_title=x, yaxis_title=y, title=f"{metric} 随参数变化")
     return fig
 
@@ -596,8 +524,8 @@ def tab_portfolio(cfg: dict) -> None:
         if result.leverage is not None:
             st.markdown("**动态仓位系数**")
             lev_fig = go.Figure(go.Scatter(x=result.leverage.index, y=result.leverage,
-                                           line=dict(color="#1abc9c", width=1.4)))
-            lev_fig.update_layout(height=200, template="plotly_dark", margin=dict(l=10, r=10, t=10, b=10),
+                                           line=dict(color=theme.UP, width=1.4)))
+            lev_fig.update_layout(height=200, template="tiger", margin=dict(l=10, r=10, t=10, b=10),
                                   yaxis_title="仓位系数")
             st.plotly_chart(lev_fig, use_container_width=True)
 
@@ -613,14 +541,14 @@ def _portfolio_chart(result: portfolio.PortfolioResult) -> go.Figure:
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.7, 0.3],
                         vertical_spacing=0.05, subplot_titles=("组合净值曲线", "回撤"))
     fig.add_trace(go.Scatter(x=result.equity.index, y=result.equity, name="组合",
-                             line=dict(color="#e74c3c", width=2.2)), row=1, col=1)
-    palette = ["#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c", "#e67e22", "#95a5a6"]
+                             line=dict(color=theme.ORANGE, width=2.2)), row=1, col=1)
+    palette = theme.PALETTE + [theme.MUTED]
     for i, (t, eq) in enumerate(result.asset_equity.items()):
         fig.add_trace(go.Scatter(x=eq.index, y=eq, name=t,
                                  line=dict(width=1, color=palette[i % len(palette)], dash="dot")), row=1, col=1)
     fig.add_trace(go.Scatter(x=result.drawdown.index, y=result.drawdown, name="回撤",
-                             fill="tozeroy", line=dict(color="#3498db", width=1)), row=2, col=1)
-    fig.update_layout(height=480, template="plotly_dark", margin=dict(l=10, r=10, t=40, b=10),
+                             fill="tozeroy", line=dict(color=theme.BLUE, width=1)), row=2, col=1)
+    fig.update_layout(height=480, template="tiger", margin=dict(l=10, r=10, t=40, b=10),
                       legend=dict(orientation="h", y=1.08))
     fig.update_yaxes(title_text="净值", row=1, col=1)
     fig.update_yaxes(title_text="回撤", tickformat=".0%", row=2, col=1)
@@ -630,7 +558,7 @@ def _portfolio_chart(result: portfolio.PortfolioResult) -> go.Figure:
 def _weight_pie(weights: dict[str, float]) -> go.Figure:
     fig = go.Figure(go.Pie(labels=list(weights.keys()), values=list(weights.values()),
                            hole=0.45, textinfo="label+percent"))
-    fig.update_layout(height=480, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+    fig.update_layout(height=480, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       showlegend=False)
     return fig
 
@@ -787,11 +715,11 @@ def _render_holdout(df, strat_name, param_grid, sort_by, train_ratio, cfg) -> No
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=res.is_equity.index, y=res.is_equity, name="样本内（训练）",
-                             line=dict(color="#7f8c8d", width=1.6, dash="dot")))
+                             line=dict(color=theme.MUTED, width=1.6, dash="dot")))
     fig.add_trace(go.Scatter(x=res.oos_equity.index, y=res.oos_equity, name="样本外（测试）",
-                             line=dict(color="#e74c3c", width=2.2)))
-    fig.add_vline(x=res.split_date, line=dict(color="#f1c40f", width=1, dash="dash"))
-    fig.update_layout(height=420, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                             line=dict(color=theme.ORANGE, width=2.2)))
+    fig.add_vline(x=res.split_date, line=dict(color=theme.GOLD, width=1, dash="dash"))
+    fig.update_layout(height=420, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       legend=dict(orientation="h", y=1.08), title="样本内 vs 样本外净值")
     st.plotly_chart(fig, use_container_width=True)
 
@@ -814,12 +742,12 @@ def _render_walk_forward(df, strat_name, param_grid, sort_by, n_splits, train_ra
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.7, 0.3],
                         vertical_spacing=0.05, subplot_titles=("连续样本外净值", "回撤"))
     fig.add_trace(go.Scatter(x=res.oos_equity.index, y=res.oos_equity, name="滚动样本外策略",
-                             line=dict(color="#e74c3c", width=2.2)), row=1, col=1)
+                             line=dict(color=theme.ORANGE, width=2.2)), row=1, col=1)
     fig.add_trace(go.Scatter(x=res.oos_benchmark.index, y=res.oos_benchmark, name="买入持有基准",
-                             line=dict(color="#7f8c8d", width=1.5, dash="dot")), row=1, col=1)
+                             line=dict(color=theme.MUTED, width=1.5, dash="dot")), row=1, col=1)
     fig.add_trace(go.Scatter(x=res.drawdown.index, y=res.drawdown, name="回撤",
-                             fill="tozeroy", line=dict(color="#3498db", width=1)), row=2, col=1)
-    fig.update_layout(height=460, template="plotly_dark", margin=dict(l=10, r=10, t=40, b=10),
+                             fill="tozeroy", line=dict(color=theme.BLUE, width=1)), row=2, col=1)
+    fig.update_layout(height=460, template="tiger", margin=dict(l=10, r=10, t=40, b=10),
                       legend=dict(orientation="h", y=1.08))
     fig.update_yaxes(title_text="净值", row=1, col=1)
     fig.update_yaxes(title_text="回撤", tickformat=".0%", row=2, col=1)
@@ -906,8 +834,8 @@ def tab_paper(cfg: dict) -> None:
         eq_df = pd.DataFrame(account.equity_curve)
         eq_df["date"] = pd.to_datetime(eq_df["date"])
         fig = go.Figure(go.Scatter(x=eq_df["date"], y=eq_df["equity"],
-                                   line=dict(color="#e74c3c", width=2), name="权益"))
-        fig.update_layout(height=300, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                                   line=dict(color=theme.ORANGE, width=2), name="权益"))
+        fig.update_layout(height=300, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                           title="模拟账户权益曲线", yaxis_title="权益 (USD)")
         st.plotly_chart(fig, use_container_width=True)
 
@@ -997,11 +925,11 @@ def _prob_single(cfg: dict, strat_name: str, params: dict) -> None:
     h = a["horizons"]
     fig = go.Figure()
     fig.add_trace(go.Bar(x=h["持有期"], y=h["赚钱概率"], name="赚钱概率",
-                         marker_color="#e74c3c", text=[fmt_pct(v) for v in h["赚钱概率"]], textposition="outside"))
+                         marker_color=theme.ORANGE, text=[fmt_pct(v) for v in h["赚钱概率"]], textposition="outside"))
     fig.add_trace(go.Bar(x=h["持有期"], y=h["跑赢基准概率"], name="跑赢基准概率",
-                         marker_color="#3498db", text=[fmt_pct(v) for v in h["跑赢基准概率"]], textposition="outside"))
-    fig.add_hline(y=0.5, line=dict(color="#f1c40f", width=1, dash="dash"))
-    fig.update_layout(height=400, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                         marker_color=theme.BLUE, text=[fmt_pct(v) for v in h["跑赢基准概率"]], textposition="outside"))
+    fig.add_hline(y=0.5, line=dict(color=theme.GOLD, width=1, dash="dash"))
+    fig.update_layout(height=400, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       barmode="group", yaxis_tickformat=".0%", yaxis_title="概率",
                       legend=dict(orientation="h", y=1.1))
     st.plotly_chart(fig, use_container_width=True)
@@ -1137,8 +1065,8 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
     eq = bt_res["权益曲线"]
     if not eq.empty:
         fig_eq = go.Figure()
-        fig_eq.add_trace(go.Scatter(x=eq["日期"], y=eq["权益"], name="策略权益", line=dict(color="#3498db", width=2)))
-        fig_eq.update_layout(height=360, template="plotly_dark", title=f"{preset.name} · 近3年权益曲线",
+        fig_eq.add_trace(go.Scatter(x=eq["日期"], y=eq["权益"], name="策略权益", line=dict(color=theme.ORANGE, width=2)))
+        fig_eq.update_layout(height=360, template="tiger", title=f"{preset.name} · 近3年权益曲线",
                              margin=dict(l=10, r=10, t=40, b=10), yaxis_title="权益 (USD)")
         st.plotly_chart(fig_eq, use_container_width=True)
 
@@ -1297,7 +1225,7 @@ def tab_screener(cfg: dict) -> None:
                 textinfo="label+percent",
             ))
             fig_pie.update_layout(
-                height=320, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+                height=320, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                 title="筛选结果 · 行业分布",
                 showlegend=False,
             )
@@ -1353,12 +1281,12 @@ def tab_screener(cfg: dict) -> None:
         x=merged["代码"],
         y=merged["策略累计收益"],
         name="策略累计收益",
-        marker_color=["#2ecc71" if v >= 0 else "#e74c3c" for v in merged["策略累计收益"]],
+        marker_color=[theme.UP if v >= 0 else theme.DOWN for v in merged["策略累计收益"]],
         text=[fmt_pct(v) for v in merged["策略累计收益"]],
         textposition="outside",
     ))
     fig.update_layout(
-        height=360, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+        height=360, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
         yaxis_tickformat=".0%", title="各标的策略累计收益",
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -1392,16 +1320,16 @@ def _options_payoff_chart(res, spot: float, currency: str = "$") -> go.Figure:
     pos = np.where(pay >= 0, pay, np.nan)
     neg = np.where(pay < 0, pay, np.nan)
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=p, y=pos, name="盈利区", line=dict(color="#2ecc71", width=2),
-                             fill="tozeroy", fillcolor="rgba(46,204,113,0.18)"))
-    fig.add_trace(go.Scatter(x=p, y=neg, name="亏损区", line=dict(color="#e74c3c", width=2),
-                             fill="tozeroy", fillcolor="rgba(231,76,60,0.18)"))
-    fig.add_hline(y=0, line=dict(color="#888", width=1))
-    fig.add_vline(x=spot, line=dict(color="#f1c40f", width=1, dash="dash"),
+    fig.add_trace(go.Scatter(x=p, y=pos, name="盈利区", line=dict(color=theme.UP, width=2),
+                             fill="tozeroy", fillcolor="rgba(0,192,135,0.15)"))
+    fig.add_trace(go.Scatter(x=p, y=neg, name="亏损区", line=dict(color=theme.DOWN, width=2),
+                             fill="tozeroy", fillcolor="rgba(255,69,69,0.15)"))
+    fig.add_hline(y=0, line=dict(color=theme.TEXT_TERTIARY, width=1))
+    fig.add_vline(x=spot, line=dict(color=theme.GOLD, width=1, dash="dash"),
                   annotation_text=f"现价 {currency}{spot:,.2f}", annotation_position="top")
     for be in res.breakevens:
-        fig.add_vline(x=be, line=dict(color="#3498db", width=1, dash="dot"))
-    fig.update_layout(height=440, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+        fig.add_vline(x=be, line=dict(color=theme.BLUE, width=1, dash="dot"))
+    fig.update_layout(height=440, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                       xaxis_title="到期股价", yaxis_title="到期盈亏 (USD)",
                       legend=dict(orientation="h", y=1.1))
     return fig
@@ -1409,7 +1337,7 @@ def _options_payoff_chart(res, spot: float, currency: str = "$") -> go.Figure:
 
 def tab_options(cfg: dict) -> None:
     st.subheader("期权策略损益计算器")
-    mode = st.radio("模式", ["单策略损益", "多策略对比"], horizontal=True, key="opt_mode")
+    mode = st.radio("模式", ["单策略损益", "多策略对比"], horizontal=True, key="options_mode")
     if mode == "多策略对比":
         _tab_options_compare(cfg)
         return
@@ -1419,22 +1347,22 @@ def tab_options(cfg: dict) -> None:
         "仅计算到期损益结构，不含定价模型。每张合约 = 100 股。"
     )
 
-    strat_name = st.selectbox("期权策略", options_mod.list_strategies(), key="opt_strat")
+    strat_name = st.selectbox("期权策略", options_mod.list_strategies(), key="options_strat")
     info = options_mod.STRATEGY_INFO[strat_name]
     st.info(f"**观点**：{info['view']}　|　**风险**：{info['risk']}　|　**收益**：{info['reward']}\n\n{info['desc']}")
 
     c0, c1 = st.columns(2)
     spot = c0.number_input("标的现价 (USD)", min_value=0.01, value=float(cfg.get("opt_spot", 100.0)),
-                           step=1.0, key="opt_spot_in", help="可手动填，或点下方按钮自动拉取当前标的最新价")
-    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="opt_qty")
+                           step=1.0, key="options_spot_in", help="可手动填，或点下方按钮自动拉取当前标的最新价")
+    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="options_qty")
 
-    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="opt_fetch"):
+    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="options_fetch"):
         df = get_data(cfg)
         if df is not None and len(df):
-            st.session_state["opt_spot_fetched"] = float(df["Close"].iloc[-1])
+            st.session_state["options_spot_fetched"] = float(df["Close"].iloc[-1])
             st.rerun()
-    if "opt_spot_fetched" in st.session_state:
-        st.caption(f"已拉取 {cfg['ticker']} 最新价：${st.session_state['opt_spot_fetched']:,.2f}（请填入上方现价框）")
+    if "options_spot_fetched" in st.session_state:
+        st.caption(f"已拉取 {cfg['ticker']} 最新价：${st.session_state['options_spot_fetched']:,.2f}（请填入上方现价框）")
 
     st.markdown("**各腿参数**")
     legs: list = []
@@ -1534,22 +1462,22 @@ def tab_options(cfg: dict) -> None:
 def _tab_options_compare(cfg: dict) -> None:
     st.caption("选择多个策略，用相同现价与默认参数并排对比盈亏曲线与最大盈亏。")
     c0, c1 = st.columns(2)
-    spot = c0.number_input("标的现价 (USD)", min_value=0.01, value=100.0, step=1.0, key="opt_cmp_spot")
-    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="opt_cmp_qty")
-    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="opt_cmp_fetch"):
+    spot = c0.number_input("标的现价 (USD)", min_value=0.01, value=100.0, step=1.0, key="options_cmp_spot")
+    qty = c1.number_input("合约张数", min_value=1, value=1, step=1, key="options_cmp_qty")
+    if c0.button(f"↻ 拉取 {cfg['ticker']} 最新价", key="options_cmp_fetch"):
         df = get_data(cfg)
         if df is not None and len(df):
-            st.session_state["opt_cmp_spot"] = float(df["Close"].iloc[-1])
+            st.session_state["options_cmp_spot"] = float(df["Close"].iloc[-1])
             st.rerun()
-    if "opt_cmp_spot" in st.session_state:
-        spot = float(st.session_state["opt_cmp_spot"])
+    if "options_cmp_spot" in st.session_state:
+        spot = float(st.session_state["options_cmp_spot"])
 
     picks = st.multiselect(
         "对比策略（选 2~4 个）",
         ["领口 (Collar)", "熊市认沽价差 (Bear Put Spread)", "买入认沽 (Long Put)",
          "牛市认购价差 (Bull Call Spread)", "备兑开仓 (Covered Call)"],
         default=["领口 (Collar)", "熊市认沽价差 (Bear Put Spread)"],
-        key="opt_cmp_picks",
+        key="options_cmp_picks",
     )
     if len(picks) < 2:
         st.info("请至少选择 2 个策略进行对比。")
@@ -1577,12 +1505,12 @@ def _tab_options_compare(cfg: dict) -> None:
     st.dataframe(disp, use_container_width=True, hide_index=True)
 
     fig = go.Figure()
-    colors = ["#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6"]
+    colors = theme.PALETTE[:5]
     for i, (name, res) in enumerate(results.items()):
         fig.add_trace(go.Scatter(x=res.prices, y=res.payoff, name=name, line=dict(color=colors[i % 5], width=2)))
-    fig.add_vline(x=spot, line=dict(color="#f1c40f", width=1, dash="dash"))
-    fig.add_hline(y=0, line=dict(color="#888", width=1))
-    fig.update_layout(height=440, template="plotly_dark", xaxis_title="到期股价", yaxis_title="到期盈亏 (USD)",
+    fig.add_vline(x=spot, line=dict(color=theme.GOLD, width=1, dash="dash"))
+    fig.add_hline(y=0, line=dict(color=theme.TEXT_TERTIARY, width=1))
+    fig.update_layout(height=440, template="tiger", xaxis_title="到期股价", yaxis_title="到期盈亏 (USD)",
                       margin=dict(l=10, r=10, t=30, b=10), legend=dict(orientation="h", y=1.12))
     st.plotly_chart(fig, use_container_width=True)
     st.caption("默认权利金为现价的估算比例，请替换为券商真实报价后再决策。")
@@ -1608,7 +1536,7 @@ def tab_recommend(cfg: dict) -> None:
     reg, table = regime.recommend(df, allow_short=cfg["allow_short"], cost=cfg["cost"])
 
     # 市场状态卡片。
-    color = {"趋势市": "#e74c3c", "震荡市": "#3498db", "过渡": "#f39c12"}.get(reg.trend_label, "#95a5a6")
+    color = {"趋势市": theme.ORANGE, "震荡市": theme.BLUE, "过渡": theme.GOLD}.get(reg.trend_label, theme.TEXT_SECONDARY)
     st.markdown(
         f"<div style='padding:16px;border-radius:12px;background:{color}22;border:1px solid {color}55'>"
         f"<h3 style='margin:0;color:{color}'>当前市场状态：{reg.summary}</h3></div>",
@@ -1645,9 +1573,9 @@ def tab_recommend(cfg: dict) -> None:
 
     def _hl(row):
         if row["契合度"] == "高度契合":
-            return ["background-color: #2ecc7122"] * len(row)
+            return [f"background-color: {theme.UP}22"] * len(row)
         if row["契合度"] == "不契合":
-            return ["background-color: #e74c3c22"] * len(row)
+            return [f"background-color: {theme.DOWN}22"] * len(row)
         return [""] * len(row)
 
     st.dataframe(disp.style.apply(_hl, axis=1), use_container_width=True, hide_index=True)
@@ -1750,7 +1678,7 @@ def tab_precursor(cfg: dict) -> None:
 # 标签页 10：一键体检
 # ---------------------------------------------------------------------------
 def _score_gauge(score: float, grade: str) -> go.Figure:
-    color = "#2ecc71" if score >= 72 else "#f39c12" if score >= 55 else "#e74c3c"
+    color = theme.UP if score >= 72 else theme.GOLD if score >= 55 else theme.DOWN
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=score,
@@ -1767,7 +1695,7 @@ def _score_gauge(score: float, grade: str) -> go.Figure:
             ],
         },
     ))
-    fig.update_layout(height=260, template="plotly_dark", margin=dict(l=20, r=20, t=50, b=10))
+    fig.update_layout(height=260, template="tiger", margin=dict(l=20, r=20, t=50, b=10))
     return fig
 
 
@@ -1832,10 +1760,10 @@ def tab_report(cfg: dict) -> None:
         st.markdown("**随机进场 · 持有期赚钱概率**")
         h = rep.prob["horizons"]
         if not h.empty:
-            fig = go.Figure(go.Bar(x=h["持有期"], y=h["赚钱概率"], marker_color="#e74c3c",
+            fig = go.Figure(go.Bar(x=h["持有期"], y=h["赚钱概率"], marker_color=theme.ORANGE,
                                    text=[fmt_pct(v) for v in h["赚钱概率"]], textposition="outside"))
-            fig.add_hline(y=0.5, line=dict(color="#f1c40f", width=1, dash="dash"))
-            fig.update_layout(height=460, template="plotly_dark", margin=dict(l=10, r=10, t=30, b=10),
+            fig.add_hline(y=0.5, line=dict(color=theme.GOLD, width=1, dash="dash"))
+            fig.update_layout(height=460, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
                               yaxis_tickformat=".0%", yaxis_title="赚钱概率")
             st.plotly_chart(fig, use_container_width=True)
 
@@ -1894,8 +1822,8 @@ def main() -> None:
 
     cfg = sidebar()
     tabs = st.tabs(
-        ["📋 一键体检", "🧭 策略推荐", "🔮 异动前兆", "🎯 单策略回测", "🔍 参数寻优", "📊 策略对比", "🧺 组合回测",
-         "🔔 信号扫描", "🧪 样本外验证", "💼 模拟交易", "🔎 策略选股", "💰 赚钱概率", "🎲 期权策略"]
+        ["体检", "推荐", "前兆", "回测", "寻优", "对比", "组合",
+         "信号", "验证", "模拟", "选股", "概率", "期权"]
     )
     with tabs[0]:
         tab_report(cfg)
@@ -1923,6 +1851,13 @@ def main() -> None:
         tab_probability(cfg)
     with tabs[12]:
         tab_options(cfg)
+
+    st.markdown(
+        '<div class="tiger-disclaimer">'
+        '数据来源 Yahoo Finance · 仅供个人研究，不构成任何投资建议 · 投资有风险，入市需谨慎'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
 
 if __name__ == "__main__":
