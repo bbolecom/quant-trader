@@ -27,6 +27,12 @@ from .screener import (
     signal_direction_at,
 )
 
+# 高流动性、波动充足、适合短线的美股候选池（搜索默认池）
+DEFAULT_SHORT_TERM_POOL = [
+    "AAPL", "MSFT", "NVDA", "AMD", "TSLA", "META", "AMZN", "GOOGL", "NFLX",
+    "AVGO", "MU", "SMCI", "PLTR", "COIN", "MARA", "QQQ", "SOXL", "TQQQ",
+]
+
 
 @dataclass
 class CandidateCombo:

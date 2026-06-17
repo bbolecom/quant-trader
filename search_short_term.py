@@ -20,11 +20,7 @@ import pandas as pd
 
 warnings.filterwarnings("ignore")
 
-# 高流动性、适合短线（波动充足）的美股候选池
-CANDIDATE_POOL = [
-    "AAPL", "MSFT", "NVDA", "AMD", "TSLA", "META", "AMZN", "GOOGL", "NFLX",
-    "AVGO", "MU", "SMCI", "PLTR", "COIN", "MARA", "QQQ", "SOXL", "TQQQ",
-]
+from quant.strategy_search import DEFAULT_SHORT_TERM_POOL as CANDIDATE_POOL
 
 CACHE = "_short_term_cache.pkl"
 

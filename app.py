@@ -35,6 +35,7 @@ from quant import (
     screen_strategies,
     signals,
     strategies,
+    strategy_search,
     validation,
 )
 from quant.data import DataError, fetch_history, get_data_source_info
@@ -2214,13 +2215,125 @@ def _render_trades(result: backtest.BacktestResult) -> None:
 # ---------------------------------------------------------------------------
 # 主流程
 # ---------------------------------------------------------------------------
+def tab_strategy_search(cfg: dict) -> None:
+    st.markdown("### 🔬 短线策略寻优")
+    st.caption(
+        "在你选定的候选池与时间段上，枚举『选股过滤 × 交易策略 × 参数 × 调仓周期 × 方向』组合，"
+        "按**稳健性**（信息比/胜率/盈亏比）排序，并切分**样本内/样本外**抑制过拟合——"
+        "只有样本外仍盈利的组合才标记『✅ 稳健通过』。"
+    )
+
+    pool_raw = st.text_area(
+        "候选股票池（逗号分隔）",
+        value=", ".join(strategy_search.DEFAULT_SHORT_TERM_POOL),
+        height=80, key="ss_pool",
+        help="建议用高流动性、波动充足的标的。池子越大越慢（Polygon 免费档限速）。",
+    )
+    c1, c2, c3, c4 = st.columns(4)
+    start_d = c1.date_input(
+        "起始日期", value=date.today() - timedelta(days=540),
+        max_value=date.today(), key="ss_start",
+    )
+    end_d = c2.date_input(
+        "结束日期", value=date.today(), max_value=date.today(), key="ss_end",
+    )
+    fwd = c3.number_input("评估窗口(交易日)", 5, 60, 20, 1, key="ss_fwd")
+    include_short = c4.checkbox("含做空组合", value=True, key="ss_short")
+
+    st.warning(
+        "⚠️ 寻优需要逐只拉取行情并跑大量回测，Polygon 免费档限速下可能耗时数分钟，请耐心等待。",
+        icon="⏳",
+    )
+    if not st.button("🔬 开始寻优", type="primary", key="run_ss"):
+        return
+
+    tickers = parse_tickers(pool_raw)
+    if len(tickers) < 4:
+        st.error("❌ 候选池至少需要 4 个标的。")
+        return
+    if start_d >= end_d:
+        st.error("❌ 起始日期必须早于结束日期。")
+        return
+
+    data, failed = get_multi_data(
+        tickers, {**cfg, "start": start_d.isoformat(), "end": end_d.isoformat()},
+    )
+    if failed:
+        st.warning(f"部分标的拉取失败已忽略：{', '.join(failed[:10])}")
+    if len(data) < 4:
+        st.error("❌ 可用数据不足（成功标的 < 4），请放宽时间段或更换标的。")
+        return
+
+    bar = st.progress(0.0, text="正在寻优…")
+
+    def _progress(k: int, total: int, combo) -> None:
+        bar.progress(k / total, text=f"寻优中 {k}/{total}：{combo.idea}·{combo.trading_strategy}")
+
+    try:
+        table, results = strategy_search.search_short_term(
+            data, forward_days=int(fwd), include_short=include_short, progress=_progress,
+        )
+    except Exception as e:  # noqa: BLE001
+        bar.empty()
+        st.error(f"❌ 寻优失败：{e}")
+        return
+    bar.empty()
+
+    if table.empty:
+        st.error("❌ 没有产生有效组合，请放宽时间段或更换标的。")
+        return
+
+    robust = table[table["稳健通过"] == "✅"]
+    m1, m2, m3 = st.columns(3)
+    m1.metric("评估组合数", len(table))
+    m2.metric("稳健通过", len(robust))
+    m3.metric("候选标的", len(data))
+
+    st.markdown("**策略排行榜**（按 稳健通过 + 样本内评分）")
+    show_cols = [c for c in table.columns if c != "_id"]
+    st.dataframe(table[show_cols].head(20), use_container_width=True, hide_index=True)
+    csv = table.drop(columns=["_id"], errors="ignore").to_csv(index=False).encode("utf-8-sig")
+    st.download_button(
+        "⬇️ 导出完整排行榜 (CSV)", data=csv,
+        file_name=f"短线寻优_{start_d}_{end_d}.csv", mime="text/csv", key="dl_ss",
+    )
+
+    if robust.empty:
+        st.info(
+            "⚠️ 本次没有组合通过样本外验证——说明该池/窗口下短线难有稳定 alpha，"
+            "建议更换标的池、拉长评估窗口，或接受更高风险。"
+        )
+        return
+
+    best_id = robust.iloc[0]["_id"]
+    best = next((r["combo"] for r in results if r["combo"].id == best_id), None)
+    if best is None:
+        return
+    ev = next(r for r in results if r["combo"].id == best_id)
+    te = ev["test"]
+    st.success(f"🏆 最优稳健组合：**{best.label}**")
+    b1, b2, b3, b4 = st.columns(4)
+    b1.metric("样本外胜率", f"{te.get('胜率', 0) * 100:.1f}%")
+    b2.metric(f"样本外平均收益({int(fwd)}日)", f"{te.get('平均收益%', 0):.2f}%")
+    b3.metric("样本外信息比", f"{te.get('信息比', 0):.3f}")
+    b4.metric("样本外盈亏比", f"{te.get('盈亏比', 0):.2f}")
+    st.caption(
+        f"思路：{best.idea}｜交易策略：{best.trading_strategy}（{best.params}）｜"
+        f"选股：近 {best.filters.lookback_days} 日涨幅 "
+        f"[{best.filters.min_gain_pct:.0f}%, {best.filters.max_gain_pct:.0f}%]｜"
+        f"每 {best.rebalance_days} 个交易日调仓｜{'可做空' if best.allow_short else '仅做多'}。"
+        " 可在『推荐』页用同思路预设生成每日交易计划。"
+    )
+    st.caption("说明：稳健性基于方向调整后的单笔收益（信息比=均值/标准差）。样本外仍盈利才入选，但历史不代表未来，仅供研究。")
+
+
 def main() -> None:
     _render_brand_header()
     st.caption("数据来源可配置 Polygon / Alpaca / Yahoo · 自用研究工具，不构成投资建议")
 
     cfg = sidebar()
     tabs = st.tabs(
-        ["体检", "推荐", "前兆", "回测", "寻优", "对比", "组合",
+        ["体检", "推荐", "短线寻优", "前兆", "回测", "参数寻优", "对比", "组合",
          "信号", "验证", "模拟", "选股", "概率", "期权"]
     )
     with tabs[0]:
@@ -2228,26 +2341,28 @@ def main() -> None:
     with tabs[1]:
         tab_recommend(cfg)
     with tabs[2]:
-        tab_precursor(cfg)
+        tab_strategy_search(cfg)
     with tabs[3]:
-        tab_single(cfg)
+        tab_precursor(cfg)
     with tabs[4]:
-        tab_optimize(cfg)
+        tab_single(cfg)
     with tabs[5]:
-        tab_compare(cfg)
+        tab_optimize(cfg)
     with tabs[6]:
-        tab_portfolio(cfg)
+        tab_compare(cfg)
     with tabs[7]:
-        tab_signals(cfg)
+        tab_portfolio(cfg)
     with tabs[8]:
-        tab_validation(cfg)
+        tab_signals(cfg)
     with tabs[9]:
-        tab_paper(cfg)
+        tab_validation(cfg)
     with tabs[10]:
-        tab_screener(cfg)
+        tab_paper(cfg)
     with tabs[11]:
-        tab_probability(cfg)
+        tab_screener(cfg)
     with tabs[12]:
+        tab_probability(cfg)
+    with tabs[13]:
         tab_options(cfg)
 
     st.markdown(
