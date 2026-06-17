@@ -48,25 +48,37 @@ def _load_secrets_file() -> dict:
     return {}
 
 
+def _extract(block: object, key: str) -> str:
+    """从 dict / Streamlit AttrDict 等映射对象里取值。"""
+    if block is None:
+        return ""
+    getter = getattr(block, "get", None)
+    if callable(getter):
+        try:
+            val = getter(key, "")
+        except TypeError:
+            val = getter(key)
+    elif isinstance(block, dict):
+        val = block.get(key, "")
+    else:
+        return ""
+    return str(val).strip() if val else ""
+
+
 def _read_secret(section: str, key: str) -> str:
-    # 1) Streamlit 运行时
+    # 1) Streamlit 运行时（st.secrets 的子段是 AttrDict，并非 dict 子类）
     try:
         import streamlit as st
 
-        block = st.secrets.get(section, {})
-        if isinstance(block, dict):
-            val = block.get(key, "")
-            if val:
-                return str(val).strip()
+        val = _extract(st.secrets.get(section, {}), key)
+        if val:
+            return val
     except Exception:  # noqa: BLE001
         pass
     # 2) 直接读 secrets.toml（CLI / 测试）
-    data = _load_secrets_file()
-    block = data.get(section, {})
-    if isinstance(block, dict):
-        val = block.get(key, "")
-        if val:
-            return str(val).strip()
+    val = _extract(_load_secrets_file().get(section, {}), key)
+    if val:
+        return val
     return ""
 
 

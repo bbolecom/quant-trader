@@ -43,8 +43,13 @@ def test_normalize_ohlcv_flattens_multiindex():
 def test_load_data_config_falls_back_without_polygon_key(monkeypatch):
     monkeypatch.delenv("POLYGON_API_KEY", raising=False)
     monkeypatch.setenv("DATA_PROVIDER", "polygon")
-    # 隔离本地 secrets.toml，确保测试只看环境变量。
+    # 隔离本地 secrets.toml 与 Streamlit st.secrets，确保测试只看环境变量。
     monkeypatch.setattr("quant.providers.config._load_secrets_file", lambda: {})
+    try:
+        import streamlit as st
+        monkeypatch.setattr(st, "secrets", {}, raising=False)
+    except Exception:  # noqa: BLE001
+        pass
     cfg = load_data_config()
     assert cfg.provider == "yahoo"
 
