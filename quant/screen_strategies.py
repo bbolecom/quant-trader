@@ -158,33 +158,8 @@ def _snapshot_at_date(
     as_of: pd.Timestamp,
     lookback: int,
 ) -> pd.DataFrame:
-    """用截至 as_of 的历史数据构造快照（无未来函数）。"""
-    rows: list[dict] = []
-    for ticker, df in data.items():
-        if df is None or df.empty:
-            continue
-        hist = df.loc[df.index <= as_of]
-        if len(hist) < lookback + 2:
-            continue
-        close = hist["Close"].astype(float)
-        vol = hist["Volume"].astype(float)
-        lb = lookback
-        if lb <= 1:
-            gain = (close.iloc[-1] / close.iloc[-2] - 1.0) * 100.0 if len(close) >= 2 else 0.0
-        else:
-            gain = (close.iloc[-1] / close.iloc[-lb - 1] - 1.0) * 100.0
-        dollar_vol = float(close.iloc[-1] * vol.iloc[-1])
-        avg_dollar = float((close.tail(lb) * vol.tail(lb)).mean()) if lb > 0 else dollar_vol
-        rows.append({
-            "代码": ticker.upper(),
-            "名称": ticker.upper(),
-            "涨幅%": gain,
-            "成交额USD": avg_dollar,
-            "换手率%": np.nan,
-            "市值USD": np.nan,
-            "最新价": float(close.iloc[-1]),
-        })
-    return pd.DataFrame(rows)
+    """兼容旧调用；请优先使用 screener.snapshot_at_date。"""
+    return screener.snapshot_at_date(data, as_of, lookback)
 
 
 def backtest_screen_preset(
@@ -220,26 +195,30 @@ def backtest_screen_preset(
     equity = initial_capital
     equity_curve: list[dict] = []
     period_logs: list[dict] = []
+    pick_logs: list[dict] = []
     wins = 0
     periods = 0
 
     step = preset.rebalance_days
+    fwd_days = step
     for i in range(30, len(trade_days) - step, step):
         as_of = trade_days[i]
-        snap = _snapshot_at_date(data, as_of, preset.filters.lookback_days)
+        snap = screener.snapshot_at_date(data, as_of, preset.filters.lookback_days)
         if snap.empty:
             continue
         filtered = screener.apply_filters(snap, preset.filters)
         if filtered.empty:
             continue
-        picks = filtered.sort_values("涨幅%", ascending=False).head(preset.top_picks)["代码"].tolist()
+        ranked = filtered.sort_values("涨幅%", ascending=False).head(preset.top_picks)
+        picks = ranked["代码"].tolist()
         if not picks:
             continue
 
         period_start = as_of
         period_end = trade_days[i + step]
         rets: list[float] = []
-        for t in picks:
+        for j, (_, prow) in enumerate(ranked.iterrows()):
+            t = str(prow["代码"]).upper()
             df = data.get(t)
             if df is None:
                 continue
@@ -249,6 +228,23 @@ def backtest_screen_preset(
             pos = strat.generate(seg, allow_short=allow_short, **preset.trading_params)
             res = backtest.run_backtest(seg, pos, **cost)
             rets.append(float(res.stats["累计收益率"]))
+
+            perf = screener.forward_backward_metrics(
+                df, as_of, forward_days=fwd_days, backward_days=preset.filters.lookback_days,
+            )
+            strat_fwd = screener.backtest_pick_forward(
+                df, as_of, preset.trading_strategy, preset.trading_params,
+                forward_days=fwd_days, allow_short=allow_short,
+                fee_bps=fee_bps, slippage_bps=slippage_bps,
+            )
+            pick_logs.append({
+                "选股日期": period_start.strftime("%Y-%m-%d"),
+                "代码": t,
+                "选股理由": screener.pick_rationale(prow, preset.filters, rank=j + 1),
+                "涨幅%": float(prow.get("涨幅%", 0)),
+                **perf,
+                **strat_fwd,
+            })
 
         if not rets:
             continue
@@ -292,4 +288,5 @@ def backtest_screen_preset(
         "期末权益": equity,
         "权益曲线": eq_df,
         "调仓明细": pd.DataFrame(period_logs),
+        "选股明细": pd.DataFrame(pick_logs),
     }

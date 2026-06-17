@@ -353,6 +353,335 @@ def summarize_backtest(bt: pd.DataFrame) -> dict[str, float]:
     }
 
 
+# ---------------------------------------------------------------------------
+# 按日选股 · 选股理由 · 前后收益/回撤 · 选股日回测
+# ---------------------------------------------------------------------------
+
+def _window_return(close: pd.Series) -> float:
+    if len(close) < 2:
+        return np.nan
+    base = float(close.iloc[0])
+    if base == 0:
+        return np.nan
+    return float(close.iloc[-1] / base - 1.0)
+
+
+def _window_max_drawdown(close: pd.Series) -> float:
+    if len(close) < 2:
+        return np.nan
+    eq = close / float(close.iloc[0])
+    return float((eq / eq.cummax() - 1.0).min())
+
+
+def snapshot_at_date(
+    data: dict[str, pd.DataFrame],
+    as_of: pd.Timestamp,
+    lookback: int,
+) -> pd.DataFrame:
+    """用截至 as_of 的历史数据构造快照（无未来函数）。"""
+    rows: list[dict[str, Any]] = []
+    as_of = pd.Timestamp(as_of)
+    for ticker, df in data.items():
+        if df is None or df.empty:
+            continue
+        hist = df.loc[df.index <= as_of]
+        if len(hist) < lookback + 2:
+            continue
+        close = hist["Close"].astype(float)
+        vol = hist["Volume"].astype(float)
+        lb = lookback
+        if lb <= 1:
+            gain = (close.iloc[-1] / close.iloc[-2] - 1.0) * 100.0 if len(close) >= 2 else 0.0
+        else:
+            gain = (close.iloc[-1] / close.iloc[-lb - 1] - 1.0) * 100.0
+        avg_dollar = float((close.tail(lb) * vol.tail(lb)).mean()) if lb > 0 else float(close.iloc[-1] * vol.iloc[-1])
+        rows.append({
+            "代码": ticker.upper(),
+            "名称": ticker.upper(),
+            "涨幅%": float(gain),
+            "成交额USD": avg_dollar,
+            "换手率%": np.nan,
+            "市值USD": np.nan,
+            "最新价": float(close.iloc[-1]),
+        })
+    return pd.DataFrame(rows)
+
+
+def pick_rationale(row: pd.Series, filters: ScreenFilters, rank: int = 0) -> str:
+    """生成单只标的的选股理由（人话）。"""
+    parts: list[str] = []
+    lb = filters.lookback_days
+    gain = row.get("涨幅%")
+    if pd.notna(gain):
+        parts.append(f"近{lb}日涨幅 {float(gain):+.1f}%，落在设定区间 [{filters.min_gain_pct:.1f}%, {filters.max_gain_pct:.1f}%]")
+    dvol = row.get("成交额USD")
+    if pd.notna(dvol) and filters.min_dollar_vol_m > 0:
+        parts.append(f"日均成交额约 ${float(dvol)/1e6:.1f}M（下限 {filters.min_dollar_vol_m:.0f}M）")
+    turnover = row.get("换手率%")
+    if pd.notna(turnover):
+        parts.append(f"换手率 {float(turnover):.2f}%")
+    mcap = row.get("市值USD")
+    if pd.notna(mcap):
+        parts.append(f"市值约 ${float(mcap)/1e9:.1f}B")
+    sector = row.get("行业") or row.get("_行业EN")
+    if sector and str(sector).strip():
+        parts.append(f"行业：{sector}")
+    if rank > 0:
+        parts.append(f"筛选池内涨幅排名第 {rank}")
+    return "；".join(parts) if parts else "满足当前全部筛选条件"
+
+
+def forward_backward_metrics(
+    df: pd.DataFrame,
+    as_of: pd.Timestamp,
+    *,
+    forward_days: int = 20,
+    backward_days: int = 20,
+) -> dict[str, float]:
+    """计算选股日前后的持有期收益与最大回撤（买入持有视角，选股日收盘价为基准）。"""
+    close = df["Close"].astype(float)
+    as_of = pd.Timestamp(as_of)
+    hist = close.loc[close.index <= as_of]
+    if hist.empty:
+        return {}
+    pick_price = float(hist.iloc[-1])
+
+    back_slice = hist.tail(backward_days + 1)
+    back_ret = _window_return(back_slice)
+    back_dd = _window_max_drawdown(back_slice)
+
+    future = close.loc[close.index > as_of].head(forward_days + 1)
+    if len(future) >= 2:
+        fwd_ret = float(future.iloc[-1] / pick_price - 1.0)
+        fwd_eq = future / pick_price
+        fwd_dd = float((fwd_eq / fwd_eq.cummax() - 1.0).min())
+    else:
+        fwd_ret = fwd_dd = np.nan
+
+    return {
+        "入选价": pick_price,
+        "前向天数": float(forward_days),
+        "后向天数": float(backward_days),
+        f"前{backward_days}日收益": back_ret,
+        f"前{backward_days}日最大回撤": back_dd,
+        f"后{forward_days}日收益": fwd_ret,
+        f"后{forward_days}日最大回撤": fwd_dd,
+    }
+
+
+def backtest_pick_forward(
+    df: pd.DataFrame,
+    as_of: pd.Timestamp,
+    strategy_name: str,
+    params: dict[str, float] | None = None,
+    *,
+    forward_days: int = 20,
+    warmup_bars: int = 120,
+    allow_short: bool = False,
+    initial_capital: float = 100_000.0,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> dict[str, float]:
+    """从选股日次日开始，在 forward_days 窗口内用指定策略回测（指标预热用选股日前数据）。"""
+    as_of = pd.Timestamp(as_of)
+    params = params or {}
+    hist = df.loc[df.index <= as_of].tail(warmup_bars)
+    future_idx = df.index[df.index > as_of]
+    if len(hist) < 60 or len(future_idx) == 0:
+        return {"策略后向收益": np.nan, "策略后向最大回撤": np.nan}
+
+    end_i = min(forward_days, len(future_idx))
+    forward = df.loc[future_idx[:end_i]]
+    combined = pd.concat([hist, forward])
+    combined = combined[~combined.index.duplicated(keep="last")].sort_index()
+
+    strat = strategies.get_strategy(strategy_name)
+    pos = strat.generate(combined, allow_short=allow_short, **params)
+    res = backtest.run_backtest(
+        combined, pos,
+        initial_capital=initial_capital,
+        fee_bps=fee_bps,
+        slippage_bps=slippage_bps,
+    )
+    fwd_ret = res.returns.loc[res.returns.index > as_of]
+    if fwd_ret.empty:
+        return {"策略后向收益": np.nan, "策略后向最大回撤": np.nan}
+    eq = (1.0 + fwd_ret).cumprod()
+    return {
+        "策略后向收益": float(eq.iloc[-1] - 1.0),
+        "策略后向最大回撤": float((eq / eq.cummax() - 1.0).min()),
+    }
+
+
+def screen_at_date(
+    data: dict[str, pd.DataFrame],
+    filters: ScreenFilters,
+    as_of: pd.Timestamp,
+    *,
+    top_n: int = 10,
+) -> pd.DataFrame:
+    """在指定交易日按历史数据选股（无未来函数），并附选股理由。"""
+    snap = snapshot_at_date(data, as_of, filters.lookback_days)
+    if snap.empty:
+        return snap
+    filtered = apply_filters(snap, filters)
+    if filtered.empty:
+        return filtered
+    out = filtered.sort_values("涨幅%", ascending=False).head(int(top_n)).copy()
+    out["选股日期"] = pd.Timestamp(as_of).strftime("%Y-%m-%d")
+    out["选股理由"] = [
+        pick_rationale(row, filters, rank=i + 1)
+        for i, (_, row) in enumerate(out.iterrows())
+    ]
+    return out.reset_index(drop=True)
+
+
+def enrich_picks_with_performance(
+    picks: pd.DataFrame,
+    data: dict[str, pd.DataFrame],
+    as_of: pd.Timestamp,
+    *,
+    forward_days: int = 20,
+    backward_days: int = 20,
+    strategy_name: str | None = None,
+    params: dict[str, float] | None = None,
+    allow_short: bool = False,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> pd.DataFrame:
+    """为入选标的补充前后收益/回撤及（可选）策略后向回测。"""
+    if picks.empty:
+        return picks
+    rows: list[dict[str, Any]] = []
+    as_of = pd.Timestamp(as_of)
+    for _, row in picks.iterrows():
+        ticker = str(row["代码"]).upper()
+        df = data.get(ticker)
+        rec = row.to_dict()
+        if df is None or df.empty:
+            rows.append(rec)
+            continue
+        perf = forward_backward_metrics(df, as_of, forward_days=forward_days, backward_days=backward_days)
+        rec.update(perf)
+        if strategy_name:
+            strat_perf = backtest_pick_forward(
+                df, as_of, strategy_name, params=params,
+                forward_days=forward_days, allow_short=allow_short,
+                fee_bps=fee_bps, slippage_bps=slippage_bps,
+            )
+            rec.update(strat_perf)
+        rows.append(rec)
+    return pd.DataFrame(rows)
+
+
+def run_historical_daily_screen(
+    data: dict[str, pd.DataFrame],
+    filters: ScreenFilters,
+    *,
+    start: str | date,
+    end: str | date,
+    rebalance_days: int = 5,
+    top_picks: int = 5,
+    forward_days: int = 20,
+    backward_days: int = 20,
+    strategy_name: str | None = None,
+    params: dict[str, float] | None = None,
+    allow_short: bool = False,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> dict[str, Any]:
+    """历史按日（每 rebalance_days 个交易日）回放选股，并计算前后收益/回撤与策略后向回测。
+
+    返回 daily_picks（明细表）、by_date（按日汇总）、summary（整体统计）。
+    """
+    if not data:
+        return {"daily_picks": pd.DataFrame(), "by_date": pd.DataFrame(), "summary": {}}
+
+    start_ts = pd.Timestamp(start)
+    end_ts = pd.Timestamp(end)
+    best = max(data.keys(), key=lambda t: len(data[t]))
+    calendar = data[best].index
+    calendar = calendar[(calendar >= start_ts) & (calendar <= end_ts)]
+    if len(calendar) < rebalance_days + forward_days + 30:
+        return {"error": "数据不足，请扩大日期范围"}
+
+    all_picks: list[pd.DataFrame] = []
+    step = max(int(rebalance_days), 1)
+    warmup = max(filters.lookback_days + 30, 60)
+
+    for i in range(warmup, len(calendar) - forward_days, step):
+        as_of = calendar[i]
+        picks = screen_at_date(data, filters, as_of, top_n=top_picks)
+        if picks.empty:
+            continue
+        enriched = enrich_picks_with_performance(
+            picks, data, as_of,
+            forward_days=forward_days,
+            backward_days=backward_days,
+            strategy_name=strategy_name,
+            params=params,
+            allow_short=allow_short,
+            fee_bps=fee_bps,
+            slippage_bps=slippage_bps,
+        )
+        all_picks.append(enriched)
+
+    if not all_picks:
+        return {"daily_picks": pd.DataFrame(), "by_date": pd.DataFrame(), "summary": {}}
+
+    daily = pd.concat(all_picks, ignore_index=True)
+    fwd_col = f"后{forward_days}日收益"
+    back_col = f"前{backward_days}日收益"
+    strat_col = "策略后向收益"
+
+    by_date_rows: list[dict[str, Any]] = []
+    for dt, grp in daily.groupby("选股日期", sort=False):
+        fwd = pd.to_numeric(grp.get(fwd_col), errors="coerce")
+        strat = pd.to_numeric(grp.get(strat_col), errors="coerce") if strat_col in grp.columns else pd.Series(dtype=float)
+        by_date_rows.append({
+            "选股日期": dt,
+            "入选数": len(grp),
+            "入选代码": ", ".join(grp["代码"].astype(str).tolist()),
+            "平均后向收益": float(fwd.mean()) if fwd.notna().any() else np.nan,
+            "后向盈利占比": float((fwd > 0).mean()) if fwd.notna().any() else np.nan,
+            "平均策略后向收益": float(strat.mean()) if len(strat) and strat.notna().any() else np.nan,
+        })
+    by_date = pd.DataFrame(by_date_rows)
+
+    fwd_all = pd.to_numeric(daily.get(fwd_col), errors="coerce")
+    back_all = pd.to_numeric(daily.get(back_col), errors="coerce")
+    summary = {
+        "选股批次数": float(len(by_date)),
+        "入选总人次": float(len(daily)),
+        "平均后向收益": float(fwd_all.mean()) if fwd_all.notna().any() else np.nan,
+        "后向盈利占比": float((fwd_all > 0).mean()) if fwd_all.notna().any() else np.nan,
+        "平均前向收益": float(back_all.mean()) if back_all.notna().any() else np.nan,
+    }
+    if strat_col in daily.columns:
+        s = pd.to_numeric(daily[strat_col], errors="coerce")
+        if s.notna().any():
+            summary["平均策略后向收益"] = float(s.mean())
+            summary["策略后向盈利占比"] = float((s > 0).mean())
+
+    return {"daily_picks": daily, "by_date": by_date, "summary": summary}
+
+
+def add_rationale_to_merged(merged: pd.DataFrame, filters: ScreenFilters) -> pd.DataFrame:
+    """给当日选股合并表补充选股理由列。"""
+    if merged.empty:
+        return merged
+    out = merged.copy()
+    if "选股日期" not in out.columns:
+        out["选股日期"] = pd.Timestamp.today().strftime("%Y-%m-%d")
+    ranks = out.sort_values("涨幅%", ascending=False).reset_index(drop=True)
+    rank_map = {str(r["代码"]): i + 1 for i, r in ranks.iterrows()}
+    out["选股理由"] = [
+        pick_rationale(row, filters, rank=rank_map.get(str(row["代码"]), 0))
+        for _, row in out.iterrows()
+    ]
+    return out
+
+
 def build_universe_snapshot(
     pool: str,
     start: str | date,
@@ -450,7 +779,7 @@ def run_screen(
         slippage_bps=slippage_bps,
     )
     result["backtest"] = bt
-    result["merged"] = merge_snapshot_backtest(filtered, bt)
+    result["merged"] = add_rationale_to_merged(merge_snapshot_backtest(filtered, bt), filters)
     result["summary"] = summarize_backtest(bt)
     return result
 
@@ -468,14 +797,15 @@ def load_screen_history(path: str | Path = "screen_history.csv") -> pd.DataFrame
 
 def summarize_screen_history(df: pd.DataFrame) -> pd.DataFrame:
     """按选股批次汇总：入选数量、平均策略收益、盈利占比。"""
-    if df.empty or "选股时间" not in df.columns:
+    date_col = "选股日期" if "选股日期" in df.columns else "选股时间"
+    if df.empty or date_col not in df.columns:
         return pd.DataFrame()
-    g = df.groupby("选股时间", sort=False)
+    g = df.groupby(date_col, sort=False)
     rows = []
     for ts, grp in g:
         ret = pd.to_numeric(grp.get("策略累计收益"), errors="coerce")
         rows.append({
-            "选股时间": ts,
+            "选股日期": ts,
             "股票池": grp["股票池"].iloc[0] if "股票池" in grp.columns else "",
             "策略": grp["策略"].iloc[0] if "策略" in grp.columns else "",
             "入选数": len(grp),

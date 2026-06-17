@@ -8,10 +8,16 @@ import pytest
 from quant.screener import (
     SECTORS,
     ScreenFilters,
+    add_rationale_to_merged,
     apply_filters,
+    forward_backward_metrics,
     merge_snapshot_backtest,
+    pick_rationale,
     quotes_to_dataframe,
+    run_historical_daily_screen,
+    screen_at_date,
     sector_cn,
+    snapshot_at_date,
     summarize_backtest,
 )
 
@@ -115,3 +121,47 @@ def test_merge_and_summarize():
     summ = summarize_backtest(bt)
     assert summ["入选数量"] == 1.0
     assert summ["盈利标的占比"] == 1.0
+
+
+def test_pick_rationale_includes_gain_and_rank():
+    row = pd.Series({"代码": "AAPL", "涨幅%": 12.5, "成交额USD": 50e6, "行业": "科技"})
+    f = ScreenFilters(min_gain_pct=0, max_gain_pct=100, min_dollar_vol_m=10, lookback_days=20)
+    text = pick_rationale(row, f, rank=1)
+    assert "近20日涨幅" in text
+    assert "排名第 1" in text
+
+
+def test_forward_backward_metrics(ohlcv):
+    as_of = ohlcv.index[200]
+    m = forward_backward_metrics(ohlcv, as_of, forward_days=10, backward_days=10)
+    assert "入选价" in m
+    assert "后10日收益" in m
+    assert "前10日最大回撤" in m
+
+
+def test_screen_at_date_and_historical_replay(multi_data):
+    f = ScreenFilters(min_gain_pct=-100, max_gain_pct=1000, min_dollar_vol_m=0, lookback_days=5)
+    best = max(multi_data.keys(), key=lambda t: len(multi_data[t]))
+    as_of = multi_data[best].index[120]
+    picks = screen_at_date(multi_data, f, as_of, top_n=2)
+    assert not picks.empty
+    assert "选股日期" in picks.columns
+    assert "选股理由" in picks.columns
+
+    start = multi_data[best].index[80].strftime("%Y-%m-%d")
+    end = multi_data[best].index[200].strftime("%Y-%m-%d")
+    hres = run_historical_daily_screen(
+        multi_data, f, start=start, end=end,
+        rebalance_days=20, top_picks=2, forward_days=10, backward_days=10,
+    )
+    daily = hres["daily_picks"]
+    assert not daily.empty
+    assert "选股理由" in daily.columns
+
+
+def test_add_rationale_to_merged():
+    merged = pd.DataFrame([{"代码": "A", "涨幅%": 5.0}])
+    f = ScreenFilters(lookback_days=10)
+    out = add_rationale_to_merged(merged, f)
+    assert "选股理由" in out.columns
+    assert "选股日期" in out.columns

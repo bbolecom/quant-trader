@@ -81,9 +81,14 @@ def append_history(merged: pd.DataFrame, cfg: dict) -> None:
     if merged.empty:
         return
     record = merged.drop(columns=["_行业EN"], errors="ignore").copy()
-    record.insert(0, "选股时间", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    record.insert(1, "股票池", cfg.get("pool", ""))
-    record.insert(2, "策略", cfg.get("strategy", ""))
+    now = datetime.now()
+    if "选股日期" not in record.columns:
+        record.insert(0, "选股日期", now.strftime("%Y-%m-%d"))
+    record.insert(0, "选股时间", now.strftime("%Y-%m-%d %H:%M:%S"))
+    if "股票池" not in record.columns:
+        record.insert(1, "股票池", cfg.get("pool", ""))
+    if "策略" not in record.columns:
+        record.insert(2, "策略", cfg.get("strategy", ""))
     header = not HISTORY_FILE.exists()
     record.to_csv(HISTORY_FILE, mode="a", header=header, index=False, encoding="utf-8-sig")
 
@@ -94,9 +99,13 @@ def format_lines(merged: pd.DataFrame, top: int = 10) -> list[str]:
         gain = r.get("涨幅%")
         ret = r.get("策略累计收益")
         sig = r.get("当前信号", "")
+        reason = r.get("选股理由", "")
         gain_s = f"{gain:+.1f}%" if pd.notna(gain) else "-"
         ret_s = f"{ret:+.1%}" if pd.notna(ret) else "-"
-        lines.append(f"{r['代码']}：涨幅 {gain_s} ｜ 策略 {ret_s} ｜ {sig}")
+        line = f"{r['代码']}：涨幅 {gain_s} ｜ 策略 {ret_s} ｜ {sig}"
+        if reason:
+            line += f" ｜ {reason}"
+        lines.append(line)
     return lines
 
 

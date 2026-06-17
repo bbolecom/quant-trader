@@ -1080,6 +1080,193 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
     st.markdown("**最近调仓明细**")
     st.dataframe(detail.iloc[::-1], use_container_width=True, hide_index=True)
 
+    picks_detail = bt_res.get("选股明细")
+    if picks_detail is not None and not picks_detail.empty:
+        st.markdown("**每日选股明细（含理由 · 前后收益/回撤 · 策略后向回测）**")
+        pdisp = picks_detail.copy()
+        for c in pdisp.columns:
+            if "收益" in c or "回撤" in c:
+                pdisp[c] = pd.to_numeric(pdisp[c], errors="coerce").map(
+                    lambda x: fmt_pct(x) if pd.notna(x) else "-"
+                )
+            elif c == "涨幅%":
+                pdisp[c] = pd.to_numeric(pdisp[c], errors="coerce").map(
+                    lambda x: f"{x:+.1f}%" if pd.notna(x) else "-"
+                )
+            elif c == "入选价":
+                pdisp[c] = pd.to_numeric(pdisp[c], errors="coerce").map(
+                    lambda x: f"${x:,.2f}" if pd.notna(x) else "-"
+                )
+        show_p = [c for c in picks_detail.columns if c not in ("_hits",)]
+        prefer = ["选股日期", "代码", "选股理由", "涨幅%", "入选价"]
+        show_p = [c for c in prefer if c in show_p] + [c for c in show_p if c not in prefer]
+        st.dataframe(pdisp[show_p].tail(50).iloc[::-1], use_container_width=True, hide_index=True)
+
+
+def _tab_historical_daily_screen(cfg: dict) -> None:
+    st.markdown("### 📅 历史每日选股回测")
+    st.caption(
+        "按交易日回放选股：每个选股日列出入选标的、**选股理由**，并计算"
+        "**选股前/后**持有期收益与最大回撤；可选对每只入选股做**策略后向回测**（从选股日次日按策略交易）。"
+    )
+
+    c1, c2, c3, c4 = st.columns(4)
+    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_key = c1.selectbox(
+        "股票池", list(pool_options.keys()),
+        format_func=lambda k: pool_options[k], key="hds_pool",
+    )
+    pool_size = c2.number_input("池规模", 10, 150, 40, 10, key="hds_size")
+    rebalance = c3.number_input("每 N 日选股", 1, 30, 5, 1, key="hds_rebal")
+    top_picks = c4.number_input("每次选几只", 1, 20, 5, 1, key="hds_top")
+
+    custom_raw = ""
+    if pool_key == "custom":
+        custom_raw = st.text_input("自定义代码", value=DEFAULT_WATCHLIST, key="hds_custom")
+
+    d1, d2, d3, d4 = st.columns(4)
+    back_days = d1.selectbox("前向统计(日)", [5, 10, 20, 60], index=2, key="hds_back")
+    fwd_days = d2.selectbox("后向统计(日)", [5, 10, 20, 60], index=2, key="hds_fwd")
+    lookback = d3.selectbox("涨幅周期", [1, 5, 10, 20, 60], index=3, key="hds_lb")
+    gain_range = d4.slider("涨幅区间%", -50.0, 200.0, (-10.0, 100.0), 1.0, key="hds_gain")
+
+    f1, f2 = st.columns(2)
+    min_dvol = f1.number_input("成交额下限(M USD)", 0.0, 500.0, 10.0, 5.0, key="hds_dvol")
+    strat_name = f2.selectbox("策略后向回测", strategies.list_strategies(), key="hds_strat")
+    strat = strategies.get_strategy(strat_name)
+    params = _strategy_param_inputs(strat, "hds")
+
+    bt_start = st.date_input(
+        "回测起始日", value=(pd.Timestamp(cfg["end"]) - pd.DateOffset(years=2)).date(),
+        key="hds_start",
+    )
+    bt_end = st.date_input("回测结束日", value=pd.Timestamp(cfg["end"]).date(), key="hds_end")
+
+    if not st.button("📅 开始历史每日选股回测", type="primary", key="run_hds"):
+        return
+
+    filters = screener.ScreenFilters(
+        min_gain_pct=gain_range[0], max_gain_pct=gain_range[1],
+        min_dollar_vol_m=min_dvol, lookback_days=int(lookback),
+    )
+    start_s = str(bt_start)
+    end_s = str(bt_end)
+    fetch_start = (pd.Timestamp(start_s) - pd.DateOffset(days=400)).strftime("%Y-%m-%d")
+
+    with st.spinner("拉取行情并按日回放选股（可能需要 1～3 分钟）…"):
+        try:
+            if pool_key == "custom":
+                tickers = parse_tickers(custom_raw)
+            elif pool_key == "sp500":
+                tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+            else:
+                st.info("历史回放建议使用 sp500 或 custom 池；Yahoo 当日榜单无历史成分，已改用标普500前 N 只作代理。")
+                tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+            if not tickers:
+                st.error("❌ 股票池为空。")
+                return
+            data, failed = get_multi_data(tickers, {**cfg, "start": fetch_start, "end": end_s})
+            if failed:
+                st.warning(f"部分标的拉取失败：{', '.join(failed[:10])}")
+            if not data:
+                st.error("❌ 无可用行情。")
+                return
+            hres = screener.run_historical_daily_screen(
+                data, filters,
+                start=start_s, end=end_s,
+                rebalance_days=int(rebalance),
+                top_picks=int(top_picks),
+                forward_days=int(fwd_days),
+                backward_days=int(back_days),
+                strategy_name=strat_name,
+                params=params,
+                allow_short=cfg["allow_short"],
+                fee_bps=cfg["fee_bps"],
+                slippage_bps=cfg["slippage_bps"],
+            )
+        except Exception as e:  # noqa: BLE001
+            st.error(f"❌ {e}")
+            return
+
+    if hres.get("error"):
+        st.error(f"❌ {hres['error']}")
+        return
+
+    daily = hres.get("daily_picks", pd.DataFrame())
+    by_date = hres.get("by_date", pd.DataFrame())
+    summary = hres.get("summary", {})
+    if daily.empty:
+        st.warning("回测期内没有产生有效选股批次，请放宽条件或扩大日期范围。")
+        return
+
+    st.success(f"共 **{int(summary.get('选股批次数', 0))}** 个选股日、**{int(summary.get('入选总人次', 0))}** 条入选记录")
+    m1, m2, m3, m4 = st.columns(4)
+    fwd_col = f"后{fwd_days}日收益"
+    m1.metric(f"平均后{fwd_days}日收益", fmt_pct(summary.get("平均后向收益", 0)))
+    m2.metric("后向盈利占比", fmt_pct(summary.get("后向盈利占比", 0)))
+    if "平均策略后向收益" in summary:
+        m3.metric("平均策略后向收益", fmt_pct(summary["平均策略后向收益"]))
+        m4.metric("策略后向盈利占比", fmt_pct(summary.get("策略后向盈利占比", 0)))
+
+    st.markdown("**按选股日汇总**")
+    bd = by_date.copy()
+    for c in ["平均后向收益", "后向盈利占比", "平均策略后向收益"]:
+        if c in bd.columns:
+            bd[c] = pd.to_numeric(bd[c], errors="coerce").map(
+                lambda x: fmt_pct(x) if pd.notna(x) else "-"
+            )
+    st.dataframe(bd.iloc[::-1], use_container_width=True, hide_index=True)
+
+    st.markdown("**选股明细（可筛选某日查看）**")
+    dates = sorted(daily["选股日期"].unique(), reverse=True)
+    sel_date = st.selectbox("查看选股日", dates, key="hds_sel_date")
+    day_df = daily[daily["选股日期"] == sel_date].copy()
+    disp = day_df.copy()
+    back_col = f"前{back_days}日"
+    for c in disp.columns:
+        if "收益" in c or "回撤" in c:
+            disp[c] = pd.to_numeric(disp[c], errors="coerce").map(
+                lambda x: fmt_pct(x) if pd.notna(x) else "-"
+            )
+        elif c == "涨幅%":
+            disp[c] = pd.to_numeric(disp[c], errors="coerce").map(
+                lambda x: f"{x:+.1f}%" if pd.notna(x) else "-"
+            )
+        elif c == "入选价":
+            disp[c] = pd.to_numeric(disp[c], errors="coerce").map(
+                lambda x: f"${x:,.2f}" if pd.notna(x) else "-"
+            )
+    show_cols = [c for c in [
+        "选股日期", "代码", "选股理由", "涨幅%", "入选价",
+        f"{back_col}收益", f"{back_col}最大回撤",
+        fwd_col, f"后{fwd_days}日最大回撤",
+        "策略后向收益", "策略后向最大回撤",
+    ] if c in disp.columns]
+    st.dataframe(disp[show_cols], use_container_width=True, hide_index=True)
+
+    if len(day_df) >= 1 and fwd_col in day_df.columns:
+        fig = go.Figure()
+        vals = pd.to_numeric(day_df[fwd_col], errors="coerce")
+        fig.add_trace(go.Bar(
+            x=day_df["代码"], y=vals,
+            marker_color=[theme.UP if (pd.notna(v) and v >= 0) else theme.DOWN for v in vals],
+            text=[fmt_pct(v) if pd.notna(v) else "-" for v in vals],
+            textposition="outside",
+        ))
+        fig.update_layout(
+            height=320, template="tiger",
+            title=f"{sel_date} 入选 · 后{fwd_days}日收益",
+            yaxis_tickformat=".0%", margin=dict(l=10, r=10, t=40, b=10),
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    csv = daily.to_csv(index=False).encode("utf-8-sig")
+    st.download_button("⬇️ 下载全部每日选股回测 (CSV)", csv, file_name="daily_screen_backtest.csv", mime="text/csv")
+    st.caption(
+        "说明：「前 N 日」为选股日前的走势背景；「后 N 日」为选股日收盘买入的持有表现；"
+        "「策略后向」为选股日次日按所选策略交易的回测结果。历史榜单池无法精确还原，建议用 sp500/custom。"
+    )
+
 
 def tab_screener(cfg: dict) -> None:
     st.subheader("策略选股 · 条件筛选 + 批量回测")
@@ -1098,7 +1285,7 @@ def tab_screener(cfg: dict) -> None:
             disp_h["平均策略收益"] = disp_h["平均策略收益"].map(fmt_pct)
             disp_h["盈利占比"] = disp_h["盈利占比"].map(fmt_pct)
             st.dataframe(disp_h, use_container_width=True, hide_index=True)
-            show_cols = [c for c in ["选股时间", "代码", "名称", "涨幅%", "行业", "策略累计收益", "当前信号"]
+            show_cols = [c for c in ["选股日期", "选股时间", "代码", "名称", "选股理由", "涨幅%", "行业", "策略累计收益", "当前信号"]
                          if c in hist.columns]
             st.caption(f"最近明细（共 {len(hist)} 条）")
             recent = hist[show_cols].tail(30).copy()
@@ -1110,7 +1297,10 @@ def tab_screener(cfg: dict) -> None:
     _tab_screen_preset_backtest(cfg)
 
     st.divider()
-    st.markdown("### 🔎 自定义条件选股")
+    _tab_historical_daily_screen(cfg)
+
+    st.divider()
+    st.markdown("### 🔎 自定义条件选股（当日）")
     c1, c2, c3 = st.columns([1.2, 1, 1])
     pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
     pool_key = c1.selectbox(
@@ -1265,6 +1455,7 @@ def tab_screener(cfg: dict) -> None:
         return
 
     merged = screener.merge_snapshot_backtest(filtered, bt)
+    merged = screener.add_rationale_to_merged(merged, filters)
     summ = screener.summarize_backtest(bt)
 
     st.markdown("**组合汇总（等权视角）**")
