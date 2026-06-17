@@ -225,6 +225,73 @@ def _snapshot_at_date(
     return screener.snapshot_at_date(data, as_of, lookback)
 
 
+def daily_trade_plan(
+    preset: ScreenStrategyPreset,
+    data: dict[str, pd.DataFrame],
+    *,
+    start: str | date | None = None,
+    end: str | date | None = None,
+    capital: float = 100_000.0,
+    allow_short: bool = False,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> dict[str, Any]:
+    """按选股策略逐日（每 rebalance_days）生成短线交易计划与 N 日兑现结果。
+
+    返回 plan（明细：每天每只票的方向/仓位/金额/理由/后N日盈亏/回撤）、
+    summary（总投入、总盈亏、胜率、平均收益）。
+    """
+    if not data:
+        return {"error": "无可用行情数据"}
+
+    fwd = max(int(preset.forward_eval_days), 1)
+    best = max(data.keys(), key=lambda t: len(data[t]))
+    cal = data[best].index
+    if start is not None:
+        cal = cal[cal >= pd.Timestamp(start)]
+    if end is not None:
+        cal = cal[cal <= pd.Timestamp(end)]
+    warmup = max(preset.filters.lookback_days + 30, 60)
+    if len(cal) < warmup + 5:
+        return {"error": "数据不足，请扩大日期范围"}
+
+    step = max(int(preset.rebalance_days), 1)
+    plans: list[pd.DataFrame] = []
+    for i in range(warmup, len(cal), step):
+        as_of = cal[i]
+        picks = screener.screen_at_date(data, preset.filters, as_of, top_n=preset.top_picks)
+        if picks.empty:
+            continue
+        plan = screener.build_trade_plan(
+            picks, data, as_of, preset.trading_strategy, preset.trading_params,
+            forward_days=fwd, capital=capital, allow_short=allow_short,
+            fee_bps=fee_bps, slippage_bps=slippage_bps,
+        )
+        if not plan.empty:
+            plans.append(plan)
+
+    if not plans:
+        return {"error": "回测期内无有效选股"}
+
+    plan_df = pd.concat(plans, ignore_index=True)
+    pnl_col = "盈亏金额USD"
+    ret_col = f"后{fwd}日收益%"
+    traded = plan_df[plan_df["方向"] != "观望"] if "方向" in plan_df.columns else plan_df
+    pnl = pd.to_numeric(traded.get(pnl_col), errors="coerce")
+    ret = pd.to_numeric(traded.get(ret_col), errors="coerce")
+    summary = {
+        "评估窗口(交易日)": float(fwd),
+        "信号交易笔数": float(len(traded)),
+        "观望笔数": float(len(plan_df) - len(traded)),
+        "累计盈亏USD": float(pnl.sum(skipna=True)) if pnl.notna().any() else 0.0,
+        "胜率": float((pnl > 0).mean()) if pnl.notna().any() else 0.0,
+        "平均单笔收益%": float(ret.mean()) if ret.notna().any() else 0.0,
+        "做多笔数": float((traded["方向"] == "做多").sum()) if "方向" in traded.columns else 0.0,
+        "做空笔数": float((traded["方向"] == "做空").sum()) if "方向" in traded.columns else 0.0,
+    }
+    return {"preset": preset, "plan": plan_df, "summary": summary}
+
+
 def backtest_screen_preset(
     preset: ScreenStrategyPreset,
     data: dict[str, pd.DataFrame],

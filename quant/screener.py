@@ -530,6 +530,108 @@ def backtest_pick_forward(
     }
 
 
+def signal_direction_at(
+    df: pd.DataFrame,
+    as_of: pd.Timestamp,
+    strategy_name: str,
+    params: dict[str, float] | None = None,
+    *,
+    allow_short: bool = False,
+    warmup_bars: int = 120,
+) -> float:
+    """返回选股日策略给出的目标仓位信号：>0 做多，<0 做空，0 观望（无未来数据）。"""
+    as_of = pd.Timestamp(as_of)
+    hist = df.loc[df.index <= as_of].tail(warmup_bars)
+    if len(hist) < 30:
+        return 0.0
+    strat = strategies.get_strategy(strategy_name)
+    pos = strat.generate(hist, allow_short=allow_short, **(params or {}))
+    if pos is None or len(pos) == 0:
+        return 0.0
+    val = pos.iloc[-1]
+    return float(val) if pd.notna(val) else 0.0
+
+
+def direction_label(signal: float) -> str:
+    if signal > 0:
+        return "做多"
+    if signal < 0:
+        return "做空"
+    return "观望"
+
+
+def build_trade_plan(
+    picks: pd.DataFrame,
+    data: dict[str, pd.DataFrame],
+    as_of: pd.Timestamp,
+    strategy_name: str,
+    params: dict[str, float] | None = None,
+    *,
+    forward_days: int = 20,
+    capital: float = 100_000.0,
+    allow_short: bool = False,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> pd.DataFrame:
+    """为每只入选股生成交易计划：方向/仓位/金额/选股理由 + 选股后 N 日盈亏与回撤。
+
+    - 方向：选股日策略信号（做多/做空/观望，无未来数据）
+    - 仓位：入选股等权分配，权重 = |信号|（0~1）
+    - 金额：capital × 权重 ÷ 入选数（建议投入）
+    - 后 N 日盈亏：方向调整后的买入持有收益 × 投入金额（赚为正、亏为负）
+    - 策略后 N 日收益：策略自行择时（含中途离场/反手）的收益口径
+    """
+    if picks.empty:
+        return picks
+    as_of = pd.Timestamp(as_of)
+    n = max(len(picks), 1)
+    per_slot = float(capital) / n
+    rows: list[dict[str, Any]] = []
+    for i, (_, row) in enumerate(picks.iterrows()):
+        ticker = str(row["代码"]).upper()
+        df = data.get(ticker)
+        rec: dict[str, Any] = {
+            "选股日期": as_of.strftime("%Y-%m-%d"),
+            "代码": ticker,
+            "选股理由": row.get("选股理由", ""),
+        }
+        if df is None or df.empty:
+            rows.append(rec)
+            continue
+
+        signal = signal_direction_at(
+            df, as_of, strategy_name, params,
+            allow_short=allow_short,
+        )
+        weight = min(abs(signal), 1.0)
+        dollar = per_slot * weight
+        rec["方向"] = direction_label(signal)
+        rec["建议仓位%"] = round(weight * 100.0, 1)
+        rec["建议金额USD"] = round(dollar, 2)
+
+        fb = forward_backward_metrics(df, as_of, forward_days=forward_days, backward_days=1)
+        raw_fwd = fb.get(f"后{forward_days}日收益", np.nan)
+        fwd_dd = fb.get(f"后{forward_days}日最大回撤", np.nan)
+        dir_sign = 1.0 if signal > 0 else (-1.0 if signal < 0 else 0.0)
+        directional_ret = dir_sign * raw_fwd if pd.notna(raw_fwd) else np.nan
+        pnl = directional_ret * dollar if pd.notna(directional_ret) else np.nan
+
+        rec[f"后{forward_days}日收益%"] = round(directional_ret * 100.0, 2) if pd.notna(directional_ret) else np.nan
+        rec["盈亏"] = ("观望" if dir_sign == 0 else ("赚" if pd.notna(pnl) and pnl > 0 else ("亏" if pd.notna(pnl) and pnl < 0 else "持平")))
+        rec["盈亏金额USD"] = round(pnl, 2) if pd.notna(pnl) else np.nan
+        rec[f"后{forward_days}日最大回撤%"] = round(fwd_dd * 100.0, 2) if pd.notna(fwd_dd) else np.nan
+
+        strat_perf = backtest_pick_forward(
+            df, as_of, strategy_name, params=params,
+            forward_days=forward_days, allow_short=allow_short,
+            fee_bps=fee_bps, slippage_bps=slippage_bps,
+        )
+        sret = strat_perf.get("策略后向收益", np.nan)
+        rec["策略后向收益%"] = round(sret * 100.0, 2) if pd.notna(sret) else np.nan
+        rows.append(rec)
+    return pd.DataFrame(rows)
+
+
 def screen_at_date(
     data: dict[str, pd.DataFrame],
     filters: ScreenFilters,

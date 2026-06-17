@@ -1114,6 +1114,46 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
         show_p = [c for c in prefer if c in show_p] + [c for c in show_p if c not in prefer]
         st.dataframe(pdisp[show_p].tail(50).iloc[::-1], use_container_width=True, hide_index=True)
 
+    # ---- 每日短线交易计划：方向 / 仓位 / 金额 / 20日盈亏 ----
+    st.divider()
+    st.markdown(f"**📋 每日交易计划（方向 · 仓位 · 选股后 {preset.forward_eval_days} 日盈亏）**")
+    st.caption(
+        "每个选股日给出：做多/做空方向（按策略信号）、建议仓位与金额（等权分配本金）、"
+        f"选股理由，以及选股后 {preset.forward_eval_days} 个交易日的实际盈亏与最大回撤。做空需在侧边栏开启『允许做空』。"
+    )
+    try:
+        tp = screen_strategies.daily_trade_plan(
+            preset, data,
+            capital=cfg["capital"],
+            allow_short=cfg["allow_short"],
+            fee_bps=cfg["fee_bps"],
+            slippage_bps=cfg["slippage_bps"],
+        )
+    except Exception as e:  # noqa: BLE001
+        st.warning(f"交易计划生成失败：{e}")
+        tp = {"error": str(e)}
+
+    if "error" in tp:
+        st.info(f"暂无交易计划：{tp['error']}")
+    else:
+        s = tp["summary"]
+        t1, t2, t3, t4 = st.columns(4)
+        t1.metric("累计盈亏", f"${s['累计盈亏USD']:,.0f}")
+        t2.metric("胜率", fmt_pct(s["胜率"]))
+        t3.metric("平均单笔收益", f"{s['平均单笔收益%']:.2f}%")
+        t4.metric("做多/做空", f"{int(s['做多笔数'])} / {int(s['做空笔数'])}")
+        plan = tp["plan"].copy()
+        if "盈亏金额USD" in plan.columns:
+            plan["盈亏金额USD"] = pd.to_numeric(plan["盈亏金额USD"], errors="coerce").map(
+                lambda x: f"${x:,.0f}" if pd.notna(x) else "-"
+            )
+        if "建议金额USD" in plan.columns:
+            plan["建议金额USD"] = pd.to_numeric(plan["建议金额USD"], errors="coerce").map(
+                lambda x: f"${x:,.0f}" if pd.notna(x) else "-"
+            )
+        st.dataframe(plan.tail(80).iloc[::-1], use_container_width=True, hide_index=True)
+        st.caption("说明：『后N日收益%』为按方向持有的买入持有口径；『策略后向收益%』为策略自行择时（含中途离场/反手）的口径。仅供研究，不构成投资建议。")
+
 
 def _tab_historical_daily_screen(cfg: dict) -> None:
     st.markdown("### 📅 历史每日选股回测")

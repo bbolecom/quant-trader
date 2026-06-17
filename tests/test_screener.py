@@ -160,6 +160,37 @@ def test_screen_at_date_and_historical_replay(multi_data):
     assert "选股理由" in daily.columns
 
 
+def test_build_trade_plan_has_direction_size_and_pnl(multi_data):
+    from quant.screener import build_trade_plan
+
+    f = ScreenFilters(min_gain_pct=-100, max_gain_pct=1000, min_dollar_vol_m=0, lookback_days=5)
+    best = max(multi_data.keys(), key=lambda t: len(multi_data[t]))
+    as_of = multi_data[best].index[200]
+    picks = screen_at_date(multi_data, f, as_of, top_n=3)
+    plan = build_trade_plan(
+        picks, multi_data, as_of, "动量策略", {"window": 10},
+        forward_days=20, capital=100_000.0, allow_short=True,
+    )
+    assert not plan.empty
+    for col in ["方向", "建议仓位%", "建议金额USD", "选股理由", "盈亏", "盈亏金额USD"]:
+        assert col in plan.columns
+    assert set(plan["方向"].unique()).issubset({"做多", "做空", "观望"})
+    # 等权分配：金额合计不超过本金。
+    assert plan["建议金额USD"].sum() <= 100_000.0 + 1e-6
+
+
+def test_daily_trade_plan_replay(multi_data):
+    from quant import screen_strategies as ss
+
+    preset = ss.get_preset("st_momentum_relay")
+    res = ss.daily_trade_plan(preset, multi_data, capital=100_000.0, allow_short=True)
+    assert "plan" in res and not res["plan"].empty
+    s = res["summary"]
+    assert s["评估窗口(交易日)"] == 20.0
+    assert s["信号交易笔数"] >= 0.0
+    assert {"累计盈亏USD", "胜率", "做多笔数", "做空笔数"}.issubset(s.keys())
+
+
 def test_add_rationale_to_merged():
     merged = pd.DataFrame([{"代码": "A", "涨幅%": 5.0}])
     f = ScreenFilters(lookback_days=10)
