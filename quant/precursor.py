@@ -170,8 +170,8 @@ def scan_precursors(
     if lo20 > 0 and last <= lo20 * 1.03 and vol_ratio >= 1.2:
         hits.append(_hit("breakdown_setup", min(1.0, (1.03 - last / lo20) / 0.03 + 0.5)))
 
-    adx_s = ind.adx(df, 14)
-    if len(adx_s.dropna()) >= 10:
+    adx_s = ind.adx(df, 14)["adx"].dropna()
+    if len(adx_s) >= 10:
         adx_now = float(adx_s.iloc[-1])
         adx_5 = float(adx_s.iloc[-6])
         if adx_5 < 20 and adx_now >= 22 and adx_now > adx_5:
