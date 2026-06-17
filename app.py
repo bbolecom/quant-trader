@@ -151,21 +151,25 @@ def sidebar() -> dict:
     ticker = st.sidebar.text_input(
         "代码", value="AAPL", label_visibility="collapsed",
         help="美股代码，如 AAPL、MSFT、NVDA",
+        key="sidebar_ticker",
     ).strip().upper()
 
     col1, col2 = st.sidebar.columns(2)
     default_start = (pd.Timestamp.today() - pd.DateOffset(years=3)).date()
-    start = col1.date_input("开始", value=default_start, max_value=date.today())
-    end = col2.date_input("结束", value=date.today(), max_value=date.today())
+    start = col1.date_input("开始", value=default_start, max_value=date.today(), key="sidebar_start")
+    end = col2.date_input("结束", value=date.today(), max_value=date.today(), key="sidebar_end")
 
     allow_short = st.sidebar.checkbox(
-        "允许做空", value=False, help="开启后，离场信号将转为反向做空"
+        "允许做空", value=False, help="开启后，离场信号将转为反向做空",
+        key="sidebar_allow_short",
     )
 
     st.sidebar.markdown("**资金与成本**")
-    capital = st.sidebar.number_input("初始资金 (USD)", value=100_000, step=10_000, min_value=1_000)
-    fee_bps = st.sidebar.slider("手续费 (bp)", 0.0, 30.0, 5.0, 0.5)
-    slippage_bps = st.sidebar.slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5)
+    capital = st.sidebar.number_input(
+        "初始资金 (USD)", value=100_000, step=10_000, min_value=1_000, key="sidebar_capital",
+    )
+    fee_bps = st.sidebar.slider("手续费 (bp)", 0.0, 30.0, 5.0, 0.5, key="sidebar_fee_bps")
+    slippage_bps = st.sidebar.slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5, key="sidebar_slippage_bps")
 
     st.sidebar.divider()
     st.sidebar.caption("数据仅供参考，不构成投资建议")
