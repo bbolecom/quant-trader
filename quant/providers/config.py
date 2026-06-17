@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 
 @dataclass(frozen=True)
@@ -15,16 +17,56 @@ class DataConfig:
     alpaca_data_url: str = "https://data.alpaca.markets"
 
 
+@lru_cache(maxsize=1)
+def _load_secrets_file() -> dict:
+    """直接解析 .streamlit/secrets.toml（供非 Streamlit 运行时，如 CLI 脚本/测试）。"""
+    # 项目根：config.py -> providers -> quant -> 项目根
+    root = Path(__file__).resolve().parents[2]
+    candidates = [
+        root / ".streamlit" / "secrets.toml",
+        Path.home() / ".streamlit" / "secrets.toml",
+    ]
+    for path in candidates:
+        if not path.exists():
+            continue
+        try:
+            try:
+                import tomllib  # Python 3.11+
+                with open(path, "rb") as f:
+                    return tomllib.load(f)
+            except ModuleNotFoundError:
+                try:
+                    import tomli
+                    with open(path, "rb") as f:
+                        return tomli.load(f)
+                except ModuleNotFoundError:
+                    import toml
+                    with open(path, "r", encoding="utf-8") as f:
+                        return toml.load(f)
+        except Exception:  # noqa: BLE001
+            continue
+    return {}
+
+
 def _read_secret(section: str, key: str) -> str:
+    # 1) Streamlit 运行时
     try:
         import streamlit as st
 
         block = st.secrets.get(section, {})
         if isinstance(block, dict):
             val = block.get(key, "")
-            return str(val).strip() if val else ""
+            if val:
+                return str(val).strip()
     except Exception:  # noqa: BLE001
         pass
+    # 2) 直接读 secrets.toml（CLI / 测试）
+    data = _load_secrets_file()
+    block = data.get(section, {})
+    if isinstance(block, dict):
+        val = block.get(key, "")
+        if val:
+            return str(val).strip()
     return ""
 
 

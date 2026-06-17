@@ -43,6 +43,8 @@ def test_normalize_ohlcv_flattens_multiindex():
 def test_load_data_config_falls_back_without_polygon_key(monkeypatch):
     monkeypatch.delenv("POLYGON_API_KEY", raising=False)
     monkeypatch.setenv("DATA_PROVIDER", "polygon")
+    # 隔离本地 secrets.toml，确保测试只看环境变量。
+    monkeypatch.setattr("quant.providers.config._load_secrets_file", lambda: {})
     cfg = load_data_config()
     assert cfg.provider == "yahoo"
 
@@ -64,8 +66,7 @@ def test_polygon_provider_parses_response():
     assert float(df["Close"].iloc[-1]) == pytest.approx(11.5)
 
 
-def test_get_provider_respects_config(monkeypatch):
-    monkeypatch.setenv("DATA_PROVIDER", "yahoo")
+def test_get_provider_respects_config():
     reset_provider_cache()
     p = get_provider(DataConfig(provider="yahoo"))
     assert isinstance(p, YahooProvider)

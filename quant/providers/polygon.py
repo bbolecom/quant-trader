@@ -67,4 +67,7 @@ class PolygonProvider(MarketDataProvider):
                 "Volume": bar.get("v"),
             })
         df = pd.DataFrame(rows).set_index("Date")
-        return normalize_ohlcv(df)
+        out = normalize_ohlcv(df)
+        # 日线对齐到当天零点，避免与纯日期索引比较时错位。
+        out.index = out.index.normalize()
+        return out

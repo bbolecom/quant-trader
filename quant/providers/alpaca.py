@@ -81,6 +81,7 @@ class AlpacaProvider(MarketDataProvider):
             df = pd.DataFrame(rows).set_index("Date")
             norm = normalize_ohlcv(df)
             if not norm.empty:
+                norm.index = norm.index.normalize()
                 out[sym.upper()] = norm
         return out
 
