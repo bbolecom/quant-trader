@@ -12,6 +12,11 @@ scan.err.log
 .github_token
 .tools/
 
+# 策略搜索缓存与产物
+_short_term_cache.pkl
+_poly_cache.pkl
+short_term_ranking.csv
+
 # iOS / Xcode 生成物
 ios/QuantTrader.xcodeproj/
 ios/Sources/Info.plist

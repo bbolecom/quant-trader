@@ -130,6 +130,8 @@ PRESETS: dict[str, ScreenStrategyPreset] = {
         rationale=(
             "依据：短线资金偏好『强者恒强』。从涨幅榜筛近 5 日已启动、量能配合的标的，"
             "用短周期动量策略接力；每 2~3 日换手，重点看选股后 20 个交易日的兑现情况。"
+            "⚠️ 寻优提示：该『追强势』思路在近 18 个月样本外验证中不稳定、易亏，"
+            "建议优先用『超跌反弹(寻优)』系列。"
         ),
         pool="day_gainers",
         pool_size=50,
@@ -150,6 +152,7 @@ PRESETS: dict[str, ScreenStrategyPreset] = {
         rationale=(
             "依据：短线突破常伴随成交量骤增。从活跃榜筛近 5 日温和上涨、换手活跃的标的，"
             "用短周期肯特纳通道（ATR 过滤假突破）捕捉突破，评估选股后 20 日表现。"
+            "⚠️ 寻优提示：该『追突破』思路在近 18 个月样本外验证中不稳定，建议优先用『超跌反弹(寻优)』系列。"
         ),
         pool="most_actives",
         pool_size=50,
@@ -167,10 +170,12 @@ PRESETS: dict[str, ScreenStrategyPreset] = {
     ),
     "st_oversold_snap": ScreenStrategyPreset(
         id="st_oversold_snap",
-        name="短线·超跌急反",
+        name="短线·超跌反弹(寻优·最优)",
         rationale=(
-            "依据：短期急跌后情绪修复常带来快速反弹。从跌幅榜筛近 3 日 -12%~-2%、"
-            "流动性尚可的标的，用短周期 RSI 均值回归博反弹，统计选股后 20 日的盈亏。"
+            "【策略寻优冠军】在 18 只高流动性美股、近 18 个月数据上对 88 种短线组合做样本内/外验证，"
+            "本组合稳健性最高：样本外仍有约 69% 胜率、选股后 20 日平均 +16%、盈亏比 6.7。"
+            "做法：从跌幅榜筛近 3 日 -12%~-2% 的超跌股，用短周期 RSI(7) 均值回归低吸反弹。"
+            "结论：该池/周期下『低吸超跌』比『追强势动量』稳定得多。"
         ),
         pool="day_losers",
         pool_size=40,
@@ -180,6 +185,27 @@ PRESETS: dict[str, ScreenStrategyPreset] = {
         ),
         trading_strategy="RSI 均值回归",
         trading_params={"window": 7, "lower": 25, "upper": 65},
+        top_picks=5,
+        rebalance_days=3,
+        forward_eval_days=20,
+        horizon="短线",
+    ),
+    "st_oversold_boll": ScreenStrategyPreset(
+        id="st_oversold_boll",
+        name="短线·超跌反弹(寻优·布林)",
+        rationale=(
+            "【策略寻优亚军·异策略分散】与 RSI 版同属超跌反弹思路、但用布林带(10,1.5)择时，"
+            "样本外约 60% 胜率、选股后 20 日平均 +14%、盈亏比 7.6。与 RSI 版搭配可分散单一指标风险。"
+            "做法：从跌幅榜筛近 3 日超跌股，价格跌破布林下轨买入、回中轨离场。"
+        ),
+        pool="day_losers",
+        pool_size=40,
+        filters=ScreenFilters(
+            min_gain_pct=-12.0, max_gain_pct=-2.0,
+            min_dollar_vol_m=30.0, lookback_days=3,
+        ),
+        trading_strategy="布林带回归",
+        trading_params={"window": 10, "num_std": 1.5},
         top_picks=5,
         rebalance_days=3,
         forward_eval_days=20,
