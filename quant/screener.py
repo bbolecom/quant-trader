@@ -19,7 +19,7 @@ except ImportError:  # pragma: no cover
     yf = None
 
 from . import backtest, strategies
-from .data import DataError, fetch_history
+from .data import DataError, fetch_history, fetch_history_batch
 
 
 # 预置股票池（yfinance 内置选股器名称 → 中文说明）
@@ -169,33 +169,18 @@ def build_snapshot_from_history(
         return pd.DataFrame()
 
     start_str = pd.Timestamp(start).strftime("%Y-%m-%d")
-    end_str = (pd.Timestamp(end) + timedelta(days=1)).strftime("%Y-%m-%d")
+    end_str = pd.Timestamp(end).strftime("%Y-%m-%d")
 
-    raw = yf.download(
-        tickers,
-        start=start_str,
-        end=end_str,
-        auto_adjust=True,
-        progress=False,
-        group_by="ticker",
-        threads=True,
-    )
-    if raw is None or raw.empty:
+    batch = fetch_history_batch(tickers, start_str, end_str)
+    if not batch:
         return pd.DataFrame()
 
     rows: list[dict[str, Any]] = []
-    multi = isinstance(raw.columns, pd.MultiIndex)
-
     for t in tickers:
+        sub = batch.get(t)
+        if sub is None or sub.empty or "Close" not in sub.columns:
+            continue
         try:
-            if multi:
-                if t not in raw.columns.get_level_values(0):
-                    continue
-                sub = raw[t].dropna(how="all")
-            else:
-                sub = raw.dropna(how="all")
-            if sub.empty or "Close" not in sub.columns:
-                continue
             close = sub["Close"].astype(float)
             vol = sub["Volume"].astype(float)
             lb = min(lookback_days, len(close) - 1)
@@ -205,16 +190,17 @@ def build_snapshot_from_history(
             dollar_vol = (close * vol).tail(lb).mean()
             turnover = np.nan
             mcap = np.nan
-            try:
-                info = yf.Ticker(t).fast_info
-                shares = getattr(info, "shares", None)
-                mcap_val = getattr(info, "market_cap", None)
-                if shares and float(shares) > 0:
-                    turnover = float(vol.iloc[-1]) / float(shares) * 100.0
-                if mcap_val:
-                    mcap = float(mcap_val)
-            except Exception:  # noqa: BLE001
-                pass
+            if with_sector:
+                try:
+                    info = yf.Ticker(t).fast_info
+                    shares = getattr(info, "shares", None)
+                    mcap_val = getattr(info, "market_cap", None)
+                    if shares and float(shares) > 0:
+                        turnover = float(vol.iloc[-1]) / float(shares) * 100.0
+                    if mcap_val:
+                        mcap = float(mcap_val)
+                except Exception:  # noqa: BLE001
+                    pass
             sector_en = fetch_sector(t) if with_sector else ""
             rows.append(
                 {

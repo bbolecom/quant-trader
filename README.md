@@ -248,10 +248,41 @@ REGISTRY["我的策略"] = Strategy(
 
 ---
 
+## 行情数据源（可切换）
+
+默认用 **Yahoo Finance**（免费、零配置，但数据质量一般），也支持切换到**专业数据源**：
+
+| 数据源 | 说明 | 配置 |
+|---|---|---|
+| **Polygon.io** | 交易所级聚合数据，质量高（推荐） | 注册免费 Key：[polygon.io](https://polygon.io) |
+| **Alpaca Markets** | 券商级行情，免费开户即用 | API Key/Secret：[alpaca.markets](https://alpaca.markets) |
+| **Yahoo Finance** | 免费备用，无需配置 | 无 |
+
+### 配置方式
+
+本地复制 `.streamlit/secrets.toml.example` 为 `.streamlit/secrets.toml`（Streamlit Cloud 在控制台 Secrets 填写）：
+
+```toml
+[data]
+provider = "polygon"          # 可选 polygon / alpaca / yahoo
+polygon_api_key = "你的Key"
+```
+
+或用环境变量（适合定时脚本 / CI）：
+
+```bash
+export DATA_PROVIDER=polygon
+export POLYGON_API_KEY=xxx
+```
+
+> 未配置密钥时会**自动回退到 Yahoo**，不会报错。当前数据源会显示在侧边栏。
+
+---
+
 ## 常见问题
 
-- **数据拉取失败 / 超时**：通常是网络无法访问 Yahoo Finance，请检查网络或代理设置后重试。
-- **代码无效**：请确认填写的是有效的美股代码（可在 Yahoo Finance 网站搜索验证）。
+- **数据拉取失败 / 超时**：Yahoo 偶有不稳定，可配置 Polygon/Alpaca 专业源（见上）；或检查网络/代理。
+- **代码无效**：请确认填写的是有效的美股代码。
 - **首次启动较慢**：因为需要安装依赖；之后启动会很快。
 
 ---
@@ -259,6 +290,6 @@ REGISTRY["我的策略"] = Strategy(
 ## 技术栈
 
 - [Streamlit](https://streamlit.io/) — 交互式 Web 界面
-- [yfinance](https://github.com/ranaroussi/yfinance) — 行情数据
+- 行情数据 — [Polygon.io](https://polygon.io) / [Alpaca](https://alpaca.markets) / [yfinance](https://github.com/ranaroussi/yfinance)（可切换）
 - [pandas](https://pandas.pydata.org/) / [numpy](https://numpy.org/) — 数据处理与指标计算
 - [Plotly](https://plotly.com/python/) — 交互式图表

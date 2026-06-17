@@ -37,7 +37,7 @@ from quant import (
     strategies,
     validation,
 )
-from quant.data import DataError, fetch_history
+from quant.data import DataError, fetch_history, get_data_source_info
 import tiger_theme as theme
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -172,6 +172,18 @@ def sidebar() -> dict:
     slippage_bps = st.sidebar.slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5, key="sidebar_slippage_bps")
 
     st.sidebar.divider()
+    src = get_data_source_info()
+    st.sidebar.markdown("**行情数据源**")
+    st.sidebar.caption(f"当前：**{src['label']}**")
+    if src["provider"] == "yahoo":
+        with st.sidebar.expander("切换到专业数据源", expanded=False):
+            st.markdown(
+                "在 `.streamlit/secrets.toml`（本地）或 Streamlit Cloud Secrets 中配置：\n\n"
+                "```toml\n[data]\nprovider = \"polygon\"   # 或 alpaca\n"
+                "polygon_api_key = \"你的Key\"\n```\n\n"
+                "**Polygon.io**（推荐）：[polygon.io](https://polygon.io) 注册免费 Key\n\n"
+                "**Alpaca**（免费）：[alpaca.markets](https://alpaca.markets) 开户后获取 API Key"
+            )
     st.sidebar.caption("数据仅供参考，不构成投资建议")
 
     return {
@@ -2038,7 +2050,7 @@ def _render_trades(result: backtest.BacktestResult) -> None:
 # ---------------------------------------------------------------------------
 def main() -> None:
     _render_brand_header()
-    st.caption("数据来源 Yahoo Finance · 自用研究工具，不构成投资建议")
+    st.caption("数据来源可配置 Polygon / Alpaca / Yahoo · 自用研究工具，不构成投资建议")
 
     cfg = sidebar()
     tabs = st.tabs(
