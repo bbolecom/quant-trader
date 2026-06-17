@@ -191,6 +191,20 @@ def test_daily_trade_plan_replay(multi_data):
     assert {"累计盈亏USD", "胜率", "做多笔数", "做空笔数"}.issubset(s.keys())
 
 
+def test_trade_plan_at_date_single_day(multi_data):
+    from quant import screen_strategies as ss
+
+    preset = ss.get_preset("st_momentum_relay")
+    best = max(multi_data.keys(), key=lambda t: len(multi_data[t]))
+    as_of = multi_data[best].index[200]
+    plan = ss.trade_plan_at_date(preset, multi_data, as_of, capital=100_000.0, allow_short=True)
+    assert not plan.empty
+    # 全部行都属于同一选股日。
+    assert plan["选股日期"].nunique() == 1
+    for col in ["方向", "建议金额USD", "选股理由", "盈亏"]:
+        assert col in plan.columns
+
+
 def test_add_rationale_to_merged():
     merged = pd.DataFrame([{"代码": "A", "涨幅%": 5.0}])
     f = ScreenFilters(lookback_days=10)

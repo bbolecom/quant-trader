@@ -225,6 +225,42 @@ def _snapshot_at_date(
     return screener.snapshot_at_date(data, as_of, lookback)
 
 
+def trade_plan_at_date(
+    preset: ScreenStrategyPreset,
+    data: dict[str, pd.DataFrame],
+    as_of: str | date,
+    *,
+    capital: float = 100_000.0,
+    allow_short: bool = False,
+    fee_bps: float = 5.0,
+    slippage_bps: float = 2.0,
+) -> pd.DataFrame:
+    """生成「某年某月某日」单日的短线交易计划（方向/仓位/金额/理由 + 后N日兑现）。
+
+    选股与指标只用 as_of 当日及之前的数据（无未来函数）；
+    后 N 日盈亏需要 as_of 之后存在数据，否则相关列为 NaN（尚未兑现）。
+    """
+    if not data:
+        return pd.DataFrame()
+    as_of_ts = pd.Timestamp(as_of)
+    # 对齐到不晚于 as_of 的最近交易日。
+    best = max(data.keys(), key=lambda t: len(data[t]))
+    cal = data[best].index
+    avail = cal[cal <= as_of_ts]
+    if len(avail) == 0:
+        return pd.DataFrame()
+    eff = avail[-1]
+    picks = screener.screen_at_date(data, preset.filters, eff, top_n=preset.top_picks)
+    if picks.empty:
+        return pd.DataFrame()
+    return screener.build_trade_plan(
+        picks, data, eff, preset.trading_strategy, preset.trading_params,
+        forward_days=max(int(preset.forward_eval_days), 1),
+        capital=capital, allow_short=allow_short,
+        fee_bps=fee_bps, slippage_bps=slippage_bps,
+    )
+
+
 def daily_trade_plan(
     preset: ScreenStrategyPreset,
     data: dict[str, pd.DataFrame],

@@ -11,7 +11,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -1031,6 +1031,57 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
     pc1.markdown(f"**股票池：** {screener.UNIVERSE_PRESETS.get(preset.pool, preset.pool)}")
     pc2.markdown(f"**交易策略：** {preset.trading_strategy}")
     pc3.markdown(f"**每 {preset.rebalance_days} 日选 {preset.top_picks} 只 · 后 {preset.forward_eval_days} 日评估**")
+
+    # ---- 指定某年某月某日：单日交易计划 + 导出 ----
+    with st.expander("📆 查看某一天的交易计划（方向 / 仓位 / 20日兑现 · 可导出）", expanded=False):
+        dcol1, dcol2 = st.columns([2, 1])
+        plan_date = dcol1.date_input(
+            "选股日期", value=date.today() - timedelta(days=40),
+            max_value=date.today(), key="scr_plan_date",
+        )
+        run_day = dcol2.button("查看该日计划", key="run_scr_day_plan")
+        if run_day:
+            with st.spinner(f"正在生成 {plan_date} 的交易计划…"):
+                try:
+                    sel = plan_date.isoformat()
+                    fetch_start = (pd.Timestamp(sel) - pd.DateOffset(days=260)).strftime("%Y-%m-%d")
+                    fetch_end = min(
+                        (pd.Timestamp(sel) + pd.DateOffset(days=45)).strftime("%Y-%m-%d"),
+                        date.today().isoformat(),
+                    )
+                    if preset.pool == "custom":
+                        tks = preset.custom_tickers
+                    elif preset.pool == "sp500":
+                        tks = screener.fetch_sp500_tickers()[: preset.pool_size]
+                    else:
+                        tks = screener.fetch_sp500_tickers()[:50]
+                        st.caption("提示：涨幅榜/活跃榜历史池用标普50成分作代理。")
+                    day_data, day_failed = get_multi_data(tks, {**cfg, "start": fetch_start, "end": fetch_end})
+                    if not day_data:
+                        st.error("❌ 无可用数据。")
+                    else:
+                        day_plan = screen_strategies.trade_plan_at_date(
+                            preset, day_data, sel,
+                            capital=cfg["capital"], allow_short=cfg["allow_short"],
+                            fee_bps=cfg["fee_bps"], slippage_bps=cfg["slippage_bps"],
+                        )
+                        if day_plan.empty:
+                            st.info(f"{sel} 当日按该策略无入选标的（或数据不足）。")
+                        else:
+                            eff_date = day_plan["选股日期"].iloc[0]
+                            if eff_date != sel:
+                                st.caption(f"注：{sel} 非交易日，已对齐到最近交易日 {eff_date}。")
+                            st.markdown(f"**{eff_date} · {preset.name} 交易计划**")
+                            csv = day_plan.to_csv(index=False).encode("utf-8-sig")
+                            st.download_button(
+                                "⬇️ 导出该日计划 (CSV)", data=csv,
+                                file_name=f"交易计划_{preset.id}_{eff_date}.csv",
+                                mime="text/csv", key="dl_scr_day_plan",
+                            )
+                            st.dataframe(day_plan, use_container_width=True, hide_index=True)
+                            st.caption("『后N日收益%』=按方向买入持有口径；『策略后向收益%』=策略择时口径。NaN 表示该日后续不足 N 个交易日、尚未兑现。仅供研究。")
+                except Exception as e:  # noqa: BLE001
+                    st.error(f"❌ 生成失败：{e}")
 
     if not st.button("📈 回测此选股策略（近 3 年）", type="primary", key="run_scr_preset_bt"):
         return
