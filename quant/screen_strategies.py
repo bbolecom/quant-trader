@@ -240,7 +240,7 @@ def backtest_screen_preset(
             pick_logs.append({
                 "选股日期": period_start.strftime("%Y-%m-%d"),
                 "代码": t,
-                "选股理由": screener.pick_rationale(prow, preset.filters, rank=j + 1),
+                "选股理由": screener.pick_rationale(prow, preset.filters, rank=j + 1, selection_date=period_start),
                 "涨幅%": float(prow.get("涨幅%", 0)),
                 **perf,
                 **strat_fwd,

@@ -328,14 +328,21 @@ def backtest_universe(
     return out.sort_values("策略累计收益", ascending=False).reset_index(drop=True)
 
 
-def merge_snapshot_backtest(snapshot: pd.DataFrame, bt: pd.DataFrame) -> pd.DataFrame:
-    """合并选股快照与回测结果。"""
+def merge_snapshot_backtest(
+    snapshot: pd.DataFrame,
+    bt: pd.DataFrame,
+    selection_date: str | date | pd.Timestamp | None = None,
+) -> pd.DataFrame:
+    """合并选股快照与回测结果；可选写入选股日期。"""
     if snapshot.empty or bt.empty:
         return pd.DataFrame()
     cols = ["代码", "名称", "最新价", "涨幅%", "成交额USD", "换手率%", "市值USD", "行业"]
     base = snapshot[[c for c in cols if c in snapshot.columns]].copy()
     merged = base.merge(bt, on="代码", how="inner")
-    return merged.sort_values("策略累计收益", ascending=False).reset_index(drop=True)
+    merged = merged.sort_values("策略累计收益", ascending=False).reset_index(drop=True)
+    if selection_date is not None:
+        merged = stamp_selection_date(merged, selection_date)
+    return merged
 
 
 def summarize_backtest(bt: pd.DataFrame) -> dict[str, float]:
@@ -356,6 +363,23 @@ def summarize_backtest(bt: pd.DataFrame) -> dict[str, float]:
 # ---------------------------------------------------------------------------
 # 按日选股 · 选股理由 · 前后收益/回撤 · 选股日回测
 # ---------------------------------------------------------------------------
+
+def normalize_selection_date(value: str | date | pd.Timestamp | None = None) -> str:
+    """统一选股日期格式为 YYYY-MM-DD。"""
+    if value is None:
+        return pd.Timestamp.today().strftime("%Y-%m-%d")
+    return pd.Timestamp(value).strftime("%Y-%m-%d")
+
+
+def stamp_selection_date(df: pd.DataFrame, selection_date: str | date | pd.Timestamp) -> pd.DataFrame:
+    """为选股结果表写入/覆盖「选股日期」，并置于首列。"""
+    if df.empty:
+        return df.copy()
+    out = df.copy()
+    out["选股日期"] = normalize_selection_date(selection_date)
+    cols = ["选股日期"] + [c for c in out.columns if c != "选股日期"]
+    return out[cols]
+
 
 def _window_return(close: pd.Series) -> float:
     if len(close) < 2:
@@ -407,9 +431,16 @@ def snapshot_at_date(
     return pd.DataFrame(rows)
 
 
-def pick_rationale(row: pd.Series, filters: ScreenFilters, rank: int = 0) -> str:
+def pick_rationale(
+    row: pd.Series,
+    filters: ScreenFilters,
+    rank: int = 0,
+    selection_date: str | date | pd.Timestamp | None = None,
+) -> str:
     """生成单只标的的选股理由（人话）。"""
     parts: list[str] = []
+    if selection_date is not None:
+        parts.append(f"选股日 {normalize_selection_date(selection_date)}")
     lb = filters.lookback_days
     gain = row.get("涨幅%")
     if pd.notna(gain):
@@ -530,7 +561,7 @@ def screen_at_date(
     out = filtered.sort_values("涨幅%", ascending=False).head(int(top_n)).copy()
     out["选股日期"] = pd.Timestamp(as_of).strftime("%Y-%m-%d")
     out["选股理由"] = [
-        pick_rationale(row, filters, rank=i + 1)
+        pick_rationale(row, filters, rank=i + 1, selection_date=as_of)
         for i, (_, row) in enumerate(out.iterrows())
     ]
     return out.reset_index(drop=True)
@@ -666,20 +697,26 @@ def run_historical_daily_screen(
     return {"daily_picks": daily, "by_date": by_date, "summary": summary}
 
 
-def add_rationale_to_merged(merged: pd.DataFrame, filters: ScreenFilters) -> pd.DataFrame:
-    """给当日选股合并表补充选股理由列。"""
+def add_rationale_to_merged(
+    merged: pd.DataFrame,
+    filters: ScreenFilters,
+    selection_date: str | date | pd.Timestamp,
+) -> pd.DataFrame:
+    """给选股合并表补充选股日期与选股理由（日期必填）。"""
     if merged.empty:
         return merged
-    out = merged.copy()
-    if "选股日期" not in out.columns:
-        out["选股日期"] = pd.Timestamp.today().strftime("%Y-%m-%d")
+    sel = normalize_selection_date(selection_date)
+    out = stamp_selection_date(merged, sel)
     ranks = out.sort_values("涨幅%", ascending=False).reset_index(drop=True)
     rank_map = {str(r["代码"]): i + 1 for i, r in ranks.iterrows()}
     out["选股理由"] = [
-        pick_rationale(row, filters, rank=rank_map.get(str(row["代码"]), 0))
+        pick_rationale(row, filters, rank=rank_map.get(str(row["代码"]), 0), selection_date=sel)
         for _, row in out.iterrows()
     ]
-    return out
+    # 选股日期 | 代码 | 选股理由 优先展示
+    prefer = [c for c in ["选股日期", "代码", "名称", "选股理由"] if c in out.columns]
+    rest = [c for c in out.columns if c not in prefer]
+    return out[prefer + rest]
 
 
 def build_universe_snapshot(
@@ -731,6 +768,7 @@ def run_screen(
     start: str | date,
     end: str | date,
     *,
+    selection_date: str | date | pd.Timestamp | None = None,
     pool: str = "day_gainers",
     pool_size: int = 50,
     custom_tickers: list[str] | None = None,
@@ -744,17 +782,21 @@ def run_screen(
 ) -> dict[str, Any]:
     """端到端选股流水线：建池 → 筛选 → （可选）批量回测。
 
-    返回 dict：snapshot / filtered / backtest / merged / summary。
+    selection_date：本次选股的确定日期（某年某月某日）；默认等于 end。
+    返回 dict：selection_date / snapshot / filtered / backtest / merged / summary。
     """
+    sel = normalize_selection_date(selection_date or end)
+    data_end = sel  # 行情与指标截至选股日，避免未来数据
     with_sector = bool(filters.sectors)
     snapshot = build_universe_snapshot(
-        pool, start, end,
+        pool, start, data_end,
         lookback_days=filters.lookback_days,
         pool_size=pool_size,
         custom_tickers=custom_tickers,
         with_sector=with_sector,
     )
     result: dict[str, Any] = {
+        "selection_date": sel,
         "snapshot": snapshot,
         "filtered": pd.DataFrame(),
         "backtest": pd.DataFrame(),
@@ -764,14 +806,19 @@ def run_screen(
     if snapshot.empty:
         return result
 
-    filtered = apply_filters(snapshot, filters)
+    filtered = stamp_selection_date(apply_filters(snapshot, filters), sel)
     result["filtered"] = filtered
     if filtered.empty or not strategy_name:
+        if not filtered.empty:
+            result["filtered"] = add_rationale_to_merged(
+                filtered.drop(columns=["选股理由"], errors="ignore"),
+                filters, sel,
+            )
         return result
 
     targets = filtered["代码"].head(int(max_backtest)).tolist()
     bt = backtest_universe(
-        targets, start, end, strategy_name,
+        targets, start, data_end, strategy_name,
         params=params,
         allow_short=allow_short,
         initial_capital=initial_capital,
@@ -779,7 +826,9 @@ def run_screen(
         slippage_bps=slippage_bps,
     )
     result["backtest"] = bt
-    result["merged"] = add_rationale_to_merged(merge_snapshot_backtest(filtered, bt), filters)
+    result["merged"] = add_rationale_to_merged(
+        merge_snapshot_backtest(filtered, bt, selection_date=sel), filters, sel,
+    )
     result["summary"] = summarize_backtest(bt)
     return result
 

@@ -1271,8 +1271,8 @@ def _tab_historical_daily_screen(cfg: dict) -> None:
 def tab_screener(cfg: dict) -> None:
     st.subheader("策略选股 · 条件筛选 + 批量回测")
     st.caption(
-        "先按涨幅、成交额、换手率、市值等条件筛出股票池，再对入选标的统一跑策略回测，"
-        "看哪类股票在该策略下更有机会获利。"
+        "所有选股结果均绑定明确的 **选股日期（某年某月某日）**，并附选股理由；"
+        "可对每个选股日做前后收益/回撤与策略回测验证。"
     )
 
     with st.expander("📜 历史选股记录", expanded=False):
@@ -1300,7 +1300,17 @@ def tab_screener(cfg: dict) -> None:
     _tab_historical_daily_screen(cfg)
 
     st.divider()
-    st.markdown("### 🔎 自定义条件选股（当日）")
+    st.markdown("### 🔎 自定义条件选股（指定日期）")
+    sel_date = st.date_input(
+        "选股日期（确定入选名单的交易日）",
+        value=min(pd.Timestamp(cfg["end"]).date(), date.today()),
+        max_value=date.today(),
+        key="scr_sel_date",
+        help="行情与筛选指标均截至该日，不含之后数据。",
+    )
+    sel_str = str(sel_date)
+    fetch_start = (pd.Timestamp(sel_str) - pd.DateOffset(days=400)).strftime("%Y-%m-%d")
+
     c1, c2, c3 = st.columns([1.2, 1, 1])
     pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
     pool_key = c1.selectbox(
@@ -1348,8 +1358,10 @@ def tab_screener(cfg: dict) -> None:
     params = _strategy_param_inputs(strat, "scr")
 
     if not st.button("🔎 开始选股并回测", type="primary", key="run_scr"):
-        st.caption("也可直接使用上方「命名策略库」一键回测。")
+        st.caption("也可直接使用上方「命名策略库」或「历史每日选股回测」。")
         return
+
+    st.info(f"📅 本次选股日期：**{sel_str}**（指标与筛选均截至该日收盘）")
 
     filters = screener.ScreenFilters(
         min_gain_pct=gain_range[0],
@@ -1372,32 +1384,44 @@ def tab_screener(cfg: dict) -> None:
                     st.error("❌ 请至少输入一个股票代码。")
                     return
                 snapshot = screener.build_snapshot_from_history(
-                    tickers, cfg["start"], cfg["end"], lookback_days=filters.lookback_days,
+                    tickers, fetch_start, sel_str, lookback_days=filters.lookback_days,
                     with_sector=need_sector,
                 )
             elif pool_key == "sp500":
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
                 snapshot = screener.build_snapshot_from_history(
-                    tickers, cfg["start"], cfg["end"], lookback_days=filters.lookback_days,
+                    tickers, fetch_start, sel_str, lookback_days=filters.lookback_days,
                     with_sector=need_sector,
                 )
             else:
-                snapshot = screener.fetch_yahoo_screen(pool_key, count=int(pool_size))
-                if snapshot.empty:
-                    st.error("❌ 未能从 Yahoo 获取选股数据，请稍后重试或换其他股票池。")
-                    return
-                if filters.lookback_days > 1:
-                    hist = screener.build_snapshot_from_history(
-                        snapshot["代码"].tolist(), cfg["start"], cfg["end"],
-                        lookback_days=filters.lookback_days,
+                if sel_str < date.today().isoformat():
+                    st.warning(
+                        f"Yahoo 当日榜单无 {sel_str} 的历史快照，已改用标普500前 {int(pool_size)} 只"
+                        f"在该日的行情重算指标。"
                     )
-                    if not hist.empty:
-                        sector_map = dict(zip(snapshot["代码"], snapshot.get("_行业EN", "")))
-                        name_map = dict(zip(snapshot["代码"], snapshot.get("名称", "")))
-                        hist["_行业EN"] = hist["代码"].map(sector_map).fillna("")
-                        hist["行业"] = hist["_行业EN"].map(screener.sector_cn)
-                        hist["名称"] = hist["代码"].map(name_map).fillna(hist["名称"])
-                        snapshot = hist
+                    tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+                    snapshot = screener.build_snapshot_from_history(
+                        tickers, fetch_start, sel_str,
+                        lookback_days=filters.lookback_days,
+                        with_sector=need_sector,
+                    )
+                else:
+                    snapshot = screener.fetch_yahoo_screen(pool_key, count=int(pool_size))
+                    if snapshot.empty:
+                        st.error("❌ 未能从 Yahoo 获取选股数据，请稍后重试或换其他股票池。")
+                        return
+                    if filters.lookback_days > 1:
+                        hist = screener.build_snapshot_from_history(
+                            snapshot["代码"].tolist(), fetch_start, sel_str,
+                            lookback_days=filters.lookback_days,
+                        )
+                        if not hist.empty:
+                            sector_map = dict(zip(snapshot["代码"], snapshot.get("_行业EN", "")))
+                            name_map = dict(zip(snapshot["代码"], snapshot.get("名称", "")))
+                            hist["_行业EN"] = hist["代码"].map(sector_map).fillna("")
+                            hist["行业"] = hist["_行业EN"].map(screener.sector_cn)
+                            hist["名称"] = hist["代码"].map(name_map).fillna(hist["名称"])
+                            snapshot = hist
         except DataError as e:
             st.error(f"❌ {e}")
             return
@@ -1406,8 +1430,8 @@ def tab_screener(cfg: dict) -> None:
         st.error("❌ 股票池为空，请检查网络或更换来源。")
         return
 
-    filtered = screener.apply_filters(snapshot, filters)
-    st.info(f"初选 {len(snapshot)} 只 → 筛选后 **{len(filtered)}** 只符合条件")
+    filtered = screener.stamp_selection_date(screener.apply_filters(snapshot, filters), sel_str)
+    st.info(f"📅 选股日 **{sel_str}** ｜ 初选 {len(snapshot)} 只 → 筛选后 **{len(filtered)}** 只符合条件")
 
     if not filtered.empty and "行业" in filtered.columns:
         sector_counts = filtered["行业"].replace("", "未知").value_counts()
@@ -1440,8 +1464,8 @@ def tab_screener(cfg: dict) -> None:
     with st.spinner(f"正在对 {len(targets)} 只标的运行「{strat_name}」回测…"):
         bt = screener.backtest_universe(
             targets,
-            cfg["start"],
-            cfg["end"],
+            fetch_start,
+            sel_str,
             strat_name,
             params=params,
             allow_short=cfg["allow_short"],
@@ -1454,8 +1478,11 @@ def tab_screener(cfg: dict) -> None:
         st.error("❌ 回测未产生有效结果，请扩大日期范围或更换策略。")
         return
 
-    merged = screener.merge_snapshot_backtest(filtered, bt)
-    merged = screener.add_rationale_to_merged(merged, filters)
+    merged = screener.add_rationale_to_merged(
+        screener.merge_snapshot_backtest(filtered, bt, selection_date=sel_str),
+        filters,
+        sel_str,
+    )
     summ = screener.summarize_backtest(bt)
 
     st.markdown("**组合汇总（等权视角）**")
@@ -1466,9 +1493,7 @@ def tab_screener(cfg: dict) -> None:
     s4.metric("平均夏普", fmt_num(summ.get("平均夏普", 0)))
     s5.metric("平均最大回撤", fmt_pct(summ.get("平均最大回撤", 0)))
     st.caption(
-        f"平均年化 {fmt_pct(summ.get('平均年化收益', 0))} ｜ "
-        f"平均超额 {fmt_pct(summ.get('平均超额收益', 0))} ｜ "
-        f"策略：{strat_name} ｜ 区间：{cfg['start']} ~ {cfg['end']}"
+        f"策略：{strat_name} ｜ 选股日：{sel_str} ｜ 回测区间：{fetch_start} ~ {sel_str}"
     )
 
     fig = go.Figure()
@@ -1486,7 +1511,7 @@ def tab_screener(cfg: dict) -> None:
     )
     st.plotly_chart(fig, use_container_width=True)
 
-    st.markdown("**选股 + 回测明细**")
+    st.markdown(f"**选股 + 回测明细（选股日 {sel_str}）**")
     disp = merged.copy()
     disp["涨幅%"] = disp["涨幅%"].map(lambda x: f"{x:,.2f}%" if pd.notna(x) else "-")
     disp["成交额USD"] = disp["成交额USD"].map(_fmt_dollar_m)

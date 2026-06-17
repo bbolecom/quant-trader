@@ -18,6 +18,7 @@ from quant.screener import (
     screen_at_date,
     sector_cn,
     snapshot_at_date,
+    stamp_selection_date,
     summarize_backtest,
 )
 
@@ -162,6 +163,14 @@ def test_screen_at_date_and_historical_replay(multi_data):
 def test_add_rationale_to_merged():
     merged = pd.DataFrame([{"代码": "A", "涨幅%": 5.0}])
     f = ScreenFilters(lookback_days=10)
-    out = add_rationale_to_merged(merged, f)
+    out = add_rationale_to_merged(merged, f, "2024-06-15")
     assert "选股理由" in out.columns
-    assert "选股日期" in out.columns
+    assert out["选股日期"].iloc[0] == "2024-06-15"
+    assert "选股日 2024-06-15" in out["选股理由"].iloc[0]
+
+
+def test_stamp_selection_date_first_column():
+    df = pd.DataFrame([{"代码": "A", "涨幅%": 1.0}])
+    out = stamp_selection_date(df, "2023-01-05")
+    assert out.columns[0] == "选股日期"
+    assert out["选股日期"].iloc[0] == "2023-01-05"

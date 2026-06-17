@@ -57,13 +57,14 @@ def build_filters(cfg: dict) -> screener.ScreenFilters:
 
 def run(cfg: dict) -> dict:
     filters = build_filters(cfg)
-    end = date.today()
-    start = (end - timedelta(days=int(cfg.get("history_days", 500)))).isoformat()
+    sel = screener.normalize_selection_date(cfg.get("selection_date") or date.today())
+    start = (pd.Timestamp(sel) - timedelta(days=int(cfg.get("history_days", 500)))).strftime("%Y-%m-%d")
     cost = cfg.get("cost", {})
     return screener.run_screen(
         filters,
         start,
-        end.isoformat(),
+        sel,
+        selection_date=sel,
         pool=cfg.get("pool", "day_gainers"),
         pool_size=int(cfg.get("pool_size", 50)),
         custom_tickers=cfg.get("custom_tickers"),
@@ -83,7 +84,7 @@ def append_history(merged: pd.DataFrame, cfg: dict) -> None:
     record = merged.drop(columns=["_行业EN"], errors="ignore").copy()
     now = datetime.now()
     if "选股日期" not in record.columns:
-        record.insert(0, "选股日期", now.strftime("%Y-%m-%d"))
+        raise ValueError("选股结果缺少「选股日期」，无法写入历史记录。")
     record.insert(0, "选股时间", now.strftime("%Y-%m-%d %H:%M:%S"))
     if "股票池" not in record.columns:
         record.insert(1, "股票池", cfg.get("pool", ""))
