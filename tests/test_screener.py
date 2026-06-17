@@ -191,6 +191,20 @@ def test_daily_trade_plan_replay(multi_data):
     assert {"累计盈亏USD", "胜率", "做多笔数", "做空笔数"}.issubset(s.keys())
 
 
+def test_daily_trade_plan_with_date_range(multi_data):
+    from quant import screen_strategies as ss
+
+    preset = ss.get_preset("st_momentum_relay")
+    best = max(multi_data.keys(), key=lambda t: len(multi_data[t]))
+    start = multi_data[best].index[100].strftime("%Y-%m-%d")
+    end = multi_data[best].index[250].strftime("%Y-%m-%d")
+    res = ss.daily_trade_plan(preset, multi_data, start=start, end=end, capital=100_000.0, allow_short=True)
+    assert "plan" in res and not res["plan"].empty
+    plan = res["plan"]
+    assert plan["选股日期"].min() >= start
+    assert plan["选股日期"].max() <= end
+
+
 def test_trade_plan_at_date_single_day(multi_data):
     from quant import screen_strategies as ss
 

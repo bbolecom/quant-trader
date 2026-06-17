@@ -1083,6 +1083,80 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
                 except Exception as e:  # noqa: BLE001
                     st.error(f"❌ 生成失败：{e}")
 
+    # ---- 整段时间：批量每日交易计划 + 一次性 CSV 导出 ----
+    with st.expander("📦 批量导出整段时间的每日交易计划（方向 / 仓位 / 20日兑现）", expanded=False):
+        st.caption(
+            f"按策略调仓周期（每 {preset.rebalance_days} 个交易日）逐日生成交易计划，"
+            f"汇总为一张 CSV：含选股日期、理由、做多/做空、建议金额、后 {preset.forward_eval_days} 日盈亏与回撤。"
+        )
+        r1, r2, r3 = st.columns(3)
+        bulk_start = r1.date_input(
+            "起始日期", value=date.today() - timedelta(days=365),
+            max_value=date.today(), key="scr_bulk_start",
+        )
+        bulk_end = r2.date_input(
+            "结束日期", value=date.today() - timedelta(days=20),
+            max_value=date.today(), key="scr_bulk_end",
+        )
+        run_bulk = r3.button("生成批量计划", key="run_scr_bulk_plan")
+        if run_bulk:
+            if bulk_start > bulk_end:
+                st.error("❌ 起始日期不能晚于结束日期。")
+            else:
+                with st.spinner(f"正在生成 {bulk_start} ~ {bulk_end} 的每日交易计划…"):
+                    try:
+                        bs = bulk_start.isoformat()
+                        be = bulk_end.isoformat()
+                        fetch_start = (pd.Timestamp(bs) - pd.DateOffset(days=260)).strftime("%Y-%m-%d")
+                        fetch_end = min(
+                            (pd.Timestamp(be) + pd.DateOffset(days=45)).strftime("%Y-%m-%d"),
+                            date.today().isoformat(),
+                        )
+                        if preset.pool == "custom":
+                            tks = preset.custom_tickers
+                        elif preset.pool == "sp500":
+                            tks = screener.fetch_sp500_tickers()[: preset.pool_size]
+                        else:
+                            tks = screener.fetch_sp500_tickers()[:50]
+                            st.caption("提示：涨幅榜/活跃榜历史池用标普50成分作代理。")
+                        bulk_data, bulk_failed = get_multi_data(
+                            tks, {**cfg, "start": fetch_start, "end": fetch_end},
+                        )
+                        if bulk_failed:
+                            st.warning(f"部分标的拉取失败已忽略：{', '.join(bulk_failed[:8])}")
+                        if not bulk_data:
+                            st.error("❌ 无可用数据。")
+                        else:
+                            bulk_res = screen_strategies.daily_trade_plan(
+                                preset, bulk_data, start=bs, end=be,
+                                capital=cfg["capital"], allow_short=cfg["allow_short"],
+                                fee_bps=cfg["fee_bps"], slippage_bps=cfg["slippage_bps"],
+                            )
+                            if "error" in bulk_res:
+                                st.info(f"暂无计划：{bulk_res['error']}")
+                            else:
+                                plan_df = bulk_res["plan"]
+                                s = bulk_res["summary"]
+                                m1, m2, m3, m4 = st.columns(4)
+                                m1.metric("选股批次数", int(plan_df["选股日期"].nunique()))
+                                m2.metric("累计盈亏", f"${s['累计盈亏USD']:,.0f}")
+                                m3.metric("胜率", fmt_pct(s["胜率"]))
+                                m4.metric("做多/做空", f"{int(s['做多笔数'])} / {int(s['做空笔数'])}")
+                                csv_all = plan_df.to_csv(index=False).encode("utf-8-sig")
+                                st.download_button(
+                                    "⬇️ 导出整段计划 (CSV)", data=csv_all,
+                                    file_name=f"交易计划_{preset.id}_{bs}_{be}.csv",
+                                    mime="text/csv", key="dl_scr_bulk_plan",
+                                )
+                                st.markdown("**预览（最近 80 条）**")
+                                st.dataframe(plan_df.tail(80).iloc[::-1], use_container_width=True, hide_index=True)
+                                st.caption(
+                                    f"共 {len(plan_df)} 条记录 · 评估窗口 {int(s['评估窗口(交易日)'])} 个交易日 · "
+                                    "仅供研究，不构成投资建议。"
+                                )
+                    except Exception as e:  # noqa: BLE001
+                        st.error(f"❌ 批量生成失败：{e}")
+
     if not st.button("📈 回测此选股策略（近 3 年）", type="primary", key="run_scr_preset_bt"):
         return
 
