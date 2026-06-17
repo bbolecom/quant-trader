@@ -1018,7 +1018,7 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
     st.caption("每套策略均有名称与选股依据，可一键回测近 3 年调仓表现（盈利周期占比、夏普、回撤等）。")
 
     preset_list = screen_strategies.list_presets()
-    preset_names = {p.id: p.name for p in preset_list}
+    preset_names = {p.id: f"[{getattr(p, 'horizon', '中线')}] {p.name}" for p in preset_list}
     sel_id = st.selectbox(
         "选择命名策略",
         list(preset_names.keys()),
@@ -1030,7 +1030,7 @@ def _tab_screen_preset_backtest(cfg: dict) -> None:
     pc1, pc2, pc3 = st.columns(3)
     pc1.markdown(f"**股票池：** {screener.UNIVERSE_PRESETS.get(preset.pool, preset.pool)}")
     pc2.markdown(f"**交易策略：** {preset.trading_strategy}")
-    pc3.markdown(f"**每 {preset.rebalance_days} 日选 {preset.top_picks} 只**")
+    pc3.markdown(f"**每 {preset.rebalance_days} 日选 {preset.top_picks} 只 · 后 {preset.forward_eval_days} 日评估**")
 
     if not st.button("📈 回测此选股策略（近 3 年）", type="primary", key="run_scr_preset_bt"):
         return
@@ -1172,7 +1172,7 @@ def _tab_historical_daily_screen(cfg: dict) -> None:
             elif pool_key == "sp500":
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
             else:
-                st.info("历史回放建议使用 sp500 或 custom 池；Yahoo 当日榜单无历史成分，已改用标普500前 N 只作代理。")
+                st.info("历史回放建议使用 标普500 或 自选 池；『涨/跌幅榜、活跃榜』只有实时名单、无历史成分，已自动改用标普500前 N 只作代理。注：这只影响『选股名单来源』，行情价格仍走你配置的数据源（如 Polygon）。")
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
             if not tickers:
                 st.error("❌ 股票池为空。")
@@ -1408,8 +1408,9 @@ def tab_screener(cfg: dict) -> None:
             else:
                 if sel_str < date.today().isoformat():
                     st.warning(
-                        f"Yahoo 当日榜单无 {sel_str} 的历史快照，已改用标普500前 {int(pool_size)} 只"
-                        f"在该日的行情重算指标。"
+                        f"『{screener.UNIVERSE_PRESETS.get(pool_key, pool_key)}』只有实时名单、没有 {sel_str} 的历史成分，"
+                        f"已自动改用标普500前 {int(pool_size)} 只在该日的行情重算指标。"
+                        f"（仅影响选股名单来源；行情价格仍用你配置的数据源 **{get_data_source_info()['label']}**）"
                     )
                     tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
                     snapshot = screener.build_snapshot_from_history(

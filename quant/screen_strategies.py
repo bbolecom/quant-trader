@@ -26,8 +26,10 @@ class ScreenStrategyPreset:
     filters: ScreenFilters = field(default_factory=ScreenFilters)
     trading_strategy: str = "趋势+动量双确认"
     trading_params: dict[str, float] = field(default_factory=dict)
-    top_picks: int = 5      # 每轮选几只
-    rebalance_days: int = 5 # 每 N 个交易日调仓
+    top_picks: int = 5           # 每轮选几只
+    rebalance_days: int = 5      # 每 N 个交易日调仓
+    forward_eval_days: int = 20  # 选股后用于评估/回测的持有窗口（交易日）
+    horizon: str = "中线"        # 标签：短线 / 中线 / 长线
 
 
 # ---------------------------------------------------------------------------
@@ -122,6 +124,67 @@ PRESETS: dict[str, ScreenStrategyPreset] = {
         trading_params={"fast": 20, "slow": 60},
         top_picks=6,
     ),
+    "st_momentum_relay": ScreenStrategyPreset(
+        id="st_momentum_relay",
+        name="短线·强势接力",
+        rationale=(
+            "依据：短线资金偏好『强者恒强』。从涨幅榜筛近 5 日已启动、量能配合的标的，"
+            "用短周期动量策略接力；每 2~3 日换手，重点看选股后 20 个交易日的兑现情况。"
+        ),
+        pool="day_gainers",
+        pool_size=50,
+        filters=ScreenFilters(
+            min_gain_pct=3.0, max_gain_pct=60.0,
+            min_dollar_vol_m=50.0, min_turnover_pct=0.5, lookback_days=5,
+        ),
+        trading_strategy="动量策略",
+        trading_params={"window": 10},
+        top_picks=5,
+        rebalance_days=3,
+        forward_eval_days=20,
+        horizon="短线",
+    ),
+    "st_breakout": ScreenStrategyPreset(
+        id="st_breakout",
+        name="短线·放量突破",
+        rationale=(
+            "依据：短线突破常伴随成交量骤增。从活跃榜筛近 5 日温和上涨、换手活跃的标的，"
+            "用短周期肯特纳通道（ATR 过滤假突破）捕捉突破，评估选股后 20 日表现。"
+        ),
+        pool="most_actives",
+        pool_size=50,
+        filters=ScreenFilters(
+            min_gain_pct=1.0, max_gain_pct=35.0,
+            min_dollar_vol_m=80.0, min_turnover_pct=1.0, max_turnover_pct=30.0,
+            lookback_days=5,
+        ),
+        trading_strategy="肯特纳通道突破",
+        trading_params={"window": 10, "atr_window": 10, "mult": 1.5},
+        top_picks=5,
+        rebalance_days=3,
+        forward_eval_days=20,
+        horizon="短线",
+    ),
+    "st_oversold_snap": ScreenStrategyPreset(
+        id="st_oversold_snap",
+        name="短线·超跌急反",
+        rationale=(
+            "依据：短期急跌后情绪修复常带来快速反弹。从跌幅榜筛近 3 日 -12%~-2%、"
+            "流动性尚可的标的，用短周期 RSI 均值回归博反弹，统计选股后 20 日的盈亏。"
+        ),
+        pool="day_losers",
+        pool_size=40,
+        filters=ScreenFilters(
+            min_gain_pct=-12.0, max_gain_pct=-2.0,
+            min_dollar_vol_m=30.0, lookback_days=3,
+        ),
+        trading_strategy="RSI 均值回归",
+        trading_params={"window": 7, "lower": 25, "upper": 65},
+        top_picks=5,
+        rebalance_days=3,
+        forward_eval_days=20,
+        horizon="短线",
+    ),
     "precursor_combo": ScreenStrategyPreset(
         id="precursor_combo",
         name="异动前兆组合",
@@ -200,7 +263,8 @@ def backtest_screen_preset(
     periods = 0
 
     step = preset.rebalance_days
-    fwd_days = step
+    # 调仓周期收益用 step 窗口；单只标的的前后表现/策略回测用 forward_eval_days（默认20日）。
+    fwd_days = max(int(preset.forward_eval_days), 1)
     for i in range(30, len(trade_days) - step, step):
         as_of = trade_days[i]
         snap = screener.snapshot_at_date(data, as_of, preset.filters.lookback_days)
