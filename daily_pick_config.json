@@ -171,10 +171,16 @@
     "desktop": true,
     "only_when_action": false
   },
+  "push": {
+    "require_real_data": true,
+    "max_items": 12,
+    "max_lines": 8
+  },
   "outputs": {
     "today_json": "research/daily_pick_today.json",
     "today_csv": "research/daily_pick_today.csv",
     "high_win_json": "research/daily_pick_high_win.json",
+    "push_json": "research/daily_pick_push.json",
     "history_csv": "daily_pick_history.csv"
   }
 }

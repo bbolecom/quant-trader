@@ -102,7 +102,8 @@ def test_notify_bear_empty_day():
         "regime": {"bull": False, "label": "🔴 弱市（SPY<MA50）"},
         "summary": {"可开仓": 0},
         "picks": [],
+        "push": {"picks": [], "stats": {"skipped_model": 2}},
     }
-    cfg = {"notify": {"desktop": True, "only_when_action": False}}
+    cfg = {"notify": {"desktop": True, "only_when_action": False}, "push": {"require_real_data": True}}
     # 不应抛错（无 scan_daily 时静默跳过）
     dp.notify(doc, cfg)

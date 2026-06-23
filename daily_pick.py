@@ -201,6 +201,7 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                                     "模块": mod_sf, "账户": "meme路由", "代码": r["代码"],
                                     "状态": "观望", "方向": dir_sf,
                                     "选股理由": reason + f"真实期权链：{why}",
+                                    "数据源": "真实链不可用",
                                 })
                                 continue
                             can = plan.contracts >= 1
@@ -215,6 +216,7 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                                 "选股理由": reason,
                                 "建议张数": plan.contracts if can else "",
                                 "最大亏损$": plan.max_loss,
+                                "数据源": "真实链",
                             })
                             continue
                         sig = float(r.get("RV%", r.get("RV", 50))) / 100
@@ -231,9 +233,10 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                         "模块": mod_sf,
                         "账户": "meme路由",
                         "代码": r["代码"],
-                        "状态": "可开仓",
+                        "状态": "观望",
                         "方向": dir_sf,
                         "选股理由": reason,
+                        "数据源": "模型估算",
                     })
                     continue
             if bear_n >= top_n:
@@ -254,6 +257,7 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                         "模块": mod, "账户": "收入引擎", "代码": str(r["代码"]),
                         "状态": "观望", "方向": "卖Call价差",
                         "选股理由": base_reason + f"真实期权链：{why}",
+                        "数据源": "真实链不可用",
                     })
                     continue
                 can = plan.contracts >= 1
@@ -262,13 +266,14 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                     "状态": "可开仓" if can else "观望", "方向": "卖Call价差",
                     "选股理由": (
                         base_reason
-                        + f"{plan.legs_label()} @{plan.expiry}({plan.dte}d) · "
+                        + f"**真实链** {plan.legs_label()} @{plan.expiry}({plan.dte}d) · "
                         f"净收${plan.net_per_contract:.0f}/张 · 最大亏${plan.max_loss:.0f}"
                         + (f" × {plan.contracts}张" if can else " · 账户风控不够 1 张")
                     ),
                     "建议张数": plan.contracts if can else "",
                     "权利金$": round(plan.net_per_contract, 0),
                     "最大亏损$": plan.max_loss,
+                    "数据源": "真实链",
                 })
                 continue
             plan = bear_call_plan(r, account_size)
@@ -278,17 +283,18 @@ def _run_bear_call(account_size: float, cfg: dict, *, bull: bool, prof: dict) ->
                 "模块": mod,
                 "账户": "收入引擎",
                 "代码": plan["代码"],
-                "状态": "可开仓" if can else "观望",
+                "状态": "观望",
                 "方向": "卖Call价差",
                 "选股理由": (
                     base_reason
                     + f"卖C${plan['卖Call']:,.0f}/买C${plan['买Call']:,.0f} · "
-                    f"收${plan['净权利金$']:,.0f}/张（模型估值）"
+                    f"收${plan['净权利金$']:,.0f}/张（模型估值，不推送）"
                     + (f" × {n}张" if can else " · 账户风控不够 1 张")
                 ),
-                "建议张数": n if can else "",
-                "权利金$": plan.get("净权利金$", ""),
+                "建议张数": "",
+                "权利金$": "",
                 "最大亏损$": plan.get("最大亏损$", ""),
+                "数据源": "模型估算",
             })
         return rows or [{
             "模块": mod,
@@ -798,6 +804,7 @@ def run_daily_pick(cfg: dict) -> dict:
         "牛市三引擎" if bull else "弱市偏空收租"
     )
 
+    from quant.daily_pick_push import build_push_block, enrich_pick_data_source
     from quant.strategy_catalog import build_strategy_summary_doc, summarize_picks_by_module
 
     modules_summary = summarize_picks_by_module(all_rows)
@@ -820,6 +827,8 @@ def run_daily_pick(cfg: dict) -> dict:
             regime=regime,
         )
         all_rows = high_win_doc.get("all_enriched") or all_rows
+
+    all_rows = [enrich_pick_data_source(r) for r in all_rows]
 
     doc = {
         "选股日期": today,
@@ -850,6 +859,10 @@ def run_daily_pick(cfg: dict) -> dict:
         },
         "picks": all_rows,
     }
+    push_block = build_push_block(doc, cfg)
+    doc["push"] = push_block
+    doc["summary"]["推送条数"] = push_block.get("count", 0)
+    doc["summary"]["推送说明"] = push_block.get("headline", "")
     return doc
 
 
@@ -872,6 +885,7 @@ def save_outputs(doc: dict, cfg: dict) -> None:
     cpath = ROOT / outs.get("today_csv", "research/daily_pick_today.csv")
     hpath = ROOT / outs.get("history_csv", "daily_pick_history.csv")
     hwpath = ROOT / outs.get("high_win_json", "research/daily_pick_high_win.json")
+    pushpath = ROOT / outs.get("push_json", "research/daily_pick_push.json")
 
     jpath.parent.mkdir(parents=True, exist_ok=True)
     jpath.write_text(
@@ -895,6 +909,13 @@ def save_outputs(doc: dict, cfg: dict) -> None:
             encoding="utf-8",
         )
 
+    push = doc.get("push") or {}
+    if push:
+        pushpath.write_text(
+            json.dumps(push, ensure_ascii=False, indent=2, default=_json_default),
+            encoding="utf-8",
+        )
+
     df = pd.DataFrame(doc.get("picks") or [])
     if not df.empty:
         df.insert(0, "选股日期", doc["选股日期"])
@@ -912,42 +933,36 @@ def save_outputs(doc: dict, cfg: dict) -> None:
 
 
 def notify(doc: dict, cfg: dict) -> None:
+    """桌面推送：仅推送真实链/真实行情推演，不含模型估价。"""
     notify_cfg = cfg.get("notify") or {}
     if not notify_cfg.get("desktop", True):
         return
-    if notify_cfg.get("only_when_action") and doc["summary"]["可开仓"] == 0:
-        hw_n = len((doc.get("high_win") or {}).get("picks") or [])
-        if hw_n == 0:
-            return
+    push = doc.get("push") or {}
+    push_picks = push.get("picks") or []
+    only_real = bool((cfg.get("push") or {}).get("require_real_data", True))
+    if notify_cfg.get("only_when_action") and not push_picks:
+        return
     try:
         from scan_daily import desktop_notify
     except ImportError:
         return
-    s = doc["summary"]
     reg = doc.get("regime") or {}
     prefix = "弱市" if not reg.get("bull", True) else "牛市"
-    hw = doc.get("high_win") or {}
-    hw_picks = hw.get("picks") or []
-    n_hw = len(hw_picks)
-    if n_hw > 0:
-        title = f"高胜率选股 · {prefix} · {n_hw} 条≥80%"
-        lines = [
-            f"{p.get('代码','')} [{p.get('模块','')}] {p.get('回测摘要','')}"
-            for p in hw_picks[:4]
-        ]
-        body = "；".join(lines)
-    elif s["可开仓"] > 0:
-        title = f"每日选股 · {prefix} · {s['可开仓']} 个可开仓"
-        lines = [
-            f"{p.get('账户','')} {p.get('代码','')} {p.get('方向','')}"
-            for p in doc.get("picks") or []
-            if p.get("状态") == "可开仓"
-        ]
-        body = "；".join(lines[:4]) or "详见 daily_pick_today.json"
+    if push_picks:
+        title = push.get("headline") or f"每日选股推送 · {prefix} · {len(push_picks)} 条"
+        lines = push.get("lines") or [format_push_line(p) for p in push_picks[:6]]
+        body = "\n".join(lines[: int((cfg.get("push") or {}).get("max_lines", 6))])
     else:
-        title = f"每日选股 · {prefix} · 今日观望"
-        body = f"{reg.get('label', '')} · 无符合标的，正常空仓。"
+        title = f"每日选股 · {prefix} · 无真实信号"
+        skipped = (push.get("stats") or {}).get("skipped_model", 0)
+        extra = f"（已过滤 {skipped} 条模型估价）" if skipped and only_real else ""
+        body = f"{reg.get('label', '')} · 真实链/行情暂无可推送标的，正常观望。{extra}"
     desktop_notify(title, body)
+
+
+def format_push_line(row: dict) -> str:
+    from quant.daily_pick_push import format_push_line as _fmt
+    return _fmt(row)
 
 
 def print_report(doc: dict) -> None:
@@ -968,6 +983,15 @@ def print_report(doc: dict) -> None:
             print(f"  · {mod}: 可开仓{st.get('可开仓', 0)} 观望{st.get('观望', 0)}")
     hw = doc.get("high_win") or {}
     hwp = hw.get("picks") or []
+    push = doc.get("push") or {}
+    pp = push.get("picks") or []
+    if pp:
+        print(f"\n📣 推送（真实数据） {len(pp)} 条：")
+        for line in (push.get("lines") or [])[:10]:
+            print(f"  · {line}")
+        st = push.get("stats") or {}
+        if st.get("skipped_model"):
+            print(f"  （已过滤模型估价 {st['skipped_model']} 条，不推送）")
     if hwp:
         print(f"\n★ 高胜率≥{hw.get('min_win_rate', 0.8):.0%} 可开仓 {len(hwp)} 条：")
         for p in hwp[:12]:

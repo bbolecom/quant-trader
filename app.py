@@ -1184,108 +1184,108 @@ def _cached_fleet_account_backtest(
 
 
 def tab_daily_screen(cfg: dict) -> None:
-    """5×圣杯舰队：CSP 收入策略 + 历史锚点 + 今日信号。"""
-    st.info(
-        "**数据说明**：可下单报价必须来自 **真实期权链**（yfinance 延迟约 15 分钟）。"
-        " Black-Scholes **模型估算** 与仓库 JSON **历史快照** 仅供研究，不是实盘报价。"
-        " 本地运行 `python daily_pick.py` 可生成带真实链的今日 JSON。"
-    )
-    # ---- 今日选股快照 ----
+    """每日选股推送：真实链 / 真实行情推演（不含模型估价）。"""
     _dp_json = ROOT_DIR / "research" / "daily_pick_today.json"
+    _push_json = ROOT_DIR / "research" / "daily_pick_push.json"
     snap_time, snap_stale = _daily_pick_snapshot_meta(_dp_json)
+
+    st.markdown("### 📣 每日选股推送")
+    st.caption(
+        "推送只含 **真实期权链** 或 **真实行情** 信号；Black-Scholes 模型估价不会进入推送。"
+        " 本地定时：`python daily_pick.py` · Mac 通知 + `research/daily_pick_push.json`"
+    )
+
+    _dp = {}
     if _dp_json.exists():
-        if snap_stale:
-            st.warning(
-                f"⚠️ 下方「今日选股快照」为 **历史文件**（{snap_time}），非实时数据。"
-                " Streamlit Cloud 不会自动跑 daily_pick，请在 Mac 本地更新后推送或在本页点「生成5账户今日信号」。"
-            )
-        else:
-            st.caption(f"📂 快照更新时间：**{snap_time}**（仓库 JSON，非自动刷新）")
         import json as _json
         _dp = _json.loads(_dp_json.read_text(encoding=_JSON_ENCODING))
-        _ds = _dp.get("summary") or {}
-        _reg = _dp.get("regime") or {}
-        _ss = _dp.get("strategy_summary") or {}
-        d0, d1, d2, d3, d4 = st.columns(5)
-        d0.metric("大盘", _reg.get("label", _ds.get("大盘", "—"))[:12])
-        d1.metric("模式", _ds.get("模式", "—"))
-        d2.metric("今日可开仓", _ds.get("可开仓", 0))
-        d3.metric("观望", _ds.get("观望", 0))
-        d4.metric("是否空仓日", "是" if _ds.get("是否空仓日") else "否")
-        if _reg.get("spy") and _reg.get("ma50"):
-            st.caption(f"SPY {_reg['spy']} / MA50 {_reg['ma50']} · {_reg.get('playbook', '')}")
-        if _reg.get("bull") is False:
-            st.warning("🔴 **弱市模式**：轨迹做多已关闭；优先 **卖Call价差** + **SPY/QQQ 铁鹰**。")
-        elif _reg.get("bull") is True:
-            st.success("🟢 **牛市模式**：CSP 舰队 + 轨迹高置信 + 卖Call 均可选。")
-        if _ds.get("是否空仓日"):
-            st.info("今日无符合标的 — **正常空仓**，等待下一信号日。")
+    elif _push_json.exists():
+        import json as _json
+        _push_json_doc = _json.loads(_push_json.read_text(encoding=_JSON_ENCODING))
+        _dp = {"push": _push_json_doc, "regime": _push_json_doc.get("regime") or {}}
 
-        # ---- 全系统策略总览 ----
-        _catalog = _ss.get("catalog") or []
-        if _catalog:
-            with st.expander("📋 全系统策略总览（接入每日选股 + 独立策略）", expanded=True):
+    _push = _dp.get("push") or {}
+    if not _push and _push_json.exists():
+        import json as _json
+        _push = _json.loads(_push_json.read_text(encoding=_JSON_ENCODING))
+
+    _reg = _dp.get("regime") or _push.get("regime") or {}
+    _ds = _dp.get("summary") or {}
+
+    if snap_stale and _dp_json.exists():
+        st.warning(f"快照已过期（{snap_time}），请重新运行 `python daily_pick.py`。")
+
+    c0, c1, c2, c3 = st.columns(4)
+    c0.metric("大盘", str(_reg.get("label", _ds.get("大盘", "—")))[:14])
+    c1.metric("推送条数", _push.get("count", _ds.get("推送条数", 0)))
+    c2.metric("SPY", _reg.get("spy", "—"))
+    c3.metric("MA50", _reg.get("ma50", "—"))
+
+    push_picks = _push.get("picks") or []
+    if push_picks:
+        st.success(_push.get("headline") or f"真实信号 {len(push_picks)} 条")
+        push_df = pd.DataFrame(push_picks)
+        push_cols = [c for c in [
+            "代码", "方向", "模块", "数据源", "选股理由", "建议张数", "权利金$", "回测摘要",
+        ] if c in push_df.columns]
+        st.dataframe(push_df[push_cols], use_container_width=True, hide_index=True)
+        for line in (_push.get("lines") or [])[:8]:
+            st.markdown(f"- {line}")
+        st.caption(f"生成时间 {_push.get('generated_at', snap_time or '—')}")
+    else:
+        skipped = (_push.get("stats") or {}).get("skipped_model", 0)
+        extra = f"（已过滤 {skipped} 条模型估价）" if skipped else ""
+        st.info(f"今日 **无真实链/行情可推送**，正常观望。{extra}")
+
+    live_chain = _load_live_chain_cfg()
+    if st.button("🔄 云端刷新真实推演", type="primary", key="daily_refresh_push"):
+        with st.spinner("拉取真实期权链与行情…"):
+            try:
+                import daily_pick as dp
+                cfg_local = dp.load_config(ROOT_DIR / "daily_pick_config.json")
+                cfg_local["quick"] = True
+                doc = dp.run_daily_pick(cfg_local)
+                st.session_state["_last_push_doc"] = doc
+                st.success(f"完成 · 推送 {doc.get('push', {}).get('count', 0)} 条")
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"刷新失败：{e}")
+
+    if _dp_json.exists():
+        with st.expander("📋 全量快照（研究用，含未推送项）", expanded=False):
+            _ss = _dp.get("strategy_summary") or {}
+            st.caption(f"更新 {snap_time or '—'} · 模式 {_ds.get('模式', '—')} · 可开仓 {_ds.get('可开仓', 0)}")
+            _catalog = _ss.get("catalog") or []
+            if _catalog:
                 st.caption(
-                    f"接入 **{_ss.get('integrated_count', 0)}** 个模块 · "
-                    f"独立策略 **{_ss.get('standalone_count', 0)}** 个 · "
-                    f"今日有快照 **{_ss.get('integrated_with_data', 0)}** 个 · "
-                    f"更新 {_ss.get('updated', '—')}"
+                    f"接入 **{_ss.get('integrated_count', 0)}** 模块 · "
+                    f"有快照 **{_ss.get('integrated_with_data', 0)}**"
                 )
                 cat_df = pd.DataFrame(_catalog)
                 show_cat = [c for c in [
-                    "策略", "分类", "已接入每日选股", "模块标签",
-                    "今日有数据", "可开仓", "观望", "总条目", "数据日期", "说明",
+                    "策略", "分类", "今日有数据", "可开仓", "观望", "数据日期",
                 ] if c in cat_df.columns]
                 st.dataframe(cat_df[show_cat], use_container_width=True, hide_index=True)
 
-        _mods = _dp.get("modules_summary") or {}
-        if _mods:
-            with st.expander("🧩 今日模块汇总（daily_pick 各引擎）", expanded=True):
-                mod_rows = []
-                for mod, stt in _mods.items():
-                    codes = "、".join(stt.get("代码") or []) or "—"
-                    mod_rows.append({
-                        "模块": mod,
-                        "可开仓": stt.get("可开仓", 0),
-                        "观望": stt.get("观望", 0),
-                        "总条目": stt.get("总条目", 0),
-                        "可开仓代码": codes,
-                    })
-                st.dataframe(pd.DataFrame(mod_rows), use_container_width=True, hide_index=True)
-
-        _action = [p for p in (_dp.get("high_win") or {}).get("picks") or []]
-        if not _action:
-            _action = [p for p in (_dp.get("picks") or []) if p.get("状态") == "可开仓"]
-        if _action:
-            st.markdown("#### ★ 高胜率≥80% · 今日可执行")
-            act_df = pd.DataFrame(_action)
-            act_cols = [c for c in [
-                "模块", "代码", "方向", "策略动作", "历史胜率", "历史年化", "最大回撤",
-                "回测摘要", "回测来源", "选股理由",
-            ] if c in act_df.columns]
-            st.dataframe(act_df[act_cols], use_container_width=True, hide_index=True)
-            st.caption("仅展示历史胜率≥80%且今日可开仓的标的；全量见下方。")
-
-        _pick_df = pd.DataFrame(_dp.get("picks") or [])
-        if not _pick_df.empty:
-            _mod_filter = st.multiselect(
-                "筛选模块",
-                sorted(_pick_df["模块"].astype(str).unique()) if "模块" in _pick_df.columns else [],
-                default=[],
-                key="daily_pick_mod_filter",
-            )
-            if _mod_filter and "模块" in _pick_df.columns:
-                _pick_df = _pick_df[_pick_df["模块"].isin(_mod_filter)]
-            show_cols = [c for c in [
-                "模块", "账户", "代码", "状态", "方向", "策略动作", "历史命中率",
-                "建议张数", "权利金$", "选股理由",
-            ] if c in _pick_df.columns]
-            st.markdown("#### 今日选股快照（全部）")
-            st.dataframe(_pick_df[show_cols], use_container_width=True, hide_index=True)
-        st.caption("定时：双击「每日选股_运行一次.command」或 `python daily_pick.py`")
+            _pick_df = pd.DataFrame(_dp.get("picks") or [])
+            if not _pick_df.empty and "数据源" in _pick_df.columns:
+                st.dataframe(
+                    _pick_df[[c for c in [
+                        "模块", "代码", "状态", "方向", "数据源", "选股理由",
+                    ] if c in _pick_df.columns]],
+                    use_container_width=True,
+                    hide_index=True,
+                )
+            st.caption("定时：双击「每日选股_运行一次.command」或 `python daily_pick.py`")
     else:
-        st.info("尚未生成 `research/daily_pick_today.json` — 请先运行 `python daily_pick.py`。")
+        st.info("尚未生成推送文件 — 请先运行 `python daily_pick.py`。")
 
+    with st.expander("⚙️ 高级：舰队回测与单账户明细（可选）", expanded=False):
+        _render_fleet_advanced(cfg)
+
+
+def _render_fleet_advanced(cfg: dict) -> None:
+    """舰队/CSP 单账户回测（非推送主路径）。"""
     fleet_cfg = load_fleet_config()
     fleet_stats = load_fleet_stats()
     targets = load_target_profile(fleet_cfg)
