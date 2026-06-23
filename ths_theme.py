@@ -93,9 +93,62 @@ def inject_css() -> str:
         background: linear-gradient(180deg, {BG_APP} 0%, #0B0E14 100%);
     }}
     .main .block-container {{
-        padding-top: 0.6rem; max-width: 1280px;
-        padding-left: 1.4rem; padding-right: 1.4rem;
+        padding-top: 0.6rem; max-width: 960px;
+        padding-left: 1rem; padding-right: 1rem;
     }}
+    /* 隐藏侧边栏 — 同花顺式单列布局 */
+    section[data-testid="stSidebar"],
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="collapsedControl"] {{
+        display: none !important;
+    }}
+    section.main {{
+        margin-left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }}
+    [data-testid="stAppViewContainer"] > section.main {{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }}
+    /* 同花顺红顶栏 */
+    .ths-home-header {{
+        background: linear-gradient(135deg, {ACCENT_DARK} 0%, {ACCENT} 55%, {ACCENT_HOVER} 100%);
+        border-radius: 0 0 12px 12px;
+        margin: -0.6rem -1rem 12px -1rem;
+        padding: 0;
+        box-shadow: 0 4px 20px rgba(233,48,48,0.25);
+    }}
+    .ths-home-header-inner {{
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 18px;
+        flex-wrap: wrap; gap: 10px;
+    }}
+    .ths-home-header .brand {{
+        display: flex; align-items: center; gap: 12px;
+    }}
+    .ths-home-header .brand-name-white {{
+        font-size: 1.25rem; font-weight: 700; color: #fff;
+        letter-spacing: 0.02em;
+    }}
+    .ths-home-header .brand-name-white span {{
+        color: #FFE0E0;
+    }}
+    .ths-home-header .brand-sub-white {{
+        font-size: 0.72rem; color: rgba(255,255,255,0.85); margin-top: 2px;
+    }}
+    .ths-home-header-right {{
+        display: flex; align-items: center; gap: 12px;
+    }}
+    .ths-home-header .market-strip-white {{
+        font-size: 0.72rem; color: rgba(255,255,255,0.8);
+    }}
+    .ths-home-header .brand-tag-white {{
+        font-size: 0.68rem; color: {ACCENT};
+        background: #fff; padding: 3px 10px; border-radius: 3px;
+        font-weight: 700; letter-spacing: 0.05em;
+    }}
+    /* 旧顶栏（保留兼容） */
     header[data-testid="stHeader"] {{
         background: {BG_APP} !important;
         border-bottom: 1px solid {BORDER};
@@ -230,7 +283,7 @@ def inject_css() -> str:
         background: {BG_ELEVATED} !important;
         color: {TEXT_PRIMARY} !important;
     }}
-    /* 侧边栏 */
+    /* 侧边栏（已隐藏，保留样式供本地调试） */
     section[data-testid="stSidebar"] {{
         background: {BG_SIDEBAR} !important;
         border-right: 1px solid {BORDER};
@@ -278,10 +331,12 @@ def inject_css() -> str:
     div[data-testid="stExpander"] {{
         background: {BG_CARD};
         border: 1px solid {BORDER};
-        border-radius: 6px;
+        border-radius: 8px;
+        margin-bottom: 8px;
     }}
     div[data-testid="stExpander"] summary {{
-        font-weight: 500;
+        font-weight: 600;
+        color: {TEXT_PRIMARY} !important;
     }}
     /* 表格 */
     div[data-testid="stDataFrame"] {{

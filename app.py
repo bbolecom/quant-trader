@@ -100,7 +100,7 @@ st.set_page_config(
     page_title="量化策略 · 同花顺风格",
     page_icon=_page_icon(),
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 st.markdown(theme.inject_css(), unsafe_allow_html=True)
@@ -186,68 +186,53 @@ def _render_brand_header() -> None:
         )
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     st.markdown(
-        f'<div class="ths-topbar">'
-        f'<div class="ths-topbar-accent"></div>'
-        f'<div class="ths-topbar-body">'
+        f'<div class="ths-home-header">'
+        f'<div class="ths-home-header-inner">'
         f'<div class="brand">{logo_html}'
-        f'<div><div class="brand-name"><span>量化</span>策略终端</div>'
-        f'<div class="brand-sub">研究 · 选股 · 回测 · 期权 · 收入引擎</div></div></div>'
-        f'<div style="display:flex;align-items:center;gap:16px">'
-        f'<div class="market-strip"><b>行情</b> 实时 · <b>更新</b> {now}</div>'
-        f'<span class="brand-tag">PRO</span></div></div></div>',
+        f'<div><div class="brand-name-white"><span>量化</span>策略终端</div>'
+        f'<div class="brand-sub-white">研究 · 选股 · 回测 · 期权 · 收入引擎</div></div></div>'
+        f'<div class="ths-home-header-right">'
+        f'<span class="market-strip-white">行情 实时 · 更新 {now}</span>'
+        f'<span class="brand-tag-white">PRO</span></div></div></div>',
         unsafe_allow_html=True,
     )
 
 
-def sidebar() -> dict:
-    icon_path = ROOT_DIR / "assets" / "icon.png"
-    if icon_path.exists():
-        st.sidebar.image(str(icon_path), width=52)
-    st.sidebar.markdown(
-        '<p style="margin:-4px 0 12px;font-size:0.95rem;font-weight:700;color:#F0F1F5">'
-        '<span style="color:#E93030">量化</span>策略终端</p>',
-        unsafe_allow_html=True,
-    )
-    st.sidebar.markdown("### 交易设置")
-
-    st.sidebar.markdown("**标的**")
-    ticker = st.sidebar.text_input(
-        "代码", value="AAPL", label_visibility="collapsed",
-        help="美股代码，如 AAPL、MSFT、NVDA",
-        key="sidebar_ticker",
-    ).strip().upper()
-
-    col1, col2 = st.sidebar.columns(2)
+def render_trading_cfg() -> dict:
+    """主区域交易设置（无侧边栏，纵向单列布局）。"""
     default_start = (pd.Timestamp.today() - pd.DateOffset(years=3)).date()
-    start = col1.date_input("开始", value=default_start, max_value=date.today(), key="sidebar_start")
-    end = col2.date_input("结束", value=date.today(), max_value=date.today(), key="sidebar_end")
+    with st.expander("⚙️ 交易设置 · 标的 / 日期 / 资金", expanded=False):
+        r1 = st.columns([1.4, 1, 1, 0.7])
+        ticker = r1[0].text_input(
+            "标的", value="AAPL",
+            help="美股代码，如 AAPL、MSFT、NVDA",
+            key="cfg_ticker",
+        ).strip().upper()
+        start = r1[1].date_input("开始", value=default_start, max_value=date.today(), key="cfg_start")
+        end = r1[2].date_input("结束", value=date.today(), max_value=date.today(), key="cfg_end")
+        allow_short = r1[3].checkbox(
+            "允许做空", value=False, help="开启后，离场信号将转为反向做空",
+            key="cfg_allow_short",
+        )
 
-    allow_short = st.sidebar.checkbox(
-        "允许做空", value=False, help="开启后，离场信号将转为反向做空",
-        key="sidebar_allow_short",
-    )
-
-    st.sidebar.markdown("**资金与成本**")
-    capital = st.sidebar.number_input(
-        "初始资金 (USD)", value=100_000, step=10_000, min_value=1_000, key="sidebar_capital",
-    )
-    fee_bps = st.sidebar.slider("手续费 (bp)", 0.0, 30.0, 5.0, 0.5, key="sidebar_fee_bps")
-    slippage_bps = st.sidebar.slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5, key="sidebar_slippage_bps")
-
-    st.sidebar.divider()
-    src = get_data_source_info()
-    st.sidebar.markdown("**行情数据源**")
-    st.sidebar.caption(f"当前：**{src['label']}**")
-    if src["provider"] == "yahoo":
-        with st.sidebar.expander("切换到专业数据源", expanded=False):
-            st.markdown(
-                "在 `.streamlit/secrets.toml`（本地）或 Streamlit Cloud Secrets 中配置：\n\n"
-                "```toml\n[data]\nprovider = \"polygon\"   # 或 alpaca\n"
-                "polygon_api_key = \"你的Key\"\n```\n\n"
-                "**Polygon.io**（推荐）：[polygon.io](https://polygon.io) 注册免费 Key\n\n"
-                "**Alpaca**（免费）：[alpaca.markets](https://alpaca.markets) 开户后获取 API Key"
-            )
-    st.sidebar.caption("数据仅供参考，不构成投资建议")
+        r2 = st.columns([1.2, 1.2, 1.2, 2])
+        capital = r2[0].number_input(
+            "初始资金 (USD)", value=100_000, step=10_000, min_value=1_000, key="cfg_capital",
+        )
+        fee_bps = r2[1].slider("手续费 (bp)", 0.0, 30.0, 5.0, 0.5, key="cfg_fee_bps")
+        slippage_bps = r2[2].slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5, key="cfg_slippage_bps")
+        src = get_data_source_info()
+        with r2[3]:
+            st.caption(f"行情数据源：**{src['label']}**")
+            if src["provider"] == "yahoo":
+                with st.popover("切换到专业数据源"):
+                    st.markdown(
+                        "在 `.streamlit/secrets.toml`（本地）或 Streamlit Cloud Secrets 中配置：\n\n"
+                        "```toml\n[data]\nprovider = \"polygon\"   # 或 alpaca\n"
+                        "polygon_api_key = \"你的Key\"\n```\n\n"
+                        "**Polygon.io**（推荐）：[polygon.io](https://polygon.io) 注册免费 Key\n\n"
+                        "**Alpaca**（免费）：[alpaca.markets](https://alpaca.markets) 开户后获取 API Key"
+                    )
 
     return {
         "ticker": ticker,
@@ -4058,9 +4043,8 @@ def tab_income_engine(cfg: dict) -> None:
 
 def main() -> None:
     _render_brand_header()
+    cfg = render_trading_cfg()
     st.caption("数据来源可配置 Polygon / Alpaca / Yahoo · 自用研究工具，不构成投资建议")
-
-    cfg = sidebar()
     tabs = st.tabs(
         ["体检", "推荐", "每日选股", "短线寻优", "前兆", "回测", "参数寻优", "对比", "组合",
          "信号", "验证", "模拟", "选股", "概率", "期权", "波动率", "缓跌收租", "收入引擎"]
