@@ -1062,6 +1062,31 @@ DEFAULT_WATCHLIST = "SNDK, MU, WDC, NVDA, AMD, AVGO, SMCI, PLTR, COIN, TSLA, MET
 DAILY_SCREEN_HISTORY = ROOT_DIR / "screen_history.csv"
 
 
+def _load_live_chain_cfg() -> dict:
+    import json as _json
+    p = ROOT_DIR / "daily_pick_config.json"
+    if p.exists():
+        doc = _json.loads(p.read_text(encoding=_JSON_ENCODING))
+        return doc.get("live_chain") or {"enabled": True}
+    return {"enabled": True}
+
+
+def _daily_pick_snapshot_meta(path: Path) -> tuple[str | None, bool]:
+    """返回 (生成时间, 是否过期)。过期=非今日快照。"""
+    if not path.exists():
+        return None, False
+    import json as _json
+    try:
+        doc = _json.loads(path.read_text(encoding=_JSON_ENCODING))
+    except Exception:  # noqa: BLE001
+        return None, False
+    pick_date = str(doc.get("选股日期") or "")
+    pick_time = str(doc.get("选股时间") or "")
+    stale = pick_date != date.today().isoformat() if pick_date else True
+    label = pick_time or pick_date or "未知"
+    return label, stale
+
+
 def _display_picks_with_reason(df: pd.DataFrame, *, limit: int | None = None) -> None:
     """展示选股表，突出「选股理由」列。"""
     if df.empty:
@@ -1069,7 +1094,8 @@ def _display_picks_with_reason(df: pd.DataFrame, *, limit: int | None = None) ->
         return
     show = df.head(limit) if limit else df
     prefer = [
-        "选股日期", "代码", "名称", "选股理由", "涨幅%", "换手率%", "成交额USD",
+        "选股日期", "代码", "名称", "数据源", "选股理由", "涨幅%", "换手率%", "成交额USD",
+        "卖Put行权价", "权利金$", "建议张数", "可开仓",
         "行业", "策略累计收益", "夏普比率", "当前信号", "入选价",
     ]
     cols = [c for c in prefer if c in show.columns]
@@ -1091,7 +1117,15 @@ def _display_picks_with_reason(df: pd.DataFrame, *, limit: int | None = None) ->
     col_cfg = {}
     if "选股理由" in disp.columns:
         col_cfg["选股理由"] = st.column_config.TextColumn("选股理由", width="large")
+    if "数据源" in disp.columns:
+        col_cfg["数据源"] = st.column_config.TextColumn("数据源", width="small")
     st.dataframe(disp, use_container_width=True, hide_index=True, column_config=col_cfg)
+    bs_rows = show[show["数据源"].astype(str).eq("模型估算")] if "数据源" in show.columns else pd.DataFrame()
+    if not bs_rows.empty:
+        st.warning(
+            "⚠️ 含 **Black-Scholes 模型估算** 行权价/权利金，非券商真实报价，**不可直接下单**。"
+            " 请确认「数据源」列为 **真实链**。"
+        )
     st.markdown("**入选理由详情**")
     for _, row in show.iterrows():
         code = row.get("代码", "")
@@ -1151,9 +1185,22 @@ def _cached_fleet_account_backtest(
 
 def tab_daily_screen(cfg: dict) -> None:
     """5×圣杯舰队：CSP 收入策略 + 历史锚点 + 今日信号。"""
+    st.info(
+        "**数据说明**：可下单报价必须来自 **真实期权链**（yfinance 延迟约 15 分钟）。"
+        " Black-Scholes **模型估算** 与仓库 JSON **历史快照** 仅供研究，不是实盘报价。"
+        " 本地运行 `python daily_pick.py` 可生成带真实链的今日 JSON。"
+    )
     # ---- 今日选股快照 ----
     _dp_json = ROOT_DIR / "research" / "daily_pick_today.json"
+    snap_time, snap_stale = _daily_pick_snapshot_meta(_dp_json)
     if _dp_json.exists():
+        if snap_stale:
+            st.warning(
+                f"⚠️ 下方「今日选股快照」为 **历史文件**（{snap_time}），非实时数据。"
+                " Streamlit Cloud 不会自动跑 daily_pick，请在 Mac 本地更新后推送或在本页点「生成5账户今日信号」。"
+            )
+        else:
+            st.caption(f"📂 快照更新时间：**{snap_time}**（仓库 JSON，非自动刷新）")
         import json as _json
         _dp = _json.loads(_dp_json.read_text(encoding=_JSON_ENCODING))
         _ds = _dp.get("summary") or {}
@@ -1519,9 +1566,13 @@ def tab_daily_screen(cfg: dict) -> None:
 
     # ---- 今日预测选股 ----
     st.markdown("### 🔮 今日开仓信号（5账户）")
-    st.caption("CSP 账户输出 **卖 Put 计划**；条件未满足时显示「观望」及原因。")
+    st.caption(
+        "CSP 账户输出 **卖 Put 计划**（优先 **真实期权链**）；"
+        "条件未满足或链上无报价时显示「观望」。"
+    )
 
-    run_fleet_today = st.button("🔴 生成5账户今日信号", type="primary", key="daily_fleet_today")
+    live_chain = _load_live_chain_cfg()
+    run_fleet_today = st.button("🔴 生成5账户今日信号（真实链）", type="primary", key="daily_fleet_today")
 
     if run_fleet_today:
         end_d = cfg["end"]
@@ -1546,7 +1597,9 @@ def tab_daily_screen(cfg: dict) -> None:
             for acct in fleet_accounts(fleet_cfg):
                 strat_name = account_strategy_label(acct)
                 if is_csp_account(acct):
-                    plan = today_picks_for_account(acct, {}, end_d, capital=acct_size)
+                    plan = today_picks_for_account(
+                        acct, {}, end_d, capital=acct_size, live_chain=live_chain,
+                    )
                 else:
                     preset = preset_for_account(acct)
                     sub = {t: pool_data[t] for t in tickers_for_preset(preset, acct) if t in pool_data}

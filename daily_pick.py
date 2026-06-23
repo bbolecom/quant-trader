@@ -385,10 +385,11 @@ def _run_fleet_csp(fleet_cfg: dict, account_size: float, cfg: dict | None = None
     from quant.daily_screen_fleet import fleet_accounts, today_picks_for_account
 
     lc = (cfg or {}).get("live_chain") or {}
-    live = bool(lc.get("enabled", True))
     rows: list[dict] = []
     for acct in fleet_accounts(fleet_cfg):
-        plan = today_picks_for_account(acct, {}, capital=account_size)
+        plan = today_picks_for_account(
+            acct, {}, capital=account_size, live_chain=lc,
+        )
         if plan.empty:
             rows.append({
                 "模块": "5×舰队·CSP",
@@ -401,52 +402,18 @@ def _run_fleet_csp(fleet_cfg: dict, account_size: float, cfg: dict | None = None
             continue
         r = plan.iloc[0]
         can = str(r.get("可开仓", "")) == "✅"
-        sym = str(r.get("代码", acct.get("ticker", "")))
-        row = {
+        rows.append({
             "模块": "5×舰队·CSP",
             "账户": acct.get("label", acct["id"]),
-            "代码": sym,
+            "代码": str(r.get("代码", acct.get("ticker", ""))),
             "状态": "可开仓" if can else "观望",
             "方向": r.get("方向", "卖Put" if can else "观望"),
             "选股理由": r.get("选股理由", acct.get("description", "")),
             "建议张数": r.get("建议张数", ""),
             "权利金$": r.get("权利金$", ""),
             "回测胜率": r.get("回测胜率", ""),
-        }
-        if can and live:
-            spot = pd.to_numeric(r.get("现价"), errors="coerce")
-            if not (isinstance(spot, float) and spot > 0):
-                try:
-                    import yfinance as yf
-                    spot = float(yf.Ticker(sym).history(period="1d")["Close"].iloc[-1])
-                except Exception:  # noqa: BLE001
-                    spot = float("nan")
-            if isinstance(spot, float) and spot > 0:
-                from quant.option_chain import build_csp
-                cplan, why = build_csp(
-                    sym, spot, account_size,
-                    otm=float(lc.get("csp_otm", 0.10)),
-                    min_dte=int(lc.get("min_dte", 2)), max_dte=int(lc.get("max_dte", 45)),
-                    min_oi=int(lc.get("min_open_interest", 25)),
-                    max_spread_pct=float(lc.get("max_spread_pct", 0.60)),
-                )
-                if cplan is None:
-                    row["状态"] = "观望"
-                    row["方向"] = "观望"
-                    row["选股理由"] = f"{sym} 模型可开，但真实期权链：{why} → 观望"
-                    row["建议张数"] = ""
-                else:
-                    nc = cplan.contracts
-                    row["选股理由"] = (
-                        f"{sym} ${spot:.2f} · 真实链 {cplan.legs_label()} @{cplan.expiry}"
-                        f"({cplan.dte}d) · 收${cplan.net_per_contract:.0f}/张 · 占用${cplan.collateral:.0f}/张"
-                        + (f" × {nc}张" if nc >= 1 else " · 现金不够1张")
-                    )
-                    row["建议张数"] = nc if nc >= 1 else ""
-                    row["权利金$"] = round(cplan.net_per_contract, 0)
-                    if nc < 1:
-                        row["状态"] = "观望"
-        rows.append(row)
+            "数据源": r.get("数据源", ""),
+        })
     return rows
 
 

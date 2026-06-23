@@ -364,10 +364,11 @@ def today_picks_for_account(
     allow_short: bool = False,
     fee_bps: float = 5.0,
     slippage_bps: float = 2.0,
+    live_chain: dict | None = None,
 ) -> pd.DataFrame:
     """今日/指定日预测选股（无未来数据）。"""
     if is_csp_account(acct):
-        return today_csp_signal_for_account(acct, capital=capital)
+        return today_csp_signal_for_account(acct, capital=capital, live_chain=live_chain)
 
     preset = preset_for_account(acct)
     as_of = as_of or date.today().isoformat()
@@ -378,10 +379,85 @@ def today_picks_for_account(
     )
 
 
+def apply_live_csp_chain(
+    row: dict,
+    *,
+    sym: str,
+    spot: float,
+    capital: float,
+    live_chain: dict | None,
+    model_can_open: bool,
+    backtest_note: str = "",
+) -> dict:
+    """用真实期权链替换 BS 模型报价；无链则观望，不展示虚构行权价/权利金。"""
+    lc = live_chain or {}
+    out = dict(row)
+    if not lc.get("enabled", True):
+        out["数据源"] = "模型估算"
+        out["可开仓"] = "⏸"
+        out["方向"] = "观望"
+        out["卖Put行权价"] = ""
+        out["权利金$"] = ""
+        out["建议张数"] = ""
+        out["选股理由"] = (
+            f"⚠️ **Black-Scholes 模型估算，非真实报价，不可直接下单。** "
+            f"{sym} ${spot:.2f} · {backtest_note or '请本地运行 daily_pick.py 或开启 live_chain'}"
+        )
+        return out
+
+    from quant.option_chain import build_csp
+
+    cplan, why = build_csp(
+        sym, spot, capital,
+        otm=float(lc.get("csp_otm", 0.10)),
+        min_dte=int(lc.get("min_dte", 2)),
+        max_dte=int(lc.get("max_dte", 45)),
+        min_oi=int(lc.get("min_open_interest", 25)),
+        max_spread_pct=float(lc.get("max_spread_pct", 0.60)),
+    )
+    if cplan is None:
+        out["数据源"] = "真实链不可用"
+        out["可开仓"] = "⏸"
+        out["方向"] = "观望"
+        out["卖Put行权价"] = ""
+        out["权利金$"] = ""
+        out["建议张数"] = ""
+        out["选股理由"] = (
+            f"{sym} ${spot:.2f} · **真实链不可用**：{why} → **观望**"
+            + (f" · {backtest_note}" if backtest_note else "")
+        )
+        return out
+
+    nc = cplan.contracts
+    trend_ok = model_can_open
+    can = trend_ok and nc >= 1
+    out["数据源"] = "真实链"
+    out["卖Put行权价"] = cplan.legs[0].strike if cplan.legs else out.get("卖Put行权价")
+    out["权利金$"] = round(cplan.net_per_contract, 0)
+    out["建议张数"] = nc if nc >= 1 else 0
+    out["可开仓"] = "✅" if can else "⏸"
+    out["方向"] = "卖Put" if can else "观望"
+    parts = [
+        f"{sym} ${spot:.2f} · **真实链** {cplan.legs_label()} @{cplan.expiry}({cplan.dte}d)",
+        f"收${cplan.net_per_contract:.0f}/张 · 占用${cplan.collateral:.0f}/张",
+    ]
+    if nc >= 1:
+        parts.append(f"× {nc}张")
+    elif trend_ok:
+        parts.append("现金不够1张")
+    if not trend_ok:
+        parts.append("趋势过滤未通过（如跌破MA50）")
+    if backtest_note:
+        parts.append(backtest_note)
+    out["选股理由"] = " · ".join(parts)
+    return out
+
+
 def today_csp_signal_for_account(
     acct: dict,
     *,
     capital: float = 10_000.0,
+    live_chain: dict | None = None,
 ) -> pd.DataFrame:
     """CSP 账户今日开仓信号（卖 Put 计划）。"""
     from research.tier_a_csp import _scan_csp_row
@@ -423,21 +499,43 @@ def today_csp_signal_for_account(
     if row.flags:
         reason_parts.append("；".join(row.flags))
 
-    return pd.DataFrame([{
+    n = row.suggested_contracts
+    model_open = bool(row.can_open and n > 0)
+    bt_note = ""
+    if row.bt_win_rate is not None:
+        bt_note = (
+            f"历史回测 胜率{row.bt_win_rate:.0%}"
+            + (f" · 年化{row.bt_annual:.0%}" if row.bt_annual else "")
+            + (f" · 回撤{row.bt_max_dd:.0%}" if row.bt_max_dd else "")
+        )
+
+    base = {
         "选股日期": end,
         "代码": sym,
         "名称": sym,
-        "方向": "卖Put" if row.can_open else "观望",
+        "现价": round(row.close, 2),
+        "方向": "卖Put" if model_open else "观望",
         "仓位%": round(row.alloc_pct * 100, 0) if row.alloc_pct else "",
         "选股理由": " · ".join(reason_parts),
         "卖Put行权价": row.put_strike,
         "权利金$": row.premium_per_contract,
-        "建议张数": row.suggested_contracts,
-        "可开仓": "✅" if row.can_open else "⏸",
+        "建议张数": n if model_open else 0,
+        "可开仓": "✅" if model_open else "⏸",
         "回测胜率": row.bt_win_rate,
         "回测年化": row.bt_annual,
         "回测回撤": row.bt_max_dd,
-    }])
+        "数据源": "模型估算",
+    }
+    enriched = apply_live_csp_chain(
+        base,
+        sym=sym,
+        spot=float(row.close),
+        capital=capital,
+        live_chain=live_chain,
+        model_can_open=model_open,
+        backtest_note=bt_note,
+    )
+    return pd.DataFrame([enriched])
 
 
 def fleet_stats_table(stats_doc: dict, targets: dict | None = None) -> pd.DataFrame:
