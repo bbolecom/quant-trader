@@ -78,6 +78,8 @@ from research.vol_decay_putspread import (
 )
 from research.income_engine import build_income_plan
 
+ROOT_DIR = Path(__file__).resolve().parent
+
 PAPER_ACCOUNT_FILE = ROOT_DIR / "paper_account.json"
 
 
