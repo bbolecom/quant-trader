@@ -1285,9 +1285,56 @@ def _render_strategy_card(row: dict, picks: list[dict], push_picks: list[dict], 
             st.caption("运行 `python daily_pick.py` 或对应 `*_daily.py` 后更新。")
 
 
+def _load_daily_pick_doc(dp_json: Path, push_json: Path) -> dict:
+    """加载 daily_pick 快照；会话内刷新结果优先，但不覆盖更完整的仓库快照。"""
+    import json as _json
+
+    def _heal_summary(doc: dict) -> dict:
+        """quick 刷新可能把 summary 写成 0，从 picks 回填。"""
+        if not doc:
+            return doc
+        picks = doc.get("picks") or []
+        if not picks:
+            return doc
+        actionable = sum(1 for p in picks if p.get("状态") == "可开仓")
+        summary = dict(doc.get("summary") or {})
+        file_open = int(summary.get("可开仓") or 0)
+        if actionable > file_open:
+            summary["可开仓"] = actionable
+            summary["观望"] = len(picks) - actionable
+            summary["总条目"] = len(picks)
+            doc = dict(doc)
+            doc["summary"] = summary
+        return doc
+
+    file_doc: dict = {}
+    if dp_json.exists():
+        try:
+            file_doc = _heal_summary(_json.loads(dp_json.read_text(encoding=_JSON_ENCODING)))
+        except Exception:  # noqa: BLE001
+            file_doc = {}
+
+    sess = st.session_state.get("_last_push_doc")
+    if isinstance(sess, dict) and sess:
+        sess = _heal_summary(sess)
+        file_open = int((file_doc.get("summary") or {}).get("可开仓") or 0)
+        sess_open = int((sess.get("summary") or {}).get("可开仓") or 0)
+        if sess_open >= file_open:
+            return sess
+    if file_doc:
+        return file_doc
+    if push_json.exists():
+        try:
+            push_doc = _json.loads(push_json.read_text(encoding=_JSON_ENCODING))
+            return {"push": push_doc, "regime": push_doc.get("regime") or {}}
+        except Exception:  # noqa: BLE001
+            pass
+    return {}
+
+
 def _render_all_strategies(dp: dict) -> None:
     """全部策略逐一展示。"""
-    from quant.strategy_catalog import collect_strategy_snapshots
+    from quant.strategy_catalog import collect_strategy_snapshots, enrich_catalog_from_daily_pick
 
     st.markdown("### 📚 全部策略")
     st.caption("逐一列出系统内所有策略模块 · 状态来自最新快照与 daily_pick 汇总")
@@ -1295,6 +1342,7 @@ def _render_all_strategies(dp: dict) -> None:
     catalog = (dp.get("strategy_summary") or {}).get("catalog") if dp else None
     if not catalog:
         catalog = collect_strategy_snapshots(ROOT_DIR)
+    catalog = enrich_catalog_from_daily_pick(list(catalog), dp)
 
     manifest_path = ROOT_DIR / "research" / "app_manifest.json"
     if manifest_path.exists():
@@ -1358,14 +1406,7 @@ def tab_daily_screen(cfg: dict) -> None:
         " 本地定时：`python daily_pick.py` · Mac 通知 + `research/daily_pick_push.json`"
     )
 
-    _dp = {}
-    if _dp_json.exists():
-        import json as _json
-        _dp = _json.loads(_dp_json.read_text(encoding=_JSON_ENCODING))
-    elif _push_json.exists():
-        import json as _json
-        _push_json_doc = _json.loads(_push_json.read_text(encoding=_JSON_ENCODING))
-        _dp = {"push": _push_json_doc, "regime": _push_json_doc.get("regime") or {}}
+    _dp = _load_daily_pick_doc(_dp_json, _push_json)
 
     _push = _dp.get("push") or {}
     if not _push and _push_json.exists():
@@ -1374,15 +1415,20 @@ def tab_daily_screen(cfg: dict) -> None:
 
     _reg = _dp.get("regime") or _push.get("regime") or {}
     _ds = _dp.get("summary") or {}
+    snap_open = int(_ds.get("可开仓") or 0)
 
     if snap_stale and _dp_json.exists():
-        st.warning(f"快照已过期（{snap_time}），请重新运行 `python daily_pick.py`。")
+        st.warning(
+            f"快照已过期（{snap_time}），请重新运行 `python daily_pick.py`。"
+            f" 当前仍显示快照内 **{snap_open}** 条可开仓（研究用）。"
+        )
 
-    c0, c1, c2, c3 = st.columns(4)
+    c0, c1, c2, c3, c4 = st.columns(5)
     c0.metric("大盘", str(_reg.get("label", _ds.get("大盘", "—")))[:14])
     c1.metric("推送条数", _push.get("count", _ds.get("推送条数", 0)))
-    c2.metric("SPY", _reg.get("spy", "—"))
-    c3.metric("MA50", _reg.get("ma50", "—"))
+    c2.metric("快照可开仓", snap_open)
+    c3.metric("SPY", _reg.get("spy", "—"))
+    c4.metric("MA50", _reg.get("ma50", "—"))
 
     push_picks = _push.get("picks") or []
     if push_picks:
@@ -1399,18 +1445,38 @@ def tab_daily_screen(cfg: dict) -> None:
         skipped = (_push.get("stats") or {}).get("skipped_model", 0)
         extra = f"（已过滤 {skipped} 条模型估价）" if skipped else ""
         st.info(f"今日 **无真实链/行情可推送**，正常观望。{extra}")
+        actionable_picks = [p for p in (_dp.get("picks") or []) if p.get("状态") == "可开仓"]
+        if actionable_picks:
+            with st.expander(f"📋 快照可开仓 {len(actionable_picks)} 条（研究用，含模型估价/历史链）", expanded=True):
+                act_df = pd.DataFrame(actionable_picks)
+                act_cols = [c for c in [
+                    "模块", "代码", "方向", "状态", "数据源", "选股理由", "建议张数", "权利金$", "回测摘要",
+                ] if c in act_df.columns]
+                st.dataframe(act_df[act_cols], use_container_width=True, hide_index=True)
+                st.caption("仅「真实链/真实行情」会进入 Mac 推送；上表供 Cloud 研究浏览。")
 
-    live_chain = _load_live_chain_cfg()
     if st.button("🔄 云端刷新真实推演", type="primary", key="daily_refresh_push"):
-        with st.spinner("拉取真实期权链与行情…"):
+        with st.spinner("拉取真实期权链与行情（完整模式，约 1–3 分钟）…"):
             try:
                 import daily_pick as dp
+
                 cfg_local = dp.load_config(ROOT_DIR / "daily_pick_config.json")
-                cfg_local["quick"] = True
+                cfg_local.pop("quick", None)
+                old_open = snap_open
                 doc = dp.run_daily_pick(cfg_local)
-                dp.save_outputs(doc, cfg_local)
+                new_open = int((doc.get("summary") or {}).get("可开仓") or 0)
                 st.session_state["_last_push_doc"] = doc
-                st.success(f"完成 · 推送 {doc.get('push', {}).get('count', 0)} 条")
+                if new_open >= old_open or new_open > 0:
+                    dp.save_outputs(doc, cfg_local)
+                    st.success(
+                        f"完成 · 推送 {doc.get('push', {}).get('count', 0)} 条 · "
+                        f"快照可开仓 {new_open} 条"
+                    )
+                else:
+                    st.warning(
+                        f"刷新未产生新信号（新 {new_open} / 原 {old_open}），"
+                        "未覆盖仓库快照 — 请本地运行 `python daily_pick.py`。"
+                    )
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"刷新失败：{e}")

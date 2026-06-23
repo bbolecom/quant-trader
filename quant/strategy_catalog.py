@@ -358,6 +358,87 @@ def collect_strategy_snapshots(root: Path | None = None) -> list[dict]:
     return rows
 
 
+# daily_pick 模块名 → strategy id（用于 modules_summary 回填）
+MODULE_ID_ALIASES: dict[str, str] = {
+    "暴涨80%": "gain15",
+    "暴涨80%·回避": "gain15",
+    "暴涨80%·观察": "gain15",
+    "5×舰队·CSP": "fleet_csp",
+    "资金流向": "capital_flow",
+    "规律·Ultra80": "meme_pattern",
+    "收入·卖Call": "bear_call",
+    "弱市·卖Call": "bear_call",
+    "三腿策略": "pattern_daily",
+    "pattern_daily": "pattern_daily",
+    "flow_strategy": "flow_strategy",
+    "VRP波动率": "vrp",
+    "VRP波动率·CSP": "vrp",
+    "日历价差": "calendar",
+    "SNDK铁鹰": "sndk_iron",
+    "strategy_rank": "strategy_rank",
+    "screen_daily": "screen_daily",
+    "自选股扫描": "scan_daily",
+    "universal_playbook": "universal_playbook",
+    "高频·动量": "trajectory_highwin",
+    "轨迹·高置信": "trajectory_highwin",
+}
+
+
+def enrich_catalog_from_daily_pick(catalog: list[dict], dp: dict | None) -> list[dict]:
+    """用 daily_pick 汇总回填各策略可开仓/观望（Cloud 不依赖各模块独立 JSON）。"""
+    if not dp:
+        return catalog
+    mods: dict = dp.get("modules_summary") or {}
+    summary: dict = dp.get("summary") or {}
+    runs = {r.get("id"): r for r in (dp.get("module_runs") or [])}
+    pick_date = dp.get("选股日期") or "—"
+
+    by_id: dict[str, dict] = {str(r.get("id")): dict(r) for r in catalog}
+
+    for mod_key, stats in mods.items():
+        sid = MODULE_ID_ALIASES.get(mod_key)
+        if not sid:
+            for rid, row in by_id.items():
+                label = str(row.get("模块标签") or "")
+                if label and label != "—" and (label in mod_key or mod_key.startswith(label)):
+                    sid = rid
+                    break
+        if not sid or sid not in by_id:
+            continue
+        row = by_id[sid]
+        row["可开仓"] = int(row.get("可开仓") or 0) + int(stats.get("可开仓") or 0)
+        row["观望"] = int(row.get("观望") or 0) + int(stats.get("观望") or 0)
+        row["总条目"] = int(row.get("总条目") or 0) + int(stats.get("总条目") or 0)
+        row["今日有数据"] = True
+        row["数据日期"] = pick_date
+        codes = list(row.get("_codes") or [])
+        codes.extend(stats.get("代码") or [])
+        row["_codes"] = codes[:12]
+
+    if "daily_pick" in by_id and summary:
+        by_id["daily_pick"].update({
+            "可开仓": int(summary.get("可开仓") or 0),
+            "观望": int(summary.get("观望") or 0),
+            "总条目": int(summary.get("总条目") or 0),
+            "今日有数据": True,
+            "数据日期": pick_date,
+        })
+
+    for sid, run in runs.items():
+        if sid not in by_id:
+            continue
+        row = by_id[sid]
+        row["今日有数据"] = True
+        row["今日已运行"] = run.get("ok")
+        row["数据日期"] = pick_date
+        if run.get("rows"):
+            row["总条目"] = max(int(row.get("总条目") or 0), int(run.get("rows") or 0))
+        if run.get("可开仓") is not None:
+            row["可开仓"] = max(int(row.get("可开仓") or 0), int(run.get("可开仓") or 0))
+
+    return list(by_id.values())
+
+
 def summarize_picks_by_module(picks: list[dict]) -> dict[str, dict]:
     """按 daily_pick 模块标签汇总。"""
     out: dict[str, dict] = {}
@@ -384,6 +465,8 @@ def build_strategy_summary_doc(
     regime: dict,
     root: Path | None = None,
     module_runs: list[dict] | None = None,
+    pick_date: str | None = None,
+    summary: dict | None = None,
 ) -> dict:
     """构建写入 daily_pick_today.json 的策略总览。"""
     root = root or ROOT
@@ -395,6 +478,12 @@ def build_strategy_summary_doc(
             row["今日已运行"] = run_map[rid].get("ok", False)
             row["运行条目"] = run_map[rid].get("rows", 0)
             row["已接入每日选股"] = True
+    catalog = enrich_catalog_from_daily_pick(catalog, {
+        "modules_summary": modules_summary,
+        "summary": summary or {},
+        "module_runs": module_runs or [],
+        "选股日期": pick_date or "—",
+    })
     integrated = [r for r in catalog if r["已接入每日选股"]]
     standalone = [r for r in catalog if not r["已接入每日选股"]]
     return {

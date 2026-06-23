@@ -814,6 +814,12 @@ def run_daily_pick(cfg: dict) -> dict:
         regime=regime,
         root=ROOT,
         module_runs=module_runs,
+        pick_date=today,
+        summary={
+            "总条目": len(df),
+            "可开仓": actionable,
+            "观望": len(df) - actionable,
+        },
     )
 
     hw_cfg = cfg.get("high_win_filter") or {}
