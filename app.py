@@ -79,6 +79,7 @@ from research.vol_decay_putspread import (
 from research.income_engine import build_income_plan
 
 ROOT_DIR = Path(__file__).resolve().parent
+_JSON_ENCODING = "utf-8-sig"  # 兼容 Excel/Windows 导出的 UTF-8 BOM
 
 PAPER_ACCOUNT_FILE = ROOT_DIR / "paper_account.json"
 
@@ -1169,7 +1170,7 @@ def tab_daily_screen(cfg: dict) -> None:
     _dp_json = ROOT_DIR / "research" / "daily_pick_today.json"
     if _dp_json.exists():
         import json as _json
-        _dp = _json.loads(_dp_json.read_text(encoding="utf-8"))
+        _dp = _json.loads(_dp_json.read_text(encoding=_JSON_ENCODING))
         _ds = _dp.get("summary") or {}
         _reg = _dp.get("regime") or {}
         _ss = _dp.get("strategy_summary") or {}
@@ -1329,7 +1330,7 @@ def tab_daily_screen(cfg: dict) -> None:
         )
         if _rules_path.exists():
             import json as _json
-            mp_doc = _json.loads(_rules_path.read_text(encoding="utf-8"))
+            mp_doc = _json.loads(_rules_path.read_text(encoding=_JSON_ENCODING))
             st.markdown(
                 f"**样本** {mp_doc.get('event_count', '—')} 条 · "
                 f"**覆盖标的** {mp_doc.get('ticker_count', '—')} 只 · "
@@ -1378,7 +1379,7 @@ def tab_daily_screen(cfg: dict) -> None:
             from quant.pattern_params import OptimizedPatternRules
 
             opt = OptimizedPatternRules.from_dict(
-                _json.loads(_opt_rules_path.read_text(encoding="utf-8"))
+                _json.loads(_opt_rules_path.read_text(encoding=_JSON_ENCODING))
             )
             meta = opt.meta or {}
             ls = meta.get("long_search") or {}
@@ -1422,7 +1423,7 @@ def tab_daily_screen(cfg: dict) -> None:
             import json as _json5
             from quant.pattern_5d_params import load_optimized_5d
 
-            d5 = _json5.loads(_5d_rules.read_text(encoding="utf-8"))
+            d5 = _json5.loads(_5d_rules.read_text(encoding=_JSON_ENCODING))
             opt5 = load_optimized_5d()
             fu = (opt5.meta.get("final_up") or {}).get("oos") or {}
             fd = (opt5.meta.get("final_down") or {}).get("oos") or {}
