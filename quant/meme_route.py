@@ -8,7 +8,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 import numpy as np
@@ -52,7 +52,7 @@ class MemeRouteConfig:
     blocklist: frozenset[str] = DEFAULT_BLOCKLIST
     exclude_gain_pct: float = 12.0
     exclude_amp_pct: float = 25.0
-    short_fade: ShortFadeParams = ShortFadeParams()
+    short_fade: ShortFadeParams = field(default_factory=ShortFadeParams)
 
 
 def parse_meme_route(cfg: dict | None) -> MemeRouteConfig:

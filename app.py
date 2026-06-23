@@ -1183,6 +1183,130 @@ def _cached_fleet_account_backtest(
     )
 
 
+def _strategy_picks_for_row(row: dict, picks: list[dict]) -> list[dict]:
+    """按模块标签 / 策略 id 匹配 daily_pick 条目。"""
+    mod_label = str(row.get("模块标签") or "")
+    sid = str(row.get("id") or "")
+    out: list[dict] = []
+    for p in picks:
+        mod = str(p.get("模块") or "")
+        if mod_label and mod_label != "—" and mod_label in mod:
+            out.append(p)
+        elif sid and sid.replace("_", "") in mod.lower().replace("×", "").replace(" ", ""):
+            out.append(p)
+    return out
+
+
+def _render_strategy_card(row: dict, picks: list[dict], push_picks: list[dict]) -> None:
+    """单条策略卡片（纵向逐一展示）。"""
+    strat_picks = _strategy_picks_for_row(row, picks)
+    push_for = _strategy_picks_for_row(row, push_picks)
+    actionable = int(row.get("可开仓") or 0)
+    watching = int(row.get("观望") or 0)
+    has_data = bool(row.get("今日有数据") or row.get("has_data"))
+    integrated = row.get("已接入每日选股", row.get("integrated_in_daily_pick", False))
+
+    badge = "🟢 可开仓" if actionable > 0 else ("🟡 观望" if watching > 0 else "⚪ 无信号")
+    if not has_data and not strat_picks:
+        badge = "⚫ 无今日数据"
+
+    with st.container(border=True):
+        h1, h2, h3 = st.columns([3, 1, 1])
+        with h1:
+            tag = " · 已接入每日选股" if integrated else ""
+            st.markdown(f"**{row.get('策略') or row.get('name', '—')}** `{row.get('分类', '')}`{tag}")
+            desc = row.get("说明") or row.get("description") or ""
+            if desc:
+                st.caption(desc)
+        with h2:
+            st.metric("可开仓", actionable)
+        with h3:
+            st.caption(badge)
+
+        meta = []
+        if row.get("脚本") or row.get("script"):
+            meta.append(f"脚本 `{row.get('脚本') or row.get('script')}`")
+        if row.get("输出") or row.get("today_json"):
+            meta.append(f"输出 `{row.get('输出') or row.get('today_json')}`")
+        if row.get("数据日期") and row.get("数据日期") != "—":
+            meta.append(f"数据日 {row.get('数据日期')}")
+        if meta:
+            st.caption(" · ".join(meta))
+
+        display = push_for or [p for p in strat_picks if p.get("状态") == "可开仓"] or strat_picks[:5]
+        if display:
+            df = pd.DataFrame(display)
+            cols = [c for c in [
+                "代码", "方向", "状态", "数据源", "选股理由", "建议张数", "权利金$",
+            ] if c in df.columns]
+            st.dataframe(df[cols], use_container_width=True, hide_index=True)
+        elif has_data:
+            st.caption("今日有 JSON 快照，当前模块无匹配条目（可能已过滤为观望）。")
+        else:
+            st.caption("运行 `python daily_pick.py` 或对应 `*_daily.py` 后更新。")
+
+
+def _render_all_strategies(dp: dict) -> None:
+    """全部策略逐一展示。"""
+    from quant.strategy_catalog import collect_strategy_snapshots
+
+    st.markdown("### 📚 全部策略")
+    st.caption("逐一列出系统内所有策略模块 · 状态来自最新快照与 daily_pick 汇总")
+
+    catalog = (dp.get("strategy_summary") or {}).get("catalog") if dp else None
+    if not catalog:
+        catalog = collect_strategy_snapshots(ROOT_DIR)
+
+    manifest_path = ROOT_DIR / "research" / "app_manifest.json"
+    if manifest_path.exists():
+        import json as _json
+        try:
+            manifest = _json.loads(manifest_path.read_text(encoding=_JSON_ENCODING))
+            seen = {r.get("id") for r in catalog}
+            for feat in manifest.get("features") or []:
+                fid = feat.get("id")
+                if fid in seen:
+                    for row in catalog:
+                        if row.get("id") == fid:
+                            row.setdefault("策略", feat.get("name"))
+                            row.setdefault("说明", feat.get("description"))
+                            break
+                    continue
+                catalog.append({
+                    "id": fid,
+                    "策略": feat.get("name"),
+                    "分类": feat.get("category"),
+                    "已接入每日选股": feat.get("integrated_in_daily_pick", False),
+                    "模块标签": feat.get("daily_pick_module") or "—",
+                    "今日有数据": feat.get("has_data", False),
+                    "可开仓": feat.get("actionable", 0),
+                    "观望": feat.get("watching", 0),
+                    "总条目": feat.get("total", 0),
+                    "数据日期": feat.get("data_date", "—"),
+                    "说明": feat.get("description", ""),
+                    "脚本": feat.get("script", ""),
+                    "输出": feat.get("today_json") or feat.get("history_csv") or "—",
+                })
+        except Exception:  # noqa: BLE001
+            pass
+
+    picks = dp.get("picks") or [] if dp else []
+    push_picks = (dp.get("push") or {}).get("picks") or [] if dp else []
+
+    categories: list[str] = []
+    for row in catalog:
+        cat = str(row.get("分类") or "其他")
+        if cat not in categories:
+            categories.append(cat)
+
+    for cat in categories:
+        st.markdown(f"#### {cat}")
+        for row in catalog:
+            if str(row.get("分类") or "其他") != cat:
+                continue
+            _render_strategy_card(row, picks, push_picks)
+
+
 def tab_daily_screen(cfg: dict) -> None:
     """每日选股推送：真实链 / 真实行情推演（不含模型估价）。"""
     _dp_json = ROOT_DIR / "research" / "daily_pick_today.json"
@@ -1245,11 +1369,14 @@ def tab_daily_screen(cfg: dict) -> None:
                 cfg_local = dp.load_config(ROOT_DIR / "daily_pick_config.json")
                 cfg_local["quick"] = True
                 doc = dp.run_daily_pick(cfg_local)
+                dp.save_outputs(doc, cfg_local)
                 st.session_state["_last_push_doc"] = doc
                 st.success(f"完成 · 推送 {doc.get('push', {}).get('count', 0)} 条")
                 st.rerun()
             except Exception as e:  # noqa: BLE001
                 st.error(f"刷新失败：{e}")
+
+    _render_all_strategies(_dp if _dp else {})
 
     if _dp_json.exists():
         with st.expander("📋 全量快照（研究用，含未推送项）", expanded=False):
