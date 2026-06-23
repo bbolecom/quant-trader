@@ -18,14 +18,14 @@ struct AppManifest: Codable {
     }
 }
 
-struct ManifestCategory: Codable, Identifiable {
+struct ManifestCategory: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let icon: String
     let color: String?
 }
 
-struct ManifestFeature: Codable, Identifiable {
+struct ManifestFeature: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let category: String

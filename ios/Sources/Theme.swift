@@ -27,6 +27,14 @@ enum ThsTheme {
     static let launchBackground = Color.white
     static let launchTextPrimary = Color(red: 0.059, green: 0.071, blue: 0.098)
     static let launchTextSecondary = Color(red: 0.388, green: 0.408, blue: 0.471)
+
+    /// 首页浅色区（同花顺白底）
+    static let homeBackground = Color(red: 0.965, green: 0.969, blue: 0.976) // #F6F7F9
+    static let homeCard = Color.white
+    static let homeTextPrimary = Color(red: 0.133, green: 0.133, blue: 0.133)
+    static let homeTextSecondary = Color(red: 0.467, green: 0.467, blue: 0.467)
+    static let homeDivider = Color(red: 0.922, green: 0.922, blue: 0.922)
+    static let homeHeaderRed = Color(red: 0.914, green: 0.188, blue: 0.188)
 }
 
 /// 兼容旧命名
@@ -38,4 +46,17 @@ extension UIColor {
     static let launchBackground = UIColor.white
     static let tigerBackground = thsBackground
     static let tigerCard = thsCard
+}
+
+extension Color {
+    init?(hex: String) {
+        var s = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        if s.hasPrefix("#") { s.removeFirst() }
+        guard s.count == 6, let v = UInt64(s, radix: 16) else { return nil }
+        self.init(
+            red: Double((v >> 16) & 0xFF) / 255,
+            green: Double((v >> 8) & 0xFF) / 255,
+            blue: Double(v & 0xFF) / 255
+        )
+    }
 }

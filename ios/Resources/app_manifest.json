@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-06-23 23:48:55",
+  "updated": "2026-06-24 00:22:12",
   "app_name": "美股量化",
   "tagline": "同花顺式 · 全策略原生入口",
   "categories": [
@@ -76,11 +76,11 @@
       "daily_pick_module": "—",
       "launcher": "每日选股_运行一次.command",
       "view_type": "daily_pick",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 8,
+      "watching": 50,
+      "total": 58,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "gain15",
@@ -254,11 +254,11 @@
       "daily_pick_module": "—",
       "launcher": "每日选股_运行一次.command",
       "view_type": "daily_pick",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 8,
+      "watching": 50,
+      "total": 58,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "gain15",
@@ -904,11 +904,11 @@
         "daily_pick_module": "—",
         "launcher": "每日选股_运行一次.command",
         "view_type": "daily_pick",
-        "actionable": 0,
-        "watching": 0,
-        "total": 0,
-        "has_data": false,
-        "data_date": "—"
+        "actionable": 8,
+        "watching": 50,
+        "total": 58,
+        "has_data": true,
+        "data_date": "2026-06-24"
       },
       {
         "id": "strategy_rank",
