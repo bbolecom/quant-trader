@@ -283,9 +283,24 @@ def _read_json(path: Path) -> dict | None:
         return None
 
 
-def _count_actionable(doc: dict | None, *, pick_keys: tuple[str, ...] = ("picks",)) -> dict[str, Any]:
+def _count_actionable(
+    doc: dict | None,
+    *,
+    pick_keys: tuple[str, ...] = ("picks",),
+    hub_summary: bool = False,
+) -> dict[str, Any]:
+    """统计可开仓/观望。hub_summary=True 时用 daily_pick 顶层 summary（统一入口）。"""
     if not doc:
         return {"available": False, "可开仓": 0, "观望": 0, "总条目": 0}
+    if hub_summary and doc.get("summary"):
+        s = doc["summary"]
+        return {
+            "available": True,
+            "可开仓": int(s.get("可开仓") or 0),
+            "观望": int(s.get("观望") or 0),
+            "总条目": int(s.get("总条目") or 0),
+            "date": doc.get("选股日期") or doc.get("date"),
+        }
     items: list = []
     for k in pick_keys:
         v = doc.get(k)
@@ -324,7 +339,7 @@ def collect_strategy_snapshots(root: Path | None = None) -> list[dict]:
     for s in strategy_registry():
         path = root / s.today_json if s.today_json else None
         doc = _read_json(path) if path else None
-        stats = _count_actionable(doc)
+        stats = _count_actionable(doc, hub_summary=(s.id == "daily_pick"))
         rows.append({
             "id": s.id,
             "策略": s.name,

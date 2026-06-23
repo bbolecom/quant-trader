@@ -1183,24 +1183,56 @@ def _cached_fleet_account_backtest(
     )
 
 
-def _strategy_picks_for_row(row: dict, picks: list[dict]) -> list[dict]:
+def _strategy_picks_for_row(row: dict, picks: list[dict], dp: dict | None = None) -> list[dict]:
     """按模块标签 / 策略 id 匹配 daily_pick 条目。"""
-    mod_label = str(row.get("模块标签") or "")
     sid = str(row.get("id") or "")
+    mod_label = str(row.get("模块标签") or "").strip()
+
+    if sid == "daily_pick":
+        actionable = [p for p in picks if p.get("状态") == "可开仓"]
+        if actionable:
+            return actionable
+        if dp:
+            hw = (dp.get("high_win") or {}).get("picks") or []
+            if hw:
+                return hw
+            push = (dp.get("push") or {}).get("picks") or []
+            if push:
+                return push
+        return picks[:30]
+
     out: list[dict] = []
     for p in picks:
         mod = str(p.get("模块") or "")
-        if mod_label and mod_label != "—" and mod_label in mod:
+        if mod_label and mod_label != "—":
+            if mod_label == mod or mod_label in mod or mod.startswith(mod_label):
+                out.append(p)
+                continue
+        if sid == "gain15" and "暴涨80" in mod:
             out.append(p)
-        elif sid and sid.replace("_", "") in mod.lower().replace("×", "").replace(" ", ""):
+        elif sid == "fleet_csp" and ("舰队" in mod or "CSP" in mod):
+            out.append(p)
+        elif sid == "capital_flow" and "资金流向" in mod:
+            out.append(p)
+        elif sid == "meme_pattern" and ("规律" in mod or "Ultra80" in mod or "Meme" in mod):
+            out.append(p)
+        elif sid == "bear_call" and ("卖Call" in mod or "收入" in mod):
+            out.append(p)
+        elif sid == "sndk_iron" and "铁鹰" in mod:
+            out.append(p)
+        elif sid == "vrp" and "VRP" in mod:
+            out.append(p)
+        elif sid == "surge_scan" and "暴涨扫描" in mod:
+            out.append(p)
+        elif sid == "speculative_pool" and "投机" in mod:
             out.append(p)
     return out
 
 
-def _render_strategy_card(row: dict, picks: list[dict], push_picks: list[dict]) -> None:
+def _render_strategy_card(row: dict, picks: list[dict], push_picks: list[dict], dp: dict | None = None) -> None:
     """单条策略卡片（纵向逐一展示）。"""
-    strat_picks = _strategy_picks_for_row(row, picks)
-    push_for = _strategy_picks_for_row(row, push_picks)
+    strat_picks = _strategy_picks_for_row(row, picks, dp)
+    push_for = _strategy_picks_for_row(row, push_picks, dp) if push_picks else []
     actionable = int(row.get("可开仓") or 0)
     watching = int(row.get("观望") or 0)
     has_data = bool(row.get("今日有数据") or row.get("has_data"))
@@ -1233,13 +1265,20 @@ def _render_strategy_card(row: dict, picks: list[dict], push_picks: list[dict]) 
         if meta:
             st.caption(" · ".join(meta))
 
-        display = push_for or [p for p in strat_picks if p.get("状态") == "可开仓"] or strat_picks[:5]
+        display = push_for or [p for p in strat_picks if p.get("状态") == "可开仓"] or strat_picks[:8]
+        if not display and actionable > 0 and dp:
+            display = (dp.get("push") or {}).get("picks") or []
+            if sid := str(row.get("id") or ""):
+                if sid != "daily_pick":
+                    display = _strategy_picks_for_row(row, display, dp)
         if display:
             df = pd.DataFrame(display)
             cols = [c for c in [
-                "代码", "方向", "状态", "数据源", "选股理由", "建议张数", "权利金$",
+                "模块", "代码", "方向", "状态", "数据源", "选股理由", "建议张数", "权利金$", "回测摘要",
             ] if c in df.columns]
             st.dataframe(df[cols], use_container_width=True, hide_index=True)
+        elif actionable > 0:
+            st.warning(f"汇总显示 **{actionable}** 条可开仓，但详情未加载 — 请点上方「云端刷新真实推演」或本地运行 `python daily_pick.py`。")
         elif has_data:
             st.caption("今日有 JSON 快照，当前模块无匹配条目（可能已过滤为观望）。")
         else:
@@ -1304,7 +1343,7 @@ def _render_all_strategies(dp: dict) -> None:
         for row in catalog:
             if str(row.get("分类") or "其他") != cat:
                 continue
-            _render_strategy_card(row, picks, push_picks)
+            _render_strategy_card(row, picks, push_picks, dp)
 
 
 def tab_daily_screen(cfg: dict) -> None:
