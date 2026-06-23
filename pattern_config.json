@@ -1,0 +1,19 @@
+{
+  "account_size": 10000,
+  "long_top_n": 2,
+  "min_dvol_m": 30,
+  "quick": false,
+  "require_spy_ma50_for_long": true,
+  "fleet_config": "sndk_iron_config.json",
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

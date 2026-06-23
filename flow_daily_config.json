@@ -1,0 +1,53 @@
+{
+  "name": "资金流向每日选股",
+  "philosophy": "量价轨迹识操盘：温和堆量→做多；冲顶/暴涨回吐/放量杀跌→回避或做空。弱市不做多。",
+  "min_dvol_m": 30,
+  "min_price": 3.0,
+  "gainer_count": 250,
+  "long_top_n": 3,
+  "short_top_n": 3,
+  "avoid_top_n": 5,
+  "backtest_years": 3,
+  "sec_filings": {
+    "enabled": true,
+    "days": 5
+  },
+  "account_size": 10000,
+  "live_chain": {
+    "enabled": true,
+    "risk_per_trade": 0.02,
+    "min_dte": 2,
+    "max_dte": 45,
+    "min_open_interest": 25,
+    "max_spread_pct": 0.60,
+    "bear_call_otm": 0.08,
+    "bear_call_width_pct": 0.10,
+    "put_debit_otm": 0.0,
+    "put_debit_width_pct": 0.10
+  },
+  "notify": {
+    "desktop": true,
+    "only_when_action": false,
+    "sec_alert": true
+  },
+  "outputs": {
+    "today_json": "research/flow_daily_today.json",
+    "today_csv": "research/flow_daily_today.csv",
+    "history_csv": "flow_daily_history.csv"
+  },
+  "strategy_map": {
+    "U_S1": { "动作": "次日做多", "说明": "温和堆量拉升，资金有序介入" },
+    "U_S2": { "动作": "次日做多", "说明": "尾盘抢筹，短线延续" },
+    "U_A1": { "动作": "次日做多", "说明": "大盘子温和放量突破" },
+    "U_A2": { "动作": "次日做多", "说明": "爆量初段启动" },
+    "D_S1": { "动作": "回避追涨", "说明": "抛物线过热，易回踩/融资" },
+    "D_S2": { "动作": "买Put价差", "说明": "前日暴涨次日均值回归" },
+    "D_OFFERING": { "动作": "买Put价差", "说明": "SEC披露融资+近期暴涨（NXTS类）" },
+    "D_A1": { "动作": "卖Call价差", "说明": "放量冲顶后收租" },
+    "D_A2": { "动作": "回避追涨", "说明": "放量杀跌资金出逃" },
+    "D_A3": { "动作": "买Put价差", "说明": "弱收盘出货" },
+    "D_B1": { "动作": "回避追涨", "说明": "缩量顶量价背离" },
+    "D_B2": { "动作": "观望", "说明": "极端波动不参与" },
+    "D_B3": { "动作": "买Put价差", "说明": "弱市超涨回吐" }
+  }
+}

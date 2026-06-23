@@ -97,6 +97,83 @@ def fetch_sp500_tickers() -> list[str]:
         return list(_FALLBACK_TICKERS)
 
 
+def fetch_nasdaq100_tickers() -> list[str]:
+    """拉取纳斯达克 100 成分股。"""
+    try:
+        tables = pd.read_html("https://en.wikipedia.org/wiki/Nasdaq-100")
+        for table in tables:
+            if "Ticker" in table.columns:
+                syms = table["Ticker"].astype(str).str.replace(".", "-", regex=False).tolist()
+                return [s.strip().upper() for s in syms if s.strip()]
+    except Exception:  # noqa: BLE001
+        pass
+    return []
+
+
+# 用于「全市场」候选池：Yahoo 多榜 + 指数成分（不限于标普500）
+BROAD_SCREEN_PRESETS: tuple[str, ...] = (
+    "day_gainers",
+    "most_actives",
+    "small_cap_gainers",
+    "aggressive_small_caps",
+    "growth_technology_stocks",
+)
+
+
+def fetch_broad_universe(
+    *,
+    screen_count: int = 250,
+    include_sp500: bool = True,
+    include_nasdaq100: bool = True,
+    extra: list[str] | None = None,
+) -> list[str]:
+    """合并 Yahoo 涨幅/活跃/小盘等多榜 + 指数成分，去重。符合流动性条件的票均可入选。"""
+    seen: set[str] = set()
+    out: list[str] = []
+
+    def _add(symbols: list[str]) -> None:
+        for raw in symbols:
+            t = str(raw).strip().upper()
+            if t and t not in seen:
+                seen.add(t)
+                out.append(t)
+
+    for preset in BROAD_SCREEN_PRESETS:
+        try:
+            df = fetch_yahoo_screen(preset, count=screen_count)
+            if not df.empty:
+                _add(df["代码"].tolist())
+        except Exception:  # noqa: BLE001
+            continue
+    if include_sp500:
+        _add(fetch_sp500_tickers())
+    if include_nasdaq100:
+        _add(fetch_nasdaq100_tickers())
+    if extra:
+        _add(extra)
+    return out
+
+
+def fetch_gainer_universe_live(count: int = 250) -> pd.DataFrame:
+    """当日全市场涨幅相关候选：合并多个 Yahoo 榜，保留市值/成交额字段。"""
+    frames: list[pd.DataFrame] = []
+    for preset in ("day_gainers", "most_actives", "small_cap_gainers", "aggressive_small_caps"):
+        try:
+            df = fetch_yahoo_screen(preset, count=count)
+            if not df.empty:
+                df = df.copy()
+                df["_来源"] = UNIVERSE_PRESETS.get(preset, preset)
+                frames.append(df)
+        except Exception:  # noqa: BLE001
+            continue
+    if not frames:
+        return pd.DataFrame()
+    merged = pd.concat(frames, ignore_index=True)
+    merged = merged.sort_values("涨幅%", ascending=False, na_position="last")
+    merged = merged.drop_duplicates(subset=["代码"], keep="first")
+    return merged.reset_index(drop=True)
+
+
 def quotes_to_dataframe(response: dict[str, Any]) -> pd.DataFrame:
     """把 yfinance screen 返回的 quotes 转为标准 DataFrame。"""
     quotes = response.get("quotes") or []

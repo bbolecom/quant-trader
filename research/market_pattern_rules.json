@@ -1,0 +1,65 @@
+{
+  "targets": "年化≥50%、回撤<15%、胜率≥85%",
+  "rules": [
+    {
+      "id": "iron_low_vol",
+      "pattern": "低波(RV<25%) + 铁鹰+MA50",
+      "median_win": 1.0,
+      "median_ann": 0.001,
+      "median_dd": 0.0,
+      "n": 18,
+      "action": "全市场最稳：超大盘低波名/ETF 做铁鹰，MA50 过滤"
+    },
+    {
+      "id": "csp_mid_vol",
+      "pattern": "中波(RV 25-45%) + CSP+MA50",
+      "median_win": 0.848,
+      "median_ann": 0.075,
+      "median_dd": -0.308,
+      "n": 10,
+      "action": "收益/风险均衡带：中波蓝筹 CSP，必须 MA50"
+    },
+    {
+      "id": "etf_iron_fleet",
+      "pattern": "ETF 铁鹰舰队",
+      "median_win": 1.0,
+      "median_ann": 0.002,
+      "median_dd": 0.0,
+      "n": 5,
+      "action": "5×$10k 优先 SPY/QQQ/IWM/XLF 等 ETF，不押单票"
+    },
+    {
+      "id": "avoid_outliers",
+      "pattern": "排除极端个例",
+      "note": "Tier-A 单票仅 1 只（多为数据/波动异常），不可外推",
+      "action": "默认排除 SNDK/杠杆ETF；以组合+分桶中位数做决策"
+    }
+  ],
+  "ma50_uplift": {
+    "note": "MA50 在全市场的胜率提升（中位数差）",
+    "csp": -0.0091,
+    "iron": 0.0
+  },
+  "best_portfolio": {
+    "name": "iron_ma50",
+    "tickers": [
+      "SPY",
+      "QQQ",
+      "AAPL",
+      "IWM",
+      "LLY"
+    ],
+    "slots": 5,
+    "交易数": 1200,
+    "年化": 0.05982984883519471,
+    "最大回撤": -0.4744196231498262,
+    "胜率": 0.8533333333333334,
+    "tier": "C",
+    "gap_score": 0.8803403023296106,
+    "scenario": "低波蓝筹铁鹰5"
+  },
+  "tier_a_count": 1,
+  "tier_a_tickers": [
+    "COIN"
+  ]
+}

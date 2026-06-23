@@ -1,0 +1,47 @@
+{
+  "version": "S8U",
+  "updated": "2026-06-23",
+  "description": "Ultra80 S8U：精英入场 + 5日路径止盈+2%/止损-5%（胜率≥80%）",
+  "exit": {
+    "mode": "path_tp",
+    "take_profit_pct": 0.02,
+    "stop_loss_pct": 0.05,
+    "hold_days": 5
+  },
+  "entry_rules": {
+    "MSTR": "SPY>MA50 + MA50 + 无回避 + vol≥2 + 5d≥5% + turn≥3%",
+    "SMCI": "SPY>MA50 + MA50 + 无回避 + vol≥1.5 + 5d≥5% + cs≥55% + turn≥3%",
+    "COIN": "SPY>MA50 + MA50 + 无回避 + vol≥2.5 + 5d≥5% + cs≥60%"
+  },
+  "tickers": {
+    "MSTR": {
+      "S8U": {"win": 0.833, "oos_win": 1.0, "oos_n": 1, "n": 6, "oos_ann": 0.049, "oos_dd": 0.0},
+      "S8H": {"win": 0.385, "oos_win": 0.545, "oos_n": 11}
+    },
+    "SMCI": {
+      "S8U": {"win": 0.923, "oos_win": 0.90, "oos_n": 10, "n": 13, "oos_ann": 0.012, "oos_dd": -0.013},
+      "S8H": {"win": 0.542, "oos_win": 0.250, "oos_n": 8}
+    },
+    "COIN": {
+      "S8U": {"win": 0.667, "oos_win": 1.0, "oos_n": 1, "n": 3, "oos_ann": 0.049, "oos_dd": 0.0},
+      "S8H": {"win": 0.545, "oos_win": 0.588, "oos_n": 17}
+    }
+  },
+  "portfolio_combined": {
+    "ALL": {"n": 22, "win": 0.864, "ann": 0.027, "dd": -0.013},
+    "OOS_2024+": {"n": 12, "win": 0.917, "ann": 0.038, "dd": -0.013}
+  },
+  "liquid_universe_backtest": {
+    "script": "research/s8u_liquid_universe_backtest.py",
+    "updated": "2026-06-23",
+    "min_dvol_m": 50,
+    "backtested": 175,
+    "ALL": {"eligible": 140, "trades": 1211, "weighted_win": 0.626, "median_win": 0.667, "tickers_ge_80": 31},
+    "OOS_2024+": {"eligible": 93, "trades": 452, "weighted_win": 0.586, "median_win": 0.667, "tickers_ge_80": 17},
+    "oos_pool_ge80_n5": ["PLTR", "SMCI", "TTMI", "KLIC", "ASTS", "QUBT", "HOOD", "AMKR", "CCL", "ALAB", "AXON"],
+    "oos_approved_file": "research/s8u_approved_tickers.json",
+    "oos_approved_weighted_win": 0.8611,
+    "note": "daily_pick 已切换 ticker_source=oos_approved；重跑 s8u_liquid_universe_backtest.py 可刷新准入池。"
+  },
+  "note": "胜率按路径触达+2%计赢；收盘5日持有无法稳定≥80%。信号频率低（全样本约22笔/三票合计）。"
+}

@@ -1,0 +1,105 @@
+{
+  "updated": "2026-06-23",
+  "targets": {
+    "ann_return": 0.15,
+    "max_dd": -0.15,
+    "win_rate": 0.85
+  },
+  "accounts": [
+    {
+      "id": "acct1",
+      "label": "账户1",
+      "ticker": "ARM",
+      "strategy_type": "csp",
+      "csp_params": {
+        "delta": 0.2,
+        "ma_window": 0,
+        "alloc_pct": 0.5,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "anchor_stats": {
+        "ann_return": 0.157204993699241,
+        "max_dd": -0.148274341258522,
+        "win_rate": 0.8682170542635659,
+        "source": "market_triple_scan"
+      }
+    },
+    {
+      "id": "acct2",
+      "label": "账户2",
+      "ticker": "LCID",
+      "strategy_type": "csp",
+      "csp_params": {
+        "delta": 0.15,
+        "ma_window": 50,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "anchor_stats": {
+        "ann_return": 0.33727153995103354,
+        "max_dd": -0.1441209119948592,
+        "win_rate": 0.8837209302325582,
+        "source": "market_triple_scan"
+      }
+    },
+    {
+      "id": "acct3",
+      "label": "账户3",
+      "ticker": "ARM",
+      "strategy_type": "csp",
+      "csp_params": {
+        "delta": 0.2,
+        "ma_window": 50,
+        "alloc_pct": 0.5,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "anchor_stats": {
+        "ann_return": 0.1714867222176415,
+        "max_dd": -0.1438708886637875,
+        "win_rate": 0.8611111111111112,
+        "source": "market_triple_scan"
+      }
+    },
+    {
+      "id": "acct4",
+      "label": "账户4",
+      "ticker": "RIVN",
+      "strategy_type": "csp",
+      "csp_params": {
+        "delta": 0.2,
+        "ma_window": 50,
+        "alloc_pct": 0.5,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "anchor_stats": {
+        "ann_return": 0.1769200977685239,
+        "max_dd": -0.1371132929268769,
+        "win_rate": 0.9036144578313253,
+        "source": "market_triple_scan"
+      }
+    },
+    {
+      "id": "acct5",
+      "label": "账户5",
+      "ticker": "HOOD",
+      "strategy_type": "csp",
+      "csp_params": {
+        "delta": 0.15,
+        "ma_window": 50,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "anchor_stats": {
+        "ann_return": 0.18702924942139543,
+        "max_dd": -0.11466546322372151,
+        "win_rate": 0.923728813559322,
+        "source": "market_triple_scan"
+      }
+    }
+  ]
+}

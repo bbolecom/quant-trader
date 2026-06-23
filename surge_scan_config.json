@@ -1,0 +1,24 @@
+{
+  "breakout_min_gain_pct": 7.0,
+  "breakout_max_gain_pct": 20.0,
+  "continuation_min_gain_pct": 5.0,
+  "continuation_min_gain_20d_pct": 30.0,
+  "min_dvol_m": 50.0,
+  "min_vol_ratio_breakout": 1.5,
+  "min_vol_ratio_5d_breakout": 1.28,
+  "min_vol_ratio_continuation": 1.1,
+  "boll_squeeze_pctile": 0.20,
+  "gainer_count": 250,
+  "use_broad_pool": true,
+  "use_speculative_pool": true,
+  "speculative_pool": "research/speculative_pool.json",
+  "include_precursors": true,
+  "notify": {
+    "desktop": true
+  },
+  "outputs": {
+    "today_json": "research/surge_scan_today.json",
+    "today_csv": "research/surge_scan_today.csv",
+    "history_csv": "surge_scan_history.csv"
+  }
+}

@@ -1,0 +1,47 @@
+/Users/Admin/Desktop/666/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+$SQ: possibly delisted; no timezone found
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: SAVA"}}}
+$SAVA: possibly delisted; no timezone found
+$LAZR: possibly delisted; no timezone found
+$BITF: possibly delisted; no timezone found
+
+4 Failed downloads:
+['SQ', 'SAVA', 'LAZR', 'BITF']: possibly delisted; no timezone found
+拉取 203 只标的 (2024-01-01 ~ 2025-12-31) …
+回测 卖Call价差 …
+回测 弱市ETF铁鹰 …
+回测 5×CSP 舰队 …
+回测 轨迹·高置信 …
+
+================================================================
+每日选股回测 · 2025 年
+================================================================
+SPY 牛市天数：188/250 (75%)
+
+【整体】
+  可交易笔数：9730
+  笔胜率：     81.7%
+  累计收益：   +1099.26%
+  年化：       1188.4%
+  观望/空仓涉及日：237
+
+【分模块】
+  5×舰队·CSP: 141笔  胜率100.0%  均收益+0.86%
+  卖Call价差: 9563笔  胜率81.5%  均收益+1.37%
+  轨迹·高置信: 26笔  胜率46.2%  均收益-0.03%
+
+明细 → /Users/Admin/Desktop/666/research/daily_pick_2025_detail.csv
+成交 → /Users/Admin/Desktop/666/research/daily_pick_2025_trades.csv
+
+【2025 可开仓样本 Top10】
+  2025-01-02 [5×舰队·CSP] NBIS 卖Put 买:2025-01-02 收盘前 · 卖出 … 卖:2025-01-03 收盘前 · 赚到5… 收益1.579%
+  2025-01-06 [卖Call价差] ALAB 卖Call价差 买:2025-01-06 收盘前 · 卖出 … 卖:2025-01-14 收盘前 · 到期或… 收益15.163%
+  2025-01-06 [卖Call价差] TEM 卖Call价差 买:2025-01-06 收盘前 · 卖出 … 卖:2025-01-14 收盘前 · 到期或… 收益16.0%
+  2025-01-07 [5×舰队·CSP] AMPX 卖Put 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-08 收盘前 · 赚到5… 收益0.191%
+  2025-01-07 [5×舰队·CSP] QUBT 卖Put 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 赚到5… 收益3.054%
+  2025-01-07 [卖Call价差] AAPL 卖Call价差 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 到期或… 收益8.618%
+  2025-01-07 [卖Call价差] ABBV 卖Call价差 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 到期或… 收益7.816%
+  2025-01-07 [卖Call价差] ABNB 卖Call价差 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 到期或… 收益12.206%
+  2025-01-07 [卖Call价差] ABT 卖Call价差 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 到期或… 收益5.725%
+  2025-01-07 [卖Call价差] ACHR 卖Call价差 买:2025-01-07 收盘前 · 卖出 … 卖:2025-01-15 收盘前 · 到期或… 收益15.385%

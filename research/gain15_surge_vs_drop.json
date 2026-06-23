@@ -1,0 +1,839 @@
+{
+  "definition": {
+    "filter": "涨幅>15.0% 成交额>=$50.0M",
+    "surge": "5日收盘涨>=10%",
+    "drop": "5日收盘跌<=-10%"
+  },
+  "counts": {
+    "total": 2804,
+    "surge": 646,
+    "drop": 762,
+    "mid": 1396,
+    "surge_pct": 0.23,
+    "drop_pct": 0.272
+  },
+  "group_avg_fwd_5d_pct": {
+    "surge": 31.49,
+    "drop": -20.7,
+    "mid": -0.47
+  },
+  "numeric_compare": [
+    {
+      "factor": "成交额(百万USD)",
+      "surge_mean": 1719.76,
+      "drop_mean": 1860.45,
+      "surge_median": 577.27,
+      "drop_median": 603.0,
+      "delta_mean": -140.69
+    },
+    {
+      "factor": "前期20日涨幅%",
+      "surge_mean": 55.37,
+      "drop_mean": 77.63,
+      "surge_median": 37.54,
+      "drop_median": 43.97,
+      "delta_mean": -22.26
+    },
+    {
+      "factor": "相对SPY20d%",
+      "surge_mean": 54.37,
+      "drop_mean": 76.34,
+      "surge_median": 35.05,
+      "drop_median": 40.17,
+      "delta_mean": -21.97
+    },
+    {
+      "factor": "当日涨幅%",
+      "surge_mean": 29.11,
+      "drop_mean": 32.84,
+      "surge_median": 20.65,
+      "drop_median": 21.48,
+      "delta_mean": -3.73
+    },
+    {
+      "factor": "5日路径最高涨幅",
+      "surge_mean": 0.5,
+      "drop_mean": 0.07,
+      "surge_median": 0.32,
+      "drop_median": 0.03,
+      "delta_mean": 0.43
+    },
+    {
+      "factor": "涨幅榜排名(越小越好)",
+      "surge_mean": 5.26,
+      "drop_mean": 5.61,
+      "surge_median": 3.0,
+      "drop_median": 3.0,
+      "delta_mean": -0.35
+    },
+    {
+      "factor": "5日路径最大回撤",
+      "surge_mean": -0.03,
+      "drop_mean": -0.26,
+      "surge_median": -0.03,
+      "drop_median": -0.22,
+      "delta_mean": 0.22
+    },
+    {
+      "factor": "次日收益(小数)",
+      "surge_mean": 0.09,
+      "drop_mean": -0.06,
+      "surge_median": 0.06,
+      "drop_median": -0.06,
+      "delta_mean": 0.15
+    },
+    {
+      "factor": "量比",
+      "surge_mean": 3.97,
+      "drop_mean": 3.95,
+      "surge_median": 2.61,
+      "drop_median": 2.6,
+      "delta_mean": 0.02
+    },
+    {
+      "factor": "收盘强度",
+      "surge_mean": 0.78,
+      "drop_mean": 0.78,
+      "surge_median": 0.85,
+      "drop_median": 0.86,
+      "delta_mean": -0.0
+    }
+  ],
+  "bool_compare": [
+    {
+      "factor": "大盘站上MA20",
+      "surge_rate": 0.78,
+      "drop_rate": 0.706,
+      "delta": 0.074
+    },
+    {
+      "factor": "站上MA20",
+      "surge_rate": 0.842,
+      "drop_rate": 0.82,
+      "delta": 0.022
+    },
+    {
+      "factor": "收阳",
+      "surge_rate": 0.924,
+      "drop_rate": 0.904,
+      "delta": 0.02
+    },
+    {
+      "factor": "站上MA50",
+      "surge_rate": 0.765,
+      "drop_rate": 0.752,
+      "delta": 0.013
+    },
+    {
+      "factor": "创20日高",
+      "surge_rate": 0.676,
+      "drop_rate": 0.671,
+      "delta": 0.006
+    }
+  ],
+  "bucket_tables": [
+    {
+      "factor": "次日走势",
+      "buckets": [
+        {
+          "bucket": "次日跌>5%",
+          "n": 742,
+          "surge_rate": 0.074,
+          "drop_rate": 0.561,
+          "avg_5d_pct": -11.76
+        },
+        {
+          "bucket": "次日跌3~5%",
+          "n": 257,
+          "surge_rate": 0.144,
+          "drop_rate": 0.288,
+          "avg_5d_pct": -3.12
+        },
+        {
+          "bucket": "次日平±3%",
+          "n": 886,
+          "surge_rate": 0.178,
+          "drop_rate": 0.185,
+          "avg_5d_pct": 0.86
+        },
+        {
+          "bucket": "次日涨3~5%",
+          "n": 199,
+          "surge_rate": 0.281,
+          "drop_rate": 0.136,
+          "avg_5d_pct": 4.9
+        },
+        {
+          "bucket": "次日涨>5%",
+          "n": 716,
+          "surge_rate": 0.472,
+          "drop_rate": 0.11,
+          "avg_5d_pct": 16.07
+        }
+      ]
+    },
+    {
+      "factor": "涨幅榜排名",
+      "buckets": [
+        {
+          "bucket": "Top1~3",
+          "n": 1595,
+          "surge_rate": 0.248,
+          "drop_rate": 0.28,
+          "avg_5d_pct": 2.04
+        },
+        {
+          "bucket": "Top4~10",
+          "n": 849,
+          "surge_rate": 0.217,
+          "drop_rate": 0.276,
+          "avg_5d_pct": 0.97
+        },
+        {
+          "bucket": "Top11~30",
+          "n": 244,
+          "surge_rate": 0.205,
+          "drop_rate": 0.246,
+          "avg_5d_pct": -0.3
+        },
+        {
+          "bucket": "Top31+",
+          "n": 116,
+          "surge_rate": 0.138,
+          "drop_rate": 0.19,
+          "avg_5d_pct": -0.76
+        }
+      ]
+    },
+    {
+      "factor": "当日涨幅",
+      "buckets": [
+        {
+          "bucket": "15~20%",
+          "n": 1412,
+          "surge_rate": 0.215,
+          "drop_rate": 0.23,
+          "avg_5d_pct": 1.92
+        },
+        {
+          "bucket": "20~30%",
+          "n": 836,
+          "surge_rate": 0.226,
+          "drop_rate": 0.301,
+          "avg_5d_pct": 0.44
+        },
+        {
+          "bucket": "30~50%",
+          "n": 381,
+          "surge_rate": 0.252,
+          "drop_rate": 0.307,
+          "avg_5d_pct": 1.25
+        },
+        {
+          "bucket": ">50%",
+          "n": 175,
+          "surge_rate": 0.326,
+          "drop_rate": 0.389,
+          "avg_5d_pct": 2.05
+        }
+      ]
+    },
+    {
+      "factor": "量比",
+      "buckets": [
+        {
+          "bucket": "量比<2",
+          "n": 953,
+          "surge_rate": 0.235,
+          "drop_rate": 0.28,
+          "avg_5d_pct": 1.02
+        },
+        {
+          "bucket": "量比2~4",
+          "n": 967,
+          "surge_rate": 0.232,
+          "drop_rate": 0.266,
+          "avg_5d_pct": 1.52
+        },
+        {
+          "bucket": "量比4~8",
+          "n": 612,
+          "surge_rate": 0.191,
+          "drop_rate": 0.237,
+          "avg_5d_pct": 1.56
+        },
+        {
+          "bucket": "量比>8",
+          "n": 222,
+          "surge_rate": 0.324,
+          "drop_rate": 0.342,
+          "avg_5d_pct": 2.79
+        }
+      ]
+    },
+    {
+      "factor": "前期20日涨幅",
+      "buckets": [
+        {
+          "bucket": "前期跌",
+          "n": 587,
+          "surge_rate": 0.235,
+          "drop_rate": 0.264,
+          "avg_5d_pct": 0.69
+        },
+        {
+          "bucket": "前期涨0~20%",
+          "n": 436,
+          "surge_rate": 0.167,
+          "drop_rate": 0.22,
+          "avg_5d_pct": 0.36
+        },
+        {
+          "bucket": "前期涨20~50%",
+          "n": 729,
+          "surge_rate": 0.221,
+          "drop_rate": 0.214,
+          "avg_5d_pct": 2.58
+        },
+        {
+          "bucket": "前期涨>50%",
+          "n": 993,
+          "surge_rate": 0.267,
+          "drop_rate": 0.334,
+          "avg_5d_pct": 1.85
+        }
+      ]
+    },
+    {
+      "factor": "相对SPY强度",
+      "buckets": [
+        {
+          "bucket": "弱于SPY",
+          "n": 582,
+          "surge_rate": 0.242,
+          "drop_rate": 0.259,
+          "avg_5d_pct": 0.85
+        },
+        {
+          "bucket": "强于SPY0~20%",
+          "n": 475,
+          "surge_rate": 0.166,
+          "drop_rate": 0.221,
+          "avg_5d_pct": 0.56
+        },
+        {
+          "bucket": "强于SPY20~50%",
+          "n": 756,
+          "surge_rate": 0.222,
+          "drop_rate": 0.214,
+          "avg_5d_pct": 2.49
+        },
+        {
+          "bucket": "强于SPY>50%",
+          "n": 932,
+          "surge_rate": 0.267,
+          "drop_rate": 0.344,
+          "avg_5d_pct": 1.76
+        }
+      ]
+    },
+    {
+      "factor": "收盘强度",
+      "buckets": [
+        {
+          "bucket": "收盘弱",
+          "n": 193,
+          "surge_rate": 0.218,
+          "drop_rate": 0.316,
+          "avg_5d_pct": 1.62
+        },
+        {
+          "bucket": "收盘中",
+          "n": 489,
+          "surge_rate": 0.254,
+          "drop_rate": 0.282,
+          "avg_5d_pct": 3.02
+        },
+        {
+          "bucket": "收盘强",
+          "n": 2122,
+          "surge_rate": 0.226,
+          "drop_rate": 0.265,
+          "avg_5d_pct": 1.0
+        }
+      ]
+    }
+  ],
+  "best_surge_rules": [
+    {
+      "rule": "次日涨>5% + 相对SPY>30%",
+      "n": 389,
+      "pct_of_total": 0.139,
+      "avg_fwd_5d_pct": 19.96,
+      "surge_rate": 0.506,
+      "drop_rate": 0.126,
+      "surge_lift": 2.2,
+      "drop_lift": 0.46
+    },
+    {
+      "rule": "Top3 + 次日涨>5%",
+      "n": 438,
+      "pct_of_total": 0.156,
+      "avg_fwd_5d_pct": 17.83,
+      "surge_rate": 0.498,
+      "drop_rate": 0.119,
+      "surge_lift": 2.16,
+      "drop_lift": 0.44
+    },
+    {
+      "rule": "次日涨>5% + Top10",
+      "n": 646,
+      "pct_of_total": 0.23,
+      "avg_fwd_5d_pct": 17.09,
+      "surge_rate": 0.48,
+      "drop_rate": 0.115,
+      "surge_lift": 2.08,
+      "drop_lift": 0.42
+    },
+    {
+      "rule": "次日涨>5% + MA20上",
+      "n": 597,
+      "pct_of_total": 0.213,
+      "avg_fwd_5d_pct": 16.74,
+      "surge_rate": 0.477,
+      "drop_rate": 0.107,
+      "surge_lift": 2.07,
+      "drop_lift": 0.39
+    },
+    {
+      "rule": "大盘强 + Top3 + 次日涨",
+      "n": 412,
+      "pct_of_total": 0.147,
+      "avg_fwd_5d_pct": 16.71,
+      "surge_rate": 0.473,
+      "drop_rate": 0.112,
+      "surge_lift": 2.05,
+      "drop_lift": 0.41
+    },
+    {
+      "rule": "Top3 + 次日涨>3%",
+      "n": 548,
+      "pct_of_total": 0.195,
+      "avg_fwd_5d_pct": 15.0,
+      "surge_rate": 0.447,
+      "drop_rate": 0.12,
+      "surge_lift": 1.94,
+      "drop_lift": 0.44
+    },
+    {
+      "rule": "涨幅>40% + 收盘弱<0.4",
+      "n": 35,
+      "pct_of_total": 0.012,
+      "avg_fwd_5d_pct": 4.88,
+      "surge_rate": 0.371,
+      "drop_rate": 0.371,
+      "surge_lift": 1.61,
+      "drop_lift": 1.37
+    },
+    {
+      "rule": "涨幅>40% + 量比>5",
+      "n": 209,
+      "pct_of_total": 0.075,
+      "avg_fwd_5d_pct": 3.5,
+      "surge_rate": 0.34,
+      "drop_rate": 0.34,
+      "surge_lift": 1.47,
+      "drop_lift": 1.25
+    },
+    {
+      "rule": "收盘弱 + 涨幅>30%",
+      "n": 57,
+      "pct_of_total": 0.02,
+      "avg_fwd_5d_pct": 4.7,
+      "surge_rate": 0.298,
+      "drop_rate": 0.368,
+      "surge_lift": 1.29,
+      "drop_lift": 1.36
+    },
+    {
+      "rule": "收盘强>0.85 + 涨幅>35%",
+      "n": 158,
+      "pct_of_total": 0.056,
+      "avg_fwd_5d_pct": 1.78,
+      "surge_rate": 0.291,
+      "drop_rate": 0.304,
+      "surge_lift": 1.26,
+      "drop_lift": 1.12
+    },
+    {
+      "rule": "前期涨>50% + 当日涨>30%",
+      "n": 335,
+      "pct_of_total": 0.119,
+      "avg_fwd_5d_pct": 0.96,
+      "surge_rate": 0.284,
+      "drop_rate": 0.379,
+      "surge_lift": 1.23,
+      "drop_lift": 1.4
+    },
+    {
+      "rule": "Top3 + MA20上 + 相对SPY>20%",
+      "n": 1105,
+      "pct_of_total": 0.394,
+      "avg_fwd_5d_pct": 2.46,
+      "surge_rate": 0.261,
+      "drop_rate": 0.286,
+      "surge_lift": 1.13,
+      "drop_lift": 1.05
+    }
+  ],
+  "best_drop_rules": [
+    {
+      "rule": "次日跌>5% + 涨幅>30%",
+      "n": 202,
+      "pct_of_total": 0.072,
+      "avg_fwd_5d_pct": -14.93,
+      "surge_rate": 0.084,
+      "drop_rate": 0.599,
+      "surge_lift": 0.37,
+      "drop_lift": 2.2
+    },
+    {
+      "rule": "次日跌>5% + 前期涨>50%",
+      "n": 319,
+      "pct_of_total": 0.114,
+      "avg_fwd_5d_pct": -13.89,
+      "surge_rate": 0.082,
+      "drop_rate": 0.599,
+      "surge_lift": 0.35,
+      "drop_lift": 2.2
+    },
+    {
+      "rule": "次日跌>5%",
+      "n": 742,
+      "pct_of_total": 0.265,
+      "avg_fwd_5d_pct": -11.76,
+      "surge_rate": 0.074,
+      "drop_rate": 0.561,
+      "surge_lift": 0.32,
+      "drop_lift": 2.06
+    },
+    {
+      "rule": "前期涨>50% + 次日跌>3%",
+      "n": 391,
+      "pct_of_total": 0.139,
+      "avg_fwd_5d_pct": -12.1,
+      "surge_rate": 0.09,
+      "drop_rate": 0.55,
+      "surge_lift": 0.39,
+      "drop_lift": 2.02
+    },
+    {
+      "rule": "次日跌>5% + MA20下",
+      "n": 151,
+      "pct_of_total": 0.054,
+      "avg_fwd_5d_pct": -11.54,
+      "surge_rate": 0.06,
+      "drop_rate": 0.543,
+      "surge_lift": 0.26,
+      "drop_lift": 2.0
+    },
+    {
+      "rule": "MA20下 + 次日跌>3%",
+      "n": 189,
+      "pct_of_total": 0.067,
+      "avg_fwd_5d_pct": -10.11,
+      "surge_rate": 0.074,
+      "drop_rate": 0.487,
+      "surge_lift": 0.32,
+      "drop_lift": 1.79
+    },
+    {
+      "rule": "前期涨>50% + 当日涨>30%",
+      "n": 335,
+      "pct_of_total": 0.119,
+      "avg_fwd_5d_pct": 0.96,
+      "surge_rate": 0.284,
+      "drop_rate": 0.379,
+      "surge_lift": 1.23,
+      "drop_lift": 1.4
+    },
+    {
+      "rule": "涨幅>40% + 收盘弱<0.4",
+      "n": 35,
+      "pct_of_total": 0.012,
+      "avg_fwd_5d_pct": 4.88,
+      "surge_rate": 0.371,
+      "drop_rate": 0.371,
+      "surge_lift": 1.61,
+      "drop_lift": 1.37
+    },
+    {
+      "rule": "收盘弱 + 涨幅>30%",
+      "n": 57,
+      "pct_of_total": 0.02,
+      "avg_fwd_5d_pct": 4.7,
+      "surge_rate": 0.298,
+      "drop_rate": 0.368,
+      "surge_lift": 1.29,
+      "drop_lift": 1.36
+    },
+    {
+      "rule": "大盘弱(SPY未上MA20) + 暴涨>25%",
+      "n": 197,
+      "pct_of_total": 0.07,
+      "avg_fwd_5d_pct": -3.95,
+      "surge_rate": 0.188,
+      "drop_rate": 0.355,
+      "surge_lift": 0.82,
+      "drop_lift": 1.31
+    },
+    {
+      "rule": "涨幅>40% + 量比>5",
+      "n": 209,
+      "pct_of_total": 0.075,
+      "avg_fwd_5d_pct": 3.5,
+      "surge_rate": 0.34,
+      "drop_rate": 0.34,
+      "surge_lift": 1.47,
+      "drop_lift": 1.25
+    },
+    {
+      "rule": "MA20下 + 涨幅>30%",
+      "n": 56,
+      "pct_of_total": 0.02,
+      "avg_fwd_5d_pct": 2.63,
+      "surge_rate": 0.214,
+      "drop_rate": 0.321,
+      "surge_lift": 0.93,
+      "drop_lift": 1.18
+    }
+  ],
+  "surge_examples": [
+    {
+      "日期": "2021-01-22",
+      "代码": "GME",
+      "涨幅%": 51.08065066343643,
+      "gain_rank": 1,
+      "dvol_m": 12817.235500174713,
+      "vol_ratio": 5.151551850976528,
+      "g20": 234.0699136419932,
+      "rs20": 229.81111561338884,
+      "fwd_1d": 0.1812028671312997,
+      "fwd_5d": 3.999230723280895,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2021-05-25",
+      "代码": "AMC",
+      "涨幅%": 19.95614213650927,
+      "gain_rank": 1,
+      "dvol_m": 3505.89981139801,
+      "vol_ratio": 2.388313763673935,
+      "g20": 43.19372451001611,
+      "rs20": 43.0212760995834,
+      "fwd_1d": 0.1919561171748496,
+      "fwd_5d": 2.8117000410434443,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2021-01-22",
+      "代码": "AMC",
+      "涨幅%": 17.7852327944668,
+      "gain_rank": 4,
+      "dvol_m": 941.6395930647278,
+      "vol_ratio": 3.716282268750004,
+      "g20": 35.52123162584388,
+      "rs20": 31.262433597239497,
+      "fwd_1d": 0.2592593357383679,
+      "fwd_5d": 2.777778115895942,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2025-07-14",
+      "代码": "OPEN",
+      "涨幅%": 15.661109253938822,
+      "gain_rank": 4,
+      "dvol_m": 143.54867514657974,
+      "vol_ratio": 1.603573039512777,
+      "g20": 49.91680639707583,
+      "rs20": 46.12267849844338,
+      "fwd_1d": 0.1542729583061219,
+      "fwd_5d": 2.5627080539434592,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2025-10-17",
+      "代码": "BYND",
+      "涨幅%": 24.230779106095348,
+      "gain_rank": 2,
+      "dvol_m": 283.0918117197275,
+      "vol_ratio": 7.630449005781308,
+      "g20": -77.17314328367262,
+      "rs20": -77.2771052720838,
+      "fwd_1d": 1.2755417425334112,
+      "fwd_5d": 2.382352707794608,
+      "站上MA20": false,
+      "创20日高": false
+    },
+    {
+      "日期": "2025-06-30",
+      "代码": "BMNR",
+      "涨幅%": 694.8418018130055,
+      "gain_rank": 1,
+      "dvol_m": 3734.571560512925,
+      "vol_ratio": NaN,
+      "g20": NaN,
+      "rs20": NaN,
+      "fwd_1d": 0.3569320062993628,
+      "fwd_5d": 2.2890853103075584,
+      "站上MA20": false,
+      "创20日高": false
+    },
+    {
+      "日期": "2021-01-25",
+      "代码": "AMC",
+      "涨幅%": 25.92593357383679,
+      "gain_rank": 3,
+      "dvol_m": 1959.1124358163831,
+      "vol_ratio": 4.737255865123364,
+      "g20": 72.65625040745363,
+      "rs20": 68.08028841366544,
+      "fwd_1d": 0.1221718918093186,
+      "fwd_5d": 2.0090497218162273,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2021-01-25",
+      "代码": "GME",
+      "涨幅%": 18.120286713129975,
+      "gain_rank": 6,
+      "dvol_m": 13658.94462284851,
+      "vol_ratio": 3.877468896148428,
+      "g20": 273.3106565618914,
+      "rs20": 268.7346945681032,
+      "fwd_1d": 0.9270737591255416,
+      "fwd_5d": 1.9300689844698753,
+      "站上MA20": true,
+      "创20日高": true
+    }
+  ],
+  "drop_examples": [
+    {
+      "日期": "2024-03-27",
+      "代码": "GCTS",
+      "涨幅%": 568.6930168719192,
+      "gain_rank": 1,
+      "dvol_m": 188.958,
+      "vol_ratio": 19.11129900760981,
+      "g20": 310.4477509700211,
+      "rs20": 306.78649233190737,
+      "fwd_1d": -0.2486363324252042,
+      "fwd_5d": -0.869772726839239,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2021-01-29",
+      "代码": "GME",
+      "涨幅%": 67.87189553404578,
+      "gain_rank": 1,
+      "dvol_m": 16433.9825,
+      "vol_ratio": 0.7972974624291698,
+      "g20": 1587.435078596924,
+      "rs20": 1587.9512321169905,
+      "fwd_1d": -0.3076923076923077,
+      "fwd_5d": -0.8037846139761118,
+      "站上MA20": true,
+      "创20日高": false
+    },
+    {
+      "日期": "2023-02-22",
+      "代码": "LUNR",
+      "涨幅%": 116.38954654132094,
+      "gain_rank": 1,
+      "dvol_m": 340.40607313079835,
+      "vol_ratio": 4.676029688362297,
+      "g20": 715.8208587832311,
+      "rs20": 716.235655242516,
+      "fwd_1d": -0.752408833199508,
+      "fwd_5d": -0.7648493573730762,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2026-04-21",
+      "代码": "CAR",
+      "涨幅%": 17.274964687732684,
+      "gain_rank": 2,
+      "dvol_m": 8778.117995800782,
+      "vol_ratio": 2.862374470789686,
+      "g20": 565.5201144921232,
+      "rs20": 558.0893063076658,
+      "fwd_1d": -0.3782091395185577,
+      "fwd_5d": -0.7450733196417343,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2021-01-27",
+      "代码": "GME",
+      "涨幅%": 134.83580199952218,
+      "gain_rank": 2,
+      "dvol_m": 32456.288129077147,
+      "vol_ratio": 1.5907716315540532,
+      "g20": 1555.5979683420103,
+      "rs20": 1554.9960774949866,
+      "fwd_1d": -0.442893727768914,
+      "fwd_5d": -0.7340795917664804,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2025-07-03",
+      "代码": "BMNR",
+      "涨幅%": 130.7692277587237,
+      "gain_rank": 1,
+      "dvol_m": 5069.09753789978,
+      "vol_ratio": 3.386731299666105,
+      "g20": NaN,
+      "rs20": NaN,
+      "fwd_1d": -0.2038517825578574,
+      "fwd_5d": -0.6991110953579078,
+      "站上MA20": true,
+      "创20日高": true
+    },
+    {
+      "日期": "2026-03-25",
+      "代码": "VCX",
+      "涨幅%": 20.63875417668126,
+      "gain_rank": 2,
+      "dvol_m": 541.082,
+      "vol_ratio": NaN,
+      "g20": NaN,
+      "rs20": NaN,
+      "fwd_1d": -0.3105263157894736,
+      "fwd_5d": -0.6973684210526316,
+      "站上MA20": false,
+      "创20日高": false
+    },
+    {
+      "日期": "2026-04-20",
+      "代码": "CAR",
+      "涨幅%": 23.27380347682639,
+      "gain_rank": 3,
+      "dvol_m": 3490.7373700073244,
+      "vol_ratio": 1.5312632694973147,
+      "g20": 509.4093878820014,
+      "rs20": 500.1351504305608,
+      "fwd_1d": 0.1727496468773268,
+      "fwd_5d": -0.6927233720841752,
+      "站上MA20": true,
+      "创20日高": true
+    }
+  ]
+}

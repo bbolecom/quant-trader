@@ -1,28 +1,41 @@
 import SwiftUI
-import UIKit
 
-/// 与 `tiger_theme.py` 保持一致的老虎证券风格色板。
-enum TigerTheme {
-    static let orange = Color(red: 1.0, green: 0.412, blue: 0.0)       // #FF6900
-    static let orangeHover = Color(red: 1.0, green: 0.522, blue: 0.2)  // #FF8533
-    static let background = Color(red: 0.051, green: 0.051, blue: 0.051) // #0D0D0D
-    static let card = Color(red: 0.086, green: 0.086, blue: 0.086)     // #161616
-    static let elevated = Color(red: 0.122, green: 0.122, blue: 0.122) // #1F1F1F
-    static let border = Color(red: 0.165, green: 0.165, blue: 0.165)   // #2A2A2A
-    static let textPrimary = Color.white
-    static let textSecondary = Color(red: 0.557, green: 0.557, blue: 0.576) // #8E8E93
-    static let textTertiary = Color(red: 0.388, green: 0.388, blue: 0.400)  // #636366
-    static let up = Color(red: 0.0, green: 0.753, blue: 0.529)         // #00C087
-    static let down = Color(red: 1.0, green: 0.271, blue: 0.271)        // #FF4545
+/// 与 `ths_theme.py` 保持一致的同花顺风格色板。
+enum ThsTheme {
+    static let accent = Color(red: 0.914, green: 0.188, blue: 0.188)       // #E93030
+    static let accentHover = Color(red: 1.0, green: 0.267, blue: 0.267)  // #FF4444
+    static let background = Color(red: 0.059, green: 0.071, blue: 0.098) // #0F1219
+    static let card = Color(red: 0.102, green: 0.118, blue: 0.157)       // #1A1E28
+    static let elevated = Color(red: 0.137, green: 0.157, blue: 0.200)  // #232833
+    static let border = Color(red: 0.180, green: 0.200, blue: 0.251)     // #2E3340
+    static let textPrimary = Color(red: 0.941, green: 0.945, blue: 0.961) // #F0F1F5
+    static let textSecondary = Color(red: 0.545, green: 0.569, blue: 0.620) // #8B919E
+    static let textTertiary = Color(red: 0.388, green: 0.408, blue: 0.471)  // #636878
+    static let up = Color(red: 0.914, green: 0.188, blue: 0.188)         // #E93030 红涨
+    static let down = Color(red: 0.0, green: 0.659, blue: 0.329)         // #00A854 绿跌
 
-    /// 启动页 / 加载页（白底）
+    static let heroGradient = LinearGradient(
+        colors: [
+            Color(red: 0.12, green: 0.08, blue: 0.10),
+            background,
+        ],
+        startPoint: .top,
+        endPoint: .bottom
+    )
+
+    /// 启动页（白底 + 红色 Logo）
     static let launchBackground = Color.white
-    static let launchTextPrimary = Color(red: 0.051, green: 0.051, blue: 0.051)
-    static let launchTextSecondary = Color(red: 0.388, green: 0.388, blue: 0.400)
+    static let launchTextPrimary = Color(red: 0.059, green: 0.071, blue: 0.098)
+    static let launchTextSecondary = Color(red: 0.388, green: 0.408, blue: 0.471)
 }
 
+/// 兼容旧命名
+typealias TigerTheme = ThsTheme
+
 extension UIColor {
-    static let tigerBackground = UIColor(red: 0.051, green: 0.051, blue: 0.051, alpha: 1)
-    static let tigerCard = UIColor(red: 0.086, green: 0.086, blue: 0.086, alpha: 1)
+    static let thsBackground = UIColor(red: 0.059, green: 0.071, blue: 0.098, alpha: 1)
+    static let thsCard = UIColor(red: 0.102, green: 0.118, blue: 0.157, alpha: 1)
     static let launchBackground = UIColor.white
+    static let tigerBackground = thsBackground
+    static let tigerCard = thsCard
 }

@@ -1,91 +1,115 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var nav = AppNavigation()
     @State private var isLoading = true
     @State private var didError = false
     @State private var reloadToken = 0
 
     var body: some View {
-        ZStack {
-            (isLoading && !didError ? TigerTheme.launchBackground : TigerTheme.background)
-                .ignoresSafeArea()
+        TabView(selection: $nav.selectedTab) {
+            HomeHubView()
+                .tabItem { Label("首页", systemImage: "house.fill") }
+                .tag(0)
 
-            WebView(url: AppConfig.serverURL,
-                    isLoading: $isLoading,
-                    didError: $didError,
-                    reloadToken: $reloadToken)
-                .ignoresSafeArea(edges: .bottom)
+            FeatureHubView()
+                .tabItem { Label("功能", systemImage: "square.grid.2x2.fill") }
+                .tag(1)
 
-            if isLoading && !didError {
-                loadingOverlay
+            DailyPickView()
+                .tabItem { Label("选股", systemImage: "star.circle.fill") }
+                .tag(2)
+
+            terminalTab
+                .tabItem { Label("终端", systemImage: "chart.xyaxis.line") }
+                .tag(3)
+
+            ProfileView()
+                .tabItem { Label("我的", systemImage: "person.fill") }
+                .tag(4)
+        }
+        .environmentObject(nav)
+        .tint(ThsTheme.accent)
+        .preferredColorScheme(.dark)
+        .onAppear { configureTabBar() }
+    }
+
+    private func configureTabBar() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.thsCard
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+
+    private var terminalTab: some View {
+        NavigationStack {
+            ZStack {
+                ThsTheme.background.ignoresSafeArea()
+                WebView(url: AppSettings.shared.serverURL,
+                        isLoading: $isLoading,
+                        didError: $didError,
+                        reloadToken: $reloadToken)
+                    .ignoresSafeArea(edges: .bottom)
+                if isLoading && !didError { loadingOverlay }
+                if didError { errorOverlay }
             }
-
-            if didError {
-                errorOverlay
+            .navigationTitle("量化终端")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        didError = false
+                        isLoading = true
+                        reloadToken += 1
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
             }
         }
-        .tint(TigerTheme.orange)
         .preferredColorScheme(isLoading && !didError ? .light : .dark)
-        .statusBarHidden(false)
     }
 
     private var loadingOverlay: some View {
-        VStack(spacing: 18) {
+        VStack(spacing: 20) {
             Image("AppLogo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 56, height: 56)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
-
-            ProgressView()
-                .tint(TigerTheme.orange)
-                .scaleEffect(1.1)
-
-            Text("量化策略")
-                .font(.headline.weight(.semibold))
-                .foregroundStyle(TigerTheme.launchTextPrimary)
-
-            Text("加载中…")
-                .font(.footnote)
-                .foregroundStyle(TigerTheme.launchTextSecondary)
+                .frame(width: 72, height: 72)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            ProgressView().tint(ThsTheme.accent).scaleEffect(1.2)
+            Text("量化策略终端").font(.headline.weight(.bold))
+            Text("加载 Streamlit…").font(.footnote).foregroundStyle(ThsTheme.launchTextSecondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(TigerTheme.launchBackground)
+        .background(ThsTheme.launchBackground)
     }
 
     private var errorOverlay: some View {
         VStack(spacing: 16) {
             Image(systemName: "wifi.exclamationmark")
-                .font(.system(size: 42))
-                .foregroundStyle(TigerTheme.orange)
-
-            Text("无法连接到服务")
-                .font(.headline.weight(.semibold))
-                .foregroundStyle(TigerTheme.textPrimary)
-
-            Text("请确认服务已部署/启动，且网络可访问：\n\(AppConfig.serverURLString)")
-                .font(.footnote)
+                .font(.system(size: 44))
+                .foregroundStyle(ThsTheme.accent)
+            Text("无法连接到服务").font(.headline.weight(.semibold))
+            Text(AppSettings.shared.streamlitURL)
+                .font(.caption)
+                .foregroundStyle(ThsTheme.textTertiary)
                 .multilineTextAlignment(.center)
-                .foregroundStyle(TigerTheme.textSecondary)
-
+                .textSelection(.enabled)
             Button {
                 didError = false
                 isLoading = true
                 reloadToken += 1
             } label: {
                 Label("重试", systemImage: "arrow.clockwise")
-                    .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .tint(TigerTheme.orange)
+            .tint(ThsTheme.accent)
         }
         .padding(28)
-        .background(TigerTheme.card, in: RoundedRectangle(cornerRadius: 16))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(TigerTheme.border, lineWidth: 1)
-        )
+        .thsCard()
         .padding(.horizontal, 24)
     }
 }

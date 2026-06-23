@@ -1,0 +1,26 @@
+{
+  "inverse_etf": "SVIX",
+  "ma_window": 50,
+  "lookback_etf_days": 450,
+  "lookback_csp_days": 550,
+  "csp": {
+    "pool": "default",
+    "custom_tickers": ["NVDA", "AMD", "TSLA", "WDC", "SNDK"],
+    "min_dollar_vol_m": 500,
+    "min_rv_pct": 30,
+    "max_rv_pct": 70,
+    "top_n": 5,
+    "max_scan": 20
+  },
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

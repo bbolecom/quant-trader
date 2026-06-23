@@ -1,0 +1,213 @@
+{
+  "long": {
+    "min_gain_pct": 2.5,
+    "max_gain_pct": 5.0,
+    "min_vol_ratio": 1.3,
+    "max_vol_ratio": 1.65,
+    "min_close_strength": 0.7,
+    "min_ret_5d_pct": 4.0,
+    "max_ret_5d_pct": 18.0,
+    "min_gain_20d_pct": 4.0,
+    "max_gain_20d_pct": 25.0,
+    "min_rs_spy_20d_pct": 3.0,
+    "max_rs_spy_20d_pct": 18.0,
+    "min_dvol_m": 300.0,
+    "min_setup_win_rate": 0.625,
+    "min_setup_samples": 5,
+    "require_above_ma50": true,
+    "require_spy_ma20": true,
+    "require_spy_positive_5d": true,
+    "require_spy_positive_1d": true,
+    "min_spy_1d_pct": 0.15,
+    "require_green_candle": true,
+    "top_n": 2
+  },
+  "down": {
+    "parabolic_ret_5d": 0.22,
+    "parabolic_ret_20d": 0.55,
+    "shrink_vol_max": 0.9,
+    "shrink_vol_min_ret_5d": 0.2,
+    "vol_dump_min_ratio": 3.5,
+    "vol_dump_max_ret_5d": -0.04,
+    "blowoff_min_ratio": 2.0,
+    "blowoff_ret_5d_min": 0.05,
+    "blowoff_ret_5d_max": 0.18,
+    "blowoff_dvol_min_m": 150.0,
+    "blowoff_dvol_max_m": 1000.0,
+    "weak_close_max": 0.35,
+    "weak_close_min_vol": 1.5,
+    "mega_dvol_m": 800.0,
+    "mega_ret_5d": 0.15,
+    "extended_off_ma_ret_5d": 0.15,
+    "extended_off_ma_max_vol": 1.5,
+    "active_avoid_rules": [
+      "D4_mega",
+      "D2_dump",
+      "D1_blowoff"
+    ],
+    "rule_horizons": {
+      "D3_shrink": "5d",
+      "D4_mega": "5d",
+      "D_parabolic": "5d",
+      "D2_dump": "5d",
+      "D1_blowoff": "20d"
+    },
+    "short_term_avoid_rules": [
+      "D3_shrink",
+      "D4_mega",
+      "D_parabolic",
+      "D2_dump"
+    ],
+    "income_conflict_min_ret_20d": 0.35
+  },
+  "meta": {
+    "updated": "2026-06-23",
+    "method": "真实量价网格 + 样本内寻优 / 样本外验证",
+    "train_end": "2023-12-31",
+    "long_search": {
+      "is": {
+        "n": 40,
+        "win_rate": 0.625,
+        "fwd_mean": 0.0016005447694889146,
+        "fwd_median": 0.0047835010821511495
+      },
+      "oos": {
+        "n": 21,
+        "win_rate": 0.6666666666666666,
+        "fwd_mean": 0.004242901853705861,
+        "fwd_median": 0.0054974132773848
+      },
+      "horizon": "fwd_1d",
+      "spy_refine": true,
+      "min_spy_1d_pct": 0.15
+    },
+    "down_search": {
+      "is_n": 1444,
+      "is_down_rate": 0.5290858725761773,
+      "is_fwd_mean": 0.007649553878069358,
+      "oos_n": 1250,
+      "oos_down_rate": 0.4456,
+      "horizon": "fwd_20d",
+      "horizon_5d": {
+        "is_n": 1397,
+        "is_down_rate": 0.5304223335719399,
+        "oos_n": 1154,
+        "oos_down_rate": 0.47053726169844023
+      },
+      "per_rule": {
+        "D3_shrink": {
+          "is": {
+            "n": 770,
+            "down_rate": 0.4896103896103896,
+            "fwd_mean": 0.03953961847005171,
+            "horizon": "5d"
+          },
+          "oos": {
+            "n": 366,
+            "down_rate": 0.4726775956284153,
+            "fwd_mean": 0.06369616269232264,
+            "horizon": "5d"
+          },
+          "params": {
+            "shrink_vol_min_ret_5d": 0.2,
+            "shrink_vol_max": 0.9
+          },
+          "best_horizon": "5d"
+        },
+        "D4_mega": {
+          "is": {
+            "n": 634,
+            "down_rate": 0.5173501577287066,
+            "fwd_mean": 0.01758692997367534,
+            "horizon": "5d"
+          },
+          "oos": {
+            "n": 696,
+            "down_rate": 0.492816091954023,
+            "fwd_mean": 0.04494726452270119,
+            "horizon": "5d"
+          },
+          "params": {
+            "mega_ret_5d": 0.15,
+            "mega_dvol_m": 800.0
+          },
+          "best_horizon": "5d"
+        },
+        "parabolic": {
+          "is": {
+            "n": 1823,
+            "down_rate": 0.5008228195282501,
+            "fwd_mean": 0.04192892159835561,
+            "horizon": "5d"
+          },
+          "oos": {
+            "n": 1549,
+            "down_rate": 0.44673983214977403,
+            "fwd_mean": 0.09968328334798068,
+            "horizon": "5d"
+          },
+          "params": {
+            "parabolic_ret_20d": 0.55,
+            "parabolic_ret_5d": 0.22
+          },
+          "best_horizon": "5d"
+        },
+        "D2_dump": {
+          "is": {
+            "n": 438,
+            "down_rate": 0.541095890410959,
+            "fwd_mean": 0.0015512008635213904,
+            "horizon": "5d"
+          },
+          "oos": {
+            "n": 240,
+            "down_rate": 0.425,
+            "fwd_mean": 0.040567508850909755,
+            "horizon": "5d"
+          },
+          "params": {
+            "vol_dump_min_ratio": 3.5,
+            "vol_dump_max_ret_5d": -0.04
+          },
+          "best_horizon": "5d"
+        },
+        "D1_blowoff": {
+          "is": {
+            "n": 356,
+            "down_rate": 0.5140449438202247,
+            "fwd_mean": -0.0028302924489330226,
+            "horizon": "20d"
+          },
+          "oos": {
+            "n": 236,
+            "down_rate": 0.4788135593220339,
+            "fwd_mean": 0.03225838639017066,
+            "horizon": "20d"
+          },
+          "params": {
+            "blowoff_min_ratio": 2.0,
+            "blowoff_ret_5d_min": 0.05,
+            "blowoff_ret_5d_max": 0.18,
+            "blowoff_dvol_min_m": 150.0,
+            "blowoff_dvol_max_m": 1000.0
+          },
+          "best_horizon": "20d"
+        }
+      },
+      "active_avoid_rules": [
+        "D4_mega",
+        "D2_dump",
+        "D1_blowoff"
+      ],
+      "rule_horizons": {
+        "D3_shrink": "5d",
+        "D4_mega": "5d",
+        "D_parabolic": "5d",
+        "D2_dump": "5d",
+        "D1_blowoff": "20d"
+      },
+      "min_down_target": 0.52
+    },
+    "panel_rows": 178207
+  }
+}

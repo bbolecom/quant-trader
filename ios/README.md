@@ -81,6 +81,88 @@ static let serverURLString = "https://你的应用名.streamlit.app"
 
 ---
 
+## v3.0 同花顺式全功能 App
+
+App 升级为 **五 Tab** 结构，系统内 **30+ 功能模块** 全部原生入口：
+
+| Tab | 功能 |
+|-----|------|
+| **首页** | 大盘 Regime · 四宫格指标 · 金刚区快捷入口 · 8 大分类 · 模块运行状态 |
+| **功能** | 全系统功能清单（聚合/动量/量价/规律/期权/综合/筛选/实验室） |
+| **选股** | 高胜率≥80% · 观察池 · 模块信号 · 策略目录 |
+| **终端** | Streamlit 全平台（回测/寻优/期权/模拟盘等 18 个 Tab） |
+| **我的** | **可编辑** JSON 基址 + Streamlit 地址 · 刷新 · 连接说明 |
+
+### 原生支持的模块 JSON
+
+每个功能点可点击进入 **ModuleDetailView**，自动拉取对应 `today.json`：
+
+- 暴涨80%规则 · 暴涨扫描 A/B/C · SPCE投机池
+- 资金流向 · Meme规律 · 三腿策略 · Universal舰队
+- 以及 strategy_catalog 登记的全部模块
+
+功能清单文件：`research/app_manifest.json`（内置在 App Bundle，离线可浏览）
+
+### 连接 Mac（推荐局域网）
+
+```bash
+cd /Users/Admin/Desktop/666
+./run.sh   # 默认启动 8501 Streamlit + 8502 JSON 静态服务
+python daily_pick.py   # 刷新全部 today.json
+python -m quant.app_manifest   # 单独导出功能清单
+```
+
+在 App **「我的」** Tab 填写：
+
+- **JSON 基址**：`http://你的MacIP:8502/`（注意末尾斜杠）
+- **Streamlit**：`http://你的MacIP:8501`
+
+无需再改代码重新编译（除非换默认云端地址）。
+
+---
+
+## v2.1 原生界面升级（历史）
+
+App 现为 **三 Tab** 结构（深色同花顺风格）：
+
+| Tab | 功能 |
+|-----|------|
+| **今日选股** | 高胜率≥80%可执行 · 观察池 · 模块信号横滑 · 胜率/年化/回撤 · 详情 Sheet · 设置 |
+| **量化终端** | WebView 加载 Streamlit 全平台 |
+| **策略** | 离线策略说明 + 搜索 |
+
+### 今日选股 Tab 亮点
+
+- **Regime 大盘横幅**：SPY / MA50 / 选股时间
+- **高胜率可执行**：仅展示历史胜率≥80%且可开仓，卡片含回测三指标
+- **高胜率观察池**：规则达标、待 T+1/T+3 确认
+- **模块信号**：横向滚动各策略产出概览
+- **点击卡片**：弹出详情（策略动作、回测来源、完整理由）
+- **设置页**：JSON 地址、刷新时间、连接说明
+
+### 让 iPhone 显示最新选股
+
+1. 在 Mac 上运行：`python daily_pick.py`（或双击「每日选股_运行一次.command」）
+2. 启动 JSON 静态服务（与 Streamlit 同网段）：
+
+```bash
+cd /Users/Admin/Desktop/666/research
+python -m http.server 8502 --bind 0.0.0.0
+```
+
+或一键：`SERVE_DAILY_PICK_JSON=1 ./run.sh`
+
+3. 编辑 `ios/Sources/Config.swift`：
+   - `serverURLString` → Streamlit 地址（如 `http://192.168.1.20:8501`）
+   - `dailyPickJSONURLString` → `http://192.168.1.20:8502/daily_pick_today.json`
+   - 若留空 JSON 地址且 Streamlit 为 `http://IP:8501`，App 会自动尝试 `http://IP:8502/daily_pick_today.json`
+
+4. Xcode 重新 Run 到设备。
+
+> Streamlit Cloud 无法直接提供 JSON 文件；云端部署时原生 Tab 需自建 JSON 托管或使用局域网自托管。
+
+---
+
 ## 关于签名 / 账号
 
 - **免费 Apple ID**：可以装到自己的真机，但证书 **7 天过期**，过期后需在 Xcode 重新 Run 一次；同时安装的自签 App 数量有限。

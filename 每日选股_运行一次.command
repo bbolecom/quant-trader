@@ -15,7 +15,7 @@ fi
 echo "=========================================="
 echo "  正在执行每日选股…"
 echo "=========================================="
-python screen_daily.py
+python daily_pick.py
 echo ""
-echo "完成。结果已追加到 screen_history.csv"
+echo "完成。结果见 research/daily_pick_today.json（无票日也会记录「观望」）"
 echo "（关闭此窗口即可）"

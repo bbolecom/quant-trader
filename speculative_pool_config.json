@@ -1,0 +1,21 @@
+{
+  "archetype": "SPCE",
+  "min_spikes15": 5,
+  "min_max_gain_pct": 25.0,
+  "min_mcap_b": 0.05,
+  "max_mcap_b": 5.0,
+  "min_med_dvol_m": 15.0,
+  "max_med_dvol_m": 800.0,
+  "pool_size": 50,
+  "core_size": 25,
+  "enrich_live": true,
+  "events_csv": "research/gainer_top100_events.csv",
+  "shares_cache": "research/shares_cache.json",
+  "outputs": {
+    "json": "research/speculative_pool.json",
+    "csv": "research/speculative_pool.csv"
+  },
+  "notify": {
+    "desktop": true
+  }
+}

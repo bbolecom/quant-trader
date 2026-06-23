@@ -1,0 +1,30 @@
+/Users/Admin/Desktop/666/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+$SQ: possibly delisted; no timezone found
+
+1 Failed download:
+['SQ']: possibly delisted; no timezone found
+$SQ: possibly delisted; no timezone found
+
+1 Failed download:
+['SQ']: possibly delisted; no timezone found
+候选 760 只 · 成交额门槛 ≥ $30M · 2019-01-01~2026-06-22
+有效行情 759 只
+流动性通过 459 只
+事件样本 243734 条 → /Users/Admin/Desktop/666/research/move_pattern_events.csv
+分桶统计 160 组 → /Users/Admin/Desktop/666/research/move_pattern_buckets.csv
+规则 2 条 → /Users/Admin/Desktop/666/research/move_pattern_rules.json
+今日命中 2 条 → /Users/Admin/Desktop/666/research/move_pattern_today.csv
+
+================================================================
+资金轨迹规律 · 挖掘报告
+================================================================
+样本 243734 条 · 覆盖 451 只
+
+📈 做多规律（上涨前轨迹） (1 条)
+  · 量比>2.5 · 5日涨幅0~5% · 成交额200M-1B · 站上MA50
+    样本=148  胜率=62.8%  后20日均=3.4%  → 资金堆量+中期正动量 → 关注突破/趋势延续（做多）
+
+📉 做空/回避规律（下跌前轨迹） (1 条)
+  · 量比>2.5 · 5日跌幅<-5% · 成交额>1B · 站上MA50
+    样本=45  胜率=62.2%  后20日均=-2.5%  → 放量走弱 → 关注反弹空/卖Put收租或回避

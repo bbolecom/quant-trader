@@ -1,0 +1,126 @@
+{
+  "name": "5×圣杯舰队（放宽三标 · 全市场）",
+  "account_size": 10000,
+  "labels": ["账户1", "账户2", "账户3", "账户4", "账户5"],
+  "backtest_years": 5,
+  "target_profile": {
+    "label": "放宽三标",
+    "ann_return": 0.50,
+    "max_dd": -0.20,
+    "win_rate": 0.85,
+    "note": "年化>50%、最大回撤<20%、胜率≥85%（全市场459只×CSP网格）"
+  },
+  "scan_source": "market_triple_scan · ann50/dd20/wr85 · min_dvol $20M",
+  "accounts": [
+    {
+      "id": "acct1",
+      "label": "账户1",
+      "role": "AMPX·CSP",
+      "strategy_type": "csp",
+      "ticker": "AMPX",
+      "csp_params": {
+        "delta": 0.2,
+        "ma_window": 50,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "description": "AMPX 卖 Put · δ=0.20 · MA50 · 75%。年化 75.8%，回撤 -19.1%，胜率 92.7%。",
+      "anchor_stats": {
+        "source": "market_triple_scan · relaxed",
+        "ann_return": 0.758083938420838,
+        "max_dd": -0.19130284523093155,
+        "win_rate": 0.926829268292683,
+        "trade_count": 41
+      }
+    },
+    {
+      "id": "acct2",
+      "label": "账户2",
+      "role": "KEEL·CSP",
+      "strategy_type": "csp",
+      "ticker": "KEEL",
+      "csp_params": {
+        "delta": 0.2,
+        "ma_window": 50,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "description": "KEEL 卖 Put · δ=0.20 · MA50 · 75%。年化 83.7%，回撤 -15.6%，胜率 87.9%。",
+      "anchor_stats": {
+        "source": "market_triple_scan · relaxed",
+        "ann_return": 0.8366718197985767,
+        "max_dd": -0.1564285323943525,
+        "win_rate": 0.8785714285714286,
+        "trade_count": 70
+      }
+    },
+    {
+      "id": "acct3",
+      "label": "账户3",
+      "role": "NBIS·CSP",
+      "strategy_type": "csp",
+      "ticker": "NBIS",
+      "csp_params": {
+        "delta": 0.25,
+        "ma_window": 0,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "description": "NBIS 卖 Put · δ=0.25 · 无MA · 75%。年化 87.5%，回撤 -12.6%，胜率 93.2%。",
+      "anchor_stats": {
+        "source": "market_triple_scan · relaxed",
+        "ann_return": 0.8746257804843955,
+        "max_dd": -0.12622642951396423,
+        "win_rate": 0.9324324324324325,
+        "trade_count": 74
+      }
+    },
+    {
+      "id": "acct4",
+      "label": "账户4",
+      "role": "SNDK·CSP",
+      "strategy_type": "csp",
+      "ticker": "SNDK",
+      "csp_params": {
+        "delta": 0.25,
+        "ma_window": 0,
+        "alloc_pct": 0.75,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "description": "SNDK 卖 Put · δ=0.25 · 无MA · 75%。年化 74.6%，回撤 -7.8%，胜率 96.6%。",
+      "anchor_stats": {
+        "source": "market_triple_scan · relaxed",
+        "ann_return": 0.745505,
+        "max_dd": -0.07795765652281927,
+        "win_rate": 0.9655172413793104,
+        "trade_count": 58
+      }
+    },
+    {
+      "id": "acct5",
+      "label": "账户5",
+      "role": "QUBT·CSP保守",
+      "strategy_type": "csp",
+      "ticker": "QUBT",
+      "csp_params": {
+        "delta": 0.15,
+        "ma_window": 50,
+        "alloc_pct": 0.5,
+        "take_profit": 0.5,
+        "dte_days": 35
+      },
+      "description": "QUBT 卖 Put · δ=0.15 · MA50 · 50%仓位。年化 57.9%，回撤 -18.2%，胜率 87.2%。",
+      "anchor_stats": {
+        "source": "market_triple_scan · relaxed",
+        "ann_return": 0.5792858964276528,
+        "max_dd": -0.18249750301477075,
+        "win_rate": 0.8721804511278195,
+        "trade_count": 133
+      }
+    }
+  ]
+}

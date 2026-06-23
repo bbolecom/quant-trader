@@ -4,13 +4,32 @@ __pycache__/
 .pytest_cache/
 scan_history.csv
 screen_history.csv
+vrp_history.csv
 paper_account.json
 scan.log
 scan.err.log
+vrp.log
+vrp.err.log
+weekly_soup.log
+weekly_soup.err.log
+weekly_soup_history.csv
+vrp.err.log
 .DS_Store
 .streamlit/secrets.toml
+# research 大型回测 CSV / 期权缓存（本地生成，不上云）
+research/*.csv
+research/options_cache/
+holy_grail_full.log
 .github_token
 .tools/
+com.quant.*.plist
+daily_pick_history.csv
+gain15_daily_history.csv
+pattern_daily_history.csv
+strategy_history.csv
+sndk_iron_history.csv
+surge_scan_history.csv
+calendar_history.csv
 
 # 策略搜索缓存与产物
 _short_term_cache.pkl

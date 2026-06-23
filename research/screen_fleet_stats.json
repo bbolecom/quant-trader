@@ -1,0 +1,127 @@
+{
+  "name": "5×圣杯舰队（放宽三标 · 全市场）",
+  "account_size": 10000.0,
+  "years": 5.0,
+  "generated": "2026-06-22",
+  "data_end": "2026-06-22",
+  "target_profile": {
+    "label": "放宽三标",
+    "ann_return": 0.5,
+    "max_dd": -0.2,
+    "win_rate": 0.85,
+    "note": "年化>50%、最大回撤<20%、胜率≥85%（全市场459只×CSP网格）"
+  },
+  "note": "CSP 账户指标来自 triple_target_scan 锚点",
+  "accounts": [
+    {
+      "account_id": "acct1",
+      "label": "账户1",
+      "role": "AMPX·CSP",
+      "description": "AMPX 卖 Put · δ=0.20 · MA50 · 75%。年化 75.8%，回撤 -19.1%，胜率 92.7%。",
+      "preset_id": "csp",
+      "preset_name": "CSP AMPX δ=0.2 MA50",
+      "strategy_type": "csp",
+      "stats": {
+        "years": 5.0,
+        "ann_return": 0.758083938420838,
+        "total_return": 0.0,
+        "max_dd": -0.19130284523093155,
+        "sharpe": 0.0,
+        "period_win_rate": 0.926829268292683,
+        "trade_win_rate": 0.926829268292683,
+        "rebalance_count": 41,
+        "final_equity": 167956.97011355316,
+        "updated": "2026-06-22",
+        "source": "market_triple_scan · relaxed"
+      }
+    },
+    {
+      "account_id": "acct2",
+      "label": "账户2",
+      "role": "KEEL·CSP",
+      "description": "KEEL 卖 Put · δ=0.20 · MA50 · 75%。年化 83.7%，回撤 -15.6%，胜率 87.9%。",
+      "preset_id": "csp",
+      "preset_name": "CSP KEEL δ=0.2 MA50",
+      "strategy_type": "csp",
+      "stats": {
+        "years": 5.0,
+        "ann_return": 0.8366718197985767,
+        "total_return": 0.0,
+        "max_dd": -0.1564285323943525,
+        "sharpe": 0.0,
+        "period_win_rate": 0.8785714285714286,
+        "trade_win_rate": 0.8785714285714286,
+        "rebalance_count": 70,
+        "final_equity": 209005.54734804362,
+        "updated": "2026-06-22",
+        "source": "market_triple_scan · relaxed"
+      }
+    },
+    {
+      "account_id": "acct3",
+      "label": "账户3",
+      "role": "NBIS·CSP",
+      "description": "NBIS 卖 Put · δ=0.25 · 无MA · 75%。年化 87.5%，回撤 -12.6%，胜率 93.2%。",
+      "preset_id": "csp",
+      "preset_name": "CSP NBIS δ=0.25 无MA",
+      "strategy_type": "csp",
+      "stats": {
+        "years": 5.0,
+        "ann_return": 0.8746257804843955,
+        "total_return": 0.0,
+        "max_dd": -0.12622642951396423,
+        "sharpe": 0.0,
+        "period_win_rate": 0.9324324324324325,
+        "trade_win_rate": 0.9324324324324325,
+        "rebalance_count": 74,
+        "final_equity": 231511.69064558917,
+        "updated": "2026-06-22",
+        "source": "market_triple_scan · relaxed"
+      }
+    },
+    {
+      "account_id": "acct4",
+      "label": "账户4",
+      "role": "SNDK·CSP",
+      "description": "SNDK 卖 Put · δ=0.25 · 无MA · 75%。年化 74.6%，回撤 -7.8%，胜率 96.6%。",
+      "preset_id": "csp",
+      "preset_name": "CSP SNDK δ=0.25 无MA",
+      "strategy_type": "csp",
+      "stats": {
+        "years": 5.0,
+        "ann_return": 0.745505,
+        "total_return": 0.0,
+        "max_dd": -0.07795765652281927,
+        "sharpe": 0.0,
+        "period_win_rate": 0.9655172413793104,
+        "trade_win_rate": 0.9655172413793104,
+        "rebalance_count": 58,
+        "final_equity": 162033.75104749025,
+        "updated": "2026-06-22",
+        "source": "market_triple_scan · relaxed"
+      }
+    },
+    {
+      "account_id": "acct5",
+      "label": "账户5",
+      "role": "QUBT·CSP保守",
+      "description": "QUBT 卖 Put · δ=0.15 · MA50 · 50%仓位。年化 57.9%，回撤 -18.2%，胜率 87.2%。",
+      "preset_id": "csp",
+      "preset_name": "CSP QUBT δ=0.15 MA50",
+      "strategy_type": "csp",
+      "stats": {
+        "years": 5.0,
+        "ann_return": 0.5792858964276528,
+        "total_return": 0.0,
+        "max_dd": -0.18249750301477075,
+        "sharpe": 0.0,
+        "period_win_rate": 0.8721804511278195,
+        "trade_win_rate": 0.8721804511278195,
+        "rebalance_count": 133,
+        "final_equity": 98243.4906790201,
+        "updated": "2026-06-22",
+        "source": "market_triple_scan · relaxed"
+      }
+    }
+  ]
+}

@@ -1,16 +1,39 @@
 import Foundation
 
-/// 全局配置：把你部署后的服务地址填到这里。
-///
-/// 两种来源任选其一：
-///   1. Streamlit Community Cloud（推荐）：形如 https://your-app.streamlit.app
-///   2. 自己电脑/局域网自托管：形如 http://192.168.1.20:8501
-///      （自托管走 http 时，需保留 Info.plist 中的 ATS 例外，且手机与电脑在同一 Wi-Fi）
+/// 编译时默认；运行时可在「我的」修改（AppSettings）
 enum AppConfig {
-    /// ⬇️ 改成你自己的地址
-    static let serverURLString = "https://quant-trader-fd3mch56aixtttm5rgyc6i.streamlit.app"
+    static let defaultServerURLString = "https://quant-trader-fd3mch56aixtttm5rgyc6i.streamlit.app"
+
+    /// 兼容旧代码
+    static var serverURLString: String {
+        AppSettings.shared.streamlitURL
+    }
+
+    static var fallbackServerURL: URL {
+        URL(string: defaultServerURLString) ?? URL(string: "https://streamlit.io")!
+    }
 
     static var serverURL: URL {
-        URL(string: serverURLString) ?? URL(string: "https://streamlit.io")!
+        AppSettings.shared.serverURL
+    }
+
+    static var dailyPickJSONURLString: String {
+        AppSettings.shared.jsonBaseURL
+    }
+
+    static var dailyPickURLHint: String {
+        AppSettings.shared.jsonURLHint
+    }
+
+    static func dailyPickCandidateURLs() -> [URL] {
+        var urls: [URL] = []
+        if let u = AppSettings.shared.jsonURL(for: "daily_pick_today.json") {
+            urls.append(u)
+        }
+        if !AppSettings.shared.jsonBaseURL.isEmpty,
+           let u = URL(string: AppSettings.shared.jsonBaseURL + "daily_pick_today.json") {
+            if !urls.contains(u) { urls.append(u) }
+        }
+        return urls
     }
 }

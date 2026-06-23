@@ -1,0 +1,51 @@
+/Users/Admin/Desktop/666/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: BITF"}}}
+$BITF: possibly delisted; no timezone found
+$LAZR: possibly delisted; no timezone found
+$SQ: possibly delisted; no timezone found
+$SAVA: possibly delisted; no timezone found
+
+4 Failed downloads:
+['BITF', 'LAZR', 'SQ', 'SAVA']: possibly delisted; no timezone found
+配置：high_freq · 动量=highfreq Top5
+拉取 204 只标的 (2019-11-01 ~ 2026-06-22) …
+回测 卖Call价差（每日Top10）…
+回测 并行·ETF铁鹰 …
+回测 5×CSP 舰队 …
+  （动量腿已关闭，跳过）
+
+================================================================
+每日选股回测 · 2021-2026 · 配置 high_freq
+================================================================
+SPY 牛市天数：988/1371 (72%)
+
+【整体】
+  可交易笔数：13859
+  笔胜率：     83.3%
+  期初账户：   $10,000
+  期末权益：   $14,416
+  累计收益：   +44.16%
+  年化：       7.0%
+  有信号交易日：0
+  观望条目：   812
+
+【分模块】
+  5×舰队·CSP: 602笔  胜率100.0%  均收益+0.51%
+  卖Call价差: 12585笔  胜率82.7%  均收益+1.17%
+  并行·ETF铁鹰: 672笔  胜率78.4%  均收益-15.03%
+
+明细 → /Users/Admin/Desktop/666/research/daily_pick_2021-2026_high_freq_detail.csv
+成交 → /Users/Admin/Desktop/666/research/daily_pick_2021-2026_high_freq_trades.csv
+
+【2025 可开仓样本 Top10】
+  2021-01-04 [卖Call价差] BILI 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-83.908%
+  2021-01-04 [卖Call价差] BTBT 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益11.354%
+  2021-01-04 [卖Call价差] HIMS 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-34.524%
+  2021-01-04 [卖Call价差] HUT 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-85.859%
+  2021-01-04 [卖Call价差] LI 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益15.73%
+  2021-01-04 [卖Call价差] MSTR 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-77.173%
+  2021-01-04 [卖Call价差] NIO 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-84.192%
+  2021-01-04 [卖Call价差] SMMT 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益17.857%
+  2021-01-04 [卖Call价差] TIGR 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益15.686%
+  2021-01-04 [卖Call价差] UPST 卖Call价差 买:2021-01-04 收盘前 · 卖出 … 卖:2021-01-11 收盘前 · 到期或… 收益-2.583%

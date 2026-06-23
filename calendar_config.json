@@ -1,0 +1,27 @@
+{
+  "tickers": ["NVDA", "PLTR", "AMD", "META", "MSFT", "GOOGL", "QQQ", "TSLA", "MU", "AVGO", "SNDK"],
+  "account_size": 10000,
+  "short_d": 14,
+  "long_d": 21,
+  "hold_trading_days": 5,
+  "k_sigma": 1.0,
+  "iv_mult": 1.1,
+  "iv_pct_max": 0.40,
+  "iv_window": 252,
+  "max_er": 0.45,
+  "earnings_buffer_days": 7,
+  "max_debit_pct": 0.50,
+  "min_dollar_vol_m": 50,
+  "lookback_days": 400,
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "profile": "mixed_balanced",
+  "tickers": ["SNDK"],
+  "account_size": 10000,
+  "call_otm": 0.15,
+  "put_otm": 0.12,
+  "width_pct": 0.02,
+  "max_margin_pct": 0.25,
+  "min_dte": 2,
+  "max_dte": 14,
+  "min_oi": 50,
+  "expiry": null,
+  "fleet": {
+    "enabled": true,
+    "account_size": 10000,
+    "description": "mixed_balanced：SNDK顺势Put价差 + 廉价CSP + 3 ETF月铁鹰（回测年化~8%、回撤~8%）",
+    "accounts": [
+      {
+        "label": "账户1",
+        "ticker": "SNDK",
+        "strategy": "put_credit",
+        "put_otm": 0.12,
+        "width_pct": 0.02,
+        "max_margin_pct": 0.50,
+        "min_dte": 2,
+        "max_dte": 14,
+        "min_oi": 50,
+        "note": "高波顺势·只卖下方Put，不卖Call"
+      },
+      {
+        "label": "账户2",
+        "ticker": "SOFI",
+        "strategy": "csp",
+        "otm": 0.10,
+        "max_margin_pct": 0.20,
+        "min_dte": 21,
+        "max_dte": 45,
+        "min_oi": 40,
+        "note": "廉价CSP·$10k可开1张·MA50+50%止盈"
+      },
+      {
+        "label": "账户3",
+        "ticker": "QQQ",
+        "strategy": "iron_condor",
+        "call_otm": 0.03,
+        "put_otm": 0.04,
+        "width_pct": 0.02,
+        "max_margin_pct": 0.25,
+        "min_dte": 21,
+        "max_dte": 45,
+        "min_oi": 40
+      },
+      {
+        "label": "账户4",
+        "ticker": "SPY",
+        "strategy": "iron_condor",
+        "call_otm": 0.03,
+        "put_otm": 0.04,
+        "width_pct": 0.02,
+        "max_margin_pct": 0.25,
+        "min_dte": 21,
+        "max_dte": 45,
+        "min_oi": 40
+      },
+      {
+        "label": "账户5",
+        "ticker": "IWM",
+        "strategy": "iron_condor",
+        "call_otm": 0.03,
+        "put_otm": 0.04,
+        "width_pct": 0.025,
+        "max_margin_pct": 0.25,
+        "min_dte": 21,
+        "max_dte": 45,
+        "min_oi": 40
+      }
+    ]
+  },
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

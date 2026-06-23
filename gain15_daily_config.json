@@ -1,0 +1,20 @@
+{
+  "name": "暴涨80%规则每日扫描",
+  "philosophy": "涨幅>15%+成交额>5000万入观察池；次日/3日确认后输出追多(≥80%暴涨率)或回避(≥80%回调率)信号。",
+  "min_gain_pct": 15.0,
+  "min_dvol_m": 50.0,
+  "gainer_count": 250,
+  "watch_max_days": 5,
+  "use_broad_pool": true,
+  "quick": false,
+  "watch_pool": "research/gain15_watch_pool.json",
+  "outputs": {
+    "today_json": "research/gain15_daily_today.json",
+    "today_csv": "research/gain15_daily_today.csv",
+    "history_csv": "gain15_daily_history.csv"
+  },
+  "notify": {
+    "desktop": true,
+    "only_when_action": true
+  }
+}

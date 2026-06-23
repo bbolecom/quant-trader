@@ -1,0 +1,130 @@
+{
+  "liquidity": {
+    "min_dvol_m": 50.0,
+    "min_avg_dvol_m": 30.0,
+    "min_vol_ratio": 1.0,
+    "min_turnover_pct": 0.3,
+    "require_turnover": true
+  },
+  "threshold": {
+    "up_pct": 2.0,
+    "down_pct": 2.0,
+    "horizon": 5
+  },
+  "up": {
+    "min_vol_ratio": 1.5,
+    "min_ret_5d": 0.2,
+    "min_close_strength": 0.55,
+    "min_turnover_pct": 1.0,
+    "min_dvol_m": 100.0,
+    "require_above_ma50": true,
+    "require_above_ma20": true,
+    "min_up_vol_share": 0.0
+  },
+  "down": {
+    "min_vol_ratio": 2.0,
+    "max_ret_5d": -0.1,
+    "max_close_strength": 0.45,
+    "min_turnover_pct": 1.0,
+    "min_dvol_m": 50.0,
+    "require_below_ma50": false
+  },
+  "min_samples": 60,
+  "min_hit_is": 0.68,
+  "meta": {
+    "updated": "2026-06-23",
+    "method": "真实OHLCV路径+换手率网格 · IS/OOS",
+    "train_end": "2023-12-31",
+    "up_search": {
+      "is": {
+        "n": 270,
+        "hit_rate": 0.7592592592592593,
+        "path_mean": 0.13621429066111793
+      },
+      "oos": {
+        "n": 386,
+        "hit_rate": 0.7694300518134715,
+        "path_mean": 0.15750111238403725
+      },
+      "score": 0.7784187296104395,
+      "params": {
+        "min_vol_ratio": 1.5,
+        "min_ret_5d": 0.2,
+        "min_close_strength": 0.55,
+        "min_turnover_pct": 1.0,
+        "min_dvol_m": 100.0,
+        "require_above_ma20": true,
+        "min_up_vol_share": 0.0
+      }
+    },
+    "down_search": {
+      "is": {
+        "n": 383,
+        "hit_rate": 0.6971279373368147,
+        "path_mean": -0.08510518371885531
+      },
+      "oos": {
+        "n": 281,
+        "hit_rate": 0.6441281138790036,
+        "path_mean": -0.06570877067583814
+      },
+      "score": 0.7009152318742277,
+      "params": {
+        "min_vol_ratio": 2.0,
+        "max_ret_5d": -0.1,
+        "max_close_strength": 0.45,
+        "min_turnover_pct": 1.0,
+        "min_dvol_m": 50.0,
+        "require_below_ma50": false
+      }
+    },
+    "liq_threshold_search": {
+      "up_is": {
+        "n": 270,
+        "hit_rate": 0.8185185185185185,
+        "path_mean": 0.13621429066111793
+      },
+      "down_is": {
+        "n": 383,
+        "hit_rate": 0.7597911227154047,
+        "path_mean": -0.08510518371885531
+      },
+      "up_oos": {
+        "n": 386,
+        "hit_rate": 0.8367875647668394,
+        "path_mean": 0.15750111238403725
+      },
+      "down_oos": {
+        "n": 281,
+        "hit_rate": 0.708185053380783,
+        "path_mean": -0.06570877067583814
+      },
+      "score": 0.7019050827836903
+    },
+    "final_up": {
+      "is": {
+        "n": 270,
+        "hit_rate": 0.8185185185185185,
+        "path_mean": 0.13621429066111793
+      },
+      "oos": {
+        "n": 386,
+        "hit_rate": 0.8367875647668394,
+        "path_mean": 0.15750111238403725
+      }
+    },
+    "final_down": {
+      "is": {
+        "n": 383,
+        "hit_rate": 0.7597911227154047,
+        "path_mean": -0.08510518371885531
+      },
+      "oos": {
+        "n": 281,
+        "hit_rate": 0.708185053380783,
+        "path_mean": -0.06570877067583814
+      }
+    },
+    "panel_rows": 227701
+  }
+}

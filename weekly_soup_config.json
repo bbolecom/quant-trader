@@ -1,0 +1,25 @@
+{
+  "tickers": ["SNDK", "INTC", "MU"],
+  "account_size": 10000,
+  "short_delta": 0.10,
+  "spread_width": 25,
+  "dte_days": 7,
+  "max_margin_pct": 0.25,
+  "lookback_days": 550,
+  "iron_condor": {
+    "enabled": true,
+    "call_delta": 0.05,
+    "call_width": null
+  },
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "target_rate": 0.8,
+  "min_sample_n": 20,
+  "base_rates": {
+    "surge": 0.23,
+    "drop": 0.272
+  },
+  "surge_rules_80plus": [
+    {
+      "rule": "次日涨>10%+3日累计涨>20%",
+      "n": 152,
+      "surge_rate": 0.901,
+      "drop_rate": 0.039,
+      "avg_fwd_5d_pct": 51.27,
+      "median_fwd_5d_pct": 33.29
+    },
+    {
+      "rule": "Top3+次日涨>10%+3日累计涨>20%",
+      "n": 105,
+      "surge_rate": 0.886,
+      "drop_rate": 0.048,
+      "avg_fwd_5d_pct": 53.49,
+      "median_fwd_5d_pct": 36.23
+    },
+    {
+      "rule": "Top3+3日累计涨>20%",
+      "n": 165,
+      "surge_rate": 0.873,
+      "drop_rate": 0.036,
+      "avg_fwd_5d_pct": 45.17,
+      "median_fwd_5d_pct": 32.42
+    },
+    {
+      "rule": "Top3+次日涨>10%+3日累计涨>15%",
+      "n": 134,
+      "surge_rate": 0.858,
+      "drop_rate": 0.045,
+      "avg_fwd_5d_pct": 45.17,
+      "median_fwd_5d_pct": 28.73
+    },
+    {
+      "rule": "Top3+前期涨20~50%+次日涨>15%",
+      "n": 26,
+      "surge_rate": 0.846,
+      "drop_rate": 0.0,
+      "avg_fwd_5d_pct": 42.79,
+      "median_fwd_5d_pct": 21.45
+    },
+    {
+      "rule": "次日涨>10%+3日累计涨>15%",
+      "n": 198,
+      "surge_rate": 0.843,
+      "drop_rate": 0.04,
+      "avg_fwd_5d_pct": 42.46,
+      "median_fwd_5d_pct": 26.98
+    },
+    {
+      "rule": "Top3+3日累计涨>15%",
+      "n": 232,
+      "surge_rate": 0.828,
+      "drop_rate": 0.034,
+      "avg_fwd_5d_pct": 37.41,
+      "median_fwd_5d_pct": 25.42
+    },
+    {
+      "rule": "Top3+次日涨>7%+3日累计涨>12%",
+      "n": 173,
+      "surge_rate": 0.815,
+      "drop_rate": 0.04,
+      "avg_fwd_5d_pct": 39.11,
+      "median_fwd_5d_pct": 25.63
+    }
+  ],
+  "drop_rules_80plus": [
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>15%",
+      "n": 24,
+      "surge_rate": 0.042,
+      "drop_rate": 0.958,
+      "avg_fwd_5d_pct": -34.89,
+      "median_fwd_5d_pct": -32.39
+    },
+    {
+      "rule": "Top3+3日累计跌<-20%",
+      "n": 130,
+      "surge_rate": 0.0,
+      "drop_rate": 0.938,
+      "avg_fwd_5d_pct": -30.93,
+      "median_fwd_5d_pct": -27.87
+    },
+    {
+      "rule": "Top3+3日累计跌<-15%",
+      "n": 231,
+      "surge_rate": 0.004,
+      "drop_rate": 0.913,
+      "avg_fwd_5d_pct": -25.18,
+      "median_fwd_5d_pct": -22.29
+    },
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>12%",
+      "n": 28,
+      "surge_rate": 0.036,
+      "drop_rate": 0.893,
+      "avg_fwd_5d_pct": -31.64,
+      "median_fwd_5d_pct": -27.76
+    },
+    {
+      "rule": "次日跌<-20%",
+      "n": 74,
+      "surge_rate": 0.054,
+      "drop_rate": 0.878,
+      "avg_fwd_5d_pct": -33.21,
+      "median_fwd_5d_pct": -31.58
+    },
+    {
+      "rule": "前期涨>50%+Top3+次日跌>15%",
+      "n": 75,
+      "surge_rate": 0.053,
+      "drop_rate": 0.853,
+      "avg_fwd_5d_pct": -28.46,
+      "median_fwd_5d_pct": -26.99
+    },
+    {
+      "rule": "MA20下+次日跌>15%",
+      "n": 26,
+      "surge_rate": 0.038,
+      "drop_rate": 0.846,
+      "avg_fwd_5d_pct": -26.27,
+      "median_fwd_5d_pct": -27.31
+    },
+    {
+      "rule": "前期涨>50%+当日涨>30%+次日跌>15%",
+      "n": 57,
+      "surge_rate": 0.053,
+      "drop_rate": 0.842,
+      "avg_fwd_5d_pct": -29.49,
+      "median_fwd_5d_pct": -27.95
+    },
+    {
+      "rule": "次日跌<-15%",
+      "n": 150,
+      "surge_rate": 0.053,
+      "drop_rate": 0.84,
+      "avg_fwd_5d_pct": -25.65,
+      "median_fwd_5d_pct": -25.49
+    },
+    {
+      "rule": "Top10+次日跌>15%",
+      "n": 141,
+      "surge_rate": 0.057,
+      "drop_rate": 0.837,
+      "avg_fwd_5d_pct": -25.77,
+      "median_fwd_5d_pct": -25.35
+    },
+    {
+      "rule": "Top3+MA20上+次日跌>15%",
+      "n": 103,
+      "surge_rate": 0.068,
+      "drop_rate": 0.835,
+      "avg_fwd_5d_pct": -25.43,
+      "median_fwd_5d_pct": -23.57
+    },
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>10%",
+      "n": 30,
+      "surge_rate": 0.033,
+      "drop_rate": 0.833,
+      "avg_fwd_5d_pct": -29.78,
+      "median_fwd_5d_pct": -26.41
+    },
+    {
+      "rule": "Top5+次日跌>15%",
+      "n": 130,
+      "surge_rate": 0.062,
+      "drop_rate": 0.831,
+      "avg_fwd_5d_pct": -26.11,
+      "median_fwd_5d_pct": -25.78
+    },
+    {
+      "rule": "Top3+次日跌>15%",
+      "n": 113,
+      "surge_rate": 0.062,
+      "drop_rate": 0.823,
+      "avg_fwd_5d_pct": -25.41,
+      "median_fwd_5d_pct": -24.41
+    },
+    {
+      "rule": "Top3+3日累计跌<-10%",
+      "n": 369,
+      "surge_rate": 0.019,
+      "drop_rate": 0.821,
+      "avg_fwd_5d_pct": -20.26,
+      "median_fwd_5d_pct": -18.26
+    }
+  ],
+  "best_near_80_surge": [
+    {
+      "rule": "次日涨>10%+3日累计涨>20%",
+      "n": 152,
+      "surge_rate": 0.901,
+      "drop_rate": 0.039,
+      "avg_fwd_5d_pct": 51.27,
+      "median_fwd_5d_pct": 33.29
+    },
+    {
+      "rule": "Top3+次日涨>10%+3日累计涨>20%",
+      "n": 105,
+      "surge_rate": 0.886,
+      "drop_rate": 0.048,
+      "avg_fwd_5d_pct": 53.49,
+      "median_fwd_5d_pct": 36.23
+    },
+    {
+      "rule": "Top3+3日累计涨>20%",
+      "n": 165,
+      "surge_rate": 0.873,
+      "drop_rate": 0.036,
+      "avg_fwd_5d_pct": 45.17,
+      "median_fwd_5d_pct": 32.42
+    },
+    {
+      "rule": "Top3+次日涨>10%+3日累计涨>15%",
+      "n": 134,
+      "surge_rate": 0.858,
+      "drop_rate": 0.045,
+      "avg_fwd_5d_pct": 45.17,
+      "median_fwd_5d_pct": 28.73
+    },
+    {
+      "rule": "Top3+前期涨20~50%+次日涨>15%",
+      "n": 26,
+      "surge_rate": 0.846,
+      "drop_rate": 0.0,
+      "avg_fwd_5d_pct": 42.79,
+      "median_fwd_5d_pct": 21.45
+    },
+    {
+      "rule": "次日涨>10%+3日累计涨>15%",
+      "n": 198,
+      "surge_rate": 0.843,
+      "drop_rate": 0.04,
+      "avg_fwd_5d_pct": 42.46,
+      "median_fwd_5d_pct": 26.98
+    },
+    {
+      "rule": "Top3+3日累计涨>15%",
+      "n": 232,
+      "surge_rate": 0.828,
+      "drop_rate": 0.034,
+      "avg_fwd_5d_pct": 37.41,
+      "median_fwd_5d_pct": 25.42
+    },
+    {
+      "rule": "Top3+次日涨>7%+3日累计涨>12%",
+      "n": 173,
+      "surge_rate": 0.815,
+      "drop_rate": 0.04,
+      "avg_fwd_5d_pct": 39.11,
+      "median_fwd_5d_pct": 25.63
+    },
+    {
+      "rule": "Top3+涨幅15~25%+次日涨>15%",
+      "n": 49,
+      "surge_rate": 0.796,
+      "drop_rate": 0.102,
+      "avg_fwd_5d_pct": 42.65,
+      "median_fwd_5d_pct": 25.76
+    },
+    {
+      "rule": "次日涨>7%+3日累计涨>12%",
+      "n": 278,
+      "surge_rate": 0.795,
+      "drop_rate": 0.036,
+      "avg_fwd_5d_pct": 36.39,
+      "median_fwd_5d_pct": 23.38
+    },
+    {
+      "rule": "Top3+前期涨20~50%+次日涨>12%",
+      "n": 38,
+      "surge_rate": 0.763,
+      "drop_rate": 0.026,
+      "avg_fwd_5d_pct": 32.76,
+      "median_fwd_5d_pct": 18.55
+    },
+    {
+      "rule": "Top3+次日涨>5%+3日累计涨>10%",
+      "n": 226,
+      "surge_rate": 0.761,
+      "drop_rate": 0.035,
+      "avg_fwd_5d_pct": 34.33,
+      "median_fwd_5d_pct": 22.27
+    },
+    {
+      "rule": "次日涨>5%+3日累计涨>10%",
+      "n": 357,
+      "surge_rate": 0.745,
+      "drop_rate": 0.031,
+      "avg_fwd_5d_pct": 32.27,
+      "median_fwd_5d_pct": 20.85
+    },
+    {
+      "rule": "Top3+3日累计涨>10%",
+      "n": 347,
+      "surge_rate": 0.741,
+      "drop_rate": 0.035,
+      "avg_fwd_5d_pct": 29.79,
+      "median_fwd_5d_pct": 19.93
+    },
+    {
+      "rule": "Top3+涨幅15~25%+次日涨>12%",
+      "n": 77,
+      "surge_rate": 0.727,
+      "drop_rate": 0.13,
+      "avg_fwd_5d_pct": 32.13,
+      "median_fwd_5d_pct": 22.42
+    }
+  ],
+  "best_near_80_drop": [
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>15%",
+      "n": 24,
+      "surge_rate": 0.042,
+      "drop_rate": 0.958,
+      "avg_fwd_5d_pct": -34.89,
+      "median_fwd_5d_pct": -32.39
+    },
+    {
+      "rule": "Top3+3日累计跌<-20%",
+      "n": 130,
+      "surge_rate": 0.0,
+      "drop_rate": 0.938,
+      "avg_fwd_5d_pct": -30.93,
+      "median_fwd_5d_pct": -27.87
+    },
+    {
+      "rule": "Top3+3日累计跌<-15%",
+      "n": 231,
+      "surge_rate": 0.004,
+      "drop_rate": 0.913,
+      "avg_fwd_5d_pct": -25.18,
+      "median_fwd_5d_pct": -22.29
+    },
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>12%",
+      "n": 28,
+      "surge_rate": 0.036,
+      "drop_rate": 0.893,
+      "avg_fwd_5d_pct": -31.64,
+      "median_fwd_5d_pct": -27.76
+    },
+    {
+      "rule": "次日跌<-20%",
+      "n": 74,
+      "surge_rate": 0.054,
+      "drop_rate": 0.878,
+      "avg_fwd_5d_pct": -33.21,
+      "median_fwd_5d_pct": -31.58
+    },
+    {
+      "rule": "前期涨>50%+Top3+次日跌>15%",
+      "n": 75,
+      "surge_rate": 0.053,
+      "drop_rate": 0.853,
+      "avg_fwd_5d_pct": -28.46,
+      "median_fwd_5d_pct": -26.99
+    },
+    {
+      "rule": "MA20下+次日跌>15%",
+      "n": 26,
+      "surge_rate": 0.038,
+      "drop_rate": 0.846,
+      "avg_fwd_5d_pct": -26.27,
+      "median_fwd_5d_pct": -27.31
+    },
+    {
+      "rule": "前期涨>50%+当日涨>30%+次日跌>15%",
+      "n": 57,
+      "surge_rate": 0.053,
+      "drop_rate": 0.842,
+      "avg_fwd_5d_pct": -29.49,
+      "median_fwd_5d_pct": -27.95
+    },
+    {
+      "rule": "次日跌<-15%",
+      "n": 150,
+      "surge_rate": 0.053,
+      "drop_rate": 0.84,
+      "avg_fwd_5d_pct": -25.65,
+      "median_fwd_5d_pct": -25.49
+    },
+    {
+      "rule": "Top10+次日跌>15%",
+      "n": 141,
+      "surge_rate": 0.057,
+      "drop_rate": 0.837,
+      "avg_fwd_5d_pct": -25.77,
+      "median_fwd_5d_pct": -25.35
+    },
+    {
+      "rule": "Top3+MA20上+次日跌>15%",
+      "n": 103,
+      "surge_rate": 0.068,
+      "drop_rate": 0.835,
+      "avg_fwd_5d_pct": -25.43,
+      "median_fwd_5d_pct": -23.57
+    },
+    {
+      "rule": "大盘弱+前期涨>50%+次日跌>10%",
+      "n": 30,
+      "surge_rate": 0.033,
+      "drop_rate": 0.833,
+      "avg_fwd_5d_pct": -29.78,
+      "median_fwd_5d_pct": -26.41
+    },
+    {
+      "rule": "Top5+次日跌>15%",
+      "n": 130,
+      "surge_rate": 0.062,
+      "drop_rate": 0.831,
+      "avg_fwd_5d_pct": -26.11,
+      "median_fwd_5d_pct": -25.78
+    },
+    {
+      "rule": "Top3+次日跌>15%",
+      "n": 113,
+      "surge_rate": 0.062,
+      "drop_rate": 0.823,
+      "avg_fwd_5d_pct": -25.41,
+      "median_fwd_5d_pct": -24.41
+    },
+    {
+      "rule": "Top3+3日累计跌<-10%",
+      "n": 369,
+      "surge_rate": 0.019,
+      "drop_rate": 0.821,
+      "avg_fwd_5d_pct": -20.26,
+      "median_fwd_5d_pct": -18.26
+    }
+  ]
+}

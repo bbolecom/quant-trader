@@ -1,0 +1,126 @@
+{
+  "updated": "2026-06-23",
+  "mode": "highwin",
+  "method": "日频面板 + 严格量价模板 + 次日胜率（≥62%）",
+  "universe_note": "不绑定固定标的；高置信模板过滤后统计",
+  "event_count": 178207,
+  "ticker_count": 99,
+  "min_win_rate": 0.6,
+  "rules_up": [
+    {
+      "id": "gainer_optimized_top",
+      "direction": "up",
+      "pattern": "涨幅榜·寻优Top2（温和涨2.5-5.0% + 量比1.3-1.75 + 形态胜率≥62%）",
+      "conditions": {
+        "source": "gainer_optimize",
+        "top_n": 2
+      },
+      "sample_n": 37,
+      "win_horizon": "1d",
+      "win_label": "次日胜率",
+      "fwd_mean": 0.0186,
+      "fwd_20d_mean": 0.0186,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.6216,
+      "tier": "A",
+      "action": "全市场每日扫描 Top2，仅大盘顺风+历史形态验证日"
+    },
+    {
+      "id": "income_iron_condor",
+      "direction": "up",
+      "pattern": "并行铁鹰×2 无MA (SPY,QQQ)",
+      "conditions": {
+        "source": "continued_search",
+        "params": "{\"tickers\": [\"SPY\", \"QQQ\"], \"n\": 2, \"ma\": false, \"margin\": 2500.0}"
+      },
+      "sample_n": 320,
+      "win_horizon": "1w",
+      "win_label": "后1w胜率",
+      "fwd_mean": 0.1615,
+      "fwd_20d_mean": 0.1615,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 1.0,
+      "tier": "S",
+      "action": "高胜率收租腿：大盘 ETF 铁鹰，与轨迹选股互补"
+    },
+    {
+      "id": "hw_2_5d",
+      "direction": "up",
+      "pattern": "S1·温和涨3-4% + 量比1.3-1.5 + 收强≥70% + 5日涨5-12% + 成交额>10亿 + MA50",
+      "conditions": {
+        "mask_desc": "S1·温和涨3-4% + 量比1.3-1.5 + 收强≥70% + 5日涨5-12% + 成交额>10亿 + MA50"
+      },
+      "sample_n": 76,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0044,
+      "fwd_20d_mean": 0.0044,
+      "fwd_median": 0.0068,
+      "fwd_20d_median": 0.0068,
+      "win_rate": 0.5658,
+      "tier": "S",
+      "action": "堆量温和突破 → 次日延续（严格）"
+    }
+  ],
+  "rules_down": [],
+  "rules": [
+    {
+      "id": "gainer_optimized_top",
+      "direction": "up",
+      "pattern": "涨幅榜·寻优Top2（温和涨2.5-5.0% + 量比1.3-1.75 + 形态胜率≥62%）",
+      "conditions": {
+        "source": "gainer_optimize",
+        "top_n": 2
+      },
+      "sample_n": 37,
+      "win_horizon": "1d",
+      "win_label": "次日胜率",
+      "fwd_mean": 0.0186,
+      "fwd_20d_mean": 0.0186,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.6216,
+      "tier": "A",
+      "action": "全市场每日扫描 Top2，仅大盘顺风+历史形态验证日"
+    },
+    {
+      "id": "income_iron_condor",
+      "direction": "up",
+      "pattern": "并行铁鹰×2 无MA (SPY,QQQ)",
+      "conditions": {
+        "source": "continued_search",
+        "params": "{\"tickers\": [\"SPY\", \"QQQ\"], \"n\": 2, \"ma\": false, \"margin\": 2500.0}"
+      },
+      "sample_n": 320,
+      "win_horizon": "1w",
+      "win_label": "后1w胜率",
+      "fwd_mean": 0.1615,
+      "fwd_20d_mean": 0.1615,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 1.0,
+      "tier": "S",
+      "action": "高胜率收租腿：大盘 ETF 铁鹰，与轨迹选股互补"
+    },
+    {
+      "id": "hw_2_5d",
+      "direction": "up",
+      "pattern": "S1·温和涨3-4% + 量比1.3-1.5 + 收强≥70% + 5日涨5-12% + 成交额>10亿 + MA50",
+      "conditions": {
+        "mask_desc": "S1·温和涨3-4% + 量比1.3-1.5 + 收强≥70% + 5日涨5-12% + 成交额>10亿 + MA50"
+      },
+      "sample_n": 76,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0044,
+      "fwd_20d_mean": 0.0044,
+      "fwd_median": 0.0068,
+      "fwd_20d_median": 0.0068,
+      "win_rate": 0.5658,
+      "tier": "S",
+      "action": "堆量温和突破 → 次日延续（严格）"
+    }
+  ]
+}

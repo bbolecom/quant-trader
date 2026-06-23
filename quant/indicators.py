@@ -121,6 +121,15 @@ def adx(df: pd.DataFrame, window: int = 14) -> pd.DataFrame:
     return pd.DataFrame({"adx": adx_, "plus_di": plus_di, "minus_di": minus_di})
 
 
+def williams_r(df: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Williams %R，范围 [-100, 0]；≥ -20 视为超买区。"""
+    high = df["High"].rolling(period, min_periods=period).max()
+    low = df["Low"].rolling(period, min_periods=period).min()
+    close = df["Close"]
+    denom = (high - low).replace(0.0, pd.NA)
+    return (-100 * (high - close) / denom).fillna(-50.0)
+
+
 def efficiency_ratio(series: pd.Series, window: int = 20) -> pd.Series:
     """考夫曼效率比 (ER)：净位移 / 路程总和，∈ [0, 1]。
 

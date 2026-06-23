@@ -1,0 +1,296 @@
+{
+  "updated": "2026-06-23",
+  "ticker": "SMCI",
+  "method": "真实OHLCV + 换手率 + 5日路径High/Low + 20日收盘（非BS）",
+  "event_count": 1848,
+  "is_rows": 1249,
+  "oos_rows": 599,
+  "avg_dvol_m": 1121.2235212106639,
+  "avg_turnover_pct": 3.798774729261757,
+  "rules_up": [
+    {
+      "rule_id": "up_2",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+5% · MA50上 · 换手≥2.0%",
+      "horizon": "5d_path",
+      "is_n": 23,
+      "is_rate": 0.8260869565217391,
+      "oos_n": 41,
+      "oos_rate": 0.926829268292683,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.05,
+        "ma50": true,
+        "turnover": 2.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_12",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥3.0 · 5日+5% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 16,
+      "is_rate": 0.6875,
+      "oos_n": 8,
+      "oos_rate": 1.0,
+      "filters": {
+        "vol_ratio": 3.0,
+        "ret_5d": 0.05,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_8",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+20% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 23,
+      "is_rate": 0.7391304347826086,
+      "oos_n": 26,
+      "oos_rate": 0.9615384615384616,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.2,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_11",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥2.5 · 5日+10% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 19,
+      "is_rate": 0.6842105263157895,
+      "oos_n": 8,
+      "oos_rate": 1.0,
+      "filters": {
+        "vol_ratio": 2.5,
+        "ret_5d": 0.1,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_3",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+5% · MA50上 · 换手≥3.0%",
+      "horizon": "5d_path",
+      "is_n": 18,
+      "is_rate": 0.7777777777777778,
+      "oos_n": 41,
+      "oos_rate": 0.926829268292683,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.05,
+        "ma50": true,
+        "turnover": 3.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_7",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+15% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 28,
+      "is_rate": 0.75,
+      "oos_n": 31,
+      "oos_rate": 0.9354838709677419,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.15,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_5",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+10% · MA50上 · 换手≥2.0%",
+      "horizon": "5d_path",
+      "is_n": 17,
+      "is_rate": 0.7647058823529411,
+      "oos_n": 38,
+      "oos_rate": 0.9210526315789473,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.1,
+        "ma50": true,
+        "turnover": 2.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_10",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥2.0 · 5日+10% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 23,
+      "is_rate": 0.7391304347826086,
+      "oos_n": 16,
+      "oos_rate": 0.9375,
+      "filters": {
+        "vol_ratio": 2.0,
+        "ret_5d": 0.1,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_4",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+10% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 43,
+      "is_rate": 0.7441860465116279,
+      "oos_n": 38,
+      "oos_rate": 0.9210526315789473,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.1,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    },
+    {
+      "rule_id": "up_1",
+      "direction": "up",
+      "description": "5日路径涨≥2% · 量比≥1.5 · 5日+5% · MA50上",
+      "horizon": "5d_path",
+      "is_n": 63,
+      "is_rate": 0.7301587301587301,
+      "oos_n": 41,
+      "oos_rate": 0.926829268292683,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": 0.05,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "做多"
+    }
+  ],
+  "rules_down": [
+    {
+      "rule_id": "down_15",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 量比≥1.5 · 5日-8% · MA50下",
+      "horizon": "5d_path",
+      "is_n": 15,
+      "is_rate": 0.6666666666666666,
+      "oos_n": 17,
+      "oos_rate": 0.9411764705882353,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": -0.08,
+        "ma50": true,
+        "turnover": 0.0
+      },
+      "action": "回避"
+    },
+    {
+      "rule_id": "down_17",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 量比≥1.5 · 5日-10% · 不限",
+      "horizon": "5d_path",
+      "is_n": 15,
+      "is_rate": 0.7333333333333333,
+      "oos_n": 17,
+      "oos_rate": 0.8823529411764706,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": -0.1,
+        "ma50": false,
+        "turnover": 0.0
+      },
+      "action": "回避"
+    },
+    {
+      "rule_id": "down_16",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 量比≥1.5 · 5日-8% · 不限",
+      "horizon": "5d_path",
+      "is_n": 17,
+      "is_rate": 0.7058823529411765,
+      "oos_n": 18,
+      "oos_rate": 0.8888888888888888,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": -0.08,
+        "ma50": false,
+        "turnover": 0.0
+      },
+      "action": "回避"
+    },
+    {
+      "rule_id": "down_22",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 5日涨>15% + 缩量<1",
+      "horizon": "5d_path",
+      "is_n": 29,
+      "is_rate": 0.7586206896551724,
+      "oos_n": 27,
+      "oos_rate": 0.8148148148148148,
+      "filters": {
+        "template": "5日路径跌≥2% · 5日涨>15% + 缩量<1"
+      },
+      "action": "缩量顶 → 路径跌"
+    },
+    {
+      "rule_id": "down_20",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 5日跌>10%",
+      "horizon": "5d_path",
+      "is_n": 70,
+      "is_rate": 0.7,
+      "oos_n": 108,
+      "oos_rate": 0.8518518518518519,
+      "filters": {
+        "template": "5日路径跌≥2% · 5日跌>10%"
+      },
+      "action": "深跌惯性 → 路径继续下探"
+    },
+    {
+      "rule_id": "down_14",
+      "direction": "down",
+      "description": "5日路径跌≥2% · 量比≥1.5 · 5日-5% · 不限",
+      "horizon": "5d_path",
+      "is_n": 29,
+      "is_rate": 0.7241379310344828,
+      "oos_n": 24,
+      "oos_rate": 0.8333333333333334,
+      "filters": {
+        "vol_ratio": 1.5,
+        "ret_5d": -0.05,
+        "ma50": false,
+        "turnover": 0.0
+      },
+      "action": "回避"
+    }
+  ],
+  "today": {
+    "日期": "2026-05-21",
+    "收盘价特征": {
+      "量比": 0.74,
+      "5日涨跌%": 1.3,
+      "20日涨跌%": 25.1,
+      "换手率%": 4.34,
+      "成交额M": 939.4,
+      "MA50": "上",
+      "收强": 0.78
+    },
+    "命中上涨规律": [],
+    "命中下跌规律": [],
+    "全市场回避标签": [],
+    "全市场做多加分": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Tier A · 5×$10k 舰队（普适规律：并行铁鹰）",
+  "fleet": {
+    "enabled": true,
+    "account_size": 10000,
+    "count": 5,
+    "labels": ["账户1", "账户2", "账户3", "账户4", "账户5"],
+    "ticker_source": "liquid_scan",
+    "liquid_scan": {
+      "enabled": true,
+      "min_dollar_vol_m": 50,
+      "top_n": 5,
+      "prefer_weekly_for_small": true,
+      "use_market_patterns": true,
+      "use_continued_search": true,
+      "exclude_outliers": ["SNDK", "MSTR", "SOXL", "TQQQ"]
+    },
+    "fallback": "weekly_put_spread",
+    "universal_pattern": "parallel_iron_etf",
+    "default_tickers": ["SPY", "QQQ", "IWM", "XLF", "DIA"]
+  },
+  "delta": 0.10,
+  "ma_window": 50,
+  "dte_days": 7,
+  "alloc_pct": 0.25,
+  "take_profit": 0.5,
+  "lookback_days": 550,
+  "max_single_ticker_pct": 0.25,
+  "weekly_soup": {
+    "short_delta": 0.10,
+    "spread_width": 25,
+    "dte_days": 7,
+    "max_margin_pct": 0.25,
+    "iron_condor": true,
+    "call_delta": 0.05
+  },
+  "strategy_mode": "stable",
+  "strategy_modes": {
+    "stable": "路线A · 并行铁鹰舰队",
+    "aggressive": "路线B · 铁鹰85%+动量15%（仅SPY>MA50开动量）"
+  },
+  "backtest_anchor": {
+    "strategy": "并行铁鹰 SPY+QQQ",
+    "ann_return": 0.162,
+    "max_dd": 0.0,
+    "win_rate": 1.0,
+    "note": "continued_search 全市场普适最优，非 SNDK"
+  }
+}

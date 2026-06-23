@@ -1,0 +1,31 @@
+{
+  "name": "flow_action_v3_highwin",
+  "description": "高胜率版 v3：U_S2涨7-15%+收强≥65% + 融资前日>40% + 每日各1笔（笔胜率约56%）",
+  "long_patterns": ["U_S2"],
+  "short_patterns": ["D_S2", "D_OFFERING"],
+  "offering_proxy_pct": 40.0,
+  "long_s2_min_gain_pct": 7.0,
+  "long_s2_max_gain_pct": 15.0,
+  "long_min_close_strength": 0.65,
+  "long_min_vol_ratio": 1.5,
+  "long_max_vol_ratio": 3.0,
+  "long_min_gain_5d_pct": 0.0,
+  "long_max_gain_5d_pct": 30.0,
+  "require_spy_positive_1d": false,
+  "min_spy_1d_pct": 0.0,
+  "short_min_prev_pct": 0.0,
+  "short_max_today_gain_pct": 999.0,
+  "long_top_n": 1,
+  "short_top_n": 1,
+  "min_dvol_m": 50.0,
+  "min_price": 5.0,
+  "long_weight": 0.5,
+  "short_weight": 0.5,
+  "fee_bps": 5.0,
+  "require_spy_bull_for_long": true,
+  "backtest": {
+    "years": 3.0,
+    "initial_capital": 100000,
+    "quick": false
+  }
+}

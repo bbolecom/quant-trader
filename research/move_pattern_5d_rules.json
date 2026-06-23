@@ -1,0 +1,2026 @@
+﻿{
+  "updated": "2026-06-23",
+  "mode": "5d_path",
+  "method": "真实OHLCV · 5日内路径涨≥2.0%/跌≥2.0% · 成交额≥$50.0M · 量比≥1.0 · 换手率≥0.3%",
+  "universe_note": "全市场流动性标的，非 BS 期权回测",
+  "event_count": 227701,
+  "ticker_count": 414,
+  "liquidity": {
+    "min_dvol_m": 50.0,
+    "min_avg_dvol_m": 30.0,
+    "min_vol_ratio": 1.0,
+    "min_turnover_pct": 0.3,
+    "require_turnover": true
+  },
+  "threshold": {
+    "up_pct": 2.0,
+    "down_pct": 2.0,
+    "use_path": true,
+    "use_close": true
+  },
+  "meta": {
+    "liquidity": {
+      "min_dvol_m": 50.0,
+      "min_avg_dvol_m": 30.0,
+      "min_vol_ratio": 1.0,
+      "min_turnover_pct": 0.3,
+      "require_turnover": true
+    },
+    "threshold": {
+      "up_pct": 2.0,
+      "down_pct": 2.0,
+      "horizon": 5
+    },
+    "is_rows": 147402,
+    "oos_rows": 80299,
+    "liquid_rows": 57342,
+    "top_buckets": [
+      {
+        "direction": "up",
+        "desc": "5日内涨≥2% · 量比≥1.5 · 5日涨≥20% · 收强≥55% · 换手≥1.0% · dvol≥$100M · MA50+MA20",
+        "is_hit_rate": 0.8185185185185185,
+        "oos_hit_rate": 0.8367875647668394,
+        "score": 0.8294799462675111,
+        "n": 270
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+        "is_hit_rate": 0.7757,
+        "oos_hit_rate": 0.8029,
+        "score": 0.7907,
+        "n": 107
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+        "is_hit_rate": 0.7204,
+        "oos_hit_rate": 0.7787,
+        "score": 0.7525,
+        "n": 186
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+        "is_hit_rate": 0.7679,
+        "oos_hit_rate": 0.7273,
+        "score": 0.7455,
+        "n": 112
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+        "is_hit_rate": 0.678,
+        "oos_hit_rate": 0.7945,
+        "score": 0.7421,
+        "n": 118
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+        "is_hit_rate": 0.673,
+        "oos_hit_rate": 0.7854,
+        "score": 0.7348,
+        "n": 211
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥2% · 量比≥2.0 · 5日跌≤-10% · 收弱≤45% · 换手≥1.0% · 全趋势",
+        "is_hit_rate": 0.7597911227154047,
+        "oos_hit_rate": 0.708185053380783,
+        "score": 0.7288274811146316,
+        "n": 383
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+        "is_hit_rate": 0.6723,
+        "oos_hit_rate": 0.7579,
+        "score": 0.7194,
+        "n": 177
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+        "is_hit_rate": 0.6449,
+        "oos_hit_rate": 0.7588,
+        "score": 0.7076,
+        "n": 245
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+        "is_hit_rate": 0.7128,
+        "oos_hit_rate": 0.6667,
+        "score": 0.6874,
+        "n": 94
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+        "is_hit_rate": 0.6194,
+        "oos_hit_rate": 0.7209,
+        "score": 0.6752,
+        "n": 268
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+        "is_hit_rate": 0.6067,
+        "oos_hit_rate": 0.7289,
+        "score": 0.6739,
+        "n": 150
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+        "is_hit_rate": 0.6747,
+        "oos_hit_rate": 0.6727,
+        "score": 0.6736,
+        "n": 83
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+        "is_hit_rate": 0.6798,
+        "oos_hit_rate": 0.6371,
+        "score": 0.6563,
+        "n": 659
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+        "is_hit_rate": 0.5839,
+        "oos_hit_rate": 0.7025,
+        "score": 0.6491,
+        "n": 137
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额>1B · MA50下",
+        "is_hit_rate": 0.6143,
+        "oos_hit_rate": 0.6733,
+        "score": 0.6467,
+        "n": 140
+      },
+      {
+        "direction": "up",
+        "desc": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+        "is_hit_rate": 0.6037,
+        "oos_hit_rate": 0.6769,
+        "score": 0.6439,
+        "n": 270
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+        "is_hit_rate": 0.6224,
+        "oos_hit_rate": 0.6519,
+        "score": 0.6386,
+        "n": 196
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+        "is_hit_rate": 0.6459,
+        "oos_hit_rate": 0.6253,
+        "score": 0.6345,
+        "n": 785
+      },
+      {
+        "direction": "down",
+        "desc": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+        "is_hit_rate": 0.6111,
+        "oos_hit_rate": 0.6426,
+        "score": 0.6284,
+        "n": 288
+      }
+    ],
+    "optimized": {
+      "liquidity": {
+        "min_dvol_m": 50.0,
+        "min_avg_dvol_m": 30.0,
+        "min_vol_ratio": 1.0,
+        "min_turnover_pct": 0.3,
+        "require_turnover": true
+      },
+      "threshold": {
+        "up_pct": 2.0,
+        "down_pct": 2.0,
+        "horizon": 5
+      },
+      "up": {
+        "min_vol_ratio": 1.5,
+        "min_ret_5d": 0.2,
+        "min_close_strength": 0.55,
+        "min_turnover_pct": 1.0,
+        "min_dvol_m": 100.0,
+        "require_above_ma50": true,
+        "require_above_ma20": true,
+        "min_up_vol_share": 0.0
+      },
+      "down": {
+        "min_vol_ratio": 2.0,
+        "max_ret_5d": -0.1,
+        "max_close_strength": 0.45,
+        "min_turnover_pct": 1.0,
+        "min_dvol_m": 50.0,
+        "require_below_ma50": false
+      },
+      "min_samples": 60,
+      "min_hit_is": 0.68,
+      "meta": {
+        "updated": "2026-06-23",
+        "method": "真实OHLCV路径+换手率网格 · IS/OOS",
+        "train_end": "2023-12-31",
+        "up_search": {
+          "is": {
+            "n": 270,
+            "hit_rate": 0.7592592592592593,
+            "path_mean": 0.13621429066111793
+          },
+          "oos": {
+            "n": 386,
+            "hit_rate": 0.7694300518134715,
+            "path_mean": 0.15750111238403725
+          },
+          "score": 0.7784187296104395,
+          "params": {
+            "min_vol_ratio": 1.5,
+            "min_ret_5d": 0.2,
+            "min_close_strength": 0.55,
+            "min_turnover_pct": 1.0,
+            "min_dvol_m": 100.0,
+            "require_above_ma20": true,
+            "min_up_vol_share": 0.0
+          }
+        },
+        "down_search": {
+          "is": {
+            "n": 383,
+            "hit_rate": 0.6971279373368147,
+            "path_mean": -0.08510518371885531
+          },
+          "oos": {
+            "n": 281,
+            "hit_rate": 0.6441281138790036,
+            "path_mean": -0.06570877067583814
+          },
+          "score": 0.7009152318742277,
+          "params": {
+            "min_vol_ratio": 2.0,
+            "max_ret_5d": -0.1,
+            "max_close_strength": 0.45,
+            "min_turnover_pct": 1.0,
+            "min_dvol_m": 50.0,
+            "require_below_ma50": false
+          }
+        },
+        "liq_threshold_search": {
+          "up_is": {
+            "n": 270,
+            "hit_rate": 0.8185185185185185,
+            "path_mean": 0.13621429066111793
+          },
+          "down_is": {
+            "n": 383,
+            "hit_rate": 0.7597911227154047,
+            "path_mean": -0.08510518371885531
+          },
+          "up_oos": {
+            "n": 386,
+            "hit_rate": 0.8367875647668394,
+            "path_mean": 0.15750111238403725
+          },
+          "down_oos": {
+            "n": 281,
+            "hit_rate": 0.708185053380783,
+            "path_mean": -0.06570877067583814
+          },
+          "score": 0.7019050827836903
+        },
+        "final_up": {
+          "is": {
+            "n": 270,
+            "hit_rate": 0.8185185185185185,
+            "path_mean": 0.13621429066111793
+          },
+          "oos": {
+            "n": 386,
+            "hit_rate": 0.8367875647668394,
+            "path_mean": 0.15750111238403725
+          }
+        },
+        "final_down": {
+          "is": {
+            "n": 383,
+            "hit_rate": 0.7597911227154047,
+            "path_mean": -0.08510518371885531
+          },
+          "oos": {
+            "n": 281,
+            "hit_rate": 0.708185053380783,
+            "path_mean": -0.06570877067583814
+          }
+        },
+        "panel_rows": 227701
+      }
+    }
+  },
+  "rules_up": [
+    {
+      "id": "5d_opt_up",
+      "direction": "up",
+      "pattern": "5日内涨≥2% · 量比≥1.5 · 5日涨≥20% · 收强≥55% · 换手≥1.0% · dvol≥$100M · MA50+MA20",
+      "conditions": {
+        "rule_type": "optimized_up",
+        "filters": {
+          "min_vol_ratio": 1.5,
+          "min_ret_5d": 0.2,
+          "min_close_strength": 0.55,
+          "min_turnover_pct": 1.0,
+          "min_dvol_m": 100.0,
+          "require_above_ma50": true,
+          "require_above_ma20": true,
+          "min_up_vol_share": 0.0
+        },
+        "threshold_pct": 2.0,
+        "is_hit_rate": 0.8185185185185185,
+        "oos_hit_rate": 0.8367875647668394,
+        "score": 0.8294799462675111
+      },
+      "sample_n": 270,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0,
+      "fwd_20d_mean": 0.0,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.8185,
+      "tier": "S",
+      "action": "5日内路径达标 → 做多（寻优）"
+    },
+    {
+      "id": "5d_up_13",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7757,
+        "oos_hit_rate": 0.8029,
+        "score": 0.7907
+      },
+      "sample_n": 107,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1424,
+      "fwd_20d_mean": 0.1424,
+      "fwd_median": 0.0941,
+      "fwd_20d_median": 0.0941,
+      "win_rate": 0.7757,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_10",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7204,
+        "oos_hit_rate": 0.7787,
+        "score": 0.7525
+      },
+      "sample_n": 186,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1037,
+      "fwd_20d_mean": 0.1037,
+      "fwd_median": 0.0643,
+      "fwd_20d_median": 0.0643,
+      "win_rate": 0.7204,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_14",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7679,
+        "oos_hit_rate": 0.7273,
+        "score": 0.7455
+      },
+      "sample_n": 112,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.186,
+      "fwd_20d_mean": 0.186,
+      "fwd_median": 0.0844,
+      "fwd_20d_median": 0.0844,
+      "win_rate": 0.7679,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_12",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.678,
+        "oos_hit_rate": 0.7945,
+        "score": 0.7421
+      },
+      "sample_n": 118,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1007,
+      "fwd_20d_mean": 0.1007,
+      "fwd_median": 0.064,
+      "fwd_20d_median": 0.064,
+      "win_rate": 0.678,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_9",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.673,
+        "oos_hit_rate": 0.7854,
+        "score": 0.7348
+      },
+      "sample_n": 211,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0977,
+      "fwd_20d_mean": 0.0977,
+      "fwd_median": 0.0561,
+      "fwd_20d_median": 0.0561,
+      "win_rate": 0.673,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_5",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6449,
+        "oos_hit_rate": 0.7588,
+        "score": 0.7076
+      },
+      "sample_n": 245,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0802,
+      "fwd_20d_mean": 0.0802,
+      "fwd_median": 0.0518,
+      "fwd_20d_median": 0.0518,
+      "win_rate": 0.6449,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_7",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7128,
+        "oos_hit_rate": 0.6667,
+        "score": 0.6874
+      },
+      "sample_n": 94,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0734,
+      "fwd_20d_mean": 0.0734,
+      "fwd_median": 0.0547,
+      "fwd_20d_median": 0.0547,
+      "win_rate": 0.7128,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_4",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6194,
+        "oos_hit_rate": 0.7209,
+        "score": 0.6752
+      },
+      "sample_n": 268,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0768,
+      "fwd_20d_mean": 0.0768,
+      "fwd_median": 0.0476,
+      "fwd_20d_median": 0.0476,
+      "win_rate": 0.6194,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_11",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6067,
+        "oos_hit_rate": 0.7289,
+        "score": 0.6739
+      },
+      "sample_n": 150,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1091,
+      "fwd_20d_mean": 0.1091,
+      "fwd_median": 0.048,
+      "fwd_20d_median": 0.048,
+      "win_rate": 0.6067,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_6",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.5839,
+        "oos_hit_rate": 0.7025,
+        "score": 0.6491
+      },
+      "sample_n": 137,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.091,
+      "fwd_20d_mean": 0.091,
+      "fwd_median": 0.0422,
+      "fwd_20d_median": 0.0422,
+      "win_rate": 0.5839,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_3",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额>1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6143,
+        "oos_hit_rate": 0.6733,
+        "score": 0.6467
+      },
+      "sample_n": 140,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0566,
+      "fwd_20d_mean": 0.0566,
+      "fwd_median": 0.0443,
+      "fwd_20d_median": 0.0443,
+      "win_rate": 0.6143,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_1",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6037,
+        "oos_hit_rate": 0.6769,
+        "score": 0.6439
+      },
+      "sample_n": 270,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0612,
+      "fwd_20d_mean": 0.0612,
+      "fwd_median": 0.039,
+      "fwd_20d_median": 0.039,
+      "win_rate": 0.6037,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_24",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比≥2.5 + 5日涨>5% + 成交额>200M",
+      "conditions": {
+        "simple": "5日内涨≥3% · 量比≥2.5 + 5日涨>5% + 成交额>200M",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 500,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1104,
+      "fwd_20d_mean": 0.1104,
+      "fwd_median": 0.0466,
+      "fwd_20d_median": 0.0466,
+      "win_rate": 0.624,
+      "tier": "B",
+      "action": "路径动量 → 做多"
+    },
+    {
+      "id": "5d_up_2",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.582,
+        "oos_hit_rate": 0.6316,
+        "score": 0.6093
+      },
+      "sample_n": 311,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0608,
+      "fwd_20d_mean": 0.0608,
+      "fwd_median": 0.0373,
+      "fwd_20d_median": 0.0373,
+      "win_rate": 0.582,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    }
+  ],
+  "rules_down": [
+    {
+      "id": "5d_opt_down",
+      "direction": "down",
+      "pattern": "5日内跌≥2% · 量比≥2.0 · 5日跌≤-10% · 收弱≤45% · 换手≥1.0% · 全趋势",
+      "conditions": {
+        "rule_type": "optimized_down",
+        "filters": {
+          "min_vol_ratio": 2.0,
+          "max_ret_5d": -0.1,
+          "max_close_strength": 0.45,
+          "min_turnover_pct": 1.0,
+          "min_dvol_m": 50.0,
+          "require_below_ma50": false
+        },
+        "threshold_pct": 2.0,
+        "is_hit_rate": 0.7597911227154047,
+        "oos_hit_rate": 0.708185053380783,
+        "score": 0.7288274811146316
+      },
+      "sample_n": 383,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0,
+      "fwd_20d_mean": 0.0,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.7598,
+      "tier": "S",
+      "action": "5日内路径达标 → 回避（寻优）"
+    },
+    {
+      "id": "5d_down_22",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6723,
+        "oos_hit_rate": 0.7579,
+        "score": 0.7194
+      },
+      "sample_n": 177,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0726,
+      "fwd_20d_mean": -0.0726,
+      "fwd_median": -0.0562,
+      "fwd_20d_median": -0.0562,
+      "win_rate": 0.6723,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_18",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6747,
+        "oos_hit_rate": 0.6727,
+        "score": 0.6736
+      },
+      "sample_n": 83,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0562,
+      "fwd_20d_mean": -0.0562,
+      "fwd_median": -0.0469,
+      "fwd_20d_median": -0.0469,
+      "win_rate": 0.6747,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_19",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6798,
+        "oos_hit_rate": 0.6371,
+        "score": 0.6563
+      },
+      "sample_n": 659,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0808,
+      "fwd_20d_mean": -0.0808,
+      "fwd_median": -0.0533,
+      "fwd_20d_median": -0.0533,
+      "win_rate": 0.6798,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_23",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6224,
+        "oos_hit_rate": 0.6519,
+        "score": 0.6386
+      },
+      "sample_n": 196,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.075,
+      "fwd_20d_mean": -0.075,
+      "fwd_median": -0.0476,
+      "fwd_20d_median": -0.0476,
+      "win_rate": 0.6224,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_20",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6459,
+        "oos_hit_rate": 0.6253,
+        "score": 0.6345
+      },
+      "sample_n": 785,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0713,
+      "fwd_20d_mean": -0.0713,
+      "fwd_median": -0.0461,
+      "fwd_20d_median": -0.0461,
+      "win_rate": 0.6459,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_15",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6111,
+        "oos_hit_rate": 0.6426,
+        "score": 0.6284
+      },
+      "sample_n": 288,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0516,
+      "fwd_20d_mean": -0.0516,
+      "fwd_median": -0.0405,
+      "fwd_20d_median": -0.0405,
+      "win_rate": 0.6111,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_16",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6397,
+        "oos_hit_rate": 0.6025,
+        "score": 0.6193
+      },
+      "sample_n": 1471,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0648,
+      "fwd_20d_mean": -0.0648,
+      "fwd_median": -0.0452,
+      "fwd_20d_median": -0.0452,
+      "win_rate": 0.6397,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_21",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额>1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": ">1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6355,
+        "oos_hit_rate": 0.5833,
+        "score": 0.6068
+      },
+      "sample_n": 598,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.065,
+      "fwd_20d_mean": -0.065,
+      "fwd_median": -0.0457,
+      "fwd_20d_median": -0.0457,
+      "win_rate": 0.6355,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_17",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6113,
+        "oos_hit_rate": 0.5682,
+        "score": 0.5876
+      },
+      "sample_n": 1711,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0595,
+      "fwd_20d_mean": -0.0595,
+      "fwd_median": -0.0426,
+      "fwd_20d_median": -0.0426,
+      "win_rate": 0.6113,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_26",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 收弱+放量+5日跌",
+      "conditions": {
+        "simple": "5日内跌≥3% · 收弱+放量+5日跌",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 4053,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0605,
+      "fwd_20d_mean": -0.0605,
+      "fwd_median": -0.0398,
+      "fwd_20d_median": -0.0398,
+      "win_rate": 0.5862,
+      "tier": "B",
+      "action": "出货 → 回避"
+    },
+    {
+      "id": "5d_down_25",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比≥2.5 + 5日已跌",
+      "conditions": {
+        "simple": "5日内跌≥3% · 量比≥2.5 + 5日已跌",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 1496,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0612,
+      "fwd_20d_mean": -0.0612,
+      "fwd_median": -0.0415,
+      "fwd_20d_median": -0.0415,
+      "win_rate": 0.5836,
+      "tier": "B",
+      "action": "路径回避"
+    }
+  ],
+  "rules": [
+    {
+      "id": "5d_opt_up",
+      "direction": "up",
+      "pattern": "5日内涨≥2% · 量比≥1.5 · 5日涨≥20% · 收强≥55% · 换手≥1.0% · dvol≥$100M · MA50+MA20",
+      "conditions": {
+        "rule_type": "optimized_up",
+        "filters": {
+          "min_vol_ratio": 1.5,
+          "min_ret_5d": 0.2,
+          "min_close_strength": 0.55,
+          "min_turnover_pct": 1.0,
+          "min_dvol_m": 100.0,
+          "require_above_ma50": true,
+          "require_above_ma20": true,
+          "min_up_vol_share": 0.0
+        },
+        "threshold_pct": 2.0,
+        "is_hit_rate": 0.8185185185185185,
+        "oos_hit_rate": 0.8367875647668394,
+        "score": 0.8294799462675111
+      },
+      "sample_n": 270,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0,
+      "fwd_20d_mean": 0.0,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.8185,
+      "tier": "S",
+      "action": "5日内路径达标 → 做多（寻优）"
+    },
+    {
+      "id": "5d_up_13",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7757,
+        "oos_hit_rate": 0.8029,
+        "score": 0.7907
+      },
+      "sample_n": 107,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1424,
+      "fwd_20d_mean": 0.1424,
+      "fwd_median": 0.0941,
+      "fwd_20d_median": 0.0941,
+      "win_rate": 0.7757,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_10",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7204,
+        "oos_hit_rate": 0.7787,
+        "score": 0.7525
+      },
+      "sample_n": 186,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1037,
+      "fwd_20d_mean": 0.1037,
+      "fwd_median": 0.0643,
+      "fwd_20d_median": 0.0643,
+      "win_rate": 0.7204,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_14",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7679,
+        "oos_hit_rate": 0.7273,
+        "score": 0.7455
+      },
+      "sample_n": 112,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.186,
+      "fwd_20d_mean": 0.186,
+      "fwd_median": 0.0844,
+      "fwd_20d_median": 0.0844,
+      "win_rate": 0.7679,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_12",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比>2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.678,
+        "oos_hit_rate": 0.7945,
+        "score": 0.7421
+      },
+      "sample_n": 118,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1007,
+      "fwd_20d_mean": 0.1007,
+      "fwd_median": 0.064,
+      "fwd_20d_median": 0.064,
+      "win_rate": 0.678,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_9",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.673,
+        "oos_hit_rate": 0.7854,
+        "score": 0.7348
+      },
+      "sample_n": 211,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0977,
+      "fwd_20d_mean": 0.0977,
+      "fwd_median": 0.0561,
+      "fwd_20d_median": 0.0561,
+      "win_rate": 0.673,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_5",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额200M-1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6449,
+        "oos_hit_rate": 0.7588,
+        "score": 0.7076
+      },
+      "sample_n": 245,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0802,
+      "fwd_20d_mean": 0.0802,
+      "fwd_median": 0.0518,
+      "fwd_20d_median": 0.0518,
+      "win_rate": 0.6449,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_7",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.7128,
+        "oos_hit_rate": 0.6667,
+        "score": 0.6874
+      },
+      "sample_n": 94,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0734,
+      "fwd_20d_mean": 0.0734,
+      "fwd_median": 0.0547,
+      "fwd_20d_median": 0.0547,
+      "win_rate": 0.7128,
+      "tier": "A",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_4",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6194,
+        "oos_hit_rate": 0.7209,
+        "score": 0.6752
+      },
+      "sample_n": 268,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0768,
+      "fwd_20d_mean": 0.0768,
+      "fwd_median": 0.0476,
+      "fwd_20d_median": 0.0476,
+      "win_rate": 0.6194,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_11",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.5-2.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6067,
+        "oos_hit_rate": 0.7289,
+        "score": 0.6739
+      },
+      "sample_n": 150,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1091,
+      "fwd_20d_mean": 0.1091,
+      "fwd_median": 0.048,
+      "fwd_20d_median": 0.048,
+      "win_rate": 0.6067,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_6",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅>15% · 成交额>1B · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": ">15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.5839,
+        "oos_hit_rate": 0.7025,
+        "score": 0.6491
+      },
+      "sample_n": 137,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.091,
+      "fwd_20d_mean": 0.091,
+      "fwd_median": 0.0422,
+      "fwd_20d_median": 0.0422,
+      "win_rate": 0.5839,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_3",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额>1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": ">1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6143,
+        "oos_hit_rate": 0.6733,
+        "score": 0.6467
+      },
+      "sample_n": 140,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0566,
+      "fwd_20d_mean": 0.0566,
+      "fwd_median": 0.0443,
+      "fwd_20d_median": 0.0443,
+      "win_rate": 0.6143,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_1",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6037,
+        "oos_hit_rate": 0.6769,
+        "score": 0.6439
+      },
+      "sample_n": 270,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0612,
+      "fwd_20d_mean": 0.0612,
+      "fwd_median": 0.039,
+      "fwd_20d_median": 0.039,
+      "win_rate": 0.6037,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_up_24",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比≥2.5 + 5日涨>5% + 成交额>200M",
+      "conditions": {
+        "simple": "5日内涨≥3% · 量比≥2.5 + 5日涨>5% + 成交额>200M",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 500,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.1104,
+      "fwd_20d_mean": 0.1104,
+      "fwd_median": 0.0466,
+      "fwd_20d_median": 0.0466,
+      "win_rate": 0.624,
+      "tier": "B",
+      "action": "路径动量 → 做多"
+    },
+    {
+      "id": "5d_up_2",
+      "direction": "up",
+      "pattern": "5日内涨≥3% · 量比1.0-1.5 · 5日涨幅5~15% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "5~15%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.582,
+        "oos_hit_rate": 0.6316,
+        "score": 0.6093
+      },
+      "sample_n": 311,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0608,
+      "fwd_20d_mean": 0.0608,
+      "fwd_median": 0.0373,
+      "fwd_20d_median": 0.0373,
+      "win_rate": 0.582,
+      "tier": "B",
+      "action": "5日内路径达标 → 做多"
+    },
+    {
+      "id": "5d_opt_down",
+      "direction": "down",
+      "pattern": "5日内跌≥2% · 量比≥2.0 · 5日跌≤-10% · 收弱≤45% · 换手≥1.0% · 全趋势",
+      "conditions": {
+        "rule_type": "optimized_down",
+        "filters": {
+          "min_vol_ratio": 2.0,
+          "max_ret_5d": -0.1,
+          "max_close_strength": 0.45,
+          "min_turnover_pct": 1.0,
+          "min_dvol_m": 50.0,
+          "require_below_ma50": false
+        },
+        "threshold_pct": 2.0,
+        "is_hit_rate": 0.7597911227154047,
+        "oos_hit_rate": 0.708185053380783,
+        "score": 0.7288274811146316
+      },
+      "sample_n": 383,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": 0.0,
+      "fwd_20d_mean": 0.0,
+      "fwd_median": 0.0,
+      "fwd_20d_median": 0.0,
+      "win_rate": 0.7598,
+      "tier": "S",
+      "action": "5日内路径达标 → 回避（寻优）"
+    },
+    {
+      "id": "5d_down_22",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6723,
+        "oos_hit_rate": 0.7579,
+        "score": 0.7194
+      },
+      "sample_n": 177,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0726,
+      "fwd_20d_mean": -0.0726,
+      "fwd_median": -0.0562,
+      "fwd_20d_median": -0.0562,
+      "win_rate": 0.6723,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_18",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6747,
+        "oos_hit_rate": 0.6727,
+        "score": 0.6736
+      },
+      "sample_n": 83,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0562,
+      "fwd_20d_mean": -0.0562,
+      "fwd_median": -0.0469,
+      "fwd_20d_median": -0.0469,
+      "win_rate": 0.6747,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_19",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6798,
+        "oos_hit_rate": 0.6371,
+        "score": 0.6563
+      },
+      "sample_n": 659,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0808,
+      "fwd_20d_mean": -0.0808,
+      "fwd_median": -0.0533,
+      "fwd_20d_median": -0.0533,
+      "win_rate": 0.6798,
+      "tier": "A",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_23",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比>2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": ">2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6224,
+        "oos_hit_rate": 0.6519,
+        "score": 0.6386
+      },
+      "sample_n": 196,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.075,
+      "fwd_20d_mean": -0.075,
+      "fwd_median": -0.0476,
+      "fwd_20d_median": -0.0476,
+      "win_rate": 0.6224,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_20",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6459,
+        "oos_hit_rate": 0.6253,
+        "score": 0.6345
+      },
+      "sample_n": 785,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0713,
+      "fwd_20d_mean": -0.0713,
+      "fwd_median": -0.0461,
+      "fwd_20d_median": -0.0461,
+      "win_rate": 0.6459,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_15",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额50-200M · MA50上",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": true,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6111,
+        "oos_hit_rate": 0.6426,
+        "score": 0.6284
+      },
+      "sample_n": 288,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0516,
+      "fwd_20d_mean": -0.0516,
+      "fwd_median": -0.0405,
+      "fwd_20d_median": -0.0405,
+      "win_rate": 0.6111,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_16",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额50-200M · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "50-200M",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6397,
+        "oos_hit_rate": 0.6025,
+        "score": 0.6193
+      },
+      "sample_n": 1471,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0648,
+      "fwd_20d_mean": -0.0648,
+      "fwd_median": -0.0452,
+      "fwd_20d_median": -0.0452,
+      "win_rate": 0.6397,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_21",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.5-2.5 · 5日跌幅<-5% · 成交额>1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.5-2.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": ">1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6355,
+        "oos_hit_rate": 0.5833,
+        "score": 0.6068
+      },
+      "sample_n": 598,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.065,
+      "fwd_20d_mean": -0.065,
+      "fwd_median": -0.0457,
+      "fwd_20d_median": -0.0457,
+      "win_rate": 0.6355,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_17",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比1.0-1.5 · 5日跌幅<-5% · 成交额200M-1B · MA50下",
+      "conditions": {
+        "vol_ratio_bucket": "1.0-1.5",
+        "ret_5d_bucket": "<-5%",
+        "dvol_bucket": "200M-1B",
+        "above_ma50": false,
+        "threshold_pct": 3.0,
+        "horizon": "5d_path",
+        "liquidity": {
+          "min_dvol_m": 50.0,
+          "min_avg_dvol_m": 30.0,
+          "min_vol_ratio": 1.0,
+          "min_turnover_pct": 0.3,
+          "require_turnover": true
+        },
+        "is_hit_rate": 0.6113,
+        "oos_hit_rate": 0.5682,
+        "score": 0.5876
+      },
+      "sample_n": 1711,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0595,
+      "fwd_20d_mean": -0.0595,
+      "fwd_median": -0.0426,
+      "fwd_20d_median": -0.0426,
+      "win_rate": 0.6113,
+      "tier": "B",
+      "action": "5日内路径达标 → 回避"
+    },
+    {
+      "id": "5d_down_26",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 收弱+放量+5日跌",
+      "conditions": {
+        "simple": "5日内跌≥3% · 收弱+放量+5日跌",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 4053,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0605,
+      "fwd_20d_mean": -0.0605,
+      "fwd_median": -0.0398,
+      "fwd_20d_median": -0.0398,
+      "win_rate": 0.5862,
+      "tier": "B",
+      "action": "出货 → 回避"
+    },
+    {
+      "id": "5d_down_25",
+      "direction": "down",
+      "pattern": "5日内跌≥3% · 量比≥2.5 + 5日已跌",
+      "conditions": {
+        "simple": "5日内跌≥3% · 量比≥2.5 + 5日已跌",
+        "threshold_pct": 3.0
+      },
+      "sample_n": 1496,
+      "win_horizon": "5d",
+      "win_label": "后5d胜率",
+      "fwd_mean": -0.0612,
+      "fwd_20d_mean": -0.0612,
+      "fwd_median": -0.0415,
+      "fwd_20d_median": -0.0415,
+      "win_rate": 0.5836,
+      "tier": "B",
+      "action": "路径回避"
+    }
+  ]
+}
