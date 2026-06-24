@@ -39,6 +39,9 @@ CATALOG: list[StrategyMeta] = [
                  0.82, 0.14, 0.31, 1.10, "最稳底仓，需低价股"),
     StrategyMeta("momentum_weekly", "温和动量做多 Top2", "growth",
                  0.585, 0.20, 0.35, 0.95, "每周约1笔，仅牛市"),
+    StrategyMeta("panic_rebound", "恐慌反弹做多", "growth",
+                 0.544, 0.35, 0.36, 1.30,
+                 "深跌≥30%票当日再暴跌≥10%→次日开盘抄底；全市场OOS年化+54~77%"),
     StrategyMeta("medallion_long", "Medallion·做多小盘", "growth",
                  0.51, 0.46, 0.51, 1.00, "系统化横截面，回撤深"),
     StrategyMeta("calendar", "双日历·IV低位", "niche",
@@ -239,6 +242,30 @@ def evaluate_strategies(
         detail=mom_detail or ("弱市关闭做多" if not bull else "今日无温和动量信号"),
         trades=mom_trades,
         flags=[] if bull else ["SPY<MA50，动量引擎关闭"],
+    ))
+
+    # --- ⑤b 恐慌反弹做多（全市场方向性最优） ---
+    pr_trades: list[dict] = []
+    pr_detail = ""
+    try:
+        from quant.panic_rebound import PanicReboundConfig, scan_live
+        pr_picks = scan_live(PanicReboundConfig())
+        if pr_picks is not None and not pr_picks.empty:
+            pr_trades = pr_picks.head(3).to_dict("records")
+            t0 = pr_picks.iloc[0]
+            pr_detail = (
+                f"{t0['代码']} 当日{t0['当日跌%']:+.1f}% 前20日{t0['前20日跌%']:+.0f}% "
+                f"→ 次日开盘做多 止损≈${t0['止损价≈']}/止盈≈${t0['止盈价≈']}"
+            )
+    except Exception as e:  # noqa: BLE001
+        pr_detail = f"扫描跳过：{e}"
+    picks.append(StrategyPick(
+        meta=next(m for m in CATALOG if m.id == "panic_rebound"),
+        score=_static_score(next(m for m in CATALOG if m.id == "panic_rebound")) * (1.0 if pr_trades else 0.25),
+        signal_ok=bool(pr_trades),
+        regime_ok=True,
+        detail=pr_detail or "今日无恐慌反弹候选",
+        trades=pr_trades,
     ))
 
     # --- ⑥ 双日历 ---

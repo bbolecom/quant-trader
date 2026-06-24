@@ -40,6 +40,9 @@ struct PickDetailView: View {
                     .font(.largeTitle.weight(.bold))
                     .foregroundStyle(ThsTheme.textPrimary)
                 Spacer()
+                if row.opportunityScore > 0 {
+                    OpportunityScoreBadge(score: row.opportunityScore, grade: row.opportunityGrade)
+                }
                 if row.isHighWinQualified {
                     Label("≥80%", systemImage: "star.fill")
                         .font(.caption.weight(.bold))
@@ -61,6 +64,7 @@ struct PickDetailView: View {
                         .foregroundStyle(ThsTheme.textTertiary)
                 }
             }
+            OpportunityMetaRow(row: row)
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -120,6 +124,8 @@ struct PickDetailView: View {
             if let hit = row.hitRate, !hit.isEmpty {
                 metaRow("历史命中率", hit)
             }
+            metaRow("机会评分", "\(row.opportunityScore) · \(row.opportunityGrade)")
+            metaRow("风险等级", row.riskLevel)
             metaRow("状态", row.status)
             metaRow("方向", row.direction)
         }

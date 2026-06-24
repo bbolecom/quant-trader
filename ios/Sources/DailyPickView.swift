@@ -116,6 +116,8 @@ struct DailyPickView: View {
                         .padding(.horizontal, 4)
                 }
 
+                opportunityRadarSection(doc)
+
                 highWinSection(doc)
 
                 if !doc.highWinWatch.isEmpty {
@@ -166,6 +168,50 @@ struct DailyPickView: View {
             ForEach(extra.prefix(20)) { row in
                 PickCardView(row: row, highlight: true) {
                     selectedPick = row
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func opportunityRadarSection(_ doc: DailyPickDocument) -> some View {
+        let picks = Array(doc.topOpportunities.prefix(3))
+        if !picks.isEmpty {
+            VStack(alignment: .leading, spacing: 12) {
+                ThsSectionHeader(
+                    title: "机会雷达",
+                    subtitle: "按系统策略综合评分排序",
+                    count: doc.topOpportunities.count,
+                    accent: ThsTheme.accent,
+                    icon: "scope"
+                )
+                ForEach(picks) { row in
+                    Button { selectedPick = row } label: {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack(alignment: .top, spacing: 10) {
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text(row.ticker)
+                                        .font(.title3.weight(.black))
+                                        .foregroundStyle(ThsTheme.textPrimary)
+                                    Text(row.module)
+                                        .font(.caption)
+                                        .foregroundStyle(ThsTheme.textSecondary)
+                                        .lineLimit(1)
+                                }
+                                Spacer()
+                                OpportunityScoreBadge(score: row.opportunityScore, grade: row.opportunityGrade)
+                            }
+                            Text(row.reason)
+                                .font(.footnote)
+                                .foregroundStyle(ThsTheme.textSecondary)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.leading)
+                            OpportunityMetaRow(row: row)
+                        }
+                        .padding(14)
+                        .thsCard(border: radarBorder(for: row), radius: 14)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -276,6 +322,10 @@ struct DailyPickView: View {
                 .padding(.vertical, 2)
             }
         }
+    }
+
+    private func radarBorder(for row: PickRow) -> Color {
+        row.opportunityScore >= 85 ? ThsTheme.up.opacity(0.45) : ThsTheme.border
     }
 
     @ViewBuilder

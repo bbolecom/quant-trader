@@ -38,19 +38,32 @@ def test_bear_call_picks_real_strikes():
     assert short.bid - long.ask > 0  # 有正净权利金
 
 
-def test_bear_call_skips_illiquid():
+def test_bear_call_skips_illiquid_strike():
+    # 最近 OTM 行权价(105)无持仓 → 跳过稀薄档、改选下一档流动行权价(110)，而非选中 105。
     calls = _calls().copy()
-    calls.loc[calls.strike == 105, "openInterest"] = 0  # 卖腿无持仓
+    calls.loc[calls.strike == 105, "openInterest"] = 0
     short, long, why = pick_bear_call(calls, spot=100.0, otm=0.05, width_pct=0.05, min_oi=25)
-    assert short is None
-    assert "流动性不足" in why
+    assert why == ""
+    assert short is not None and short.strike == 110   # 已跳过稀薄的 105
+    assert short.oi >= 25                                # 选中的卖腿本身必须流动
 
 
-def test_bear_call_skips_wide_spread():
+def test_bear_call_bails_when_all_illiquid():
+    # 所有候选行权价都无持仓 → 无可成交结构，宁可观望：返回 None + 原因。
     calls = _calls().copy()
-    calls.loc[calls.strike == 105, "ask"] = 9.0  # 巨大买卖价差
+    calls["openInterest"] = 0
+    short, long, why = pick_bear_call(calls, spot=100.0, otm=0.05, width_pct=0.05, min_oi=25)
+    assert short is None and long is None
+    assert "流动" in why                                 # “无足够 OTM 流动卖腿”
+
+
+def test_bear_call_skips_wide_spread_strike():
+    # 最近 OTM(105) 买卖价差过大 → 跳过它、改选下一档(110)。
+    calls = _calls().copy()
+    calls.loc[calls.strike == 105, "ask"] = 9.0
     short, long, why = pick_bear_call(calls, spot=100.0, otm=0.05, width_pct=0.05)
-    assert short is None
+    assert why == ""
+    assert short is not None and short.strike == 110
 
 
 def test_put_credit_picks_below_spot():

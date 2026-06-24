@@ -28,6 +28,7 @@ from quant.capital_flow import (
     scan_universe_flow,
     stats_hint_for_pattern,
 )
+from quant.io_safe import append_csv_locked, atomic_write_csv, atomic_write_text
 from quant.flow_options import enrich_picks_with_live_chain
 from quant.providers import DataConfig, get_provider, reset_provider_cache
 from quant.screener import fetch_gainer_universe_live
@@ -277,15 +278,14 @@ def save_outputs(doc: dict, cfg: dict) -> None:
     hpath = ROOT / outs.get("history_csv", "flow_daily_history.csv")
 
     jpath.parent.mkdir(parents=True, exist_ok=True)
-    jpath.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_text(jpath, json.dumps(doc, ensure_ascii=False, indent=2))
 
     df = pd.DataFrame(doc.get("picks") or [])
     if not df.empty:
         df.insert(0, "选股日期", doc["选股日期"])
         df.insert(1, "选股时间", doc["选股时间"])
-        df.to_csv(cpath, index=False, encoding="utf-8-sig")
-        header = not hpath.exists()
-        df.to_csv(hpath, mode="a", header=header, index=False, encoding="utf-8-sig")
+        atomic_write_csv(df, cpath)
+        append_csv_locked(df, hpath)
 
 
 def print_report(doc: dict) -> None:

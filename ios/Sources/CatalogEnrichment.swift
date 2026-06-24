@@ -27,7 +27,7 @@ enum CatalogEnrichment {
     ]
 
     static func enrichedCatalog(from document: DailyPickDocument) -> [StrategyCatalogRow] {
-        guard var rows = document.strategySummary?.catalog, !rows.isEmpty else { return [] }
+        guard let rows = document.strategySummary?.catalog, !rows.isEmpty else { return [] }
         let mods = document.modulesSummary ?? [:]
         let summary = document.summary
         let pickDate = document.pickDate ?? "—"

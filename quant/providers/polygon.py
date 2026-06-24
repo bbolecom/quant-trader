@@ -96,3 +96,30 @@ class PolygonProvider(MarketDataProvider):
         # 日线对齐到当天零点，避免与纯日期索引比较时错位。
         out.index = out.index.normalize()
         return out
+
+    def fetch_batch(
+        self,
+        tickers: list[str],
+        start: date | str,
+        end: date | str,
+        interval: str = "1d",
+    ) -> dict[str, pd.DataFrame]:
+        """逐只拉取，免费档主动限速，避免 429 长时间退避。"""
+        out: dict[str, pd.DataFrame] = {}
+        min_gap = 13.0  # Polygon 免费档约 5 次/分钟
+        last_ts = 0.0
+        for t in tickers:
+            sym = str(t).strip().upper()
+            if not sym:
+                continue
+            elapsed = time.time() - last_ts
+            if last_ts > 0 and elapsed < min_gap:
+                time.sleep(min_gap - elapsed)
+            last_ts = time.time()
+            try:
+                df = self.fetch_history(sym, start, end, interval=interval)
+                if df is not None and not df.empty:
+                    out[sym] = df
+            except Exception:  # noqa: BLE001
+                continue
+        return out

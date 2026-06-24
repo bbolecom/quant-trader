@@ -13,6 +13,7 @@
   "use_speculative_pool": true,
   "speculative_pool": "research/speculative_pool.json",
   "include_precursors": true,
+  "pool": "surge_drop",
   "notify": {
     "desktop": true
   },

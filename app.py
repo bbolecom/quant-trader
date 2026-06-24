@@ -60,6 +60,16 @@ from quant.daily_screen_fleet import (
 )
 from quant.calendar_spread import scan_calendar_plans
 from quant.data import DataError, fetch_history, fetch_history_batch, get_data_source_info
+from quant.ui_helpers import (
+    compare_chart,
+    equity_chart,
+    fmt_dollar_m as _fmt_dollar_m,
+    fmt_mcap as _fmt_mcap,
+    fmt_num,
+    fmt_pct,
+    parse_tickers,
+    price_chart,
+)
 import ths_theme as theme
 
 from research.gainer_daily_backtest import (
@@ -96,14 +106,20 @@ def _page_icon():
             return "📈"
     return "📈"
 
-st.set_page_config(
-    page_title="量化策略 · 同花顺风格",
-    page_icon=_page_icon(),
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
 
-st.markdown(theme.inject_css(), unsafe_allow_html=True)
+def _setup_page() -> None:
+    """页面配置 + 注入主题 CSS。在 main() 开头调用（set_page_config 必须是首个 st 命令）。
+
+    放进函数而非模块级，可让 app.py 被 import（便于测试），同时 streamlit 运行时
+    main() 仍是首个执行入口，调用顺序不变。
+    """
+    st.set_page_config(
+        page_title="量化策略 · 同花顺风格",
+        page_icon=_page_icon(),
+        layout="wide",
+        initial_sidebar_state="collapsed",
+    )
+    st.markdown(theme.inject_css(), unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
@@ -114,20 +130,20 @@ def load_data(ticker: str, start: str, end: str) -> pd.DataFrame:
     return fetch_history(ticker, start=start, end=end)
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_data_batch(tickers: tuple[str, ...], start: str, end: str) -> dict[str, pd.DataFrame]:
+    """批量拉取（带磁盘缓存 + Streamlit 内存缓存）。"""
+    if not tickers:
+        return {}
+    return fetch_history_batch(list(tickers), start, end)
+
+
 @st.cache_data(ttl=600, show_spinner=False)
 def load_real_option_chain(ticker: str, min_dte: int, max_dte: int):
     """真实期权链（券商可对照）。缓存 10 分钟。返回 (到期日, dte, calls, puts)。"""
     from quant.option_chain import fetch_chain
 
-    return fetch_chain(ticker, min_dte=min_dte, max_dte=max_dte, use_cache=False)
-
-
-def fmt_pct(x: float) -> str:
-    return f"{x * 100:,.2f}%"
-
-
-def fmt_num(x: float) -> str:
-    return f"{x:,.2f}"
+    return fetch_chain(ticker, min_dte=min_dte, max_dte=max_dte, use_cache=True)
 
 
 def get_data(cfg: dict) -> pd.DataFrame | None:
@@ -144,27 +160,21 @@ def get_data(cfg: dict) -> pd.DataFrame | None:
 
 def get_multi_data(tickers: list[str], cfg: dict) -> tuple[dict[str, pd.DataFrame], list[str]]:
     """批量拉取多个标的数据，返回 (成功字典, 失败代码列表)。"""
-    data: dict[str, pd.DataFrame] = {}
-    failed: list[str] = []
-    progress = st.progress(0.0, text="正在拉取行情数据…")
-    for i, t in enumerate(tickers):
-        try:
-            data[t] = load_data(t, cfg["start"], cfg["end"])
-        except Exception:  # noqa: BLE001
-            failed.append(t)
-        progress.progress((i + 1) / len(tickers), text=f"已拉取 {i + 1}/{len(tickers)}：{t}")
-    progress.empty()
+    syms = sorted(dict.fromkeys(t.strip().upper() for t in tickers if t and str(t).strip()))
+    if not syms:
+        return {}, []
+    try:
+        with st.spinner(f"正在批量拉取 {len(syms)} 只行情（缓存命中则秒开）…"):
+            data = load_data_batch(tuple(syms), cfg["start"], cfg["end"])
+    except Exception:  # noqa: BLE001
+        data = {}
+        for t in syms:
+            try:
+                data[t] = load_data(t, cfg["start"], cfg["end"])
+            except Exception:  # noqa: BLE001
+                pass
+    failed = [t for t in syms if t not in data]
     return data, failed
-
-
-def parse_tickers(raw: str) -> list[str]:
-    """把逗号/空格/换行分隔的代码串解析为去重后的列表。"""
-    out: list[str] = []
-    for chunk in raw.replace("\n", ",").replace(" ", ",").split(","):
-        t = chunk.strip().upper()
-        if t and t not in out:
-            out.append(t)
-    return out
 
 
 # ---------------------------------------------------------------------------
@@ -223,7 +233,9 @@ def render_trading_cfg() -> dict:
         slippage_bps = r2[2].slider("滑点 (bp)", 0.0, 30.0, 2.0, 0.5, key="cfg_slippage_bps")
         src = get_data_source_info()
         with r2[3]:
-            st.caption(f"行情数据源：**{src['label']}**")
+            st.caption(
+                f"行情数据源：**{src['label']}** · 本地缓存 {src.get('cache_entries', '0')} 条"
+            )
             if src["provider"] == "yahoo":
                 with st.popover("切换到专业数据源"):
                     st.markdown(
@@ -249,81 +261,6 @@ def render_trading_cfg() -> dict:
 # ---------------------------------------------------------------------------
 # 图表
 # ---------------------------------------------------------------------------
-def price_chart(df: pd.DataFrame, strat_name: str, params: dict) -> go.Figure:
-    fig = make_subplots(
-        rows=2, cols=1, shared_xaxes=True, row_heights=[0.72, 0.28], vertical_spacing=0.04
-    )
-    fig.add_trace(
-        go.Candlestick(
-            x=df.index, open=df["Open"], high=df["High"], low=df["Low"], close=df["Close"],
-            name="K线", increasing_line_color=theme.UP, decreasing_line_color=theme.DOWN,
-        ),
-        row=1, col=1,
-    )
-    close = df["Close"]
-    if strat_name == "双均线交叉":
-        fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("fast", 20))),
-                                 name=f"MA{int(params.get('fast', 20))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("slow", 60))),
-                                 name=f"MA{int(params.get('slow', 60))}", line=dict(color=theme.BLUE, width=1.3)), row=1, col=1)
-    elif strat_name == "布林带回归":
-        b = ind.bollinger_bands(close, int(params.get("window", 20)), float(params.get("num_std", 2.0)))
-        fig.add_trace(go.Scatter(x=df.index, y=b["upper"], name="上轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=b["mid"], name="中轨", line=dict(color=theme.GOLD, width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=b["lower"], name="下轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
-    elif strat_name == "唐奇安通道突破（海龟）":
-        d = ind.donchian(df, int(params.get("entry", 20)))
-        de = ind.donchian(df, int(params.get("exit", 10)))
-        fig.add_trace(go.Scatter(x=df.index, y=d["upper"], name="入场上轨", line=dict(color=theme.ORANGE, width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=de["lower"], name="离场下轨", line=dict(color=theme.UP, width=1)), row=1, col=1)
-    elif strat_name == "肯特纳通道突破":
-        k = ind.keltner(df, int(params.get("window", 20)), int(params.get("atr_window", 10)), float(params.get("mult", 2.0)))
-        fig.add_trace(go.Scatter(x=df.index, y=k["upper"], name="上轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=k["mid"], name="中轨", line=dict(color=theme.GOLD, width=1)), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df.index, y=k["lower"], name="下轨", line=dict(color=theme.PURPLE, width=1)), row=1, col=1)
-    elif strat_name == "ATR 跟踪止损趋势":
-        fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("ma_window", 50))),
-                                 name=f"MA{int(params.get('ma_window', 50))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
-    elif strat_name == "趋势+动量双确认":
-        fig.add_trace(go.Scatter(x=df.index, y=ind.sma(close, int(params.get("ma_window", 100))),
-                                 name=f"MA{int(params.get('ma_window', 100))}", line=dict(color=theme.GOLD, width=1.3)), row=1, col=1)
-    colors = [theme.UP if c >= o else theme.DOWN for o, c in zip(df["Open"], df["Close"])]
-    fig.add_trace(go.Bar(x=df.index, y=df["Volume"], name="成交量", marker_color=colors, opacity=0.6), row=2, col=1)
-    fig.update_layout(height=520, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
-                      xaxis_rangeslider_visible=False, legend=dict(orientation="h", y=1.05))
-    fig.update_yaxes(title_text="价格", row=1, col=1)
-    fig.update_yaxes(title_text="成交量", row=2, col=1)
-    return fig
-
-
-def equity_chart(result: backtest.BacktestResult, strat_name: str) -> go.Figure:
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.7, 0.3],
-                        vertical_spacing=0.05, subplot_titles=("净值曲线", "回撤"))
-    fig.add_trace(go.Scatter(x=result.equity.index, y=result.equity, name=f"{strat_name}",
-                             line=dict(color=theme.ORANGE, width=2)), row=1, col=1)
-    fig.add_trace(go.Scatter(x=result.benchmark.index, y=result.benchmark, name="买入持有基准",
-                             line=dict(color=theme.MUTED, width=1.5, dash="dot")), row=1, col=1)
-    fig.add_trace(go.Scatter(x=result.drawdown.index, y=result.drawdown, name="回撤",
-                             fill="tozeroy", line=dict(color=theme.BLUE, width=1)), row=2, col=1)
-    fig.update_layout(height=460, template="tiger", margin=dict(l=10, r=10, t=40, b=10),
-                      legend=dict(orientation="h", y=1.08))
-    fig.update_yaxes(title_text="净值", row=1, col=1)
-    fig.update_yaxes(title_text="回撤", tickformat=".0%", row=2, col=1)
-    return fig
-
-
-def compare_chart(curves: dict[str, pd.Series]) -> go.Figure:
-    fig = go.Figure()
-    palette = theme.PALETTE
-    for i, (name, eq) in enumerate(curves.items()):
-        fig.add_trace(go.Scatter(x=eq.index, y=eq, name=name,
-                                 line=dict(width=2, color=palette[i % len(palette)])))
-    fig.update_layout(height=480, template="tiger", margin=dict(l=10, r=10, t=30, b=10),
-                      legend=dict(orientation="h", y=1.06), title="各策略净值曲线对比")
-    fig.update_yaxes(title_text="净值")
-    return fig
-
-
 # ---------------------------------------------------------------------------
 # 标签页 1：单策略回测
 # ---------------------------------------------------------------------------
@@ -1043,21 +980,6 @@ def _prob_basket(cfg: dict, strat_name: str, params: dict) -> None:
 # ---------------------------------------------------------------------------
 # 标签页：策略选股（条件筛选 + 批量回测）
 # ---------------------------------------------------------------------------
-def _fmt_mcap(x: float) -> str:
-    if pd.isna(x):
-        return "-"
-    b = float(x) / 1e9
-    if b >= 1:
-        return f"{b:,.1f}B"
-    return f"{float(x)/1e6:,.0f}M"
-
-
-def _fmt_dollar_m(x: float) -> str:
-    if pd.isna(x):
-        return "-"
-    return f"${float(x)/1e6:,.1f}M"
-
-
 DEFAULT_WATCHLIST = "SNDK, MU, WDC, NVDA, AMD, AVGO, SMCI, PLTR, COIN, TSLA, META, AAPL"
 DAILY_SCREEN_HISTORY = ROOT_DIR / "screen_history.csv"
 
@@ -1223,6 +1145,8 @@ def _strategy_picks_for_row(row: dict, picks: list[dict], dp: dict | None = None
         elif sid == "vrp" and "VRP" in mod:
             out.append(p)
         elif sid == "surge_scan" and "暴涨扫描" in mod:
+            out.append(p)
+        elif sid == "surge_drop_pool" and ("暴涨/暴跌" in mod or "极端池" in mod):
             out.append(p)
         elif sid == "speculative_pool" and "投机" in mod:
             out.append(p)
@@ -1455,8 +1379,34 @@ def tab_daily_screen(cfg: dict) -> None:
                 st.dataframe(act_df[act_cols], use_container_width=True, hide_index=True)
                 st.caption("仅「真实链/真实行情」会进入 Mac 推送；上表供 Cloud 研究浏览。")
 
-    if st.button("🔄 云端刷新真实推演", type="primary", key="daily_refresh_push"):
-        with st.spinner("拉取真实期权链与行情（完整模式，约 1–3 分钟）…"):
+    if st.button("🔄 快速刷新（推荐）", type="primary", key="daily_refresh_push"):
+        with st.spinner("快速刷新：读本地快照 + 轻量扫描（约 30 秒）…"):
+            try:
+                import daily_pick as dp
+
+                cfg_local = dp.load_config(ROOT_DIR / "daily_pick_config.json")
+                cfg_local["quick"] = True
+                old_open = snap_open
+                doc = dp.run_daily_pick(cfg_local)
+                new_open = int((doc.get("summary") or {}).get("可开仓") or 0)
+                st.session_state["_last_push_doc"] = doc
+                if new_open >= old_open or new_open > 0:
+                    dp.save_outputs(doc, cfg_local)
+                    st.success(
+                        f"完成 · 推送 {doc.get('push', {}).get('count', 0)} 条 · "
+                        f"快照可开仓 {new_open} 条"
+                    )
+                else:
+                    st.warning(
+                        f"刷新未产生新信号（新 {new_open} / 原 {old_open}），"
+                        "未覆盖仓库快照 — 请本地运行 `python daily_pick.py`。"
+                    )
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"刷新失败：{e}")
+
+    if st.button("🔄 完整刷新（慢 · 3~5 分钟）", key="daily_refresh_full"):
+        with st.spinner("完整刷新：全市场扫描 + 期权链（耗时较长，请勿关闭页面）…"):
             try:
                 import daily_pick as dp
 
@@ -2223,7 +2173,12 @@ def _tab_historical_daily_screen(cfg: dict) -> None:
     )
 
     c1, c2, c3, c4 = st.columns(4)
-    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_options = {
+        **screener.UNIVERSE_PRESETS,
+        "sp500": "标普500成分",
+        "surge_drop": "暴涨/暴跌池",
+        "custom": "自定义列表",
+    }
     pool_key = c1.selectbox(
         "股票池", list(pool_options.keys()),
         format_func=lambda k: pool_options[k], key="hds_pool",
@@ -2271,6 +2226,9 @@ def _tab_historical_daily_screen(cfg: dict) -> None:
                 tickers = parse_tickers(custom_raw)
             elif pool_key == "sp500":
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+            elif pool_key == "surge_drop":
+                from quant.surge_drop_pool import load_pool
+                tickers = load_pool()[: int(pool_size)]
             else:
                 st.info("历史回放建议使用 标普500 或 自选 池；『涨/跌幅榜、活跃榜』只有实时名单、无历史成分，已自动改用标普500前 N 只作代理。注：这只影响『选股名单来源』，行情价格仍走你配置的数据源（如 Polygon）。")
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
@@ -2557,6 +2515,211 @@ def _tab_gainer_pro(cfg: dict) -> None:
         )
 
 
+def _tab_surge_drop_pool(cfg: dict) -> None:
+    """5 年暴涨/暴跌偏好池 · 画像 + 规律 + 分策略回测。"""
+    import json as _json
+
+    from quant.surge_drop_backtest import (
+        equity_curve_from_trades,
+        list_strategy_presets,
+        run_pool_backtest_suite,
+    )
+    from quant.surge_drop_pool import POOL_CSV, POOL_JSON, load_pool_doc
+
+    st.markdown("### ⚡ 暴涨/暴跌池 · 5 年极端波动研究")
+    st.caption(
+        "数据驱动筛选「既爱暴涨也爱暴跌」的高流动性标的；"
+        "支持池内 ±15% 极端事件规律与 **暴跌反弹 / 暴涨追多 / 暴涨做空** 分策略回测。"
+        " 重建池：`python research/surge_drop_pool_research.py`"
+    )
+
+    pool_doc = load_pool_doc()
+    research_path = ROOT_DIR / "research" / "surge_drop_pool_research.json"
+    research_doc = _json.loads(research_path.read_text(encoding=_JSON_ENCODING)) if research_path.exists() else {}
+
+    s = pool_doc.get("summary") or {}
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("池规模", pool_doc.get("count", 0))
+    c2.metric("年均极端天", s.get("avg_extreme_days_yr", "—"))
+    c3.metric("年均暴涨/暴跌", f"{s.get('avg_surge_days_yr', '—')}/{s.get('avg_drop_days_yr', '—')}")
+    c4.metric("池均波动", s.get("avg_realized_vol", "—"))
+
+    detail = pool_doc.get("detail") or []
+    if detail:
+        pdf = pd.DataFrame(detail)
+        disp = pdf.copy()
+        for col in ["年化波动", "年均暴涨天", "年均暴跌天", "年均极端天", "双向均衡", "综合分"]:
+            if col in disp.columns:
+                disp[col] = pd.to_numeric(disp[col], errors="coerce").map(
+                    lambda x: f"{x:.2f}" if pd.notna(x) else "—"
+                )
+        show = [c for c in [
+            "代码", "价", "年化波动", "年均暴涨天", "年均暴跌天", "年均极端天",
+            "15%暴涨天", "15%暴跌天", "双向均衡", "成交额M", "综合分",
+        ] if c in disp.columns]
+        st.dataframe(disp[show], use_container_width=True, hide_index=True, height=320)
+        if POOL_CSV.exists():
+            st.download_button(
+                "⬇️ 导出池画像 CSV",
+                POOL_CSV.read_bytes(),
+                file_name="surge_drop_pool.csv",
+                mime="text/csv",
+                key="dl_surge_drop_pool",
+            )
+    else:
+        st.info("尚未生成池文件 — 请运行 `python research/surge_drop_pool_research.py` 或下方「重建池」。")
+
+    r = research_doc.get("research") or {}
+    ev = r.get("events") or {}
+    if ev.get("total"):
+        with st.expander(f"📊 池内 ±{r.get('event_threshold_pct', 15)}% 极端事件规律（{ev.get('total', 0)} 条）", expanded=False):
+            for tag, key in [("全样本", "discover"), ("OOS", "discover_oos")]:
+                blk = r.get(key) or {}
+                if not blk:
+                    continue
+                st.markdown(f"**{tag}**")
+                for label, b in blk.items():
+                    lo3 = (b.get("做多3日") or {})
+                    sh3 = (b.get("做空3日") or {})
+                    if lo3.get("n"):
+                        st.caption(
+                            f"{label} · n={b.get('事件数', 0)} · "
+                            f"3日做多 均{lo3.get('mean%', 0):+.1f}% 胜{lo3.get('win%', 0):.0f}% · "
+                            f"做空 均{sh3.get('mean%', 0):+.1f}% 胜{sh3.get('win%', 0):.0f}%"
+                        )
+
+    st.markdown("**分策略回测（次日开盘 · 止盈止损 · 等权）**")
+    bc1, bc2, bc3, bc4 = st.columns(4)
+    presets = list(list_strategy_presets().keys())
+    sel_presets = bc1.multiselect(
+        "策略",
+        presets,
+        default=["drop_rebound", "drop_panic", "surge_fade"],
+        format_func=lambda k: list_strategy_presets()[k],
+        key="sdp_presets",
+    )
+    years = bc2.slider("回测年数", 1, 5, 5, 1, key="sdp_years")
+    threshold = bc3.number_input("极端阈值%", 5.0, 25.0, 15.0, 1.0, key="sdp_th")
+    min_dvol = bc4.number_input("成交额门槛M", 10.0, 500.0, 50.0, 10.0, key="sdp_dvol")
+
+    run_bt = st.button("📈 运行池内策略回测", type="primary", key="run_sdp_bt")
+    rebuild = st.button("🔄 重建池（约 2 分钟）", key="rebuild_sdp_pool")
+
+    if rebuild:
+        with st.spinner("扫描全市场并重建暴涨/暴跌池…"):
+            try:
+                from research.surge_drop_pool_research import run_research
+
+                doc = run_research(years=5, top_n=60, threshold=15.0, min_dvol_m=min_dvol, build_only=False)
+                st.success(f"完成 · 池 {doc.get('count', 0)} 只")
+                st.rerun()
+            except Exception as e:  # noqa: BLE001
+                st.error(f"重建失败：{e}")
+
+    if run_bt:
+        tickers = pool_doc.get("tickers") or []
+        if not tickers:
+            st.error("池为空，请先重建。")
+        elif not sel_presets:
+            st.error("请至少选择一个策略。")
+        else:
+            fee = float(cfg.get("fee_bps", 5.0))
+            slip = float(cfg.get("slippage_bps", 15.0))
+            with st.spinner(f"回测 {len(tickers)} 只 × {len(sel_presets)} 策略…"):
+                try:
+                    bt = run_pool_backtest_suite(
+                        tickers,
+                        years=int(years),
+                        threshold_pct=float(threshold),
+                        min_dvol_m=float(min_dvol),
+                        presets=sel_presets,
+                        fee_bps=fee,
+                        slip_bps=slip,
+                    )
+                    st.session_state["sdp_backtest"] = bt
+                except Exception as e:  # noqa: BLE001
+                    st.error(f"回测失败：{e}")
+
+    bt = st.session_state.get("sdp_backtest")
+    if bt and bt.get("strategies"):
+        evs = bt.get("events") or {}
+        st.caption(
+            f"事件 {evs.get('total', 0)}（暴涨 {evs.get('surge', 0)} · 暴跌 {evs.get('drop', 0)}）· "
+            f"{bt.get('period', {}).get('start', '')} ~ {bt.get('period', {}).get('end', '')}"
+        )
+        rows = []
+        for s in bt["strategies"]:
+            full = s.get("全样本") or {}
+            oos = s.get("样本外") or {}
+            if "error" in full:
+                continue
+            rows.append({
+                "策略": s.get("label", s.get("preset")),
+                "方向": "做多" if s.get("交易方向") == "long" else "做空",
+                "笔数": full.get("交易次数", 0),
+                "胜率": full.get("胜率"),
+                "年化": full.get("年化"),
+                "回撤": full.get("最大回撤"),
+                "夏普": full.get("夏普"),
+                "OOS胜率": (oos or {}).get("胜率"),
+                "OOS年化": (oos or {}).get("年化"),
+            })
+        if rows:
+            cmp_df = pd.DataFrame(rows)
+            disp = cmp_df.copy()
+            disp["胜率"] = disp["胜率"].map(fmt_pct)
+            disp["年化"] = disp["年化"].map(fmt_pct)
+            disp["回撤"] = disp["回撤"].map(fmt_pct)
+            disp["夏普"] = disp["夏普"].map(fmt_num)
+            disp["OOS胜率"] = disp["OOS胜率"].map(fmt_pct)
+            disp["OOS年化"] = disp["OOS年化"].map(fmt_pct)
+            st.dataframe(disp, use_container_width=True, hide_index=True)
+
+        sel_label = st.selectbox(
+            "查看单策略明细",
+            [s.get("label", s.get("preset", "")) for s in bt["strategies"]],
+            key="sdp_detail_strat",
+        )
+        chosen = next((s for s in bt["strategies"] if s.get("label") == sel_label), None)
+        if chosen:
+            full = chosen.get("全样本") or {}
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("胜率", fmt_pct(full.get("胜率")))
+            m2.metric("年化", fmt_pct(full.get("年化")))
+            m3.metric("最大回撤", fmt_pct(full.get("最大回撤")))
+            m4.metric("盈亏比", fmt_num(full.get("盈亏比")))
+
+            trades = pd.DataFrame(chosen.get("trades") or [])
+            if not trades.empty:
+                eq = equity_curve_from_trades(trades)
+                if not eq.empty:
+                    fig = go.Figure()
+                    fig.add_trace(go.Scatter(
+                        x=eq["日期"], y=eq["权益"], name="策略权益",
+                        line=dict(color=theme.ORANGE, width=2),
+                    ))
+                    fig.update_layout(
+                        height=320, template="tiger",
+                        title=f"{sel_label} · 权益曲线",
+                        margin=dict(l=10, r=10, t=40, b=10),
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
+
+                by_tk = pd.DataFrame(chosen.get("by_ticker") or [])
+                if not by_tk.empty:
+                    st.markdown("**分票统计**")
+                    bdisp = by_tk.copy()
+                    bdisp["胜率"] = bdisp["胜率"].map(fmt_pct)
+                    st.dataframe(bdisp.head(25), use_container_width=True, hide_index=True)
+
+                st.markdown("**最近交易**")
+                tdisp = trades.tail(30).iloc[::-1].copy()
+                tdisp["净收益"] = pd.to_numeric(tdisp["净收益"], errors="coerce").map(
+                    lambda x: f"{x:+.2%}" if pd.notna(x) else "—"
+                )
+                st.dataframe(tdisp, use_container_width=True, hide_index=True)
+
+
 def tab_screener(cfg: dict) -> None:
     st.subheader("策略选股 · 条件筛选 + 批量回测")
     st.caption(
@@ -2583,6 +2746,9 @@ def tab_screener(cfg: dict) -> None:
             st.dataframe(recent.iloc[::-1], use_container_width=True, hide_index=True)
 
     st.divider()
+    _tab_surge_drop_pool(cfg)
+
+    st.divider()
     _tab_gainer_pro(cfg)
 
     st.divider()
@@ -2604,7 +2770,12 @@ def tab_screener(cfg: dict) -> None:
     fetch_start = (pd.Timestamp(sel_str) - pd.DateOffset(days=400)).strftime("%Y-%m-%d")
 
     c1, c2, c3 = st.columns([1.2, 1, 1])
-    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_options = {
+        **screener.UNIVERSE_PRESETS,
+        "sp500": "标普500成分",
+        "surge_drop": "暴涨/暴跌池",
+        "custom": "自定义列表",
+    }
     pool_key = c1.selectbox(
         "股票池来源",
         list(pool_options.keys()),
@@ -2681,6 +2852,13 @@ def tab_screener(cfg: dict) -> None:
                 )
             elif pool_key == "sp500":
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+                snapshot = screener.build_snapshot_from_history(
+                    tickers, fetch_start, sel_str, lookback_days=filters.lookback_days,
+                    with_sector=need_sector,
+                )
+            elif pool_key == "surge_drop":
+                from quant.surge_drop_pool import load_pool
+                tickers = load_pool()[: int(pool_size)]
                 snapshot = screener.build_snapshot_from_history(
                     tickers, fetch_start, sel_str, lookback_days=filters.lookback_days,
                     with_sector=need_sector,
@@ -3863,7 +4041,12 @@ def tab_precursor(cfg: dict) -> None:
         st.dataframe(precursor.list_catalog(), use_container_width=True, hide_index=True)
 
     c1, c2, c3 = st.columns([1.2, 1, 1])
-    pool_options = {**screener.UNIVERSE_PRESETS, "sp500": "标普500成分", "custom": "自定义列表"}
+    pool_options = {
+        **screener.UNIVERSE_PRESETS,
+        "sp500": "标普500成分",
+        "surge_drop": "暴涨/暴跌池",
+        "custom": "自定义列表",
+    }
     pool_key = c1.selectbox("扫描股票池", list(pool_options.keys()),
                             format_func=lambda k: pool_options[k], key="pre_pool")
     pool_size = c2.number_input("扫描数量", 10, 150, 40, 10, key="pre_size")
@@ -3888,6 +4071,9 @@ def tab_precursor(cfg: dict) -> None:
                 tickers = parse_tickers(custom_raw)
             elif pool_key == "sp500":
                 tickers = screener.fetch_sp500_tickers()[: int(pool_size)]
+            elif pool_key == "surge_drop":
+                from quant.surge_drop_pool import load_pool
+                tickers = load_pool()[: int(pool_size)]
             else:
                 snap = screener.fetch_yahoo_screen(pool_key, count=int(pool_size))
                 tickers = snap["代码"].tolist() if not snap.empty else []
@@ -4327,6 +4513,7 @@ def tab_income_engine(cfg: dict) -> None:
 
 
 def main() -> None:
+    _setup_page()
     _render_brand_header()
     cfg = render_trading_cfg()
     st.caption("数据来源可配置 Polygon / Alpaca / Yahoo · 自用研究工具，不构成投资建议")

@@ -21,6 +21,7 @@ def test_runner_registry_covers_all_standalone():
         "screen_daily",
         "scan_daily",
         "ticker_pattern",
+        "mean_reversion_dip",
     }
     assert expected == set(RUNNER_REGISTRY.keys())
 

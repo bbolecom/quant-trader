@@ -84,15 +84,30 @@ def _ensure_yfinance() -> None:
         raise DataError("未安装 yfinance，请先运行: pip install yfinance")
 
 
+def _read_html_tables(url: str, **kwargs) -> list[pd.DataFrame]:
+    """带浏览器 User-Agent 拉取并解析 HTML 表格。
+
+    Wikipedia 等站点已对 pandas/urllib 默认 UA 返回 403，必须显式带 UA 抓取后再 read_html。
+    """
+    import urllib.request
+
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "Mozilla/5.0 (compatible; quant-screener/1.0)"}
+    )
+    html = urllib.request.urlopen(req, timeout=20).read()  # noqa: S310
+    return pd.read_html(html, **kwargs)
+
+
 def fetch_sp500_tickers() -> list[str]:
     """拉取标普 500 成分股代码。"""
     try:
-        tables = pd.read_html(
+        tables = _read_html_tables(
             "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies",
             match="Symbol",
         )
         syms = tables[0]["Symbol"].astype(str).str.replace(".", "-", regex=False).tolist()
-        return [s.strip().upper() for s in syms if s.strip()]
+        cleaned = [s.strip().upper() for s in syms if s.strip()]
+        return cleaned or list(_FALLBACK_TICKERS)
     except Exception:  # noqa: BLE001
         return list(_FALLBACK_TICKERS)
 
@@ -100,7 +115,7 @@ def fetch_sp500_tickers() -> list[str]:
 def fetch_nasdaq100_tickers() -> list[str]:
     """拉取纳斯达克 100 成分股。"""
     try:
-        tables = pd.read_html("https://en.wikipedia.org/wiki/Nasdaq-100")
+        tables = _read_html_tables("https://en.wikipedia.org/wiki/Nasdaq-100")
         for table in tables:
             if "Ticker" in table.columns:
                 syms = table["Ticker"].astype(str).str.replace(".", "-", regex=False).tolist()

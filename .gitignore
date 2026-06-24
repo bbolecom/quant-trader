@@ -18,7 +18,7 @@ vrp.err.log
 .streamlit/secrets.toml
 # research 大型回测 CSV / 期权缓存（本地生成，不上云）
 research/*.csv
-research/options_cache/
+research/.cache/
 holy_grail_full.log
 .github_token
 .tools/

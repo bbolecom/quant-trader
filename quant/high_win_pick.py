@@ -80,6 +80,18 @@ class StatsStore:
             0.87, 0.22, -0.25, source="strategy_ranker", label="周铁鹰",
         )
 
+        mr = self._read_json("research/mean_reversion_dip_best.json")
+        if mr and mr.get("oos"):
+            o = mr["oos"]
+            self._module_defaults["mean_reversion_dip"] = BacktestStats(
+                float(o.get("win_rate", 0)),
+                float(o.get("cagr", 0)),
+                float(o.get("max_dd", 0)),
+                int(o.get("n_trades", 0) or 0),
+                source="mean_reversion_dip_best.json(OOS)",
+                label="均值回归买跌",
+            )
+
         fs = self._read_json("research/flow_strategy_backtest.json")
         if fs:
             wr = float(fs.get("笔胜率") or fs.get("日胜率") or 0)
@@ -242,6 +254,9 @@ class StatsStore:
 
         if "卖Call" in mod or "卖Call" in str(pick.get("策略动作", "")):
             return self._module_defaults.get("call_spread")
+
+        if mod.startswith("均值回归"):
+            return self._module_defaults.get("mean_reversion_dip")
 
         if mod.startswith("SNDK") or "铁鹰" in mod:
             return self._module_defaults.get("weekly_soup")

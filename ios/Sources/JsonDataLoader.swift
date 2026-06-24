@@ -51,10 +51,10 @@ final class JsonDataLoader: ObservableObject {
         guard let text = String(data: data, encoding: .utf8) else { return nil }
         let lines = text.split(whereSeparator: \.isNewline).map(String.init)
         guard lines.count >= 2 else { return nil }
-        let headers = lines[0].split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }
+        let headers = parseCSVLine(lines[0])
         var rows: [[String: Any]] = []
         for line in lines.dropFirst() {
-            let cols = line.split(separator: ",", omittingEmptySubsequences: false).map { String($0) }
+            let cols = parseCSVLine(line)
             var row: [String: Any] = [:]
             for (i, h) in headers.enumerated() where i < cols.count {
                 let v = cols[i].trimmingCharacters(in: .whitespaces)
@@ -68,6 +68,35 @@ final class JsonDataLoader: ObservableObject {
             "rows": rows,
             "picks": rows,
         ]
+    }
+
+    private static func parseCSVLine(_ line: String) -> [String] {
+        let chars = Array(line)
+        var cells: [String] = []
+        var current = ""
+        var inQuotes = false
+        var i = 0
+
+        while i < chars.count {
+            let ch = chars[i]
+            if ch == "\"" {
+                if inQuotes, i + 1 < chars.count, chars[i + 1] == "\"" {
+                    current.append("\"")
+                    i += 1
+                } else {
+                    inQuotes.toggle()
+                }
+            } else if ch == "," && !inQuotes {
+                cells.append(current.trimmingCharacters(in: .whitespaces))
+                current = ""
+            } else {
+                current.append(ch)
+            }
+            i += 1
+        }
+
+        cells.append(current.trimmingCharacters(in: .whitespaces))
+        return cells
     }
 
     private func apply(_ dict: [String: Any], from source: String) {

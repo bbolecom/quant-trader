@@ -324,7 +324,11 @@ def run_surge_scan(cfg_dict: dict | None = None, *, as_of: str | None = None) ->
     start = (date.fromisoformat(as_of) - timedelta(days=max(120, history_days + 30))).isoformat()
 
     tickers: set[str] = set()
-    if history_ticker:
+    pool_name = cfg_raw.get("pool", "")
+    if pool_name == "surge_drop":
+        from quant.surge_drop_pool import load_pool as load_surge_drop_pool
+        tickers.update(load_surge_drop_pool())
+    elif history_ticker:
         tickers.add(str(history_ticker).upper())
     else:
         snap_live = fetch_gainer_universe_live(count=cfg.gainer_count)

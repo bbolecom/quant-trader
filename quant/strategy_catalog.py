@@ -250,6 +250,18 @@ def strategy_registry() -> list[StrategyEntry]:
             daily_pick_module="—",
         ),
         StrategyEntry(
+            id="surge_drop_pool",
+            name="暴涨/暴跌池",
+            category="动量",
+            script="research/surge_drop_pool_research.py",
+            config="research/surge_drop_pool.json",
+            today_json="research/surge_drop_pool_research.json",
+            today_csv="research/surge_drop_pool.csv",
+            description="5年爱暴涨也爱暴跌 · Top60 研究池 + 分策略回测",
+            integrated_in_daily_pick=False,
+            daily_pick_module="—",
+        ),
+        StrategyEntry(
             id="speculative_pool",
             name="SPCE类投机池",
             category="动量",

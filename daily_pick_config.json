@@ -46,9 +46,13 @@
     "strategy_rank": true,
     "screen_daily": true,
     "scan_daily": true,
+    "mean_reversion_dip": true,
     "legacy_screen": false,
     "short_fade": true
   },
+  "mean_reversion_top_n": 8,
+  "mean_reversion_universe": "sp500",
+  "mean_reversion_max_universe": 600,
   "pattern_config": "pattern_config.json",
   "flow_strategy_config": "flow_strategy_config.json",
   "vrp_config": "vrp_config.json",

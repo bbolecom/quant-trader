@@ -212,6 +212,9 @@ struct PickCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .trailing, spacing: 4) {
+                        if row.opportunityScore > 0 {
+                            OpportunityScoreBadge(score: row.opportunityScore, grade: row.opportunityGrade)
+                        }
                         DirectionBadge(direction: row.direction, highlight: highlight)
                         StatusBadge(status: row.status)
                     }
@@ -241,6 +244,8 @@ struct PickCardView: View {
                     .foregroundStyle(ThsTheme.textSecondary)
                     .lineLimit(highlight ? 4 : 2)
                     .multilineTextAlignment(.leading)
+
+                OpportunityMetaRow(row: row)
             }
             .padding(14)
             .thsCard(
@@ -249,6 +254,75 @@ struct PickCardView: View {
             )
         }
         .buttonStyle(.plain)
+    }
+}
+
+struct OpportunityScoreBadge: View {
+    let score: Int
+    let grade: String
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Text("\(score)")
+                .font(.caption.weight(.black))
+            Text(grade)
+                .font(.caption2.weight(.semibold))
+        }
+        .foregroundStyle(.white)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(tint, in: Capsule())
+        .accessibilityLabel("机会评分 \(score)，\(grade)")
+    }
+
+    private var tint: Color {
+        switch score {
+        case 85...: return ThsTheme.up
+        case 70..<85: return ThsTheme.accent
+        case 55..<70: return .orange
+        default: return ThsTheme.textTertiary
+        }
+    }
+}
+
+struct OpportunityMetaRow: View {
+    let row: PickRow
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Label(row.riskLevel, systemImage: riskIcon)
+                .foregroundStyle(riskTint)
+            if row.isHighWinQualified {
+                Label("高胜率", systemImage: "star.fill")
+                    .foregroundStyle(.yellow)
+            }
+            if row.isActionable {
+                Label("今日可执行", systemImage: "bolt.fill")
+                    .foregroundStyle(ThsTheme.up)
+            }
+            Spacer(minLength: 0)
+        }
+        .font(.caption2.weight(.semibold))
+        .lineLimit(1)
+        .minimumScaleFactor(0.8)
+    }
+
+    private var riskIcon: String {
+        switch row.riskLevel {
+        case "低风险": return "shield.checkered"
+        case "高风险": return "exclamationmark.triangle.fill"
+        case "待确认": return "hourglass"
+        default: return "shield.lefthalf.filled"
+        }
+    }
+
+    private var riskTint: Color {
+        switch row.riskLevel {
+        case "低风险": return ThsTheme.up
+        case "高风险": return ThsTheme.accent
+        case "待确认": return .orange
+        default: return ThsTheme.textSecondary
+        }
     }
 }
 

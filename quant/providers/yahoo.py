@@ -13,6 +13,30 @@ try:
 except ImportError:  # pragma: no cover
     yf = None
 
+# 单次 batch 不宜过大，避免 Yahoo 超时/断连
+_BATCH_CHUNK = 40
+_DOWNLOAD_TIMEOUT = 45
+
+
+def _download(tickers, start_str: str, end_str: str, interval: str = "1d"):
+    if yf is None:
+        raise DataError("未安装 yfinance，请运行: pip install yfinance")
+    multi = isinstance(tickers, (list, tuple)) and len(tickers) > 1
+    kwargs = dict(
+        start=start_str,
+        end=end_str,
+        interval=interval,
+        auto_adjust=True,
+        progress=False,
+        threads=True,
+    )
+    if multi:
+        kwargs["group_by"] = "ticker"
+    try:
+        return yf.download(tickers, timeout=_DOWNLOAD_TIMEOUT, **kwargs)
+    except TypeError:
+        return yf.download(tickers, **{k: v for k, v in kwargs.items() if k != "timeout"})
+
 
 class YahooProvider(MarketDataProvider):
     name = "yahoo"
@@ -25,21 +49,11 @@ class YahooProvider(MarketDataProvider):
         end: date | str,
         interval: str = "1d",
     ) -> pd.DataFrame:
-        if yf is None:
-            raise DataError("未安装 yfinance，请运行: pip install yfinance")
-
         ticker = ticker.strip().upper()
         start_str = pd.Timestamp(start).strftime("%Y-%m-%d")
         end_str = (pd.Timestamp(end) + timedelta(days=1)).strftime("%Y-%m-%d")
 
-        raw = yf.download(
-            ticker,
-            start=start_str,
-            end=end_str,
-            interval=interval,
-            auto_adjust=True,
-            progress=False,
-        )
+        raw = _download(ticker, start_str, end_str, interval=interval)
         if raw is None or raw.empty:
             raise DataError(f"Yahoo 未返回 {ticker} 的行情数据。")
         return normalize_ohlcv(raw)
@@ -55,28 +69,31 @@ class YahooProvider(MarketDataProvider):
             return {}
         start_str = pd.Timestamp(start).strftime("%Y-%m-%d")
         end_str = (pd.Timestamp(end) + timedelta(days=1)).strftime("%Y-%m-%d")
-        raw = yf.download(
-            tickers,
-            start=start_str,
-            end=end_str,
-            interval=interval,
-            auto_adjust=True,
-            progress=False,
-            group_by="ticker",
-            threads=True,
-        )
-        if raw is None or raw.empty:
-            return {}
+        syms = [t.strip().upper() for t in tickers if t and str(t).strip()]
         out: dict[str, pd.DataFrame] = {}
-        multi = isinstance(raw.columns, pd.MultiIndex)
-        for t in tickers:
+
+        for i in range(0, len(syms), _BATCH_CHUNK):
+            chunk = syms[i : i + _BATCH_CHUNK]
             try:
-                sub = raw[t].dropna(how="all") if multi else raw.dropna(how="all")
-                if sub is None or sub.empty:
-                    continue
-                df = normalize_ohlcv(sub)
-                if not df.empty:
-                    out[t] = df
+                raw = _download(
+                    chunk if len(chunk) > 1 else chunk[0],
+                    start_str,
+                    end_str,
+                    interval=interval,
+                )
             except Exception:  # noqa: BLE001
                 continue
+            if raw is None or raw.empty:
+                continue
+            multi = isinstance(raw.columns, pd.MultiIndex)
+            for t in chunk:
+                try:
+                    sub = raw[t].dropna(how="all") if multi else raw.dropna(how="all")
+                    if sub is None or sub.empty:
+                        continue
+                    df = normalize_ohlcv(sub)
+                    if not df.empty:
+                        out[t] = df
+                except Exception:  # noqa: BLE001
+                    continue
         return out

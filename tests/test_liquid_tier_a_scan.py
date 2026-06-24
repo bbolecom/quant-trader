@@ -40,6 +40,9 @@ def test_pick_fleet_tickers_from_csv(tmp_path, monkeypatch):
     import research.liquid_tier_a_scan as mod
 
     monkeypatch.setattr(mod, "RESULTS_CSV", csv)
-    picks = pick_fleet_tickers(3, account_size=10_000, prefer_weekly_for_small=True)
+    # use_patterns=False：强制走 CSV 路径（默认 True 会先读规律模型，绕过本测试目标）。
+    picks = pick_fleet_tickers(
+        3, account_size=10_000, prefer_weekly_for_small=True, use_patterns=False
+    )
     assert len(picks) == 3
     assert all(p in {"AMD", "INTC", "MU", "WDC", "NVDA"} for p in picks)

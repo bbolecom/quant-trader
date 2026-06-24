@@ -826,11 +826,31 @@ def fetch_gainer_data_yahoo(
     start: str,
     end: str,
 ) -> tuple[dict[str, pd.DataFrame], pd.DataFrame]:
-    """批量拉取 gainer 回测数据（固定 Yahoo）。"""
+    """批量拉取 gainer 回测数据（固定 Yahoo + 磁盘缓存）。"""
+    from quant.market_cache import read_cached, write_cached
+
     reset_provider_cache()
     yahoo = get_provider(DataConfig(provider="yahoo"))
-    data = yahoo.fetch_batch(tickers, start, end)
-    spy = yahoo.fetch_history("SPY", start, end)
+    syms = [t.strip().upper() for t in tickers if t and str(t).strip()]
+    data: dict[str, pd.DataFrame] = {}
+    missing: list[str] = []
+    for t in syms:
+        hit = read_cached("yahoo", t, start, end)
+        if hit is not None:
+            data[t] = hit
+        else:
+            missing.append(t)
+    if missing:
+        fetched = yahoo.fetch_batch(missing, start, end)
+        for t, df in fetched.items():
+            if df is None or df.empty:
+                continue
+            data[t.upper()] = df
+            write_cached("yahoo", t.upper(), start, end, df)
+    spy = read_cached("yahoo", "SPY", start, end)
+    if spy is None:
+        spy = yahoo.fetch_history("SPY", start, end)
+        write_cached("yahoo", "SPY", start, end, spy)
     return data, spy
 
 

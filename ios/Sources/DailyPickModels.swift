@@ -40,6 +40,24 @@ struct DailyPickDocument: Codable {
         return picks?.filter(\.isActionable) ?? []
     }
 
+    var topOpportunities: [PickRow] {
+        let combined = highWinPicks + (picks ?? [])
+        var seen = Set<String>()
+        return combined
+            .filter { row in
+                let key = "\(row.module)-\(row.ticker)-\(row.status)"
+                guard !seen.contains(key) else { return false }
+                seen.insert(key)
+                return row.isActionable || row.isHighWinQualified
+            }
+            .sorted { lhs, rhs in
+                if lhs.opportunityScore != rhs.opportunityScore {
+                    return lhs.opportunityScore > rhs.opportunityScore
+                }
+                return lhs.ticker < rhs.ticker
+            }
+    }
+
     var sortedModules: [(String, ModuleStats)] {
         guard let mods = modulesSummary else { return [] }
         return mods.sorted { lhs, rhs in
@@ -241,6 +259,41 @@ struct PickRow: Codable, Identifiable {
         histWin != nil || histAnn != nil || histDD != nil
     }
 
+    var opportunityScore: Int {
+        var score = 0.0
+        if isActionable { score += 28 }
+        if isHighWinQualified { score += 24 }
+        if let histWin {
+            score += min(max(histWin, 0), 1) * 22
+        } else if let hitRateValue {
+            score += min(max(hitRateValue, 0), 1) * 16
+        }
+        if let histAnn {
+            score += min(max(histAnn, 0), 0.8) / 0.8 * 14
+        }
+        if let histDD {
+            let drawdown = abs(histDD)
+            score += max(0, 12 - min(drawdown, 0.4) / 0.4 * 12)
+        }
+        return min(100, max(0, Int(score.rounded())))
+    }
+
+    var opportunityGrade: String {
+        switch opportunityScore {
+        case 85...: return "强机会"
+        case 70..<85: return "稳健"
+        case 55..<70: return "观察"
+        default: return isActionable ? "可跟踪" : "等待"
+        }
+    }
+
+    var riskLevel: String {
+        if let histDD, abs(histDD) >= 0.20 { return "高风险" }
+        if !isActionable { return "待确认" }
+        if isHighWinQualified { return "低风险" }
+        return "中风险"
+    }
+
     var displayWinRate: String {
         if let w = histWin { return Self.formatPercent(w) }
         if let h = hitRate, !h.isEmpty { return h.contains("%") ? h : "\(h)%" }
@@ -260,6 +313,15 @@ struct PickRow: Codable, Identifiable {
     static func formatPercent(_ value: Double) -> String {
         let pct = abs(value) <= 1.5 ? value * 100 : value
         return String(format: "%+.1f%%", pct)
+    }
+
+    private var hitRateValue: Double? {
+        guard let hitRate, !hitRate.isEmpty else { return nil }
+        let cleaned = hitRate
+            .replacingOccurrences(of: "%", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let value = Double(cleaned) else { return nil }
+        return value > 1.5 ? value / 100 : value
     }
 
     /// 完整展示策略动作；旧 JSON 若仍是 iron_condor 等代码则转为中文说明。
@@ -353,6 +415,13 @@ final class DailyPickLoader: ObservableObject {
         if let url = AppConfig.githubDailyPickURL,
            let doc = await fetchRemote(url: url) {
             apply(doc, source: .github, from: "GitHub")
+            isLoading = false
+            return
+        }
+
+        if let bundled = Self.decodeBundledJSON() {
+            apply(bundled, source: .bundled, from: "App 内置")
+            errorMessage = "云端不可用，已切换到内置快照"
             isLoading = false
             return
         }

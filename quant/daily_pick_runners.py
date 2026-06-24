@@ -451,6 +451,87 @@ def run_ticker_pattern_standalone(cfg: dict, *, bull: bool) -> list[dict]:
     return rows
 
 
+_DIP_SKIP_TICKERS = frozenset({"SPY", "QQQ", "DIA", "IWM", "XLE", "XLF", "XLK", "SOXL", "TQQQ"})
+
+
+def resolve_dip_universe(cfg: dict) -> list[str]:
+    """解析买跌扫描股池：liquid100 / sp500（默认，+纳指100+高贝塔）/ broad（全市场多榜）。
+
+    流动性由 scan_today 的成交额闸门保证，故这里只管「广度」。可离线单测（monkeypatch 拉取函数）。"""
+    from research.gainer_daily_backtest import LIQUID100
+
+    name = str(cfg.get("mean_reversion_universe", "sp500")).lower()
+    base: list[str] = list(LIQUID100)
+    if name == "liquid100":
+        base = list(LIQUID100)
+    elif name == "broad":
+        from quant.screener import fetch_broad_universe
+        base = fetch_broad_universe(
+            screen_count=int(cfg.get("mean_reversion_screen_count", 200)),
+            extra=list(LIQUID100),
+        )
+    else:  # sp500（默认）：标普500 ∪ 纳指100 ∪ 高贝塔流动性票，覆盖全大中盘
+        from quant.screener import fetch_nasdaq100_tickers, fetch_sp500_tickers
+        base = list(fetch_sp500_tickers()) + list(fetch_nasdaq100_tickers()) + list(LIQUID100)
+
+    uni = sorted({str(t).strip().upper() for t in base if str(t).strip()} - _DIP_SKIP_TICKERS)
+    cap = int(cfg.get("mean_reversion_max_universe", 600))
+    return uni[:cap]
+
+
+def run_mean_reversion_dip(cfg: dict, *, bull: bool) -> list[dict]:
+    """短期均值回归·顺势买跌（Connors RSI-2 式）：上升趋势中的超卖回调。
+
+    回测（6 年、196 只流动性标的、含成本）：OOS 胜率 ~73%、年化 ~150%、回撤 ~-17%。
+    实验证实加大盘择时(regime)反而损失（最肥的买点在恐慌杀跌期），故全天候运行。
+    股池默认扩到 S&P500 ∪ 纳指100（含高贝塔），流动性由成交额闸门保证。"""
+    mod = "均值回归·买跌"
+    acct = "流动性大盘股"
+    try:
+        from datetime import date, timedelta
+
+        from research.mean_reversion_dip import PROD_PARAMS, scan_today
+        from quant.providers import DataConfig, get_provider, reset_provider_cache
+
+        reset_provider_cache()
+        yahoo = get_provider(DataConfig(provider="yahoo"))
+        end = date.today().isoformat()
+        start = (date.today() - timedelta(days=420)).isoformat()  # >200日均线暖机
+        universe = resolve_dip_universe(cfg)
+        batch = yahoo.fetch_batch(universe, start, end)
+        top_n = int(cfg.get("mean_reversion_top_n", 8))
+        cands = scan_today(batch, PROD_PARAMS, top_n=top_n)
+    except Exception as e:  # noqa: BLE001
+        return [fail_row(mod, acct, e)]
+
+    if not cands:
+        return [empty_row(mod, acct, "今日无上升趋势中的超卖回调标的（正常空仓）")]
+
+    regime_note = "牛市" if bull else "弱市"
+    rows: list[dict] = []
+    for c in cands:
+        reason = (
+            f"{regime_note} · 上升趋势(高于200日均线 {c['距SMA200%']:+.1f}%) · "
+            f"回调跌破5日均线 {c['距SMA5%']:+.1f}% · RSI(2)={c['RSI2']}（超卖） · "
+            f"成交额 ${c['成交额M']:.0f}M"
+        )
+        rows.append(pick_row(
+            module=mod,
+            account=acct,
+            ticker=str(c["代码"]),
+            status="可开仓",
+            direction="做多",
+            action="次日开盘买入·反弹了结",
+            reason=reason,
+            现价=c["现价"],
+            RSI2=c["RSI2"],
+            成交额M=c["成交额M"],
+            买进时机="次日开盘买入",
+            卖出时机="反弹+10% / 首个收盘转正 / 持满10日，硬止损 8%",
+        ))
+    return rows
+
+
 # 模块 ID → (runner, needs_bull)
 RUNNER_REGISTRY: dict[str, tuple[Callable[..., list[dict]], bool]] = {
     "pattern_daily": (run_pattern_three_leg, True),
@@ -463,6 +544,7 @@ RUNNER_REGISTRY: dict[str, tuple[Callable[..., list[dict]], bool]] = {
     "screen_daily": (run_screen_screener, False),
     "scan_daily": (run_watchlist_scan, False),
     "ticker_pattern": (run_ticker_pattern_standalone, True),
+    "mean_reversion_dip": (run_mean_reversion_dip, True),
 }
 
 # quick 模式跳过的重型模块
@@ -475,6 +557,7 @@ HEAVY_MODULES = frozenset({
     "gain15",
     "capital_flow",
     "meme_long",
+    "mean_reversion_dip",
 })
 
 

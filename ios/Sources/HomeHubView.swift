@@ -109,6 +109,7 @@ struct HomeHubView: View {
             iconGridSection
             bannerSection
             watchlistCard
+            opportunitySnapshotCard
             aiDiagnosisCard
             hotFeedSection
             moreFeaturesSection
@@ -365,6 +366,74 @@ struct HomeHubView: View {
             .background(ThsTheme.homeBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         }
         .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private var opportunitySnapshotCard: some View {
+        let picks = Array((pickLoader.document?.topOpportunities ?? []).prefix(3))
+        if !picks.isEmpty {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Label("今日机会", systemImage: "scope")
+                        .font(.headline)
+                        .foregroundStyle(ThsTheme.homeTextPrimary)
+                    Spacer()
+                    Button { nav.openPicks() } label: {
+                        Text("全部")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(ThsTheme.homeHeaderRed)
+                    }
+                }
+
+                ForEach(Array(picks.enumerated()), id: \.element.id) { idx, row in
+                    Button { selectedPick = row } label: {
+                        HStack(spacing: 12) {
+                            Text("\(idx + 1)")
+                                .font(.caption.weight(.black))
+                                .foregroundStyle(.white)
+                                .frame(width: 24, height: 24)
+                                .background(rankTint(for: idx), in: Circle())
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text("\(row.ticker) · \(row.opportunityGrade)")
+                                    .font(.subheadline.weight(.semibold))
+                                    .foregroundStyle(ThsTheme.homeTextPrimary)
+                                Text(row.reason)
+                                    .font(.caption)
+                                    .foregroundStyle(ThsTheme.homeTextSecondary)
+                                    .lineLimit(1)
+                            }
+                            Spacer()
+                            Text("\(row.opportunityScore)")
+                                .font(.headline.weight(.black))
+                                .foregroundStyle(scoreTint(for: row))
+                                .accessibilityLabel("机会评分 \(row.opportunityScore)")
+                            Image(systemName: "chevron.right")
+                                .font(.caption2.weight(.bold))
+                                .foregroundStyle(ThsTheme.homeTextSecondary.opacity(0.6))
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(ThsTheme.homeBackground, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(14)
+            .background(ThsTheme.homeCard)
+            .padding(.horizontal, 12)
+        }
+    }
+
+    private func rankTint(for index: Int) -> Color {
+        switch index {
+        case 0: return ThsTheme.homeHeaderRed
+        case 1: return Color(hex: "#F97316") ?? .orange
+        default: return Color(hex: "#6366F1") ?? .indigo
+        }
+    }
+
+    private func scoreTint(for row: PickRow) -> Color {
+        row.opportunityScore >= 85 ? ThsTheme.homeHeaderRed : ThsTheme.homeTextPrimary
     }
 
     // MARK: - AI 诊断（全宽纵向）

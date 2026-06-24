@@ -1,8 +1,9 @@
 {
   "ticker": "NVAX",
-  "updated": "2026-06-24 13:05:05",
+  "updated": "2026-06-24 20:56:19",
   "period": "6mo",
-  "source": "yfinance",
+  "interval": "1d",
+  "source": "yfinance-live",
   "bars": [
     {
       "date": "2025-12-24",

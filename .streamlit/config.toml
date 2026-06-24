@@ -10,6 +10,16 @@ font = "sans serif"
 headless = true
 enableXsrfProtection = true
 enableCORS = false
+enableWebsocketCompression = true
+maxMessageSize = 500
+
+[runner]
+fastReruns = true
+magicEnabled = false
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = true
 
 [browser]
 gatherUsageStats = false

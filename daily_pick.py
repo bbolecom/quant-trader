@@ -23,6 +23,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from quant.io_safe import append_csv_locked, atomic_write_csv, atomic_write_text
 from quant.meme_route import parse_meme_route
 
 ROOT = Path(__file__).resolve().parent
@@ -894,9 +895,9 @@ def save_outputs(doc: dict, cfg: dict) -> None:
     pushpath = ROOT / outs.get("push_json", "research/daily_pick_push.json")
 
     jpath.parent.mkdir(parents=True, exist_ok=True)
-    jpath.write_text(
+    atomic_write_text(
+        jpath,
         json.dumps(doc, ensure_ascii=False, indent=2, default=_json_default),
-        encoding="utf-8",
     )
 
     hw = doc.get("high_win") or {}
@@ -910,25 +911,24 @@ def save_outputs(doc: dict, cfg: dict) -> None:
             "picks": hw.get("picks"),
             "watch": hw.get("watch"),
         }
-        hwpath.write_text(
+        atomic_write_text(
+            hwpath,
             json.dumps(hw_doc, ensure_ascii=False, indent=2, default=_json_default),
-            encoding="utf-8",
         )
 
     push = doc.get("push") or {}
     if push:
-        pushpath.write_text(
+        atomic_write_text(
+            pushpath,
             json.dumps(push, ensure_ascii=False, indent=2, default=_json_default),
-            encoding="utf-8",
         )
 
     df = pd.DataFrame(doc.get("picks") or [])
     if not df.empty:
         df.insert(0, "选股日期", doc["选股日期"])
         df.insert(1, "选股时间", doc["选股时间"])
-        df.to_csv(cpath, index=False, encoding="utf-8-sig")
-        header = not hpath.exists()
-        df.to_csv(hpath, mode="a", header=header, index=False, encoding="utf-8-sig")
+        atomic_write_csv(df, cpath)
+        append_csv_locked(df, hpath)
 
     try:
         from quant.app_manifest import export_app_manifest
