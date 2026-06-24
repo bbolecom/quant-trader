@@ -36,10 +36,15 @@ struct DailyPickView: View {
         .toolbar {
             if !embedded {
                 ToolbarItem(placement: .topBarLeading) {
-                    if let updated = loader.lastUpdated {
-                        Text(updated, style: .time)
-                            .font(.caption2)
-                            .foregroundStyle(ThsTheme.textTertiary)
+                    VStack(alignment: .leading, spacing: 0) {
+                        if let updated = loader.lastUpdated {
+                            Text(updated, style: .time)
+                                .font(.caption2)
+                                .foregroundStyle(ThsTheme.textTertiary)
+                        }
+                        Text(AppInfo.displayVersion)
+                            .font(.system(size: 9, weight: .medium))
+                            .foregroundStyle(ThsTheme.textTertiary.opacity(0.8))
                     }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -70,12 +75,21 @@ struct DailyPickView: View {
         ThsEmptyState(
             icon: "wifi.slash",
             title: "暂无选股数据",
-            message: loader.errorMessage ?? "请连接 Mac JSON 服务，或使用云端 / 内置快照。",
+            message: emptyMessage,
             primaryTitle: "重新加载",
             primaryAction: { Task { await loader.reload() } },
             secondaryTitle: "去配置连接",
             secondaryAction: { nav.selectedTab = 4 }
         )
+    }
+
+    private var emptyMessage: String {
+        var lines: [String] = []
+        lines.append(loader.errorMessage ?? "无法加载选股 JSON。")
+        lines.append("当前 \(AppInfo.displayVersion)")
+        lines.append(AppInfo.bundledDailyPickExists ? "✓ 内置快照已在 App 包内" : "✗ 内置快照缺失 — 请运行 xcodegen generate 后重装")
+        lines.append("若版本低于 v3.0 (6)：删除 App → Xcode Clean → 重新 Run")
+        return lines.joined(separator: "\n")
     }
 
     @ViewBuilder
