@@ -225,13 +225,15 @@ struct PickCardView: View {
                         .foregroundStyle(ThsTheme.textTertiary)
                 }
 
-                if let action = row.action, !action.isEmpty {
-                    Text(action)
+                let brief = row.displayActionBrief
+                if !brief.isEmpty {
+                    Text(brief)
                         .font(.caption.weight(.medium))
                         .foregroundStyle(ThsTheme.accent)
+                        .lineLimit(2)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(ThsTheme.accent.opacity(0.12), in: Capsule())
+                        .background(ThsTheme.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
                 }
 
                 Text(row.reason)

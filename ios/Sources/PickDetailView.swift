@@ -83,12 +83,15 @@ struct PickDetailView: View {
 
     private var actionBlock: some View {
         Group {
-            if let action = row.action, !action.isEmpty {
+            let action = row.displayAction
+            if !action.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     ThsSectionHeader(title: "策略动作", accent: ThsTheme.accent, icon: "bolt.fill")
                     Text(action)
                         .font(.body.weight(.medium))
                         .foregroundStyle(ThsTheme.textPrimary)
+                        .lineSpacing(4)
+                        .fixedSize(horizontal: false, vertical: true)
                         .padding(14)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .thsCard(border: ThsTheme.accent.opacity(0.25))

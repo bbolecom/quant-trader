@@ -145,6 +145,29 @@ def _plan_structure_line(p) -> str:
     return p.note or p.structure
 
 
+def format_pick_action(plan) -> str:
+    """每日选股「策略动作」：策略名 + 四腿/两腿结构 + 盈利区间。"""
+    if plan is None:
+        return ""
+    strat = _strategy_label(plan)
+    struct = _plan_structure_line(plan)
+    zone, _, _ = _profit_zone(plan)
+    return f"{strat} · {struct} · 盈利区{zone}"
+
+
+def format_pick_reason(plan) -> str:
+    """每日选股「选股理由」：现价、到期、张数、收租与保证金。"""
+    if plan is None:
+        return ""
+    n_ct = plan.contracts
+    credit = plan.net_per_contract * n_ct
+    margin = plan.collateral * n_ct
+    return (
+        f"现价${plan.spot:,.2f} · {plan.expiry} DTE{plan.dte} · "
+        f"{n_ct}张 · 收${credit:,.0f} · 保证金${margin:,.0f}"
+    )
+
+
 def _profit_zone(p) -> tuple[str, float | None, float | None]:
     if p.structure == "iron_condor":
         cs, _, ps, _ = p.legs

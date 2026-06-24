@@ -13,29 +13,39 @@ final class JsonDataLoader: ObservableObject {
         root = nil
         defer { isLoading = false }
 
-        guard let url = AppSettings.shared.jsonURL(for: path) else {
+        let urls = AppConfig.jsonCandidateURLs(for: path)
+        guard !urls.isEmpty else {
             errorMessage = "未配置 JSON 地址"
             return
         }
 
-        do {
-            var req = URLRequest(url: url)
-            req.cachePolicy = .reloadIgnoringLocalCacheData
-            req.timeoutInterval = 15
-            let (data, resp) = try await URLSession.shared.data(for: req)
-            guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                errorMessage = "无法获取数据（\(url.lastPathComponent)）"
-                return
+        var lastError: String?
+        for url in urls {
+            do {
+                var req = URLRequest(url: url)
+                req.cachePolicy = .reloadIgnoringLocalCacheData
+                req.timeoutInterval = 15
+                let (data, resp) = try await URLSession.shared.data(for: req)
+                guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+                    lastError = "无法获取数据（\(url.lastPathComponent)）"
+                    continue
+                }
+                let obj = try JSONSerialization.jsonObject(with: data)
+                if let dict = obj as? [String: Any] {
+                    root = dict
+                    loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
+                    return
+                }
+                lastError = "JSON 格式不是对象"
+            } catch {
+                lastError = error.localizedDescription
             }
-            let obj = try JSONSerialization.jsonObject(with: data)
-            if let dict = obj as? [String: Any] {
-                root = dict
-                loadedFrom = url.host
-            } else {
-                errorMessage = "JSON 格式不是对象"
-            }
-        } catch {
-            errorMessage = error.localizedDescription
+        }
+
+        if let first = urls.first, first.host != "raw.githubusercontent.com", urls.contains(where: { $0.host == "raw.githubusercontent.com" }) {
+            errorMessage = "Mac 未连接 · 已尝试 GitHub 快照\n\(lastError ?? "无数据")"
+        } else {
+            errorMessage = lastError ?? "无法获取数据"
         }
     }
 }

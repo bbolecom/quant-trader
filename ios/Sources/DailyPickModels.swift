@@ -261,6 +261,37 @@ struct PickRow: Codable, Identifiable {
         let pct = abs(value) <= 1.5 ? value * 100 : value
         return String(format: "%+.1f%%", pct)
     }
+
+    /// 完整展示策略动作；旧 JSON 若仍是 iron_condor 等代码则转为中文说明。
+    var displayAction: String {
+        guard let raw = action?.trimmingCharacters(in: .whitespacesAndNewlines), !raw.isEmpty else {
+            return ""
+        }
+        if raw.contains("卖") || raw.contains("买") || raw.contains("铁鹰") || raw.contains("CSP") {
+            return raw
+        }
+        let code = raw.lowercased()
+        switch code {
+        case "iron_condor":
+            return "铁鹰 · 卖Call/买Call + 卖Put/买Put · 四腿收租"
+        case "put_credit", "put_spread", "pcs":
+            return "Put信用价差 · 卖Put/买Put · 下方收租"
+        case "csp":
+            return "CSP · 卖Put收租 · 愿接货"
+        default:
+            return raw
+        }
+    }
+
+    /// 列表卡片用：策略名 + 结构（不含盈利区间）。
+    var displayActionBrief: String {
+        let parts = displayAction.split(separator: " · ", omittingEmptySubsequences: false)
+        guard !parts.isEmpty else { return "" }
+        if parts.count >= 2 {
+            return "\(parts[0]) · \(parts[1])"
+        }
+        return String(parts[0])
+    }
 }
 
 enum DailyPickLoaderError: LocalizedError {

@@ -316,8 +316,8 @@ def run_sndk_iron_fleet(cfg: dict) -> list[dict]:
             ticker=str(r.get("ticker", "")),
             status="可开仓",
             direction="收租",
-            action=str(r.get("strategy", "iron_condor")),
-            reason=f"{p.expiry} DTE{p.dte} · {p.contracts}张 · 收${p.net_per_contract * p.contracts:,.0f}",
+            action=sid.format_pick_action(p),
+            reason=sid.format_pick_reason(p),
         ))
     if not rows:
         return [empty_row(mod, "铁鹰舰队", "舰队未启用或无方案")]
