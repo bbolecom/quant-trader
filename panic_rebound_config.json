@@ -1,0 +1,28 @@
+{
+  "pool": "rgti",
+  "drop_pct": 10.0,
+  "pre20_drop_pct": 30.0,
+  "min_price": 5.0,
+  "min_dvol_m": 50.0,
+  "hold_days": 3,
+  "stop_loss_pct": 0.08,
+  "take_profit_pct": 0.25,
+  "max_positions": 2,
+  "_说明": "默认=RGTI类似高波池寻优头档（持3日/止损8%/止盈25%/单日2只）：全程胜52% 年化+22% 回撤-24%，样本外2024-07+ 胜59% 年化+40% 回撤-16% 夏普5.76。pool: market=全市场榜单 / rgti=RGTI类似高波池 / both=并集。",
+  "_备选参数": {
+    "高波池高胜率(75%)": {"pool": "rgti", "hold_days": 10, "stop_loss_pct": 0.15, "take_profit_pct": 0.10},
+    "高波池低回撤(21%)": {"pool": "rgti", "hold_days": 3, "stop_loss_pct": 0.08, "take_profit_pct": 0.15},
+    "全市场稳健": {"pool": "market", "min_dvol_m": 100.0, "hold_days": 3, "stop_loss_pct": 0.08, "take_profit_pct": 0.15, "max_positions": 3}
+  },
+  "notify": {
+    "desktop": true,
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "you@example.com",
+      "to": "you@example.com",
+      "password_env": "SCAN_EMAIL_PASSWORD"
+    }
+  }
+}
