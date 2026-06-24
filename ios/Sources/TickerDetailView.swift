@@ -88,14 +88,3 @@ struct TickerDetailView: View {
         }
     }
 }
-
-extension JsonHelper {
-    static func ticker(from row: [String: Any]) -> String? {
-        string(row, "代码", "ticker")?.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-
-    static func isValidTicker(_ raw: String?) -> Bool {
-        guard let t = raw?.uppercased(), !t.isEmpty, t != "—", t != "-" else { return false }
-        return t.range(of: "^[A-Z][A-Z0-9.-]{0,9}$", options: .regularExpression) != nil
-    }
-}
