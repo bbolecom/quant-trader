@@ -8,6 +8,7 @@ struct ProfileView: View {
     @EnvironmentObject private var pickLoader: DailyPickLoader
     @State private var draftJsonBase = ""
     @State private var draftStreamlit = ""
+    @State private var draftChartAPI = ""
     @State private var savedToast = false
 
     var body: some View {
@@ -29,6 +30,7 @@ struct ProfileView: View {
             .onAppear {
                 draftJsonBase = settings.jsonBaseURL
                 draftStreamlit = settings.streamlitURL
+                draftChartAPI = settings.chartAPIURL
             }
             .overlay(alignment: .top) {
                 if savedToast {
@@ -61,7 +63,13 @@ struct ProfileView: View {
                 title: "功能清单",
                 value: manifestLoader.manifest != nil ? "已加载" : "未加载",
                 ok: manifestLoader.manifest != nil,
-                detail: manifestLoader.loadedFrom ?? "内置"
+                detail: manifestLoader.loadedFrom ?? "—"
+            )
+            statusLine(
+                title: "K 线 API",
+                value: settings.chartAPIURL.isEmpty ? "默认 Render" : "已配置",
+                ok: true,
+                detail: settings.chartAPIHint
             )
             statusLine(
                 title: "量化终端",
@@ -104,7 +112,8 @@ struct ProfileView: View {
             Text("服务器地址")
                 .font(.headline)
                 .foregroundStyle(ThsTheme.textPrimary)
-            fieldBlock(title: "JSON 基址（Mac 局域网）", placeholder: "http://192.168.1.20:8502/", text: $draftJsonBase)
+            fieldBlock(title: "JSON 基址（Mac 局域网，可选）", placeholder: "留空则走 GitHub 云端", text: $draftJsonBase)
+            fieldBlock(title: "K 线实时 API", placeholder: AppConfig.defaultChartAPIBase, text: $draftChartAPI)
             fieldBlock(title: "Streamlit 量化终端", placeholder: AppConfig.defaultServerURLString, text: $draftStreamlit)
             Button {
                 saveAndRefresh()
@@ -140,14 +149,16 @@ struct ProfileView: View {
             Text("快速配置")
                 .font(.headline)
                 .foregroundStyle(ThsTheme.textPrimary)
-            presetButton("☁️ 云端 Streamlit（默认）", subtitle: "终端走 Cloud · 选股走 GitHub/内置") {
+            presetButton("☁️ 云端（默认）", subtitle: "GitHub 数据 + Render K线实时 API") {
                 draftStreamlit = AppConfig.defaultServerURLString
                 draftJsonBase = ""
+                draftChartAPI = AppConfig.defaultChartAPIBase
                 saveAndRefresh()
             }
-            presetButton("🏠 局域网 Mac", subtitle: "填 Mac IP · 8501 终端 + 8502 JSON") {
+            presetButton("🏠 局域网 Mac", subtitle: "8501 终端 + 8502 JSON + 8503 K线") {
                 draftStreamlit = "http://192.168.1.20:8501"
                 draftJsonBase = "http://192.168.1.20:8502/"
+                draftChartAPI = "http://192.168.1.20:8503"
             }
         }
         .padding(16)
@@ -212,10 +223,10 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("美股量化 v3.0")
                 .font(.subheadline.weight(.semibold))
-            Text("Mac 运行 daily_pick.py 后，JSON 基址填 http://MacIP:8502/ 即可实时同步。")
+            Text("所有模块数据与 K 线均从云端拉取，每 60 秒自动刷新。")
                 .font(.caption)
                 .foregroundStyle(ThsTheme.textSecondary)
-            Text("未配置时自动使用 GitHub / 内置快照，仅供个人研究。")
+            Text("模块 JSON：GitHub raw · K 线：Render 实时 API（可在上方修改）。")
                 .font(.caption2)
                 .foregroundStyle(ThsTheme.textTertiary)
         }
@@ -227,6 +238,7 @@ struct ProfileView: View {
     private func saveAndRefresh() {
         settings.jsonBaseURL = draftJsonBase.trimmingCharacters(in: .whitespaces)
         settings.streamlitURL = draftStreamlit.trimmingCharacters(in: .whitespaces)
+        settings.chartAPIURL = draftChartAPI.trimmingCharacters(in: .whitespaces)
         Task {
             await AppServices.refreshAll()
             withAnimation { savedToast = true }

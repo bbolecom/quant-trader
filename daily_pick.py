@@ -937,6 +937,19 @@ def save_outputs(doc: dict, cfg: dict) -> None:
     except Exception:  # noqa: BLE001
         pass
 
+    try:
+        import subprocess
+        import sys
+
+        subprocess.run(
+            [sys.executable, str(ROOT / "scripts/export_chart_snapshots.py"), "--limit", "80"],
+            cwd=str(ROOT),
+            timeout=180,
+            check=False,
+        )
+    except Exception:  # noqa: BLE001
+        pass
+
 
 def notify(doc: dict, cfg: dict) -> None:
     """桌面推送：仅推送真实链/真实行情推演，不含模型估价。"""

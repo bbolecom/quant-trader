@@ -19,5 +19,11 @@ if [ "${SERVE_DAILY_PICK_JSON:-1}" = "1" ]; then
   (cd research && python -m http.server 8502 --bind 0.0.0.0) &
 fi
 
+# K 线实时 API（端口 8503）— iOS 优先从此拉取 yfinance 行情
+if [ "${SERVE_CHART_API:-1}" = "1" ]; then
+  echo "启动 K线实时 API http://0.0.0.0:8503/v1/chart/{TICKER} …"
+  (python -m uvicorn cloud.chart_api.main:app --host 0.0.0.0 --port 8503) &
+fi
+
 echo "启动中… 浏览器将自动打开 http://localhost:8501"
 streamlit run app.py

@@ -335,19 +335,11 @@ final class DailyPickLoader: ObservableObject {
     @Published var loadedFrom: String?
     @Published var dataSource: DailyPickDataSource?
 
-    private init() {
-        if let bundled = Self.decodeBundledJSON() {
-            apply(bundled, source: .bundled, from: "内置")
-        }
-    }
+    private init() {}
 
     func reload() async {
         isLoading = true
         errorMessage = nil
-
-        if document == nil, let bundled = Self.decodeBundledJSON() {
-            apply(bundled, source: .bundled, from: "内置")
-        }
 
         let urls = AppConfig.dailyPickCandidateURLs()
         for url in urls {
@@ -358,23 +350,17 @@ final class DailyPickLoader: ObservableObject {
             }
         }
 
-        if let bundled = Self.decodeBundledJSON() {
-            apply(bundled, source: .bundled, from: "内置")
-            errorMessage = "Mac 未连接 · 已显示\(DailyPickDataSource.bundled.label)（可下拉刷新）"
+        if let url = AppConfig.githubDailyPickURL,
+           let doc = await fetchRemote(url: url) {
+            apply(doc, source: .github, from: "GitHub")
             isLoading = false
             return
         }
 
-        if let url = Bundle.main.url(forResource: "daily_pick_today", withExtension: "json"),
-           let data = try? Data(contentsOf: url),
-           let reason = Self.decodeFailureReason(from: data) {
-            errorMessage = "快照解码失败：\(reason)"
-        } else {
-            errorMessage = DailyPickLoaderError.noDataAvailable.errorDescription
-        }
         document = nil
         dataSource = nil
         loadedFrom = nil
+        errorMessage = "无法从云端加载选股数据，请检查网络后下拉刷新"
         isLoading = false
     }
 

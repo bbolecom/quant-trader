@@ -422,7 +422,7 @@ struct ThsDataSourceBanner: View {
         if let hint, !hint.isEmpty { return hint }
         switch source {
         case .remote: return "Mac 局域网实时 JSON"
-        case .github: return "GitHub 仓库最新快照"
+        case .github: return "GitHub 云端 · 自动同步"
         case .bundled: return "App 内置 · 可能不是今日最新"
         }
     }

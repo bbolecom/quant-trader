@@ -84,51 +84,39 @@ final class ManifestLoader: ObservableObject {
         errorMessage = nil
         defer { isLoading = false }
 
-        if let remote = await loadRemote() {
+        if let gh = AppConfig.githubManifestURL, let remote = await loadFromURL(gh) {
             manifest = remote
             return
         }
-        if let bundled = loadBundled() {
-            manifest = bundled
-            errorMessage = "使用内置功能清单（未连上 Mac JSON 服务）"
-            return
-        }
-        manifest = Self.fallbackManifest
-        errorMessage = "无法加载功能清单"
-    }
 
-    private func loadRemote() async -> AppManifest? {
         let paths = ["app_manifest.json"]
-        var candidates: [URL] = []
         for path in paths {
             if let url = AppSettings.shared.jsonURL(for: path) {
-                candidates.append(url)
+                if let remote = await loadFromURL(url) {
+                    manifest = remote
+                    return
+                }
             }
         }
-        if let gh = AppConfig.githubManifestURL {
-            candidates.append(gh)
-        }
-        for url in candidates {
-            do {
-                var req = URLRequest(url: url)
-                req.cachePolicy = .reloadIgnoringLocalCacheData
-                req.timeoutInterval = 12
-                let (data, resp) = try await URLSession.shared.data(for: req)
-                guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { continue }
-                let decoded = try JSONDecoder().decode(AppManifest.self, from: data)
-                loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
-                return decoded
-            } catch {
-                continue
-            }
-        }
-        return nil
+
+        manifest = Self.fallbackManifest
+        errorMessage = "无法从云端加载功能清单，请检查网络"
     }
 
-    private func loadBundled() -> AppManifest? {
-        guard let url = Bundle.main.url(forResource: "app_manifest", withExtension: "json"),
-              let data = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(AppManifest.self, from: data)
+    private func loadFromURL(_ url: URL) async -> AppManifest? {
+        let busted = AppConfig.cacheBustedURL(url) ?? url
+        do {
+            var req = URLRequest(url: busted)
+            req.cachePolicy = .reloadIgnoringLocalCacheData
+            req.timeoutInterval = AppConfig.requestTimeout(for: busted)
+            let (data, resp) = try await URLSession.shared.data(for: req)
+            guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return nil }
+            let decoded = try JSONDecoder().decode(AppManifest.self, from: data)
+            loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
+            return decoded
+        } catch {
+            return nil
+        }
     }
 
     func features(in categoryId: String) -> [ManifestFeature] {

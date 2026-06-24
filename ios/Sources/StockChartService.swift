@@ -53,94 +53,73 @@ enum ChartPeriod: String, CaseIterable, Identifiable {
 }
 
 enum ChartDataSource: String {
-    case bundled = "内置"
+    case cloud = "云端实时"
     case github = "GitHub"
     case mac = "Mac"
-    case yahoo = "Yahoo"
 }
 
 enum StockChartService {
-    private static let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    private static let yahooSession: URLSession = {
-        let cfg = URLSessionConfiguration.default
-        cfg.httpCookieStorage = HTTPCookieStorage.shared
-        cfg.httpShouldSetCookies = true
-        cfg.httpCookieAcceptPolicy = .always
-        return URLSession(configuration: cfg)
-    }()
-    private static var yahooCrumb: String?
+    private static let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) QuantTrader/3.0"
 
-    static func fetchBars(ticker: String, period: ChartPeriod = .daily) async throws -> ([OHLCVBar], ChartDataSource) {
+    static func fetchBars(ticker: String, period: ChartPeriod = .daily) async throws -> ([OHLCVBar], ChartDataSource, String?) {
         let sym = ticker.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         guard !sym.isEmpty, sym != "—" else { throw URLError(.badURL) }
 
         var lastError: Error = URLError(.badServerResponse)
+        var updatedAt: String?
 
-        for url in chartCandidateURLs(ticker: sym) {
+        // 1. 云端实时 API（yfinance 服务端拉取）
+        if let url = AppConfig.liveChartURL(ticker: sym, period: period) {
             do {
-                let bars = try await loadSnapshot(url: url, period: period)
-                if !bars.isEmpty {
-                    let src: ChartDataSource = url.host == "raw.githubusercontent.com" ? .github : (url.isFileURL ? .bundled : .mac)
-                    return (bars, src)
-                }
+                let (bars, stamp) = try await loadRemoteSnapshot(url: url, period: period)
+                updatedAt = stamp
+                if !bars.isEmpty { return (bars, .cloud, stamp) }
             } catch {
                 lastError = error
             }
         }
 
-        do {
-            let bars = try await fetchYahooBars(symbol: sym, period: period)
-            if !bars.isEmpty { return (bars, .yahoo) }
-        } catch {
-            lastError = error
+        // 2. GitHub 云端快照（GHA 每 30 分钟刷新）
+        if let gh = AppConfig.githubChartURL(ticker: sym) {
+            do {
+                let (bars, stamp) = try await loadRemoteSnapshot(url: gh, period: period)
+                updatedAt = stamp
+                if !bars.isEmpty { return (bars, .github, stamp) }
+            } catch {
+                lastError = error
+            }
+        }
+
+        // 3. Mac 局域网 JSON 服务（开发用）
+        if let u = AppSettings.shared.jsonURL(for: "charts/\(sym).json") {
+            let busted = AppConfig.cacheBustedURL(u) ?? u
+            do {
+                let (bars, stamp) = try await loadRemoteSnapshot(url: busted, period: period)
+                updatedAt = stamp
+                if !bars.isEmpty { return (bars, .mac, stamp) }
+            } catch {
+                lastError = error
+            }
         }
 
         throw lastError
     }
 
-    static func chartCandidateURLs(ticker: String) -> [URL] {
-        var urls: [URL] = []
-        let sym = ticker.uppercased()
-        if let u = bundledChartURL(ticker: sym) { urls.append(u) }
-        if let gh = githubChartURL(ticker: sym) { urls.append(gh) }
-        if let u = AppSettings.shared.jsonURL(for: "charts/\(sym).json") { urls.append(u) }
-        return urls
-    }
-
-    static func bundledChartURL(ticker: String) -> URL? {
-        let sym = ticker.uppercased()
-        if let u = Bundle.main.url(forResource: sym, withExtension: "json", subdirectory: "charts") {
-            return u
-        }
-        if let u = Bundle.main.url(forResource: "chart_\(sym)", withExtension: "json") {
-            return u
-        }
-        return nil
-    }
-
-    static func githubChartURL(ticker: String) -> URL? {
-        URL(string: "https://raw.githubusercontent.com/\(AppConfig.githubRepo)/\(AppConfig.githubBranch)/research/charts/\(ticker.uppercased()).json")
-    }
-
-    private static func loadSnapshot(url: URL, period: ChartPeriod) async throws -> [OHLCVBar] {
-        let data: Data
-        if url.isFileURL {
-            data = try Data(contentsOf: url)
-        } else {
-            var req = URLRequest(url: url)
-            req.timeoutInterval = 15
-            req.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-            let (d, resp) = try await URLSession.shared.data(for: req)
-            guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                throw URLError(.badServerResponse)
-            }
-            data = d
+    private static func loadRemoteSnapshot(url: URL, period: ChartPeriod) async throws -> ([OHLCVBar], String?) {
+        var req = URLRequest(url: url)
+        req.cachePolicy = .reloadIgnoringLocalCacheData
+        req.timeoutInterval = AppConfig.requestTimeout(for: url)
+        req.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        let (data, resp) = try await URLSession.shared.data(for: req)
+        guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw URLError(.badServerResponse)
         }
         return try parseSnapshotJSON(data, period: period)
     }
 
-    private static func parseSnapshotJSON(_ data: Data, period: ChartPeriod) throws -> [OHLCVBar] {
+    private static func parseSnapshotJSON(_ data: Data, period: ChartPeriod) throws -> ([OHLCVBar], String?) {
         let root = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        let updated = root?["updated"] as? String
         if let arr = root?["bars"] as? [[String: Any]] {
             let fmt = ISO8601DateFormatter()
             fmt.formatOptions = [.withFullDate]
@@ -159,9 +138,10 @@ enum StockChartService {
                     volume: doubleValue(row["volume"]) ?? 0
                 ))
             }
-            return resample(bars, period: period)
+            return (resample(bars, period: period), updated)
         }
-        return try parseYahooChartJSON(data)
+        let bars = try parseYahooChartJSON(data)
+        return (bars, updated)
     }
 
     private static func resample(_ bars: [OHLCVBar], period: ChartPeriod) -> [OHLCVBar] {
@@ -169,49 +149,6 @@ enum StockChartService {
         let n = period.visibleBars * 2
         if bars.count > n { return Array(bars.suffix(n)) }
         return bars
-    }
-
-    private static func fetchYahooBars(symbol: String, period: ChartPeriod) async throws -> [OHLCVBar] {
-        let hosts = ["query1.finance.yahoo.com", "query2.finance.yahoo.com"]
-        var lastError: Error = URLError(.badServerResponse)
-        for host in hosts {
-            do {
-                try await ensureYahooCrumb()
-                var comp = "https://\(host)/v8/finance/chart/\(symbol)?interval=\(period.interval)&range=\(period.range)"
-                if let crumb = yahooCrumb, !crumb.isEmpty, !crumb.contains("Too Many") {
-                    comp += "&crumb=\(crumb.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? crumb)"
-                }
-                guard let url = URL(string: comp) else { continue }
-                var req = URLRequest(url: url)
-                req.timeoutInterval = 20
-                req.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                req.setValue("application/json", forHTTPHeaderField: "Accept")
-                let (data, resp) = try await yahooSession.data(for: req)
-                guard let http = resp as? HTTPURLResponse else { throw URLError(.badServerResponse) }
-                if http.statusCode == 429 {
-                    throw NSError(domain: "StockChart", code: 429, userInfo: [NSLocalizedDescriptionKey: "Yahoo 限流，请使用内置快照"])
-                }
-                guard (200..<300).contains(http.statusCode) else { throw URLError(.badServerResponse) }
-                let bars = try parseYahooChartJSON(data)
-                if !bars.isEmpty { return bars }
-            } catch {
-                lastError = error
-            }
-        }
-        throw lastError
-    }
-
-    private static func ensureYahooCrumb() async throws {
-        if let c = yahooCrumb, !c.isEmpty, !c.contains("Too Many") { return }
-        var warm = URLRequest(url: URL(string: "https://finance.yahoo.com/quote/SPY")!)
-        warm.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        _ = try await yahooSession.data(for: warm)
-        var crumbReq = URLRequest(url: URL(string: "https://query2.finance.yahoo.com/v1/test/getcrumb")!)
-        crumbReq.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        let (data, resp) = try await yahooSession.data(for: crumbReq)
-        guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return }
-        let crumb = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        if !crumb.isEmpty { yahooCrumb = crumb }
     }
 
     static func movingAverage(_ closes: [Double], period: Int) -> [Double?] {
@@ -286,6 +223,8 @@ final class StockChartLoader: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var dataSource: ChartDataSource?
+    @Published var cloudUpdatedAt: String?
+    @Published var lastFetched: Date?
     @Published var period: ChartPeriod = .daily
     @Published var selectedIndex: Int?
 
@@ -323,9 +262,11 @@ final class StockChartLoader: ObservableObject {
         selectedIndex = nil
         defer { isLoading = false }
         do {
-            let (fetched, src) = try await StockChartService.fetchBars(ticker: ticker, period: period)
+            let (fetched, src, stamp) = try await StockChartService.fetchBars(ticker: ticker, period: period)
             bars = fetched
             dataSource = src
+            cloudUpdatedAt = stamp
+            lastFetched = Date()
             let closes = fetched.map(\.close)
             ma20 = StockChartService.movingAverage(closes, period: 20)
             ma50 = StockChartService.movingAverage(closes, period: 50)
@@ -334,18 +275,19 @@ final class StockChartLoader: ObservableObject {
             ma20 = []
             ma50 = []
             dataSource = nil
+            cloudUpdatedAt = nil
             errorMessage = friendlyError(error)
         }
     }
 
     private func friendlyError(_ error: Error) -> String {
         let msg = error.localizedDescription
-        if msg.contains("429") || msg.contains("限流") {
-            return "行情源限流 · 内置快照未找到，请联网后下拉刷新"
+        if (error as NSError).code == NSURLErrorTimedOut {
+            return "云端请求超时 · 请检查网络或 K线 API 地址"
         }
         if (error as NSError).code == NSURLErrorBadServerResponse {
-            return "行情源不可用 · 将使用内置/云端快照"
+            return "云端暂无该标的 K 线 · 请稍后下拉刷新"
         }
-        return msg
+        return msg.isEmpty ? "无法从云端加载 K 线" : msg
     }
 }

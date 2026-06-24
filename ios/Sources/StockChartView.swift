@@ -201,6 +201,7 @@ struct ThsKLineChartView: View {
 struct StockChartPanel: View {
     let ticker: String
     @StateObject private var loader = StockChartLoader()
+    @State private var refreshTimer: Timer?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -218,6 +219,23 @@ struct StockChartPanel: View {
         )
         .task(id: "\(ticker)-\(loader.period.rawValue)") {
             await loader.load(ticker: ticker)
+            startAutoRefresh()
+        }
+        .onDisappear {
+            refreshTimer?.invalidate()
+            refreshTimer = nil
+        }
+        .refreshable {
+            await loader.load(ticker: ticker)
+        }
+    }
+
+    private func startAutoRefresh() {
+        refreshTimer?.invalidate()
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+            Task { @MainActor in
+                await loader.load(ticker: ticker)
+            }
         }
     }
 
@@ -267,6 +285,11 @@ struct StockChartPanel: View {
                 if let src = loader.dataSource {
                     Text("来源 \(src.rawValue)")
                         .font(.system(size: 9))
+                        .foregroundStyle(ThsTheme.textTertiary)
+                }
+                if let stamp = loader.cloudUpdatedAt {
+                    Text("更新 \(stamp)")
+                        .font(.system(size: 8))
                         .foregroundStyle(ThsTheme.textTertiary)
                 }
                 maLegend("MA20", Color(red: 1.0, green: 0.84, blue: 0.0), loader.displayMA20.compactMap { $0 }.last)

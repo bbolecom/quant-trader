@@ -87,7 +87,8 @@ struct DailyPickView: View {
         var lines: [String] = []
         lines.append(loader.errorMessage ?? "无法加载选股 JSON。")
         lines.append("当前 \(AppInfo.displayVersion)")
-        lines.append(AppInfo.bundledDailyPickExists ? "✓ 内置快照已在 App 包内" : "✗ 内置快照缺失 — 请运行 xcodegen generate 后重装")
+        lines.append("数据仅从 GitHub / 云端 API 加载，请检查网络。")
+        lines.append("K 线 API：\(AppSettings.shared.chartAPIHint)")
         lines.append("若版本低于 v3.0 (6)：删除 App → Xcode Clean → 重新 Run")
         return lines.joined(separator: "\n")
     }

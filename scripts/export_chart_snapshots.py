@@ -44,33 +44,9 @@ def _collect_tickers(extra: list[str] | None = None) -> list[str]:
 
 
 def export_ticker(ticker: str, *, period: str = "6mo") -> dict | None:
-    import yfinance as yf
+    from quant.chart_live import fetch_live_chart
 
-    sym = ticker.upper()
-    try:
-        hist = yf.Ticker(sym).history(period=period, interval="1d", auto_adjust=False)
-    except Exception:  # noqa: BLE001
-        return None
-    if hist is None or hist.empty:
-        return None
-    bars = []
-    for idx, row in hist.iterrows():
-        d = idx.date() if hasattr(idx, "date") else idx
-        bars.append({
-            "date": d.isoformat(),
-            "open": round(float(row["Open"]), 4),
-            "high": round(float(row["High"]), 4),
-            "low": round(float(row["Low"]), 4),
-            "close": round(float(row["Close"]), 4),
-            "volume": round(float(row.get("Volume") or 0)),
-        })
-    return {
-        "ticker": sym,
-        "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "period": period,
-        "source": "yfinance",
-        "bars": bars,
-    }
+    return fetch_live_chart(ticker, period=period, interval="1d")
 
 
 def main() -> None:
