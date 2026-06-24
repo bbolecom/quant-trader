@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-23",
+  "date": "2026-06-24",
   "mode": "stable",
   "mode_label": "路线 A · 稳（并行铁鹰舰队）",
   "total_capital": 50000.0,
@@ -21,15 +21,15 @@
         "与 QQQ 行业暴露互补，适合同一账户并行开 2 槽"
       ],
       "execution_steps": [
-        "1. **本周检查**：SPY 现价 $736.56，50日均线 $730.32 → ✅ 可开；财报周不开。",
-        "2. **组合单** Put Credit Spread（7天）： SELL Put $709 + BUY Put $684（宽 $25）。",
-        "3. 净收 ≥ $1.05/股 = **$105/张**；保证金 $2,500/张。",
-        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +6%）： SELL Call $777 + BUY Call $802，多收 **$45/张**。",
-        "3c. 合计收 **$150/张**，保证金不变 → 周ROI **6.0%**；到期落在 [$709, $777] 概率 **85%**。",
+        "1. **本周检查**：SPY 现价 $744.39，50日均线 $730.95 → ✅ 可开；财报周不开。",
+        "2. **组合单** Put Credit Spread（7天）： SELL Put $717 + BUY Put $692（宽 $25）。",
+        "3. 净收 ≥ $1.03/股 = **$103/张**；保证金 $2,500/张。",
+        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +5%）： SELL Call $784 + BUY Call $809，多收 **$44/张**。",
+        "3c. 合计收 **$147/张**，保证金不变 → 周ROI **5.9%**；到期落在 [$717, $784] 概率 **85%**。",
         "4. 账户 $10,000 建议最多 **1 张**（单笔保证金 ≤ 账户 25%）。",
-        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$150。",
+        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$147。",
         "6. 归零概率 **89%**（7日需跌 4%；1σ波动 ±3%）。",
-        "7. 最坏 -$2,395（1张）→ 只开 1 张、Put Delta 0.10。",
+        "7. 最坏 -$2,397（1张）→ 只开 1 张、Put Delta 0.10。",
         "8. **强趋势看涨腿是逆势腿**：被逼近就把 Call 向上 roll，别硬扛；财报周整体不开。"
       ],
       "legs": [
@@ -37,16 +37,16 @@
           "side": "Put",
           "option_type": "Put",
           "action": "SELL",
-          "strike": 708.58,
+          "strike": 717.04,
           "qty_contracts": 1,
-          "premium_est": 105.0,
+          "premium_est": 103.0,
           "note": "Delta≈0.1"
         },
         {
           "side": "Put",
           "option_type": "Put",
           "action": "BUY",
-          "strike": 683.58,
+          "strike": 692.04,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "保护腿 宽$25"
@@ -55,24 +55,24 @@
           "side": "Call",
           "option_type": "Call",
           "action": "SELL",
-          "strike": 776.94,
+          "strike": 783.84,
           "qty_contracts": 1,
-          "premium_est": 45.0,
+          "premium_est": 44.0,
           "note": "Delta≈0.05"
         },
         {
           "side": "Call",
           "option_type": "Call",
           "action": "BUY",
-          "strike": 801.94,
+          "strike": 808.84,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "Call 保护腿"
         }
       ],
       "margin_per_contract": 2500.0,
-      "total_credit": 150.0,
-      "take_profit_rule": "总权利金盈利 50% 平仓（约 $53/张 剩余价值）",
+      "total_credit": 147.0,
+      "take_profit_rule": "总权利金盈利 50% 平仓（约 $52/张 剩余价值）",
       "stop_rule": "到期前 1 天仍亏损 → 评估是否 roll；Put 被击穿 → 不裸扛，整组平仓",
       "flags": [
         "强上行趋势 → Call 腿已压到 Delta 0.05（约 +5%），必要时向上 roll"
@@ -92,15 +92,15 @@
         "与 SPY 同周开铁鹰，分散行业 beta"
       ],
       "execution_steps": [
-        "1. **本周检查**：QQQ 现价 $718.34，50日均线 $697.15 → ✅ 可开；财报周不开。",
-        "2. **组合单** Put Credit Spread（7天）： SELL Put $668 + BUY Put $643（宽 $25）。",
-        "3. 净收 ≥ $1.62/股 = **$162/张**；保证金 $2,500/张。",
-        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +11%）： SELL Call $794 + BUY Call $819，多收 **$65/张**。",
-        "3c. 合计收 **$227/张**，保证金不变 → 周ROI **9.1%**；到期落在 [$668, $794] 概率 **84%**。",
+        "1. **本周检查**：QQQ 现价 $737.95，50日均线 $695.74 → ✅ 可开；财报周不开。",
+        "2. **组合单** Put Credit Spread（7天）： SELL Put $688 + BUY Put $663（宽 $25）。",
+        "3. 净收 ≥ $1.59/股 = **$159/张**；保证金 $2,500/张。",
+        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +10%）： SELL Call $812 + BUY Call $837，多收 **$64/张**。",
+        "3c. 合计收 **$223/张**，保证金不变 → 周ROI **8.9%**；到期落在 [$688, $812] 概率 **85%**。",
         "4. 账户 $10,000 建议最多 **1 张**（单笔保证金 ≤ 账户 25%）。",
-        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$227。",
+        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$223。",
         "6. 归零概率 **89%**（7日需跌 7%；1σ波动 ±6%）。",
-        "7. 最坏 -$2,338（1张）→ 只开 1 张、Put Delta 0.10。",
+        "7. 最坏 -$2,341（1张）→ 只开 1 张、Put Delta 0.10。",
         "8. **强趋势看涨腿是逆势腿**：被逼近就把 Call 向上 roll，别硬扛；财报周整体不开。"
       ],
       "legs": [
@@ -108,16 +108,16 @@
           "side": "Put",
           "option_type": "Put",
           "action": "SELL",
-          "strike": 667.69,
+          "strike": 688.46,
           "qty_contracts": 1,
-          "premium_est": 162.0,
+          "premium_est": 159.0,
           "note": "Delta≈0.1"
         },
         {
           "side": "Put",
           "option_type": "Put",
           "action": "BUY",
-          "strike": 642.69,
+          "strike": 663.46,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "保护腿 宽$25"
@@ -126,27 +126,27 @@
           "side": "Call",
           "option_type": "Call",
           "action": "SELL",
-          "strike": 794.19,
+          "strike": 811.69,
           "qty_contracts": 1,
-          "premium_est": 65.0,
+          "premium_est": 64.0,
           "note": "Delta≈0.05"
         },
         {
           "side": "Call",
           "option_type": "Call",
           "action": "BUY",
-          "strike": 819.19,
+          "strike": 836.69,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "Call 保护腿"
         }
       ],
       "margin_per_contract": 2500.0,
-      "total_credit": 227.0,
-      "take_profit_rule": "总权利金盈利 50% 平仓（约 $81/张 剩余价值）",
+      "total_credit": 223.0,
+      "take_profit_rule": "总权利金盈利 50% 平仓（约 $80/张 剩余价值）",
       "stop_rule": "到期前 1 天仍亏损 → 评估是否 roll；Put 被击穿 → 不裸扛，整组平仓",
       "flags": [
-        "强上行趋势 → Call 腿已压到 Delta 0.05（约 +11%），必要时向上 roll"
+        "强上行趋势 → Call 腿已压到 Delta 0.05（约 +10%），必要时向上 roll"
       ]
     },
     {
@@ -162,11 +162,11 @@
         "$10k 账户 1 张保证金 $2,500（25% 仓位）"
       ],
       "execution_steps": [
-        "1. **本周检查**：IWM 现价 $296.54，50日均线 $282.20 → ✅ 可开；财报周不开。",
-        "2. **组合单** Put Credit Spread（7天）： SELL Put $281 + BUY Put $256（宽 $25）。",
+        "1. **本周检查**：IWM 现价 $298.18，50日均线 $282.08 → ✅ 可开；财报周不开。",
+        "2. **组合单** Put Credit Spread（7天）： SELL Put $283 + BUY Put $258（宽 $25）。",
         "3. 净收 ≥ $0.61/股 = **$61/张**；保证金 $2,500/张。",
-        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +8%）： SELL Call $319 + BUY Call $344，多收 **$26/张**。",
-        "3c. 合计收 **$87/张**，保证金不变 → 周ROI **3.5%**；到期落在 [$281, $319] 概率 **85%**。",
+        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +8%）： SELL Call $320 + BUY Call $346，多收 **$26/张**。",
+        "3c. 合计收 **$87/张**，保证金不变 → 周ROI **3.5%**；到期落在 [$283, $320] 概率 **85%**。",
         "4. 账户 $10,000 建议最多 **1 张**（单笔保证金 ≤ 账户 25%）。",
         "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$87。",
         "6. 归零概率 **89%**（7日需跌 5%；1σ波动 ±4%）。",
@@ -178,7 +178,7 @@
           "side": "Put",
           "option_type": "Put",
           "action": "SELL",
-          "strike": 281.26,
+          "strike": 282.89,
           "qty_contracts": 1,
           "premium_est": 61.0,
           "note": "Delta≈0.1"
@@ -187,7 +187,7 @@
           "side": "Put",
           "option_type": "Put",
           "action": "BUY",
-          "strike": 256.26,
+          "strike": 257.89,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "保护腿 宽$25"
@@ -196,7 +196,7 @@
           "side": "Call",
           "option_type": "Call",
           "action": "SELL",
-          "strike": 318.84,
+          "strike": 320.5,
           "qty_contracts": 1,
           "premium_est": 26.0,
           "note": "Delta≈0.05"
@@ -205,7 +205,7 @@
           "side": "Call",
           "option_type": "Call",
           "action": "BUY",
-          "strike": 343.84,
+          "strike": 345.5,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "Call 保护腿"
@@ -216,7 +216,7 @@
       "take_profit_rule": "总权利金盈利 50% 平仓（约 $30/张 剩余价值）",
       "stop_rule": "到期前 1 天仍亏损 → 评估是否 roll；Put 被击穿 → 不裸扛，整组平仓",
       "flags": [
-        "强上行趋势 → Call 腿已压到 Delta 0.05（约 +8%），必要时向上 roll"
+        "强上行趋势 → Call 腿已压到 Delta 0.05（约 +7%），必要时向上 roll"
       ]
     },
     {
@@ -232,11 +232,11 @@
         "铁鹰回测胜率中位数 ~100%（全市场分桶）"
       ],
       "execution_steps": [
-        "1. **本周检查**：XLF 现价 $53.97，50日均线 $51.87 → ✅ 可开；财报周不开。",
+        "1. **本周检查**：XLF 现价 $53.70，50日均线 $51.98 → ✅ 可开；财报周不开。",
         "2. **组合单** Put Credit Spread（7天）： SELL Put $52 + BUY Put $27（宽 $25）。",
         "3. 净收 ≥ $0.07/股 = **$7/张**；保证金 $2,500/张。",
-        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +5%）： SELL Call $57 + BUY Call $82，多收 **$3/张**。",
-        "3c. 合计收 **$10/张**，保证金不变 → 周ROI **0.4%**；到期落在 [$52, $57] 概率 **85%**。",
+        "3b. **双开·远端 Call 价差**（Delta 0.05，约 +5%）： SELL Call $56 + BUY Call $81，多收 **$3/张**。",
+        "3c. 合计收 **$10/张**，保证金不变 → 周ROI **0.4%**；到期落在 [$52, $56] 概率 **85%**。",
         "4. 账户 $10,000 建议最多 **1 张**（单笔保证金 ≤ 账户 25%）。",
         "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$10。",
         "6. 归零概率 **90%**（7日需跌 3%；1σ波动 ±3%）。",
@@ -248,7 +248,7 @@
           "side": "Put",
           "option_type": "Put",
           "action": "SELL",
-          "strike": 52.19,
+          "strike": 51.94,
           "qty_contracts": 1,
           "premium_est": 7.0,
           "note": "Delta≈0.1"
@@ -257,7 +257,7 @@
           "side": "Put",
           "option_type": "Put",
           "action": "BUY",
-          "strike": 27.19,
+          "strike": 26.94,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "保护腿 宽$25"
@@ -266,7 +266,7 @@
           "side": "Call",
           "option_type": "Call",
           "action": "SELL",
-          "strike": 56.55,
+          "strike": 56.24,
           "qty_contracts": 1,
           "premium_est": 3.0,
           "note": "Delta≈0.05"
@@ -275,7 +275,7 @@
           "side": "Call",
           "option_type": "Call",
           "action": "BUY",
-          "strike": 81.55,
+          "strike": 81.24,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "Call 保护腿"
@@ -285,9 +285,7 @@
       "total_credit": 10.0,
       "take_profit_rule": "总权利金盈利 50% 平仓（约 $4/张 剩余价值）",
       "stop_rule": "到期前 1 天仍亏损 → 评估是否 roll；Put 被击穿 → 不裸扛，整组平仓",
-      "flags": [
-        "强上行趋势 → Call 腿已压到 Delta 0.05（约 +5%），必要时向上 roll"
-      ]
+      "flags": []
     },
     {
       "account": "账户5",
@@ -302,15 +300,15 @@
         "5 账户舰队最后一槽，完成行业/风格分散"
       ],
       "execution_steps": [
-        "1. **本周检查**：DIA 现价 $517.47，50日均线 $499.80 → ✅ 可开；财报周不开。",
+        "1. **本周检查**：DIA 现价 $517.08，50日均线 $500.46 → ✅ 可开；财报周不开。",
         "2. **组合单** Put Credit Spread（7天）： SELL Put $500 + BUY Put $475（宽 $25）。",
-        "3. 净收 ≥ $0.67/股 = **$67/张**；保证金 $2,500/张。",
+        "3. 净收 ≥ $0.68/股 = **$68/张**；保证金 $2,500/张。",
         "3b. **双开·远端 Call 价差**（Delta 0.05，约 +5%）： SELL Call $542 + BUY Call $567，多收 **$29/张**。",
-        "3c. 合计收 **$96/张**，保证金不变 → 周ROI **3.8%**；到期落在 [$500, $542] 概率 **85%**。",
+        "3c. 合计收 **$97/张**，保证金不变 → 周ROI **3.9%**；到期落在 [$500, $542] 概率 **85%**。",
         "4. 账户 $10,000 建议最多 **1 张**（单笔保证金 ≤ 账户 25%）。",
-        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$96。",
+        "5. **止盈**：总权利金赚 50% 即整体平仓；顺的一周 +$97。",
         "6. 归零概率 **90%**（7日需跌 3%；1σ波动 ±3%）。",
-        "7. 最坏 -$2,433（1张）→ 只开 1 张、Put Delta 0.10。",
+        "7. 最坏 -$2,432（1张）→ 只开 1 张、Put Delta 0.10。",
         "8. **强趋势看涨腿是逆势腿**：被逼近就把 Call 向上 roll，别硬扛；财报周整体不开。"
       ],
       "legs": [
@@ -318,16 +316,16 @@
           "side": "Put",
           "option_type": "Put",
           "action": "SELL",
-          "strike": 500.41,
+          "strike": 499.88,
           "qty_contracts": 1,
-          "premium_est": 67.0,
+          "premium_est": 68.0,
           "note": "Delta≈0.1"
         },
         {
           "side": "Put",
           "option_type": "Put",
           "action": "BUY",
-          "strike": 475.41,
+          "strike": 474.88,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "保护腿 宽$25"
@@ -336,7 +334,7 @@
           "side": "Call",
           "option_type": "Call",
           "action": "SELL",
-          "strike": 542.04,
+          "strike": 541.87,
           "qty_contracts": 1,
           "premium_est": 29.0,
           "note": "Delta≈0.05"
@@ -345,14 +343,14 @@
           "side": "Call",
           "option_type": "Call",
           "action": "BUY",
-          "strike": 567.04,
+          "strike": 566.87,
           "qty_contracts": 1,
           "premium_est": 0.0,
           "note": "Call 保护腿"
         }
       ],
       "margin_per_contract": 2500.0,
-      "total_credit": 96.0,
+      "total_credit": 97.0,
       "take_profit_rule": "总权利金盈利 50% 平仓（约 $34/张 剩余价值）",
       "stop_rule": "到期前 1 天仍亏损 → 评估是否 roll；Put 被击穿 → 不裸扛，整组平仓",
       "flags": [
