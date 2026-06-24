@@ -258,12 +258,28 @@ enum DailyPickLoaderError: LocalizedError {
     case noURL
     case badResponse
     case decodeFailed
+    case noDataAvailable
 
     var errorDescription: String? {
         switch self {
         case .noURL: return "未配置选股 JSON 地址"
-        case .badResponse: return "无法获取选股数据，请确认 Mac 已运行 daily_pick.py 并启动 8502 静态服务"
+        case .badResponse: return "无法连接 Mac JSON 服务"
         case .decodeFailed: return "选股数据格式错误"
+        case .noDataAvailable: return "暂无可用选股数据"
+        }
+    }
+}
+
+enum DailyPickDataSource: String {
+    case remote = "实时"
+    case github = "GitHub"
+    case bundled = "内置快照"
+
+    var label: String {
+        switch self {
+        case .remote: return "Mac 实时"
+        case .github: return "GitHub 云端"
+        case .bundled: return "内置快照"
         }
     }
 }
@@ -277,6 +293,7 @@ final class DailyPickLoader: ObservableObject {
     @Published var errorMessage: String?
     @Published var lastUpdated: Date?
     @Published var loadedFrom: String?
+    @Published var dataSource: DailyPickDataSource?
 
     func reload() async {
         isLoading = true
@@ -284,35 +301,56 @@ final class DailyPickLoader: ObservableObject {
         defer { isLoading = false }
 
         let urls = AppConfig.dailyPickCandidateURLs()
-        guard !urls.isEmpty else {
-            errorMessage = DailyPickLoaderError.noURL.errorDescription
-            document = nil
+        var lastError: String?
+
+        for url in urls {
+            if let doc = await fetchRemote(url: url) {
+                apply(doc, source: url.host == "raw.githubusercontent.com" ? .github : .remote, from: url.host)
+                return
+            }
+            lastError = errorMessage
+        }
+
+        if let bundled = loadBundled() {
+            apply(bundled, source: .bundled, from: "内置")
+            errorMessage = lastError == nil ? nil : "Mac 未连接 · 已加载\(dataSource?.label ?? "内置")数据"
             return
         }
 
-        for url in urls {
-            do {
-                var request = URLRequest(url: url)
-                request.cachePolicy = .reloadIgnoringLocalCacheData
-                request.timeoutInterval = 15
-                let (data, response) = try await URLSession.shared.data(for: request)
-                guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                    continue
-                }
-                let decoded = try JSONDecoder().decode(DailyPickDocument.self, from: data)
-                document = decoded
-                lastUpdated = Date()
-                loadedFrom = url.host
-                return
-            } catch is DecodingError {
-                errorMessage = DailyPickLoaderError.decodeFailed.errorDescription
-            } catch {
-                continue
-            }
-        }
-        if errorMessage == nil {
-            errorMessage = DailyPickLoaderError.badResponse.errorDescription
-        }
+        errorMessage = lastError ?? DailyPickLoaderError.noDataAvailable.errorDescription
         document = nil
+        dataSource = nil
+        loadedFrom = nil
+    }
+
+    private func apply(_ doc: DailyPickDocument, source: DailyPickDataSource, from host: String?) {
+        document = doc
+        dataSource = source
+        lastUpdated = Date()
+        loadedFrom = host
+    }
+
+    private func fetchRemote(url: URL) async -> DailyPickDocument? {
+        do {
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+            request.timeoutInterval = 12
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+                return nil
+            }
+            return try JSONDecoder().decode(DailyPickDocument.self, from: data)
+        } catch is DecodingError {
+            errorMessage = DailyPickLoaderError.decodeFailed.errorDescription
+            return nil
+        } catch {
+            return nil
+        }
+    }
+
+    private func loadBundled() -> DailyPickDocument? {
+        guard let url = Bundle.main.url(forResource: "daily_pick_today", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(DailyPickDocument.self, from: data)
     }
 }

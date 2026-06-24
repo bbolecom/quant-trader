@@ -66,7 +66,7 @@ struct PickDetailView: View {
 
     private var backtestBlock: some View {
         VStack(alignment: .leading, spacing: 10) {
-            ThsSectionHeader(title: "历史回测", icon: "chart.bar.doc.horizontal", accent: ThsTheme.accent)
+            ThsSectionHeader(title: "历史回测", accent: ThsTheme.accent, icon: "chart.bar.doc.horizontal")
             BacktestStrip(row: row)
             if let note = row.backtestNote {
                 Text(note)
@@ -85,7 +85,7 @@ struct PickDetailView: View {
         Group {
             if let action = row.action, !action.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
-                    ThsSectionHeader(title: "策略动作", icon: "bolt.fill", accent: ThsTheme.accent)
+                    ThsSectionHeader(title: "策略动作", accent: ThsTheme.accent, icon: "bolt.fill")
                     Text(action)
                         .font(.body.weight(.medium))
                         .foregroundStyle(ThsTheme.textPrimary)
@@ -99,7 +99,7 @@ struct PickDetailView: View {
 
     private var reasonBlock: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ThsSectionHeader(title: "选股理由", icon: "text.alignleft", accent: ThsTheme.textSecondary)
+            ThsSectionHeader(title: "选股理由", accent: ThsTheme.textSecondary, icon: "text.alignleft")
             Text(row.reason)
                 .font(.body)
                 .foregroundStyle(ThsTheme.textPrimary)

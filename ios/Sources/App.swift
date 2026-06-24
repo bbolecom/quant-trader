@@ -9,7 +9,9 @@ struct QuantTraderApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRootView()
+                .environmentObject(ManifestLoader.shared)
+                .environmentObject(DailyPickLoader.shared)
         }
     }
 }

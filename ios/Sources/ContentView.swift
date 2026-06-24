@@ -68,22 +68,28 @@ struct ContentView: View {
                 }
             }
         }
-        .preferredColorScheme(isLoading && !didError ? .light : .dark)
+        .preferredColorScheme(.dark)
     }
 
     private var loadingOverlay: some View {
-        VStack(spacing: 20) {
-            Image("AppLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 72, height: 72)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            ProgressView().tint(ThsTheme.accent).scaleEffect(1.2)
-            Text("量化策略终端").font(.headline.weight(.bold))
-            Text("加载 Streamlit…").font(.footnote).foregroundStyle(ThsTheme.launchTextSecondary)
+        ZStack {
+            LinearGradient(
+                colors: [ThsTheme.homeHeaderRed, ThsTheme.background],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            VStack(spacing: 20) {
+                Image("AppLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 72, height: 72)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                ProgressView().tint(.white).scaleEffect(1.2)
+                Text("量化策略终端").font(.headline.weight(.bold)).foregroundStyle(.white)
+                Text("加载 Streamlit…").font(.footnote).foregroundStyle(.white.opacity(0.7))
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(ThsTheme.launchBackground)
     }
 
     private var errorOverlay: some View {

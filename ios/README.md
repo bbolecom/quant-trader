@@ -57,7 +57,9 @@ xcodegen generate
 
 ## 第 3 步：填入你的服务地址
 
-编辑 `ios/Sources/Config.swift`，把 `serverURLString` 改成第 1 步拿到的网址：
+**推荐**：安装后在 App **「我的」** Tab 填写 JSON 基址与 Streamlit 地址，无需改代码。
+
+编译期默认（可选）在 `ios/Sources/Config.swift`：
 
 ```swift
 static let serverURLString = "https://你的应用名.streamlit.app"
@@ -119,47 +121,7 @@ python -m quant.app_manifest   # 单独导出功能清单
 
 无需再改代码重新编译（除非换默认云端地址）。
 
----
-
-## v2.1 原生界面升级（历史）
-
-App 现为 **三 Tab** 结构（深色同花顺风格）：
-
-| Tab | 功能 |
-|-----|------|
-| **今日选股** | 高胜率≥80%可执行 · 观察池 · 模块信号横滑 · 胜率/年化/回撤 · 详情 Sheet · 设置 |
-| **量化终端** | WebView 加载 Streamlit 全平台 |
-| **策略** | 离线策略说明 + 搜索 |
-
-### 今日选股 Tab 亮点
-
-- **Regime 大盘横幅**：SPY / MA50 / 选股时间
-- **高胜率可执行**：仅展示历史胜率≥80%且可开仓，卡片含回测三指标
-- **高胜率观察池**：规则达标、待 T+1/T+3 确认
-- **模块信号**：横向滚动各策略产出概览
-- **点击卡片**：弹出详情（策略动作、回测来源、完整理由）
-- **设置页**：JSON 地址、刷新时间、连接说明
-
-### 让 iPhone 显示最新选股
-
-1. 在 Mac 上运行：`python daily_pick.py`（或双击「每日选股_运行一次.command」）
-2. 启动 JSON 静态服务（与 Streamlit 同网段）：
-
-```bash
-cd /Users/Admin/Desktop/666/research
-python -m http.server 8502 --bind 0.0.0.0
-```
-
-或一键：`SERVE_DAILY_PICK_JSON=1 ./run.sh`
-
-3. 编辑 `ios/Sources/Config.swift`：
-   - `serverURLString` → Streamlit 地址（如 `http://192.168.1.20:8501`）
-   - `dailyPickJSONURLString` → `http://192.168.1.20:8502/daily_pick_today.json`
-   - 若留空 JSON 地址且 Streamlit 为 `http://IP:8501`，App 会自动尝试 `http://IP:8502/daily_pick_today.json`
-
-4. Xcode 重新 Run 到设备。
-
-> Streamlit Cloud 无法直接提供 JSON 文件；云端部署时原生 Tab 需自建 JSON 托管或使用局域网自托管。
+**架构说明**：见 [`ARCHITECTURE.md`](ARCHITECTURE.md)（目录结构、数据流、路由规则）。
 
 ---
 
@@ -174,7 +136,8 @@ python -m http.server 8502 --bind 0.0.0.0
 
 ## 常见问题
 
-- **App 打开是「无法连接到服务」**：检查 `Config.swift` 网址是否正确、后端是否在跑；自托管时确认手机与电脑同一 Wi-Fi。点 App 内「重试」或下拉刷新。
+- **App 打开是「无法连接到服务」**：检查「我的」里 Streamlit 地址、后端是否在跑；自托管时确认手机与电脑同一 Wi-Fi。
+- **选股 Tab 无数据**：在「我的」填 JSON 基址 `http://MacIP:8502/`，Mac 运行 `python daily_pick.py` 后点「刷新全部数据」。
 - **Streamlit Cloud 应用休眠**：免费版闲置会休眠，首次打开需等十几秒唤醒，属正常现象。
 - **App 图标**：已内置一套量化风格图标（`Sources/Assets.xcassets/AppIcon.appiconset/icon-1024.png`），生成工程后自动生效。想换图标，替换这张 1024×1024 PNG 即可。
 - **横竖屏**：已支持，iPad 体验更佳。

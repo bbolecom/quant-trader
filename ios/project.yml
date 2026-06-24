@@ -2,7 +2,7 @@ name: QuantTrader
 options:
   bundleIdPrefix: com.bbolecom
   deploymentTarget:
-    iOS: "15.0"
+    iOS: "16.0"
   createIntermediateGroups: true
 
 targets:

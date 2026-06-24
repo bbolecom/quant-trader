@@ -2,9 +2,9 @@ import SwiftUI
 
 struct DailyPickView: View {
     var embedded: Bool = false
-    @StateObject private var loader = DailyPickLoader.shared
+    @EnvironmentObject private var loader: DailyPickLoader
+    @EnvironmentObject private var nav: AppNavigation
     @State private var selectedPick: PickRow?
-    @State private var showSettings = false
 
     var body: some View {
         Group {
@@ -43,7 +43,7 @@ struct DailyPickView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button { showSettings = true } label: {
+                    Button { nav.selectedTab = 4 } label: {
                         Image(systemName: "gearshape")
                     }
                     Button {
@@ -58,49 +58,38 @@ struct DailyPickView: View {
         .sheet(item: $selectedPick) { row in
             PickDetailView(row: row)
         }
-        .sheet(isPresented: $showSettings) {
-            SettingsView(loader: loader)
+        .task {
+            if loader.document == nil {
+                await loader.reload()
+            }
         }
-        .task { await loader.reload() }
         .refreshable { await loader.reload() }
     }
 
     private var emptyState: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "antenna.radiowaves.left.and.right.slash")
-                .font(.system(size: 48))
-                .foregroundStyle(ThsTheme.accent.opacity(0.8))
-            Text("暂无选股数据")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(ThsTheme.textPrimary)
-            Text(loader.errorMessage ?? "请先在 Mac 运行 daily_pick.py，并配置 JSON 地址。")
-                .font(.footnote)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(ThsTheme.textSecondary)
-                .padding(.horizontal, 24)
-            Button {
-                Task { await loader.reload() }
-            } label: {
-                Label("重新加载", systemImage: "arrow.clockwise")
-                    .font(.subheadline.weight(.semibold))
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(ThsTheme.accent)
-            .padding(.horizontal, 40)
-            Text(AppConfig.dailyPickURLHint)
-                .font(.caption2)
-                .foregroundStyle(ThsTheme.textTertiary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
-        .padding()
+        ThsEmptyState(
+            icon: "wifi.slash",
+            title: "暂无选股数据",
+            message: loader.errorMessage ?? "请连接 Mac JSON 服务，或使用云端 / 内置快照。",
+            primaryTitle: "重新加载",
+            primaryAction: { Task { await loader.reload() } },
+            secondaryTitle: "去配置连接",
+            secondaryAction: { nav.selectedTab = 4 }
+        )
     }
 
     @ViewBuilder
     private func pickContent(_ doc: DailyPickDocument) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                if let source = loader.dataSource {
+                    ThsDataSourceBanner(
+                        source: source,
+                        hint: loader.errorMessage,
+                        onSetup: source == .remote ? nil : { nav.selectedTab = 4 }
+                    )
+                }
+
                 RegimeBanner(regime: doc.regime, pickDate: doc.pickDate, pickTime: doc.pickTime)
 
                 metricsRow(doc)
@@ -124,6 +113,8 @@ struct DailyPickView: View {
 
                 strategyLinkSection(doc)
 
+                actionableSection(doc)
+
                 if let watching = doc.picks?.filter({ !$0.isActionable && !$0.isHighWinQualified }), !watching.isEmpty {
                     ThsSectionHeader(
                         title: "观望 / 观察",
@@ -141,6 +132,27 @@ struct DailyPickView: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 24)
+        }
+    }
+
+    @ViewBuilder
+    private func actionableSection(_ doc: DailyPickDocument) -> some View {
+        let actionable = doc.picks?.filter(\.isActionable) ?? []
+        let shownInHighWin = Set(doc.highWinPicks.map(\.id))
+        let extra = actionable.filter { !shownInHighWin.contains($0.id) }
+        if !extra.isEmpty {
+            ThsSectionHeader(
+                title: "可开仓信号",
+                subtitle: "各模块今日可执行",
+                count: extra.count,
+                accent: ThsTheme.up,
+                icon: "checkmark.seal.fill"
+            )
+            ForEach(extra.prefix(20)) { row in
+                PickCardView(row: row, highlight: true) {
+                    selectedPick = row
+                }
+            }
         }
     }
 
@@ -200,7 +212,7 @@ struct DailyPickView: View {
                 Label("暂无高胜率可开仓", systemImage: "line.3.horizontal.decrease.circle")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(ThsTheme.textSecondary)
-                Text("部分模块有观望信号，可在下方查看；或运行完整 daily_pick 刷新。")
+                Text("部分模块有观望信号，可在下方查看。")
             }
         }
         .font(.footnote)
@@ -238,13 +250,13 @@ struct DailyPickView: View {
             )
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
-            ForEach(doc.sortedModules, id: \.0) { name, stats in
-                ModuleChip(
-                    name: name,
-                    actionable: stats.actionable ?? 0,
-                    watching: stats.watching ?? 0
-                )
-            }
+                    ForEach(doc.sortedModules, id: \.0) { name, stats in
+                        ModuleChip(
+                            name: name,
+                            actionable: stats.actionable ?? 0,
+                            watching: stats.watching ?? 0
+                        )
+                    }
                 }
                 .padding(.vertical, 2)
             }
@@ -253,11 +265,13 @@ struct DailyPickView: View {
 
     @ViewBuilder
     private func strategyLinkSection(_ doc: DailyPickDocument) -> some View {
-        if let catalog = doc.strategySummary?.catalog, !catalog.isEmpty {
+        let catalog = CatalogEnrichment.enrichedCatalog(from: doc)
+        if !catalog.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
+                let actionableCount = catalog.filter { $0.actionable > 0 }.count
                 ThsSectionHeader(
                     title: "全系统策略",
-                    subtitle: "接入 \(doc.strategySummary?.integratedCount ?? catalog.count) 个 · 今日有数据 \(doc.strategySummary?.integratedWithData ?? 0)",
+                    subtitle: "接入 \(doc.strategySummary?.integratedCount ?? catalog.count) 个 · 有信号 \(actionableCount)",
                     count: catalog.count,
                     accent: ThsTheme.accent,
                     icon: "books.vertical"
@@ -288,4 +302,6 @@ struct DailyPickView: View {
 
 #Preview {
     DailyPickView()
+        .environmentObject(DailyPickLoader.shared)
+        .environmentObject(AppNavigation())
 }

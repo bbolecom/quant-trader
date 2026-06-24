@@ -3,109 +3,242 @@ import SwiftUI
 /// 同花顺「我的」：连接设置 + 关于
 struct ProfileView: View {
     @EnvironmentObject private var nav: AppNavigation
+    @EnvironmentObject private var manifestLoader: ManifestLoader
     @ObservedObject private var settings = AppSettings.shared
-    @StateObject private var pickLoader = DailyPickLoader.shared
+    @EnvironmentObject private var pickLoader: DailyPickLoader
     @State private var draftJsonBase = ""
     @State private var draftStreamlit = ""
+    @State private var savedToast = false
 
     var body: some View {
         NavigationStack {
-            List {
-                Section("服务器") {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("JSON 基址")
-                            .font(.caption)
-                            .foregroundStyle(ThsTheme.textSecondary)
-                        TextField("http://192.168.1.20:8502/", text: $draftJsonBase)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled()
-                            .font(.footnote)
-                    }
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Streamlit 量化终端")
-                            .font(.caption)
-                            .foregroundStyle(ThsTheme.textSecondary)
-                        TextField("http://host:8501", text: $draftStreamlit)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled()
-                            .font(.footnote)
-                    }
-                    Button("保存并刷新") {
-                        settings.jsonBaseURL = draftJsonBase.trimmingCharacters(in: .whitespaces)
-                        settings.streamlitURL = draftStreamlit.trimmingCharacters(in: .whitespaces)
-                        Task { await pickLoader.reload() }
-                    }
-                    .foregroundStyle(ThsTheme.accent)
+            ScrollView {
+                VStack(spacing: 16) {
+                    connectionStatusCard
+                    serverFormCard
+                    presetCard
+                    shortcutsCard
+                    aboutCard
                 }
-
-                Section("快捷操作") {
-                    Button {
-                        Task { await pickLoader.reload() }
-                    } label: {
-                        Label("刷新今日选股", systemImage: "arrow.clockwise")
-                    }
-                    Button {
-                        nav.openTerminal()
-                    } label: {
-                        Label("打开量化终端", systemImage: "chart.xyaxis.line")
-                    }
-                    Button {
-                        nav.openPicks()
-                    } label: {
-                        Label("今日选股 Tab", systemImage: "star.circle")
-                    }
-                }
-
-                Section("连接状态") {
-                    statusRow("JSON", settings.jsonURLHint)
-                    if let host = pickLoader.loadedFrom {
-                        statusRow("选股来源", host)
-                    }
-                    if let t = pickLoader.lastUpdated {
-                        statusRow("上次刷新", t.formatted(date: .abbreviated, time: .shortened))
-                    }
-                }
-
-                Section("使用说明") {
-                    instruction("Mac 运行 ./run.sh 或 python daily_pick.py")
-                    instruction("research 目录 HTTP 8502 供 App 拉 JSON")
-                    instruction("手机与 Mac 同一 Wi-Fi，填 Mac 局域网 IP")
-                    instruction("全功能清单：app_manifest.json")
-                }
-
-                Section("关于") {
-                    Text("美股量化 v3.0")
-                    Text("同花顺式全策略 App · 仅供个人研究，不构成投资建议。")
-                        .font(.caption)
-                        .foregroundStyle(ThsTheme.textSecondary)
-                }
+                .padding(16)
+                .padding(.bottom, 24)
             }
+            .background(ThsTheme.background.ignoresSafeArea())
             .navigationTitle("我的")
             .navigationBarTitleDisplayMode(.large)
             .onAppear {
                 draftJsonBase = settings.jsonBaseURL
                 draftStreamlit = settings.streamlitURL
             }
+            .overlay(alignment: .top) {
+                if savedToast {
+                    Text("已保存并刷新")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(ThsTheme.up, in: Capsule())
+                        .padding(.top, 8)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }
 
-    private func statusRow(_ title: String, _ value: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(title).font(.caption).foregroundStyle(ThsTheme.textSecondary)
-            Text(value).font(.footnote).textSelection(.enabled)
+    private var connectionStatusCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Label("连接状态", systemImage: "link.circle.fill")
+                .font(.headline)
+                .foregroundStyle(ThsTheme.textPrimary)
+            statusLine(
+                title: "选股数据",
+                value: pickLoader.dataSource?.label ?? "未加载",
+                ok: pickLoader.document != nil,
+                detail: pickLoader.loadedFrom ?? "—"
+            )
+            statusLine(
+                title: "功能清单",
+                value: manifestLoader.manifest != nil ? "已加载" : "未加载",
+                ok: manifestLoader.manifest != nil,
+                detail: manifestLoader.loadedFrom ?? "内置"
+            )
+            statusLine(
+                title: "量化终端",
+                value: "Streamlit",
+                ok: true,
+                detail: settings.streamlitURL
+            )
+        }
+        .padding(16)
+        .thsCard()
+    }
+
+    private func statusLine(title: String, value: String, ok: Bool, detail: String) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Circle()
+                .fill(ok ? ThsTheme.up : .orange)
+                .frame(width: 8, height: 8)
+                .padding(.top, 6)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(title)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(ThsTheme.textPrimary)
+                    Spacer()
+                    Text(value)
+                        .font(.caption.weight(.bold))
+                        .foregroundStyle(ok ? ThsTheme.up : .orange)
+                }
+                Text(detail)
+                    .font(.caption2)
+                    .foregroundStyle(ThsTheme.textTertiary)
+                    .textSelection(.enabled)
+                    .lineLimit(2)
+            }
         }
     }
 
-    private func instruction(_ text: String) -> some View {
-        Label(text, systemImage: "circle.fill")
-            .font(.caption)
-            .labelStyle(.titleAndIcon)
-            .foregroundStyle(ThsTheme.textSecondary)
+    private var serverFormCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("服务器地址")
+                .font(.headline)
+                .foregroundStyle(ThsTheme.textPrimary)
+            fieldBlock(title: "JSON 基址（Mac 局域网）", placeholder: "http://192.168.1.20:8502/", text: $draftJsonBase)
+            fieldBlock(title: "Streamlit 量化终端", placeholder: AppConfig.defaultServerURLString, text: $draftStreamlit)
+            Button {
+                saveAndRefresh()
+            } label: {
+                Text("保存并刷新")
+                    .font(.subheadline.weight(.bold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(ThsTheme.accent)
+        }
+        .padding(16)
+        .thsCard()
+    }
+
+    private func fieldBlock(title: String, placeholder: String, text: Binding<String>) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(ThsTheme.textSecondary)
+            TextField(placeholder, text: text)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .font(.footnote)
+                .padding(12)
+                .background(ThsTheme.elevated, in: RoundedRectangle(cornerRadius: 10))
+        }
+    }
+
+    private var presetCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("快速配置")
+                .font(.headline)
+                .foregroundStyle(ThsTheme.textPrimary)
+            presetButton("☁️ 云端 Streamlit（默认）", subtitle: "终端走 Cloud · 选股走 GitHub/内置") {
+                draftStreamlit = AppConfig.defaultServerURLString
+                draftJsonBase = ""
+                saveAndRefresh()
+            }
+            presetButton("🏠 局域网 Mac", subtitle: "填 Mac IP · 8501 终端 + 8502 JSON") {
+                draftStreamlit = "http://192.168.1.20:8501"
+                draftJsonBase = "http://192.168.1.20:8502/"
+            }
+        }
+        .padding(16)
+        .thsCard()
+    }
+
+    private func presetButton(_ title: String, subtitle: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(ThsTheme.textPrimary)
+                    Text(subtitle)
+                        .font(.caption2)
+                        .foregroundStyle(ThsTheme.textSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(ThsTheme.textTertiary)
+            }
+            .padding(12)
+            .background(ThsTheme.elevated, in: RoundedRectangle(cornerRadius: 12))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var shortcutsCard: some View {
+        VStack(spacing: 10) {
+            shortcutRow("刷新全部数据", icon: "arrow.clockwise") {
+                Task { await AppServices.refreshAll() }
+            }
+            shortcutRow("打开量化终端", icon: "chart.xyaxis.line") {
+                nav.openTerminal()
+            }
+            shortcutRow("今日选股", icon: "star.circle") {
+                nav.openPicks()
+            }
+        }
+        .padding(16)
+        .thsCard()
+    }
+
+    private func shortcutRow(_ title: String, icon: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Label(title, systemImage: icon)
+                    .font(.subheadline)
+                    .foregroundStyle(ThsTheme.textPrimary)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption2.weight(.bold))
+                    .foregroundStyle(ThsTheme.textTertiary)
+            }
+            .padding(.vertical, 4)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var aboutCard: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("美股量化 v3.0")
+                .font(.subheadline.weight(.semibold))
+            Text("Mac 运行 daily_pick.py 后，JSON 基址填 http://MacIP:8502/ 即可实时同步。")
+                .font(.caption)
+                .foregroundStyle(ThsTheme.textSecondary)
+            Text("未配置时自动使用 GitHub / 内置快照，仅供个人研究。")
+                .font(.caption2)
+                .foregroundStyle(ThsTheme.textTertiary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .thsCard(border: ThsTheme.border.opacity(0.5))
+    }
+
+    private func saveAndRefresh() {
+        settings.jsonBaseURL = draftJsonBase.trimmingCharacters(in: .whitespaces)
+        settings.streamlitURL = draftStreamlit.trimmingCharacters(in: .whitespaces)
+        Task {
+            await AppServices.refreshAll()
+            withAnimation { savedToast = true }
+            try? await Task.sleep(nanoseconds: 1_500_000_000)
+            withAnimation { savedToast = false }
+        }
     }
 }
 
 #Preview {
     ProfileView()
         .environmentObject(AppNavigation())
+        .environmentObject(ManifestLoader.shared)
+        .environmentObject(DailyPickLoader.shared)
 }

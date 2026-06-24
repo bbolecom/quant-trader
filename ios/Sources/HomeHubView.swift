@@ -3,8 +3,8 @@ import SwiftUI
 /// 同花顺式首页：红顶栏 · 纵向单列 · 金刚区 · 热点 Feed
 struct HomeHubView: View {
     @EnvironmentObject private var nav: AppNavigation
-    @StateObject private var manifestLoader = ManifestLoader()
-    @ObservedObject private var pickLoader = DailyPickLoader.shared
+    @EnvironmentObject private var manifestLoader: ManifestLoader
+    @EnvironmentObject private var pickLoader: DailyPickLoader
     @State private var searchText = ""
     @State private var hotTab: HomeHotTab = .recommended
     @State private var selectedPick: PickRow?
@@ -23,7 +23,7 @@ struct HomeHubView: View {
             .background(ThsTheme.homeBackground.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: ManifestFeature.self) { feat in
-                destination(for: feat)
+                FeatureDestinationView(feature: feat)
             }
             .navigationDestination(for: ManifestCategory.self) { cat in
                 FeatureCategoryView(
@@ -41,8 +41,7 @@ struct HomeHubView: View {
                 }
             }
             .refreshable {
-                await pickLoader.reload()
-                await manifestLoader.reload()
+                await AppServices.refreshAll()
             }
         }
         .tint(ThsTheme.accent)
@@ -82,10 +81,7 @@ struct HomeHubView: View {
                 .buttonStyle(.plain)
 
                 Button {
-                    Task {
-                        await pickLoader.reload()
-                        await manifestLoader.reload()
-                    }
+                    Task { await AppServices.refreshAll() }
                 } label: {
                     Image(systemName: "bell")
                         .font(.body.weight(.medium))
@@ -625,15 +621,6 @@ struct HomeHubView: View {
         }
         .padding(.horizontal, 12)
     }
-
-    @ViewBuilder
-    func destination(for feat: ManifestFeature) -> some View {
-        if feat.id == "daily_pick" {
-            DailyPickView(embedded: true)
-        } else {
-            ModuleDetailView(feature: feat)
-        }
-    }
 }
 
 // MARK: - Grid Models
@@ -825,203 +812,9 @@ extension ManifestFeature {
     }
 }
 
-// MARK: - 分类页 / 功能 Tab（保留）
-
-struct FeatureCategoryView: View {
-    let category: ManifestCategory
-    let features: [ManifestFeature]
-    @State private var query = ""
-
-    private var filtered: [ManifestFeature] {
-        let q = query.trimmingCharacters(in: .whitespaces)
-        guard !q.isEmpty else { return features }
-        return features.filter {
-            $0.name.localizedCaseInsensitiveContains(q)
-                || $0.detail.localizedCaseInsensitiveContains(q)
-        }
-    }
-
-    var body: some View {
-        List(filtered) { feat in
-            NavigationLink {
-                if feat.id == "daily_pick" {
-                    DailyPickView(embedded: true)
-                } else {
-                    ModuleDetailView(feature: feat)
-                }
-            } label: {
-                ManifestFeatureRow(feature: feat)
-            }
-            .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
-        }
-        .listStyle(.plain)
-        .scrollContentBackground(.hidden)
-        .background(ThsTheme.background)
-        .navigationTitle(category.name)
-        .searchable(text: $query, prompt: "搜索\(category.name)")
-        .preferredColorScheme(.dark)
-    }
-}
-
-struct FeatureHubView: View {
-    @StateObject private var loader = ManifestLoader()
-
-    var body: some View {
-        NavigationStack {
-            Group {
-                if loader.isLoading && loader.manifest == nil {
-                    ProgressView("加载功能清单…")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    List(loader.manifest?.categories ?? []) { cat in
-                        let items = loader.features(in: cat.id)
-                        if !items.isEmpty {
-                            NavigationLink {
-                                FeatureCategoryView(category: cat, features: items)
-                            } label: {
-                                ThsCategoryRow(
-                                    category: cat,
-                                    count: items.count,
-                                    actionable: items.reduce(0) { $0 + ($1.actionable ?? 0) }
-                                )
-                            }
-                            .listRowBackground(ThsTheme.card)
-                        }
-                    }
-                    .scrollContentBackground(.hidden)
-                }
-            }
-            .background(ThsTheme.background)
-            .navigationTitle("功能")
-            .navigationBarTitleDisplayMode(.large)
-            .task { await loader.reload() }
-            .refreshable { await loader.reload() }
-        }
-        .preferredColorScheme(.dark)
-    }
-}
-
-struct ThsQuickIcon: View {
-    let feature: ManifestFeature
-
-    var body: some View {
-        VStack(spacing: 6) {
-            ZStack(alignment: .topTrailing) {
-                Image(systemName: feature.icon)
-                    .font(.title2)
-                    .foregroundStyle(ThsTheme.accent)
-                    .frame(width: 44, height: 44)
-                    .background(ThsTheme.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
-                if (feature.actionable ?? 0) > 0 {
-                    Circle()
-                        .fill(ThsTheme.up)
-                        .frame(width: 8, height: 8)
-                        .offset(x: 2, y: -2)
-                }
-            }
-            Text(feature.name)
-                .font(.system(size: 10))
-                .foregroundStyle(ThsTheme.textPrimary)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .frame(height: 28)
-        }
-    }
-}
-
-struct ThsCategoryRow: View {
-    let category: ManifestCategory
-    let count: Int
-    let actionable: Int
-
-    var body: some View {
-        HStack(spacing: 14) {
-            Image(systemName: category.icon)
-                .font(.title3)
-                .foregroundStyle(ThsTheme.accent)
-                .frame(width: 36)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(category.name)
-                    .font(.headline)
-                    .foregroundStyle(ThsTheme.textPrimary)
-                Text("\(count) 项功能")
-                    .font(.caption)
-                    .foregroundStyle(ThsTheme.textSecondary)
-            }
-            Spacer()
-            if actionable > 0 {
-                Text("\(actionable) 信号")
-                    .font(.caption2.weight(.bold))
-                    .foregroundStyle(ThsTheme.up)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 3)
-                    .background(ThsTheme.up.opacity(0.15), in: Capsule())
-            }
-            Image(systemName: "chevron.right")
-                .font(.caption.weight(.bold))
-                .foregroundStyle(ThsTheme.textTertiary)
-        }
-        .padding(14)
-        .thsCard()
-    }
-}
-
-struct ManifestFeatureRow: View {
-    let feature: ManifestFeature
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: feature.icon)
-                    .foregroundStyle(ThsTheme.accent)
-                Text(feature.name)
-                    .font(.headline)
-                Spacer()
-                if feature.integrated {
-                    Text("已接入")
-                        .font(.caption2.weight(.bold))
-                        .foregroundStyle(ThsTheme.up)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(ThsTheme.up.opacity(0.12), in: Capsule())
-                }
-            }
-            if !feature.detail.isEmpty {
-                Text(feature.detail)
-                    .font(.footnote)
-                    .foregroundStyle(ThsTheme.textSecondary)
-                    .lineLimit(2)
-            }
-            HStack(spacing: 12) {
-                label("可开", feature.actionable ?? 0, ThsTheme.up)
-                label("观望", feature.watching ?? 0, .orange)
-                if feature.hasJsonFeed {
-                    Text(feature.hasData == true ? "有数据" : "无今日JSON")
-                        .font(.caption2)
-                        .foregroundStyle(feature.hasData == true ? ThsTheme.accent : ThsTheme.textTertiary)
-                } else if feature.isTerminalOnly {
-                    Text("量化终端")
-                        .font(.caption2)
-                        .foregroundStyle(Color.cyan)
-                }
-            }
-        }
-        .padding(14)
-        .thsCard(border: (feature.actionable ?? 0) > 0 ? ThsTheme.up.opacity(0.25) : ThsTheme.border)
-    }
-
-    private func label(_ title: String, _ n: Int, _ color: Color) -> some View {
-        HStack(spacing: 3) {
-            Text("\(n)").font(.caption.weight(.bold))
-            Text(title).font(.caption2)
-        }
-        .foregroundStyle(n > 0 ? color : ThsTheme.textTertiary)
-    }
-}
-
 #Preview {
     HomeHubView()
         .environmentObject(AppNavigation())
+        .environmentObject(ManifestLoader.shared)
+        .environmentObject(DailyPickLoader.shared)
 }

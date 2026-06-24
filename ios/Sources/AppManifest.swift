@@ -72,6 +72,8 @@ struct ManifestFeature: Codable, Identifiable, Hashable {
 
 @MainActor
 final class ManifestLoader: ObservableObject {
+    static let shared = ManifestLoader()
+
     @Published var manifest: AppManifest?
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -97,8 +99,16 @@ final class ManifestLoader: ObservableObject {
 
     private func loadRemote() async -> AppManifest? {
         let paths = ["app_manifest.json"]
+        var candidates: [URL] = []
         for path in paths {
-            guard let url = AppSettings.shared.jsonURL(for: path) else { continue }
+            if let url = AppSettings.shared.jsonURL(for: path) {
+                candidates.append(url)
+            }
+        }
+        if let gh = AppConfig.githubManifestURL {
+            candidates.append(gh)
+        }
+        for url in candidates {
             do {
                 var req = URLRequest(url: url)
                 req.cachePolicy = .reloadIgnoringLocalCacheData
@@ -106,7 +116,7 @@ final class ManifestLoader: ObservableObject {
                 let (data, resp) = try await URLSession.shared.data(for: req)
                 guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { continue }
                 let decoded = try JSONDecoder().decode(AppManifest.self, from: data)
-                loadedFrom = url.host
+                loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
                 return decoded
             } catch {
                 continue

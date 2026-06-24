@@ -368,3 +368,119 @@ extension View {
         modifier(ShimmerModifier())
     }
 }
+
+// MARK: - Data Source Banner
+
+struct ThsDataSourceBanner: View {
+    let source: DailyPickDataSource
+    var hint: String?
+    var onSetup: (() -> Void)?
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(tint)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("数据来源 · \(source.label)")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(ThsTheme.textPrimary)
+                Text(subtitle)
+                    .font(.caption2)
+                    .foregroundStyle(ThsTheme.textSecondary)
+            }
+            Spacer()
+            if let onSetup, source != .remote {
+                Button("连接 Mac", action: onSetup)
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(ThsTheme.accent)
+            }
+        }
+        .padding(12)
+        .thsCard(border: tint.opacity(0.35), radius: 12)
+    }
+
+    private var icon: String {
+        switch source {
+        case .remote: return "antenna.radiowaves.left.and.right"
+        case .github: return "cloud.fill"
+        case .bundled: return "doc.text.fill"
+        }
+    }
+
+    private var tint: Color {
+        switch source {
+        case .remote: return ThsTheme.up
+        case .github: return .cyan
+        case .bundled: return .orange
+        }
+    }
+
+    private var subtitle: String {
+        if let hint, !hint.isEmpty { return hint }
+        switch source {
+        case .remote: return "Mac 局域网实时 JSON"
+        case .github: return "GitHub 仓库最新快照"
+        case .bundled: return "App 内置 · 可能不是今日最新"
+        }
+    }
+}
+
+// MARK: - Empty / Setup State
+
+struct ThsEmptyState: View {
+    let icon: String
+    let title: String
+    let message: String
+    var primaryTitle: String = "重新加载"
+    var primaryAction: () -> Void
+    var secondaryTitle: String?
+    var secondaryAction: (() -> Void)?
+
+    var body: some View {
+        VStack(spacing: 24) {
+            Spacer(minLength: 20)
+            ZStack {
+                Circle()
+                    .fill(ThsTheme.accent.opacity(0.12))
+                    .frame(width: 96, height: 96)
+                Image(systemName: icon)
+                    .font(.system(size: 40))
+                    .foregroundStyle(ThsTheme.accent)
+            }
+            VStack(spacing: 8) {
+                Text(title)
+                    .font(.title3.weight(.bold))
+                    .foregroundStyle(ThsTheme.textPrimary)
+                Text(message)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(ThsTheme.textSecondary)
+                    .padding(.horizontal, 8)
+            }
+            VStack(spacing: 10) {
+                Button(action: primaryAction) {
+                    Label(primaryTitle, systemImage: "arrow.clockwise")
+                        .font(.subheadline.weight(.semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(ThsTheme.accent)
+                if let secondaryTitle, let secondaryAction {
+                    Button(action: secondaryAction) {
+                        Text(secondaryTitle)
+                            .font(.subheadline.weight(.medium))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                    }
+                    .buttonStyle(.bordered)
+                    .tint(ThsTheme.textSecondary)
+                }
+            }
+            .padding(.horizontal, 32)
+            Spacer(minLength: 20)
+        }
+        .padding(.horizontal, 20)
+    }
+}
