@@ -1,6 +1,6 @@
 {
   "ticker": "NSP",
-  "updated": "2026-06-24 20:56:25",
+  "updated": "2026-06-24 18:01:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 34.16,
       "close": 37.04,
       "volume": 650300
+    },
+    {
+      "date": "2026-06-24",
+      "open": 36.09,
+      "high": 38.06,
+      "low": 36.5,
+      "close": 37.92,
+      "volume": 275175
     }
   ]
 }

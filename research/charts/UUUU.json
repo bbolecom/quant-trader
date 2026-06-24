@@ -1,6 +1,6 @@
 {
   "ticker": "UUUU",
-  "updated": "2026-06-24 20:56:08",
+  "updated": "2026-06-24 18:01:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 15.31,
       "close": 15.47,
       "volume": 16634700
+    },
+    {
+      "date": "2026-06-24",
+      "open": 15.05,
+      "high": 15.348,
+      "low": 14.53,
+      "close": 14.8441,
+      "volume": 7588366
     }
   ]
 }

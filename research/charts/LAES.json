@@ -1,6 +1,6 @@
 {
   "ticker": "LAES",
-  "updated": "2026-06-24 20:56:24",
+  "updated": "2026-06-24 18:01:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 2.97,
       "close": 3.34,
       "volume": 37648500
+    },
+    {
+      "date": "2026-06-24",
+      "open": 3.27,
+      "high": 3.34,
+      "low": 3.1,
+      "close": 3.125,
+      "volume": 15877905
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ATAT",
-  "updated": "2026-06-24 20:56:29",
+  "updated": "2026-06-24 18:01:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 31.38,
       "close": 32.79,
       "volume": 870100
+    },
+    {
+      "date": "2026-06-24",
+      "open": 32.79,
+      "high": 32.84,
+      "low": 32.055,
+      "close": 32.155,
+      "volume": 357830
     }
   ]
 }

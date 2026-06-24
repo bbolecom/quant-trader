@@ -1,6 +1,6 @@
 {
   "ticker": "LGND",
-  "updated": "2026-06-24 20:56:25",
+  "updated": "2026-06-24 18:01:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 258.0,
       "close": 279.44,
       "volume": 2298200
+    },
+    {
+      "date": "2026-06-24",
+      "open": 283.35,
+      "high": 288.46,
+      "low": 278.65,
+      "close": 287.11,
+      "volume": 325046
     }
   ]
 }

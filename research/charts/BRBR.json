@@ -1,6 +1,6 @@
 {
   "ticker": "BRBR",
-  "updated": "2026-06-24 20:56:09",
+  "updated": "2026-06-24 18:01:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 10.181,
       "close": 11.27,
       "volume": 10434400
+    },
+    {
+      "date": "2026-06-24",
+      "open": 11.37,
+      "high": 12.545,
+      "low": 11.19,
+      "close": 11.945,
+      "volume": 4451631
     }
   ]
 }

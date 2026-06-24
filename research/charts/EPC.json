@@ -1,6 +1,6 @@
 {
   "ticker": "EPC",
-  "updated": "2026-06-24 20:56:27",
+  "updated": "2026-06-24 18:01:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 24.66,
       "close": 26.22,
       "volume": 3082100
+    },
+    {
+      "date": "2026-06-24",
+      "open": 26.07,
+      "high": 26.695,
+      "low": 25.85,
+      "close": 26.41,
+      "volume": 649653
     }
   ]
 }

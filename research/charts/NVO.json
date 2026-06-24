@@ -1,6 +1,6 @@
 {
   "ticker": "NVO",
-  "updated": "2026-06-24 20:56:07",
+  "updated": "2026-06-24 18:01:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 46.44,
       "close": 47.42,
       "volume": 17647000
+    },
+    {
+      "date": "2026-06-24",
+      "open": 47.1,
+      "high": 47.65,
+      "low": 47.02,
+      "close": 47.2842,
+      "volume": 9176211
     }
   ]
 }

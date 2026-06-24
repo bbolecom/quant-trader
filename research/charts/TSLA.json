@@ -1,8 +1,9 @@
 {
   "ticker": "TSLA",
-  "updated": "2026-06-24 13:05:16",
+  "updated": "2026-06-24 18:02:41",
   "period": "6mo",
-  "source": "yfinance",
+  "interval": "1d",
+  "source": "yfinance-live",
   "bars": [
     {
       "date": "2025-12-24",
@@ -987,6 +988,14 @@
       "low": 379.06,
       "close": 381.61,
       "volume": 50261700
+    },
+    {
+      "date": "2026-06-24",
+      "open": 380.008,
+      "high": 384.58,
+      "low": 374.21,
+      "close": 374.68,
+      "volume": 22395958
     }
   ]
 }

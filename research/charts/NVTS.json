@@ -1,6 +1,6 @@
 {
   "ticker": "NVTS",
-  "updated": "2026-06-24 20:56:33",
+  "updated": "2026-06-24 18:01:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 21.01,
       "close": 21.4,
       "volume": 20870400
+    },
+    {
+      "date": "2026-06-24",
+      "open": 21.052,
+      "high": 21.06,
+      "low": 17.675,
+      "close": 17.73,
+      "volume": 23090761
     }
   ]
 }

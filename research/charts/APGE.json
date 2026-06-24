@@ -1,6 +1,6 @@
 {
   "ticker": "APGE",
-  "updated": "2026-06-24 20:56:08",
+  "updated": "2026-06-24 18:01:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 132.54,
       "close": 132.88,
       "volume": 11318900
+    },
+    {
+      "date": "2026-06-24",
+      "open": 132.95,
+      "high": 133.0,
+      "low": 132.75,
+      "close": 132.77,
+      "volume": 4218779
     }
   ]
 }

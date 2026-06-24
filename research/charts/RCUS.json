@@ -1,6 +1,6 @@
 {
   "ticker": "RCUS",
-  "updated": "2026-06-24 20:56:09",
+  "updated": "2026-06-24 18:01:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 26.72,
       "close": 28.18,
       "volume": 2341900
+    },
+    {
+      "date": "2026-06-24",
+      "open": 28.52,
+      "high": 29.85,
+      "low": 28.28,
+      "close": 29.09,
+      "volume": 893194
     }
   ]
 }

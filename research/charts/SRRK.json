@@ -1,6 +1,6 @@
 {
   "ticker": "SRRK",
-  "updated": "2026-06-24 20:56:07",
+  "updated": "2026-06-24 18:01:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 48.97,
       "close": 51.27,
       "volume": 2233600
+    },
+    {
+      "date": "2026-06-24",
+      "open": 51.32,
+      "high": 53.71,
+      "low": 51.0,
+      "close": 52.965,
+      "volume": 1378871
     }
   ]
 }

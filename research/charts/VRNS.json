@@ -1,6 +1,6 @@
 {
   "ticker": "VRNS",
-  "updated": "2026-06-24 20:56:23",
+  "updated": "2026-06-24 18:01:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 32.96,
       "close": 35.03,
       "volume": 9762500
+    },
+    {
+      "date": "2026-06-24",
+      "open": 36.34,
+      "high": 37.06,
+      "low": 35.35,
+      "close": 36.7,
+      "volume": 2052898
     }
   ]
 }

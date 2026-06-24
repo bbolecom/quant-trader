@@ -1,6 +1,6 @@
 {
   "ticker": "BOLD",
-  "updated": "2026-06-24 20:56:27",
+  "updated": "2026-06-24 18:01:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 2.25,
       "close": 2.6,
       "volume": 65310400
+    },
+    {
+      "date": "2026-06-24",
+      "open": 2.6,
+      "high": 2.79,
+      "low": 2.58,
+      "close": 2.625,
+      "volume": 2111159
     }
   ]
 }

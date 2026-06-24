@@ -1,6 +1,6 @@
 {
   "ticker": "IBRX",
-  "updated": "2026-06-24 20:56:29",
+  "updated": "2026-06-24 18:01:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 7.0,
       "close": 7.32,
       "volume": 11296000
+    },
+    {
+      "date": "2026-06-24",
+      "open": 7.34,
+      "high": 7.965,
+      "low": 7.26,
+      "close": 7.72,
+      "volume": 10622582
     }
   ]
 }

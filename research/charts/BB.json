@@ -1,6 +1,6 @@
 {
   "ticker": "BB",
-  "updated": "2026-06-24 20:56:28",
+  "updated": "2026-06-24 18:01:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 8.49,
       "close": 8.82,
       "volume": 24684300
+    },
+    {
+      "date": "2026-06-24",
+      "open": 8.96,
+      "high": 9.38,
+      "low": 8.62,
+      "close": 8.665,
+      "volume": 27218886
     }
   ]
 }

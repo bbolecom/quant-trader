@@ -1,6 +1,6 @@
 {
   "ticker": "QCOM",
-  "updated": "2026-06-24 20:56:34",
+  "updated": "2026-06-24 18:01:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 198.44,
       "close": 204.13,
       "volume": 23741600
+    },
+    {
+      "date": "2026-06-24",
+      "open": 202.57,
+      "high": 202.57,
+      "low": 193.77,
+      "close": 195.46,
+      "volume": 9929510
     }
   ]
 }
