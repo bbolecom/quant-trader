@@ -1,6 +1,6 @@
 {
   "ticker": "RGEN",
-  "updated": "2026-06-24 18:02:40",
+  "updated": "2026-06-24 18:10:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,10 @@
     {
       "date": "2026-06-24",
       "open": 128.19,
-      "high": 139.59,
+      "high": 139.87,
       "low": 128.16,
-      "close": 139.38,
-      "volume": 638180
+      "close": 139.55,
+      "volume": 658576
     }
   ]
 }

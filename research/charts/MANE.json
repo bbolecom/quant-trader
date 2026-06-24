@@ -1,6 +1,6 @@
 {
   "ticker": "MANE",
-  "updated": "2026-06-24 18:02:40",
+  "updated": "2026-06-24 18:10:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -776,10 +776,10 @@
     {
       "date": "2026-06-24",
       "open": 104.38,
-      "high": 115.0,
+      "high": 115.19,
       "low": 102.87,
-      "close": 114.605,
-      "volume": 596737
+      "close": 114.585,
+      "volume": 620615
     }
   ]
 }
