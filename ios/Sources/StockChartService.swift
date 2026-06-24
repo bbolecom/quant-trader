@@ -61,29 +61,32 @@ enum StockChartService {
         let quotes = indicators?["quote"] as? [[String: Any]]
         guard let quote = quotes?.first else { throw URLError(.cannotParseResponse) }
 
-        let opens = quote["open"] as? [Double?] ?? []
-        let highs = quote["high"] as? [Double?] ?? []
-        let lows = quote["low"] as? [Double?] ?? []
-        let closes = quote["close"] as? [Double?] ?? []
-        let volumes = quote["volume"] as? [Double?] ?? []
+        let opens = optionalDoubles(from: quote, key: "open")
+        let highs = optionalDoubles(from: quote, key: "high")
+        let lows = optionalDoubles(from: quote, key: "low")
+        let closes = optionalDoubles(from: quote, key: "close")
+        let volumes = optionalDoubles(from: quote, key: "volume")
 
         var bars: [OHLCVBar] = []
         for i in 0..<timestamps.count {
-            guard let o = opens[safe: i] ?? nil,
-                  let h = highs[safe: i] ?? nil,
-                  let l = lows[safe: i] ?? nil,
-                  let c = closes[safe: i] ?? nil else { continue }
-            let vol = volumes[safe: i] ?? nil ?? 0
+            guard i < opens.count, i < highs.count, i < lows.count, i < closes.count,
+                  let o = opens[i], let h = highs[i], let l = lows[i], let c = closes[i] else { continue }
+            let vol = (i < volumes.count ? volumes[i] : nil) ?? 0
             let date = Date(timeIntervalSince1970: TimeInterval(timestamps[i]))
             bars.append(OHLCVBar(id: i, date: date, open: o, high: h, low: l, close: c, volume: vol))
         }
         return bars
     }
-}
 
-private extension Array {
-    subscript(safe index: Int) -> Element? {
-        indices.contains(index) ? self[index] : nil
+    private static func optionalDoubles(from quote: [String: Any], key: String) -> [Double?] {
+        guard let arr = quote[key] as? [Any] else { return [] }
+        return arr.map { value -> Double? in
+            if value is NSNull { return nil }
+            if let n = value as? Double { return n }
+            if let n = value as? Int { return Double(n) }
+            if let n = value as? NSNumber { return n.doubleValue }
+            return nil
+        }
     }
 }
 
@@ -98,7 +101,9 @@ final class StockChartLoader: ObservableObject {
     var closes: [Double] { bars.map(\.close) }
     var lastPrice: Double? { bars.last?.close }
     var changePct: Double? {
-        guard bars.count >= 2, let last = bars.last?.close, let prev = bars[bars.count - 2].close, prev != 0 else { return nil }
+        guard bars.count >= 2, let last = bars.last?.close else { return nil }
+        let prev = bars[bars.count - 2].close
+        guard prev != 0 else { return nil }
         return (last / prev - 1) * 100
     }
 
