@@ -131,14 +131,18 @@ struct ModuleRun: Codable, Identifiable {
     let moduleID: String
     let ok: Bool
     let count: Int?
+    let rows: Int?
     let error: String?
 
     enum CodingKeys: String, CodingKey {
         case moduleID = "id"
         case ok
         case count
+        case rows
         case error
     }
+
+    var rowCount: Int? { count ?? rows }
 }
 
 struct StrategySummaryBlock: Codable {
@@ -170,8 +174,13 @@ struct StrategyCatalogRow: Codable, Identifiable {
     let actionable: Int
     let watching: Int
     let total: Int
-    let dataDate: String
+    let dataDate: String?
     let detail: String
+
+    var dataDateLabel: String {
+        let v = dataDate?.trimmingCharacters(in: .whitespaces) ?? ""
+        return v.isEmpty ? "—" : v
+    }
 
     enum CodingKeys: String, CodingKey {
         case strategyID = "id"
@@ -191,7 +200,7 @@ struct StrategyCatalogRow: Codable, Identifiable {
 struct PickRow: Codable, Identifiable {
     var id: String { "\(module)-\(ticker)-\(status)-\(reason.hashValue)" }
     let module: String
-    let account: String
+    let account: String?
     let ticker: String
     let status: String
     let direction: String
@@ -325,7 +334,13 @@ final class DailyPickLoader: ObservableObject {
             return
         }
 
-        errorMessage = DailyPickLoaderError.noDataAvailable.errorDescription
+        if let url = Bundle.main.url(forResource: "daily_pick_today", withExtension: "json"),
+           let data = try? Data(contentsOf: url),
+           let reason = Self.decodeFailureReason(from: data) {
+            errorMessage = "快照解码失败：\(reason)"
+        } else {
+            errorMessage = DailyPickLoaderError.noDataAvailable.errorDescription
+        }
         document = nil
         dataSource = nil
         loadedFrom = nil
@@ -368,6 +383,25 @@ final class DailyPickLoader: ObservableObject {
         if payload.starts(with: [0xEF, 0xBB, 0xBF]) {
             payload = Data(payload.dropFirst(3))
         }
-        return try? JSONDecoder().decode(DailyPickDocument.self, from: payload)
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode(DailyPickDocument.self, from: payload)
+        } catch {
+            #if DEBUG
+            print("[DailyPickLoader] decode failed:", error)
+            #endif
+            return nil
+        }
+    }
+
+    static func decodeFailureReason(from data: Data) -> String? {
+        var payload = data
+        if payload.starts(with: [0xEF, 0xBB, 0xBF]) { payload = Data(payload.dropFirst(3)) }
+        do {
+            _ = try JSONDecoder().decode(DailyPickDocument.self, from: payload)
+            return nil
+        } catch {
+            return error.localizedDescription
+        }
     }
 }

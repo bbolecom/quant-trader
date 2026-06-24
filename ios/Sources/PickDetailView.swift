@@ -52,8 +52,8 @@ struct PickDetailView: View {
             HStack(spacing: 10) {
                 DirectionBadge(direction: row.direction, highlight: row.isActionable)
                 StatusBadge(status: row.status)
-                if !row.account.isEmpty, row.account != "—" {
-                    Text(row.account)
+            if let acct = row.account, !acct.isEmpty, acct != "—" {
+                    Text(acct)
                         .font(.caption)
                         .foregroundStyle(ThsTheme.textTertiary)
                 }

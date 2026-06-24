@@ -101,8 +101,8 @@ struct StrategyCatalogCard: View {
                     .lineLimit(3)
             }
 
-            if !row.dataDate.isEmpty {
-                Text("数据日期 \(row.dataDate)")
+            if row.dataDateLabel != "—" {
+                Text("数据日期 \(row.dataDateLabel)")
                     .font(.caption2)
                     .foregroundStyle(ThsTheme.textTertiary)
             }

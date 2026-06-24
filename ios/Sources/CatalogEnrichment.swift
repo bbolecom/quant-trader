@@ -60,7 +60,7 @@ enum CatalogEnrichment {
         for run in document.moduleRuns ?? [] {
             guard var row = byID[run.moduleID] else { continue }
             row = row.with(hasData: true, dataDate: pickDate)
-            if let count = run.count {
+            if let count = run.rowCount {
                 row = row.with(total: max(row.total, count))
             }
             byID[run.moduleID] = row
@@ -134,7 +134,7 @@ extension StrategyCatalogRow {
             watching: watching,
             total: total,
             hasData: hasData,
-            dataDate: dataDate.isEmpty ? nil : dataDate
+            dataDate: dataDateLabel == "—" ? nil : dataDateLabel
         )
     }
 
@@ -175,7 +175,7 @@ extension ManifestFeature {
             watching: row.watching,
             total: row.total,
             hasData: row.hasData,
-            dataDate: row.dataDate.isEmpty ? dataDate : row.dataDate
+            dataDate: row.dataDateLabel == "—" ? dataDate : row.dataDateLabel
         )
     }
 }
