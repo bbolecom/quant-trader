@@ -295,32 +295,41 @@ final class DailyPickLoader: ObservableObject {
     @Published var loadedFrom: String?
     @Published var dataSource: DailyPickDataSource?
 
+    private init() {
+        if let bundled = Self.decodeBundledJSON() {
+            apply(bundled, source: .bundled, from: "内置")
+        }
+    }
+
     func reload() async {
         isLoading = true
         errorMessage = nil
-        defer { isLoading = false }
+
+        if document == nil, let bundled = Self.decodeBundledJSON() {
+            apply(bundled, source: .bundled, from: "内置")
+        }
 
         let urls = AppConfig.dailyPickCandidateURLs()
-        var lastError: String?
-
         for url in urls {
             if let doc = await fetchRemote(url: url) {
                 apply(doc, source: url.host == "raw.githubusercontent.com" ? .github : .remote, from: url.host)
+                isLoading = false
                 return
             }
-            lastError = errorMessage
         }
 
-        if let bundled = loadBundled() {
+        if let bundled = Self.decodeBundledJSON() {
             apply(bundled, source: .bundled, from: "内置")
-            errorMessage = lastError == nil ? nil : "Mac 未连接 · 已加载\(dataSource?.label ?? "内置")数据"
+            errorMessage = "Mac 未连接 · 已显示\(DailyPickDataSource.bundled.label)（可下拉刷新）"
+            isLoading = false
             return
         }
 
-        errorMessage = lastError ?? DailyPickLoaderError.noDataAvailable.errorDescription
+        errorMessage = DailyPickLoaderError.noDataAvailable.errorDescription
         document = nil
         dataSource = nil
         loadedFrom = nil
+        isLoading = false
     }
 
     private func apply(_ doc: DailyPickDocument, source: DailyPickDataSource, from host: String?) {
@@ -339,7 +348,7 @@ final class DailyPickLoader: ObservableObject {
             guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                 return nil
             }
-            return try JSONDecoder().decode(DailyPickDocument.self, from: data)
+            return Self.decodeJSON(data)
         } catch is DecodingError {
             errorMessage = DailyPickLoaderError.decodeFailed.errorDescription
             return nil
@@ -348,9 +357,17 @@ final class DailyPickLoader: ObservableObject {
         }
     }
 
-    private func loadBundled() -> DailyPickDocument? {
+    private static func decodeBundledJSON() -> DailyPickDocument? {
         guard let url = Bundle.main.url(forResource: "daily_pick_today", withExtension: "json"),
               let data = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(DailyPickDocument.self, from: data)
+        return decodeJSON(data)
+    }
+
+    private static func decodeJSON(_ data: Data) -> DailyPickDocument? {
+        var payload = data
+        if payload.starts(with: [0xEF, 0xBB, 0xBF]) {
+            payload = Data(payload.dropFirst(3))
+        }
+        return try? JSONDecoder().decode(DailyPickDocument.self, from: payload)
     }
 }

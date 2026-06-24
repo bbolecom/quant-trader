@@ -20,7 +20,7 @@ targets:
       properties:
         CFBundleDisplayName: 美股量化
         CFBundleShortVersionString: "3.0"
-        CFBundleVersion: "4"
+        CFBundleVersion: "5"
         UILaunchScreen:
           UIColorName: LaunchBackground
           UIImageName: AppLogo
@@ -42,7 +42,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.bbolecom.quanttrader
         MARKETING_VERSION: "3.0"
-        CURRENT_PROJECT_VERSION: "4"
+        CURRENT_PROJECT_VERSION: "5"
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO
         PRODUCT_NAME: QuantTrader

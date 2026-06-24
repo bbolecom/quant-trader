@@ -12,7 +12,6 @@ ROOT = Path(__file__).resolve().parent.parent
 ACCENT = (233, 48, 48)
 ACCENT_DARK = (196, 30, 30)
 WHITE = (255, 255, 255)
-BG_DARK = (15, 18, 25)
 
 
 def _lerp(a: int, b: int, t: float) -> int:
@@ -91,10 +90,11 @@ def draw_logo(size: int = 1024) -> Image.Image:
     return out
 
 
-def save_png(img: Image.Image, path: Path) -> None:
+def save_png(img: Image.Image, path: Path, *, opaque_bg: tuple[int, int, int] | None = None) -> None:
+    """保存 PNG。AppLogo 用透明底；AppIcon 用全幅红色底（避免四角黑边）。"""
     path.parent.mkdir(parents=True, exist_ok=True)
-    if img.mode == "RGBA":
-        bg = Image.new("RGBA", img.size, (*BG_DARK, 255))
+    if opaque_bg is not None:
+        bg = Image.new("RGBA", img.size, (*opaque_bg, 255))
         bg.paste(img, (0, 0), img)
         bg.convert("RGB").save(path, "PNG", optimize=True)
     else:
@@ -108,10 +108,13 @@ def main() -> None:
     logo_512 = logo_1024.resize((512, 512), Image.Resampling.LANCZOS)
     logo_256 = logo_1024.resize((256, 256), Image.Resampling.LANCZOS)
 
-    save_png(logo_256, ROOT / "assets" / "icon.png")
-    save_png(logo_512, ROOT / "assets" / "icon-512.png")
-    save_png(logo_1024, ROOT / "ios" / "Sources" / "Assets.xcassets" / "AppIcon.appiconset" / "icon-1024.png")
+    save_png(logo_256, ROOT / "assets" / "icon.png", opaque_bg=ACCENT)
+    save_png(logo_512, ROOT / "assets" / "icon-512.png", opaque_bg=ACCENT)
+    save_png(logo_1024, ROOT / "ios" / "Sources" / "Assets.xcassets" / "AppIcon.appiconset" / "icon-1024.png", opaque_bg=ACCENT)
     save_png(logo_256, ROOT / "ios" / "Sources" / "Assets.xcassets" / "AppLogo.imageset" / "logo.png")
+    save_png(logo_256, ROOT / "ios" / "Sources" / "Assets.xcassets" / "AppLogo.imageset" / "logo@2x.png")
+    logo_384 = logo_1024.resize((384, 384), Image.Resampling.LANCZOS)
+    save_png(logo_384, ROOT / "ios" / "Sources" / "Assets.xcassets" / "AppLogo.imageset" / "logo@3x.png")
     print("完成。")
 
 
