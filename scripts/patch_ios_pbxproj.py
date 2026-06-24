@@ -15,6 +15,7 @@ RESOURCE_FILES = sorted(
     [p.name for p in (IOS / "Resources").glob("*") if p.suffix in {".json"}]
     + ["Assets.xcassets"]
 )
+CHARTS_DIR = IOS / "Resources" / "charts"
 
 
 def uid(name: str) -> str:
@@ -67,6 +68,19 @@ def main() -> None:
         resource_group_children.append(f"\t\t\t\t{ref} /* {name} */,")
         resources_phase.append(f"\t\t\t\t{build} /* {name} in Resources */,")
         print(f"+ Resources {name}")
+
+    if CHARTS_DIR.is_dir() and "charts" not in existing:
+        ref = uid("ref:charts-folder")
+        build = uid("build:charts-folder")
+        file_refs.append(
+            f"\t\t{ref} /* charts */ = {{isa = PBXFileReference; lastKnownFileType = folder; path = charts; sourceTree = \"<group>\"; }};"
+        )
+        build_files.append(
+            f"\t\t{build} /* charts in Resources */ = {{isa = PBXBuildFile; fileRef = {ref} /* charts */; }};"
+        )
+        resource_group_children.append(f"\t\t\t\t{ref} /* charts */,")
+        resources_phase.append(f"\t\t\t\t{build} /* charts in Resources */,")
+        print("+ Resources charts/ (folder)")
 
     if not build_files:
         print("pbxproj already up to date")

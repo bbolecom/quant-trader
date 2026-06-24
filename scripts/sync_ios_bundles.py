@@ -165,6 +165,15 @@ def main() -> None:
             print(f"  ⚠ pattern_daily: {exc}")
     ensure_local_files()
     copied = sync_to_resources()
+    if args.fetch:
+        try:
+            subprocess.run(
+                [sys.executable, str(ROOT / "scripts/export_chart_snapshots.py"), "--limit", "80"],
+                cwd=ROOT,
+                check=False,
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ⚠ chart export: {exc}")
     print(f"\nDone: {len(copied)} files → ios/Resources/")
 
 

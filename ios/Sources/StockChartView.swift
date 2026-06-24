@@ -264,6 +264,11 @@ struct StockChartPanel: View {
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 2) {
+                if let src = loader.dataSource {
+                    Text("来源 \(src.rawValue)")
+                        .font(.system(size: 9))
+                        .foregroundStyle(ThsTheme.textTertiary)
+                }
                 maLegend("MA20", Color(red: 1.0, green: 0.84, blue: 0.0), loader.displayMA20.compactMap { $0 }.last)
                 maLegend("MA50", Color(red: 0.45, green: 0.72, blue: 1.0), loader.displayMA50.compactMap { $0 }.last)
             }
