@@ -29,13 +29,11 @@ final class JsonDataLoader: ObservableObject {
                     lastError = "无法获取数据（\(url.lastPathComponent)）"
                     continue
                 }
-                let obj = try JSONSerialization.jsonObject(with: data)
-                guard let dict = obj as? [String: Any] else {
-                    lastError = "JSON 格式不是对象"
-                    continue
+                if let dict = Self.parsePayload(data, path: path) {
+                    apply(dict, from: sourceLabel(for: url))
+                    return
                 }
-                apply(dict, from: sourceLabel(for: url))
-                return
+                lastError = "JSON 格式不是对象"
             } catch {
                 lastError = error.localizedDescription
             }
@@ -51,6 +49,37 @@ final class JsonDataLoader: ObservableObject {
         errorMessage = lastError ?? "无法获取数据"
     }
 
+    private static func parsePayload(_ data: Data, path: String) -> [String: Any]? {
+        if path.lowercased().hasSuffix(".csv") {
+            return parseCSV(data, source: AppConfig.jsonRelativePath(path))
+        }
+        guard let obj = try? JSONSerialization.jsonObject(with: data) else { return nil }
+        return obj as? [String: Any]
+    }
+
+    private static func parseCSV(_ data: Data, source: String) -> [String: Any]? {
+        guard let text = String(data: data, encoding: .utf8) else { return nil }
+        let lines = text.split(whereSeparator: \.isNewline).map(String.init)
+        guard lines.count >= 2 else { return nil }
+        let headers = lines[0].split(separator: ",").map { String($0).trimmingCharacters(in: .whitespaces) }
+        var rows: [[String: Any]] = []
+        for line in lines.dropFirst() {
+            let cols = line.split(separator: ",", omittingEmptySubsequences: false).map { String($0) }
+            var row: [String: Any] = [:]
+            for (i, h) in headers.enumerated() where i < cols.count {
+                let v = cols[i].trimmingCharacters(in: .whitespaces)
+                if let d = Double(v) { row[h] = d } else { row[h] = v }
+            }
+            if !row.isEmpty { rows.append(row) }
+        }
+        return [
+            "source_csv": source,
+            "summary": ["总条目": rows.count],
+            "rows": rows,
+            "picks": rows,
+        ]
+    }
+
     private func apply(_ dict: [String: Any], from source: String) {
         root = dict
         loadedFrom = source
@@ -63,12 +92,8 @@ final class JsonDataLoader: ObservableObject {
 
     private static func loadBundled(path: String) -> [String: Any]? {
         guard let url = AppConfig.bundledJSONURL(for: path),
-              let data = try? Data(contentsOf: url),
-              let obj = try? JSONSerialization.jsonObject(with: data),
-              let dict = obj as? [String: Any] else {
-            return nil
-        }
-        return dict
+              let data = try? Data(contentsOf: url) else { return nil }
+        return parsePayload(data, path: path)
     }
 }
 

@@ -5,6 +5,14 @@ struct ModuleDetailView: View {
     @EnvironmentObject private var nav: AppNavigation
     let feature: ManifestFeature
     @StateObject private var loader = JsonDataLoader()
+    @State private var chartSelection: ChartSelection?
+
+    private struct ChartSelection: Identifiable {
+        let id = UUID()
+        let ticker: String
+        let title: String?
+        let metadata: [String: Any]
+    }
 
     var body: some View {
         ScrollView {
@@ -45,6 +53,9 @@ struct ModuleDetailView: View {
         .task { await reload() }
         .refreshable { await reload() }
         .preferredColorScheme(.dark)
+        .sheet(item: $chartSelection) { sel in
+            TickerDetailView(ticker: sel.ticker, title: sel.title, metadata: sel.metadata)
+        }
     }
 
     private func reload() async {
@@ -88,6 +99,12 @@ struct ModuleDetailView: View {
             surgeContent(root)
         case "speculative_pool":
             speculativePoolContent(root)
+        case "pattern":
+            patternContent(root)
+        case "path5d":
+            path5dContent(root)
+        case "json_stats":
+            jsonStatsContent(root)
         case "meme":
             memeContent(root)
         case "playbook":
@@ -141,6 +158,44 @@ struct ModuleDetailView: View {
         }
     }
 
+    // MARK: - Pattern / path5d / stats
+
+    private func patternContent(_ root: [String: Any]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            if let regime = root["regime"] as? [String: Any] {
+                marketBanner(regime)
+            }
+            jsonSection("腿① 做多", rows: JsonHelper.array(root, "long"), emoji: "✅", accent: ThsTheme.up)
+            jsonSection("腿①b 5日路径", rows: JsonHelper.array(root, "path5d"), emoji: "📈", accent: .orange)
+            jsonSection("腿② 回避", rows: JsonHelper.array(root, "avoid"), emoji: "⛔", accent: ThsTheme.down)
+            if let income = root["income"] as? [String: Any], let lines = income["lines"] as? [String] {
+                jsonSection("腿③ 收租", rows: lines.map { ["说明": $0] }, emoji: "💰", accent: ThsTheme.accent)
+            }
+        }
+    }
+
+    private func path5dContent(_ root: [String: Any]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            jsonSection("5日路径命中", rows: JsonHelper.array(root, "rows", "picks"), emoji: "🛤", accent: .orange)
+        }
+    }
+
+    private func jsonStatsContent(_ root: [String: Any]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            jsonKeyValueSummary(root)
+            if let rows = root["results"] as? [[String: Any]], !rows.isEmpty {
+                jsonSection("回测明细", rows: rows, emoji: "📊")
+            } else if let patterns = root["patterns"] as? [String: Any] {
+                let rows = patterns.map { key, val -> [String: Any] in
+                    var r: [String: Any] = ["规律ID": key]
+                    if let d = val as? [String: Any] { r.merge(d) { _, n in n } }
+                    return r
+                }
+                jsonSection("规律统计", rows: rows, emoji: "📈")
+            }
+        }
+    }
+
     // MARK: - Meme / generic picks
 
     private func memeContent(_ root: [String: Any]) -> some View {
@@ -165,7 +220,7 @@ struct ModuleDetailView: View {
             if let picks = root["picks"] as? [[String: Any]], !picks.isEmpty {
                 jsonSection("信号列表", rows: picks, emoji: "📋")
             }
-            let keys = ["buy_confirmed", "avoid_confirmed", "watching", "new_spikes", "members", "core", "signals"]
+            let keys = ["buy_confirmed", "avoid_confirmed", "watching", "new_spikes", "members", "core", "signals", "rows", "long", "avoid", "path5d"]
             ForEach(keys, id: \.self) { key in
                 let rows = JsonHelper.array(root, key)
                 if !rows.isEmpty && key != "picks" {
@@ -206,7 +261,12 @@ struct ModuleDetailView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ThsSectionHeader(title: title, count: rows.count, accent: accent, icon: "list.bullet")
                     ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
-                        JsonRecordCard(row: row)
+                        Button {
+                            openChart(for: row, section: title)
+                        } label: {
+                            JsonRecordCard(row: row)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -232,6 +292,11 @@ struct ModuleDetailView: View {
 
     private func sortedKeys(_ dict: [String: Any]) -> [String] {
         dict.keys.sorted()
+    }
+
+    private func openChart(for row: [String: Any], section: String) {
+        guard let tk = JsonHelper.ticker(from: row), JsonHelper.isValidTicker(tk) else { return }
+        chartSelection = ChartSelection(ticker: tk, title: section, metadata: row)
     }
 
     private func statPill(_ title: String, _ n: Int, _ color: Color) -> some View {

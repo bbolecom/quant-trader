@@ -9,6 +9,9 @@ struct PickDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     headerBlock
+                    if JsonHelper.isValidTicker(row.ticker) {
+                        StockChartPanel(ticker: row.ticker)
+                    }
                     if row.hasBacktestStats {
                         backtestBlock
                     }

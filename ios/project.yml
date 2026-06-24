@@ -19,21 +19,13 @@ targets:
       - name: Sync bundled research JSON
         basedOnDependencyAnalysis: false
         script: |
-          FILES="daily_pick_today.json gain15_daily_today.json speculative_pool.json surge_scan_today.json flow_daily_today.json flow_strategy_today.json ticker_pattern_today.json liquid_fleet_picks.json universal_playbook_today.json"
-          for f in $FILES; do
-            SRC="${SRCROOT}/../research/$f"
-            DST="${SRCROOT}/Resources/$f"
-            if [ -f "$SRC" ]; then
-              cp "$SRC" "$DST"
-              echo "Synced $f → Resources"
-            fi
-          done
+          python3 "${SRCROOT}/../scripts/sync_ios_bundles.py" || true
     info:
       path: Sources/Info.plist
       properties:
         CFBundleDisplayName: 美股量化
         CFBundleShortVersionString: "3.0"
-        CFBundleVersion: "9"
+        CFBundleVersion: "10"
         UILaunchScreen:
           UIColorName: LaunchBackground
           UIImageName: AppLogo
@@ -55,7 +47,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.bbolecom.quanttrader
         MARKETING_VERSION: "3.0"
-        CURRENT_PROJECT_VERSION: "9"
+        CURRENT_PROJECT_VERSION: "10"
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: NO
         PRODUCT_NAME: QuantTrader
