@@ -1,18 +1,10 @@
 {
   "ticker": "COUR",
-  "updated": "2026-06-24 18:10:48",
+  "updated": "2026-06-24 22:51:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 7.41,
-      "high": 7.495,
-      "low": 7.325,
-      "close": 7.48,
-      "volume": 1631900
-    },
     {
       "date": "2025-12-26",
       "open": 7.46,
@@ -987,15 +979,15 @@
       "high": 5.46,
       "low": 5.075,
       "close": 5.41,
-      "volume": 9802800
+      "volume": 9804300
     },
     {
       "date": "2026-06-24",
       "open": 5.51,
-      "high": 6.06,
+      "high": 6.105,
       "low": 5.49,
-      "close": 5.96,
-      "volume": 11526978
+      "close": 6.09,
+      "volume": 18362577
     }
   ]
 }

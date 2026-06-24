@@ -1,18 +1,10 @@
 {
   "ticker": "PRIM",
-  "updated": "2026-06-24 18:10:47",
+  "updated": "2026-06-24 22:51:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 129.0,
-      "high": 129.73,
-      "low": 127.97,
-      "close": 129.53,
-      "volume": 360500
-    },
     {
       "date": "2025-12-26",
       "open": 129.47,
@@ -987,15 +979,15 @@
       "high": 86.58,
       "low": 65.0,
       "close": 84.95,
-      "volume": 9905700
+      "volume": 9913200
     },
     {
       "date": "2026-06-24",
       "open": 84.835,
       "high": 96.11,
       "low": 83.45,
-      "close": 91.74,
-      "volume": 3984981
+      "close": 92.69,
+      "volume": 5785581
     }
   ]
 }

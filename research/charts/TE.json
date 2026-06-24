@@ -1,18 +1,10 @@
 {
   "ticker": "TE",
-  "updated": "2026-06-24 18:10:54",
+  "updated": "2026-06-24 22:51:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 7.2,
-      "high": 7.39,
-      "low": 6.93,
-      "close": 7.05,
-      "volume": 6062900
-    },
     {
       "date": "2025-12-26",
       "open": 7.05,
@@ -987,15 +979,15 @@
       "high": 10.18,
       "low": 9.22,
       "close": 9.24,
-      "volume": 30783200
+      "volume": 31012100
     },
     {
       "date": "2026-06-24",
       "open": 9.21,
       "high": 9.2,
-      "low": 8.4,
-      "close": 8.475,
-      "volume": 17406358
+      "low": 8.29,
+      "close": 8.53,
+      "volume": 23645092
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "BW",
-  "updated": "2026-06-24 18:10:53",
+  "updated": "2026-06-24 22:51:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 4.91,
-      "high": 5.37,
-      "low": 4.86,
-      "close": 5.35,
-      "volume": 1487200
-    },
     {
       "date": "2025-12-26",
       "open": 5.33,
@@ -987,15 +979,15 @@
       "high": 17.265,
       "low": 15.88,
       "close": 15.9,
-      "volume": 2657900
+      "volume": 2662000
     },
     {
       "date": "2026-06-24",
       "open": 15.82,
       "high": 15.82,
-      "low": 14.529,
-      "close": 14.53,
-      "volume": 2885779
+      "low": 14.15,
+      "close": 14.42,
+      "volume": 4973927
     }
   ]
 }
