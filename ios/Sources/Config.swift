@@ -60,14 +60,16 @@ enum AppConfig {
         if let gh = githubJSONURL(for: rel) {
             urls.append(gh)
         }
-        if let u = AppSettings.shared.jsonURL(for: path) {
-            let busted = cacheBustedURL(u)
-            if !urls.contains(busted) { urls.append(busted) }
+        if let u = AppSettings.shared.jsonURL(for: path),
+           let busted = cacheBustedURL(u),
+           !urls.contains(busted) {
+            urls.append(busted)
         }
         if !AppSettings.shared.jsonBaseURL.isEmpty,
-           let u = URL(string: AppSettings.shared.jsonBaseURL + rel) {
-            let busted = cacheBustedURL(u)
-            if !urls.contains(busted) { urls.append(busted) }
+           let u = URL(string: AppSettings.shared.jsonBaseURL + rel),
+           let busted = cacheBustedURL(u),
+           !urls.contains(busted) {
+            urls.append(busted)
         }
         return urls
     }

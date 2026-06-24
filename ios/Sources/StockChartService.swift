@@ -120,6 +120,7 @@ enum StockChartService {
     private static func parseSnapshotJSON(_ data: Data, period: ChartPeriod) throws -> ([OHLCVBar], String?) {
         let root = try JSONSerialization.jsonObject(with: data) as? [String: Any]
         let updated = root?["updated"] as? String
+        let interval = root?["interval"] as? String ?? "1d"
         if let arr = root?["bars"] as? [[String: Any]] {
             let fmt = ISO8601DateFormatter()
             fmt.formatOptions = [.withFullDate]
@@ -138,17 +139,61 @@ enum StockChartService {
                     volume: doubleValue(row["volume"]) ?? 0
                 ))
             }
-            return (resample(bars, period: period), updated)
+            return (normalizeBars(bars, period: period, interval: interval), updated)
         }
         let bars = try parseYahooChartJSON(data)
-        return (bars, updated)
+        return (normalizeBars(bars, period: period, interval: interval), updated)
     }
 
-    private static func resample(_ bars: [OHLCVBar], period: ChartPeriod) -> [OHLCVBar] {
-        guard period == .daily || bars.isEmpty else { return bars }
-        let n = period.visibleBars * 2
-        if bars.count > n { return Array(bars.suffix(n)) }
-        return bars
+    /// 日K 快照转周/月K；云端 API 已按周期返回则不再聚合
+    private static func normalizeBars(_ bars: [OHLCVBar], period: ChartPeriod, interval: String) -> [OHLCVBar] {
+        guard !bars.isEmpty else { return bars }
+        if period == .daily || interval != "1d" { return reindex(bars) }
+        return reindex(aggregateBars(bars, period: period))
+    }
+
+    private static func reindex(_ bars: [OHLCVBar]) -> [OHLCVBar] {
+        bars.enumerated().map { i, bar in
+            OHLCVBar(id: i, date: bar.date, open: bar.open, high: bar.high, low: bar.low, close: bar.close, volume: bar.volume)
+        }
+    }
+
+    private static func aggregateBars(_ bars: [OHLCVBar], period: ChartPeriod) -> [OHLCVBar] {
+        let cal = Calendar.current
+        var order: [Date] = []
+        var groups: [Date: [OHLCVBar]] = [:]
+
+        for bar in bars {
+            let key: Date
+            switch period {
+            case .weekly:
+                let comps = cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: bar.date)
+                key = cal.date(from: comps) ?? bar.date
+            case .monthly:
+                let comps = cal.dateComponents([.year, .month], from: bar.date)
+                key = cal.date(from: comps) ?? bar.date
+            case .daily:
+                key = bar.date
+            }
+            if groups[key] == nil {
+                order.append(key)
+                groups[key] = []
+            }
+            groups[key]?.append(bar)
+        }
+
+        return order.enumerated().compactMap { i, key in
+            guard let chunk = groups[key], let first = chunk.first, let last = chunk.last else { return nil }
+            return OHLCVBar(
+                id: i,
+                date: key,
+                open: first.open,
+                high: chunk.map(\.high).max() ?? first.high,
+                low: chunk.map(\.low).min() ?? first.low,
+                close: last.close,
+                volume: chunk.map(\.volume).reduce(0, +)
+            )
+        }
     }
 
     static func movingAverage(_ closes: [Double], period: Int) -> [Double?] {
@@ -227,20 +272,37 @@ final class StockChartLoader: ObservableObject {
     @Published var lastFetched: Date?
     @Published var period: ChartPeriod = .daily
     @Published var selectedIndex: Int?
+    /// 从右缘向左滑动的 K 线根数（0 = 最新）
+    @Published var scrollOffset: Int = 0
 
-    var displayBars: [OHLCVBar] {
-        let n = period.visibleBars
-        guard bars.count > n else { return bars }
-        return Array(bars.suffix(n))
+    private var loadGeneration = 0
+
+    var maxScrollOffset: Int {
+        max(0, bars.count - period.visibleBars)
     }
 
-    var displayMA20: [Double?] { sliceMA(ma20) }
-    var displayMA50: [Double?] { sliceMA(ma50) }
-
-    private func sliceMA(_ ma: [Double?]) -> [Double?] {
+    private var windowRange: Range<Int> {
         let n = period.visibleBars
-        guard ma.count > n else { return ma }
-        return Array(ma.suffix(n))
+        guard bars.count > n else { return 0..<bars.count }
+        let offset = min(max(scrollOffset, 0), maxScrollOffset)
+        let end = bars.count - offset
+        let start = max(0, end - n)
+        return start..<end
+    }
+
+    var displayBars: [OHLCVBar] {
+        let r = windowRange
+        guard !r.isEmpty else { return [] }
+        return Array(bars[r])
+    }
+
+    var displayMA20: [Double?] { sliceMAWindow(ma20) }
+    var displayMA50: [Double?] { sliceMAWindow(ma50) }
+
+    private func sliceMAWindow(_ ma: [Double?]) -> [Double?] {
+        let r = windowRange
+        guard r.upperBound <= ma.count else { return [] }
+        return Array(ma[r])
     }
 
     var lastPrice: Double? { bars.last?.close }
@@ -256,14 +318,26 @@ final class StockChartLoader: ObservableObject {
         return displayBars[idx]
     }
 
+    func setPeriod(_ newPeriod: ChartPeriod, ticker: String) {
+        guard period != newPeriod else { return }
+        period = newPeriod
+        scrollOffset = 0
+        selectedIndex = nil
+        Task { await load(ticker: ticker) }
+    }
+
     func load(ticker: String) async {
+        loadGeneration += 1
+        let generation = loadGeneration
         isLoading = true
         errorMessage = nil
-        selectedIndex = nil
-        defer { isLoading = false }
+        defer { if generation == loadGeneration { isLoading = false } }
         do {
             let (fetched, src, stamp) = try await StockChartService.fetchBars(ticker: ticker, period: period)
+            guard generation == loadGeneration else { return }
             bars = fetched
+            scrollOffset = 0
+            selectedIndex = nil
             dataSource = src
             cloudUpdatedAt = stamp
             lastFetched = Date()
@@ -271,6 +345,7 @@ final class StockChartLoader: ObservableObject {
             ma20 = StockChartService.movingAverage(closes, period: 20)
             ma50 = StockChartService.movingAverage(closes, period: 50)
         } catch {
+            guard generation == loadGeneration else { return }
             bars = []
             ma20 = []
             ma50 = []

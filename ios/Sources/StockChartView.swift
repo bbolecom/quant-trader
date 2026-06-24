@@ -7,6 +7,11 @@ struct ThsKLineChartView: View {
     let ma20: [Double?]
     let ma50: [Double?]
     @Binding var selectedIndex: Int?
+    @Binding var scrollOffset: Int
+    let maxScrollOffset: Int
+
+    @State private var panAnchorOffset: Int = 0
+    @State private var isPanning = false
 
     private let priceAxisWidth: CGFloat = 44
 
@@ -23,7 +28,6 @@ struct ThsKLineChartView: View {
 
             HStack(spacing: 0) {
                 ZStack(alignment: .topLeading) {
-                    // 网格
                     ForEach(0..<5, id: \.self) { i in
                         let y = priceH * CGFloat(i) / 4
                         Path { p in
@@ -33,11 +37,9 @@ struct ThsKLineChartView: View {
                         .stroke(ThsTheme.border.opacity(0.45), lineWidth: 0.5)
                     }
 
-                    // MA 线
                     maPath(values: ma20, color: Color(red: 1.0, green: 0.84, blue: 0.0), plotW: plotW, plotH: priceH, minP: minP, maxP: maxP)
                     maPath(values: ma50, color: Color(red: 0.45, green: 0.72, blue: 1.0), plotW: plotW, plotH: priceH, minP: minP, maxP: maxP)
 
-                    // K 线
                     HStack(alignment: .bottom, spacing: barSpacing(plotW: plotW, barW: barW)) {
                         ForEach(Array(bars.enumerated()), id: \.element.id) { idx, bar in
                             candleView(bar, idx: idx, barW: barW, plotH: priceH, minP: minP, maxP: maxP)
@@ -46,8 +48,7 @@ struct ThsKLineChartView: View {
                     .padding(.leading, 2)
                     .frame(width: plotW, height: priceH, alignment: .bottomLeading)
 
-                    // 十字线
-                    if let sel = selectedIndex, bars.indices.contains(sel) {
+                    if let sel = selectedIndex, bars.indices.contains(sel), !isPanning {
                         let x = xPos(index: sel, plotW: plotW, barW: barW)
                         Path { p in
                             p.move(to: CGPoint(x: x, y: 0))
@@ -58,14 +59,8 @@ struct ThsKLineChartView: View {
                 }
                 .frame(width: plotW, height: totalH)
                 .contentShape(Rectangle())
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { v in
-                            selectedIndex = index(at: v.location.x, plotW: plotW, barW: barW)
-                        }
-                )
+                .highPriorityGesture(chartGesture(plotW: plotW, barW: barW))
 
-                // 右侧价格刻度
                 VStack(spacing: 0) {
                     ForEach(0..<5, id: \.self) { i in
                         let price = maxP - (maxP - minP) * Double(i) / 4
@@ -79,13 +74,12 @@ struct ThsKLineChartView: View {
                 .frame(width: priceAxisWidth)
             }
             .overlay(alignment: .bottomLeading) {
-                // 成交量
                 HStack(alignment: .bottom, spacing: barSpacing(plotW: plotW, barW: barW)) {
                     ForEach(Array(bars.enumerated()), id: \.element.id) { idx, bar in
                         let vh = max(1, volH * CGFloat(bar.volume / maxVol))
                         let color = bar.isUp ? ThsTheme.up : ThsTheme.down
                         Rectangle()
-                            .fill(color.opacity(selectedIndex == idx ? 0.85 : 0.55))
+                            .fill(color.opacity(selectedIndex == idx && !isPanning ? 0.85 : 0.55))
                             .frame(width: max(1, barW * 0.82), height: vh)
                     }
                 }
@@ -93,6 +87,33 @@ struct ThsKLineChartView: View {
                 .frame(width: plotW, height: volH, alignment: .bottomLeading)
             }
         }
+        .onChange(of: scrollOffset) { newValue in panAnchorOffset = newValue }
+        .onAppear { panAnchorOffset = scrollOffset }
+    }
+
+    private func chartGesture(plotW: CGFloat, barW: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 4)
+            .onChanged { value in
+                let dx = value.translation.width
+                let dy = value.translation.height
+                if abs(dx) > abs(dy) * 0.8 || isPanning {
+                    isPanning = true
+                    selectedIndex = nil
+                    let step = max(barW + barSpacing(plotW: plotW, barW: barW), 1)
+                    let delta = Int((-dx / step).rounded())
+                    scrollOffset = min(max(panAnchorOffset + delta, 0), maxScrollOffset)
+                } else {
+                    selectedIndex = index(at: value.location.x, plotW: plotW, barW: barW)
+                }
+            }
+            .onEnded { value in
+                if isPanning {
+                    panAnchorOffset = scrollOffset
+                } else if hypot(value.translation.width, value.translation.height) < 8 {
+                    selectedIndex = index(at: value.location.x, plotW: plotW, barW: barW)
+                }
+                isPanning = false
+            }
     }
 
     @ViewBuilder
@@ -243,8 +264,7 @@ struct StockChartPanel: View {
         HStack(spacing: 0) {
             ForEach(ChartPeriod.allCases) { p in
                 Button {
-                    loader.period = p
-                    Task { await loader.load(ticker: ticker) }
+                    loader.setPeriod(p, ticker: ticker)
                 } label: {
                     Text(p.title)
                         .font(.caption.weight(loader.period == p ? .bold : .medium))
@@ -263,6 +283,7 @@ struct StockChartPanel: View {
         .background(ThsTheme.background.opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .padding(.bottom, 10)
+        .zIndex(1)
     }
 
     private var quoteHeader: some View {
@@ -351,14 +372,34 @@ struct StockChartPanel: View {
             .frame(maxWidth: .infinity)
             .frame(height: 260)
         } else if !loader.displayBars.isEmpty {
-            ThsKLineChartView(
-                bars: loader.displayBars,
-                ma20: loader.displayMA20,
-                ma50: loader.displayMA50,
-                selectedIndex: $loader.selectedIndex
-            )
-            .frame(height: 260)
+            VStack(spacing: 4) {
+                if loader.maxScrollOffset > 0 {
+                    Text(scrollHint)
+                        .font(.system(size: 9))
+                        .foregroundStyle(ThsTheme.textTertiary)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                ThsKLineChartView(
+                    bars: loader.displayBars,
+                    ma20: loader.displayMA20,
+                    ma50: loader.displayMA50,
+                    selectedIndex: $loader.selectedIndex,
+                    scrollOffset: $loader.scrollOffset,
+                    maxScrollOffset: loader.maxScrollOffset
+                )
+                .frame(height: 260)
+            }
         }
+    }
+
+    private var scrollHint: String {
+        if loader.scrollOffset == 0 {
+            return "← 左滑查看更早"
+        }
+        if loader.scrollOffset >= loader.maxScrollOffset {
+            return "已至最早 · 右滑回最新 →"
+        }
+        return "← 左滑更早 · 右滑更新 →"
     }
 
     private var activePrice: Double? {
@@ -404,7 +445,14 @@ struct StockChartPanel: View {
 
     private func formatDate(_ d: Date) -> String {
         let f = DateFormatter()
-        f.dateFormat = "MM-dd"
+        switch loader.period {
+        case .daily:
+            f.dateFormat = "MM-dd"
+        case .weekly:
+            f.dateFormat = "yyyy-MM-dd"
+        case .monthly:
+            f.dateFormat = "yyyy-MM"
+        }
         return f.string(from: d)
     }
 
