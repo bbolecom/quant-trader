@@ -113,8 +113,9 @@ enum AppConfig {
 
     static func requestTimeout(for url: URL) -> TimeInterval {
         guard let host = url.host?.lowercased() else { return 12 }
-        if host.contains("onrender.com") { return 45 }
-        if host == "raw.githubusercontent.com" { return 20 }
+        // Render 免费版冷启动较慢，但它现在只作后台 live 升级，不阻塞首屏 → 适度收敛。
+        if host.contains("onrender.com") { return 25 }
+        if host == "raw.githubusercontent.com" { return 12 }
         if host == "localhost" || host.hasPrefix("127.") || host.hasPrefix("192.168.") || host.hasPrefix("10.") {
             return 4
         }

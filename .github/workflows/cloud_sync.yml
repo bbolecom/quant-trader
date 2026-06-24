@@ -1,0 +1,71 @@
+name: Cloud Data Sync
+
+# 让 app「一开就是最新」：
+#   - 盘中每 30 分钟刷新 K 线快照 + 保活 Render 实时 API（避免冷启动卡顿）
+#   - 盘后重算每日选股 + 功能清单，推到 GitHub raw（app 端 cache-bust 击穿）
+on:
+  schedule:
+    - cron: "*/30 13-21 * * 1-5"   # 美股盘中（UTC，覆盖夏/冬令时）：图表 + 保活
+    - cron: "20 21 * * 1-5"        # 盘后：重算选股 + 清单 + 图表
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "research/daily_pick_today.json"
+      - "quant/chart_live.py"
+      - "scripts/export_chart_snapshots.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cloud-sync
+  cancel-in-progress: false
+
+env:
+  CHART_API_BASE: https://quant-trader-chart-api.onrender.com
+  POST_CLOSE_CRON: "20 21 * * 1-5"
+  PYTHONPATH: ${{ github.workspace }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install yfinance pandas numpy requests
+
+      # 保活 Render 免费实例：定时探活，盘中保持热，app 内 live 升级才够快。
+      - name: Keep Render warm
+        continue-on-error: true
+        run: curl -m 30 -fsS "$CHART_API_BASE/health" || echo "render warmup skipped"
+
+      - name: Refresh chart snapshots
+        continue-on-error: true
+        run: python scripts/export_chart_snapshots.py --limit 80
+
+      # 盘后（或手动/push）才重算选股，避免盘中频繁重跑重型扫描。
+      - name: Refresh daily picks + manifest
+        if: github.event_name != 'schedule' || github.event.schedule == '20 21 * * 1-5'
+        continue-on-error: true
+        run: |
+          python daily_pick.py --quick --no-notify || echo "daily_pick skipped"
+          python scripts/export_app_manifest.py || echo "manifest skipped"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/charts/ research/*.json ios/Resources/*.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "chore: cloud data sync (charts + picks + manifest) [skip ci]"
+            git push
+          fi

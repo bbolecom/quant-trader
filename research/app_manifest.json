@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "updated": "2026-06-24 11:58:11",
+  "updated": "2026-06-25 01:20:58",
   "app_name": "美股量化",
   "tagline": "同花顺式 · 全策略原生入口",
   "categories": [
@@ -76,9 +76,9 @@
       "daily_pick_module": "—",
       "launcher": "每日选股_运行一次.command",
       "view_type": "daily_pick",
-      "actionable": 51,
-      "watching": 101,
-      "total": 152,
+      "actionable": 54,
+      "watching": 99,
+      "total": 153,
       "has_data": true,
       "data_date": "2026-06-24"
     },
@@ -164,11 +164,11 @@
       "daily_pick_module": "资金流向",
       "launcher": "资金流向选股_运行一次.command",
       "view_type": "generic_picks",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 3,
+      "watching": 8,
+      "total": 11,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "meme_pattern",
@@ -186,11 +186,11 @@
       "daily_pick_module": "规律·Ultra80",
       "launcher": "",
       "view_type": "meme",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 2,
+      "watching": 33,
+      "total": 35,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "pattern_daily",
@@ -254,9 +254,9 @@
       "daily_pick_module": "—",
       "launcher": "每日选股_运行一次.command",
       "view_type": "daily_pick",
-      "actionable": 51,
-      "watching": 101,
-      "total": 152,
+      "actionable": 54,
+      "watching": 99,
+      "total": 153,
       "has_data": true,
       "data_date": "2026-06-24"
     },
@@ -298,11 +298,11 @@
       "daily_pick_module": "资金流向",
       "launcher": "资金流向选股_运行一次.command",
       "view_type": "generic_picks",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 3,
+      "watching": 8,
+      "total": 11,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "meme_pattern",
@@ -320,11 +320,11 @@
       "daily_pick_module": "规律·Ultra80",
       "launcher": "",
       "view_type": "meme",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 2,
+      "watching": 33,
+      "total": 35,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "fleet_csp",
@@ -378,14 +378,14 @@
       "icon": "triangle.fill",
       "script": "pattern_daily.py",
       "config": "pattern_config.json",
-      "today_json": "research/pattern_daily_today.json",
+      "today_json": "",
       "today_csv": "",
       "history_csv": "pattern_daily_history.csv",
       "description": "腿①做多 腿②回避 腿③SNDK铁鹰舰队",
       "integrated_in_daily_pick": true,
       "daily_pick_module": "三腿策略",
       "launcher": "三腿策略_运行一次.command",
-      "view_type": "pattern",
+      "view_type": "history_only",
       "actionable": 0,
       "watching": 0,
       "total": 0,
@@ -444,14 +444,14 @@
       "icon": "calendar",
       "script": "research/move_pattern_5d_mine.py",
       "config": "",
-      "today_json": "research/move_pattern_5d_today.json",
+      "today_json": "research/move_pattern_5d_today.csv",
       "today_csv": "",
       "history_csv": "",
       "description": "路径涨/跌≥3% · 含换手率因子",
       "integrated_in_daily_pick": true,
       "daily_pick_module": "三腿策略·5日路径",
       "launcher": "5日路径规律_运行一次.command",
-      "view_type": "path5d",
+      "view_type": "history_only",
       "actionable": 0,
       "watching": 0,
       "total": 0,
@@ -657,6 +657,28 @@
       "data_date": "2026-06-23"
     },
     {
+      "id": "surge_drop_pool",
+      "name": "暴涨/暴跌池",
+      "category": "动量",
+      "ths_category": "momentum",
+      "icon": "square.grid.2x2",
+      "script": "research/surge_drop_pool_research.py",
+      "config": "research/surge_drop_pool.json",
+      "today_json": "research/surge_drop_pool_research.json",
+      "today_csv": "research/surge_drop_pool.csv",
+      "history_csv": "",
+      "description": "5年爱暴涨也爱暴跌 · Top60 研究池 + 分策略回测",
+      "integrated_in_daily_pick": false,
+      "daily_pick_module": "—",
+      "launcher": "",
+      "view_type": "json_generic",
+      "actionable": 0,
+      "watching": 0,
+      "total": 0,
+      "has_data": true,
+      "data_date": null
+    },
+    {
       "id": "speculative_pool",
       "name": "SPCE类投机池",
       "category": "动量",
@@ -694,11 +716,11 @@
       "daily_pick_module": "规律·Meme独立",
       "launcher": "",
       "view_type": "meme",
-      "actionable": 0,
-      "watching": 0,
-      "total": 0,
-      "has_data": false,
-      "data_date": "—"
+      "actionable": 2,
+      "watching": 33,
+      "total": 35,
+      "has_data": true,
+      "data_date": "2026-06-24"
     },
     {
       "id": "short_fade",
@@ -904,9 +926,9 @@
         "daily_pick_module": "—",
         "launcher": "每日选股_运行一次.command",
         "view_type": "daily_pick",
-        "actionable": 51,
-        "watching": 101,
-        "total": 152,
+        "actionable": 54,
+        "watching": 99,
+        "total": 153,
         "has_data": true,
         "data_date": "2026-06-24"
       },
@@ -1020,6 +1042,28 @@
         "data_date": "2026-06-23"
       },
       {
+        "id": "surge_drop_pool",
+        "name": "暴涨/暴跌池",
+        "category": "动量",
+        "ths_category": "momentum",
+        "icon": "square.grid.2x2",
+        "script": "research/surge_drop_pool_research.py",
+        "config": "research/surge_drop_pool.json",
+        "today_json": "research/surge_drop_pool_research.json",
+        "today_csv": "research/surge_drop_pool.csv",
+        "history_csv": "",
+        "description": "5年爱暴涨也爱暴跌 · Top60 研究池 + 分策略回测",
+        "integrated_in_daily_pick": false,
+        "daily_pick_module": "—",
+        "launcher": "",
+        "view_type": "json_generic",
+        "actionable": 0,
+        "watching": 0,
+        "total": 0,
+        "has_data": true,
+        "data_date": null
+      },
+      {
         "id": "speculative_pool",
         "name": "SPCE类投机池",
         "category": "动量",
@@ -1077,11 +1121,11 @@
         "daily_pick_module": "资金流向",
         "launcher": "资金流向选股_运行一次.command",
         "view_type": "generic_picks",
-        "actionable": 0,
-        "watching": 0,
-        "total": 0,
-        "has_data": false,
-        "data_date": "—"
+        "actionable": 3,
+        "watching": 8,
+        "total": 11,
+        "has_data": true,
+        "data_date": "2026-06-24"
       },
       {
         "id": "flow_strategy",
@@ -1123,11 +1167,11 @@
         "daily_pick_module": "规律·Ultra80",
         "launcher": "",
         "view_type": "meme",
-        "actionable": 0,
-        "watching": 0,
-        "total": 0,
-        "has_data": false,
-        "data_date": "—"
+        "actionable": 2,
+        "watching": 33,
+        "total": 35,
+        "has_data": true,
+        "data_date": "2026-06-24"
       },
       {
         "id": "move_pattern_5d",
@@ -1189,11 +1233,11 @@
         "daily_pick_module": "规律·Meme独立",
         "launcher": "",
         "view_type": "meme",
-        "actionable": 0,
-        "watching": 0,
-        "total": 0,
-        "has_data": false,
-        "data_date": "—"
+        "actionable": 2,
+        "watching": 33,
+        "total": 35,
+        "has_data": true,
+        "data_date": "2026-06-24"
       }
     ],
     "options": [
@@ -1553,6 +1597,6 @@
   },
   "json_base_hint": "http://{host}:8502/",
   "streamlit_hint": "http://{host}:8501/",
-  "total_features": 32,
-  "with_json_feed": 14
+  "total_features": 33,
+  "with_json_feed": 15
 }

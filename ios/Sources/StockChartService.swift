@@ -1,6 +1,6 @@
 import Foundation
 
-struct OHLCVBar: Identifiable, Equatable {
+struct OHLCVBar: Identifiable, Equatable, Sendable {
     let id: Int
     let date: Date
     let open: Double
@@ -12,7 +12,7 @@ struct OHLCVBar: Identifiable, Equatable {
     var isUp: Bool { close >= open }
 }
 
-enum ChartPeriod: String, CaseIterable, Identifiable {
+enum ChartPeriod: String, CaseIterable, Identifiable, Sendable {
     case daily
     case weekly
     case monthly
@@ -52,57 +52,122 @@ enum ChartPeriod: String, CaseIterable, Identifiable {
     }
 }
 
-enum ChartDataSource: String {
+enum ChartDataSource: String, Sendable {
     case cloud = "云端实时"
     case github = "GitHub"
     case mac = "Mac"
+    case bundled = "内置快照"
+}
+
+private actor StockChartCache {
+    struct Entry {
+        let bars: [OHLCVBar]
+        let source: ChartDataSource
+        let updatedAt: String?
+        let cachedAt: Date
+    }
+
+    private var storage: [String: Entry] = [:]
+    private let ttl: TimeInterval = 45
+
+    func value(ticker: String, period: ChartPeriod) -> ([OHLCVBar], ChartDataSource, String?)? {
+        let key = cacheKey(ticker: ticker, period: period)
+        guard let entry = storage[key] else { return nil }
+        if Date().timeIntervalSince(entry.cachedAt) > ttl {
+            storage[key] = nil
+            return nil
+        }
+        return (entry.bars, entry.source, entry.updatedAt)
+    }
+
+    func store(_ bars: [OHLCVBar], source: ChartDataSource, updatedAt: String?, ticker: String, period: ChartPeriod) {
+        storage[cacheKey(ticker: ticker, period: period)] = Entry(
+            bars: bars,
+            source: source,
+            updatedAt: updatedAt,
+            cachedAt: Date()
+        )
+    }
+
+    private func cacheKey(ticker: String, period: ChartPeriod) -> String {
+        "\(ticker.uppercased())-\(period.rawValue)"
+    }
 }
 
 enum StockChartService {
     private static let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) QuantTrader/3.0"
+    private static let cache = StockChartCache()
 
+    static func normalize(_ ticker: String) -> String {
+        ticker.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    }
+
+    /// 兼容旧调用：先秒出快照，失败再走 live。
     static func fetchBars(ticker: String, period: ChartPeriod = .daily) async throws -> ([OHLCVBar], ChartDataSource, String?) {
-        let sym = ticker.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        let sym = normalize(ticker)
+        if let snap = try? await fetchSnapshot(ticker: sym, period: period) {
+            return snap
+        }
+        return try await fetchLive(ticker: sym, period: period)
+    }
+
+    /// 快照源（快）：内存缓存 → GitHub 快照（每30分钟刷新）→ Mac 局域网 → 内置快照。
+    /// 不打 Render 云端，避免冷启动阻塞首屏。
+    static func fetchSnapshot(ticker: String, period: ChartPeriod = .daily) async throws -> ([OHLCVBar], ChartDataSource, String?) {
+        let sym = normalize(ticker)
         guard !sym.isEmpty, sym != "—" else { throw URLError(.badURL) }
-
-        var lastError: Error = URLError(.badServerResponse)
-        var updatedAt: String?
-
-        // 1. 云端实时 API（yfinance 服务端拉取）
-        if let url = AppConfig.liveChartURL(ticker: sym, period: period) {
-            do {
-                let (bars, stamp) = try await loadRemoteSnapshot(url: url, period: period)
-                updatedAt = stamp
-                if !bars.isEmpty { return (bars, .cloud, stamp) }
-            } catch {
-                lastError = error
-            }
+        if let cached = await cache.value(ticker: sym, period: period) {
+            return cached
         }
 
-        // 2. GitHub 云端快照（GHA 每 30 分钟刷新）
+        var lastError: Error = URLError(.badServerResponse)
+
         if let gh = AppConfig.githubChartURL(ticker: sym) {
             do {
                 let (bars, stamp) = try await loadRemoteSnapshot(url: gh, period: period)
-                updatedAt = stamp
-                if !bars.isEmpty { return (bars, .github, stamp) }
-            } catch {
-                lastError = error
-            }
+                if !bars.isEmpty {
+                    await cache.store(bars, source: .github, updatedAt: stamp, ticker: sym, period: period)
+                    return (bars, .github, stamp)
+                }
+            } catch { lastError = error }
         }
 
-        // 3. Mac 局域网 JSON 服务（开发用）
         if let u = AppSettings.shared.jsonURL(for: "charts/\(sym).json") {
             let busted = AppConfig.cacheBustedURL(u) ?? u
             do {
                 let (bars, stamp) = try await loadRemoteSnapshot(url: busted, period: period)
-                updatedAt = stamp
-                if !bars.isEmpty { return (bars, .mac, stamp) }
-            } catch {
-                lastError = error
-            }
+                if !bars.isEmpty {
+                    await cache.store(bars, source: .mac, updatedAt: stamp, ticker: sym, period: period)
+                    return (bars, .mac, stamp)
+                }
+            } catch { lastError = error }
+        }
+
+        if let url = Bundle.main.url(forResource: sym, withExtension: "json", subdirectory: "charts") {
+            do {
+                let data = try Data(contentsOf: url)
+                let (bars, stamp) = try parseSnapshotJSON(data, period: period)
+                if !bars.isEmpty {
+                    await cache.store(bars, source: .bundled, updatedAt: stamp, ticker: sym, period: period)
+                    return (bars, .bundled, stamp)
+                }
+            } catch { lastError = error }
         }
 
         throw lastError
+    }
+
+    /// Live 源：Render 云端实时 API（yfinance 服务端拉取）。仅作后台升级用。
+    static func fetchLive(ticker: String, period: ChartPeriod = .daily) async throws -> ([OHLCVBar], ChartDataSource, String?) {
+        let sym = normalize(ticker)
+        guard !sym.isEmpty, sym != "—" else { throw URLError(.badURL) }
+        guard let url = AppConfig.liveChartURL(ticker: sym, period: period) else {
+            throw URLError(.badURL)
+        }
+        let (bars, stamp) = try await loadRemoteSnapshot(url: url, period: period)
+        guard !bars.isEmpty else { throw URLError(.zeroByteResource) }
+        await cache.store(bars, source: .cloud, updatedAt: stamp, ticker: sym, period: period)
+        return (bars, .cloud, stamp)
     }
 
     private static func loadRemoteSnapshot(url: URL, period: ChartPeriod) async throws -> ([OHLCVBar], String?) {
@@ -263,8 +328,10 @@ enum StockChartService {
 @MainActor
 final class StockChartLoader: ObservableObject {
     @Published var bars: [OHLCVBar] = []
+    @Published var ma5: [Double?] = []
+    @Published var ma10: [Double?] = []
     @Published var ma20: [Double?] = []
-    @Published var ma50: [Double?] = []
+    @Published var ma60: [Double?] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var dataSource: ChartDataSource?
@@ -296,8 +363,10 @@ final class StockChartLoader: ObservableObject {
         return Array(bars[r])
     }
 
+    var displayMA5: [Double?] { sliceMAWindow(ma5) }
+    var displayMA10: [Double?] { sliceMAWindow(ma10) }
     var displayMA20: [Double?] { sliceMAWindow(ma20) }
-    var displayMA50: [Double?] { sliceMAWindow(ma50) }
+    var displayMA60: [Double?] { sliceMAWindow(ma60) }
 
     private func sliceMAWindow(_ ma: [Double?]) -> [Double?] {
         let r = windowRange
@@ -326,33 +395,54 @@ final class StockChartLoader: ObservableObject {
         Task { await load(ticker: ticker) }
     }
 
+    /// 两阶段加载：① 先秒出快照让首屏不空白；② 后台拉云端 live 升级（成功才覆盖）。
     func load(ticker: String) async {
         loadGeneration += 1
         let generation = loadGeneration
         isLoading = true
         errorMessage = nil
-        defer { if generation == loadGeneration { isLoading = false } }
+
+        var gotSnapshot = false
         do {
-            let (fetched, src, stamp) = try await StockChartService.fetchBars(ticker: ticker, period: period)
+            let snap = try await StockChartService.fetchSnapshot(ticker: ticker, period: period)
             guard generation == loadGeneration else { return }
-            bars = fetched
-            scrollOffset = 0
-            selectedIndex = nil
-            dataSource = src
-            cloudUpdatedAt = stamp
-            lastFetched = Date()
-            let closes = fetched.map(\.close)
-            ma20 = StockChartService.movingAverage(closes, period: 20)
-            ma50 = StockChartService.movingAverage(closes, period: 50)
+            applyBars(snap.0, source: snap.1, stamp: snap.2)
+            gotSnapshot = true
+            isLoading = false  // 首屏已出，停转圈；live 在后台静默升级
+        } catch {
+            // 快照失败不报错，等 live 兜底
+        }
+
+        do {
+            let live = try await StockChartService.fetchLive(ticker: ticker, period: period)
+            guard generation == loadGeneration else { return }
+            applyBars(live.0, source: live.1, stamp: live.2)
+            isLoading = false
         } catch {
             guard generation == loadGeneration else { return }
-            bars = []
-            ma20 = []
-            ma50 = []
-            dataSource = nil
-            cloudUpdatedAt = nil
-            errorMessage = friendlyError(error)
+            if !gotSnapshot {
+                bars = []; ma5 = []; ma10 = []; ma20 = []; ma60 = []
+                dataSource = nil
+                cloudUpdatedAt = nil
+                errorMessage = friendlyError(error)
+            }
+            isLoading = false
         }
+    }
+
+    private func applyBars(_ fetched: [OHLCVBar], source: ChartDataSource, stamp: String?) {
+        bars = fetched
+        scrollOffset = 0
+        selectedIndex = nil
+        dataSource = source
+        cloudUpdatedAt = stamp
+        lastFetched = Date()
+        let closes = fetched.map(\.close)
+        ma5 = StockChartService.movingAverage(closes, period: 5)
+        ma10 = StockChartService.movingAverage(closes, period: 10)
+        ma20 = StockChartService.movingAverage(closes, period: 20)
+        ma60 = StockChartService.movingAverage(closes, period: 60)
+        errorMessage = nil
     }
 
     private func friendlyError(_ error: Error) -> String {

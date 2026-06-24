@@ -26,7 +26,11 @@ struct ModuleDetailView: View {
                     if let note = loader.errorMessage {
                         softNotice(note)
                     }
-                    content(for: root)
+                    if isContentEmpty(root) {
+                        emptyTodayCard
+                    } else {
+                        content(for: root)
+                    }
                 } else if let err = loader.errorMessage {
                     errorCard(err)
                 } else if feature.isTerminalOnly {
@@ -281,7 +285,7 @@ struct ModuleDetailView: View {
                     HStack {
                         Text(key).font(.caption).foregroundStyle(ThsTheme.textSecondary)
                         Spacer()
-                        Text("\(val)").font(.caption).foregroundStyle(ThsTheme.textPrimary)
+                        Text(String(describing: val)).font(.caption).foregroundStyle(ThsTheme.textPrimary)
                     }
                 }
             }
@@ -362,6 +366,43 @@ struct ModuleDetailView: View {
                 .foregroundStyle(ThsTheme.textTertiary)
         }
         .padding(16)
+        .thsCard()
+    }
+
+    /// 信号列表型模块：JSON 有效但今日所有分组都空 → 视为「今日无信号」。
+    /// json_stats / 含 summary/patterns/scan_stats 的统计型模块不算空。
+    private func isContentEmpty(_ root: [String: Any]) -> Bool {
+        let signalTypes: Set<String> = ["gain15", "surge", "speculative_pool", "pattern", "path5d", "meme", "playbook", "json_generic"]
+        let vt = feature.viewType ?? "json_generic"
+        guard signalTypes.contains(vt) else { return false }
+        let keys = ["picks", "new_spikes", "buy_confirmed", "avoid_confirmed", "watching",
+                    "breakout", "continuation", "precursor", "today_precursors", "today_breakouts",
+                    "core", "extended", "long", "avoid", "path5d", "rows", "plans", "fleet", "signals", "members"]
+        let hasRows = keys.contains { !JsonHelper.array(root, $0).isEmpty }
+        let hasStats = root["scan_stats"] != nil || root["patterns"] != nil || root["results"] != nil
+        return !hasRows && !hasStats
+    }
+
+    private var emptyTodayCard: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "moon.zzz")
+                .font(.largeTitle)
+                .foregroundStyle(ThsTheme.textTertiary)
+            Text("今日暂无信号")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(ThsTheme.textSecondary)
+            Text("数据已更新，但当前没有标的满足该策略条件。下拉可刷新。")
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(ThsTheme.textTertiary)
+            if let date = feature.dataDate, date != "—" {
+                Text("数据日期 \(date)")
+                    .font(.caption2)
+                    .foregroundStyle(ThsTheme.textTertiary)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(24)
         .thsCard()
     }
 
