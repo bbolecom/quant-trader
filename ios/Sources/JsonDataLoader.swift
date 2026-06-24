@@ -10,43 +10,65 @@ final class JsonDataLoader: ObservableObject {
     func load(path: String) async {
         isLoading = true
         errorMessage = nil
-        root = nil
         defer { isLoading = false }
 
-        let urls = AppConfig.jsonCandidateURLs(for: path)
-        guard !urls.isEmpty else {
-            errorMessage = "未配置 JSON 地址"
-            return
+        if root == nil, let bundled = Self.loadBundled(path: path) {
+            apply(bundled, from: "内置")
         }
 
         var lastError: String?
-        for url in urls {
+        var triedRemote = false
+        for url in AppConfig.jsonCandidateURLs(for: path) {
+            triedRemote = true
             do {
                 var req = URLRequest(url: url)
                 req.cachePolicy = .reloadIgnoringLocalCacheData
-                req.timeoutInterval = 15
+                req.timeoutInterval = AppConfig.requestTimeout(for: url)
                 let (data, resp) = try await URLSession.shared.data(for: req)
                 guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                     lastError = "无法获取数据（\(url.lastPathComponent)）"
                     continue
                 }
                 let obj = try JSONSerialization.jsonObject(with: data)
-                if let dict = obj as? [String: Any] {
-                    root = dict
-                    loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
-                    return
+                guard let dict = obj as? [String: Any] else {
+                    lastError = "JSON 格式不是对象"
+                    continue
                 }
-                lastError = "JSON 格式不是对象"
+                apply(dict, from: sourceLabel(for: url))
+                return
             } catch {
                 lastError = error.localizedDescription
             }
         }
 
-        if let first = urls.first, first.host != "raw.githubusercontent.com", urls.contains(where: { $0.host == "raw.githubusercontent.com" }) {
-            errorMessage = "Mac 未连接 · 已尝试 GitHub 快照\n\(lastError ?? "无数据")"
-        } else {
-            errorMessage = lastError ?? "无法获取数据"
+        if root != nil {
+            if triedRemote {
+                errorMessage = "云端未连接 · 已显示内置快照（可下拉刷新）"
+            }
+            return
         }
+
+        errorMessage = lastError ?? "无法获取数据"
+    }
+
+    private func apply(_ dict: [String: Any], from source: String) {
+        root = dict
+        loadedFrom = source
+    }
+
+    private func sourceLabel(for url: URL) -> String {
+        if url.host == "raw.githubusercontent.com" { return "GitHub" }
+        return url.host ?? "远程"
+    }
+
+    private static func loadBundled(path: String) -> [String: Any]? {
+        guard let url = AppConfig.bundledJSONURL(for: path),
+              let data = try? Data(contentsOf: url),
+              let obj = try? JSONSerialization.jsonObject(with: data),
+              let dict = obj as? [String: Any] else {
+            return nil
+        }
+        return dict
     }
 }
 

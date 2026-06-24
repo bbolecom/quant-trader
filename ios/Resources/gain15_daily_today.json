@@ -1,0 +1,59 @@
+{
+  "date": "2026-06-23",
+  "config": {
+    "min_gain_pct": 15.0,
+    "min_dvol_m": 50.0,
+    "gainer_count": 250,
+    "watch_max_days": 5,
+    "use_broad_pool": true,
+    "quick": true
+  },
+  "market": {
+    "SPY": 738.260009765625,
+    "MA20": 745.1594696044922,
+    "站上MA20": false
+  },
+  "scan_stats": {
+    "universe": 588,
+    "new_spikes": 1,
+    "watch_pool": 1
+  },
+  "new_spikes": [
+    {
+      "代码": "BOLD",
+      "暴涨日": "2026-06-23",
+      "涨幅_pct": 81.2,
+      "成交额M": 101.7,
+      "gain_rank": 1,
+      "站上MA20": true,
+      "站上MA50": true,
+      "创20日高": true,
+      "涨幅20d_pct": 76.17,
+      "相对SPY20d_pct": 76.9,
+      "量比": 19.33,
+      "收盘强度": 0.96,
+      "SPY站上MA20": false,
+      "暴涨收盘价": 2.5368,
+      "status": "watching"
+    }
+  ],
+  "buy_confirmed": [],
+  "avoid_confirmed": [],
+  "watching": [
+    {
+      "代码": "BOLD",
+      "暴涨日": "2026-06-23",
+      "暴涨日涨幅%": 78.55,
+      "涨幅榜排名": 1,
+      "成交额M": 97.4,
+      "已过交易日": 0,
+      "累计涨跌%": 0.0,
+      "次日涨跌%": null,
+      "3日累计%": null,
+      "现价": 2.536799907684326,
+      "早期提示": [],
+      "信号": "观察中"
+    }
+  ],
+  "recent_triggered": []
+}

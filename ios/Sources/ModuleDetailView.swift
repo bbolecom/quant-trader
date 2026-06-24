@@ -10,14 +10,17 @@ struct ModuleDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 headerCard
-                if loader.isLoading {
+                if loader.isLoading && loader.root == nil {
                     ProgressView()
                         .frame(maxWidth: .infinity)
                         .padding(.top, 40)
+                } else if let root = loader.root {
+                    if let note = loader.errorMessage {
+                        softNotice(note)
+                    }
+                    content(for: root)
                 } else if let err = loader.errorMessage {
                     errorCard(err)
-                } else if let root = loader.root {
-                    content(for: root)
                 } else if feature.isTerminalOnly {
                     terminalCard
                 } else {
@@ -262,6 +265,19 @@ struct ModuleDetailView: View {
         }
         .padding(20)
         .thsCard()
+    }
+
+    private func softNotice(_ msg: String) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: "icloud.and.arrow.down")
+                .foregroundStyle(.orange)
+            Text(msg)
+                .font(.caption)
+                .foregroundStyle(ThsTheme.textSecondary)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.orange.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
     }
 
     private func errorCard(_ msg: String) -> some View {
