@@ -65,7 +65,14 @@ jobs:
           git add research/charts/ research/*.json ios/Resources/*.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes"
-          else
-            git commit -m "chore: cloud data sync (charts + picks + manifest) [skip ci]"
-            git push
+            exit 0
           fi
+          git commit -m "chore: cloud data sync (charts + picks + manifest) [skip ci]"
+          # 并发运行可能让 main 已前进 → 推送前 rebase 并重试，避免 non-fast-forward 失败。
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push; then
+              echo "pushed on attempt $i"; exit 0
+            fi
+            echo "push attempt $i failed, retrying…"; sleep $((i * 5))
+          done
+          echo "push failed after retries"; exit 1
