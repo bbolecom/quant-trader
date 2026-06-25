@@ -1,0 +1,40 @@
+{
+  "mode": "high_win",
+  "min_gain_pct": 10.0,
+  "min_dvol_m": 100.0,
+  "gainer_count": 250,
+  "a_ext20_min": 0.40,
+  "a_rsi_min": 75.0,
+  "b_gap_min": 0.05,
+  "b_ext20_min": 0.20,
+  "b_vol_x_min": 2.0,
+  "b_entry_dip_pct": 5.0,
+  "require_bull": true,
+  "take_profit_pct": 20.0,
+  "stop_loss_pct": 10.0,
+  "hold_days": 20,
+  "max_picks": 12,
+  "short_enabled": true,
+  "s_weak_only": true,
+  "s_gap_max": 0.0,
+  "s_ext20_max": 0.0,
+  "s_hold_days": 10,
+  "s_take_profit_pct": null,
+  "s_stop_loss_pct": null,
+  "sector_mode": true,
+  "sector_only": true,
+  "sector_long_min_win": 60.0,
+  "sector_long_min_avg": 3.0,
+  "sector_short_min_win": 80.0,
+  "notify": {
+    "desktop": true,
+    "only_when_action": false,
+    "note": "由 daily_pick 统一调度时已汇总通知，单独跑 gainer10_daily.py 才用此项"
+  },
+  "outputs": {
+    "today_json": "research/gainer10_today.json",
+    "today_csv": "research/gainer10_today.csv",
+    "history_csv": "research/gainer10_history.csv",
+    "ios_bundle": "ios/Resources/gainer10_today.json"
+  }
+}

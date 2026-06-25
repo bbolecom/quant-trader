@@ -18,6 +18,7 @@ def _bear_cfg() -> dict:
         "fleet_csp": False,
         "trajectory_highwin": True,
         "gain15": False,
+        "extreme20": False,
         "capital_flow": False,
         "meme_long": False,
         "pattern_daily": False,

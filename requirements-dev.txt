@@ -1,2 +1,4 @@
 -r requirements.txt
 pytest>=8.0.0
+httpx>=0.27.0  # FastAPI TestClient 依赖（tests/test_chart_api.py）
+lxml>=5.0.0    # yfinance 财报日历抓取（earnings_options_backtest）

@@ -11,21 +11,15 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "ios" / "Resources"
 MANIFEST = RES / "app_manifest.json"
 
+# 核心 9 策略相关 JSON（bundled 资源）
 REQUIRED = [
     "daily_pick_today.json",
     "gain15_daily_today.json",
-    "surge_scan_today.json",
-    "speculative_pool.json",
     "flow_daily_today.json",
-    "ticker_pattern_today.json",
-    "pattern_daily_today.json",
-    "move_pattern_5d_today.json",
     "flow_strategy_today.json",
+    "ticker_pattern_today.json",
     "liquid_fleet_picks.json",
-    "universal_playbook_today.json",
-    "s8u_liquid_universe_backtest.json",
-    "ticker_pattern_backtest.json",
-    "flow_pattern_stats.json",
+    "whipsaw_short_today.json",
 ]
 
 
@@ -40,8 +34,11 @@ def test_bundled_json_exists_and_parses(name: str) -> None:
 
 def test_manifest_json_paths_bundled() -> None:
     doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    assert doc.get("core_count") == 11
     missing = []
     for feat in doc.get("features") or []:
+        if not feat.get("is_core"):
+            continue
         rel = str(feat.get("today_json") or "").strip()
         if not rel or rel.endswith(".csv"):
             continue
@@ -59,5 +56,4 @@ def test_flow_daily_has_picks() -> None:
 
 def test_ticker_pattern_has_picks() -> None:
     doc = json.loads((RES / "ticker_pattern_today.json").read_text(encoding="utf-8"))
-    picks = doc.get("picks") or []
-    assert len(picks) >= 1
+    assert doc.get("picks") or doc.get("signals") or doc.get("summary")

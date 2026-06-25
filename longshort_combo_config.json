@@ -1,0 +1,54 @@
+{
+  "name": "longshort_combo_v1_highwin",
+  "description": "Extreme20 L1/S1 + Flow U_S2/D_S2 · 质量分≥0.55 · 5年257笔 胜55.6% OOS59%",
+  "max_long_per_day": 1,
+  "max_short_per_day": 1,
+  "max_signals_per_day": 2,
+  "min_quality_score": 0.55,
+  "use_quality_rank": true,
+  "min_dvol_m_boost": 80.0,
+  "l1_max_close_strength": 0.25,
+  "s1_pre20_drop_pct": 35.0,
+  "s1_max_surge_pct": 35.0,
+  "s1_min_vol_ratio": 1.2,
+  "require_spy_bull_for_l1": true,
+  "flow_min_setup_win": 0.55,
+  "long_weight": 0.5,
+  "short_weight": 0.5,
+  "screen_count": 300,
+  "gainer_count": 250,
+  "extreme20": {
+    "threshold_pct": 20,
+    "min_price": 2,
+    "min_dvol_m": 80,
+    "combo_mode": true,
+    "enabled_strategies": ["L1", "S1"],
+    "bear_enabled_strategies": ["L2", "S1"]
+  },
+  "flow": {
+    "name": "flow_action_v5_longshort",
+    "long_patterns": ["U_S2"],
+    "short_patterns": ["D_S2", "D_OFFERING"],
+    "long_top_n": 1,
+    "short_top_n": 1,
+    "long_s2_min_gain_pct": 7.0,
+    "long_s2_max_gain_pct": 15.0,
+    "long_min_close_strength": 0.65,
+    "long_min_vol_ratio": 1.5,
+    "short_min_prev_pct": 44.0,
+    "short_max_today_gain_pct": -2.5,
+    "use_recent_setup_win": true,
+    "min_recent_setup_win_rate": 0.55,
+    "min_recent_setup_samples": 3
+  },
+  "notify": {
+    "desktop": true,
+    "only_on_signal": true
+  },
+  "outputs": {
+    "today_json": "research/longshort_combo_today.json",
+    "today_csv": "research/longshort_combo_today.csv",
+    "history_csv": "longshort_combo_history.csv"
+  },
+  "backtest_ref": "research/longshort_combo_rules.json"
+}

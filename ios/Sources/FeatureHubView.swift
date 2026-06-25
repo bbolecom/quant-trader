@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Tab「功能」：按 manifest 分类浏览全部策略。
+/// Tab「功能」：按 manifest 分类浏览核心 9 策略与实验室工具。
 struct FeatureHubView: View {
     @EnvironmentObject private var manifestLoader: ManifestLoader
 
@@ -126,6 +126,22 @@ struct ManifestFeatureRow: View {
                 Text(feature.name)
                     .font(.headline)
                 Spacer()
+                if let rank = feature.auditRank {
+                    Text("#\(rank)")
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(ThsTheme.accent)
+                        .padding(.horizontal, 7)
+                        .padding(.vertical, 2)
+                        .background(ThsTheme.accent.opacity(0.12), in: Capsule())
+                }
+                if let tier = feature.auditTier {
+                    Text(tier)
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(tierColor(tier))
+                        .padding(.horizontal, 7)
+                        .padding(.vertical, 2)
+                        .background(tierColor(tier).opacity(0.12), in: Capsule())
+                }
                 if feature.integrated {
                     Text("已接入")
                         .font(.caption2.weight(.bold))
@@ -144,6 +160,14 @@ struct ManifestFeatureRow: View {
             HStack(spacing: 12) {
                 label("可开", feature.actionable ?? 0, ThsTheme.up)
                 label("观望", feature.watching ?? 0, .orange)
+                if let wr = feature.winRate {
+                    metric("胜率", wr, style: .percent, color: ThsTheme.up)
+                }
+                if let ann = feature.annReturn {
+                    metric("年化", ann, style: .signedPercent, color: ann >= 0 ? ThsTheme.up : ThsTheme.down)
+                } else if let sharpe = feature.sharpe {
+                    metric("夏普", sharpe, style: .number, color: ThsTheme.accent)
+                }
                 if feature.hasJsonFeed {
                     Text(feature.hasData == true ? "有数据" : "无今日JSON")
                         .font(.caption2)
@@ -152,6 +176,19 @@ struct ManifestFeatureRow: View {
                     Text("量化终端")
                         .font(.caption2)
                         .foregroundStyle(Color.cyan)
+                }
+            }
+            if let verdict = feature.auditVerdict {
+                HStack(spacing: 6) {
+                    Text(verdict)
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(verdict == "禁用" ? ThsTheme.down : ThsTheme.accent)
+                    if let action = feature.auditAction {
+                        Text(action)
+                            .font(.caption2)
+                            .foregroundStyle(ThsTheme.textTertiary)
+                            .lineLimit(1)
+                    }
                 }
             }
         }
@@ -165,6 +202,40 @@ struct ManifestFeatureRow: View {
             Text(title).font(.caption2)
         }
         .foregroundStyle(n > 0 ? color : ThsTheme.textTertiary)
+    }
+
+    private enum MetricStyle {
+        case percent
+        case signedPercent
+        case number
+    }
+
+    private func metric(_ title: String, _ value: Double, style: MetricStyle, color: Color) -> some View {
+        let text: String = {
+            switch style {
+            case .percent:
+                return "\(Int((value * 100).rounded()))%"
+            case .signedPercent:
+                return String(format: "%+.0f%%", value * 100)
+            case .number:
+                return String(format: "%.2f", value)
+            }
+        }()
+        return HStack(spacing: 3) {
+            Text(text).font(.caption.weight(.bold))
+            Text(title).font(.caption2)
+        }
+        .foregroundStyle(color)
+    }
+
+    private func tierColor(_ tier: String) -> Color {
+        switch tier {
+        case "S": return .yellow
+        case "A": return ThsTheme.up
+        case "B": return ThsTheme.accent
+        case "C": return .orange
+        default: return ThsTheme.down
+        }
     }
 }
 

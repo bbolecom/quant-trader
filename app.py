@@ -1136,7 +1136,9 @@ def _strategy_picks_for_row(row: dict, picks: list[dict], dp: dict | None = None
             out.append(p)
         elif sid == "capital_flow" and "资金流向" in mod:
             out.append(p)
-        elif sid == "meme_pattern" and ("规律" in mod or "Ultra80" in mod or "Meme" in mod):
+        elif sid == "meme_long" and ("规律" in mod or "Ultra80" in mod or "Meme" in mod):
+            out.append(p)
+        elif sid == "flow_strategy" and "资金流向组合" in mod:
             out.append(p)
         elif sid == "bear_call" and ("卖Call" in mod or "收入" in mod):
             out.append(p)
@@ -1147,6 +1149,12 @@ def _strategy_picks_for_row(row: dict, picks: list[dict], dp: dict | None = None
         elif sid == "surge_scan" and "暴涨扫描" in mod:
             out.append(p)
         elif sid == "surge_drop_pool" and ("暴涨/暴跌" in mod or "极端池" in mod):
+            out.append(p)
+        elif sid == "whipsaw_short" and "做空涨幅榜" in mod:
+            out.append(p)
+        elif sid == "extreme20" and "Extreme20" in mod:
+            out.append(p)
+        elif sid == "gainer10" and "Gainer10" in mod:
             out.append(p)
         elif sid == "speculative_pool" and "投机" in mod:
             out.append(p)
@@ -1257,49 +1265,20 @@ def _load_daily_pick_doc(dp_json: Path, push_json: Path) -> dict:
 
 
 def _render_all_strategies(dp: dict) -> None:
-    """全部策略逐一展示。"""
-    from quant.strategy_catalog import collect_strategy_snapshots, enrich_catalog_from_daily_pick
+    """核心 9 策略逐一展示。"""
+    from quant.strategy_catalog import CORE_STRATEGY_IDS, collect_strategy_snapshots, enrich_catalog_from_daily_pick
 
-    st.markdown("### 📚 全部策略")
-    st.caption("逐一列出系统内所有策略模块 · 状态来自最新快照与 daily_pick 汇总")
+    st.markdown("### 📚 核心 9 策略")
+    st.caption("量价×2 · Meme · 暴涨80% · 做空涨幅榜 · 卖Call · CSP舰队 · SNDK铁鹰 · VRP · 有信号才出手")
 
     catalog = (dp.get("strategy_summary") or {}).get("catalog") if dp else None
     if not catalog:
         catalog = collect_strategy_snapshots(ROOT_DIR)
     catalog = enrich_catalog_from_daily_pick(list(catalog), dp)
 
-    manifest_path = ROOT_DIR / "research" / "app_manifest.json"
-    if manifest_path.exists():
-        import json as _json
-        try:
-            manifest = _json.loads(manifest_path.read_text(encoding=_JSON_ENCODING))
-            seen = {r.get("id") for r in catalog}
-            for feat in manifest.get("features") or []:
-                fid = feat.get("id")
-                if fid in seen:
-                    for row in catalog:
-                        if row.get("id") == fid:
-                            row.setdefault("策略", feat.get("name"))
-                            row.setdefault("说明", feat.get("description"))
-                            break
-                    continue
-                catalog.append({
-                    "id": fid,
-                    "策略": feat.get("name"),
-                    "分类": feat.get("category"),
-                    "已接入每日选股": feat.get("integrated_in_daily_pick", False),
-                    "模块标签": feat.get("daily_pick_module") or "—",
-                    "今日有数据": feat.get("has_data", False),
-                    "可开仓": feat.get("actionable", 0),
-                    "观望": feat.get("watching", 0),
-                    "总条目": feat.get("total", 0),
-                    "数据日期": feat.get("data_date", "—"),
-                    "说明": feat.get("description", ""),
-                    "脚本": feat.get("script", ""),
-                    "输出": feat.get("today_json") or feat.get("history_csv") or "—",
-                })
-        except Exception:  # noqa: BLE001
-            pass
+    core_order = ["daily_pick", *CORE_STRATEGY_IDS]
+    by_id = {str(r.get("id")): r for r in catalog}
+    catalog = [by_id[sid] for sid in core_order if sid in by_id]
 
     picks = dp.get("picks") or [] if dp else []
     push_picks = (dp.get("push") or {}).get("picks") or [] if dp else []
@@ -1439,13 +1418,14 @@ def tab_daily_screen(cfg: dict) -> None:
             st.caption(f"更新 {snap_time or '—'} · 模式 {_ds.get('模式', '—')} · 可开仓 {_ds.get('可开仓', 0)}")
             _catalog = _ss.get("catalog") or []
             if _catalog:
+                _core = _ss.get("core_count") or 8
                 st.caption(
-                    f"接入 **{_ss.get('integrated_count', 0)}** 模块 · "
-                    f"有快照 **{_ss.get('integrated_with_data', 0)}**"
+                    f"核心 **{_core}** 策略 · 有快照 **{_ss.get('integrated_with_data', 0)}** · "
+                    f"接入 **{_ss.get('integrated_count', 0)}**"
                 )
                 cat_df = pd.DataFrame(_catalog)
                 show_cat = [c for c in [
-                    "策略", "分类", "今日有数据", "可开仓", "观望", "数据日期",
+                    "策略", "分类", "夏普", "胜率", "今日有数据", "可开仓", "观望", "数据日期",
                 ] if c in cat_df.columns]
                 st.dataframe(cat_df[show_cat], use_container_width=True, hide_index=True)
 
@@ -1479,8 +1459,8 @@ def _render_fleet_advanced(cfg: dict) -> None:
 
     st.subheader("每日选股 · 有信号才出手")
     st.caption(
-        "**不一定每天都有票。** SPY/MA50 牛熊开关：弱市主开卖Call+ETF铁鹰，牛市开 CSP 舰队 + 轨迹高置信；"
-        " 条件不满足则 **观望/空仓**。定时：双击「每日选股_运行一次.command」。"
+        "**不一定每天都有票。** SPY/MA50 牛熊开关：弱市主开卖Call，牛市开 CSP 舰队 + Meme/暴涨；"
+        " 条件不满足则 **观望/空仓**。核心 9 策略统一由 `daily_pick.py` 调度。"
     )
 
     # ---- 圣杯三标 ----
@@ -2338,6 +2318,167 @@ def _tab_historical_daily_screen(cfg: dict) -> None:
     )
 
 
+def _tab_whipsaw_short(cfg: dict) -> None:
+    """做空涨幅榜 · 卖 Call 信用价差（定风险）。"""
+    import json as _json
+
+    st.markdown("### 📉 做空涨幅榜 · 卖 Call 信用价差")
+    st.caption(
+        "涨幅榜暴涨乏力 → 卖 Call 价差（定风险，非裸空）。"
+        " 回测 gainer_top100：裸空 56% 胜 / 均 −2.4%；"
+        " BCS 76% 胜 / 均 +1.34%，弱市加倍。"
+        " 定时：`python whipsaw_short_daily.py`"
+    )
+
+    config_path = ROOT_DIR / "whipsaw_short_config.json"
+    today_json = ROOT_DIR / "research" / "whipsaw_short_today.json"
+    history_csv = ROOT_DIR / "whipsaw_short_history.csv"
+
+    base_cfg: dict = {}
+    if config_path.exists():
+        try:
+            base_cfg = _json.loads(config_path.read_text(encoding=_JSON_ENCODING))
+        except Exception:  # noqa: BLE001
+            base_cfg = {}
+
+    c1, c2, c3, c4 = st.columns(4)
+    mode_labels = {
+        "robust": "稳健 · 大盘弱才开",
+        "aggressive": "积极 · 弱市加倍",
+    }
+    mode = c1.selectbox(
+        "策略模式",
+        ["robust", "aggressive"],
+        index=0 if str(base_cfg.get("mode", "aggressive")) == "robust" else 1,
+        format_func=lambda m: mode_labels[m],
+        key="ws_mode",
+    )
+    account = c2.number_input(
+        "账户规模 ($)", min_value=1000.0,
+        value=float(base_cfg.get("account_size", 10000.0)),
+        step=1000.0, key="ws_acct",
+    )
+    gainer_n = c3.number_input(
+        "涨幅榜扫描数", min_value=50, max_value=500,
+        value=int(base_cfg.get("gainer_count", 250)), step=50, key="ws_gainer_n",
+    )
+    risk_pct = c4.slider(
+        "单笔风险%", 0.5, 5.0,
+        float(base_cfg.get("risk_per_trade_pct", 0.02)) * 100, 0.5,
+        key="ws_risk",
+    ) / 100.0
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("稳健模式", "83.7% 胜", help="量比≥3 + 大盘弱 + Top3")
+    m2.metric("稳健年化", "+20%", help="最大回撤约 −5%")
+    m3.metric("积极模式", "76.8% 胜", help="量比≥3 + Top3，弱市×2")
+    m4.metric("积极年化", "+71%", help="最大回撤约 −20%")
+
+    run_live = st.button("🔴 实时扫描（拉榜单+期权链）", type="primary", key="ws_run_live")
+    load_snap = st.button("📂 加载今日快照", key="ws_load_snap")
+
+    plan: dict | None = st.session_state.get("whipsaw_short_plan")
+    if run_live:
+        with st.spinner("扫描涨幅榜并构建卖 Call 价差…"):
+            try:
+                import whipsaw_short_daily as ws
+
+                wcfg = ws.load_config(config_path)
+                wcfg["mode"] = mode
+                wcfg["account_size"] = float(account)
+                wcfg["gainer_count"] = int(gainer_n)
+                wcfg["risk_per_trade_pct"] = float(risk_pct)
+                if mode == "robust":
+                    wcfg["require_weak_market"] = True
+                else:
+                    wcfg["require_weak_market"] = False
+                plan = ws.run_scan(wcfg)
+                ws.save_outputs(plan, wcfg)
+                config_path.write_text(
+                    _json.dumps({**base_cfg, **wcfg}, ensure_ascii=False, indent=2),
+                    encoding="utf-8",
+                )
+                st.session_state["whipsaw_short_plan"] = plan
+            except Exception as e:  # noqa: BLE001
+                st.error(f"扫描失败：{e}")
+                plan = None
+    elif load_snap or (plan is None and today_json.exists()):
+        try:
+            plan = _json.loads(today_json.read_text(encoding=_JSON_ENCODING))
+            st.session_state["whipsaw_short_plan"] = plan
+        except Exception as e:  # noqa: BLE001
+            st.warning(f"无法读取快照：{e}")
+
+    plan = st.session_state.get("whipsaw_short_plan")
+    if not plan:
+        st.info("点击「实时扫描」或「加载今日快照」。首次扫描约 1–3 分钟。")
+        return
+
+    reg = plan.get("market") or {}
+    weak = bool(reg.get("弱市"))
+    pos_mult = float(plan.get("仓位倍数") or (2.0 if weak else 1.0))
+    stats = plan.get("scan_stats") or {}
+
+    r1, r2, r3, r4, r5 = st.columns(5)
+    r1.metric("数据日期", plan.get("date", "—"))
+    r2.metric("模式", str(plan.get("mode", "—")))
+    r3.metric("大盘", "弱市" if weak else "强市")
+    r4.metric("仓位倍数", f"×{pos_mult:g}")
+    r5.metric("可开仓", int(stats.get("可开仓") or 0))
+
+    if weak:
+        st.warning(
+            f"🔴 SPY {reg.get('SPY')} < MA20 {reg.get('MA20')} · "
+            f"{'稳健模式可开仓' if plan.get('mode') == 'robust' else '积极模式仓位×2'}"
+        )
+    else:
+        st.success(f"🟢 SPY {reg.get('SPY')} ≥ MA20 {reg.get('MA20')}")
+    if plan.get("note"):
+        st.info(f"⏸ {plan['note']}")
+
+    cands = plan.get("candidates") or []
+    if cands:
+        df = pd.DataFrame(cands)
+        show_cols = [c for c in [
+            "代码", "现价", "涨幅%", "榜单排名", "量比", "收盘强度", "成交额M",
+            "信号", "结构", "到期", "收权利金$", "最大亏$", "建议张数", "仓位倍数", "原因",
+        ] if c in df.columns]
+        st.dataframe(df[show_cols], use_container_width=True, hide_index=True)
+        csv_path = ROOT_DIR / "research" / "whipsaw_short_today.csv"
+        if csv_path.exists():
+            st.download_button(
+                "⬇️ 导出今日 CSV",
+                csv_path.read_bytes(),
+                file_name="whipsaw_short_today.csv",
+                mime="text/csv",
+                key="ws_dl_csv",
+            )
+    elif int(stats.get("可开仓") or 0) == 0:
+        st.caption("今日无「暴涨乏力 + 可行价差」标的 — 正常空仓。")
+
+    if history_csv.exists():
+        hist = pd.read_csv(history_csv, encoding="utf-8-sig")
+        if not hist.empty:
+            st.markdown("**扫描历史**")
+            st.dataframe(hist.tail(20).iloc[::-1], use_container_width=True, hide_index=True)
+            if "可开仓" in hist.columns and len(hist) >= 2:
+                fig = go.Figure()
+                fig.add_trace(go.Bar(
+                    x=hist["日期"], y=hist["可开仓"], name="可开仓数",
+                    marker_color=theme.ORANGE,
+                ))
+                fig.update_layout(
+                    height=260, template="tiger", title="每日可开仓数",
+                    margin=dict(l=10, r=10, t=40, b=10),
+                )
+                st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown(
+        "---\n**纪律**：单笔风险 ≤ 2% · 50% 权利金止盈 · 财报回避 · 永不裸空。"
+        " 弱市(SPY<MA20) 积极模式自动加倍；稳健模式大盘强时直接空仓。"
+    )
+
+
 def _tab_gainer_pro(cfg: dict) -> None:
     st.markdown("### 📈 涨幅榜专业因子 · 高胜率 / 每周方案")
     st.caption(
@@ -2747,6 +2888,9 @@ def tab_screener(cfg: dict) -> None:
 
     st.divider()
     _tab_surge_drop_pool(cfg)
+
+    st.divider()
+    _tab_whipsaw_short(cfg)
 
     st.divider()
     _tab_gainer_pro(cfg)

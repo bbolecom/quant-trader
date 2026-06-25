@@ -1,0 +1,21 @@
+{
+  "date": "2026-06-25",
+  "market": {
+    "SPY": 733.24,
+    "MA20": 745.69,
+    "弱市": true
+  },
+  "mode": "aggressive",
+  "仓位倍数": 2.0,
+  "config": {
+    "min_gain_pct": 15.0,
+    "min_vol_ratio": 3.0,
+    "max_gain_rank": 3,
+    "require_weak_market": false
+  },
+  "scan_stats": {
+    "候选": 0,
+    "可开仓": 0
+  },
+  "candidates": []
+}

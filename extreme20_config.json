@@ -1,0 +1,40 @@
+{
+  "account_size": 10000,
+  "threshold_pct": 20.0,
+  "min_price": 2.0,
+  "min_dvol_m": 50.0,
+  "combo_mode": true,
+  "enabled_strategies": ["L1", "S1"],
+  "bear_enabled_strategies": ["L2", "S1"],
+  "max_long_per_day": 1,
+  "max_short_per_day": 1,
+  "max_signals_per_day": 2,
+  "screen_count": 300,
+  "l1_max_close_strength": 0.30,
+  "l1_hold_days": 5,
+  "l1_stop_pct": 0.10,
+  "l1_tp_pct": 0.15,
+  "s1_pre20_drop_pct": 30.0,
+  "s1_hold_days": 3,
+  "s1_stop_pct": 0.10,
+  "s1_tp_pct": 0.12,
+  "l2_min_gap_pct": -3.0,
+  "l2_hold_days": 5,
+  "l2_stop_pct": 0.08,
+  "l2_tp_pct": 0.15,
+  "s2_max_vol_ratio": 1.5,
+  "s2_hold_days": 5,
+  "s2_stop_pct": 0.08,
+  "s2_tp_pct": 0.10,
+  "notify": {
+    "desktop": true,
+    "only_on_signal": true
+  },
+  "outputs": {
+    "today_json": "research/extreme20_today.json",
+    "today_csv": "research/extreme20_today.csv",
+    "history_csv": "extreme20_history.csv"
+  },
+  "backtest_ref": "research/surge20_refined_playbook.json",
+  "_combo_note": "高胜率模式 max_short=1 · 5年91笔 胜60.4% 年化+56.1% OOS胜69.8%"
+}

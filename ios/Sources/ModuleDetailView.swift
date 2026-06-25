@@ -89,9 +89,42 @@ struct ModuleDetailView: View {
                 statPill("观望", feature.watching ?? 0, .orange)
                 statPill("合计", feature.total ?? 0, ThsTheme.textSecondary)
             }
+            if feature.auditRank != nil || feature.winRate != nil || feature.annReturn != nil {
+                HStack(spacing: 10) {
+                    if let rank = feature.auditRank {
+                        auditPill("#\(rank)", feature.auditTier ?? "评级", ThsTheme.accent)
+                    }
+                    if let verdict = feature.auditVerdict {
+                        auditPill(verdict, feature.auditAction ?? "", verdict == "禁用" ? ThsTheme.down : ThsTheme.up)
+                    }
+                    if let wr = feature.winRate {
+                        auditPill("胜率", "\(Int((wr * 100).rounded()))%", ThsTheme.up)
+                    }
+                    if let ann = feature.annReturn {
+                        auditPill("年化", String(format: "%+.0f%%", ann * 100), ann >= 0 ? ThsTheme.up : ThsTheme.down)
+                    } else if let sharpe = feature.sharpe {
+                        auditPill("夏普", String(format: "%.2f", sharpe), ThsTheme.accent)
+                    }
+                }
+            }
         }
         .padding(14)
         .thsCard()
+    }
+
+    private func auditPill(_ title: String, _ value: String, _ color: Color) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title)
+                .font(.caption2)
+                .foregroundStyle(ThsTheme.textTertiary)
+            Text(value)
+                .font(.caption.weight(.bold))
+                .foregroundStyle(color)
+                .lineLimit(1)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 5)
+        .background(color.opacity(0.10), in: RoundedRectangle(cornerRadius: 8))
     }
 
     @ViewBuilder
@@ -99,6 +132,8 @@ struct ModuleDetailView: View {
         switch feature.viewType ?? "json_generic" {
         case "gain15":
             gain15Content(root)
+        case "extreme20":
+            extreme20Content(root)
         case "surge":
             surgeContent(root)
         case "speculative_pool":
@@ -129,6 +164,22 @@ struct ModuleDetailView: View {
             jsonSection("追多确认", rows: JsonHelper.array(root, "buy_confirmed"), emoji: "✅", accent: ThsTheme.up)
             jsonSection("回避确认", rows: JsonHelper.array(root, "avoid_confirmed"), emoji: "⛔", accent: ThsTheme.down)
             jsonSection("观察中", rows: JsonHelper.array(root, "watching"), emoji: "⏳", accent: .orange)
+        }
+    }
+
+    private func extreme20Content(_ root: [String: Any]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            marketBanner(root["market"] as? [String: Any])
+            if let stats = root["scan_stats"] as? [String: Any] {
+                HStack(spacing: 10) {
+                    ThsMetricTile(title: "可开仓", value: JsonHelper.string(stats, "可开仓") ?? "0", accent: ThsTheme.up, icon: "checkmark.circle")
+                    ThsMetricTile(title: "L1", value: JsonHelper.string(stats, "L1") ?? "0", accent: ThsTheme.up, icon: "arrow.up")
+                    ThsMetricTile(title: "S1", value: JsonHelper.string(stats, "S1") ?? "0", accent: ThsTheme.down, icon: "arrow.down")
+                    ThsMetricTile(title: "L2/S2", value: "\(JsonHelper.string(stats, "L2") ?? "0")/\(JsonHelper.string(stats, "S2") ?? "0")", accent: .orange, icon: "bolt")
+                }
+            }
+            jsonSection("可开仓信号", rows: JsonHelper.array(root, "picks"), emoji: "⚡", accent: ThsTheme.accent)
+            jsonSection("全部扫描", rows: JsonHelper.array(root, "signals"), emoji: "📋")
         }
     }
 
@@ -372,7 +423,7 @@ struct ModuleDetailView: View {
     /// 信号列表型模块：JSON 有效但今日所有分组都空 → 视为「今日无信号」。
     /// json_stats / 含 summary/patterns/scan_stats 的统计型模块不算空。
     private func isContentEmpty(_ root: [String: Any]) -> Bool {
-        let signalTypes: Set<String> = ["gain15", "surge", "speculative_pool", "pattern", "path5d", "meme", "playbook", "json_generic"]
+        let signalTypes: Set<String> = ["gain15", "extreme20", "surge", "speculative_pool", "pattern", "path5d", "meme", "playbook", "json_generic"]
         let vt = feature.viewType ?? "json_generic"
         guard signalTypes.contains(vt) else { return false }
         let keys = ["picks", "new_spikes", "buy_confirmed", "avoid_confirmed", "watching",
@@ -520,7 +571,9 @@ struct JsonRecordCard: View {
             icon: "flame", script: nil, config: nil, todayJson: "research/gain15_daily_today.json",
             todayCsv: nil, historyCsv: nil, description: "test", integratedInDailyPick: true,
             dailyPickModule: nil, launcher: nil, viewType: "gain15", terminalTab: nil,
-            actionable: 0, watching: 1, total: 1, hasData: true, dataDate: "2026-06-23"
+            actionable: 0, watching: 1, total: 1, hasData: true, dataDate: "2026-06-23",
+            trades: nil, winRate: nil, annReturn: nil, maxDd: nil, sharpe: nil,
+            auditRank: nil, auditScore: nil, auditTier: nil, auditVerdict: nil, auditAction: nil
         ))
     }
     .environmentObject(AppNavigation())

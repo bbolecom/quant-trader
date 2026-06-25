@@ -56,6 +56,29 @@ def is_push_eligible(row: dict, *, require_real: bool = True) -> bool:
     return False
 
 
+def push_priority(row: dict) -> float:
+    """推送排序分：真实数据 + 策略审核排名 + 历史胜率。"""
+    src_bonus = 20.0 if row.get("数据源") == "真实链" else 10.0
+    try:
+        explicit = float(row.get("推送优先级") or 0)
+    except (TypeError, ValueError):
+        explicit = 0.0
+    try:
+        rank = int(row.get("策略排名") or 99)
+    except (TypeError, ValueError):
+        rank = 99
+    try:
+        wr = float(row.get("历史胜率") or row.get("策略胜率") or 0)
+    except (TypeError, ValueError):
+        wr = 0.0
+    try:
+        audit_score = float(row.get("策略分") or 0)
+    except (TypeError, ValueError):
+        audit_score = 0.0
+    rank_bonus = max(0.0, 80.0 - rank * 4.0)
+    return round(src_bonus + explicit + rank_bonus + wr * 30.0 + audit_score * 20.0, 2)
+
+
 def build_push_picks(
     picks: list[dict],
     *,
@@ -74,7 +97,9 @@ def build_push_picks(
             stats["eligible"] += 1
         else:
             stats["skipped_model"] += 1
-    push.sort(key=lambda r: (0 if r.get("数据源") == "真实链" else 1, str(r.get("代码") or "")))
+    for row in push:
+        row["机会评分"] = push_priority(row)
+    push.sort(key=lambda r: (-float(r.get("机会评分") or 0), str(r.get("代码") or "")))
     return push[:max_items], stats
 
 
@@ -84,19 +109,22 @@ def format_push_line(row: dict) -> str:
     module = row.get("模块") or ""
     reason = str(row.get("选股理由") or "")
     src = row.get("数据源") or ""
+    rank = row.get("策略排名")
+    tier = row.get("策略评级")
+    audit = f"#{rank}{tier}" if rank and tier else ""
     head = f"{code} {direction}".strip()
     if src == "真实链":
         # 推送正文优先链上报价片段
         if "真实链" in reason:
             idx = reason.find("真实链")
             tail = reason[idx:].split(" · 历史回测")[0].split(" · 历史")[0]
-            return f"{head} [{module}] {tail[:120]}"
-        return f"{head} [{module}] {reason[:100]}"
+            return f"{head} [{module}{' '+audit if audit else ''}] {tail[:120]}"
+        return f"{head} [{module}{' '+audit if audit else ''}] {reason[:100]}"
     bt = row.get("回测摘要") or row.get("历史命中率") or ""
     core = reason[:90] if reason else module
     if bt:
-        return f"{head} [{module}] {core}（{bt}）"
-    return f"{head} [{module}] {core}"
+        return f"{head} [{module}{' '+audit if audit else ''}] {core}（{bt}）"
+    return f"{head} [{module}{' '+audit if audit else ''}] {core}"
 
 
 def build_push_block(doc: dict, cfg: dict) -> dict[str, Any]:
@@ -120,6 +148,7 @@ def build_push_block(doc: dict, cfg: dict) -> dict[str, Any]:
         "generated_at": doc.get("选股时间"),
         "pick_date": doc.get("选股日期"),
         "headline": headline,
+        "sort": "机会评分 = 真实数据 + 策略排名 + 胜率/审核分",
         "regime": {
             "label": reg.get("label"),
             "bull": reg.get("bull"),

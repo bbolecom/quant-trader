@@ -1,0 +1,41 @@
+{
+  "generated": "2026-06-25",
+  "period": "2021-02-25 ~ 2026-06-25",
+  "mode": "high_win_rate",
+  "max_short_per_day": 1,
+  "step1_extreme20": {
+    "trades": 91,
+    "win_rate": 0.604,
+    "ann_return": 0.561,
+    "sharpe": 4.93,
+    "oos_trades": 43,
+    "oos_win_rate": 0.698,
+    "oos_ann": 1.408,
+    "trades_csv": "research/extreme20_combo_trades_5y.csv"
+  },
+  "step2_flow_and_combo": {
+    "flow_strategy": {
+      "trades": 430,
+      "win_rate": 0.533,
+      "ann_return": 0.117,
+      "sharpe": 0.57,
+      "long_top_n": 1,
+      "short_top_n": 1,
+      "trades_csv": "research/flow_strategy_trades_5y.csv"
+    },
+    "combo_portfolio_50_50": {
+      "active_days": 479,
+      "day_win_rate": 0.541,
+      "ann_return": 0.378,
+      "max_dd": -0.516,
+      "sharpe": 1.82,
+      "equity_csv": "research/longshort_combo_equity_5y.csv",
+      "monthly_csv": "research/longshort_combo_monthly_5y.csv",
+      "profitable_months": "37/62 (60%)"
+    }
+  },
+  "config_files": {
+    "extreme20_config": "max_short_per_day=1, max_signals_per_day=2",
+    "flow_strategy_config": "long_top_n=1"
+  }
+}

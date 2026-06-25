@@ -1,0 +1,22 @@
+{
+  "tickers": ["RGTI", "IONQ", "QUBT", "QBTS"],
+  "panic_gap_pct": -5.0,
+  "panic_chg_pct": -8.0,
+  "nr_window": 7,
+  "nr_high_pos": 0.7,
+  "rsi_overbought": 75,
+  "rsi_oversold": 35,
+  "dist_ma20_extended": 0.40,
+  "climax_vol_x": 2.5,
+  "lookback_days": 80,
+  "notify": {
+    "desktop": true,
+    "only_on_signal": true
+  },
+  "outputs": {
+    "today_json": "research/rgti_today.json",
+    "history_csv": "research/rgti_signal_history.csv",
+    "app_json": "research/quantum_watch_today.json",
+    "ios_bundle": "ios/Resources/quantum_watch_today.json"
+  }
+}

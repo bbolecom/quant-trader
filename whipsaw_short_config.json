@@ -1,0 +1,27 @@
+{
+  "account_size": 10000,
+  "gainer_count": 250,
+  "mode": "aggressive",
+  "min_gain_pct": 15.0,
+  "min_dvol_m": 50.0,
+  "max_close_strength": 0.75,
+  "min_vol_ratio": 3.0,
+  "max_gain_rank": 3,
+  "require_weak_market": false,
+  "call_otm": 0.06,
+  "width_pct": 0.12,
+  "risk_per_trade_pct": 0.02,
+  "weak_market_multiplier": 2.0,
+  "min_dte": 7,
+  "max_dte": 21,
+  "min_oi": 30,
+  "max_candidates": 15,
+  "_modes_note": "robust=量比≥3+大盘弱+Top3(83.7%胜率/-5%回撤) · aggressive=量比≥3+Top3,弱市加倍(76.8%胜率/+71%年化)",
+  "notify": {
+    "desktop": true
+  },
+  "outputs": {
+    "today_json": "research/whipsaw_short_today.json",
+    "today_csv": "research/whipsaw_short_today.csv"
+  }
+}

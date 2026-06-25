@@ -335,8 +335,8 @@ struct DailyPickView: View {
             VStack(alignment: .leading, spacing: 10) {
                 let actionableCount = catalog.filter { $0.actionable > 0 }.count
                 ThsSectionHeader(
-                    title: "全系统策略",
-                    subtitle: "接入 \(doc.strategySummary?.integratedCount ?? catalog.count) 个 · 有信号 \(actionableCount)",
+                    title: "核心 9 策略",
+                    subtitle: "共 \(doc.strategySummary?.coreCount ?? 9) 个 · 有信号 \(actionableCount)",
                     count: catalog.count,
                     accent: ThsTheme.accent,
                     icon: "books.vertical"

@@ -165,6 +165,7 @@ struct ModuleRun: Codable, Identifiable {
 
 struct StrategySummaryBlock: Codable {
     let updated: String?
+    let coreCount: Int?
     let integratedCount: Int?
     let standaloneCount: Int?
     let integratedWithData: Int?
@@ -173,6 +174,7 @@ struct StrategySummaryBlock: Codable {
 
     enum CodingKeys: String, CodingKey {
         case updated
+        case coreCount = "core_count"
         case integratedCount = "integrated_count"
         case standaloneCount = "standalone_count"
         case integratedWithData = "integrated_with_data"
@@ -231,6 +233,14 @@ struct PickRow: Codable, Identifiable {
     let backtestNote: String?
     let backtestSource: String?
     let highWinQualified: Bool?
+    let strategyRank: Int?
+    let strategyTier: String?
+    let strategyVerdict: String?
+    let strategyScore: Double?
+    let strategyWinRate: Double?
+    let strategyAnnReturn: Double?
+    let pushPriority: Double?
+    let explicitOpportunityScore: Double?
 
     enum CodingKeys: String, CodingKey {
         case module = "模块"
@@ -247,6 +257,14 @@ struct PickRow: Codable, Identifiable {
         case backtestNote = "回测摘要"
         case backtestSource = "回测来源"
         case highWinQualified = "高胜率达标"
+        case strategyRank = "策略排名"
+        case strategyTier = "策略评级"
+        case strategyVerdict = "策略审核"
+        case strategyScore = "策略分"
+        case strategyWinRate = "策略胜率"
+        case strategyAnnReturn = "策略年化"
+        case pushPriority = "推送优先级"
+        case explicitOpportunityScore = "机会评分"
     }
 
     var isActionable: Bool { status == "可开仓" }
@@ -260,6 +278,9 @@ struct PickRow: Codable, Identifiable {
     }
 
     var opportunityScore: Int {
+        if let explicitOpportunityScore {
+            return min(100, max(0, Int(explicitOpportunityScore.rounded())))
+        }
         var score = 0.0
         if isActionable { score += 28 }
         if isHighWinQualified { score += 24 }
@@ -274,6 +295,18 @@ struct PickRow: Codable, Identifiable {
         if let histDD {
             let drawdown = abs(histDD)
             score += max(0, 12 - min(drawdown, 0.4) / 0.4 * 12)
+        }
+        if let strategyRank {
+            score += max(0, 16 - Double(strategyRank - 1) * 1.4)
+        }
+        if let strategyScore {
+            score += min(max(strategyScore, 0), 1) * 10
+        }
+        if strategyVerdict == "主力" || strategyVerdict == "核心" {
+            score += 6
+        }
+        if let pushPriority {
+            score += min(max(pushPriority, 0), 150) / 150 * 8
         }
         return min(100, max(0, Int(score.rounded())))
     }

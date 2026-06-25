@@ -532,32 +532,234 @@ def run_mean_reversion_dip(cfg: dict, *, bull: bool) -> list[dict]:
     return rows
 
 
-# 模块 ID → (runner, needs_bull)
+def run_longshort_combo(cfg: dict) -> list[dict]:
+    """多空组合 · Extreme20 + Flow · 质量分高胜率过滤。"""
+    mod = "多空组合"
+    acct = "L/S组合"
+    modules = cfg.get("modules") or {}
+    if not modules.get("longshort_combo", False):
+        return []
+    if cfg.get("quick"):
+        return [empty_row(mod, acct, "quick 模式跳过重型扫描")]
+    try:
+        from quant.longshort_combo_strategy import config_from_dict, scan_live
+
+        lpath = str(cfg.get("longshort_combo_config", "longshort_combo_config.json"))
+        lcfg = config_from_dict(_load_json_cfg(lpath))
+        picks = scan_live(lcfg)
+    except Exception as e:  # noqa: BLE001
+        return [fail_row(mod, acct, e)]
+
+    if picks is None or picks.empty:
+        return [empty_row(mod, acct, "今日无高质量多空信号（正常空仓）")]
+
+    rows: list[dict] = []
+    for _, s in picks.iterrows():
+        sid = str(s.get("策略ID", s.get("leg", "")))
+        rows.append(pick_row(
+            module=mod,
+            account=acct,
+            ticker=str(s.get("代码", "")),
+            status="可开仓",
+            direction=str(s.get("方向", s.get("side", "—"))),
+            action=str(s.get("策略", s.get("策略动作", sid))),
+            reason=str(s.get("依据", s.get("选股理由", "")))[:400],
+            策略ID=sid,
+            持有=s.get("持有"),
+            入场=s.get("入场"),
+            止损价=s.get("止损价≈"),
+            止盈价=s.get("止盈价≈"),
+            side=s.get("side"),
+            质量分=s.get("质量分"),
+            leg=s.get("leg"),
+        ))
+    return rows
+
+
+def run_extreme20(cfg: dict) -> list[dict]:
+    """暴涨/暴跌 ≥20% 事件策略 L1/S1/L2/S2。"""
+    mod = "Extreme20"
+    acct = "暴涨暴跌20%"
+    modules = cfg.get("modules") or {}
+    if not modules.get("extreme20", False):
+        return []
+    if cfg.get("quick"):
+        return [empty_row(mod, acct, "quick 模式跳过重型扫描")]
+    try:
+        from quant.extreme20_strategy import config_from_dict, scan_live
+
+        epath = str(cfg.get("extreme20_config", "extreme20_config.json"))
+        ecfg = config_from_dict(_load_json_cfg(epath))
+        picks = scan_live(ecfg, screen_count=int(_load_json_cfg(epath).get("screen_count", 300)))
+    except Exception as e:  # noqa: BLE001
+        return [fail_row(mod, acct, e)]
+
+    if picks is None or picks.empty:
+        return [empty_row(mod, acct, "今日无命中（约85%交易日空仓，属正常）")]
+
+    rows: list[dict] = []
+    for _, s in picks.iterrows():
+        sid = str(s.get("策略ID", ""))
+        rows.append(pick_row(
+            module=f"Extreme20·{sid}" if sid else mod,
+            account=acct,
+            ticker=str(s.get("代码", "")),
+            status="可开仓",
+            direction=str(s.get("方向", "—")),
+            action=str(s.get("策略", "")),
+            reason=str(s.get("依据", ""))[:400],
+            策略ID=sid,
+            持有=s.get("持有"),
+            入场=s.get("入场"),
+            止损价=s.get("止损价≈"),
+            止盈价=s.get("止盈价≈"),
+            止损pct=s.get("止损%"),
+            止盈pct=s.get("止盈%"),
+            side=s.get("side"),
+        ))
+    return rows
+
+
+def run_whipsaw_short(cfg: dict) -> list[dict]:
+    """涨幅榜暴涨乏力 → 卖 Call 信用价差（定风险做空）。"""
+    mod = "做空涨幅榜"
+    acct = "涨幅榜BCS"
+    modules = cfg.get("modules") or {}
+    if not modules.get("whipsaw_short", False):
+        return []
+    if cfg.get("quick"):
+        return [empty_row(mod, acct, "quick 模式跳过涨幅榜扫描")]
+    try:
+        import whipsaw_short_daily as ws
+
+        wpath = str(cfg.get("whipsaw_short_config", "whipsaw_short_config.json"))
+        wcfg = ws.load_config(ROOT / wpath)
+        plan = ws.run_scan(wcfg)
+    except Exception as e:  # noqa: BLE001
+        return [fail_row(mod, acct, e)]
+
+    if plan.get("note"):
+        return [empty_row(mod, acct, str(plan["note"]))]
+
+    actionable = [
+        c for c in plan.get("candidates") or []
+        if c.get("信号") == "卖Call价差" and int(c.get("建议张数") or 0) > 0
+    ]
+    if not actionable:
+        stats = plan.get("scan_stats") or {}
+        n_cand = int(stats.get("候选") or 0)
+        note = "今日无「暴涨乏力+可行价差」标的（正常空仓）"
+        if n_cand > 0:
+            note = f"候选 {n_cand} 只，无可成交价差（正常观望）"
+        return [empty_row(mod, acct, note)]
+
+    weak = bool((plan.get("market") or {}).get("弱市"))
+    rows: list[dict] = []
+    for c in actionable:
+        reason = (
+            f"模式[{plan.get('mode', '-')}] · Top{c.get('榜单排名')} · "
+            f"涨{c.get('涨幅%')}% · 量比{c.get('量比')} · 收盘强度{c.get('收盘强度')} · "
+            f"{'弱市×' + str(c.get('仓位倍数', 1)) if weak else '强市×1'}"
+        )
+        rows.append(pick_row(
+            module=mod,
+            account=acct,
+            ticker=str(c["代码"]),
+            status="可开仓",
+            direction="做空",
+            action=f"卖Call价差 {c.get('结构', '')}",
+            reason=reason,
+            **{
+                "现价": c.get("现价"),
+                "建议张数": c.get("建议张数"),
+                "权利金$": c.get("收权利金$"),
+                "最大亏$": c.get("最大亏$"),
+                "到期": c.get("到期"),
+                "结构": c.get("结构"),
+            },
+        ))
+    return rows
+
+
+def run_gainer10(cfg: dict) -> list[dict]:
+    """日涨>10%+亿级成交 · 分板块多空 + 续涨 A/B。"""
+    mod = "Gainer10+"
+    acct = "动量续涨"
+    modules = cfg.get("modules") or {}
+    if not modules.get("gainer10", False):
+        return []
+    if cfg.get("quick"):
+        return [empty_row(mod, acct, "quick 模式跳过涨幅榜扫描")]
+    try:
+        import gainer10_daily as g10
+
+        gpath = str(cfg.get("gainer10_config", "gainer10_config.json"))
+        raw = g10.load_config(ROOT / gpath)
+        plan = g10.run_gainer10_scan(g10.cfg_from_dict(raw))
+        g10.save_outputs(plan, raw)
+    except Exception as e:  # noqa: BLE001
+        return [fail_row(mod, acct, e)]
+
+    rows: list[dict] = []
+    for key, label, direction, status in [
+        ("buy_sector", "分板块多", "做多", "可开仓"),
+        ("buy_a", "续涨A", "做多", "可开仓"),
+        ("buy_b", "续涨B", "做多", "可开仓"),
+        ("short_sector", "分板块空", "做空", "可开仓"),
+        ("short_s", "做空S", "做空", "可开仓"),
+    ]:
+        for p in plan.get(key) or []:
+            extra = ""
+            if p.get("限价入场"):
+                extra = f" · 限价${p['限价入场']}"
+                if p.get("止盈_pct"):
+                    extra += f" TP{p['止盈_pct']}%/SL{p.get('止损_pct')}%"
+            rows.append(pick_row(
+                module=f"Gainer10+·{p.get('信号', label)}",
+                account=acct,
+                ticker=str(p["代码"]),
+                status=status,
+                direction=direction,
+                action=str(p.get("动作", "")),
+                reason=(
+                    f"涨{p.get('涨幅_pct')}% ${p.get('成交额M')}M · {p.get('板块')} · "
+                    f"跳空{p.get('跳空_pct')}% 乖离{p.get('乖离20_pct')}% RSI{p.get('RSI')} · "
+                    f"{p.get('规则说明')} · 历史{p.get('历史胜率')} {p.get('历史均收益')}{extra}"
+                )[:400],
+                信号=str(p.get("信号", label)),
+                现价=p.get("现价"),
+                限价入场=p.get("限价入场"),
+                止盈pct=p.get("止盈_pct"),
+                止损pct=p.get("止损_pct"),
+            ))
+
+    if not rows:
+        note = plan.get("note") or "今日无续涨/回避信号（正常空仓）"
+        return [empty_row(mod, acct, note)]
+    return rows
+
+
+# 核心策略中经 run_registered 调度的子集（其余在 daily_pick.py 内联）
 RUNNER_REGISTRY: dict[str, tuple[Callable[..., list[dict]], bool]] = {
-    "pattern_daily": (run_pattern_three_leg, True),
+    "longshort_combo": (run_longshort_combo, False),
     "flow_strategy": (run_flow_strategy_combo, False),
     "vrp": (run_vrp_signals, False),
-    "calendar": (run_calendar_spread, False),
-    "universal_playbook": (run_universal_playbook_fleet, False),
     "sndk_iron": (run_sndk_iron_fleet, False),
-    "strategy_rank": (run_strategy_ranking, False),
-    "screen_daily": (run_screen_screener, False),
-    "scan_daily": (run_watchlist_scan, False),
-    "ticker_pattern": (run_ticker_pattern_standalone, True),
-    "mean_reversion_dip": (run_mean_reversion_dip, True),
+    "extreme20": (run_extreme20, False),
+    "whipsaw_short": (run_whipsaw_short, False),
+    "gainer10": (run_gainer10, False),
 }
 
 # quick 模式跳过的重型模块
 HEAVY_MODULES = frozenset({
-    "pattern_daily",
+    "longshort_combo",
     "flow_strategy",
-    "screen_daily",
-    "universal_playbook",
-    "strategy_rank",
     "gain15",
+    "extreme20",
+    "whipsaw_short",
+    "gainer10",
     "capital_flow",
     "meme_long",
-    "mean_reversion_dip",
 })
 
 

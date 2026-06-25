@@ -6,24 +6,23 @@ enum CatalogEnrichment {
         "暴涨80%": "gain15",
         "暴涨80%·回避": "gain15",
         "暴涨80%·观察": "gain15",
+        "暴涨80%·新暴涨": "gain15",
+        "Extreme20": "extreme20",
+        "Extreme20·L1": "extreme20",
+        "Extreme20·S1": "extreme20",
+        "Extreme20·L2": "extreme20",
+        "Extreme20·S2": "extreme20",
         "5×舰队·CSP": "fleet_csp",
         "资金流向": "capital_flow",
-        "规律·Ultra80": "meme_pattern",
+        "规律·Ultra80": "meme_long",
+        "规律·纯多头": "meme_long",
         "收入·卖Call": "bear_call",
         "弱市·卖Call": "bear_call",
-        "三腿策略": "pattern_daily",
-        "pattern_daily": "pattern_daily",
         "flow_strategy": "flow_strategy",
+        "资金流向组合": "flow_strategy",
         "VRP波动率": "vrp",
         "VRP波动率·CSP": "vrp",
-        "日历价差": "calendar",
         "SNDK铁鹰": "sndk_iron",
-        "strategy_rank": "strategy_rank",
-        "screen_daily": "screen_daily",
-        "自选股扫描": "scan_daily",
-        "universal_playbook": "universal_playbook",
-        "高频·动量": "trajectory_highwin",
-        "轨迹·高置信": "trajectory_highwin",
     ]
 
     static func enrichedCatalog(from document: DailyPickDocument) -> [StrategyCatalogRow] {
@@ -66,8 +65,32 @@ enum CatalogEnrichment {
             byID[run.moduleID] = row
         }
 
-        return rows.map { byID[$0.strategyID] ?? $0 }
+        let legacyAliases: [String: String] = ["meme_pattern": "meme_long"]
+        for (oldID, newID) in legacyAliases where byID[newID] == nil {
+            if let legacy = byID[oldID] {
+                byID[newID] = StrategyCatalogRow(
+                    strategyID: newID,
+                    name: legacy.name,
+                    category: legacy.category,
+                    integrated: legacy.integrated,
+                    moduleLabel: legacy.moduleLabel,
+                    hasData: legacy.hasData,
+                    actionable: legacy.actionable,
+                    watching: legacy.watching,
+                    total: legacy.total,
+                    dataDate: legacy.dataDate,
+                    detail: legacy.detail
+                )
+            }
+        }
+
+        return coreOrder.compactMap { byID[$0] }
     }
+
+    private static let coreOrder: [String] = [
+        "daily_pick", "capital_flow", "flow_strategy", "meme_long",
+        "gain15", "extreme20", "bear_call", "fleet_csp", "sndk_iron", "vrp",
+    ]
 
     private static func strategyID(for modKey: String, catalog: [StrategyCatalogRow]) -> String? {
         if let sid = moduleAliases[modKey] { return sid }
@@ -134,7 +157,17 @@ extension StrategyCatalogRow {
             watching: watching,
             total: total,
             hasData: hasData,
-            dataDate: dataDateLabel == "—" ? nil : dataDateLabel
+            dataDate: dataDateLabel == "—" ? nil : dataDateLabel,
+            trades: nil,
+            winRate: nil,
+            annReturn: nil,
+            maxDd: nil,
+            sharpe: nil,
+            auditRank: nil,
+            auditScore: nil,
+            auditTier: nil,
+            auditVerdict: nil,
+            auditAction: nil
         )
     }
 
@@ -175,7 +208,17 @@ extension ManifestFeature {
             watching: row.watching,
             total: row.total,
             hasData: row.hasData,
-            dataDate: row.dataDateLabel == "—" ? dataDate : row.dataDateLabel
+            dataDate: row.dataDateLabel == "—" ? dataDate : row.dataDateLabel,
+            trades: trades,
+            winRate: winRate,
+            annReturn: annReturn,
+            maxDd: maxDd,
+            sharpe: sharpe,
+            auditRank: auditRank,
+            auditScore: auditScore,
+            auditTier: auditTier,
+            auditVerdict: auditVerdict,
+            auditAction: auditAction
         )
     }
 }

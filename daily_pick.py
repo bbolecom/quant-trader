@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""每日选股 · 统一入口：大盘开关 + 弱市偏空收租 + 5×CSP 舰队 + 轨迹高置信。
+"""每日选股 · 统一入口：核心策略 + Gainer10+ + 大盘开关。
 
 原则：**不一定每天都有票** —— 条件不满足则「观望」，记入历史，不强行交易。
 
-大盘开关（SPY vs MA50）：
-  · 牛市：CSP 舰队 + 轨迹高置信做多 + 卖 Call 价差（均可选）
-  · 弱市：主开 ①卖看涨价差 ②SPY/QQQ 铁鹰；轨迹做多关闭；CSP 仍跑但 MA50 过滤
+调度模块：资金流向 / Meme / 暴涨80% / Extreme20 / Gainer10+ / 做空涨幅榜 /
+          卖Call / CSP舰队 / SNDK铁鹰 / VRP / 资金流向组合
+
+定时：scripts/install_daily_pick_launchd.sh → 每天 18:30 自动跑（含 Gainer10+）
 
 用法：
     python daily_pick.py
@@ -806,9 +807,15 @@ def run_daily_pick(cfg: dict) -> dict:
     )
 
     from quant.daily_pick_push import build_push_block, enrich_pick_data_source
-    from quant.strategy_catalog import build_strategy_summary_doc, summarize_picks_by_module
+    from quant.strategy_catalog import (
+        build_strategy_summary_doc,
+        build_strategy_audit,
+        enrich_picks_with_strategy_audit,
+        summarize_picks_by_module,
+    )
 
     modules_summary = summarize_picks_by_module(all_rows)
+    strategy_audit = build_strategy_audit(ROOT)
     strategy_summary = build_strategy_summary_doc(
         picks=all_rows,
         modules_summary=modules_summary,
@@ -821,6 +828,11 @@ def run_daily_pick(cfg: dict) -> dict:
             "可开仓": actionable,
             "观望": len(df) - actionable,
         },
+    )
+    all_rows = enrich_picks_with_strategy_audit(
+        all_rows,
+        audit_doc=strategy_audit,
+        root=ROOT,
     )
 
     hw_cfg = cfg.get("high_win_filter") or {}
@@ -857,6 +869,7 @@ def run_daily_pick(cfg: dict) -> dict:
         },
         "modules_summary": modules_summary,
         "module_runs": module_runs,
+        "strategy_audit": strategy_audit,
         "strategy_summary": strategy_summary,
         "high_win": {
             "min_win_rate": hw_cfg.get("min_win_rate", 0.80),

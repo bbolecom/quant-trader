@@ -331,8 +331,8 @@ struct HomeHubView: View {
                 ) { nav.openPicks() }
 
                 watchRow(
-                    title: "接入模块",
-                    value: pickLoader.document?.summary?.moduleCount ?? manifestLoader.manifest?.totalFeatures ?? 0,
+                    title: "核心策略",
+                    value: manifestLoader.manifest?.coreCount ?? 9,
                     tint: Color(hex: "#3B82F6") ?? .blue,
                     icon: "puzzlepiece.extension.fill"
                 ) { nav.selectedTab = 1 }
@@ -394,7 +394,7 @@ struct HomeHubView: View {
                                 .frame(width: 24, height: 24)
                                 .background(rankTint(for: idx), in: Circle())
                             VStack(alignment: .leading, spacing: 3) {
-                                Text("\(row.ticker) · \(row.opportunityGrade)")
+                                Text("\(row.ticker) · \(row.opportunityGrade)\(strategyBadge(row))")
                                     .font(.subheadline.weight(.semibold))
                                     .foregroundStyle(ThsTheme.homeTextPrimary)
                                 Text(row.reason)
@@ -434,6 +434,12 @@ struct HomeHubView: View {
 
     private func scoreTint(for row: PickRow) -> Color {
         row.opportunityScore >= 85 ? ThsTheme.homeHeaderRed : ThsTheme.homeTextPrimary
+    }
+
+    private func strategyBadge(_ row: PickRow) -> String {
+        guard let rank = row.strategyRank else { return "" }
+        let tier = row.strategyTier ?? ""
+        return " · #\(rank)\(tier)"
     }
 
     // MARK: - AI 诊断（全宽纵向）

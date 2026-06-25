@@ -116,24 +116,8 @@ def test_prod_params_are_production_grade() -> None:
 
 
 # --------------------------- daily_pick 集成 ---------------------------
-
-def test_runner_registered_and_heavy() -> None:
-    from quant.daily_pick_runners import RUNNER_REGISTRY, HEAVY_MODULES
-
-    assert "mean_reversion_dip" in RUNNER_REGISTRY
-    assert "mean_reversion_dip" in HEAVY_MODULES
-    fn, needs_bull = RUNNER_REGISTRY["mean_reversion_dip"]
-    assert callable(fn)
-    assert needs_bull is True
-
-
-def test_runner_quick_mode_skips_without_network() -> None:
-    """quick 模式必须跳过重型联网扫描，绝不触网。"""
-    from quant.daily_pick_runners import run_registered
-
-    rows = run_registered("mean_reversion_dip", {"quick": True}, bull=True)
-    assert len(rows) == 1
-    assert "quick" in rows[0]["选股理由"]
+# 注：mean_reversion_dip 已移出核心 9 策略的 RUNNER_REGISTRY（精简版决策），
+# 故移除「断言其已注册 / quick 跳过」的两个过期测试；模块本身的覆盖仍保留在上方。
 
 
 def test_resolve_universe_liquid100() -> None:
