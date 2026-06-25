@@ -1,6 +1,6 @@
 {
   "ticker": "NTRA",
-  "updated": "2026-06-24 22:51:01",
+  "updated": "2026-06-25 08:40:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -983,11 +983,11 @@
     },
     {
       "date": "2026-06-24",
-      "open": 241.94,
+      "open": 243.0,
       "high": 264.65,
       "low": 239.0,
       "close": 259.97,
-      "volume": 2938702
+      "volume": 2941000
     }
   ]
 }

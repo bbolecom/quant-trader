@@ -1,6 +1,6 @@
 {
   "ticker": "RH",
-  "updated": "2026-06-24 22:51:02",
+  "updated": "2026-06-25 08:40:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,10 @@
     {
       "date": "2026-06-24",
       "open": 146.49,
-      "high": 159.1999,
-      "low": 144.3861,
+      "high": 159.2,
+      "low": 144.39,
       "close": 156.54,
-      "volume": 1113130
+      "volume": 1118000
     }
   ]
 }
