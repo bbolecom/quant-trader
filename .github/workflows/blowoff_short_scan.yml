@@ -1,0 +1,61 @@
+name: Blowoff Short Scan (daily)
+
+# 每个美股交易日收盘后跑一次「安飞士式做空」扫描：
+#   全市场抛物线顶/派发候选（市值≤上限 + 跌宕起伏振幅过滤）
+#   + watchlist(SPCE/CDNL/AMLX...) 破位触发盯盘 → 写 JSON 供 iOS 拉取
+on:
+  schedule:
+    # 21:15 UTC ≈ 美东收盘后（EDT 17:15 / EST 16:15），周一至周五
+    - cron: "15 21 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blowoff-short-scan
+  cancel-in-progress: true
+
+env:
+  PYTHONPATH: ${{ github.workspace }}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install yfinance pandas numpy lxml
+
+      - name: Run blowoff short scan
+        env:
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        run: python blowoff_short_daily.py
+
+      - name: Commit scan results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/blowoff_short_today.json \
+                  research/blowoff_short_today.csv \
+                  ios/Resources/blowoff_short_today.json \
+                  blowoff_short_history.csv 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No scan changes"
+            exit 0
+          fi
+          git commit -m "chore: blowoff short scan $(date -u +%Y-%m-%d) [skip ci]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push; then
+              echo "pushed on attempt $i"; exit 0
+            fi
+            echo "push attempt $i failed"; sleep $((i * 5))
+          done
+          exit 1

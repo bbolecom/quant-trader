@@ -1,0 +1,38 @@
+{
+  "watchlist": ["SPCE", "CDNL", "AMLX", "MBX", "ORKA"],
+  "scan_count": 250,
+  "scan_top": 25,
+  "auto_watch_top": 8,
+  "trigger_drop_pct": -4.0,
+  "trigger_clv": 0.40,
+  "max_mcap_b": 50.0,
+  "min_amp_ratio": 2.0,
+  "outputs": {
+    "today_json": "research/blowoff_short_today.json",
+    "today_csv": "research/blowoff_short_today.csv",
+    "ios_bundle": "ios/Resources/blowoff_short_today.json"
+  },
+  "notify": { "desktop": true },
+  "push_when": "actionable",
+  "push_mobile": {
+    "enabled": true,
+    "bark": {
+      "enabled": true,
+      "key_env": "BARK_KEY",
+      "key": "",
+      "server": "https://api.day.app",
+      "group": "美股做空",
+      "sound": "alarm"
+    },
+    "serverchan": {
+      "enabled": false,
+      "key_env": "SERVERCHAN_KEY",
+      "key": ""
+    },
+    "ntfy": {
+      "enabled": false,
+      "topic": "",
+      "server": "https://ntfy.sh"
+    }
+  }
+}
