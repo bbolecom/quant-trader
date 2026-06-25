@@ -10,6 +10,13 @@ OPTION_DIRECTIONS = (
 MODEL_MARKERS = ("模型估值", "模型估算", "Black-Scholes", "BS回测", "仅供回测")
 REAL_CHAIN_MARKERS = ("真实链", "真实期权链")
 
+# 仅「真实链 + 可交易」时才应展示 / 推送的期权执行字段
+OPTION_EXECUTABLE_FIELDS = (
+    "卖Put行权价", "卖Call行权价", "买Call行权价", "买Put行权价",
+    "权利金$", "净权利金$", "净成本$", "建议张数", "到期", "DTE",
+    "期权结构", "最大亏损$", "占用现金$", "接货成本", "策略动作",
+)
+
 
 def is_option_pick(row: dict) -> bool:
     direction = str(row.get("方向") or "")
@@ -43,8 +50,74 @@ def enrich_pick_data_source(row: dict) -> dict:
     return out
 
 
+def _contracts_ok(row: dict) -> bool:
+    raw = row.get("建议张数")
+    if raw in (None, "", "—", "-"):
+        return True  # 未提供张数字段时不因缺字段判不可交易
+    try:
+        return int(float(raw)) >= 1
+    except (TypeError, ValueError):
+        return False
+
+
+def _explicitly_blocked(row: dict) -> bool:
+    if str(row.get("可开仓") or "") == "⏸":
+        return True
+    raw = row.get("建议张数")
+    if raw in (None, "", "—", "-"):
+        return False
+    try:
+        return int(float(raw)) < 1
+    except (TypeError, ValueError):
+        return False
+
+
+def _clear_executable_fields(row: dict) -> None:
+    for key in OPTION_EXECUTABLE_FIELDS:
+        if key in row:
+            row[key] = ""
+
+
+def sanitize_pick_row(row: dict) -> dict:
+    """统一校验：期权类无真实链报价时清空行权价/权利金，禁止误下单。"""
+    out = enrich_pick_data_source(dict(row))
+    tier = str(out.get("数据源") or "")
+    status = str(out.get("状态") or "")
+    opt = is_option_pick(out)
+
+    if not opt:
+        out["数据有效"] = True
+        out["可交易"] = status == "可开仓"
+        return out
+
+    if tier == "真实链":
+        can_trade = status == "可开仓" and not _explicitly_blocked(out)
+        if str(out.get("可开仓") or "") == "✅":
+            can_trade = True
+        out["数据有效"] = True
+        out["可交易"] = can_trade
+        if not can_trade and status not in ("扫描失败", "无数据"):
+            out["状态"] = "观望"
+        return out
+
+    # 模型估算 / 真实链不可用 → 不展示任何可下单数字
+    _clear_executable_fields(out)
+    out["数据有效"] = False
+    out["可交易"] = False
+    if status not in ("扫描失败", "无数据"):
+        out["状态"] = "观望"
+        out["方向"] = "观望"
+    return out
+
+
+def sanitize_picks(picks: list[dict]) -> list[dict]:
+    return [sanitize_pick_row(p) for p in picks]
+
+
 def is_push_eligible(row: dict, *, require_real: bool = True) -> bool:
     if str(row.get("状态") or "") != "可开仓":
+        return False
+    if row.get("可交易") is False:
         return False
     if not require_real:
         return True
@@ -85,7 +158,7 @@ def build_push_picks(
     require_real: bool = True,
     max_items: int = 12,
 ) -> tuple[list[dict], dict[str, int]]:
-    enriched = [enrich_pick_data_source(p) for p in picks]
+    enriched = sanitize_picks(picks)
     push: list[dict] = []
     stats = {"total": len(enriched), "eligible": 0, "skipped_model": 0, "skipped_watch": 0}
     for row in enriched:

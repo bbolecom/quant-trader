@@ -124,6 +124,12 @@ struct PickDetailView: View {
             if let hit = row.hitRate, !hit.isEmpty {
                 metaRow("历史命中率", hit)
             }
+            if let src = row.dataSourceTier, !src.isEmpty {
+                metaRow("数据源", src)
+            }
+            if row.isOptionLikePick {
+                metaRow("可交易", row.hasValidTradeData ? "是（真实链）" : "否")
+            }
             metaRow("机会评分", "\(row.opportunityScore) · \(row.opportunityGrade)")
             metaRow("风险等级", row.riskLevel)
             metaRow("状态", row.status)
@@ -159,6 +165,17 @@ struct PickDetailView: View {
         histDD: -0.052,
         backtestNote: "胜率97% · 年化56.7% · 回撤-5.2%",
         backtestSource: "screen_fleet_stats.json",
-        highWinQualified: true
+        highWinQualified: true,
+        strategyRank: 3,
+        strategyTier: "A",
+        strategyVerdict: "核心",
+        strategyScore: 0.82,
+        strategyWinRate: 0.97,
+        strategyAnnReturn: 0.567,
+        pushPriority: 120,
+        explicitOpportunityScore: nil,
+        dataSourceTier: "真实链",
+        dataValid: true,
+        tradable: true
     ))
 }

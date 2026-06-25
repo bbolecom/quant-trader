@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, timedelta
 
 import pandas as pd
@@ -16,6 +17,7 @@ except ImportError:  # pragma: no cover
 # 单次 batch 不宜过大，避免 Yahoo 超时/断连
 _BATCH_CHUNK = 40
 _DOWNLOAD_TIMEOUT = 45
+_BATCH_WORKERS = 8
 
 
 def _download(tickers, start_str: str, end_str: str, interval: str = "1d"):
@@ -64,16 +66,21 @@ class YahooProvider(MarketDataProvider):
         start: date | str,
         end: date | str,
         interval: str = "1d",
+        *,
+        max_workers: int = _BATCH_WORKERS,
     ) -> dict[str, pd.DataFrame]:
         if yf is None or not tickers:
             return {}
         start_str = pd.Timestamp(start).strftime("%Y-%m-%d")
         end_str = (pd.Timestamp(end) + timedelta(days=1)).strftime("%Y-%m-%d")
         syms = [t.strip().upper() for t in tickers if t and str(t).strip()]
+        if not syms:
+            return {}
+        chunks = [syms[i : i + _BATCH_CHUNK] for i in range(0, len(syms), _BATCH_CHUNK)]
         out: dict[str, pd.DataFrame] = {}
 
-        for i in range(0, len(syms), _BATCH_CHUNK):
-            chunk = syms[i : i + _BATCH_CHUNK]
+        def _fetch_chunk(chunk: list[str]) -> dict[str, pd.DataFrame]:
+            partial: dict[str, pd.DataFrame] = {}
             try:
                 raw = _download(
                     chunk if len(chunk) > 1 else chunk[0],
@@ -82,9 +89,9 @@ class YahooProvider(MarketDataProvider):
                     interval=interval,
                 )
             except Exception:  # noqa: BLE001
-                continue
+                return partial
             if raw is None or raw.empty:
-                continue
+                return partial
             multi = isinstance(raw.columns, pd.MultiIndex)
             for t in chunk:
                 try:
@@ -93,7 +100,21 @@ class YahooProvider(MarketDataProvider):
                         continue
                     df = normalize_ohlcv(sub)
                     if not df.empty:
-                        out[t] = df
+                        partial[t] = df
+                except Exception:  # noqa: BLE001
+                    continue
+            return partial
+
+        workers = min(max(1, int(max_workers)), len(chunks))
+        if workers <= 1:
+            for chunk in chunks:
+                out.update(_fetch_chunk(chunk))
+            return out
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(_fetch_chunk, chunk) for chunk in chunks]
+            for fut in as_completed(futures):
+                try:
+                    out.update(fut.result())
                 except Exception:  # noqa: BLE001
                     continue
         return out

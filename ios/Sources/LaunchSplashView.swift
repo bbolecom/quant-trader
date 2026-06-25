@@ -50,11 +50,15 @@ struct LaunchSplashView: View {
     }
 }
 
-/// App 根：启动加载 + 注入 Tab 壳。
+import SwiftUI
+import Combine
+
+/// App 根：启动加载 + 注入 Tab 壳 + 5 分钟云端自动刷新（全市场快扫节奏）。
 struct AppRootView: View {
     @EnvironmentObject private var pickLoader: DailyPickLoader
     @EnvironmentObject private var manifestLoader: ManifestLoader
     @State private var showSplash = true
+    private let refreshTimer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -66,6 +70,9 @@ struct AppRootView: View {
             }
         }
         .task { await bootstrap() }
+        .onReceive(refreshTimer) { _ in
+            Task { await AppServices.refreshAll() }
+        }
     }
 
     private var splashMessage: String {

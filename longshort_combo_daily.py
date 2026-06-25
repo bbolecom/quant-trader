@@ -34,11 +34,22 @@ def load_config(path: Path) -> dict:
 
 def run_scan(cfg_dict: dict) -> dict:
     cfg = config_from_dict(cfg_dict)
-    reg = market_regime()
-    picks = scan_live(cfg)
-    signals = picks.to_dict(orient="records") if not picks.empty else []
-    actionable = [s for s in signals if s.get("信号") == "可开仓"]
     rules = load_rules()
+    try:
+        reg = market_regime()
+        picks = scan_live(cfg)
+        signals = picks.to_dict(orient="records") if not picks.empty else []
+        warning = None
+    except Exception as exc:  # noqa: BLE001 - 每日资源要可生成，行情源失败时写空仓降级文件。
+        reg = {
+            "regime": "unknown",
+            "SPY": None,
+            "MA20": None,
+            "warning": f"market_data_fallback: {exc}",
+        }
+        signals = []
+        warning = f"行情获取失败，已降级为空仓观察：{exc}"
+    actionable = [s for s in signals if s.get("信号") == "可开仓"]
 
     return {
         "date": datetime.now().strftime("%Y-%m-%d"),
@@ -46,6 +57,7 @@ def run_scan(cfg_dict: dict) -> dict:
         "strategy": cfg.name,
         "market": reg,
         "backtest": rules.get("best_metrics") or {},
+        "warning": warning,
         "scan_stats": {
             "扫描命中": len(signals),
             "可开仓": len(actionable),

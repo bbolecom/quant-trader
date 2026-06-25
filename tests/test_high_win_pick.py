@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from quant.high_win_pick import StatsStore, enrich_pick, filter_high_win_picks
+from quant.high_win_pick import StatsStore, enrich_pick, filter_high_win_picks, is_placeholder_pick
 
 
 def test_fleet_ticker_stats():
@@ -36,3 +36,11 @@ def test_filter_high_win():
     out = filter_high_win_picks(picks, min_win_rate=0.80, actionable_only=True)
     assert len(out) == 1
     assert out[0]["代码"] == "A"
+
+
+def test_quick_skip_not_high_win():
+    pick = {"模块": "规律·Ultra80", "代码": "—", "状态": "观望", "方向": "—", "选股理由": "quick 模式跳过"}
+    out = enrich_pick(pick, StatsStore())
+    assert is_placeholder_pick(pick) is True
+    assert out["高胜率达标"] is False
+    assert out["历史胜率"] is None

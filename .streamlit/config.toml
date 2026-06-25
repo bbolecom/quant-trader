@@ -9,7 +9,6 @@ font = "sans serif"
 [server]
 headless = true
 enableXsrfProtection = true
-enableCORS = false
 enableWebsocketCompression = true
 maxMessageSize = 500
 

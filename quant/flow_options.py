@@ -74,10 +74,17 @@ def enrich_pick_with_chain(
         )
         if plan is None:
             row["状态"] = "观望"
+            row["数据源"] = "真实链不可用"
+            row["数据有效"] = False
+            row["可交易"] = False
+            row["策略动作"] = ""
             row["期权备注"] = f"真实链Put价差：{why}"
             return row
         can = plan.contracts >= 1
         row["状态"] = "可开仓" if can else "观望"
+        row["数据源"] = "真实链"
+        row["数据有效"] = True
+        row["可交易"] = can
         row["方向"] = "做空"
         row["策略动作"] = "买Put价差"
         row["期权结构"] = plan.legs_label()
@@ -104,10 +111,17 @@ def enrich_pick_with_chain(
         )
         if plan is None:
             row["状态"] = "观望"
+            row["数据源"] = "真实链不可用"
+            row["数据有效"] = False
+            row["可交易"] = False
+            row["策略动作"] = ""
             row["期权备注"] = f"真实链Call价差：{why}"
             return row
         can = plan.contracts >= 1
         row["状态"] = "可开仓" if can else "观望"
+        row["数据源"] = "真实链"
+        row["数据有效"] = True
+        row["可交易"] = can
         row["策略动作"] = "卖Call价差"
         row["期权结构"] = plan.legs_label()
         row["到期"] = plan.expiry

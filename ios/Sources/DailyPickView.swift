@@ -101,7 +101,10 @@ struct DailyPickView: View {
                     ThsDataSourceBanner(
                         source: source,
                         hint: loader.errorMessage,
-                        onSetup: source == .remote ? nil : { nav.selectedTab = 4 }
+                        loadedFrom: loader.loadedFrom,
+                        onSetup: source == .bundled
+                            ? { Task { await loader.reload() } }
+                            : { nav.selectedTab = 4 }
                     )
                 }
 
@@ -132,7 +135,7 @@ struct DailyPickView: View {
 
                 actionableSection(doc)
 
-                if let watching = doc.picks?.filter({ !$0.isActionable && !$0.isHighWinQualified }), !watching.isEmpty {
+                if let watching = doc.picks?.filter({ !$0.isPlaceholder && !$0.isActionable && !$0.isHighWinQualified }), !watching.isEmpty {
                     ThsSectionHeader(
                         title: "观望 / 观察",
                         subtitle: "待确认或条件未满足",
@@ -154,7 +157,7 @@ struct DailyPickView: View {
 
     @ViewBuilder
     private func actionableSection(_ doc: DailyPickDocument) -> some View {
-        let actionable = doc.picks?.filter(\.isActionable) ?? []
+        let actionable = doc.picks?.filter { $0.isRealOpportunity } ?? []
         let shownInHighWin = Set(doc.highWinPicks.map(\.id))
         let extra = actionable.filter { !shownInHighWin.contains($0.id) }
         if !extra.isEmpty {

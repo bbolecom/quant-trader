@@ -1,0 +1,33 @@
+{
+  "name": "全市场快扫 · 5分钟",
+  "budget_sec": 300,
+  "screen_count": 250,
+  "screen_presets": [
+    "day_gainers",
+    "day_losers",
+    "most_actives",
+    "small_cap_gainers",
+    "aggressive_small_caps",
+    "growth_technology_stocks"
+  ],
+  "min_price": 2.0,
+  "min_dvol_m": 5.0,
+  "enrich_rv": true,
+  "enrich_top_n": 120,
+  "rv_lookback_days": 35,
+  "rules": {
+    "gainer10": { "min_gain_pct": 10.0, "min_dvol_m": 100.0 },
+    "gainer5": { "min_gain_pct": 5.0, "min_dvol_m": 50.0 },
+    "extreme_up": { "min_gain_pct": 15.0, "min_dvol_m": 30.0 },
+    "extreme_down": { "max_gain_pct": -15.0, "min_dvol_m": 30.0 },
+    "high_active": { "min_dvol_m": 200.0 }
+  },
+  "schedule": {
+    "note": "GitHub Actions market_scan.yml 盘中每 5 分钟；iOS App 每 5 分钟拉云端 JSON",
+    "cron": "*/5 14-21 * * 1-5"
+  },
+  "outputs": {
+    "today_json": "research/market_scan_today.json",
+    "ios_bundle": "ios/Resources/market_scan_today.json"
+  }
+}

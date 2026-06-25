@@ -85,11 +85,24 @@ def get_market_regime(cfg: dict) -> dict:
     from quant.providers import DataConfig, get_provider, reset_provider_cache
     from research.income_engine import get_regime
 
+    prof = resolve_profile(cfg)
     reset_provider_cache()
     yahoo = get_provider(DataConfig(provider="yahoo"))
-    reg = get_regime(yahoo)
+    try:
+        reg = get_regime(yahoo)
+    except Exception as exc:  # noqa: BLE001 - daily 生成宁可降级，也不要因行情代理失败中断。
+        bull = True
+        return {
+            "bull": bull,
+            "label": "🟡 大盘未知（使用降级牛市配置）",
+            "spy": None,
+            "ma50": None,
+            "mode": "bull",
+            "playbook": "行情获取失败：使用保守默认配置",
+            "frequency_profile": prof["name"],
+            "warning": f"market_regime_fallback: {exc}",
+        }
     bull = reg.bull
-    prof = resolve_profile(cfg)
     if prof["name"] == "high_freq":
         playbook = "高频：卖Call×10 + CSP舰队（动量/铁鹰已关）"
     elif bull:
@@ -416,11 +429,15 @@ def _run_fleet_csp(fleet_cfg: dict, account_size: float, cfg: dict | None = None
             "代码": str(r.get("代码", acct.get("ticker", ""))),
             "状态": "可开仓" if can else "观望",
             "方向": r.get("方向", "卖Put" if can else "观望"),
+            "策略动作": r.get("策略动作", ""),
             "选股理由": r.get("选股理由", acct.get("description", "")),
             "建议张数": r.get("建议张数", ""),
+            "卖Put行权价": r.get("卖Put行权价", ""),
             "权利金$": r.get("权利金$", ""),
             "回测胜率": r.get("回测胜率", ""),
             "数据源": r.get("数据源", ""),
+            "数据有效": r.get("数据有效"),
+            "可交易": r.get("可交易"),
         })
     return rows
 
@@ -806,7 +823,7 @@ def run_daily_pick(cfg: dict) -> dict:
         "牛市三引擎" if bull else "弱市偏空收租"
     )
 
-    from quant.daily_pick_push import build_push_block, enrich_pick_data_source
+    from quant.daily_pick_push import build_push_block, sanitize_picks
     from quant.strategy_catalog import (
         build_strategy_summary_doc,
         build_strategy_audit,
@@ -847,7 +864,7 @@ def run_daily_pick(cfg: dict) -> dict:
         )
         all_rows = high_win_doc.get("all_enriched") or all_rows
 
-    all_rows = [enrich_pick_data_source(r) for r in all_rows]
+    all_rows = sanitize_picks(all_rows)
 
     doc = {
         "选股日期": today,
@@ -896,6 +913,10 @@ def _json_default(obj: object) -> object:
         return bool(obj)
     if isinstance(obj, pd.Timestamp):
         return obj.isoformat()
+    if isinstance(obj, pd.Series):
+        return obj.to_dict()
+    if isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient="records")
     raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
 
 

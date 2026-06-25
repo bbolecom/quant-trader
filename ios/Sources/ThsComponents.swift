@@ -299,6 +299,9 @@ struct OpportunityMetaRow: View {
             if row.isActionable {
                 Label("今日可执行", systemImage: "bolt.fill")
                     .foregroundStyle(ThsTheme.up)
+            } else if !row.hasValidTradeData && row.isOptionLikePick {
+                Label("仅历史回测", systemImage: "link.badge.plus")
+                    .foregroundStyle(.orange)
             }
             Spacer(minLength: 0)
         }
@@ -311,6 +314,7 @@ struct OpportunityMetaRow: View {
         switch row.riskLevel {
         case "低风险": return "shield.checkered"
         case "高风险": return "exclamationmark.triangle.fill"
+        case "无真实链": return "link.badge.plus"
         case "待确认": return "hourglass"
         default: return "shield.lefthalf.filled"
         }
@@ -320,6 +324,7 @@ struct OpportunityMetaRow: View {
         switch row.riskLevel {
         case "低风险": return ThsTheme.up
         case "高风险": return ThsTheme.accent
+        case "无真实链": return .orange
         case "待确认": return .orange
         default: return ThsTheme.textSecondary
         }
@@ -450,6 +455,7 @@ extension View {
 struct ThsDataSourceBanner: View {
     let source: DailyPickDataSource
     var hint: String?
+    var loadedFrom: String?
     var onSetup: (() -> Void)?
 
     var body: some View {
@@ -467,13 +473,17 @@ struct ThsDataSourceBanner: View {
             }
             Spacer()
             if let onSetup, source != .remote {
-                Button("连接 Mac", action: onSetup)
+                Button(actionButtonTitle, action: onSetup)
                     .font(.caption.weight(.bold))
                     .foregroundStyle(ThsTheme.accent)
             }
         }
         .padding(12)
         .thsCard(border: tint.opacity(0.35), radius: 12)
+    }
+
+    private var actionButtonTitle: String {
+        source == .bundled ? "刷新云端" : "连接 Mac"
     }
 
     private var icon: String {
@@ -494,9 +504,12 @@ struct ThsDataSourceBanner: View {
 
     private var subtitle: String {
         if let hint, !hint.isEmpty { return hint }
+        if let loadedFrom, !loadedFrom.isEmpty, source == .github {
+            return "\(loadedFrom) · 每 5 分钟自动刷新"
+        }
         switch source {
         case .remote: return "Mac 局域网实时 JSON"
-        case .github: return "GitHub 云端 · 自动同步"
+        case .github: return "云端 CDN · 每 5 分钟自动刷新"
         case .bundled: return "App 内置 · 可能不是今日最新"
         }
     }

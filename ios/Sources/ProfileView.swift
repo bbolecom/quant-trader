@@ -149,7 +149,7 @@ struct ProfileView: View {
             Text("快速配置")
                 .font(.headline)
                 .foregroundStyle(ThsTheme.textPrimary)
-            presetButton("☁️ 云端（默认）", subtitle: "GitHub 数据 + Render K线实时 API") {
+            presetButton("☁️ 云端（默认）", subtitle: "jsDelivr CDN + GitHub 备用 · Render K线") {
                 draftStreamlit = AppConfig.defaultServerURLString
                 draftJsonBase = ""
                 draftChartAPI = AppConfig.defaultChartAPIBase
@@ -223,7 +223,7 @@ struct ProfileView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("美股量化 v3.0")
                 .font(.subheadline.weight(.semibold))
-            Text("所有模块数据与 K 线均从云端拉取，每 60 秒自动刷新。")
+            Text("所有模块数据与 K 线均从云端拉取，全市场快扫每 5 分钟自动刷新。")
                 .font(.caption)
                 .foregroundStyle(ThsTheme.textSecondary)
             Text("模块 JSON：GitHub raw · K 线：Render 实时 API（可在上方修改）。")

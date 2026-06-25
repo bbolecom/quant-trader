@@ -12,8 +12,11 @@ on:
     branches: [main]
     paths:
       - "research/daily_pick_today.json"
+      - "research/market_scan_today.json"
       - "quant/chart_live.py"
+      - "quant/market_scan_fast.py"
       - "scripts/export_chart_snapshots.py"
+      - ".github/workflows/market_scan.yml"
 
 permissions:
   contents: write
@@ -49,6 +52,12 @@ jobs:
       - name: Refresh chart snapshots
         continue-on-error: true
         run: python scripts/export_chart_snapshots.py --limit 80
+
+      # 全市场快扫（真实 Yahoo 行情，~15s）；workflow_dispatch / push 也执行一次
+      - name: Fast market scan
+        if: github.event_name != 'schedule' || github.event.schedule != '20 21 * * 1-5'
+        continue-on-error: true
+        run: python market_scan_fast.py || echo "market_scan skipped"
 
       # 盘后（或手动/push）才重算选股，避免盘中频繁重跑重型扫描。
       - name: Refresh daily picks + manifest

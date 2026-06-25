@@ -13,30 +13,40 @@ final class JsonDataLoader: ObservableObject {
         errorMessage = nil
         defer { isLoading = false }
 
+        if let bundled = Self.loadBundled(path: path) {
+            apply(bundled, from: "内置资源")
+            return
+        }
+
         var lastError: String?
         for url in AppConfig.jsonCandidateURLs(for: path) {
             do {
-                var req = URLRequest(url: url)
-                req.cachePolicy = .reloadIgnoringLocalCacheData
-                req.timeoutInterval = AppConfig.requestTimeout(for: url)
-                let (data, resp) = try await URLSession.shared.data(for: req)
-                guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                    lastError = "云端无响应（\(url.lastPathComponent)）"
-                    continue
-                }
+                let data = try await CloudFetch.data(from: url)
                 if let dict = Self.parsePayload(data, path: path) {
-                    apply(dict, from: sourceLabel(for: url))
+                    apply(dict, from: AppConfig.hostLabel(for: url))
                     return
                 }
                 lastError = "JSON 格式不是对象"
             } catch {
-                lastError = error.localizedDescription
+                lastError = "\(AppConfig.hostLabel(for: url)): \(error.localizedDescription)"
             }
         }
 
         root = nil
         loadedFrom = nil
         errorMessage = lastError ?? "无法从云端获取数据，请检查网络后下拉刷新"
+    }
+
+    private static func loadBundled(path: String) -> [String: Any]? {
+        let rel = AppConfig.jsonRelativePath(path)
+        let urlPath = URL(fileURLWithPath: rel)
+        let name = urlPath.deletingPathExtension().lastPathComponent
+        let ext = urlPath.pathExtension.isEmpty ? "json" : urlPath.pathExtension
+        guard let url = Bundle.main.url(forResource: name, withExtension: ext),
+              let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        return parsePayload(data, path: path)
     }
 
     private static func parsePayload(_ data: Data, path: String) -> [String: Any]? {

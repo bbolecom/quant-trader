@@ -28,16 +28,20 @@ struct DailyPickDocument: Codable {
     }
 
     var highWinPicks: [PickRow] {
-        highWin?.picks ?? []
+        (highWin?.picks ?? []).filter { !$0.isPlaceholder }
     }
 
     var highWinWatch: [PickRow] {
-        highWin?.watch ?? []
+        // 高胜率观察池只保留有真实报价的信号：期权类若无真实链（"无真实报价"），
+        // 即便历史回测达标也不展示，避免与其它列表不一致地泄漏无效卡片。
+        (highWin?.watch ?? []).filter {
+            !$0.isPlaceholder && !(($0.isOptionLikePick) && !$0.hasValidTradeData)
+        }
     }
 
     var primaryPicks: [PickRow] {
         if !highWinPicks.isEmpty { return highWinPicks }
-        return picks?.filter(\.isActionable) ?? []
+        return picks?.filter { $0.isRealOpportunity } ?? []
     }
 
     var topOpportunities: [PickRow] {
@@ -48,7 +52,7 @@ struct DailyPickDocument: Codable {
                 let key = "\(row.module)-\(row.ticker)-\(row.status)"
                 guard !seen.contains(key) else { return false }
                 seen.insert(key)
-                return row.isActionable || row.isHighWinQualified
+                return row.isRealOpportunity
             }
             .sorted { lhs, rhs in
                 if lhs.opportunityScore != rhs.opportunityScore {
@@ -241,6 +245,9 @@ struct PickRow: Codable, Identifiable {
     let strategyAnnReturn: Double?
     let pushPriority: Double?
     let explicitOpportunityScore: Double?
+    let dataSourceTier: String?
+    let dataValid: Bool?
+    let tradable: Bool?
 
     enum CodingKeys: String, CodingKey {
         case module = "模块"
@@ -265,24 +272,59 @@ struct PickRow: Codable, Identifiable {
         case strategyAnnReturn = "策略年化"
         case pushPriority = "推送优先级"
         case explicitOpportunityScore = "机会评分"
+        case dataSourceTier = "数据源"
+        case dataValid = "数据有效"
+        case tradable = "可交易"
     }
 
-    var isActionable: Bool { status == "可开仓" }
+    var isActionable: Bool { status == "可开仓" && hasValidTradeData }
+
+    var isOptionLikePick: Bool {
+        let d = direction
+        if d.contains("卖Put") || d.contains("卖Call") || d.contains("铁鹰")
+            || d.contains("买Put") || d.contains("CSP") { return true }
+        let m = module
+        return m.contains("CSP") || m.contains("铁鹰") || m.contains("卖Call")
+            || m.contains("VRP") || m.contains("期权")
+    }
+
+    /// 期权类必须「真实链 + 可交易」；股票信号默认有效。
+    var hasValidTradeData: Bool {
+        if let t = tradable { return t }
+        if let v = dataValid { return v }
+        if !isOptionLikePick { return true }
+        return dataSourceTier == "真实链"
+    }
+
+    var isPlaceholder: Bool {
+        let t = ticker.trimmingCharacters(in: .whitespacesAndNewlines)
+        let d = direction.trimmingCharacters(in: .whitespacesAndNewlines)
+        if status == "扫描失败" || status == "无数据" { return true }
+        if t.isEmpty || t == "—" || t == "-" { return true }
+        if !isActionable && (d.isEmpty || d == "—" || d == "-") { return true }
+        if reason.localizedCaseInsensitiveContains("quick 模式跳过") { return true }
+        return false
+    }
 
     var isHighWinQualified: Bool {
-        highWinQualified == true || (histWin ?? 0) >= 0.80
+        !isPlaceholder && (highWinQualified == true || (histWin ?? 0) >= 0.80)
+    }
+
+    var isRealOpportunity: Bool {
+        !isPlaceholder && isActionable && hasValidTradeData
     }
 
     var hasBacktestStats: Bool {
         histWin != nil || histAnn != nil || histDD != nil
     }
 
-    var opportunityScore: Int {
+    private var rawOpportunityScore: Int {
+        if isPlaceholder { return 0 }
         if let explicitOpportunityScore {
             return min(100, max(0, Int(explicitOpportunityScore.rounded())))
         }
         var score = 0.0
-        if isActionable { score += 28 }
+        if status == "可开仓" && hasValidTradeData { score += 28 }
         if isHighWinQualified { score += 24 }
         if let histWin {
             score += min(max(histWin, 0), 1) * 22
@@ -311,7 +353,17 @@ struct PickRow: Codable, Identifiable {
         return min(100, max(0, Int(score.rounded())))
     }
 
+    var opportunityScore: Int {
+        if !hasValidTradeData && isOptionLikePick {
+            return min(rawOpportunityScore, 35)
+        }
+        return rawOpportunityScore
+    }
+
     var opportunityGrade: String {
+        if !hasValidTradeData && isOptionLikePick {
+            return "无真实报价"
+        }
         switch opportunityScore {
         case 85...: return "强机会"
         case 70..<85: return "稳健"
@@ -321,6 +373,7 @@ struct PickRow: Codable, Identifiable {
     }
 
     var riskLevel: String {
+        if !hasValidTradeData && isOptionLikePick { return "无真实链" }
         if let histDD, abs(histDD) >= 0.20 { return "高风险" }
         if !isActionable { return "待确认" }
         if isHighWinQualified { return "低风险" }
@@ -437,24 +490,24 @@ final class DailyPickLoader: ObservableObject {
         errorMessage = nil
 
         let urls = AppConfig.dailyPickCandidateURLs()
+        var lastError: String?
         for url in urls {
-            if let doc = await fetchRemote(url: url) {
-                apply(doc, source: url.host == "raw.githubusercontent.com" ? .github : .remote, from: url.host)
+            switch await fetchRemote(url: url) {
+            case .success(let doc):
+                let source: DailyPickDataSource = url.host?.contains("192.168.") == true
+                    || url.host?.hasPrefix("10.") == true ? .remote : .github
+                apply(doc, source: source, from: AppConfig.hostLabel(for: url))
                 isLoading = false
                 return
+            case .failure(let reason):
+                lastError = reason
             }
-        }
-
-        if let url = AppConfig.githubDailyPickURL,
-           let doc = await fetchRemote(url: url) {
-            apply(doc, source: .github, from: "GitHub")
-            isLoading = false
-            return
         }
 
         if let bundled = Self.decodeBundledJSON() {
             apply(bundled, source: .bundled, from: "App 内置")
-            errorMessage = "云端不可用，已切换到内置快照"
+            errorMessage = lastError.map { "云端不可用（\($0)），已切换到内置快照" }
+                ?? "云端不可用，已切换到内置快照"
             isLoading = false
             return
         }
@@ -462,7 +515,7 @@ final class DailyPickLoader: ObservableObject {
         document = nil
         dataSource = nil
         loadedFrom = nil
-        errorMessage = "无法从云端加载选股数据，请检查网络后下拉刷新"
+        errorMessage = lastError ?? "无法从云端加载选股数据，请检查网络后下拉刷新"
         isLoading = false
     }
 
@@ -473,21 +526,21 @@ final class DailyPickLoader: ObservableObject {
         loadedFrom = host
     }
 
-    private func fetchRemote(url: URL) async -> DailyPickDocument? {
+    private enum FetchResult {
+        case success(DailyPickDocument)
+        case failure(String)
+    }
+
+    private func fetchRemote(url: URL) async -> FetchResult {
         do {
-            var request = URLRequest(url: url)
-            request.cachePolicy = .reloadIgnoringLocalCacheData
-            request.timeoutInterval = 12
-            let (data, response) = try await URLSession.shared.data(for: request)
-            guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
-                return nil
+            let data = try await CloudFetch.data(from: url)
+            if let doc = Self.decodeJSON(data) {
+                return .success(doc)
             }
-            return Self.decodeJSON(data)
-        } catch is DecodingError {
-            errorMessage = DailyPickLoaderError.decodeFailed.errorDescription
-            return nil
+            let reason = Self.decodeFailureReason(from: data) ?? "JSON 格式错误"
+            return .failure("\(AppConfig.hostLabel(for: url)): \(reason)")
         } catch {
-            return nil
+            return .failure("\(AppConfig.hostLabel(for: url)): \(error.localizedDescription)")
         }
     }
 
@@ -522,5 +575,98 @@ final class DailyPickLoader: ObservableObject {
         } catch {
             return error.localizedDescription
         }
+    }
+}
+
+// MARK: - 全市场快扫（5 分钟轮询）
+
+struct MarketScanDocument: Codable {
+    let scanTime: String?
+    let scanDate: String?
+    let elapsedSec: Double?
+    let withinBudget: Bool?
+    let scanStats: MarketScanStats?
+    let summary: MarketScanSummary?
+    let signals: [PickRow]?
+
+    enum CodingKeys: String, CodingKey {
+        case scanTime = "扫描时间"
+        case scanDate = "扫描日期"
+        case elapsedSec = "elapsed_sec"
+        case withinBudget = "within_budget"
+        case scanStats = "scan_stats"
+        case summary
+        case signals
+    }
+
+    var topSignals: [PickRow] {
+        (signals ?? []).filter { !$0.isPlaceholder }.prefix(12).map { $0 }
+    }
+}
+
+struct MarketScanStats: Codable {
+    let universe: Int?
+    let signals: Int?
+    let phase1Sec: Double?
+    let phase2Sec: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case universe
+        case signals
+        case phase1Sec = "phase1_sec"
+        case phase2Sec = "phase2_sec"
+    }
+}
+
+struct MarketScanSummary: Codable {
+    let total: Int?
+    let gainer10: Int?
+    let note: String?
+
+    enum CodingKeys: String, CodingKey {
+        case total = "总信号"
+        case gainer10 = "Gainer10+"
+        case note = "说明"
+    }
+}
+
+@MainActor
+final class MarketScanLoader: ObservableObject {
+    static let shared = MarketScanLoader()
+
+    @Published private(set) var document: MarketScanDocument?
+    @Published private(set) var isLoading = false
+    @Published private(set) var loadedFrom: String?
+    @Published private(set) var lastError: String?
+
+    private init() {}
+
+    func reload() async {
+        isLoading = true
+        defer { isLoading = false }
+
+        if let bundled = loadBundled() {
+            document = bundled
+        }
+
+        for url in AppConfig.cloudJSONURLs(for: "market_scan_today.json") {
+            do {
+                let data = try await CloudFetch.data(from: url)
+                let decoded = try JSONDecoder().decode(MarketScanDocument.self, from: data)
+                document = decoded
+                loadedFrom = AppConfig.hostLabel(for: url)
+                lastError = nil
+                return
+            } catch {
+                lastError = error.localizedDescription
+                continue
+            }
+        }
+    }
+
+    private func loadBundled() -> MarketScanDocument? {
+        guard let url = Bundle.main.url(forResource: "market_scan_today", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(MarketScanDocument.self, from: data)
     }
 }

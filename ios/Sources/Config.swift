@@ -45,6 +45,40 @@ enum AppConfig {
         jsonCandidateURLs(for: "daily_pick_today.json")
     }
 
+    /// research/ 下 JSON 的云端镜像（jsDelivr 优先，国内更易访问；GitHub Raw 备用）。
+    static func cloudJSONURLs(for relPath: String) -> [URL] {
+        let rel = jsonRelativePath(relPath)
+        let templates = [
+            "https://cdn.jsdelivr.net/gh/\(githubRepo)@\(githubBranch)/research/\(rel)",
+            "https://raw.githubusercontent.com/\(githubRepo)/\(githubBranch)/research/\(rel)",
+        ]
+        return templates.compactMap { cacheBustedURL(URL(string: $0)) }
+    }
+
+    static func cloudChartURLs(ticker: String) -> [URL] {
+        let sym = ticker.uppercased()
+        let templates = [
+            "https://cdn.jsdelivr.net/gh/\(githubRepo)@\(githubBranch)/research/charts/\(sym).json",
+            "https://raw.githubusercontent.com/\(githubRepo)/\(githubBranch)/research/charts/\(sym).json",
+        ]
+        return templates.compactMap { cacheBustedURL(URL(string: $0)) }
+    }
+
+    static func cloudManifestURLs() -> [URL] {
+        cloudJSONURLs(for: "app_manifest.json")
+    }
+
+    static func hostLabel(for url: URL) -> String {
+        guard let host = url.host?.lowercased() else { return "云端" }
+        if host.contains("jsdelivr") { return "jsDelivr CDN" }
+        if host == "raw.githubusercontent.com" { return "GitHub" }
+        if host.contains("onrender.com") { return "Render" }
+        if host == "localhost" || host.hasPrefix("192.168.") || host.hasPrefix("10.") {
+            return "Mac 局域网"
+        }
+        return host
+    }
+
     /// 模块 JSON 相对路径，如 `gain15_daily_today.json`
     static func jsonRelativePath(_ path: String) -> String {
         path
@@ -52,38 +86,33 @@ enum AppConfig {
             .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
     }
 
-    /// 模块 JSON 候选 URL：GitHub 云端（实时）→ Mac 局域网 JSON 服务
+    /// 模块 JSON 候选 URL：Mac 局域网 → jsDelivr CDN → GitHub Raw
     static func jsonCandidateURLs(for path: String) -> [URL] {
         var urls: [URL] = []
         let rel = jsonRelativePath(path)
 
-        if let gh = githubJSONURL(for: rel) {
-            urls.append(gh)
+        if !AppSettings.shared.jsonBaseURL.isEmpty,
+           let u = URL(string: AppSettings.shared.jsonBaseURL + rel),
+           let busted = cacheBustedURL(u) {
+            urls.append(busted)
         }
         if let u = AppSettings.shared.jsonURL(for: path),
            let busted = cacheBustedURL(u),
            !urls.contains(busted) {
             urls.append(busted)
         }
-        if !AppSettings.shared.jsonBaseURL.isEmpty,
-           let u = URL(string: AppSettings.shared.jsonBaseURL + rel),
-           let busted = cacheBustedURL(u),
-           !urls.contains(busted) {
-            urls.append(busted)
+        for u in cloudJSONURLs(for: rel) where !urls.contains(u) {
+            urls.append(u)
         }
         return urls
     }
 
     static func githubJSONURL(for relPath: String) -> URL? {
-        cacheBustedURL(
-            URL(string: "https://raw.githubusercontent.com/\(githubRepo)/\(githubBranch)/research/\(relPath)")
-        )
+        cloudJSONURLs(for: relPath).first
     }
 
     static func githubChartURL(ticker: String) -> URL? {
-        cacheBustedURL(
-            URL(string: "https://raw.githubusercontent.com/\(githubRepo)/\(githubBranch)/research/charts/\(ticker.uppercased()).json")
-        )
+        cloudChartURLs(ticker: ticker).first
     }
 
     /// K 线实时 API URL（每次请求拉 yfinance）
@@ -115,10 +144,29 @@ enum AppConfig {
         guard let host = url.host?.lowercased() else { return 12 }
         // Render 免费版冷启动较慢，但它现在只作后台 live 升级，不阻塞首屏 → 适度收敛。
         if host.contains("onrender.com") { return 25 }
-        if host == "raw.githubusercontent.com" { return 12 }
+        if host.contains("jsdelivr") { return 18 }
+        if host == "raw.githubusercontent.com" { return 15 }
         if host == "localhost" || host.hasPrefix("127.") || host.hasPrefix("192.168.") || host.hasPrefix("10.") {
             return 4
         }
         return 12
+    }
+}
+
+/// 云端 JSON / 快照拉取（User-Agent + 超时）。
+enum CloudFetch {
+    static let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) QuantTrader/3.0"
+
+    static func data(from url: URL) async throws -> Data {
+        var req = URLRequest(url: url)
+        req.cachePolicy = .reloadIgnoringLocalCacheData
+        req.timeoutInterval = AppConfig.requestTimeout(for: url)
+        req.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        req.setValue("application/json", forHTTPHeaderField: "Accept")
+        let (data, resp) = try await URLSession.shared.data(for: req)
+        guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        return data
     }
 }

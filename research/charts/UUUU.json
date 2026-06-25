@@ -1,18 +1,10 @@
 {
   "ticker": "UUUU",
-  "updated": "2026-06-24 18:01:01",
+  "updated": "2026-06-25 20:21:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 15.2,
-      "high": 15.3,
-      "low": 14.69,
-      "close": 15.1,
-      "volume": 3469000
-    },
     {
       "date": "2025-12-26",
       "open": 15.08,
@@ -987,15 +979,15 @@
       "high": 16.49,
       "low": 15.31,
       "close": 15.47,
-      "volume": 16634700
+      "volume": 16662200
     },
     {
       "date": "2026-06-24",
       "open": 15.05,
-      "high": 15.348,
+      "high": 15.35,
       "low": 14.53,
-      "close": 14.8441,
-      "volume": 7588366
+      "close": 15.03,
+      "volume": 11967800
     }
   ]
 }

@@ -23,6 +23,7 @@ MANIFEST = RESOURCES / "app_manifest.json"
 EXTRA = [
     "pattern_daily_today.json",
     "move_pattern_5d_today.json",
+    "market_scan_today.json",
 ]
 
 

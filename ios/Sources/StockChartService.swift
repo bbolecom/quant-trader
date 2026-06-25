@@ -122,9 +122,9 @@ enum StockChartService {
 
         var lastError: Error = URLError(.badServerResponse)
 
-        if let gh = AppConfig.githubChartURL(ticker: sym) {
+        for url in AppConfig.cloudChartURLs(ticker: sym) {
             do {
-                let (bars, stamp) = try await loadRemoteSnapshot(url: gh, period: period)
+                let (bars, stamp) = try await loadRemoteSnapshot(url: url, period: period)
                 if !bars.isEmpty {
                     await cache.store(bars, source: .github, updatedAt: stamp, ticker: sym, period: period)
                     return (bars, .github, stamp)

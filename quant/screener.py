@@ -153,13 +153,9 @@ def fetch_broad_universe(
                 seen.add(t)
                 out.append(t)
 
-    for preset in BROAD_SCREEN_PRESETS:
-        try:
-            df = fetch_yahoo_screen(preset, count=screen_count)
-            if not df.empty:
-                _add(df["代码"].tolist())
-        except Exception:  # noqa: BLE001
-            continue
+    snap = fetch_yahoo_screens_parallel(BROAD_SCREEN_PRESETS, count=screen_count)
+    if not snap.empty:
+        _add(snap["代码"].tolist())
     if include_sp500:
         _add(fetch_sp500_tickers())
     if include_nasdaq100:
@@ -169,24 +165,57 @@ def fetch_broad_universe(
     return out
 
 
-def fetch_gainer_universe_live(count: int = 250) -> pd.DataFrame:
-    """当日全市场涨幅相关候选：合并多个 Yahoo 榜，保留市值/成交额字段。"""
+def fetch_yahoo_screens_parallel(
+    presets: tuple[str, ...] | list[str],
+    *,
+    count: int = 250,
+    max_workers: int = 6,
+) -> pd.DataFrame:
+    """并行拉多个 Yahoo 预置榜，合并去重（全市场扫描 Phase-1）。"""
+    preset_list = list(presets)
+    if not preset_list:
+        return pd.DataFrame()
     frames: list[pd.DataFrame] = []
-    for preset in ("day_gainers", "most_actives", "small_cap_gainers", "aggressive_small_caps"):
+    workers = min(max(1, int(max_workers)), len(preset_list))
+
+    def _one(preset: str) -> pd.DataFrame:
         try:
             df = fetch_yahoo_screen(preset, count=count)
-            if not df.empty:
-                df = df.copy()
-                df["_来源"] = UNIVERSE_PRESETS.get(preset, preset)
-                frames.append(df)
+            if df.empty:
+                return df
+            out = df.copy()
+            out["_来源"] = UNIVERSE_PRESETS.get(preset, preset)
+            return out
         except Exception:  # noqa: BLE001
-            continue
+            return pd.DataFrame()
+
+    if workers <= 1:
+        for p in preset_list:
+            frames.append(_one(p))
+    else:
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {pool.submit(_one, p): p for p in preset_list}
+            for fut in as_completed(futures):
+                try:
+                    frames.append(fut.result())
+                except Exception:  # noqa: BLE001
+                    continue
+    frames = [f for f in frames if f is not None and not f.empty]
     if not frames:
         return pd.DataFrame()
     merged = pd.concat(frames, ignore_index=True)
     merged = merged.sort_values("涨幅%", ascending=False, na_position="last")
-    merged = merged.drop_duplicates(subset=["代码"], keep="first")
-    return merged.reset_index(drop=True)
+    return merged.drop_duplicates(subset=["代码"], keep="first").reset_index(drop=True)
+
+
+def fetch_gainer_universe_live(count: int = 250) -> pd.DataFrame:
+    """当日全市场涨幅相关候选：并行合并多个 Yahoo 榜。"""
+    return fetch_yahoo_screens_parallel(
+        ("day_gainers", "most_actives", "small_cap_gainers", "aggressive_small_caps"),
+        count=count,
+    )
 
 
 def quotes_to_dataframe(response: dict[str, Any]) -> pd.DataFrame:

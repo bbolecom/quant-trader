@@ -34,7 +34,7 @@ def test_bundled_json_exists_and_parses(name: str) -> None:
 
 def test_manifest_json_paths_bundled() -> None:
     doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    assert doc.get("core_count") == 11
+    assert doc.get("core_count") == 12
     missing = []
     for feat in doc.get("features") or []:
         if not feat.get("is_core"):

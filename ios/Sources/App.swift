@@ -12,6 +12,7 @@ struct QuantTraderApp: App {
             AppRootView()
                 .environmentObject(ManifestLoader.shared)
                 .environmentObject(DailyPickLoader.shared)
+                .environmentObject(MarketScanLoader.shared)
         }
     }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "flow_action_v4_ultra80",
-  "description": "极严高胜率 v4：仅做空融资回吐（前日≥44%且当日跌≥2.5%），目标笔胜率≥80%",
+  "name": "flow_action_v5_longshort",
+  "description": "多空组合 v5：U_S2做多 + D_S2/D_OFFERING做空 等权 · 5年提升胜率",
   "long_patterns": ["U_S2"],
   "short_patterns": ["D_S2", "D_OFFERING"],
   "offering_proxy_pct": 40.0,
@@ -20,7 +20,7 @@
   "min_recent_setup_win_rate": 0.0,
   "min_recent_setup_samples": 3,
   "use_recent_setup_win": true,
-  "long_top_n": 0,
+  "long_top_n": 1,
   "short_top_n": 1,
   "min_dvol_m": 50.0,
   "min_price": 5.0,

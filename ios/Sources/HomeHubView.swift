@@ -5,6 +5,7 @@ struct HomeHubView: View {
     @EnvironmentObject private var nav: AppNavigation
     @EnvironmentObject private var manifestLoader: ManifestLoader
     @EnvironmentObject private var pickLoader: DailyPickLoader
+    @EnvironmentObject private var marketScanLoader: MarketScanLoader
     @State private var searchText = ""
     @State private var hotTab: HomeHotTab = .recommended
     @State private var selectedPick: PickRow?
@@ -109,6 +110,7 @@ struct HomeHubView: View {
             iconGridSection
             bannerSection
             watchlistCard
+            marketScanCard
             opportunitySnapshotCard
             aiDiagnosisCard
             hotFeedSection
@@ -366,6 +368,64 @@ struct HomeHubView: View {
             .background(ThsTheme.homeBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         }
         .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private var marketScanCard: some View {
+        let doc = marketScanLoader.document
+        let signals = Array(doc?.topSignals.prefix(5) ?? [])
+        if doc != nil {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Label("全市场快扫", systemImage: "dot.radiowaves.left.and.right")
+                        .font(.headline)
+                        .foregroundStyle(ThsTheme.homeTextPrimary)
+                    Spacer()
+                    if let n = doc?.summary?.total ?? doc?.scanStats?.signals {
+                        Text("\(n) 信号")
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(ThsTheme.homeHeaderRed)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(ThsTheme.homeHeaderRed.opacity(0.12), in: Capsule())
+                    }
+                }
+                if let t = doc?.scanTime {
+                    Text("\(t) · \(Int(doc?.elapsedSec ?? 0))s · 每5分钟刷新")
+                        .font(.caption)
+                        .foregroundStyle(ThsTheme.homeTextSecondary)
+                }
+                if signals.isEmpty {
+                    Text("当前无动量/Gainer10+ 机会，继续轮询…")
+                        .font(.subheadline)
+                        .foregroundStyle(ThsTheme.homeTextSecondary)
+                } else {
+                    ForEach(signals) { row in
+                        Button { selectedPick = row } label: {
+                            HStack(spacing: 10) {
+                                Text(row.ticker)
+                                    .font(.subheadline.weight(.bold))
+                                    .foregroundStyle(ThsTheme.homeHeaderRed)
+                                    .frame(width: 52, alignment: .leading)
+                                Text(row.reason)
+                                    .font(.caption)
+                                    .foregroundStyle(ThsTheme.homeTextSecondary)
+                                    .lineLimit(1)
+                                Spacer()
+                                Text("\(row.opportunityScore)")
+                                    .font(.caption.weight(.bold))
+                                    .foregroundStyle(ThsTheme.homeTextPrimary)
+                            }
+                            .padding(.vertical, 6)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+            .padding(14)
+            .background(ThsTheme.homeCard)
+            .padding(.horizontal, 12)
+        }
     }
 
     @ViewBuilder
@@ -892,4 +952,5 @@ extension ManifestFeature {
         .environmentObject(AppNavigation())
         .environmentObject(ManifestLoader.shared)
         .environmentObject(DailyPickLoader.shared)
+        .environmentObject(MarketScanLoader.shared)
 }

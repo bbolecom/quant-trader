@@ -32,6 +32,20 @@ THS_CATEGORIES: list[dict[str, str]] = [
 # 量化终端工具（非 daily_pick 策略，仅供 Streamlit 跳转）
 LAB_FEATURES: list[dict[str, Any]] = [
     {
+        "id": "market_scan",
+        "name": "全市场快扫",
+        "category": "聚合",
+        "ths_category": "hub",
+        "icon": "dot.radiowaves.left.and.right",
+        "script": "market_scan_fast.py",
+        "config": "market_scan_config.json",
+        "today_json": "research/market_scan_today.json",
+        "description": "5 分钟内并行扫描全市场 · Yahoo 多榜 + 动量/Gainer10+ 信号",
+        "integrated_in_daily_pick": False,
+        "view_type": "json_generic",
+        "launcher": "MarketScan_运行一次.command",
+    },
+    {
         "id": "longshort_combo",
         "name": "多空组合 · 高胜率",
         "category": "动量",
@@ -238,7 +252,7 @@ def build_app_manifest(root: Path | None = None) -> dict[str, Any]:
         by_cat.setdefault(f["ths_category"], []).append(f)
 
     quick_ids = [
-        "daily_pick", "longshort_combo", "capital_flow", "flow_strategy", "meme_long",
+        "daily_pick", "market_scan", "longshort_combo", "capital_flow", "flow_strategy", "meme_long",
         "gain15", "extreme20", "gainer10", "bear_call", "fleet_csp", "sndk_iron",
     ]
     quick_entries = [f for fid in quick_ids for f in features if f["id"] == fid]

@@ -283,10 +283,61 @@ class StatsStore:
         return None
 
 
+def is_placeholder_pick(pick: dict) -> bool:
+    """非机会占位行：quick 跳过、无代码、扫描失败等，不挂高胜率标签。"""
+    status = str(pick.get("状态", "") or "")
+    ticker = str(pick.get("代码", "") or "").strip()
+    direction = str(pick.get("方向", "") or "").strip()
+    reason = str(pick.get("选股理由", "") or "")
+    if status in {"扫描失败", "无数据"}:
+        return True
+    if "quick 模式跳过" in reason or "quick" in reason.lower() and "跳过" in reason:
+        return True
+    if ticker in {"", "—", "-", "None", "nan"}:
+        return True
+    if direction in {"", "—", "-"} and status != "可开仓":
+        return True
+    return False
+
+
+# 通用合成锚点来源（非逐票/逐规则真实回测），不足以为「无真实报价」期权背书
+GENERIC_ANCHOR_SOURCES = {"strategy_ranker"}
+
+
+def option_lacks_real_chain(pick: dict) -> bool:
+    """期权类信号但没有真实期权链报价（模型估算 / 真实链不可用）。"""
+    from quant.daily_pick_push import infer_data_source, is_option_pick
+
+    if not is_option_pick(pick):
+        return False
+    return infer_data_source(pick) != "真实链"
+
+
 def enrich_pick(pick: dict, store: StatsStore | None = None) -> dict:
     store = store or StatsStore()
     out = dict(pick)
+    if is_placeholder_pick(out):
+        out["历史胜率"] = None
+        out["历史年化"] = None
+        out["最大回撤"] = None
+        out["回测摘要"] = "占位/跳过行，不计入机会"
+        out["高胜率达标"] = False
+        return out
     stats = store.resolve(out)
+    # 无真实期权链的期权信号，若只能挂「通用合成锚点」(如 call_spread 88%)，
+    # 则不背书为高胜率——避免 MBC/MMYT 这类无流动期权的小盘票被错误贴标。
+    # 逐票/逐规则的真实回测锚点（舰队 / S8U / gain15 等）仍然保留。
+    if (
+        stats is not None
+        and stats.source in GENERIC_ANCHOR_SOURCES
+        and option_lacks_real_chain(out)
+    ):
+        out["历史胜率"] = None
+        out["历史年化"] = None
+        out["最大回撤"] = None
+        out["回测摘要"] = "无真实期权链，不计入高胜率"
+        out["高胜率达标"] = False
+        return out
     if stats:
         out.update(stats.as_dict())
         out["回测摘要"] = stats.fmt_line()
@@ -313,6 +364,8 @@ def filter_high_win_picks(
 ) -> list[dict]:
     out: list[dict] = []
     for p in picks:
+        if is_placeholder_pick(p):
+            continue
         wr = p.get("历史胜率")
         if wr is None:
             continue
@@ -336,10 +389,20 @@ def build_high_win_doc(
 ) -> dict:
     store = StatsStore()
     enriched = enrich_picks(picks, store)
-    high_win = filter_high_win_picks(enriched, min_win_rate=min_win_rate, actionable_only=True)
+    # 高胜率池只收「能真正成交」的信号：期权类必须有真实期权链报价。
+    # 无真实链的期权（含有真实历史回测的舰队 CSP）今天无法下单、会显示
+    # 「无真实报价」，不应进入可开仓/观察池——但其回测锚点仍保留在 picks 行上。
+    high_win = [
+        p for p in filter_high_win_picks(enriched, min_win_rate=min_win_rate, actionable_only=True)
+        if not option_lacks_real_chain(p)
+    ]
     watch_high = [
         p for p in enriched
-        if p.get("高胜率达标") and p.get("状态") != "可开仓" and p.get("状态") not in ("扫描失败",)
+        if p.get("高胜率达标")
+        and p.get("状态") != "可开仓"
+        and p.get("状态") not in ("扫描失败",)
+        and not is_placeholder_pick(p)
+        and not option_lacks_real_chain(p)
     ]
     return {
         "min_win_rate": min_win_rate,

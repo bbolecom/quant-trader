@@ -74,7 +74,7 @@ final class AppSettings: ObservableObject {
     var jsonURLHint: String {
         if !jsonBaseURL.isEmpty { return jsonBaseURL }
         if let d = derivedJSONBase() { return d }
-        return "GitHub 云端（raw.githubusercontent.com）"
+        return "jsDelivr CDN / GitHub（raw.githubusercontent.com）"
     }
 
     var chartAPIHint: String {

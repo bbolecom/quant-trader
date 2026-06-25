@@ -394,11 +394,14 @@ def apply_live_csp_chain(
     out = dict(row)
     if not lc.get("enabled", True):
         out["数据源"] = "模型估算"
+        out["数据有效"] = False
+        out["可交易"] = False
         out["可开仓"] = "⏸"
         out["方向"] = "观望"
         out["卖Put行权价"] = ""
         out["权利金$"] = ""
         out["建议张数"] = ""
+        out["策略动作"] = ""
         out["选股理由"] = (
             f"⚠️ **Black-Scholes 模型估算，非真实报价，不可直接下单。** "
             f"{sym} ${spot:.2f} · {backtest_note or '请本地运行 daily_pick.py 或开启 live_chain'}"
@@ -417,11 +420,14 @@ def apply_live_csp_chain(
     )
     if cplan is None:
         out["数据源"] = "真实链不可用"
+        out["数据有效"] = False
+        out["可交易"] = False
         out["可开仓"] = "⏸"
         out["方向"] = "观望"
         out["卖Put行权价"] = ""
         out["权利金$"] = ""
         out["建议张数"] = ""
+        out["策略动作"] = ""
         out["选股理由"] = (
             f"{sym} ${spot:.2f} · **真实链不可用**：{why} → **观望**"
             + (f" · {backtest_note}" if backtest_note else "")
@@ -431,12 +437,19 @@ def apply_live_csp_chain(
     nc = cplan.contracts
     trend_ok = model_can_open
     can = trend_ok and nc >= 1
+    leg = cplan.legs[0] if cplan.legs else None
     out["数据源"] = "真实链"
-    out["卖Put行权价"] = cplan.legs[0].strike if cplan.legs else out.get("卖Put行权价")
+    out["数据有效"] = True
+    out["可交易"] = can
+    out["卖Put行权价"] = leg.strike if leg else ""
     out["权利金$"] = round(cplan.net_per_contract, 0)
     out["建议张数"] = nc if nc >= 1 else 0
     out["可开仓"] = "✅" if can else "⏸"
     out["方向"] = "卖Put" if can else "观望"
+    out["策略动作"] = (
+        f"卖Put ${leg.strike:g} @{cplan.expiry}({cplan.dte}d) · 收${cplan.net_per_contract:.0f}/张"
+        if can and leg else ""
+    )
     parts = [
         f"{sym} ${spot:.2f} · **真实链** {cplan.legs_label()} @{cplan.expiry}({cplan.dte}d)",
         f"收${cplan.net_per_contract:.0f}/张 · 占用${cplan.collateral:.0f}/张",

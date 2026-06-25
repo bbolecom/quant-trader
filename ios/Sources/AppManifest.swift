@@ -139,18 +139,19 @@ final class ManifestLoader: ObservableObject {
         errorMessage = nil
         defer { isLoading = false }
 
-        if let gh = AppConfig.githubManifestURL, let remote = await loadFromURL(gh) {
-            manifest = remote
-            return
+        for url in AppConfig.cloudManifestURLs() {
+            if let remote = await loadFromURL(url) {
+                manifest = remote
+                loadedFrom = AppConfig.hostLabel(for: url)
+                return
+            }
         }
 
-        let paths = ["app_manifest.json"]
-        for path in paths {
-            if let url = AppSettings.shared.jsonURL(for: path) {
-                if let remote = await loadFromURL(url) {
-                    manifest = remote
-                    return
-                }
+        if let path = AppSettings.shared.jsonURL(for: "app_manifest.json") {
+            if let remote = await loadFromURL(path) {
+                manifest = remote
+                loadedFrom = AppConfig.hostLabel(for: path)
+                return
             }
         }
 
@@ -161,14 +162,8 @@ final class ManifestLoader: ObservableObject {
     private func loadFromURL(_ url: URL) async -> AppManifest? {
         let busted = AppConfig.cacheBustedURL(url) ?? url
         do {
-            var req = URLRequest(url: busted)
-            req.cachePolicy = .reloadIgnoringLocalCacheData
-            req.timeoutInterval = AppConfig.requestTimeout(for: busted)
-            let (data, resp) = try await URLSession.shared.data(for: req)
-            guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else { return nil }
-            let decoded = try JSONDecoder().decode(AppManifest.self, from: data)
-            loadedFrom = url.host == "raw.githubusercontent.com" ? "GitHub" : url.host
-            return decoded
+            let data = try await CloudFetch.data(from: busted)
+            return try JSONDecoder().decode(AppManifest.self, from: data)
         } catch {
             return nil
         }

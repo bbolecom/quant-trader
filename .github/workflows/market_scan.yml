@@ -1,0 +1,52 @@
+name: Market Scan (5min)
+
+# 盘中每 5 分钟全市场快扫 → 推送到 GitHub/jsDelivr，供 iOS 拉取
+on:
+  schedule:
+    - cron: "*/5 14-21 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-scan
+  cancel-in-progress: true
+
+env:
+  PYTHONPATH: ${{ github.workspace }}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install yfinance pandas numpy lxml
+
+      - name: Run fast market scan
+        run: python market_scan_fast.py
+
+      - name: Commit scan results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/market_scan_today.json ios/Resources/market_scan_today.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No scan changes"
+            exit 0
+          fi
+          git commit -m "chore: market scan $(date -u +%H:%M UTC) [skip ci]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push; then
+              echo "pushed on attempt $i"; exit 0
+            fi
+            echo "push attempt $i failed"; sleep $((i * 5))
+          done
+          exit 1

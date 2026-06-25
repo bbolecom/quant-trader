@@ -7,6 +7,7 @@ from quant.daily_pick_push import (
     enrich_pick_data_source,
     is_push_eligible,
     push_priority,
+    sanitize_pick_row,
 )
 
 
@@ -74,7 +75,49 @@ def test_build_push_block_filters_model():
     push = build_push_block(doc, {"push": {"require_real_data": True}})
     assert push["count"] == 1
     assert push["picks"][0]["代码"] == "AAPL"
-    assert push["stats"]["skipped_model"] == 1
+    assert push["stats"]["skipped_watch"] >= 1
+
+
+def test_sanitize_clears_fake_option_fields():
+    row = sanitize_pick_row({
+        "代码": "SNDK",
+        "状态": "可开仓",
+        "方向": "卖Put",
+        "模块": "5×舰队·CSP",
+        "数据源": "真实链不可用",
+        "卖Put行权价": 1720,
+        "权利金$": 25800,
+        "建议张数": 1,
+        "策略动作": "卖Put 30D",
+        "选股理由": "SNDK $1914 · 真实链不可用",
+    })
+    assert row["状态"] == "观望"
+    assert row["方向"] == "观望"
+    assert row["数据有效"] is False
+    assert row["可交易"] is False
+    assert row["卖Put行权价"] == ""
+    assert row["权利金$"] == ""
+    assert row["建议张数"] == ""
+    assert row["策略动作"] == ""
+
+
+def test_sanitize_keeps_real_chain_quotes():
+    row = sanitize_pick_row({
+        "代码": "SOFI",
+        "状态": "可开仓",
+        "方向": "卖Put",
+        "模块": "5×舰队·CSP",
+        "数据源": "真实链",
+        "可开仓": "✅",
+        "卖Put行权价": 15,
+        "权利金$": 42,
+        "建议张数": 1,
+        "策略动作": "卖Put $15",
+    })
+    assert row["数据有效"] is True
+    assert row["可交易"] is True
+    assert row["卖Put行权价"] == 15
+    assert row["权利金$"] == 42
 
 
 def test_push_block_sorts_by_strategy_priority():

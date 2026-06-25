@@ -1,18 +1,10 @@
 {
   "ticker": "STLA",
-  "updated": "2026-06-24 20:56:07",
+  "updated": "2026-06-25 20:21:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-24",
-      "open": 11.01,
-      "high": 11.06,
-      "low": 10.92,
-      "close": 11.03,
-      "volume": 3709400
-    },
     {
       "date": "2025-12-26",
       "open": 11.01,
@@ -987,7 +979,15 @@
       "high": 6.18,
       "low": 5.96,
       "close": 5.96,
-      "volume": 27686100
+      "volume": 27754900
+    },
+    {
+      "date": "2026-06-24",
+      "open": 5.9,
+      "high": 6.0,
+      "low": 5.83,
+      "close": 5.84,
+      "volume": 20818500
     }
   ]
 }
