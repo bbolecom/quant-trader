@@ -1,0 +1,109 @@
+{
+  "date": "2026-06-26",
+  "updated": "2026-06-26 10:14:38",
+  "title": "📊 量化机会 14条 · 2026-06-26",
+  "total_actionable": 14,
+  "strategies": [
+    {
+      "id": "daily_pick",
+      "name": "每日选股 · 统一入口",
+      "path": "research/daily_pick_today.json",
+      "actionable": 8,
+      "symbols": [
+        "—",
+        "VSH",
+        "ABCL"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-25"
+    },
+    {
+      "id": "fleet_csp",
+      "name": "5×CSP 圣杯舰队",
+      "path": "research/liquid_fleet_picks.json",
+      "actionable": 0,
+      "symbols": [],
+      "has_data": true,
+      "data_date": null
+    },
+    {
+      "id": "capital_flow",
+      "name": "资金流向操盘痕迹",
+      "path": "research/flow_daily_today.json",
+      "actionable": 3,
+      "symbols": [
+        "BALL",
+        "SRRK",
+        "NVO"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-24"
+    },
+    {
+      "id": "flow_strategy",
+      "name": "资金流向组合",
+      "path": "research/flow_strategy_today.json",
+      "actionable": 0,
+      "symbols": [],
+      "has_data": true,
+      "data_date": null
+    },
+    {
+      "id": "gainer10",
+      "name": "涨幅榜多空",
+      "path": "research/gainer10_today.json",
+      "actionable": 0,
+      "symbols": [],
+      "has_data": true,
+      "data_date": "2026-06-26"
+    },
+    {
+      "id": "extreme20",
+      "name": "暴涨暴跌20%事件",
+      "path": "research/extreme20_today.json",
+      "actionable": 0,
+      "symbols": [],
+      "has_data": true,
+      "data_date": "2026-06-25"
+    },
+    {
+      "id": "meme_long",
+      "name": "Meme规律 · Ultra80",
+      "path": "research/ticker_pattern_today.json",
+      "actionable": 2,
+      "symbols": [
+        "PLTR",
+        "SMCI",
+        "TTMI"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-24"
+    },
+    {
+      "id": "whipsaw_short",
+      "name": "做空涨幅榜·卖Call价差",
+      "path": "research/whipsaw_short_today.json",
+      "actionable": 0,
+      "symbols": [],
+      "has_data": true,
+      "data_date": "2026-06-26"
+    },
+    {
+      "id": "short_squeeze",
+      "name": "安飞士做空",
+      "path": "research/short_squeeze_today.json",
+      "actionable": 1,
+      "symbols": [
+        "SPCE",
+        "MBX",
+        "ORKA"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-26"
+    }
+  ],
+  "push_preview": {
+    "title": "📊 量化机会 14条 · 2026-06-26",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 8\n• 每日选股 · 统一入口: 8 · —、VSH、ABCL\n• 资金流向操盘痕迹: 3 · BALL、SRRK、NVO\n• Meme规律 · Ultra80: 2 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+  }
+}

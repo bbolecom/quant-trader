@@ -442,6 +442,61 @@ def fleet_notification(result: dict) -> tuple[str, str]:
     )
 
 
+def write_today_json(result: dict, cfg: dict) -> Path:
+    """写入云端 JSON feed（App + GitHub raw）。"""
+    out = cfg.get("outputs") or {}
+    tj = ROOT / out.get("today_json", "research/sndk_iron_today.json")
+    tj.parent.mkdir(parents=True, exist_ok=True)
+    if result.get("fleet_rows") is not None:
+        df = fleet_to_dataframe(result)
+        rows = df.to_dict(orient="records")
+        metrics = fleet_summary_metrics(result)
+        actionable = int(metrics.get("open_count", 0))
+        summary_block = metrics
+    else:
+        rows = []
+        for p in result.get("plans") or []:
+            rows.append({
+                "代码": p.ticker,
+                "可开": "✅",
+                "现价": round(p.spot, 2),
+                "到期": p.expiry,
+                "DTE": p.dte,
+                "结构": _plan_structure_line(p),
+                "真实收$": round(p.net_per_contract * p.contracts, 0),
+                "保证金$": round(p.collateral * p.contracts, 0),
+                "张数": p.contracts,
+                "ROI": round(_roi(p) * 100, 1),
+                "盈利区间": _profit_zone(p)[0],
+            })
+        actionable = len(rows)
+        summary_block = None
+    doc = {
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "strategy_id": "sndk_iron",
+        "title": "SNDK铁鹰收租",
+        "profile": result.get("profile") or cfg.get("profile"),
+        "scan_stats": {
+            "可开仓": actionable,
+            "合计": len(rows),
+            "观望": max(0, len(rows) - actionable),
+        },
+        "summary": summary_block,
+        "rows": rows,
+        "picks": [r for r in rows if r.get("可开") == "✅"],
+        "errors": result.get("errors") or [],
+    }
+    payload = json.dumps(doc, ensure_ascii=False, indent=2)
+    tj.write_text(payload, encoding="utf-8")
+    ios = out.get("ios_bundle")
+    if ios:
+        ip = ROOT / ios
+        ip.parent.mkdir(parents=True, exist_ok=True)
+        ip.write_text(payload, encoding="utf-8")
+    return tj
+
+
 def print_report(result: dict) -> None:
     print("=" * 78)
     mode = "舰队" if result.get("fleet_rows") is not None else "单标的"
@@ -464,6 +519,7 @@ def main() -> None:
     cfg = load_config(Path(args.config))
     fleet_on = bool((cfg.get("fleet") or {}).get("enabled")) and not args.single
     result = run_fleet(cfg) if fleet_on else run_scan(cfg)
+    write_today_json(result, cfg)
     print_report(result)
     append_history(result)
 

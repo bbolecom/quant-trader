@@ -11,15 +11,19 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "ios" / "Resources"
 MANIFEST = RES / "app_manifest.json"
 
-# 核心 9 策略相关 JSON（bundled 资源）
+# 三分类核心策略相关 JSON（bundled 资源）
 REQUIRED = [
     "daily_pick_today.json",
-    "gain15_daily_today.json",
     "flow_daily_today.json",
     "flow_strategy_today.json",
     "ticker_pattern_today.json",
     "liquid_fleet_picks.json",
     "whipsaw_short_today.json",
+    "short_squeeze_today.json",
+    "sndk_iron_today.json",
+    "vrp_today.json",
+    "gainer10_today.json",
+    "extreme20_today.json",
 ]
 
 
@@ -34,7 +38,7 @@ def test_bundled_json_exists_and_parses(name: str) -> None:
 
 def test_manifest_json_paths_bundled() -> None:
     doc = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    assert doc.get("core_count") == 12
+    assert doc.get("core_count") == 10
     missing = []
     for feat in doc.get("features") or []:
         if not feat.get("is_core"):

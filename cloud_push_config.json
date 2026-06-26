@@ -1,0 +1,24 @@
+{
+  "push_when": "actionable",
+  "push_mobile": {
+    "enabled": true,
+    "bark": {
+      "enabled": true,
+      "key_env": "BARK_KEY",
+      "key": "",
+      "server": "https://api.day.app",
+      "group": "美股量化",
+      "sound": "bell"
+    },
+    "serverchan": {
+      "enabled": false,
+      "key_env": "SERVERCHAN_KEY",
+      "key": ""
+    },
+    "ntfy": {
+      "enabled": false,
+      "topic": "",
+      "server": "https://ntfy.sh"
+    }
+  }
+}

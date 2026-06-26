@@ -88,6 +88,8 @@ def _push_ntfy(node: dict, title: str, body: str) -> tuple[bool, str]:
 
 def push_mobile(cfg: dict, title: str, body: str) -> list[str]:
     """按配置向所有启用渠道推送。返回结果日志行列表。"""
+    if os.environ.get("QUANT_SKIP_MOBILE_PUSH") == "1":
+        return []
     mc = (cfg or {}).get("push_mobile") or {}
     if not mc.get("enabled"):
         return []

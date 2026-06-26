@@ -109,6 +109,51 @@ def run_vrp(cfg: dict) -> dict:
     return result
 
 
+def write_today_json(result: dict, cfg: dict) -> Path:
+    out = cfg.get("outputs") or {}
+    tj = ROOT / out.get("today_json", "research/vrp_today.json")
+    tj.parent.mkdir(parents=True, exist_ok=True)
+
+    vix = result.get("vix")
+    etf_sig = result.get("etf_sig")
+    csp = result.get("csp_table")
+    top_n = int((cfg.get("csp") or {}).get("top_n", 5))
+    if csp is not None and not csp.empty:
+        csp_rows = csp.head(top_n).to_dict(orient="records")
+    else:
+        csp_rows = []
+
+    actionable = len(csp_rows)
+    if etf_sig and "持有" in str(etf_sig.action):
+        actionable = max(actionable, 1)
+
+    doc = {
+        "date": date.today().isoformat(),
+        "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "strategy_id": "vrp",
+        "title": "VRP波动率溢价",
+        "etf": result.get("etf"),
+        "vix": vars(vix) if vix else None,
+        "etf_signal": vars(etf_sig) if etf_sig else None,
+        "scan_stats": {
+            "CSP候选": len(csp_rows),
+            "可开仓": actionable,
+        },
+        "csp_candidates": csp_rows,
+        "picks": csp_rows,
+        "playbook": result.get("playbook") or [],
+        "errors": result.get("errors") or [],
+    }
+    payload = json.dumps(doc, ensure_ascii=False, indent=2)
+    tj.write_text(payload, encoding="utf-8")
+    ios = out.get("ios_bundle")
+    if ios:
+        ip = ROOT / ios
+        ip.parent.mkdir(parents=True, exist_ok=True)
+        ip.write_text(payload, encoding="utf-8")
+    return tj
+
+
 def format_notification(result: dict) -> tuple[str, str]:
     """生成 (标题, 正文) 供桌面/邮件通知。"""
     etf_sig = result.get("etf_sig")
@@ -219,6 +264,7 @@ def main() -> None:
 
     cfg = load_config(Path(args.config))
     result = run_vrp(cfg)
+    write_today_json(result, cfg)
     print_report(result)
     append_history(result)
 

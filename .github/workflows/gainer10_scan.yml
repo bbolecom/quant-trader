@@ -36,6 +36,7 @@ jobs:
         env:
           BARK_KEY: ${{ secrets.BARK_KEY }}
           SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+          QUANT_SKIP_MOBILE_PUSH: "1"
         run: python gainer10_daily.py
 
       - name: Commit scan results

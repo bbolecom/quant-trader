@@ -22,5 +22,9 @@
       "to": "you@example.com",
       "password_env": "SCAN_EMAIL_PASSWORD"
     }
+  },
+  "outputs": {
+    "today_json": "research/vrp_today.json",
+    "ios_bundle": "ios/Resources/vrp_today.json"
   }
 }

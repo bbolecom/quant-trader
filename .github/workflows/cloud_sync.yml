@@ -1,11 +1,11 @@
 name: Cloud Data Sync
 
 # 让 app「一开就是最新」：
-#   - 盘中每 30 分钟刷新 K 线快照 + 保活 Render 实时 API（避免冷启动卡顿）
+#   - 盘中每 5 分钟刷新 K 线快照 + 保活 Render 实时 API
 #   - 盘后重算每日选股 + 功能清单，推到 GitHub raw（app 端 cache-bust 击穿）
 on:
   schedule:
-    - cron: "*/30 13-21 * * 1-5"   # 美股盘中（UTC，覆盖夏/冬令时）：图表 + 保活
+    - cron: "*/5 14-21 * * 1-5"    # 盘中每 5 分钟：K 线快照 + Render 保活
     - cron: "20 21 * * 1-5"        # 盘后：重算选股 + 清单 + 图表
   workflow_dispatch:
   push:
@@ -42,7 +42,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install yfinance pandas numpy requests
+        run: pip install yfinance pandas numpy requests lxml
 
       # 保活 Render 免费实例：定时探活，盘中保持热，app 内 live 升级才够快。
       - name: Keep Render warm
@@ -51,7 +51,7 @@ jobs:
 
       - name: Refresh chart snapshots
         continue-on-error: true
-        run: python scripts/export_chart_snapshots.py --limit 80
+        run: python scripts/export_chart_snapshots.py --limit 100
 
       # 全市场快扫（真实 Yahoo 行情，~15s）；workflow_dispatch / push 也执行一次
       - name: Fast market scan
@@ -59,21 +59,26 @@ jobs:
         continue-on-error: true
         run: python market_scan_fast.py || echo "market_scan skipped"
 
-      # 盘后（或手动/push）才重算选股，避免盘中频繁重跑重型扫描。
-      - name: Refresh daily picks + manifest
+      - name: Export K-line for scan signals
+        if: github.event_name != 'schedule' || github.event.schedule != '20 21 * * 1-5'
+        continue-on-error: true
+        run: python scripts/export_chart_snapshots.py --from-market-scan --limit 35 || echo "chart export skipped"
+
+      # 盘后：全策略扫描 → 云端 JSON → 汇总推送
+      - name: Post-close all strategies + digest push
         if: github.event_name != 'schedule' || github.event.schedule == '20 21 * * 1-5'
         continue-on-error: true
-        run: |
-          python daily_pick.py --quick --no-notify || echo "daily_pick skipped"
-          python -m quant.app_manifest || echo "manifest skipped"
-          python scripts/sync_ios_bundles.py || echo "ios bundles skipped"
+        env:
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        run: python scripts/cloud_post_close.py
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/charts/ research/*.json ios/Resources/*.json 2>/dev/null || true
-          git add ios/Resources/charts/ 2>/dev/null || true
+          git add ios/Resources/charts/ *.csv blowoff_short_history.csv gainer10_history.csv 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No data changes"
             exit 0
