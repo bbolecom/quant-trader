@@ -1,7 +1,7 @@
 {
   "mode": "high_win",
   "min_gain_pct": 10.0,
-  "min_dvol_m": 100.0,
+  "min_dvol_m": 50.0,
   "gainer_count": 250,
   "a_ext20_min": 0.40,
   "a_rsi_min": 75.0,
@@ -30,6 +30,20 @@
     "desktop": true,
     "only_when_action": false,
     "note": "由 daily_pick 统一调度时已汇总通知，单独跑 gainer10_daily.py 才用此项"
+  },
+  "push_when": "actionable",
+  "push_mobile": {
+    "enabled": true,
+    "bark": {
+      "enabled": true,
+      "key_env": "BARK_KEY",
+      "key": "",
+      "server": "https://api.day.app",
+      "group": "美股涨幅榜",
+      "sound": "bell"
+    },
+    "serverchan": { "enabled": false, "key_env": "SERVERCHAN_KEY", "key": "" },
+    "ntfy": { "enabled": false, "topic": "", "server": "https://ntfy.sh" }
   },
   "outputs": {
     "today_json": "research/gainer10_today.json",

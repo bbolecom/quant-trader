@@ -123,14 +123,42 @@ def main() -> None:
     save_outputs(plan, raw)
     print("\n".join(format_lines(plan)))
 
+    st = plan["scan_stats"]
+    n_long = st.get("分板块多", 0) + st.get("续涨A", 0) + st.get("续涨B", 0)
+    n_short = st.get("分板块空", 0) + st.get("做空S", 0)
     if not args.dry_run and (raw.get("notify") or {}).get("desktop", True):
-        st = plan["scan_stats"]
-        n_long = st.get("分板块多", 0) + st.get("续涨A", 0) + st.get("续涨B", 0)
-        n_short = st.get("分板块空", 0) + st.get("做空S", 0)
         desktop_notify(
             f"Gainer10+ {plan['date']}",
             f"多 {n_long} · 空 {n_short}",
         )
+
+    # 手机推送：仅当有可开仓信号时才推（push_when=actionable）；always=每天都推
+    if not args.dry_run:
+        push_when = str(raw.get("push_when", "actionable"))
+        has_action = (n_long + n_short) > 0
+        if push_when == "always" or has_action:
+            try:
+                from quant.mobile_push import push_mobile
+                longs = plan.get("buy_sector", []) + plan.get("buy_a", []) + plan.get("buy_b", [])
+                shorts = plan.get("short_sector", []) + plan.get("short_s", [])
+                reg = plan.get("market") or {}
+                mkt = "🟢强市" if reg.get("站上MA20") else "🔴弱市(暂停追多)"
+                if has_action:
+                    title = f"📈涨幅榜信号 多{n_long}空{n_short} · {plan['date']}"
+                    parts = []
+                    if longs:
+                        parts.append("多:" + "、".join(
+                            f"{r['代码']}(涨{r['涨幅_pct']}%)" for r in longs[:4]))
+                    if shorts:
+                        parts.append("空:" + "、".join(
+                            f"{r['代码']}(涨{r['涨幅_pct']}%)" for r in shorts[:4]))
+                    body = f"{mkt}\n" + "\n".join(parts)
+                else:
+                    title = f"涨幅榜扫描 · {plan['date']}"
+                    body = f"{mkt} · 命中{st.get('扫描',0)}只但无高胜率信号 → 观望"
+                push_mobile(raw, title, body)
+            except Exception as e:  # noqa: BLE001
+                print(f"[手机推送] 异常: {e}", file=__import__('sys').stderr)
 
 
 if __name__ == "__main__":
