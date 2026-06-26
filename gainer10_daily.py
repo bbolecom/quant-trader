@@ -154,8 +154,13 @@ def main() -> None:
                             f"{r['代码']}(涨{r['涨幅_pct']}%)" for r in shorts[:4]))
                     body = f"{mkt}\n" + "\n".join(parts)
                 else:
-                    title = f"涨幅榜扫描 · {plan['date']}"
-                    body = f"{mkt} · 命中{st.get('扫描',0)}只但无高胜率信号 → 观望"
+                    hit = st.get("命中特征", st.get("扫描", 0))
+                    title = f"涨幅榜扫描 {hit}只 · {plan['date']}"
+                    pb = plan.get("playbook") or []
+                    body = f"{mkt}\n" + (pb[0] if pb else plan.get("note") or "无高胜率信号")
+                    if plan.get("near_miss"):
+                        nm = "、".join(r["代码"] for r in plan["near_miss"][:4])
+                        body += f"\n空头观察: {nm}"
                 push_mobile(raw, title, body)
             except Exception as e:  # noqa: BLE001
                 print(f"[手机推送] 异常: {e}", file=__import__('sys').stderr)

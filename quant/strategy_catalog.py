@@ -396,11 +396,16 @@ def _count_actionable(
                 1 for x in cands
                 if x.get("信号") == "卖Call价差" and int(x.get("建议张数") or 0) > 0
             )
-        total = len(cands) if cands else max(actionable, int(ss.get("候选") or 0))
+        total = int(
+            ss.get("扫描") or ss.get("命中特征") or ss.get("候选") or len(cands) or actionable
+        )
+        watching = int(ss.get("观望") or max(0, total - actionable))
+        if ss.get("命中特征") and actionable == 0:
+            watching = int(ss.get("命中特征") or watching)
         return {
             "available": True,
             "可开仓": actionable,
-            "观望": max(0, total - actionable),
+            "观望": watching,
             "总条目": total,
             "date": doc.get("date") or doc.get("选股日期"),
         }

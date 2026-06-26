@@ -85,9 +85,9 @@ struct ModuleDetailView: View {
                 }
             }
             HStack(spacing: 16) {
-                statPill("可开仓", feature.actionable ?? 0, ThsTheme.up)
-                statPill("观望", feature.watching ?? 0, .orange)
-                statPill("合计", feature.total ?? 0, ThsTheme.textSecondary)
+                statPill("可开仓", displayStats.actionable, ThsTheme.up)
+                statPill("观望", displayStats.watching, .orange)
+                statPill("合计", displayStats.total, ThsTheme.textSecondary)
             }
             if feature.auditRank != nil || feature.winRate != nil || feature.annReturn != nil {
                 HStack(spacing: 10) {
@@ -146,6 +146,8 @@ struct ModuleDetailView: View {
             jsonStatsContent(root)
         case "meme":
             memeContent(root)
+        case "gainer10":
+            gainer10Content(root)
         case "playbook":
             playbookContent(root)
         case "daily_pick":
@@ -248,6 +250,79 @@ struct ModuleDetailView: View {
                 }
                 jsonSection("规律统计", rows: rows, emoji: "📈")
             }
+        }
+    }
+
+    private var displayStats: (actionable: Int, watching: Int, total: Int) {
+        if let root = loader.root, let stats = root["scan_stats"] as? [String: Any] {
+            let actionable = Int(JsonHelper.string(stats, "可开仓") ?? "0") ?? 0
+            let total = Int(
+                JsonHelper.string(stats, "扫描")
+                    ?? JsonHelper.string(stats, "命中特征")
+                    ?? JsonHelper.string(stats, "候选")
+                    ?? "0"
+            ) ?? feature.total ?? 0
+            let watching = Int(JsonHelper.string(stats, "观望") ?? String(max(0, total - actionable))) ?? 0
+            return (actionable, watching, max(total, watching, actionable))
+        }
+        return (feature.actionable ?? 0, feature.watching ?? 0, feature.total ?? 0)
+    }
+
+    // MARK: - Gainer10
+
+    private func gainer10Content(_ root: [String: Any]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            marketBanner(root["market"] as? [String: Any])
+            if let note = root["note"] as? String, !note.isEmpty {
+                Text(note)
+                    .font(.caption)
+                    .foregroundStyle(ThsTheme.textSecondary)
+                    .padding(12)
+                    .thsCard(border: ThsTheme.accent.opacity(0.25))
+            }
+            if let stats = root["scan_stats"] as? [String: Any] {
+                HStack(spacing: 10) {
+                    ThsMetricTile(
+                        title: "扫描池",
+                        value: JsonHelper.string(stats, "扫描") ?? "0",
+                        accent: ThsTheme.accent,
+                        icon: "magnifyingglass"
+                    )
+                    ThsMetricTile(
+                        title: "特征命中",
+                        value: JsonHelper.string(stats, "命中特征") ?? "0",
+                        accent: .orange,
+                        icon: "waveform.path.ecg"
+                    )
+                    ThsMetricTile(
+                        title: "可开仓",
+                        value: JsonHelper.string(stats, "可开仓") ?? "0",
+                        accent: ThsTheme.up,
+                        icon: "checkmark.circle"
+                    )
+                }
+            }
+            if let lines = root["playbook"] as? [String], !lines.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    ThsSectionHeader(title: "今日策略", count: lines.count, accent: ThsTheme.accent, icon: "text.book.closed")
+                    ForEach(Array(lines.enumerated()), id: \.offset) { _, line in
+                        Text(line)
+                            .font(.footnote)
+                            .foregroundStyle(ThsTheme.textSecondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .padding(12)
+                .thsCard()
+            }
+            jsonSection("涨幅榜扫描", rows: JsonHelper.array(root, "scan_universe"), emoji: "📈")
+            jsonSection("技术特征命中", rows: JsonHelper.array(root, "scan_candidates"), emoji: "🔍", accent: .orange)
+            jsonSection("分板块·续涨", rows: JsonHelper.array(root, "buy_sector"), emoji: "🎯", accent: ThsTheme.up)
+            jsonSection("续涨A", rows: JsonHelper.array(root, "buy_a"), emoji: "🚀", accent: ThsTheme.up)
+            jsonSection("续涨B", rows: JsonHelper.array(root, "buy_b"), emoji: "✅", accent: ThsTheme.up)
+            jsonSection("分板块·做空", rows: JsonHelper.array(root, "short_sector"), emoji: "🔻", accent: ThsTheme.down)
+            jsonSection("做空S", rows: JsonHelper.array(root, "short_s"), emoji: "📉", accent: ThsTheme.down)
+            jsonSection("空头观察", rows: JsonHelper.array(root, "near_miss"), emoji: "👁", accent: .orange)
         }
     }
 
@@ -428,10 +503,12 @@ struct ModuleDetailView: View {
         guard signalTypes.contains(vt) else { return false }
         let keys = ["picks", "new_spikes", "buy_confirmed", "avoid_confirmed", "watching",
                     "breakout", "continuation", "precursor", "today_precursors", "today_breakouts",
-                    "core", "extended", "long", "avoid", "path5d", "rows", "plans", "fleet", "signals", "members"]
+                    "core", "extended", "long", "avoid", "path5d", "rows", "plans", "fleet", "signals", "members",
+                    "scan_candidates", "scan_universe", "near_miss"]
         let hasRows = keys.contains { !JsonHelper.array(root, $0).isEmpty }
         let hasStats = root["scan_stats"] != nil || root["patterns"] != nil || root["results"] != nil
-        return !hasRows && !hasStats
+        let hasPlaybook = (root["playbook"] as? [String])?.isEmpty == false
+        return !hasRows && !hasStats && !hasPlaybook
     }
 
     private var emptyTodayCard: some View {

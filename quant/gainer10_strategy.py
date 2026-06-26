@@ -395,6 +395,48 @@ def _classify_legacy(f: dict[str, float], sec: str, bull: bool, cfg: Gainer10Con
     return None
 
 
+def _build_playbook(
+    reg: dict[str, Any],
+    bull: bool,
+    cfg: Gainer10Config,
+    scan_pool: int,
+    feat_hit: int,
+    n_long: int,
+    n_short: int,
+    long_rules: list[dict],
+    short_rules: list[dict],
+    note: str,
+) -> list[str]:
+    lines: list[str] = []
+    spy, ma = reg.get("SPY"), reg.get("MA20")
+    if bull:
+        lines.append(f"🟢 大盘强势 SPY {spy} ≥ MA20 {ma} → 多头分板块规则可启用。")
+    else:
+        lines.append(f"🔴 大盘弱势 SPY {spy} < MA20 {ma} → 追多暂停，只评估空头。")
+    lines.append(
+        f"扫描涨≥{cfg.min_gain_pct:g}% · 额≥{cfg.min_dvol_m:g}M：池内 {scan_pool} 只，"
+        f"技术特征命中 {feat_hit} 只。"
+    )
+    if n_long + n_short:
+        lines.append(f"✅ 高胜率信号：多 {n_long} · 空 {n_short}（mode={cfg.mode}）")
+    else:
+        lines.append("⚠️ 今日无票满足分板块 L≥60%+avg≥3 / S≥80% 门槛。")
+        if not bull:
+            lines.append("策略：弱市不追暴涨多头 → 观望或转「安飞士做空」/卖Call价差。")
+        if short_rules:
+            secs = "、".join(str(r.get("sector_cn") or r.get("sector")) for r in short_rules[:6])
+            lines.append(f"空头高胜率板块（回测）：{secs}")
+        if cfg.mode == "high_win":
+            lines.append("可选：config 改 mode=balanced 放宽规则（胜率~70% 信号更多）。")
+    if note:
+        lines.append(f"ℹ️ {note}")
+    if long_rules:
+        lines.append(
+            "多头板块: " + "、".join(str(r.get("sector_cn")) for r in long_rules[:5])
+        )
+    return lines
+
+
 def run_gainer10_scan(cfg: Gainer10Config | None = None) -> dict[str, Any]:
     cfg = cfg or Gainer10Config()
     reg = market_regime()
@@ -420,8 +462,19 @@ def run_gainer10_scan(cfg: Gainer10Config | None = None) -> dict[str, Any]:
     buy_sector: list[dict] = []
     short_s: list[dict] = []
     short_sector: list[dict] = []
+    scan_candidates: list[dict] = []
+    near_miss: list[dict] = []
 
     long_rules, short_rules = load_active_sector_rules(cfg)
+
+    scan_universe: list[dict] = []
+    for _, row in snap.head(20).iterrows():
+        scan_universe.append({
+            "代码": str(row["代码"]).upper(),
+            "涨幅_pct": round(float(row["涨幅%"]), 1),
+            "成交额M": round(float(row.get("成交额M") or row.get("成交额") or 0), 0),
+            "板块": str(row.get("行业") or "—"),
+        })
 
     for _, row in snap.head(80).iterrows():
         tk = str(row["代码"]).upper()
@@ -439,8 +492,42 @@ def run_gainer10_scan(cfg: Gainer10Config | None = None) -> dict[str, Any]:
         sec_en = secmap.get(tk) or str(row.get("_行业EN") or row.get("行业") or "Unknown")
         if sec_en in ("Unknown", "", "nan") and row.get("行业"):
             sec_en = str(row.get("行业"))
+        sec_cn = sector_cn(sec_en) if sec_en not in ("Unknown",) else sec_en
+        scan_candidates.append({
+            "代码": tk,
+            "现价": round(feat["close"], 2),
+            "涨幅_pct": round(feat["chg"] * 100, 1),
+            "成交额M": round(feat["dvol_m"], 0),
+            "板块": sec_cn,
+            "跳空_pct": round(feat["gap"] * 100, 1),
+            "乖离20_pct": round(feat["ext20"] * 100, 1),
+            "RSI": round(feat["rsi"], 0),
+            "量比": round(feat["vol_x"], 2),
+            "收盘强度": round(feat["clv"], 2),
+            "状态": "扫描命中",
+        })
         sig = classify(feat, sec_en, bull, cfg)
         if sig is None:
+            # 接近空头：弱板块暴涨但未满足 S≥80% 分板块规则
+            if cfg.short_enabled and feat["chg"] * 100 >= cfg.min_gain_pct:
+                in_short_sec = any(r.get("sector") == sec_en for r in short_rules)
+                weak = sec_en in WEAK_SECTORS
+                if in_short_sec or weak:
+                    why = "未达分板块空头阈值" if in_short_sec else "弱板块但无高胜率空头规则"
+                    if cfg.require_bull and not bull and weak:
+                        why = "弱板块暴涨·可关注衰竭做空(今日无分板块空信号)"
+                    near_miss.append({
+                        "代码": tk,
+                        "现价": round(feat["close"], 2),
+                        "涨幅_pct": round(feat["chg"] * 100, 1),
+                        "成交额M": round(feat["dvol_m"], 0),
+                        "板块": sec_cn,
+                        "跳空_pct": round(feat["gap"] * 100, 1),
+                        "乖离20_pct": round(feat["ext20"] * 100, 1),
+                        "RSI": round(feat["rsi"], 0),
+                        "说明": why,
+                        "建议": "盯安飞士做空/卖Call价差" if weak else "等分板块空规则触发",
+                    })
             continue
         sig.代码 = tk
         sig.板块 = sector_cn(sec_en) if sec_en not in ("Unknown",) else sec_en
@@ -466,6 +553,21 @@ def run_gainer10_scan(cfg: Gainer10Config | None = None) -> dict[str, Any]:
     note = ""
     if cfg.require_bull and not bull:
         note = "大盘MA20下：分板块多头规则暂停；空头规则仍可用"
+    playbook = _build_playbook(
+        reg, bull, cfg, len(snap), len(scan_candidates), n_long, n_short,
+        long_rules, short_rules, note,
+    )
+    analysis = {
+        "大盘": "强势" if bull else "弱势",
+        "SPY": reg.get("SPY"),
+        "MA20": reg.get("MA20"),
+        "扫描池": int(len(snap)),
+        "特征命中": len(scan_candidates),
+        "可开仓": n_long + n_short,
+        "多头暂停": bool(cfg.require_bull and not bull),
+        "模式": cfg.mode,
+        "结论": playbook[0] if playbook else "",
+    }
     bt = (json.loads(SECTOR_RULES_PATH.read_text(encoding="utf-8")).get("portfolio_high_win")
           if cfg.sector_mode and SECTOR_RULES_PATH.exists() else None)
     return {
@@ -507,13 +609,20 @@ def run_gainer10_scan(cfg: Gainer10Config | None = None) -> dict[str, Any]:
         },
         "scan_stats": {
             "扫描": int(len(snap)),
+            "命中特征": len(scan_candidates),
             "续涨A": len(buy_a),
             "续涨B": len(buy_b),
             "分板块多": len(buy_sector),
             "做空S": len(short_s),
             "分板块空": len(short_sector),
             "可开仓": n_long + n_short,
+            "观望": max(len(scan_candidates), len(near_miss)),
         },
+        "scan_universe": scan_universe,
+        "scan_candidates": scan_candidates[:25],
+        "near_miss": near_miss[:15],
+        "playbook": playbook,
+        "analysis": analysis,
         "buy_a": buy_a,
         "buy_b": buy_b,
         "buy_sector": buy_sector,

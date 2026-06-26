@@ -61,7 +61,7 @@ _VIEW_TYPE = {
     "daily_pick": "daily_pick",
     "gain15": "gain15",
     "extreme20": "extreme20",
-    "gainer10": "json_generic",
+    "gainer10": "gainer10",
     "capital_flow": "generic_picks",
     "meme_long": "meme",
     "flow_strategy": "generic_picks",
