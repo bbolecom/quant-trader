@@ -1,18 +1,10 @@
 {
   "ticker": "ALGM",
-  "updated": "2026-06-26 08:45:24",
+  "updated": "2026-06-26 20:22:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-26",
-      "open": 27.07,
-      "high": 27.07,
-      "low": 26.59,
-      "close": 26.87,
-      "volume": 658800
-    },
     {
       "date": "2025-12-29",
       "open": 26.63,
@@ -996,6 +988,14 @@
       "low": 55.65,
       "close": 60.16,
       "volume": 3602900
+    },
+    {
+      "date": "2026-06-26",
+      "open": 57.344,
+      "high": 60.35,
+      "low": 56.5,
+      "close": 57.89,
+      "volume": 10086086
     }
   ]
 }

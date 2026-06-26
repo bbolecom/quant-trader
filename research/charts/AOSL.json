@@ -1,18 +1,10 @@
 {
   "ticker": "AOSL",
-  "updated": "2026-06-26 08:45:24",
+  "updated": "2026-06-26 20:22:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-26",
-      "open": 20.3,
-      "high": 20.48,
-      "low": 20.06,
-      "close": 20.14,
-      "volume": 225000
-    },
     {
       "date": "2025-12-29",
       "open": 19.84,
@@ -996,6 +988,14 @@
       "low": 42.25,
       "close": 45.7,
       "volume": 650600
+    },
+    {
+      "date": "2026-06-26",
+      "open": 42.73,
+      "high": 44.21,
+      "low": 41.7,
+      "close": 43.99,
+      "volume": 1116220
     }
   ]
 }

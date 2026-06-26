@@ -1,18 +1,10 @@
 {
   "ticker": "ABCL",
-  "updated": "2026-06-26 08:45:23",
+  "updated": "2026-06-26 20:22:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-26",
-      "open": 3.72,
-      "high": 3.725,
-      "low": 3.57,
-      "close": 3.58,
-      "volume": 2618300
-    },
     {
       "date": "2025-12-29",
       "open": 3.52,
@@ -995,7 +987,15 @@
       "high": 6.86,
       "low": 6.09,
       "close": 6.66,
-      "volume": 11954700
+      "volume": 11981800
+    },
+    {
+      "date": "2026-06-26",
+      "open": 6.49,
+      "high": 7.4,
+      "low": 6.471,
+      "close": 7.38,
+      "volume": 15370529
     }
   ]
 }
