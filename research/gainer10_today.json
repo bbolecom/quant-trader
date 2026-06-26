@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-25",
+  "date": "2026-06-26",
   "title": "Gainer10+ 分板块高胜率",
   "strategy_id": "gainer10",
   "market": {
@@ -13,7 +13,7 @@
     "sector_mode": true,
     "sector_only": true,
     "min_gain_pct": 10.0,
-    "min_dvol_m": 100.0
+    "min_dvol_m": 50.0
   },
   "strategy": {
     "name": "Gainer10+ 分板块高胜率",
@@ -56,7 +56,7 @@
     }
   },
   "scan_stats": {
-    "扫描": 42,
+    "扫描": 37,
     "续涨A": 0,
     "续涨B": 0,
     "分板块多": 0,
