@@ -1,6 +1,6 @@
 {
   "ticker": "BALL",
-  "updated": "2026-06-25 20:21:10",
+  "updated": "2026-06-26 08:41:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 62.54,
       "low": 60.77,
       "close": 60.98,
-      "volume": 4641500
+      "volume": 4655100
+    },
+    {
+      "date": "2026-06-25",
+      "open": 61.43,
+      "high": 62.29,
+      "low": 61.03,
+      "close": 61.37,
+      "volume": 3109100
     }
   ]
 }

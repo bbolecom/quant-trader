@@ -1,21 +1,21 @@
 {
   "date": "2026-06-26",
-  "updated": "2026-06-26 10:14:38",
-  "title": "📊 量化机会 14条 · 2026-06-26",
-  "total_actionable": 14,
+  "updated": "2026-06-26 08:45:33",
+  "title": "📊 量化机会 46条 · 2026-06-26",
+  "total_actionable": 46,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 8,
+      "actionable": 2,
       "symbols": [
         "—",
-        "VSH",
-        "ABCL"
+        "MXL",
+        "ASND"
       ],
       "has_data": true,
-      "data_date": "2026-06-25"
+      "data_date": "2026-06-26"
     },
     {
       "id": "fleet_csp",
@@ -27,17 +27,43 @@
       "data_date": null
     },
     {
+      "id": "sndk_iron",
+      "name": "SNDK铁鹰收租",
+      "path": "research/sndk_iron_today.json",
+      "actionable": 0,
+      "symbols": [
+        "SNDK",
+        "SOFI",
+        "QQQ"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-26"
+    },
+    {
+      "id": "vrp",
+      "name": "VRP波动率溢价",
+      "path": "research/vrp_today.json",
+      "actionable": 5,
+      "symbols": [
+        "NVDA",
+        "TSLA",
+        "CRM"
+      ],
+      "has_data": true,
+      "data_date": "2026-06-26"
+    },
+    {
       "id": "capital_flow",
       "name": "资金流向操盘痕迹",
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "BALL",
-        "SRRK",
-        "NVO"
+        "ABBV",
+        "FSS",
+        "PSMT"
       ],
       "has_data": true,
-      "data_date": "2026-06-24"
+      "data_date": "2026-06-26"
     },
     {
       "id": "flow_strategy",
@@ -64,20 +90,20 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-06-25"
+      "data_date": "2026-06-26"
     },
     {
       "id": "meme_long",
       "name": "Meme规律 · Ultra80",
       "path": "research/ticker_pattern_today.json",
-      "actionable": 2,
+      "actionable": 35,
       "symbols": [
         "PLTR",
         "SMCI",
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-06-24"
+      "data_date": "2026-06-26"
     },
     {
       "id": "whipsaw_short",
@@ -103,7 +129,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 14条 · 2026-06-26",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 8\n• 每日选股 · 统一入口: 8 · —、VSH、ABCL\n• 资金流向操盘痕迹: 3 · BALL、SRRK、NVO\n• Meme规律 · Ultra80: 2 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 46条 · 2026-06-26",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、MXL、ASND\n• VRP波动率溢价: 5 · NVDA、TSLA、CRM\n• 资金流向操盘痕迹: 3 · ABBV、FSS、PSMT\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "DFTX",
-  "updated": "2026-06-26 00:22:37",
+  "updated": "2026-06-26 08:41:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,11 @@
     },
     {
       "date": "2026-06-25",
-      "open": 42.0,
+      "open": 41.99,
       "high": 47.01,
-      "low": 41.3701,
+      "low": 41.37,
       "close": 44.79,
-      "volume": 8274479
+      "volume": 8278700
     }
   ]
 }
