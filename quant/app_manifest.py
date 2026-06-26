@@ -1,4 +1,4 @@
-"""iOS / App 功能清单 · 同花顺式菜单结构（核心 9 策略）。"""
+"""iOS / App 功能清单 · 三分类精简结构（期权策略 / 做多票 / 空多双杀）。"""
 
 from __future__ import annotations
 
@@ -18,124 +18,43 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_JSON = ROOT / "research" / "app_manifest.json"
 IOS_JSON = ROOT / "ios" / "Resources" / "app_manifest.json"
 
-# 同花顺式顶栏分类（仅保留有内容的分类）
+# 顶栏三分类（App 仅保留这三类）
 THS_CATEGORIES: list[dict[str, str]] = [
-    {"id": "hub", "name": "聚合", "icon": "star.circle.fill", "color": "#E93030"},
-    {"id": "momentum", "name": "动量", "icon": "flame.fill", "color": "#FF6B00"},
-    {"id": "flow", "name": "量价", "icon": "arrow.left.arrow.right", "color": "#3B82F6"},
-    {"id": "pattern", "name": "规律", "icon": "sparkles", "color": "#A855F7"},
-    {"id": "options", "name": "期权", "icon": "chart.line.uptrend.xyaxis", "color": "#10B981"},
-    {"id": "lab", "name": "实验室", "icon": "flask.fill", "color": "#78716C"},
-    {"id": "terminal", "name": "终端", "icon": "chart.xyaxis.line", "color": "#0EA5E9"},
+    {"id": "options", "name": "期权策略", "icon": "chart.line.uptrend.xyaxis", "color": "#10B981"},
+    {"id": "long", "name": "做多票", "icon": "flame.fill", "color": "#E93030"},
+    {"id": "short", "name": "空多双杀", "icon": "arrow.up.arrow.down.circle.fill", "color": "#A855F7"},
 ]
 
-# 量化终端工具（非 daily_pick 策略，仅供 Streamlit 跳转）
+# 额外 feature（非 daily_pick 核心策略，但需在三分类中展示）
 LAB_FEATURES: list[dict[str, Any]] = [
     {
-        "id": "market_scan",
-        "name": "全市场快扫",
-        "category": "聚合",
-        "ths_category": "hub",
-        "icon": "dot.radiowaves.left.and.right",
-        "script": "market_scan_fast.py",
-        "config": "market_scan_config.json",
-        "today_json": "research/market_scan_today.json",
-        "description": "5 分钟内并行扫描全市场 · Yahoo 多榜 + 动量/Gainer10+ 信号",
-        "integrated_in_daily_pick": False,
-        "view_type": "json_generic",
-        "launcher": "MarketScan_运行一次.command",
-    },
-    {
-        "id": "longshort_combo",
-        "name": "多空组合 · 高胜率",
-        "category": "动量",
-        "ths_category": "momentum",
+        "id": "short_squeeze",
+        "name": "安飞士做空",
+        "category": "空多双杀",
+        "ths_category": "short",
         "icon": "arrow.up.arrow.down.circle.fill",
-        "script": "longshort_combo_daily.py",
-        "config": "longshort_combo_config.json",
-        "today_json": "research/longshort_combo_today.json",
-        "today_csv": "research/longshort_combo_today.csv",
-        "history_csv": "longshort_combo_history.csv",
-        "description": "Extreme20 L1/S1 + Flow U_S2/D_S2 · 质量分过滤 · 5年高胜率",
-        "integrated_in_daily_pick": True,
-        "daily_pick_module": "多空组合",
-        "launcher": "LongShort_运行一次.command",
-        "view_type": "json_generic",
-        "win_rate": 0.59,
-        "sharpe": 1.91,
-    },
-    {
-        "id": "quantum_watch",
-        "name": "量子板块盯盘",
-        "category": "规律",
-        "ths_category": "pattern",
-        "icon": "atom",
-        "script": "rgti_daily.py",
-        "config": "rgti_config.json",
-        "today_json": "research/quantum_watch_today.json",
-        "description": "RGTI/IONQ/QUBT/QBTS 每日信号：恐慌反弹·NR7防跌·超买勿空",
+        "script": "short_squeeze_daily.py",
+        "config": "blowoff_short_config.json",
+        "today_json": "research/short_squeeze_today.json",
+        "description": "安飞士/SPCE 式：暴涨乏力→破位大阴确认做空 · 合并过热分+投机池+涨幅榜做空",
         "integrated_in_daily_pick": False,
         "view_type": "json_generic",
-    },
-    {
-        "id": "backtest_single",
-        "name": "单策略回测",
-        "category": "实验室",
-        "ths_category": "lab",
-        "icon": "clock.arrow.circlepath",
-        "script": "app.py",
-        "description": "单标的策略回测与指标",
-        "integrated_in_daily_pick": False,
-        "view_type": "terminal_only",
-        "terminal_tab": "回测",
-    },
-    {
-        "id": "backtest_optimize",
-        "name": "参数寻优",
-        "category": "实验室",
-        "ths_category": "lab",
-        "icon": "slider.horizontal.3",
-        "script": "app.py",
-        "description": "网格寻优 · Walk-forward",
-        "integrated_in_daily_pick": False,
-        "view_type": "terminal_only",
-        "terminal_tab": "参数寻优",
-    },
-    {
-        "id": "options_chain",
-        "name": "期权链分析",
-        "category": "实验室",
-        "ths_category": "lab",
-        "icon": "link",
-        "script": "app.py",
-        "description": "真实期权链 · 结构分析",
-        "integrated_in_daily_pick": False,
-        "view_type": "terminal_only",
-        "terminal_tab": "期权",
-    },
-    {
-        "id": "terminal_hub",
-        "name": "量化策略终端",
-        "category": "终端",
-        "ths_category": "terminal",
-        "icon": "chart.xyaxis.line",
-        "script": "app.py",
-        "description": "Streamlit 全功能 · 回测 · 体检 · 期权",
-        "integrated_in_daily_pick": False,
-        "view_type": "terminal_only",
-        "terminal_tab": "回测",
+        "launcher": "空多双杀_运行一次.command",
     },
 ]
 
 _CATEGORY_TO_THS = {
-    "聚合": "hub",
-    "动量": "momentum",
-    "量价": "flow",
-    "规律": "pattern",
+    # 新三分类
+    "期权策略": "options",
+    "做多票": "long",
+    "空多双杀": "short",
+    # 兼容旧分类名（防止历史数据落到默认桶）
     "期权收入": "options",
     "期权": "options",
-    "实验室": "lab",
-    "终端": "terminal",
+    "聚合": "hub",
+    "动量": "long",
+    "量价": "long",
+    "规律": "long",
 }
 
 _VIEW_TYPE = {
@@ -177,6 +96,8 @@ def _icon_for(entry_id: str, category: str) -> str:
         "flow_strategy": "chart.bar.fill",
         "sndk_iron": "shield.fill",
         "vrp": "waveform.path.ecg",
+        "whipsaw_short": "arrow.down.right.circle.fill",
+        "short_squeeze": "arrow.up.arrow.down.circle.fill",
     }
     return icons.get(entry_id, "square.grid.2x2")
 
@@ -252,8 +173,15 @@ def build_app_manifest(root: Path | None = None) -> dict[str, Any]:
         by_cat.setdefault(f["ths_category"], []).append(f)
 
     quick_ids = [
-        "daily_pick", "market_scan", "longshort_combo", "capital_flow", "flow_strategy", "meme_long",
-        "gain15", "extreme20", "gainer10", "bear_call", "fleet_csp", "sndk_iron",
+        "daily_pick",
+        # 首页主推（金刚区置顶）
+        "gainer10", "short_squeeze",
+        # ① 期权策略
+        "bear_call", "fleet_csp", "sndk_iron", "vrp",
+        # ② 做多票
+        "capital_flow", "flow_strategy", "extreme20", "meme_long",
+        # ③ 空多双杀
+        "whipsaw_short",
     ]
     quick_entries = [f for fid in quick_ids for f in features if f["id"] == fid]
     core_features = [f for f in features if f.get("is_core") and f["id"] != "daily_pick"]
@@ -264,7 +192,7 @@ def build_app_manifest(root: Path | None = None) -> dict[str, Any]:
         "version": "4.0",
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "app_name": "美股量化",
-        "tagline": f"核心{len(CORE_STRATEGY_IDS)}策略 · 已审核排名",
+        "tagline": "三分类精选 · 期权策略 / 做多票 / 空多双杀",
         "core_strategy_ids": list(CORE_STRATEGY_IDS),
         "core_count": len(CORE_STRATEGY_IDS),
         "strategy_audit": audit,

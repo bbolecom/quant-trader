@@ -1,4 +1,10 @@
-"""全系统策略目录 · 精简版（仅保留最优 10 策略 + 统一入口）。"""
+"""全系统策略目录 · 三分类精简版（期权策略 / 做多票 / 空多双杀 + 统一入口）。
+
+三大分类（与 App 顶栏一致）：
+  ① 期权策略  —— 仅针对日成交额 > 10 亿美元的高流动性标的（CSP / 铁鹰 / 卖Call价差收租）
+  ② 做多票    —— 仅在有大额资金流入等「确定指标」时出手
+  ③ 空多双杀  —— 暴涨乏力→破位做空（SPCE / 安飞士 CAR 这类跌宕起伏票）
+"""
 
 from __future__ import annotations
 
@@ -10,20 +16,21 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# 按 strategy_ranker 回测夏普/胜率 + 去重后的核心 10 策略
+# 三分类核心 10 策略（按回测夏普/胜率筛选、去重后）
 CORE_STRATEGY_IDS: tuple[str, ...] = (
-    "capital_flow",   # 量价 · U_S2 操盘痕迹
-    "flow_strategy",  # 量价 · U_S2 组合回测
-    "meme_long",      # 规律 · Meme Ultra80
-    "gain15",         # 动量 · 暴涨80%确认
-    "extreme20",      # 动量 · 暴涨暴跌20% L1/S1/L2/S2 (OOS 70%胜率)
-    "longshort_combo", # 动量 · Extreme20 + Flow 多空组合
-    "gainer10",       # 动量 · 日涨10%+亿成交 · 分板块高胜率多空 (~75%)
-    "whipsaw_short",  # 动量 · 做空涨幅榜卖Call价差 (76%胜率)
-    "bear_call",      # 期权收入 · 卖Call价差 (Sharpe 1.40)
-    "fleet_csp",      # 期权收入 · 5×CSP舰队 (Sharpe 1.50)
-    "sndk_iron",      # 期权收入 · SNDK铁鹰 (Sharpe 1.20)
-    "vrp",            # 期权收入 · VRP波动率溢价
+    # ① 期权策略（成交额 > 10 亿美元）
+    "bear_call",      # 卖Call价差 (Sharpe 1.40)
+    "fleet_csp",      # 5×CSP舰队 (Sharpe 1.50)
+    "sndk_iron",      # SNDK铁鹰 (Sharpe 1.20)
+    "vrp",            # VRP波动率溢价
+    # ② 做多票（大额资金流入等确定信号）
+    "capital_flow",   # U_S2 操盘痕迹（尾盘抢筹）
+    "flow_strategy",  # U_S2 组合回测
+    "gainer10",       # 日涨10%+亿成交 · 分板块高胜率
+    "extreme20",      # 暴涨暴跌20% L1/L2（多头腿）
+    "meme_long",      # Meme Ultra80 规律
+    # ③ 空多双杀（暴涨破位做空）
+    "whipsaw_short",  # 做空涨幅榜·卖Call价差 (76%胜率)
 )
 
 
@@ -66,7 +73,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "capital_flow": StrategyEntry(
         id="capital_flow",
         name="资金流向操盘痕迹",
-        category="量价",
+        category="做多票",
         script="flow_daily.py",
         config="flow_daily_config.json",
         today_json="research/flow_daily_today.json",
@@ -82,7 +89,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "flow_strategy": StrategyEntry(
         id="flow_strategy",
         name="资金流向组合",
-        category="量价",
+        category="做多票",
         script="research/flow_strategy_backtest.py",
         config="flow_strategy_config.json",
         today_json="research/flow_strategy_today.json",
@@ -96,7 +103,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "meme_long": StrategyEntry(
         id="meme_long",
         name="Meme规律 · Ultra80",
-        category="规律",
+        category="做多票",
         script="ticker_pattern_daily.py",
         config="daily_pick_config.json",
         today_json="research/ticker_pattern_today.json",
@@ -106,26 +113,10 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
         sharpe=1.10,
         win_rate=0.80,
     ),
-    "gain15": StrategyEntry(
-        id="gain15",
-        name="暴涨80%规则",
-        category="动量",
-        script="gain15_daily.py",
-        config="gain15_daily_config.json",
-        today_json="research/gain15_daily_today.json",
-        today_csv="research/gain15_daily_today.csv",
-        history_csv="gain15_daily_history.csv",
-        description="涨幅>15%+成交额>5000万 → T+1/T+3确认 → 80%追多/回避",
-        integrated_in_daily_pick=True,
-        daily_pick_module="暴涨80%",
-        launcher="暴涨80%扫描_运行一次.command",
-        sharpe=0.95,
-        win_rate=0.80,
-    ),
     "extreme20": StrategyEntry(
         id="extreme20",
         name="暴涨暴跌20%事件",
-        category="动量",
+        category="做多票",
         script="extreme20_daily.py",
         config="extreme20_config.json",
         today_json="research/extreme20_today.json",
@@ -138,26 +129,10 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
         sharpe=5.23,
         win_rate=0.59,
     ),
-    "longshort_combo": StrategyEntry(
-        id="longshort_combo",
-        name="多空组合 · 高胜率",
-        category="动量",
-        script="longshort_combo_daily.py",
-        config="longshort_combo_config.json",
-        today_json="research/longshort_combo_today.json",
-        today_csv="research/longshort_combo_today.csv",
-        history_csv="longshort_combo_history.csv",
-        description="Extreme20 L1/S1 + Flow U_S2/D_S2 · 质量分≥0.55 · 5年257笔 胜55.6% OOS59%",
-        integrated_in_daily_pick=True,
-        daily_pick_module="多空组合",
-        launcher="LongShort_运行一次.command",
-        sharpe=1.91,
-        win_rate=0.59,
-    ),
     "gainer10": StrategyEntry(
         id="gainer10",
-        name="Gainer10+ 分板块高胜率",
-        category="动量",
+        name="涨幅榜多空",
+        category="做多票",
         script="gainer10_daily.py",
         config="gainer10_config.json",
         today_json="research/gainer10_today.json",
@@ -173,7 +148,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "whipsaw_short": StrategyEntry(
         id="whipsaw_short",
         name="做空涨幅榜·卖Call价差",
-        category="动量",
+        category="空多双杀",
         script="whipsaw_short_daily.py",
         config="whipsaw_short_config.json",
         today_json="research/whipsaw_short_today.json",
@@ -189,7 +164,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "bear_call": StrategyEntry(
         id="bear_call",
         name="卖Call价差 · 收租",
-        category="期权收入",
+        category="期权策略",
         script="daily_pick.py",
         config="daily_pick_config.json",
         description="涨幅榜卖 Call / meme 路由弱市 Put 价差",
@@ -201,7 +176,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "fleet_csp": StrategyEntry(
         id="fleet_csp",
         name="5×CSP 圣杯舰队",
-        category="期权收入",
+        category="期权策略",
         script="quant/daily_screen_fleet.py",
         config="daily_screen_config.json",
         today_json="research/liquid_fleet_picks.json",
@@ -214,7 +189,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "sndk_iron": StrategyEntry(
         id="sndk_iron",
         name="SNDK铁鹰收租",
-        category="期权收入",
+        category="期权策略",
         script="sndk_iron_daily.py",
         config="sndk_iron_config.json",
         history_csv="sndk_iron_history.csv",
@@ -227,7 +202,7 @@ _CORE_ENTRIES: dict[str, StrategyEntry] = {
     "vrp": StrategyEntry(
         id="vrp",
         name="VRP波动率溢价",
-        category="期权收入",
+        category="期权策略",
         script="vrp_daily.py",
         config="vrp_config.json",
         history_csv="vrp_history.csv",
