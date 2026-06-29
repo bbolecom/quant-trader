@@ -1,18 +1,10 @@
 {
   "ticker": "MXL",
-  "updated": "2026-06-26 23:52:16",
+  "updated": "2026-06-29 23:46:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2025-12-29",
-      "open": 17.49,
-      "high": 17.74,
-      "low": 17.44,
-      "close": 17.58,
-      "volume": 702100
-    },
     {
       "date": "2025-12-30",
       "open": 17.66,
@@ -995,7 +987,15 @@
       "high": 97.0,
       "low": 87.13,
       "close": 96.6,
-      "volume": 7470681
+      "volume": 8184900
+    },
+    {
+      "date": "2026-06-29",
+      "open": 98.746,
+      "high": 108.65,
+      "low": 94.64,
+      "close": 108.47,
+      "volume": 5419490
     }
   ]
 }
