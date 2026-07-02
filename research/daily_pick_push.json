@@ -1,14 +1,14 @@
 {
   "require_real_data": true,
-  "generated_at": "2026-06-26 08:44:21",
-  "pick_date": "2026-06-26",
-  "headline": "今日无真实链/行情可推送 · 🟢 牛市（SPY>MA50）",
+  "generated_at": "2026-07-02 08:34:34",
+  "pick_date": "2026-07-02",
+  "headline": "今日无真实链/行情可推送 · 🟡 大盘未知（使用降级牛市配置）",
   "sort": "机会评分 = 真实数据 + 策略排名 + 胜率/审核分",
   "regime": {
-    "label": "🟢 牛市（SPY>MA50）",
+    "label": "🟡 大盘未知（使用降级牛市配置）",
     "bull": true,
-    "spy": 734.3,
-    "ma50": 732.07
+    "spy": null,
+    "ma50": null
   },
   "count": 0,
   "stats": {
