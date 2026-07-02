@@ -1,18 +1,10 @@
 {
   "ticker": "VNET",
-  "updated": "2026-07-02 08:35:54",
+  "updated": "2026-07-02 22:47:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-02",
-      "open": 8.76,
-      "high": 9.29,
-      "low": 8.76,
-      "close": 9.11,
-      "volume": 4644000
-    },
     {
       "date": "2026-01-05",
       "open": 9.13,
@@ -996,6 +988,14 @@
       "low": 8.11,
       "close": 8.81,
       "volume": 9762300
+    },
+    {
+      "date": "2026-07-02",
+      "open": 8.135,
+      "high": 8.61,
+      "low": 7.695,
+      "close": 7.92,
+      "volume": 10652813
     }
   ]
 }

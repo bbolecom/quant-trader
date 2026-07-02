@@ -1,18 +1,10 @@
 {
   "ticker": "UTI",
-  "updated": "2026-07-02 08:35:54",
+  "updated": "2026-07-02 22:47:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-02",
-      "open": 26.0,
-      "high": 26.31,
-      "low": 24.81,
-      "close": 24.84,
-      "volume": 828700
-    },
     {
       "date": "2026-01-05",
       "open": 24.6,
@@ -996,6 +988,14 @@
       "low": 42.42,
       "close": 47.02,
       "volume": 1285600
+    },
+    {
+      "date": "2026-07-02",
+      "open": 47.01,
+      "high": 48.295,
+      "low": 45.93,
+      "close": 48.24,
+      "volume": 1032480
     }
   ]
 }

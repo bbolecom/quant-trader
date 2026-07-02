@@ -1,18 +1,10 @@
 {
   "ticker": "NTLA",
-  "updated": "2026-07-02 08:35:59",
+  "updated": "2026-07-02 22:47:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-02",
-      "open": 9.23,
-      "high": 9.36,
-      "low": 9.05,
-      "close": 9.21,
-      "volume": 2736200
-    },
     {
       "date": "2026-01-05",
       "open": 9.21,
@@ -995,7 +987,15 @@
       "high": 17.828,
       "low": 16.72,
       "close": 17.24,
-      "volume": 3728600
+      "volume": 3730800
+    },
+    {
+      "date": "2026-07-02",
+      "open": 17.63,
+      "high": 18.48,
+      "low": 17.298,
+      "close": 17.56,
+      "volume": 4158792
     }
   ]
 }

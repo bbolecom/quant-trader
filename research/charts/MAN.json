@@ -1,18 +1,10 @@
 {
   "ticker": "MAN",
-  "updated": "2026-07-02 08:35:54",
+  "updated": "2026-07-02 22:47:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-02",
-      "open": 29.91,
-      "high": 30.29,
-      "low": 29.23,
-      "close": 30.06,
-      "volume": 681000
-    },
     {
       "date": "2026-01-05",
       "open": 30.02,
@@ -996,6 +988,14 @@
       "low": 34.17,
       "close": 37.13,
       "volume": 1617700
+    },
+    {
+      "date": "2026-07-02",
+      "open": 37.68,
+      "high": 38.9,
+      "low": 36.97,
+      "close": 38.79,
+      "volume": 872486
     }
   ]
 }

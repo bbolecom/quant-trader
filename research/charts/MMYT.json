@@ -1,18 +1,10 @@
 {
   "ticker": "MMYT",
-  "updated": "2026-07-02 08:35:55",
+  "updated": "2026-07-02 22:47:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-02",
-      "open": 82.29,
-      "high": 82.58,
-      "low": 80.52,
-      "close": 81.89,
-      "volume": 826800
-    },
     {
       "date": "2026-01-05",
       "open": 81.47,
@@ -995,7 +987,15 @@
       "high": 58.54,
       "low": 53.18,
       "close": 58.19,
-      "volume": 1840700
+      "volume": 1845400
+    },
+    {
+      "date": "2026-07-02",
+      "open": 58.19,
+      "high": 58.49,
+      "low": 56.55,
+      "close": 58.27,
+      "volume": 940117
     }
   ]
 }
