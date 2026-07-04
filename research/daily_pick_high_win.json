@@ -1,6 +1,6 @@
 {
-  "选股日期": "2026-07-02",
-  "选股时间": "2026-07-02 08:34:34",
+  "选股日期": "2026-07-04",
+  "选股时间": "2026-07-04 07:37:41",
   "min_win_rate": 0.8,
   "summary": {
     "可开仓高胜率": 0,
@@ -9,13 +9,12 @@
   },
   "regime": {
     "bull": true,
-    "label": "🟡 大盘未知（使用降级牛市配置）",
-    "spy": null,
-    "ma50": null,
+    "label": "🟢 牛市（SPY>MA50）",
+    "spy": 744.78,
+    "ma50": 735.91,
     "mode": "bull",
-    "playbook": "行情获取失败：使用保守默认配置",
-    "frequency_profile": "high_freq",
-    "warning": "market_regime_fallback: Yahoo 未返回 SPY 的行情数据。"
+    "playbook": "高频：卖Call×10 + CSP舰队（动量/铁鹰已关）",
+    "frequency_profile": "high_freq"
   },
   "picks": [],
   "watch": []
