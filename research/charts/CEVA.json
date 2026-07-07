@@ -1,18 +1,10 @@
 {
   "ticker": "CEVA",
-  "updated": "2026-07-07 10:33:19",
+  "updated": "2026-07-07 20:31:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-07",
-      "open": 23.56,
-      "high": 23.63,
-      "low": 22.79,
-      "close": 23.35,
-      "volume": 276800
-    },
     {
       "date": "2026-01-08",
       "open": 23.06,
@@ -987,7 +979,15 @@
       "high": 46.57,
       "low": 43.11,
       "close": 44.64,
-      "volume": 887600
+      "volume": 891300
+    },
+    {
+      "date": "2026-07-07",
+      "open": 42.0,
+      "high": 43.54,
+      "low": 40.28,
+      "close": 42.76,
+      "volume": 798912
     }
   ]
 }

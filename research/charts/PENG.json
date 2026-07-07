@@ -1,18 +1,10 @@
 {
   "ticker": "PENG",
-  "updated": "2026-07-07 10:33:19",
+  "updated": "2026-07-07 20:31:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-07",
-      "open": 23.66,
-      "high": 23.99,
-      "low": 18.123,
-      "close": 18.58,
-      "volume": 7020200
-    },
     {
       "date": "2026-01-08",
       "open": 18.77,
@@ -987,7 +979,15 @@
       "high": 70.61,
       "low": 63.38,
       "close": 67.71,
-      "volume": 2959800
+      "volume": 3014800
+    },
+    {
+      "date": "2026-07-07",
+      "open": 63.08,
+      "high": 65.343,
+      "low": 60.2,
+      "close": 62.71,
+      "volume": 6052473
     }
   ]
 }
