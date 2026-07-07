@@ -1,6 +1,6 @@
 {
   "ticker": "NKTR",
-  "updated": "2026-07-06 20:58:30",
+  "updated": "2026-07-07 08:57:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -983,11 +983,11 @@
     },
     {
       "date": "2026-07-06",
-      "open": 70.02,
+      "open": 70.05,
       "high": 74.79,
-      "low": 69.0001,
+      "low": 69.0,
       "close": 73.15,
-      "volume": 1048776
+      "volume": 1085800
     }
   ]
 }
