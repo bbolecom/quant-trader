@@ -1,18 +1,10 @@
 {
   "ticker": "CNQ",
-  "updated": "2026-07-08 18:55:47",
+  "updated": "2026-07-08 22:38:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 30.77,
-      "high": 31.8,
-      "low": 30.66,
-      "close": 31.55,
-      "volume": 10899800
-    },
     {
       "date": "2026-01-09",
       "open": 31.71,
@@ -987,15 +979,15 @@
       "high": 40.7,
       "low": 39.56,
       "close": 40.69,
-      "volume": 15288400
+      "volume": 15296000
     },
     {
       "date": "2026-07-08",
       "open": 41.43,
       "high": 42.55,
       "low": 41.23,
-      "close": 42.415,
-      "volume": 7203937
+      "close": 42.43,
+      "volume": 10048544
     }
   ]
 }

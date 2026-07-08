@@ -1,18 +1,10 @@
 {
   "ticker": "CRNX",
-  "updated": "2026-07-08 18:55:46",
+  "updated": "2026-07-08 22:38:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 53.3,
-      "high": 54.54,
-      "low": 52.154,
-      "close": 53.24,
-      "volume": 2333800
-    },
     {
       "date": "2026-01-09",
       "open": 53.52,
@@ -987,15 +979,15 @@
       "high": 83.631,
       "low": 83.43,
       "close": 83.53,
-      "volume": 80919600
+      "volume": 80925500
     },
     {
       "date": "2026-07-08",
       "open": 83.545,
       "high": 83.57,
-      "low": 83.455,
-      "close": 83.485,
-      "volume": 13839782
+      "low": 83.44,
+      "close": 83.49,
+      "volume": 17888806
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "SOC",
-  "updated": "2026-07-08 18:55:36",
+  "updated": "2026-07-08 22:38:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 8.81,
-      "high": 9.43,
-      "low": 8.5,
-      "close": 9.33,
-      "volume": 4941100
-    },
     {
       "date": "2026-01-09",
       "open": 9.4,
@@ -987,15 +979,15 @@
       "high": 4.44,
       "low": 3.95,
       "close": 4.23,
-      "volume": 16050900
+      "volume": 16074600
     },
     {
       "date": "2026-07-08",
       "open": 4.3,
       "high": 4.34,
       "low": 4.02,
-      "close": 4.16,
-      "volume": 7512384
+      "close": 4.12,
+      "volume": 9618051
     }
   ]
 }

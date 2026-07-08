@@ -1,18 +1,10 @@
 {
   "ticker": "PTGX",
-  "updated": "2026-07-08 18:55:48",
+  "updated": "2026-07-08 22:38:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 81.05,
-      "high": 82.14,
-      "low": 79.22,
-      "close": 80.2,
-      "volume": 1487700
-    },
     {
       "date": "2026-01-09",
       "open": 80.2,
@@ -994,8 +986,8 @@
       "open": 139.5,
       "high": 140.835,
       "low": 136.08,
-      "close": 138.685,
-      "volume": 285840
+      "close": 140.07,
+      "volume": 849755
     }
   ]
 }

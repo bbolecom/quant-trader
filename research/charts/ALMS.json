@@ -1,18 +1,10 @@
 {
   "ticker": "ALMS",
-  "updated": "2026-07-08 18:55:47",
+  "updated": "2026-07-08 22:38:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 18.25,
-      "high": 19.0,
-      "low": 17.44,
-      "close": 18.18,
-      "volume": 9890000
-    },
     {
       "date": "2026-01-09",
       "open": 18.5,
@@ -994,8 +986,8 @@
       "open": 29.07,
       "high": 31.35,
       "low": 29.03,
-      "close": 29.92,
-      "volume": 1338789
+      "close": 29.74,
+      "volume": 2692629
     }
   ]
 }

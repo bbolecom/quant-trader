@@ -1,18 +1,10 @@
 {
   "ticker": "BEAM",
-  "updated": "2026-07-08 18:55:36",
+  "updated": "2026-07-08 22:38:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 28.52,
-      "high": 28.93,
-      "low": 27.59,
-      "close": 28.0,
-      "volume": 1943300
-    },
     {
       "date": "2026-01-09",
       "open": 28.17,
@@ -987,15 +979,15 @@
       "high": 38.26,
       "low": 34.402,
       "close": 37.92,
-      "volume": 3939300
+      "volume": 3941700
     },
     {
       "date": "2026-07-08",
       "open": 36.434,
       "high": 37.435,
       "low": 35.0,
-      "close": 36.99,
-      "volume": 3060803
+      "close": 36.88,
+      "volume": 3925721
     }
   ]
 }

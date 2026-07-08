@@ -1,18 +1,10 @@
 {
   "ticker": "AGIO",
-  "updated": "2026-07-08 18:55:46",
+  "updated": "2026-07-08 22:38:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-08",
-      "open": 28.24,
-      "high": 28.65,
-      "low": 27.91,
-      "close": 28.16,
-      "volume": 1095500
-    },
     {
       "date": "2026-01-09",
       "open": 28.55,
@@ -987,15 +979,15 @@
       "high": 44.09,
       "low": 39.38,
       "close": 44.01,
-      "volume": 2775200
+      "volume": 2776300
     },
     {
       "date": "2026-07-08",
       "open": 43.755,
       "high": 44.0,
-      "low": 42.85,
-      "close": 43.9,
-      "volume": 804659
+      "low": 42.53,
+      "close": 42.76,
+      "volume": 1581157
     }
   ]
 }
