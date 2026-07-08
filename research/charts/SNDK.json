@@ -1,6 +1,6 @@
 {
   "ticker": "SNDK",
-  "updated": "2026-07-08 06:40:53",
+  "updated": "2026-07-08 18:55:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 1485.02,
       "close": 1617.7,
       "volume": 14422200
+    },
+    {
+      "date": "2026-07-08",
+      "open": 1591.8,
+      "high": 1707.26,
+      "low": 1591.0,
+      "close": 1672.17,
+      "volume": 9265179
     }
   ]
 }

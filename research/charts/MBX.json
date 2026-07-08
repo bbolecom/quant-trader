@@ -1,6 +1,6 @@
 {
   "ticker": "MBX",
-  "updated": "2026-07-08 06:40:52",
+  "updated": "2026-07-08 18:55:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 56.17,
       "close": 62.0,
       "volume": 756600
+    },
+    {
+      "date": "2026-07-08",
+      "open": 62.34,
+      "high": 64.32,
+      "low": 61.04,
+      "close": 63.4899,
+      "volume": 794722
     }
   ]
 }
