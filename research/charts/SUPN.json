@@ -1,18 +1,10 @@
 {
   "ticker": "SUPN",
-  "updated": "2026-07-09 19:13:51",
+  "updated": "2026-07-09 23:48:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-09",
-      "open": 52.0,
-      "high": 52.39,
-      "low": 50.45,
-      "close": 51.11,
-      "volume": 1220300
-    },
     {
       "date": "2026-01-12",
       "open": 52.17,
@@ -994,8 +986,8 @@
       "open": 50.7,
       "high": 51.37,
       "low": 47.88,
-      "close": 48.12,
-      "volume": 781615
+      "close": 48.75,
+      "volume": 1258211
     }
   ]
 }

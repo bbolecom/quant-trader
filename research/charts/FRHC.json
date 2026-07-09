@@ -1,18 +1,10 @@
 {
   "ticker": "FRHC",
-  "updated": "2026-07-09 19:13:51",
+  "updated": "2026-07-09 23:48:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-09",
-      "open": 135.87,
-      "high": 138.628,
-      "low": 131.0,
-      "close": 131.0,
-      "volume": 84500
-    },
     {
       "date": "2026-01-12",
       "open": 131.0,
@@ -992,10 +984,10 @@
     {
       "date": "2026-07-09",
       "open": 157.03,
-      "high": 160.86,
+      "high": 161.63,
       "low": 153.23,
-      "close": 158.71,
-      "volume": 102295
+      "close": 160.59,
+      "volume": 176592
     }
   ]
 }

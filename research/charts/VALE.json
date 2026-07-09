@@ -1,18 +1,10 @@
 {
   "ticker": "VALE",
-  "updated": "2026-07-09 19:13:51",
+  "updated": "2026-07-09 23:48:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-09",
-      "open": 13.94,
-      "high": 14.15,
-      "low": 13.89,
-      "close": 13.97,
-      "volume": 29252900
-    },
     {
       "date": "2026-01-12",
       "open": 14.03,
@@ -987,15 +979,15 @@
       "high": 14.43,
       "low": 13.98,
       "close": 14.05,
-      "volume": 43701900
+      "volume": 43704600
     },
     {
       "date": "2026-07-09",
       "open": 14.11,
       "high": 14.28,
       "low": 13.94,
-      "close": 14.26,
-      "volume": 14301985
+      "close": 14.22,
+      "volume": 19178633
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "CFG",
-  "updated": "2026-07-09 19:13:51",
+  "updated": "2026-07-09 23:48:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-09",
-      "open": 61.35,
-      "high": 61.77,
-      "low": 60.495,
-      "close": 60.53,
-      "volume": 3718700
-    },
     {
       "date": "2026-01-12",
       "open": 59.81,
@@ -987,15 +979,15 @@
       "high": 70.84,
       "low": 67.96,
       "close": 68.56,
-      "volume": 9014400
+      "volume": 9015100
     },
     {
       "date": "2026-07-09",
       "open": 69.07,
       "high": 70.16,
       "low": 68.835,
-      "close": 70.045,
-      "volume": 2710035
+      "close": 69.86,
+      "volume": 3782327
     }
   ]
 }
