@@ -1,6 +1,6 @@
 {
   "ticker": "UCTT",
-  "updated": "2026-07-09 10:33:32",
+  "updated": "2026-07-09 19:13:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 88.55,
       "close": 100.91,
       "volume": 2131400
+    },
+    {
+      "date": "2026-07-09",
+      "open": 115.29,
+      "high": 115.62,
+      "low": 105.5,
+      "close": 107.92,
+      "volume": 1368702
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "AMBQ",
-  "updated": "2026-07-09 10:33:32",
+  "updated": "2026-07-09 19:13:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 76.0,
       "close": 81.93,
       "volume": 759000
+    },
+    {
+      "date": "2026-07-09",
+      "open": 84.74,
+      "high": 87.5,
+      "low": 84.0,
+      "close": 86.51,
+      "volume": 232547
     }
   ]
 }

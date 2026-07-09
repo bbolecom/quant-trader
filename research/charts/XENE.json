@@ -1,6 +1,6 @@
 {
   "ticker": "XENE",
-  "updated": "2026-07-09 10:33:32",
+  "updated": "2026-07-09 19:13:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 62.9,
       "close": 69.95,
       "volume": 4763300
+    },
+    {
+      "date": "2026-07-09",
+      "open": 70.47,
+      "high": 72.66,
+      "low": 69.15,
+      "close": 69.77,
+      "volume": 1721597
     }
   ]
 }

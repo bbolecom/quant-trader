@@ -1,6 +1,6 @@
 {
   "ticker": "ACAD",
-  "updated": "2026-07-09 10:33:36",
+  "updated": "2026-07-09 19:13:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 25.59,
       "close": 26.0,
       "volume": 1551900
+    },
+    {
+      "date": "2026-07-09",
+      "open": 25.7,
+      "high": 26.37,
+      "low": 25.59,
+      "close": 26.22,
+      "volume": 809277
     }
   ]
 }
