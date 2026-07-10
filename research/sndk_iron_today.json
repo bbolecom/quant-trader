@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-09",
-  "updated": "2026-07-09 10:32:31",
+  "date": "2026-07-10",
+  "updated": "2026-07-10 08:55:27",
   "strategy_id": "sndk_iron",
   "title": "SNDK铁鹰收租",
   "profile": "mixed_balanced：SNDK顺势Put价差 + 廉价CSP + 3 ETF月铁鹰（回测年化~8%、回撤~8%）",
@@ -104,7 +104,7 @@
   "picks": [],
   "errors": [
     "账户1/SNDK: 无足够 OTM 流动卖腿",
-    "账户2/SOFI: 行权价 $15.5 流动性不足",
+    "账户2/SOFI: 行权价 $16.5 流动性不足",
     "账户3/QQQ: 看涨腿: 无足够 OTM 流动卖腿",
     "账户4/SPY: 看涨腿: 无足够 OTM 流动卖腿",
     "账户5/IWM: 看涨腿: 无足够 OTM 流动卖腿"
