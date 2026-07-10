@@ -1,6 +1,6 @@
 {
   "ticker": "META",
-  "updated": "2026-07-10 08:56:15",
+  "updated": "2026-07-10 19:08:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 577.07,
       "close": 631.48,
       "volume": 26214300
+    },
+    {
+      "date": "2026-07-10",
+      "open": 660.335,
+      "high": 677.85,
+      "low": 658.01,
+      "close": 669.87,
+      "volume": 31463896
     }
   ]
 }

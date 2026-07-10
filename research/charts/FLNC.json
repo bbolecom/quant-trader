@@ -1,6 +1,6 @@
 {
   "ticker": "FLNC",
-  "updated": "2026-07-10 08:56:14",
+  "updated": "2026-07-10 19:08:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -988,6 +988,14 @@
       "low": 15.54,
       "close": 16.74,
       "volume": 10302800
+    },
+    {
+      "date": "2026-07-10",
+      "open": 16.8028,
+      "high": 17.1,
+      "low": 15.585,
+      "close": 16.0,
+      "volume": 6941239
     }
   ]
 }
