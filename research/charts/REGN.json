@@ -1,18 +1,10 @@
 {
   "ticker": "REGN",
-  "updated": "2026-07-13 19:03:30",
+  "updated": "2026-07-13 22:14:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-13",
-      "open": 765.16,
-      "high": 765.99,
-      "low": 743.94,
-      "close": 758.91,
-      "volume": 946500
-    },
     {
       "date": "2026-01-14",
       "open": 760.58,
@@ -994,8 +986,8 @@
       "open": 661.63,
       "high": 665.6,
       "low": 655.11,
-      "close": 659.525,
-      "volume": 299025
+      "close": 663.09,
+      "volume": 589497
     }
   ]
 }

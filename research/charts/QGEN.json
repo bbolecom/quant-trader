@@ -1,18 +1,10 @@
 {
   "ticker": "QGEN",
-  "updated": "2026-07-13 19:03:19",
+  "updated": "2026-07-13 22:14:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-13",
-      "open": 47.5,
-      "high": 47.66,
-      "low": 46.41,
-      "close": 47.2,
-      "volume": 1178600
-    },
     {
       "date": "2026-01-14",
       "open": 47.51,
@@ -994,8 +986,8 @@
       "open": 41.14,
       "high": 41.95,
       "low": 41.18,
-      "close": 41.515,
-      "volume": 1970287
+      "close": 41.44,
+      "volume": 2970462
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "VERA",
-  "updated": "2026-07-13 19:03:27",
+  "updated": "2026-07-13 22:14:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-13",
-      "open": 46.09,
-      "high": 49.3,
-      "low": 45.77,
-      "close": 49.1,
-      "volume": 1596600
-    },
     {
       "date": "2026-01-14",
       "open": 49.42,
@@ -994,8 +986,8 @@
       "open": 41.465,
       "high": 41.86,
       "low": 39.815,
-      "close": 41.33,
-      "volume": 1230318
+      "close": 41.5,
+      "volume": 2165837
     }
   ]
 }
