@@ -1,6 +1,6 @@
 {
   "ticker": "PBF",
-  "updated": "2026-07-14 00:14:47",
+  "updated": "2026-07-14 17:48:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-07-13",
       "open": 54.91,
-      "high": 58.065,
-      "low": 54.98,
+      "high": 58.07,
+      "low": 54.81,
       "close": 57.44,
-      "volume": 2957866
+      "volume": 2958300
+    },
+    {
+      "date": "2026-07-14",
+      "open": 58.3,
+      "high": 60.28,
+      "low": 57.88,
+      "close": 60.05,
+      "volume": 2013336
     }
   ]
 }

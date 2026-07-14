@@ -1,6 +1,6 @@
 {
   "ticker": "GTM",
-  "updated": "2026-07-14 00:14:47",
+  "updated": "2026-07-14 17:48:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -983,11 +983,19 @@
     },
     {
       "date": "2026-07-13",
-      "open": 2.945,
+      "open": 2.96,
       "high": 3.22,
-      "low": 2.945,
+      "low": 2.94,
       "close": 3.08,
-      "volume": 10933654
+      "volume": 10939000
+    },
+    {
+      "date": "2026-07-14",
+      "open": 2.99,
+      "high": 3.085,
+      "low": 2.93,
+      "close": 3.05,
+      "volume": 3149682
     }
   ]
 }
