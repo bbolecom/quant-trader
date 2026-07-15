@@ -1,6 +1,6 @@
 {
   "ticker": "C",
-  "updated": "2026-07-15 20:18:33",
+  "updated": "2026-07-15 21:17:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,10 @@
     {
       "date": "2026-07-15",
       "open": 134.08,
-      "high": 135.12,
-      "low": 131.77,
+      "high": 135.115,
+      "low": 131.8,
       "close": 134.89,
-      "volume": 15682547
+      "volume": 18062679
     }
   ]
 }
