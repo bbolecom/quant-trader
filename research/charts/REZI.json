@@ -1,18 +1,10 @@
 {
   "ticker": "REZI",
-  "updated": "2026-07-14 17:48:42",
+  "updated": "2026-07-15 00:10:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 37.59,
-      "high": 38.06,
-      "low": 36.82,
-      "close": 37.87,
-      "volume": 1077700
-    },
     {
       "date": "2026-01-15",
       "open": 38.23,
@@ -994,8 +986,8 @@
       "open": 35.91,
       "high": 37.395,
       "low": 35.2,
-      "close": 36.81,
-      "volume": 1184198
+      "close": 36.86,
+      "volume": 2444682
     }
   ]
 }

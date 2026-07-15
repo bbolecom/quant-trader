@@ -1,18 +1,10 @@
 {
   "ticker": "KVUE",
-  "updated": "2026-07-14 17:48:43",
+  "updated": "2026-07-15 00:10:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 17.03,
-      "high": 17.18,
-      "low": 17.02,
-      "close": 17.12,
-      "volume": 47245500
-    },
     {
       "date": "2026-01-15",
       "open": 17.06,
@@ -987,15 +979,15 @@
       "high": 19.865,
       "low": 19.04,
       "close": 19.23,
-      "volume": 39870500
+      "volume": 39874000
     },
     {
       "date": "2026-07-14",
       "open": 19.1,
       "high": 19.2499,
-      "low": 18.7809,
-      "close": 18.825,
-      "volume": 8945199
+      "low": 18.71,
+      "close": 18.76,
+      "volume": 19474126
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "VOD",
-  "updated": "2026-07-14 17:48:44",
+  "updated": "2026-07-15 00:10:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 13.33,
-      "high": 13.42,
-      "low": 13.32,
-      "close": 13.37,
-      "volume": 2999600
-    },
     {
       "date": "2026-01-15",
       "open": 13.53,
@@ -993,9 +985,9 @@
       "date": "2026-07-14",
       "open": 15.73,
       "high": 15.79,
-      "low": 15.52,
-      "close": 15.555,
-      "volume": 3056425
+      "low": 15.5,
+      "close": 15.56,
+      "volume": 4843058
     }
   ]
 }

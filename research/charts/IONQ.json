@@ -1,18 +1,10 @@
 {
   "ticker": "IONQ",
-  "updated": "2026-07-14 17:48:39",
+  "updated": "2026-07-15 00:10:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 48.54,
-      "high": 50.92,
-      "low": 47.33,
-      "close": 50.88,
-      "volume": 16602100
-    },
     {
       "date": "2026-01-15",
       "open": 51.28,
@@ -987,15 +979,15 @@
       "high": 42.181,
       "low": 38.62,
       "close": 38.88,
-      "volume": 23719400
+      "volume": 23873300
     },
     {
       "date": "2026-07-14",
       "open": 40.04,
       "high": 40.442,
       "low": 38.745,
-      "close": 39.2291,
-      "volume": 10044777
+      "close": 39.29,
+      "volume": 17283119
     }
   ]
 }

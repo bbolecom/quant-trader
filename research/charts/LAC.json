@@ -1,18 +1,10 @@
 {
   "ticker": "LAC",
-  "updated": "2026-07-14 17:48:44",
+  "updated": "2026-07-15 00:10:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 5.8,
-      "high": 6.155,
-      "low": 5.62,
-      "close": 6.06,
-      "volume": 23934000
-    },
     {
       "date": "2026-01-15",
       "open": 5.96,
@@ -987,15 +979,15 @@
       "high": 3.32,
       "low": 3.12,
       "close": 3.14,
-      "volume": 15871400
+      "volume": 15915800
     },
     {
       "date": "2026-07-14",
       "open": 3.24,
       "high": 3.28,
-      "low": 3.13,
-      "close": 3.135,
-      "volume": 8716984
+      "low": 3.1201,
+      "close": 3.15,
+      "volume": 14538471
     }
   ]
 }

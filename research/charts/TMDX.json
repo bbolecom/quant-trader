@@ -1,18 +1,10 @@
 {
   "ticker": "TMDX",
-  "updated": "2026-07-14 17:48:15",
+  "updated": "2026-07-15 00:10:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 140.13,
-      "high": 142.95,
-      "low": 136.0,
-      "close": 141.96,
-      "volume": 921800
-    },
     {
       "date": "2026-01-15",
       "open": 141.16,
@@ -994,8 +986,8 @@
       "open": 75.53,
       "high": 75.62,
       "low": 72.8,
-      "close": 74.305,
-      "volume": 352636
+      "close": 74.59,
+      "volume": 679707
     }
   ]
 }

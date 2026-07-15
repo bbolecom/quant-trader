@@ -1,18 +1,10 @@
 {
   "ticker": "NOG",
-  "updated": "2026-07-14 17:48:14",
+  "updated": "2026-07-15 00:09:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 22.5,
-      "high": 23.63,
-      "low": 22.5,
-      "close": 22.93,
-      "volume": 2822700
-    },
     {
       "date": "2026-01-15",
       "open": 22.5,
@@ -987,15 +979,15 @@
       "high": 20.44,
       "low": 19.09,
       "close": 20.36,
-      "volume": 4383800
+      "volume": 4389300
     },
     {
       "date": "2026-07-14",
       "open": 20.22,
       "high": 20.48,
       "low": 19.86,
-      "close": 20.06,
-      "volume": 1100323
+      "close": 20.14,
+      "volume": 2937236
     }
   ]
 }

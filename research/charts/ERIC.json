@@ -1,18 +1,10 @@
 {
   "ticker": "ERIC",
-  "updated": "2026-07-14 17:48:42",
+  "updated": "2026-07-15 00:10:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 9.4,
-      "high": 9.46,
-      "low": 9.34,
-      "close": 9.38,
-      "volume": 5318000
-    },
     {
       "date": "2026-01-15",
       "open": 9.44,
@@ -987,15 +979,15 @@
       "high": 11.83,
       "low": 11.42,
       "close": 11.72,
-      "volume": 32200300
+      "volume": 32343000
     },
     {
       "date": "2026-07-14",
       "open": 10.53,
       "high": 10.64,
       "low": 10.065,
-      "close": 10.095,
-      "volume": 26472497
+      "close": 10.14,
+      "volume": 39448202
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "TRI",
-  "updated": "2026-07-14 17:48:43",
+  "updated": "2026-07-15 00:10:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 125.8,
-      "high": 128.31,
-      "low": 125.8,
-      "close": 127.27,
-      "volume": 1194000
-    },
     {
       "date": "2026-01-15",
       "open": 127.27,
@@ -987,15 +979,15 @@
       "high": 94.35,
       "low": 90.15,
       "close": 94.29,
-      "volume": 2765900
+      "volume": 2768100
     },
     {
       "date": "2026-07-14",
       "open": 90.4722,
       "high": 93.67,
       "low": 89.33,
-      "close": 93.57,
-      "volume": 1014173
+      "close": 91.74,
+      "volume": 2026312
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "RHI",
-  "updated": "2026-07-14 17:48:13",
+  "updated": "2026-07-15 00:09:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 27.86,
-      "high": 28.84,
-      "low": 27.86,
-      "close": 28.5,
-      "volume": 2155100
-    },
     {
       "date": "2026-01-15",
       "open": 28.73,
@@ -987,15 +979,15 @@
       "high": 35.6,
       "low": 32.9,
       "close": 35.59,
-      "volume": 3266400
+      "volume": 3266900
     },
     {
       "date": "2026-07-14",
       "open": 34.96,
-      "high": 35.8,
+      "high": 36.02,
       "low": 33.95,
-      "close": 35.395,
-      "volume": 1025454
+      "close": 35.65,
+      "volume": 2258704
     }
   ]
 }

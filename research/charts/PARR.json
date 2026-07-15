@@ -1,18 +1,10 @@
 {
   "ticker": "PARR",
-  "updated": "2026-07-14 17:48:15",
+  "updated": "2026-07-15 00:10:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-14",
-      "open": 37.54,
-      "high": 39.19,
-      "low": 37.4,
-      "close": 38.36,
-      "volume": 1028800
-    },
     {
       "date": "2026-01-15",
       "open": 37.63,
@@ -987,15 +979,15 @@
       "high": 71.29,
       "low": 67.69,
       "close": 70.92,
-      "volume": 883400
+      "volume": 885600
     },
     {
       "date": "2026-07-14",
       "open": 72.462,
-      "high": 73.59,
+      "high": 73.8,
       "low": 71.615,
-      "close": 72.69,
-      "volume": 458052
+      "close": 73.55,
+      "volume": 938347
     }
   ]
 }
