@@ -1,18 +1,10 @@
 {
   "ticker": "NXTC",
-  "updated": "2026-07-15 19:13:14",
+  "updated": "2026-07-15 20:18:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-15",
-      "open": 13.242,
-      "high": 13.805,
-      "low": 12.518,
-      "close": 12.87,
-      "volume": 25000
-    },
     {
       "date": "2026-01-16",
       "open": 12.83,
@@ -987,15 +979,15 @@
       "high": 9.9,
       "low": 5.76,
       "close": 6.58,
-      "volume": 110940800
+      "volume": 111531800
     },
     {
       "date": "2026-07-15",
-      "open": 5.53,
-      "high": 6.25,
+      "open": 5.52,
+      "high": 6.63,
       "low": 5.4,
-      "close": 5.904,
-      "volume": 4009338
+      "close": 6.63,
+      "volume": 4506219
     }
   ]
 }
