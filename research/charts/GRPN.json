@@ -1,6 +1,6 @@
 {
   "ticker": "GRPN",
-  "updated": "2026-07-15 00:17:28",
+  "updated": "2026-07-15 17:59:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 25.81,
       "low": 23.69,
       "close": 25.6,
-      "volume": 1232009
+      "volume": 1231600
+    },
+    {
+      "date": "2026-07-15",
+      "open": 26.05,
+      "high": 26.4215,
+      "low": 24.975,
+      "close": 25.25,
+      "volume": 313287
     }
   ]
 }
