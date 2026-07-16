@@ -1,6 +1,6 @@
 {
   "ticker": "ERAS",
-  "updated": "2026-07-16 00:20:05",
+  "updated": "2026-07-16 15:25:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -983,11 +983,19 @@
     },
     {
       "date": "2026-07-15",
-      "open": 19.46,
+      "open": 19.47,
       "high": 21.6,
       "low": 19.46,
       "close": 21.26,
-      "volume": 8593464
+      "volume": 9041500
+    },
+    {
+      "date": "2026-07-16",
+      "open": 20.66,
+      "high": 20.885,
+      "low": 20.1596,
+      "close": 20.36,
+      "volume": 1589329
     }
   ]
 }

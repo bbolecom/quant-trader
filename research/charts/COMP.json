@@ -1,6 +1,6 @@
 {
   "ticker": "COMP",
-  "updated": "2026-07-16 00:20:06",
+  "updated": "2026-07-16 15:25:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 12.745,
       "low": 11.995,
       "close": 12.65,
-      "volume": 16688803
+      "volume": 18596300
+    },
+    {
+      "date": "2026-07-16",
+      "open": 12.6,
+      "high": 12.765,
+      "low": 12.505,
+      "close": 12.565,
+      "volume": 2666340
     }
   ]
 }

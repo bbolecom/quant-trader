@@ -1,6 +1,6 @@
 {
   "ticker": "CWK",
-  "updated": "2026-07-16 00:20:06",
+  "updated": "2026-07-16 15:25:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -985,9 +985,17 @@
       "date": "2026-07-15",
       "open": 12.96,
       "high": 14.09,
-      "low": 13.0225,
+      "low": 12.89,
       "close": 13.83,
-      "volume": 1910027
+      "volume": 2315000
+    },
+    {
+      "date": "2026-07-16",
+      "open": 13.98,
+      "high": 14.22,
+      "low": 13.8892,
+      "close": 13.995,
+      "volume": 345162
     }
   ]
 }

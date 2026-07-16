@@ -1,6 +1,6 @@
 {
   "ticker": "ROAD",
-  "updated": "2026-07-16 00:20:06",
+  "updated": "2026-07-16 15:25:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 105.65,
       "low": 98.5,
       "close": 103.86,
-      "volume": 1286787
+      "volume": 1287000
+    },
+    {
+      "date": "2026-07-16",
+      "open": 102.66,
+      "high": 105.2,
+      "low": 102.0,
+      "close": 103.4632,
+      "volume": 110638
     }
   ]
 }
