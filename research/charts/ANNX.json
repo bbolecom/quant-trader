@@ -1,18 +1,10 @@
 {
   "ticker": "ANNX",
-  "updated": "2026-07-16 19:52:32",
+  "updated": "2026-07-16 20:39:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 6.2,
-      "high": 6.28,
-      "low": 6.05,
-      "close": 6.07,
-      "volume": 1616900
-    },
     {
       "date": "2026-01-20",
       "open": 6.06,
@@ -994,8 +986,8 @@
       "open": 6.44,
       "high": 6.58,
       "low": 5.78,
-      "close": 5.915,
-      "volume": 6661617
+      "close": 5.89,
+      "volume": 7710573
     }
   ]
 }

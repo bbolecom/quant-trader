@@ -1,18 +1,10 @@
 {
   "ticker": "BILL",
-  "updated": "2026-07-16 19:52:15",
+  "updated": "2026-07-16 20:39:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 48.5,
-      "high": 48.5,
-      "low": 46.5,
-      "close": 46.6,
-      "volume": 2931800
-    },
     {
       "date": "2026-01-20",
       "open": 45.2,
@@ -994,8 +986,8 @@
       "open": 44.81,
       "high": 45.2,
       "low": 44.53,
-      "close": 44.7,
-      "volume": 1946838
+      "close": 44.66,
+      "volume": 2236564
     }
   ]
 }

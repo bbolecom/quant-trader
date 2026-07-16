@@ -1,18 +1,10 @@
 {
   "ticker": "OI",
-  "updated": "2026-07-16 19:52:13",
+  "updated": "2026-07-16 20:39:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 15.72,
-      "high": 15.86,
-      "low": 15.28,
-      "close": 15.4,
-      "volume": 1113400
-    },
     {
       "date": "2026-01-20",
       "open": 15.04,
@@ -994,8 +986,8 @@
       "open": 9.53,
       "high": 9.945,
       "low": 9.46,
-      "close": 9.585,
-      "volume": 3307547
+      "close": 9.6,
+      "volume": 3733733
     }
   ]
 }

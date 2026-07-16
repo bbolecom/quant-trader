@@ -1,18 +1,10 @@
 {
   "ticker": "CX",
-  "updated": "2026-07-16 19:52:33",
+  "updated": "2026-07-16 20:39:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 12.42,
-      "high": 12.54,
-      "low": 12.31,
-      "close": 12.49,
-      "volume": 8822100
-    },
     {
       "date": "2026-01-20",
       "open": 12.35,
@@ -994,8 +986,8 @@
       "open": 12.9,
       "high": 13.22,
       "low": 12.84,
-      "close": 13.075,
-      "volume": 3990329
+      "close": 13.1,
+      "volume": 4851752
     }
   ]
 }

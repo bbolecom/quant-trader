@@ -1,18 +1,10 @@
 {
   "ticker": "ORLY",
-  "updated": "2026-07-16 19:52:34",
+  "updated": "2026-07-16 20:39:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 93.47,
-      "high": 94.82,
-      "low": 92.74,
-      "close": 94.7,
-      "volume": 6718500
-    },
     {
       "date": "2026-01-20",
       "open": 94.38,
@@ -992,10 +984,10 @@
     {
       "date": "2026-07-16",
       "open": 84.15,
-      "high": 86.24,
+      "high": 86.295,
       "low": 83.74,
-      "close": 85.965,
-      "volume": 8790328
+      "close": 86.25,
+      "volume": 11073179
     }
   ]
 }

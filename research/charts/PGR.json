@@ -1,18 +1,10 @@
 {
   "ticker": "PGR",
-  "updated": "2026-07-16 19:52:34",
+  "updated": "2026-07-16 20:39:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-16",
-      "open": 203.23,
-      "high": 204.68,
-      "low": 200.74,
-      "close": 202.37,
-      "volume": 3796300
-    },
     {
       "date": "2026-01-20",
       "open": 200.64,
@@ -994,8 +986,8 @@
       "open": 205.5,
       "high": 209.185,
       "low": 203.1,
-      "close": 206.31,
-      "volume": 4361568
+      "close": 205.8,
+      "volume": 4839158
     }
   ]
 }
