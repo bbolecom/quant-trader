@@ -1,6 +1,6 @@
 {
   "date": "2026-07-16",
-  "updated": "2026-07-16 00:20:17",
+  "updated": "2026-07-16 22:19:17",
   "title": "📊 量化机会 59条 · 2026-07-16",
   "total_actionable": 59,
   "strategies": [
@@ -11,8 +11,8 @@
       "actionable": 7,
       "symbols": [
         "—",
-        "OI",
-        "ERAS"
+        "GRPN",
+        "ARX"
       ],
       "has_data": true,
       "data_date": "2026-07-16"
@@ -58,9 +58,9 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "CX",
-        "GGB",
-        "GGAL"
+        "DG",
+        "NDAQ",
+        "HOMB"
       ],
       "has_data": true,
       "data_date": "2026-07-16"
@@ -78,10 +78,11 @@
       "id": "gainer10",
       "name": "涨幅榜多空",
       "path": "research/gainer10_today.json",
-      "actionable": 2,
+      "actionable": 3,
       "symbols": [
-        "ANNX",
-        "OI"
+        "CDNA",
+        "ATAI",
+        "MAN"
       ],
       "has_data": true,
       "data_date": "2026-07-16"
@@ -90,10 +91,8 @@
       "id": "extreme20",
       "name": "暴涨暴跌20%事件",
       "path": "research/extreme20_today.json",
-      "actionable": 1,
-      "symbols": [
-        "AEHR"
-      ],
+      "actionable": 0,
+      "symbols": [],
       "has_data": true,
       "data_date": "2026-07-16"
     },
@@ -115,7 +114,9 @@
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [],
+      "symbols": [
+        "ATAI"
+      ],
       "has_data": true,
       "data_date": "2026-07-16"
     },
@@ -135,6 +136,6 @@
   ],
   "push_preview": {
     "title": "📊 量化机会 59条 · 2026-07-16",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、OI、ERAS\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AVGO、META、QCOM\n• 资金流向操盘痕迹: 3 · CX、GGB、GGAL\n• 涨幅榜多空: 2 · ANNX、OI\n• 暴涨暴跌20%事件: 1 · AEHR\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、GRPN、ARX\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AVGO、META、QCOM\n• 资金流向操盘痕迹: 3 · DG、NDAQ、HOMB\n• 涨幅榜多空: 3 · CDNA、ATAI、MAN\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
