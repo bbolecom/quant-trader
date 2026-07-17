@@ -1,6 +1,6 @@
 {
   "ticker": "SPIR",
-  "updated": "2026-07-17 15:05:14",
+  "updated": "2026-07-17 16:23:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,10 @@
     {
       "date": "2026-07-17",
       "open": 11.81,
-      "high": 12.345,
+      "high": 12.44,
       "low": 11.625,
-      "close": 12.275,
-      "volume": 356247
+      "close": 12.3,
+      "volume": 496371
     }
   ]
 }
