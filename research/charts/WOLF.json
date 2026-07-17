@@ -1,6 +1,6 @@
 {
   "ticker": "WOLF",
-  "updated": "2026-07-17 16:22:57",
+  "updated": "2026-07-17 17:35:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,10 @@
     {
       "date": "2026-07-17",
       "open": 30.0,
-      "high": 30.82,
+      "high": 30.965,
       "low": 28.32,
-      "close": 30.1305,
-      "volume": 2806513
+      "close": 30.58,
+      "volume": 3338873
     }
   ]
 }
