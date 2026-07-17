@@ -1,6 +1,6 @@
 {
   "ticker": "CTAS",
-  "updated": "2026-07-17 18:38:06",
+  "updated": "2026-07-17 19:43:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,15 @@
       "high": 207.09,
       "low": 197.12,
       "close": 206.25,
-      "volume": 4239900
+      "volume": 4245300
     },
     {
       "date": "2026-07-17",
       "open": 207.17,
       "high": 209.72,
       "low": 201.57,
-      "close": 203.29,
-      "volume": 1716576
+      "close": 203.725,
+      "volume": 2013979
     }
   ]
 }
