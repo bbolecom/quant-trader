@@ -1,6 +1,6 @@
 {
   "ticker": "HOMB",
-  "updated": "2026-07-16 22:37:54",
+  "updated": "2026-07-17 15:05:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-07-16",
       "open": 29.89,
-      "high": 30.8951,
+      "high": 30.9,
       "low": 29.55,
       "close": 30.69,
-      "volume": 3575661
+      "volume": 4060900
+    },
+    {
+      "date": "2026-07-17",
+      "open": 30.63,
+      "high": 31.18,
+      "low": 30.5,
+      "close": 31.095,
+      "volume": 780534
     }
   ]
 }

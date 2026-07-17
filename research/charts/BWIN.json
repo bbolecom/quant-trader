@@ -1,6 +1,6 @@
 {
   "ticker": "BWIN",
-  "updated": "2026-07-16 22:37:44",
+  "updated": "2026-07-17 15:05:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 27.53,
       "low": 25.59,
       "close": 27.5,
-      "volume": 1312693
+      "volume": 1489300
+    },
+    {
+      "date": "2026-07-17",
+      "open": 27.4,
+      "high": 28.55,
+      "low": 27.23,
+      "close": 27.42,
+      "volume": 381547
     }
   ]
 }

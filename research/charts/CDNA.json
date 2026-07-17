@@ -1,6 +1,6 @@
 {
   "ticker": "CDNA",
-  "updated": "2026-07-16 22:37:53",
+  "updated": "2026-07-17 15:05:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -983,11 +983,19 @@
     },
     {
       "date": "2026-07-16",
-      "open": 36.3,
+      "open": 36.4,
       "high": 40.38,
       "low": 35.5,
       "close": 40.34,
-      "volume": 4449078
+      "volume": 4480500
+    },
+    {
+      "date": "2026-07-17",
+      "open": 37.96,
+      "high": 40.33,
+      "low": 37.74,
+      "close": 39.5584,
+      "volume": 564754
     }
   ]
 }

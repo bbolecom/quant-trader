@@ -1,6 +1,6 @@
 {
   "ticker": "CHEF",
-  "updated": "2026-07-16 22:37:54",
+  "updated": "2026-07-17 15:05:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 102.43,
       "low": 96.47,
       "close": 102.36,
-      "volume": 1854743
+      "volume": 1854900
+    },
+    {
+      "date": "2026-07-17",
+      "open": 102.87,
+      "high": 102.87,
+      "low": 99.84,
+      "close": 100.31,
+      "volume": 130305
     }
   ]
 }

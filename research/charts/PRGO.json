@@ -1,6 +1,6 @@
 {
   "ticker": "PRGO",
-  "updated": "2026-07-16 22:37:43",
+  "updated": "2026-07-17 15:05:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-07-16",
       "open": 10.29,
-      "high": 11.175,
-      "low": 10.34,
+      "high": 11.18,
+      "low": 10.29,
       "close": 11.16,
-      "volume": 3039037
+      "volume": 3039200
+    },
+    {
+      "date": "2026-07-17",
+      "open": 11.085,
+      "high": 11.36,
+      "low": 10.9,
+      "close": 10.9199,
+      "volume": 467862
     }
   ]
 }

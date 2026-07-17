@@ -1,6 +1,6 @@
 {
   "ticker": "DXCM",
-  "updated": "2026-07-16 22:37:44",
+  "updated": "2026-07-17 15:05:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-07-16",
       "open": 73.62,
-      "high": 79.154,
+      "high": 79.15,
       "low": 73.12,
       "close": 77.98,
-      "volume": 6483489
+      "volume": 6635400
+    },
+    {
+      "date": "2026-07-17",
+      "open": 77.81,
+      "high": 78.01,
+      "low": 76.14,
+      "close": 76.5,
+      "volume": 1202953
     }
   ]
 }

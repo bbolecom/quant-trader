@@ -1,6 +1,6 @@
 {
   "ticker": "ERIE",
-  "updated": "2026-07-16 22:37:43",
+  "updated": "2026-07-17 15:05:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 232.0,
       "low": 214.0,
       "close": 225.94,
-      "volume": 418138
+      "volume": 448800
+    },
+    {
+      "date": "2026-07-17",
+      "open": 227.77,
+      "high": 234.9,
+      "low": 225.8001,
+      "close": 233.86,
+      "volume": 44076
     }
   ]
 }

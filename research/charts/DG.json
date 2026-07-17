@@ -1,6 +1,6 @@
 {
   "ticker": "DG",
-  "updated": "2026-07-16 22:37:54",
+  "updated": "2026-07-17 15:05:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 127.97,
       "low": 121.97,
       "close": 127.16,
-      "volume": 4850018
+      "volume": 4863300
+    },
+    {
+      "date": "2026-07-17",
+      "open": 127.45,
+      "high": 130.595,
+      "low": 127.56,
+      "close": 128.11,
+      "volume": 596283
     }
   ]
 }

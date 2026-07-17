@@ -1,6 +1,6 @@
 {
   "ticker": "ARX",
-  "updated": "2026-07-16 22:37:43",
+  "updated": "2026-07-17 15:05:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-07-16",
       "open": 12.92,
-      "high": 13.965,
-      "low": 12.82,
+      "high": 13.97,
+      "low": 12.77,
       "close": 13.96,
-      "volume": 1435865
+      "volume": 1436300
+    },
+    {
+      "date": "2026-07-17",
+      "open": 13.99,
+      "high": 14.4399,
+      "low": 13.72,
+      "close": 13.78,
+      "volume": 203386
     }
   ]
 }

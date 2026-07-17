@@ -1,6 +1,6 @@
 {
   "ticker": "UPST",
-  "updated": "2026-07-16 22:37:47",
+  "updated": "2026-07-17 15:05:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -985,9 +985,17 @@
       "date": "2026-07-16",
       "open": 31.4,
       "high": 32.0,
-      "low": 30.32,
+      "low": 30.315,
       "close": 30.88,
-      "volume": 3012257
+      "volume": 3245500
+    },
+    {
+      "date": "2026-07-17",
+      "open": 29.755,
+      "high": 30.17,
+      "low": 29.1305,
+      "close": 29.555,
+      "volume": 1546943
     }
   ]
 }
