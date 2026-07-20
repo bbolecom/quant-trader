@@ -1,18 +1,10 @@
 {
   "ticker": "OUST",
-  "updated": "2026-07-20 19:04:51",
+  "updated": "2026-07-20 20:36:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 24.65,
-      "high": 26.01,
-      "low": 24.01,
-      "close": 24.5,
-      "volume": 2332200
-    },
     {
       "date": "2026-01-21",
       "open": 25.19,
@@ -1001,9 +993,9 @@
       "date": "2026-07-20",
       "open": 37.145,
       "high": 38.48,
-      "low": 34.68,
-      "close": 34.795,
-      "volume": 2797394
+      "low": 34.62,
+      "close": 34.77,
+      "volume": 3870473
     }
   ]
 }

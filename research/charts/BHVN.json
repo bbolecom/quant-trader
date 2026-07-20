@@ -1,18 +1,10 @@
 {
   "ticker": "BHVN",
-  "updated": "2026-07-20 19:04:51",
+  "updated": "2026-07-20 20:36:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 12.83,
-      "high": 12.93,
-      "low": 12.25,
-      "close": 12.68,
-      "volume": 2817800
-    },
     {
       "date": "2026-01-21",
       "open": 13.85,
@@ -1001,9 +993,9 @@
       "date": "2026-07-20",
       "open": 15.51,
       "high": 15.79,
-      "low": 14.83,
+      "low": 14.75,
       "close": 14.86,
-      "volume": 855037
+      "volume": 1499326
     }
   ]
 }

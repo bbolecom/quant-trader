@@ -1,18 +1,10 @@
 {
   "ticker": "WU",
-  "updated": "2026-07-20 19:05:03",
+  "updated": "2026-07-20 20:37:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 9.18,
-      "high": 9.29,
-      "low": 9.11,
-      "close": 9.14,
-      "volume": 6102700
-    },
     {
       "date": "2026-01-21",
       "open": 9.17,
@@ -1002,8 +994,8 @@
       "open": 8.64,
       "high": 8.735,
       "low": 8.455,
-      "close": 8.69,
-      "volume": 6550170
+      "close": 8.66,
+      "volume": 9326385
     }
   ]
 }

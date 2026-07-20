@@ -1,18 +1,10 @@
 {
   "ticker": "AIG",
-  "updated": "2026-07-20 19:05:03",
+  "updated": "2026-07-20 20:37:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 72.72,
-      "high": 73.71,
-      "low": 72.24,
-      "close": 72.44,
-      "volume": 4154000
-    },
     {
       "date": "2026-01-21",
       "open": 72.65,
@@ -1002,8 +994,8 @@
       "open": 80.08,
       "high": 80.319,
       "low": 79.5629,
-      "close": 79.855,
-      "volume": 932442
+      "close": 79.8,
+      "volume": 1575475
     }
   ]
 }

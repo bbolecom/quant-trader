@@ -1,18 +1,10 @@
 {
   "ticker": "TRV",
-  "updated": "2026-07-20 19:04:51",
+  "updated": "2026-07-20 20:36:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 268.32,
-      "high": 271.53,
-      "low": 268.0,
-      "close": 269.61,
-      "volume": 2274400
-    },
     {
       "date": "2026-01-21",
       "open": 274.45,
@@ -1002,8 +994,8 @@
       "open": 367.6,
       "high": 371.94,
       "low": 362.5,
-      "close": 366.83,
-      "volume": 1244244
+      "close": 368.5,
+      "volume": 1844373
     }
   ]
 }

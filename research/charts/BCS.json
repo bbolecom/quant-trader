@@ -1,18 +1,10 @@
 {
   "ticker": "BCS",
-  "updated": "2026-07-20 19:05:02",
+  "updated": "2026-07-20 20:37:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 25.65,
-      "high": 25.98,
-      "low": 25.57,
-      "close": 25.63,
-      "volume": 5259500
-    },
     {
       "date": "2026-01-21",
       "open": 25.62,
@@ -1001,9 +993,9 @@
       "date": "2026-07-20",
       "open": 27.81,
       "high": 27.915,
-      "low": 27.29,
-      "close": 27.305,
-      "volume": 5763820
+      "low": 27.215,
+      "close": 27.24,
+      "volume": 6857150
     }
   ]
 }

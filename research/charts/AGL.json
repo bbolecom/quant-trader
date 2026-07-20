@@ -1,18 +1,10 @@
 {
   "ticker": "AGL",
-  "updated": "2026-07-20 19:04:51",
+  "updated": "2026-07-20 20:36:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 24.825,
-      "high": 25.0,
-      "low": 23.875,
-      "close": 24.425,
-      "volume": 272276
-    },
     {
       "date": "2026-01-21",
       "open": 24.425,
@@ -1002,8 +994,8 @@
       "open": 129.79,
       "high": 129.79,
       "low": 116.0,
-      "close": 118.015,
-      "volume": 212335
+      "close": 122.1,
+      "volume": 355310
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "AA",
-  "updated": "2026-07-20 19:05:03",
+  "updated": "2026-07-20 20:37:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-20",
-      "open": 59.73,
-      "high": 62.295,
-      "low": 59.59,
-      "close": 62.12,
-      "volume": 8466800
-    },
     {
       "date": "2026-01-21",
       "open": 63.52,
@@ -1001,9 +993,9 @@
       "date": "2026-07-20",
       "open": 44.37,
       "high": 45.345,
-      "low": 42.8,
-      "close": 42.8,
-      "volume": 3531866
+      "low": 42.74,
+      "close": 43.48,
+      "volume": 6577956
     }
   ]
 }
