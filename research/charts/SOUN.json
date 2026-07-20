@@ -1,6 +1,6 @@
 {
   "ticker": "SOUN",
-  "updated": "2026-07-17 22:13:30",
+  "updated": "2026-07-20 15:44:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-17",
-      "open": 6.092,
+      "open": 6.105,
       "high": 6.43,
       "low": 5.975,
       "close": 6.27,
-      "volume": 44267698
+      "volume": 44361700
+    },
+    {
+      "date": "2026-07-20",
+      "open": 6.28,
+      "high": 6.34,
+      "low": 6.09,
+      "close": 6.2734,
+      "volume": 12154080
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "DNTH",
-  "updated": "2026-07-17 22:13:26",
+  "updated": "2026-07-20 15:44:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 105.72,
       "low": 91.01,
       "close": 105.6,
-      "volume": 1017100
+      "volume": 1025000
+    },
+    {
+      "date": "2026-07-20",
+      "open": 105.15,
+      "high": 107.99,
+      "low": 100.04,
+      "close": 101.75,
+      "volume": 235940
     }
   ]
 }

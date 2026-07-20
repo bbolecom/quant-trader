@@ -1,6 +1,6 @@
 {
   "ticker": "TRVI",
-  "updated": "2026-07-17 22:13:26",
+  "updated": "2026-07-20 15:44:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-17",
       "open": 17.585,
-      "high": 20.14,
-      "low": 17.24,
+      "high": 20.22,
+      "low": 17.23,
       "close": 19.07,
-      "volume": 8309900
+      "volume": 8311800
+    },
+    {
+      "date": "2026-07-20",
+      "open": 19.28,
+      "high": 19.3692,
+      "low": 17.845,
+      "close": 17.93,
+      "volume": 925045
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ORKA",
-  "updated": "2026-07-17 22:13:26",
+  "updated": "2026-07-20 15:44:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 93.0,
       "low": 80.72,
       "close": 92.7,
-      "volume": 2804544
+      "volume": 2804600
+    },
+    {
+      "date": "2026-07-20",
+      "open": 93.835,
+      "high": 96.27,
+      "low": 92.68,
+      "close": 92.905,
+      "volume": 456510
     }
   ]
 }

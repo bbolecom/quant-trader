@@ -1,6 +1,6 @@
 {
   "ticker": "STX",
-  "updated": "2026-07-17 22:13:27",
+  "updated": "2026-07-20 15:44:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 808.65,
       "low": 700.39,
       "close": 787.66,
-      "volume": 7006393
+      "volume": 7008600
+    },
+    {
+      "date": "2026-07-20",
+      "open": 810.02,
+      "high": 831.64,
+      "low": 802.9762,
+      "close": 809.55,
+      "volume": 1629518
     }
   ]
 }
