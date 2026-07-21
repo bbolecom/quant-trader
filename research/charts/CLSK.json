@@ -1,6 +1,6 @@
 {
   "ticker": "CLSK",
-  "updated": "2026-07-20 22:40:59",
+  "updated": "2026-07-21 15:28:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 13.2,
       "low": 12.15,
       "close": 13.03,
-      "volume": 22060500
+      "volume": 22094900
     },
     {
       "date": "2026-07-20",
-      "open": 13.5425,
-      "high": 15.1198,
-      "low": 13.5,
+      "open": 13.5,
+      "high": 15.12,
+      "low": 13.43,
       "close": 14.42,
-      "volume": 29904118
+      "volume": 29945500
+    },
+    {
+      "date": "2026-07-21",
+      "open": 14.816,
+      "high": 15.615,
+      "low": 14.68,
+      "close": 15.56,
+      "volume": 14049944
     }
   ]
 }

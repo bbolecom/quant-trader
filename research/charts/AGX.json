@@ -1,6 +1,6 @@
 {
   "ticker": "AGX",
-  "updated": "2026-07-20 22:40:53",
+  "updated": "2026-07-21 15:28:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-20",
       "open": 566.0,
-      "high": 605.19,
-      "low": 563.96,
+      "high": 605.44,
+      "low": 559.53,
       "close": 602.18,
-      "volume": 475663
+      "volume": 475700
+    },
+    {
+      "date": "2026-07-21",
+      "open": 625.26,
+      "high": 635.76,
+      "low": 602.0,
+      "close": 613.19,
+      "volume": 74336
     }
   ]
 }
