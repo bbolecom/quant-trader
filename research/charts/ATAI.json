@@ -1,18 +1,10 @@
 {
   "ticker": "ATAI",
-  "updated": "2026-07-21 19:46:51",
+  "updated": "2026-07-21 20:49:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 3.86,
-      "high": 3.92,
-      "low": 3.77,
-      "close": 3.9,
-      "volume": 3412700
-    },
     {
       "date": "2026-01-22",
       "open": 3.93,
@@ -1001,9 +993,9 @@
       "date": "2026-07-21",
       "open": 7.15,
       "high": 7.21,
-      "low": 7.15,
-      "close": 7.15,
-      "volume": 11102898
+      "low": 7.13,
+      "close": 7.135,
+      "volume": 13643977
     }
   ]
 }

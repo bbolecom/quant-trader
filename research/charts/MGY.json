@@ -1,18 +1,10 @@
 {
   "ticker": "MGY",
-  "updated": "2026-07-21 19:46:49",
+  "updated": "2026-07-21 20:49:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 23.0,
-      "high": 23.74,
-      "low": 23.0,
-      "close": 23.73,
-      "volume": 4531400
-    },
     {
       "date": "2026-01-22",
       "open": 23.61,
@@ -1002,8 +994,8 @@
       "open": 24.13,
       "high": 25.195,
       "low": 24.06,
-      "close": 25.045,
-      "volume": 31058710
+      "close": 25.09,
+      "volume": 33406736
     }
   ]
 }

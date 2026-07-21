@@ -1,18 +1,10 @@
 {
   "ticker": "ELF",
-  "updated": "2026-07-21 19:46:25",
+  "updated": "2026-07-21 20:49:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 90.98,
-      "high": 92.92,
-      "low": 89.45,
-      "close": 91.82,
-      "volume": 1498900
-    },
     {
       "date": "2026-01-22",
       "open": 93.0,
@@ -1002,8 +994,8 @@
       "open": 77.91,
       "high": 80.47,
       "low": 76.58,
-      "close": 79.335,
-      "volume": 2120464
+      "close": 79.9,
+      "volume": 2468429
     }
   ]
 }

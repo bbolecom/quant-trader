@@ -1,18 +1,10 @@
 {
   "ticker": "HOOD",
-  "updated": "2026-07-21 19:46:45",
+  "updated": "2026-07-21 20:49:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 105.725,
-      "high": 108.5,
-      "low": 104.95,
-      "close": 105.92,
-      "volume": 20051300
-    },
     {
       "date": "2026-01-22",
       "open": 107.48,
@@ -1002,8 +994,8 @@
       "open": 102.815,
       "high": 108.21,
       "low": 102.815,
-      "close": 106.22,
-      "volume": 15033457
+      "close": 106.36,
+      "volume": 19339310
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "WBD",
-  "updated": "2026-07-21 19:46:50",
+  "updated": "2026-07-21 20:49:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 28.32,
-      "high": 28.72,
-      "low": 28.2,
-      "close": 28.53,
-      "volume": 22104000
-    },
     {
       "date": "2026-01-22",
       "open": 28.5,
@@ -1002,8 +994,8 @@
       "open": 25.89,
       "high": 25.935,
       "low": 25.63,
-      "close": 25.895,
-      "volume": 14149304
+      "close": 25.83,
+      "volume": 22012687
     }
   ]
 }

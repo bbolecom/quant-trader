@@ -1,18 +1,10 @@
 {
   "ticker": "IOVA",
-  "updated": "2026-07-21 19:46:51",
+  "updated": "2026-07-21 20:49:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 2.45,
-      "high": 2.57,
-      "low": 2.42,
-      "close": 2.51,
-      "volume": 12059000
-    },
     {
       "date": "2026-01-22",
       "open": 2.52,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-07-21",
       "open": 5.07,
-      "high": 5.42,
+      "high": 5.53,
       "low": 5.02,
-      "close": 5.395,
-      "volume": 16070621
+      "close": 5.48,
+      "volume": 19988796
     }
   ]
 }

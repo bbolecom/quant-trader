@@ -1,18 +1,10 @@
 {
   "ticker": "COTY",
-  "updated": "2026-07-21 19:46:43",
+  "updated": "2026-07-21 20:49:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 3.15,
-      "high": 3.29,
-      "low": 3.15,
-      "close": 3.26,
-      "volume": 8127600
-    },
     {
       "date": "2026-01-22",
       "open": 3.29,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-07-21",
       "open": 2.66,
-      "high": 2.745,
+      "high": 2.76,
       "low": 2.64,
-      "close": 2.72,
-      "volume": 6401162
+      "close": 2.75,
+      "volume": 7515571
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "HDB",
-  "updated": "2026-07-21 19:46:51",
+  "updated": "2026-07-21 20:49:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 32.09,
-      "high": 32.18,
-      "low": 31.77,
-      "close": 32.13,
-      "volume": 6985200
-    },
     {
       "date": "2026-01-22",
       "open": 31.94,
@@ -1002,8 +994,8 @@
       "open": 23.55,
       "high": 23.935,
       "low": 23.55,
-      "close": 23.84,
-      "volume": 8921553
+      "close": 23.73,
+      "volume": 10607727
     }
   ]
 }

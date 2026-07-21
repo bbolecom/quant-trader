@@ -1,18 +1,10 @@
 {
   "ticker": "GLXY",
-  "updated": "2026-07-21 19:46:25",
+  "updated": "2026-07-21 20:49:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 32.26,
-      "high": 33.6,
-      "low": 30.73,
-      "close": 32.45,
-      "volume": 6929800
-    },
     {
       "date": "2026-01-22",
       "open": 33.125,
@@ -1002,8 +994,8 @@
       "open": 24.38,
       "high": 26.0099,
       "low": 24.38,
-      "close": 25.55,
-      "volume": 5998355
+      "close": 25.41,
+      "volume": 7722433
     }
   ]
 }

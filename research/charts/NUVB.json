@@ -1,18 +1,10 @@
 {
   "ticker": "NUVB",
-  "updated": "2026-07-21 19:46:24",
+  "updated": "2026-07-21 20:49:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-21",
-      "open": 6.065,
-      "high": 6.25,
-      "low": 5.9,
-      "close": 6.15,
-      "volume": 6274300
-    },
     {
       "date": "2026-01-22",
       "open": 6.225,
@@ -1002,8 +994,8 @@
       "open": 6.33,
       "high": 6.625,
       "low": 6.15,
-      "close": 6.395,
-      "volume": 6109506
+      "close": 6.43,
+      "volume": 6875110
     }
   ]
 }
