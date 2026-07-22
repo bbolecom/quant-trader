@@ -1,18 +1,10 @@
 {
   "ticker": "DELL",
-  "updated": "2026-07-22 16:54:37",
+  "updated": "2026-07-22 22:21:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 114.23,
-      "high": 119.59,
-      "low": 113.98,
-      "close": 117.17,
-      "volume": 8372200
-    },
     {
       "date": "2026-01-23",
       "open": 115.42,
@@ -995,15 +987,15 @@
       "high": 407.98,
       "low": 393.94,
       "close": 404.15,
-      "volume": 5232500
+      "volume": 5277300
     },
     {
       "date": "2026-07-22",
       "open": 414.34,
       "high": 451.36,
       "low": 413.77,
-      "close": 444.54,
-      "volume": 4620501
+      "close": 441.8,
+      "volume": 7151847
     }
   ]
 }

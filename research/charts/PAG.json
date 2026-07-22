@@ -1,18 +1,10 @@
 {
   "ticker": "PAG",
-  "updated": "2026-07-22 16:54:45",
+  "updated": "2026-07-22 22:21:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 168.2,
-      "high": 169.43,
-      "low": 162.8,
-      "close": 163.31,
-      "volume": 311300
-    },
     {
       "date": "2026-01-23",
       "open": 163.4,
@@ -1002,8 +994,8 @@
       "open": 215.0,
       "high": 219.09,
       "low": 212.79,
-      "close": 215.55,
-      "volume": 1554229
+      "close": 214.57,
+      "volume": 2452818
     }
   ]
 }

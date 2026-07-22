@@ -1,18 +1,10 @@
 {
   "ticker": "EQT",
-  "updated": "2026-07-22 16:54:40",
+  "updated": "2026-07-22 22:21:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 55.5,
-      "high": 55.7,
-      "low": 54.04,
-      "close": 54.73,
-      "volume": 16383600
-    },
     {
       "date": "2026-01-23",
       "open": 55.7,
@@ -995,15 +987,15 @@
       "high": 49.88,
       "low": 49.09,
       "close": 49.8,
-      "volume": 7207600
+      "volume": 7224700
     },
     {
       "date": "2026-07-22",
       "open": 51.1,
-      "high": 53.675,
+      "high": 54.055,
       "low": 50.7501,
-      "close": 53.26,
-      "volume": 9655714
+      "close": 54.01,
+      "volume": 17794788
     }
   ]
 }
