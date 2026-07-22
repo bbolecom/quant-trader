@@ -1,6 +1,6 @@
 {
   "ticker": "INIO",
-  "updated": "2026-07-21 22:38:39",
+  "updated": "2026-07-22 15:25:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -243,7 +243,15 @@
       "high": 30.84,
       "low": 27.47,
       "close": 30.37,
-      "volume": 3663969
+      "volume": 3665200
+    },
+    {
+      "date": "2026-07-22",
+      "open": 28.001,
+      "high": 29.83,
+      "low": 27.79,
+      "close": 28.86,
+      "volume": 1687906
     }
   ]
 }

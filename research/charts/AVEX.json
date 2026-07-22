@@ -1,6 +1,6 @@
 {
   "ticker": "AVEX",
-  "updated": "2026-07-21 22:38:39",
+  "updated": "2026-07-22 15:25:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -521,9 +521,17 @@
       "date": "2026-07-21",
       "open": 13.39,
       "high": 14.95,
-      "low": 13.297,
+      "low": 13.25,
       "close": 14.75,
-      "volume": 1710325
+      "volume": 1720200
+    },
+    {
+      "date": "2026-07-22",
+      "open": 14.75,
+      "high": 15.35,
+      "low": 14.685,
+      "close": 15.32,
+      "volume": 326602
     }
   ]
 }

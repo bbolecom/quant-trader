@@ -1,6 +1,6 @@
 {
   "ticker": "BANC",
-  "updated": "2026-07-21 22:39:16",
+  "updated": "2026-07-22 15:26:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-07-21",
       "open": 21.12,
       "high": 21.93,
-      "low": 21.005,
+      "low": 21.01,
       "close": 21.83,
-      "volume": 7670462
+      "volume": 8504200
+    },
+    {
+      "date": "2026-07-22",
+      "open": 21.84,
+      "high": 21.78,
+      "low": 21.165,
+      "close": 21.28,
+      "volume": 650804
     }
   ]
 }

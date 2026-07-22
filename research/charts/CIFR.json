@@ -1,6 +1,6 @@
 {
   "ticker": "CIFR",
-  "updated": "2026-07-21 22:38:38",
+  "updated": "2026-07-22 15:25:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-21",
-      "open": 21.02,
+      "open": 21.015,
       "high": 24.49,
       "low": 20.98,
       "close": 22.89,
-      "volume": 46619136
+      "volume": 47406500
+    },
+    {
+      "date": "2026-07-22",
+      "open": 22.45,
+      "high": 24.11,
+      "low": 22.31,
+      "close": 23.8981,
+      "volume": 7387516
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "HRMY",
-  "updated": "2026-07-21 22:38:40",
+  "updated": "2026-07-22 15:25:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-21",
       "open": 33.26,
-      "high": 36.9267,
+      "high": 36.927,
       "low": 33.19,
       "close": 36.84,
-      "volume": 1966705
+      "volume": 2000700
+    },
+    {
+      "date": "2026-07-22",
+      "open": 36.51,
+      "high": 36.96,
+      "low": 36.0,
+      "close": 36.085,
+      "volume": 155373
     }
   ]
 }

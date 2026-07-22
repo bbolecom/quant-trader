@@ -1,6 +1,6 @@
 {
   "ticker": "VIR",
-  "updated": "2026-07-21 22:39:01",
+  "updated": "2026-07-22 15:25:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-21",
-      "open": 9.22,
+      "open": 9.2,
       "high": 9.555,
       "low": 9.14,
       "close": 9.42,
-      "volume": 1731551
+      "volume": 1731600
+    },
+    {
+      "date": "2026-07-22",
+      "open": 9.3,
+      "high": 9.58,
+      "low": 9.3,
+      "close": 9.58,
+      "volume": 763686
     }
   ]
 }

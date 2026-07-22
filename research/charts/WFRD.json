@@ -1,6 +1,6 @@
 {
   "ticker": "WFRD",
-  "updated": "2026-07-21 22:39:14",
+  "updated": "2026-07-22 15:26:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 83.83,
       "low": 77.7,
       "close": 83.32,
-      "volume": 2711789
+      "volume": 2712500
+    },
+    {
+      "date": "2026-07-22",
+      "open": 87.69,
+      "high": 91.68,
+      "low": 87.678,
+      "close": 90.63,
+      "volume": 805330
     }
   ]
 }

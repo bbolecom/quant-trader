@@ -1,6 +1,6 @@
 {
   "ticker": "TXG",
-  "updated": "2026-07-21 22:38:40",
+  "updated": "2026-07-22 15:25:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 47.25,
       "low": 41.93,
       "close": 47.2,
-      "volume": 2343415
+      "volume": 2464300
+    },
+    {
+      "date": "2026-07-22",
+      "open": 46.59,
+      "high": 47.51,
+      "low": 45.96,
+      "close": 47.485,
+      "volume": 787380
     }
   ]
 }
