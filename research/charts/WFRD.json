@@ -1,18 +1,10 @@
 {
   "ticker": "WFRD",
-  "updated": "2026-07-22 19:16:36",
+  "updated": "2026-07-22 20:32:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 88.5,
-      "high": 89.315,
-      "low": 86.45,
-      "close": 89.12,
-      "volume": 1090500
-    },
     {
       "date": "2026-01-23",
       "open": 90.37,
@@ -995,15 +987,15 @@
       "high": 83.83,
       "low": 77.7,
       "close": 83.32,
-      "volume": 2712500
+      "volume": 2716300
     },
     {
       "date": "2026-07-22",
       "open": 87.69,
       "high": 91.68,
-      "low": 87.05,
-      "close": 87.395,
-      "volume": 1446634
+      "low": 86.92,
+      "close": 87.11,
+      "volume": 2313425
     }
   ]
 }

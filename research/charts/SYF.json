@@ -1,18 +1,10 @@
 {
   "ticker": "SYF",
-  "updated": "2026-07-22 19:16:37",
+  "updated": "2026-07-22 20:32:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 77.86,
-      "high": 79.52,
-      "low": 77.43,
-      "close": 78.1,
-      "volume": 4384000
-    },
     {
       "date": "2026-01-23",
       "open": 77.05,
@@ -1002,8 +994,8 @@
       "open": 71.49,
       "high": 72.975,
       "low": 71.325,
-      "close": 72.79,
-      "volume": 2589305
+      "close": 72.81,
+      "volume": 3412113
     }
   ]
 }

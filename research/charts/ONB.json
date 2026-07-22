@@ -1,18 +1,10 @@
 {
   "ticker": "ONB",
-  "updated": "2026-07-22 19:16:37",
+  "updated": "2026-07-22 20:32:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-22",
-      "open": 24.54,
-      "high": 24.78,
-      "low": 24.22,
-      "close": 24.24,
-      "volume": 3936500
-    },
     {
       "date": "2026-01-23",
       "open": 24.05,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-07-22",
       "open": 26.17,
-      "high": 26.35,
+      "high": 26.405,
       "low": 25.86,
-      "close": 26.1601,
-      "volume": 3846960
+      "close": 26.39,
+      "volume": 5934487
     }
   ]
 }
