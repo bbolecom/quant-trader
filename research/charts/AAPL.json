@@ -1,18 +1,10 @@
 {
   "ticker": "AAPL",
-  "updated": "2026-07-23 19:50:17",
+  "updated": "2026-07-23 20:45:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": 247.32,
-      "high": 249.41,
-      "low": 244.68,
-      "close": 248.04,
-      "volume": 41689000
-    },
     {
       "date": "2026-01-26",
       "open": 251.48,
@@ -1002,8 +994,8 @@
       "open": 321.73,
       "high": 323.3,
       "low": 319.35,
-      "close": 320.955,
-      "volume": 26604014
+      "close": 321.66,
+      "volume": 36337794
     }
   ]
 }

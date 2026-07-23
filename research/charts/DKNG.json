@@ -1,18 +1,10 @@
 {
   "ticker": "DKNG",
-  "updated": "2026-07-23 19:50:37",
+  "updated": "2026-07-23 20:46:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": 31.45,
-      "high": 31.5,
-      "low": 29.85,
-      "close": 29.97,
-      "volume": 17140600
-    },
     {
       "date": "2026-01-26",
       "open": 29.91,
@@ -999,11 +991,11 @@
     },
     {
       "date": "2026-07-23",
-      "open": 22.9,
+      "open": 22.895,
       "high": 23.085,
       "low": 22.35,
-      "close": 22.85,
-      "volume": 7974154
+      "close": 22.81,
+      "volume": 10716373
     }
   ]
 }

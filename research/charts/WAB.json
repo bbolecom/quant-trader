@@ -1,18 +1,10 @@
 {
   "ticker": "WAB",
-  "updated": "2026-07-23 19:50:12",
+  "updated": "2026-07-23 20:45:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": 233.88,
-      "high": 236.0,
-      "low": 229.41,
-      "close": 230.11,
-      "volume": 754300
-    },
     {
       "date": "2026-01-26",
       "open": 231.13,
@@ -1002,8 +994,8 @@
       "open": 293.5,
       "high": 298.145,
       "low": 291.49,
-      "close": 297.205,
-      "volume": 1131928
+      "close": 297.99,
+      "volume": 1386986
     }
   ]
 }

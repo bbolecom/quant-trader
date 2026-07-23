@@ -1,18 +1,10 @@
 {
   "ticker": "VG",
-  "updated": "2026-07-23 19:50:36",
+  "updated": "2026-07-23 20:46:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": 9.73,
-      "high": 10.01,
-      "low": 9.53,
-      "close": 9.88,
-      "volume": 10145700
-    },
     {
       "date": "2026-01-26",
       "open": 9.9,
@@ -1001,9 +993,9 @@
       "date": "2026-07-23",
       "open": 15.29,
       "high": 15.45,
-      "low": 15.11,
-      "close": 15.19,
-      "volume": 20002842
+      "low": 15.035,
+      "close": 15.16,
+      "volume": 21517605
     }
   ]
 }

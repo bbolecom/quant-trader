@@ -1,18 +1,10 @@
 {
   "ticker": "RIOT",
-  "updated": "2026-07-23 19:50:38",
+  "updated": "2026-07-23 20:46:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": 17.07,
-      "high": 18.445,
-      "low": 16.55,
-      "close": 17.28,
-      "volume": 22985400
-    },
     {
       "date": "2026-01-26",
       "open": 17.155,
@@ -1002,8 +994,8 @@
       "open": 23.36,
       "high": 25.17,
       "low": 23.295,
-      "close": 23.78,
-      "volume": 21034154
+      "close": 23.86,
+      "volume": 24010881
     }
   ]
 }
