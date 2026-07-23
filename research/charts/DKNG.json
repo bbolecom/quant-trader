@@ -1,6 +1,6 @@
 {
   "ticker": "DKNG",
-  "updated": "2026-07-22 22:39:26",
+  "updated": "2026-07-23 15:47:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-07-22",
       "open": 23.81,
       "high": 23.81,
-      "low": 22.32,
+      "low": 22.31,
       "close": 22.83,
-      "volume": 18788947
+      "volume": 18907900
+    },
+    {
+      "date": "2026-07-23",
+      "open": 22.9,
+      "high": 22.94,
+      "low": 22.35,
+      "close": 22.42,
+      "volume": 3059078
     }
   ]
 }

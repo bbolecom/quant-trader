@@ -1,6 +1,6 @@
 {
   "ticker": "FBP",
-  "updated": "2026-07-22 22:39:25",
+  "updated": "2026-07-23 15:47:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-22",
       "open": 28.25,
-      "high": 28.9,
-      "low": 27.46,
+      "high": 28.93,
+      "low": 27.43,
       "close": 28.86,
-      "volume": 2747526
+      "volume": 2747500
+    },
+    {
+      "date": "2026-07-23",
+      "open": 28.76,
+      "high": 28.91,
+      "low": 28.41,
+      "close": 28.8501,
+      "volume": 529450
     }
   ]
 }

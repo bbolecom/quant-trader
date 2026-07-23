@@ -1,6 +1,6 @@
 {
   "ticker": "OTIS",
-  "updated": "2026-07-22 22:39:25",
+  "updated": "2026-07-23 15:47:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-22",
       "open": 70.36,
-      "high": 72.25,
+      "high": 72.26,
       "low": 69.695,
       "close": 70.41,
-      "volume": 8523414
+      "volume": 8523700
+    },
+    {
+      "date": "2026-07-23",
+      "open": 70.45,
+      "high": 70.78,
+      "low": 69.61,
+      "close": 69.905,
+      "volume": 783664
     }
   ]
 }
