@@ -1,6 +1,6 @@
 {
   "ticker": "PCAR",
-  "updated": "2026-07-23 15:47:36",
+  "updated": "2026-07-23 17:05:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,10 @@
     {
       "date": "2026-07-23",
       "open": 131.2,
-      "high": 133.37,
+      "high": 133.485,
       "low": 131.0,
-      "close": 132.85,
-      "volume": 1909600
+      "close": 132.89,
+      "volume": 2242301
     }
   ]
 }
