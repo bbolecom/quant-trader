@@ -1,6 +1,6 @@
 {
   "ticker": "KLIC",
-  "updated": "2026-07-23 18:20:24",
+  "updated": "2026-07-23 19:50:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 108.96,
       "low": 104.85,
       "close": 105.6,
-      "volume": 840600
+      "volume": 841600
     },
     {
       "date": "2026-07-23",
       "open": 104.37,
       "high": 108.13,
       "low": 104.35,
-      "close": 104.845,
-      "volume": 312806
+      "close": 105.42,
+      "volume": 443614
     }
   ]
 }
