@@ -1,6 +1,6 @@
 {
   "ticker": "SAP",
-  "updated": "2026-07-24 19:50:32",
+  "updated": "2026-07-24 20:52:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1002,8 +1002,8 @@
       "open": 153.75,
       "high": 161.305,
       "low": 153.23,
-      "close": 160.54,
-      "volume": 5489059
+      "close": 160.0,
+      "volume": 5948444
     }
   ]
 }
