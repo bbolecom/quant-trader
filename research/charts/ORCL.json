@@ -1,6 +1,6 @@
 {
   "ticker": "ORCL",
-  "updated": "2026-07-24 17:00:09",
+  "updated": "2026-07-24 22:22:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 124.7,
       "low": 119.44,
       "close": 120.04,
-      "volume": 30627700
+      "volume": 30900600
     },
     {
       "date": "2026-07-24",
       "open": 122.47,
       "high": 123.08,
-      "low": 116.01,
-      "close": 118.205,
-      "volume": 23275434
+      "low": 114.75,
+      "close": 114.99,
+      "volume": 46003540
     }
   ]
 }
