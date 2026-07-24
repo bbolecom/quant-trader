@@ -1,6 +1,6 @@
 {
   "ticker": "SAFT",
-  "updated": "2026-07-24 18:19:14",
+  "updated": "2026-07-24 19:50:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 73.3,
       "low": 70.81,
       "close": 72.94,
-      "volume": 159200
+      "volume": 163700
     },
     {
       "date": "2026-07-24",
       "open": 103.0,
       "high": 103.42,
       "low": 102.87,
-      "close": 103.07,
-      "volume": 1164062
+      "close": 103.205,
+      "volume": 1497099
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "LMT",
-  "updated": "2026-07-24 18:18:47",
+  "updated": "2026-07-24 19:50:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 576.0,
       "low": 545.0,
       "close": 568.59,
-      "volume": 3271500
+      "volume": 3275500
     },
     {
       "date": "2026-07-24",
       "open": 568.59,
       "high": 588.41,
       "low": 568.59,
-      "close": 581.7699,
-      "volume": 1098279
+      "close": 583.045,
+      "volume": 1405456
     }
   ]
 }

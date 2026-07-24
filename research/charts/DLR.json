@@ -1,6 +1,6 @@
 {
   "ticker": "DLR",
-  "updated": "2026-07-24 18:19:07",
+  "updated": "2026-07-24 19:50:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 181.7,
       "low": 176.8,
       "close": 179.34,
-      "volume": 3261000
+      "volume": 3261600
     },
     {
       "date": "2026-07-24",
       "open": 190.0,
       "high": 207.43,
       "low": 189.86,
-      "close": 202.445,
-      "volume": 7973905
+      "close": 200.39,
+      "volume": 9461455
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "EQIX",
-  "updated": "2026-07-24 18:19:11",
+  "updated": "2026-07-24 19:50:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 1041.52,
       "low": 1022.96,
       "close": 1033.55,
-      "volume": 400900
+      "volume": 401900
     },
     {
       "date": "2026-07-24",
       "open": 1059.37,
       "high": 1104.99,
       "low": 1055.6,
-      "close": 1096.6899,
-      "volume": 484350
+      "close": 1088.035,
+      "volume": 604727
     }
   ]
 }

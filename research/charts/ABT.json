@@ -1,6 +1,6 @@
 {
   "ticker": "ABT",
-  "updated": "2026-07-24 18:19:12",
+  "updated": "2026-07-24 19:50:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 101.9,
       "low": 100.07,
       "close": 100.75,
-      "volume": 9949200
+      "volume": 9959500
     },
     {
       "date": "2026-07-24",
       "open": 101.5,
       "high": 104.175,
       "low": 101.55,
-      "close": 103.14,
-      "volume": 6255673
+      "close": 103.045,
+      "volume": 7731508
     }
   ]
 }
