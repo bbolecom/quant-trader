@@ -1,6 +1,6 @@
 {
   "ticker": "NVCR",
-  "updated": "2026-07-23 22:15:58",
+  "updated": "2026-07-24 15:20:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-23",
-      "open": 18.043,
+      "open": 18.0,
       "high": 20.55,
       "low": 18.0,
       "close": 19.99,
-      "volume": 8941401
+      "volume": 8944000
+    },
+    {
+      "date": "2026-07-24",
+      "open": 20.57,
+      "high": 21.355,
+      "low": 18.42,
+      "close": 18.42,
+      "volume": 1225115
     }
   ]
 }

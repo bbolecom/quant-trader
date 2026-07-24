@@ -1,6 +1,6 @@
 {
   "ticker": "NSC",
-  "updated": "2026-07-23 22:16:00",
+  "updated": "2026-07-24 15:20:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-23",
       "open": 343.0,
-      "high": 358.595,
+      "high": 358.6,
       "low": 343.0,
       "close": 348.55,
-      "volume": 2748135
+      "volume": 2748300
+    },
+    {
+      "date": "2026-07-24",
+      "open": 351.59,
+      "high": 353.21,
+      "low": 347.335,
+      "close": 352.83,
+      "volume": 260210
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "MXL",
-  "updated": "2026-07-23 22:16:00",
+  "updated": "2026-07-24 15:20:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-07-23",
       "open": 86.17,
       "high": 94.55,
-      "low": 86.06,
+      "low": 86.03,
       "close": 91.24,
-      "volume": 6987087
+      "volume": 7128500
+    },
+    {
+      "date": "2026-07-24",
+      "open": 82.63,
+      "high": 87.55,
+      "low": 73.5401,
+      "close": 75.95,
+      "volume": 5140139
     }
   ]
 }

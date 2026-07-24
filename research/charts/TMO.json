@@ -1,6 +1,6 @@
 {
   "ticker": "TMO",
-  "updated": "2026-07-23 22:20:00",
+  "updated": "2026-07-24 15:20:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 587.49,
       "low": 568.84,
       "close": 572.32,
-      "volume": 5800421
+      "volume": 5803700
+    },
+    {
+      "date": "2026-07-24",
+      "open": 570.0,
+      "high": 573.64,
+      "low": 555.98,
+      "close": 559.5,
+      "volume": 864937
     }
   ]
 }

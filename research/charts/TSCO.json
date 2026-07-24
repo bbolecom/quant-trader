@@ -1,6 +1,6 @@
 {
   "ticker": "TSCO",
-  "updated": "2026-07-23 22:16:00",
+  "updated": "2026-07-24 15:20:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-23",
-      "open": 29.96,
+      "open": 30.0,
       "high": 30.49,
       "low": 28.96,
       "close": 30.32,
-      "volume": 26345649
+      "volume": 26346700
+    },
+    {
+      "date": "2026-07-24",
+      "open": 30.465,
+      "high": 30.91,
+      "low": 29.69,
+      "close": 30.23,
+      "volume": 3388416
     }
   ]
 }

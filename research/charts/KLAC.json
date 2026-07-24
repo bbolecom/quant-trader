@@ -1,6 +1,6 @@
 {
   "ticker": "KLAC",
-  "updated": "2026-07-23 21:44:57",
+  "updated": "2026-07-24 15:20:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-23",
-      "open": 213.35,
+      "open": 213.39,
       "high": 219.03,
       "low": 212.86,
       "close": 218.73,
-      "volume": 8654007
+      "volume": 8754900
+    },
+    {
+      "date": "2026-07-24",
+      "open": 214.86,
+      "high": 219.99,
+      "low": 210.38,
+      "close": 214.33,
+      "volume": 2479261
     }
   ]
 }

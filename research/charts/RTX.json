@@ -1,6 +1,6 @@
 {
   "ticker": "RTX",
-  "updated": "2026-07-23 22:20:00",
+  "updated": "2026-07-24 15:20:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 213.49,
       "low": 202.51,
       "close": 209.16,
-      "volume": 9992168
+      "volume": 9995000
+    },
+    {
+      "date": "2026-07-24",
+      "open": 210.83,
+      "high": 214.8899,
+      "low": 209.2601,
+      "close": 213.485,
+      "volume": 1540043
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "CSX",
-  "updated": "2026-07-23 22:15:59",
+  "updated": "2026-07-24 15:20:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-23",
-      "open": 52.05,
-      "high": 53.3,
+      "open": 51.96,
+      "high": 53.31,
       "low": 51.62,
       "close": 52.81,
-      "volume": 29142399
+      "volume": 29160000
+    },
+    {
+      "date": "2026-07-24",
+      "open": 52.77,
+      "high": 53.215,
+      "low": 52.59,
+      "close": 53.2,
+      "volume": 3607318
     }
   ]
 }

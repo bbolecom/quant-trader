@@ -1,6 +1,6 @@
 {
   "ticker": "MEDP",
-  "updated": "2026-07-23 22:20:00",
+  "updated": "2026-07-24 15:20:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 677.9,
       "low": 592.65,
       "close": 605.82,
-      "volume": 1177126
+      "volume": 1177100
+    },
+    {
+      "date": "2026-07-24",
+      "open": 612.07,
+      "high": 612.07,
+      "low": 592.8,
+      "close": 603.815,
+      "volume": 117006
     }
   ]
 }

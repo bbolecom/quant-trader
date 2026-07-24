@@ -1,6 +1,6 @@
 {
   "ticker": "DGX",
-  "updated": "2026-07-23 22:38:49",
+  "updated": "2026-07-24 15:20:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-23",
       "open": 228.09,
-      "high": 237.7,
+      "high": 237.78,
       "low": 220.0,
       "close": 227.9,
-      "volume": 3758245
+      "volume": 3758400
+    },
+    {
+      "date": "2026-07-24",
+      "open": 228.0,
+      "high": 233.2099,
+      "low": 223.42,
+      "close": 228.36,
+      "volume": 445602
     }
   ]
 }

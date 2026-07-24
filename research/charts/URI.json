@@ -1,6 +1,6 @@
 {
   "ticker": "URI",
-  "updated": "2026-07-23 22:38:48",
+  "updated": "2026-07-24 15:20:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 1177.67,
       "low": 1093.14,
       "close": 1139.71,
-      "volume": 1204384
+      "volume": 1204600
+    },
+    {
+      "date": "2026-07-24",
+      "open": 1131.8,
+      "high": 1150.0571,
+      "low": 1124.36,
+      "close": 1132.46,
+      "volume": 100593
     }
   ]
 }

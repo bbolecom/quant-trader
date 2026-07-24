@@ -1,6 +1,6 @@
 {
   "ticker": "ALLE",
-  "updated": "2026-07-23 22:38:48",
+  "updated": "2026-07-24 15:20:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-07-23",
       "open": 151.57,
       "high": 159.37,
-      "low": 148.715,
+      "low": 148.72,
       "close": 154.57,
-      "volume": 3968751
+      "volume": 3968900
+    },
+    {
+      "date": "2026-07-24",
+      "open": 152.25,
+      "high": 156.46,
+      "low": 151.71,
+      "close": 155.77,
+      "volume": 460069
     }
   ]
 }

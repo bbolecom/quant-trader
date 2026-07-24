@@ -1,6 +1,6 @@
 {
   "ticker": "WEX",
-  "updated": "2026-07-23 22:38:48",
+  "updated": "2026-07-24 15:20:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-23",
       "open": 160.21,
-      "high": 174.03,
+      "high": 174.07,
       "low": 157.0,
       "close": 171.47,
-      "volume": 1574680
+      "volume": 1574700
+    },
+    {
+      "date": "2026-07-24",
+      "open": 172.59,
+      "high": 175.5,
+      "low": 169.32,
+      "close": 175.49,
+      "volume": 399252
     }
   ]
 }

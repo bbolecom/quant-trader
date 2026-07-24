@@ -1,18 +1,10 @@
 {
   "ticker": "KALU",
-  "updated": "2026-07-23 22:38:48",
+  "updated": "2026-07-24 15:20:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-23",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
-    },
     {
       "date": "2026-01-26",
       "open": 128.95,
@@ -1003,7 +995,15 @@
       "high": 186.5,
       "low": 169.02,
       "close": 180.6,
-      "volume": 504623
+      "volume": 504600
+    },
+    {
+      "date": "2026-07-24",
+      "open": 176.73,
+      "high": 178.999,
+      "low": 166.22,
+      "close": 169.2,
+      "volume": 92289
     }
   ]
 }
