@@ -1,16 +1,16 @@
 {
-  "扫描时间": "2026-07-24 22:32:56",
+  "扫描时间": "2026-07-24 22:46:10",
   "扫描日期": "2026-07-24",
   "scan_mode": "fast_market",
   "budget_sec": 300.0,
-  "elapsed_sec": 6.3,
+  "elapsed_sec": 5.56,
   "within_budget": true,
   "scan_stats": {
     "universe": 920,
     "after_liquidity_filter": 776,
     "signals": 184,
-    "phase1_sec": 0.51,
-    "phase2_sec": 5.74,
+    "phase1_sec": 0.58,
+    "phase2_sec": 4.92,
     "presets": [
       "当日涨幅榜",
       "当日跌幅榜",
