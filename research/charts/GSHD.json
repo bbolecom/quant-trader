@@ -1,6 +1,6 @@
 {
   "ticker": "GSHD",
-  "updated": "2026-07-27 16:07:09",
+  "updated": "2026-07-27 17:52:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,20 +990,12 @@
       "volume": 990300
     },
     {
-      "date": "2026-07-24",
-      "open": 53.44,
-      "high": 59.11,
-      "low": 53.44,
-      "close": 58.75,
-      "volume": 934700
-    },
-    {
       "date": "2026-07-27",
       "open": 59.1,
-      "high": 62.28,
+      "high": 62.57,
       "low": 58.91,
-      "close": 62.28,
-      "volume": 210025
+      "close": 62.26,
+      "volume": 292803
     }
   ]
 }
