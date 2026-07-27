@@ -1,6 +1,6 @@
 {
   "ticker": "COIN",
-  "updated": "2026-07-27 20:39:58",
+  "updated": "2026-07-27 21:46:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,11 @@
     },
     {
       "date": "2026-07-27",
-      "open": 163.32,
+      "open": 163.16,
       "high": 167.87,
       "low": 160.42,
       "close": 167.49,
-      "volume": 6684661
+      "volume": 6818027
     }
   ]
 }
