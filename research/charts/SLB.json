@@ -1,18 +1,10 @@
 {
   "ticker": "SLB",
-  "updated": "2026-07-27 19:03:58",
+  "updated": "2026-07-27 20:39:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 50.29,
-      "high": 51.47,
-      "low": 50.03,
-      "close": 50.66,
-      "volume": 17329700
-    },
     {
       "date": "2026-01-28",
       "open": 50.4,
@@ -1001,9 +993,9 @@
       "date": "2026-07-27",
       "open": 52.3,
       "high": 53.2,
-      "low": 51.8,
-      "close": 51.895,
-      "volume": 10169332
+      "low": 51.435,
+      "close": 51.53,
+      "volume": 14064113
     }
   ]
 }

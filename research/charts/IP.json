@@ -1,18 +1,10 @@
 {
   "ticker": "IP",
-  "updated": "2026-07-27 19:03:57",
+  "updated": "2026-07-27 20:39:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 42.9,
-      "high": 43.02,
-      "low": 42.14,
-      "close": 42.2,
-      "volume": 6279000
-    },
     {
       "date": "2026-01-28",
       "open": 42.25,
@@ -1002,8 +994,8 @@
       "open": 42.75,
       "high": 43.43,
       "low": 41.99,
-      "close": 42.52,
-      "volume": 4409667
+      "close": 42.41,
+      "volume": 5743851
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "SXT",
-  "updated": "2026-07-27 19:03:58",
+  "updated": "2026-07-27 20:39:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 95.47,
-      "high": 96.0,
-      "low": 94.43,
-      "close": 94.57,
-      "volume": 160100
-    },
     {
       "date": "2026-01-28",
       "open": 94.83,
@@ -1001,9 +993,9 @@
       "date": "2026-07-27",
       "open": 129.7,
       "high": 131.035,
-      "low": 124.935,
-      "close": 125.44,
-      "volume": 465313
+      "low": 124.42,
+      "close": 124.93,
+      "volume": 671475
     }
   ]
 }

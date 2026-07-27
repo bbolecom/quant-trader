@@ -1,18 +1,10 @@
 {
   "ticker": "MBLY",
-  "updated": "2026-07-27 19:03:57",
+  "updated": "2026-07-27 20:39:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 10.01,
-      "high": 10.13,
-      "low": 9.88,
-      "close": 10.08,
-      "volume": 8308100
-    },
     {
       "date": "2026-01-28",
       "open": 10.12,
@@ -1002,8 +994,8 @@
       "open": 8.42,
       "high": 8.83,
       "low": 7.995,
-      "close": 8.075,
-      "volume": 8675447
+      "close": 8.01,
+      "volume": 12949119
     }
   ]
 }

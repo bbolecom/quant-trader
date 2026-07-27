@@ -1,18 +1,10 @@
 {
   "ticker": "SW",
-  "updated": "2026-07-27 19:03:57",
+  "updated": "2026-07-27 20:39:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 43.26,
-      "high": 43.49,
-      "low": 42.85,
-      "close": 42.96,
-      "volume": 3836700
-    },
     {
       "date": "2026-01-28",
       "open": 42.97,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-07-27",
       "open": 49.36,
-      "high": 49.73,
+      "high": 50.115,
       "low": 48.22,
-      "close": 49.625,
-      "volume": 4262584
+      "close": 50.09,
+      "volume": 6347630
     }
   ]
 }

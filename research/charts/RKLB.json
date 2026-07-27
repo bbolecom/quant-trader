@@ -1,18 +1,10 @@
 {
   "ticker": "RKLB",
-  "updated": "2026-07-27 17:52:27",
+  "updated": "2026-07-27 20:39:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-27",
-      "open": 82.89,
-      "high": 87.0,
-      "low": 82.0,
-      "close": 87.0,
-      "volume": 17676500
-    },
     {
       "date": "2026-01-28",
       "open": 87.22,
@@ -999,11 +991,11 @@
     },
     {
       "date": "2026-07-27",
-      "open": 64.81,
+      "open": 64.8,
       "high": 68.34,
       "low": 64.03,
-      "close": 64.88,
-      "volume": 10933791
+      "close": 66.94,
+      "volume": 15576760
     }
   ]
 }
