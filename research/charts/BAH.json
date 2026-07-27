@@ -1,18 +1,10 @@
 {
   "ticker": "BAH",
-  "updated": "2026-07-24 22:45:52",
+  "updated": "2026-07-27 16:07:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-26",
-      "open": 103.0,
-      "high": 103.0,
-      "low": 89.38,
-      "close": 93.93,
-      "volume": 8261000
-    },
     {
       "date": "2026-01-27",
       "open": 93.08,
@@ -1003,7 +995,15 @@
       "high": 76.2,
       "low": 69.09,
       "close": 72.53,
-      "volume": 4282055
+      "volume": 4284600
+    },
+    {
+      "date": "2026-07-27",
+      "open": 72.56,
+      "high": 73.56,
+      "low": 71.18,
+      "close": 72.23,
+      "volume": 967587
     }
   ]
 }

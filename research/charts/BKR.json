@@ -1,18 +1,10 @@
 {
   "ticker": "BKR",
-  "updated": "2026-07-24 22:46:03",
+  "updated": "2026-07-27 16:07:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-26",
-      "open": 55.65,
-      "high": 56.89,
-      "low": 54.82,
-      "close": 56.29,
-      "volume": 18022100
-    },
     {
       "date": "2026-01-27",
       "open": 56.4,
@@ -1003,7 +995,15 @@
       "high": 58.2,
       "low": 57.01,
       "close": 57.25,
-      "volume": 9871372
+      "volume": 9876500
+    },
+    {
+      "date": "2026-07-27",
+      "open": 60.62,
+      "high": 62.67,
+      "low": 60.08,
+      "close": 60.76,
+      "volume": 6297547
     }
   ]
 }
