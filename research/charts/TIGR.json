@@ -1,6 +1,6 @@
 {
   "ticker": "TIGR",
-  "updated": "2026-07-28 17:24:06",
+  "updated": "2026-07-28 18:51:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -982,6 +982,14 @@
       "volume": 1907500
     },
     {
+      "date": "2026-07-24",
+      "open": 4.86,
+      "high": 4.86,
+      "low": 4.675,
+      "close": 4.73,
+      "volume": 1311000
+    },
+    {
       "date": "2026-07-27",
       "open": 4.84,
       "high": 4.92,
@@ -994,8 +1002,8 @@
       "open": 4.81,
       "high": 4.8473,
       "low": 4.685,
-      "close": 4.8298,
-      "volume": 1356175
+      "close": 4.79,
+      "volume": 1618747
     }
   ]
 }

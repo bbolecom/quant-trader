@@ -1,6 +1,6 @@
 {
   "ticker": "MDT",
-  "updated": "2026-07-28 17:24:12",
+  "updated": "2026-07-28 18:51:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -982,6 +982,14 @@
       "volume": 5543800
     },
     {
+      "date": "2026-07-24",
+      "open": 82.87,
+      "high": 83.6,
+      "low": 82.41,
+      "close": 83.21,
+      "volume": 4336100
+    },
+    {
       "date": "2026-07-27",
       "open": 83.51,
       "high": 85.14,
@@ -994,8 +1002,8 @@
       "open": 86.22,
       "high": 88.98,
       "low": 86.2,
-      "close": 87.1,
-      "volume": 7945782
+      "close": 86.92,
+      "volume": 9060954
     }
   ]
 }
