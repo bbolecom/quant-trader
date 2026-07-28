@@ -1,6 +1,6 @@
 {
   "ticker": "RNG",
-  "updated": "2026-07-27 22:43:08",
+  "updated": "2026-07-28 15:58:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 50.14,
       "low": 40.3,
       "close": 48.31,
-      "volume": 8920400
+      "volume": 8922700
     },
     {
       "date": "2026-07-27",
       "open": 49.61,
       "high": 55.3,
-      "low": 49.5302,
+      "low": 49.53,
       "close": 53.7,
-      "volume": 4902662
+      "volume": 5488400
+    },
+    {
+      "date": "2026-07-28",
+      "open": 55.24,
+      "high": 57.205,
+      "low": 54.6915,
+      "close": 56.75,
+      "volume": 1235826
     }
   ]
 }

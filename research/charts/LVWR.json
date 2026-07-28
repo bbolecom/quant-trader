@@ -1,6 +1,6 @@
 {
   "ticker": "LVWR",
-  "updated": "2026-07-27 22:43:19",
+  "updated": "2026-07-28 15:58:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 1.77,
       "low": 1.23,
       "close": 1.46,
-      "volume": 104530700
+      "volume": 104994900
     },
     {
       "date": "2026-07-27",
       "open": 1.6,
       "high": 3.57,
-      "low": 1.575,
+      "low": 1.55,
       "close": 2.43,
-      "volume": 73910617
+      "volume": 75230200
+    },
+    {
+      "date": "2026-07-28",
+      "open": 2.97,
+      "high": 3.15,
+      "low": 2.47,
+      "close": 2.7899,
+      "volume": 18879957
     }
   ]
 }
