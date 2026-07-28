@@ -1,18 +1,10 @@
 {
   "ticker": "DIS",
-  "updated": "2026-07-28 18:51:43",
+  "updated": "2026-07-28 20:09:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 110.28,
-      "high": 111.43,
-      "low": 109.0,
-      "close": 109.56,
-      "volume": 9016600
-    },
     {
       "date": "2026-01-29",
       "open": 109.63,
@@ -1002,8 +994,8 @@
       "open": 97.0,
       "high": 99.23,
       "low": 96.99,
-      "close": 98.9743,
-      "volume": 6815861
+      "close": 98.91,
+      "volume": 9119006
     }
   ]
 }

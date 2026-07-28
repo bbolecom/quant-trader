@@ -1,18 +1,10 @@
 {
   "ticker": "NVAX",
-  "updated": "2026-07-28 18:51:33",
+  "updated": "2026-07-28 20:09:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 9.74,
-      "high": 9.94,
-      "low": 9.16,
-      "close": 9.23,
-      "volume": 5322500
-    },
     {
       "date": "2026-01-29",
       "open": 9.25,
@@ -1002,8 +994,8 @@
       "open": 7.45,
       "high": 7.51,
       "low": 7.15,
-      "close": 7.39,
-      "volume": 1734097
+      "close": 7.37,
+      "volume": 2823780
     }
   ]
 }

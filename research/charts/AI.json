@@ -1,18 +1,10 @@
 {
   "ticker": "AI",
-  "updated": "2026-07-28 18:51:31",
+  "updated": "2026-07-28 20:09:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 14.09,
-      "high": 14.2,
-      "low": 12.81,
-      "close": 13.13,
-      "volume": 19329300
-    },
     {
       "date": "2026-01-29",
       "open": 12.76,
@@ -1002,8 +994,8 @@
       "open": 8.75,
       "high": 9.23,
       "low": 8.645,
-      "close": 8.935,
-      "volume": 4488206
+      "close": 8.905,
+      "volume": 6077064
     }
   ]
 }

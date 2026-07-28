@@ -1,18 +1,10 @@
 {
   "ticker": "UBER",
-  "updated": "2026-07-28 18:51:43",
+  "updated": "2026-07-28 20:09:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 81.16,
-      "high": 81.847,
-      "low": 79.735,
-      "close": 79.78,
-      "volume": 19317300
-    },
     {
       "date": "2026-01-29",
       "open": 80.44,
@@ -995,15 +987,15 @@
       "high": 68.34,
       "low": 65.41,
       "close": 68.18,
-      "volume": 25704300
+      "volume": 25722900
     },
     {
       "date": "2026-07-28",
       "open": 69.11,
-      "high": 70.64,
+      "high": 70.9,
       "low": 68.76,
-      "close": 70.605,
-      "volume": 12639664
+      "close": 70.74,
+      "volume": 17563659
     }
   ]
 }

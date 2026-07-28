@@ -1,18 +1,10 @@
 {
   "ticker": "TEAM",
-  "updated": "2026-07-28 18:51:28",
+  "updated": "2026-07-28 20:09:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 135.49,
-      "high": 138.85,
-      "low": 133.61,
-      "close": 134.76,
-      "volume": 2524200
-    },
     {
       "date": "2026-01-29",
       "open": 125.16,
@@ -1002,8 +994,8 @@
       "open": 98.626,
       "high": 102.65,
       "low": 96.61,
-      "close": 101.2901,
-      "volume": 4602945
+      "close": 99.98,
+      "volume": 5987076
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "ACN",
-  "updated": "2026-07-28 18:51:39",
+  "updated": "2026-07-28 20:09:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 275.82,
-      "high": 278.66,
-      "low": 267.86,
-      "close": 270.43,
-      "volume": 3735200
-    },
     {
       "date": "2026-01-29",
       "open": 269.47,
@@ -1002,8 +994,8 @@
       "open": 156.95,
       "high": 167.75,
       "low": 157.33,
-      "close": 164.925,
-      "volume": 7261812
+      "close": 164.635,
+      "volume": 9227060
     }
   ]
 }

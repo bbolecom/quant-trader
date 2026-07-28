@@ -1,18 +1,10 @@
 {
   "ticker": "ADBE",
-  "updated": "2026-07-28 18:51:40",
+  "updated": "2026-07-28 20:09:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 299.66,
-      "high": 303.85,
-      "low": 297.69,
-      "close": 299.58,
-      "volume": 3942800
-    },
     {
       "date": "2026-01-29",
       "open": 291.68,
@@ -1002,8 +994,8 @@
       "open": 242.85,
       "high": 254.06,
       "low": 241.6946,
-      "close": 251.71,
-      "volume": 5662160
+      "close": 249.18,
+      "volume": 7889783
     }
   ]
 }

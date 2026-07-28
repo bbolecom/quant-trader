@@ -1,18 +1,10 @@
 {
   "ticker": "QCOM",
-  "updated": "2026-07-28 18:51:30",
+  "updated": "2026-07-28 20:09:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 152.0,
-      "high": 154.0,
-      "low": 150.4,
-      "close": 152.7,
-      "volume": 8539000
-    },
     {
       "date": "2026-01-29",
       "open": 153.09,
@@ -995,15 +987,15 @@
       "high": 171.19,
       "low": 165.29,
       "close": 170.04,
-      "volume": 12471900
+      "volume": 12487100
     },
     {
       "date": "2026-07-28",
       "open": 164.896,
       "high": 167.885,
       "low": 162.16,
-      "close": 162.7,
-      "volume": 9913780
+      "close": 162.88,
+      "volume": 15382725
     }
   ]
 }
