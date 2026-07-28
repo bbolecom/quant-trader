@@ -1,18 +1,10 @@
 {
   "ticker": "CHTR",
-  "updated": "2026-07-28 15:58:12",
+  "updated": "2026-07-28 21:19:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 183.18,
-      "high": 188.71,
-      "low": 182.04,
-      "close": 182.81,
-      "volume": 2474200
-    },
     {
       "date": "2026-01-29",
       "open": 180.96,
@@ -994,8 +986,8 @@
       "open": 133.63,
       "high": 141.11,
       "low": 132.2,
-      "close": 139.3,
-      "volume": 1602538
+      "close": 139.97,
+      "volume": 3718121
     }
   ]
 }

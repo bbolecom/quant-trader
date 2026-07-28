@@ -1,18 +1,10 @@
 {
   "ticker": "ADSK",
-  "updated": "2026-07-28 15:58:11",
+  "updated": "2026-07-28 21:19:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 268.51,
-      "high": 271.12,
-      "low": 266.61,
-      "close": 268.33,
-      "volume": 1268100
-    },
     {
       "date": "2026-01-29",
       "open": 260.0,
@@ -994,8 +986,8 @@
       "open": 231.52,
       "high": 243.25,
       "low": 229.4,
-      "close": 239.11,
-      "volume": 1238475
+      "close": 237.38,
+      "volume": 2892146
     }
   ]
 }
