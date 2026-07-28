@@ -1,18 +1,10 @@
 {
   "ticker": "INFY",
-  "updated": "2026-07-28 15:58:13",
+  "updated": "2026-07-28 22:18:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-28",
-      "open": 18.2,
-      "high": 18.2,
-      "low": 17.88,
-      "close": 17.93,
-      "volume": 8729200
-    },
     {
       "date": "2026-01-29",
       "open": 18.13,
@@ -992,10 +984,10 @@
     {
       "date": "2026-07-28",
       "open": 11.85,
-      "high": 12.275,
+      "high": 12.375,
       "low": 11.801,
-      "close": 12.205,
-      "volume": 17015949
+      "close": 12.35,
+      "volume": 41731243
     }
   ]
 }
