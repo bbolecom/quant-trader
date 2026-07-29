@@ -1,18 +1,10 @@
 {
   "ticker": "GSHD",
-  "updated": "2026-07-29 19:37:45",
+  "updated": "2026-07-29 20:33:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 62.77,
-      "high": 63.56,
-      "low": 62.05,
-      "close": 62.72,
-      "volume": 230300
-    },
     {
       "date": "2026-01-30",
       "open": 62.81,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-07-29",
       "open": 69.48,
-      "high": 70.6,
+      "high": 70.88,
       "low": 67.6999,
-      "close": 70.16,
-      "volume": 597714
+      "close": 70.72,
+      "volume": 831996
     }
   ]
 }

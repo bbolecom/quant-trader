@@ -1,18 +1,10 @@
 {
   "ticker": "FOUR",
-  "updated": "2026-07-29 19:37:46",
+  "updated": "2026-07-29 20:33:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 60.34,
-      "high": 60.34,
-      "low": 58.44,
-      "close": 59.4,
-      "volume": 2588900
-    },
     {
       "date": "2026-01-30",
       "open": 59.36,
@@ -1002,8 +994,8 @@
       "open": 54.0,
       "high": 57.385,
       "low": 53.06,
-      "close": 56.41,
-      "volume": 846989
+      "close": 56.05,
+      "volume": 1064963
     }
   ]
 }

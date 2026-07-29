@@ -1,18 +1,10 @@
 {
   "ticker": "LAD",
-  "updated": "2026-07-29 19:38:05",
+  "updated": "2026-07-29 20:33:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 324.6,
-      "high": 327.49,
-      "low": 319.87,
-      "close": 327.07,
-      "volume": 295800
-    },
     {
       "date": "2026-01-30",
       "open": 325.14,
@@ -1002,8 +994,8 @@
       "open": 376.94,
       "high": 439.49,
       "low": 374.47,
-      "close": 423.735,
-      "volume": 1447405
+      "close": 427.48,
+      "volume": 1640357
     }
   ]
 }

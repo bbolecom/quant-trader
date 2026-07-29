@@ -1,18 +1,10 @@
 {
   "ticker": "DDOG",
-  "updated": "2026-07-29 19:38:07",
+  "updated": "2026-07-29 20:33:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 134.37,
-      "high": 136.64,
-      "low": 125.61,
-      "close": 128.18,
-      "volume": 9773900
-    },
     {
       "date": "2026-01-30",
       "open": 127.99,
@@ -1002,8 +994,8 @@
       "open": 252.88,
       "high": 273.7299,
       "low": 252.5,
-      "close": 268.7671,
-      "volume": 3703928
+      "close": 264.2,
+      "volume": 6316805
     }
   ]
 }

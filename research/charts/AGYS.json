@@ -1,18 +1,10 @@
 {
   "ticker": "AGYS",
-  "updated": "2026-07-29 19:37:47",
+  "updated": "2026-07-29 20:33:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 85.21,
-      "high": 85.27,
-      "low": 81.36,
-      "close": 85.26,
-      "volume": 428500
-    },
     {
       "date": "2026-01-30",
       "open": 84.19,
@@ -1002,8 +994,8 @@
       "open": 109.38,
       "high": 114.57,
       "low": 108.9,
-      "close": 111.83,
-      "volume": 309989
+      "close": 113.69,
+      "volume": 447096
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "AWI",
-  "updated": "2026-07-29 19:37:47",
+  "updated": "2026-07-29 20:33:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 183.85,
-      "high": 185.56,
-      "low": 182.06,
-      "close": 184.12,
-      "volume": 635200
-    },
     {
       "date": "2026-01-30",
       "open": 182.6,
@@ -1002,8 +994,8 @@
       "open": 175.31,
       "high": 178.905,
       "low": 171.185,
-      "close": 174.38,
-      "volume": 481452
+      "close": 174.48,
+      "volume": 626265
     }
   ]
 }

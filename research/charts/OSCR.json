@@ -1,18 +1,10 @@
 {
   "ticker": "OSCR",
-  "updated": "2026-07-29 19:37:44",
+  "updated": "2026-07-29 20:33:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-29",
-      "open": 14.9,
-      "high": 15.065,
-      "low": 14.56,
-      "close": 14.93,
-      "volume": 6492000
-    },
     {
       "date": "2026-01-30",
       "open": 14.67,
@@ -1002,8 +994,8 @@
       "open": 31.4,
       "high": 31.9395,
       "low": 30.4,
-      "close": 30.71,
-      "volume": 3453280
+      "close": 30.57,
+      "volume": 5513122
     }
   ]
 }
