@@ -1,6 +1,6 @@
 {
   "ticker": "APH",
-  "updated": "2026-07-29 16:58:08",
+  "updated": "2026-07-29 19:38:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 5566600
     },
     {
+      "date": "2026-07-28",
+      "open": 145.44,
+      "high": 146.0,
+      "low": 139.67,
+      "close": 143.85,
+      "volume": 10112200
+    },
+    {
       "date": "2026-07-29",
       "open": 152.3,
       "high": 159.07,
       "low": 149.43,
-      "close": 150.51,
-      "volume": 5638943
+      "close": 150.23,
+      "volume": 8840861
     }
   ]
 }

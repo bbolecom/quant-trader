@@ -1,6 +1,6 @@
 {
   "ticker": "GRMN",
-  "updated": "2026-07-29 18:04:25",
+  "updated": "2026-07-29 19:38:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,10 @@
     {
       "date": "2026-07-29",
       "open": 261.81,
-      "high": 302.55,
+      "high": 304.0,
       "low": 261.8,
-      "close": 297.6,
-      "volume": 2077459
+      "close": 297.825,
+      "volume": 2674417
     }
   ]
 }

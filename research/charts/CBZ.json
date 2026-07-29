@@ -1,6 +1,6 @@
 {
   "ticker": "CBZ",
-  "updated": "2026-07-29 18:04:25",
+  "updated": "2026-07-29 19:38:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,10 @@
     {
       "date": "2026-07-29",
       "open": 54.55,
-      "high": 55.05,
+      "high": 55.12,
       "low": 54.35,
-      "close": 55.015,
-      "volume": 10956423
+      "close": 55.0,
+      "volume": 13149035
     }
   ]
 }
