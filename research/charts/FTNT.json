@@ -1,6 +1,6 @@
 {
   "ticker": "FTNT",
-  "updated": "2026-07-29 22:28:54",
+  "updated": "2026-07-30 15:45:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-29",
       "open": 148.27,
-      "high": 154.97,
+      "high": 154.99,
       "low": 143.77,
       "close": 153.22,
-      "volume": 11824489
+      "volume": 12356500
+    },
+    {
+      "date": "2026-07-30",
+      "open": 164.0,
+      "high": 169.26,
+      "low": 155.29,
+      "close": 155.93,
+      "volume": 4647413
     }
   ]
 }

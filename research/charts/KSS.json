@@ -1,6 +1,6 @@
 {
   "ticker": "KSS",
-  "updated": "2026-07-29 22:28:47",
+  "updated": "2026-07-30 15:45:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-29",
       "open": 18.8,
-      "high": 19.265,
+      "high": 19.27,
       "low": 18.42,
       "close": 19.06,
-      "volume": 2292174
+      "volume": 2656100
+    },
+    {
+      "date": "2026-07-30",
+      "open": 18.83,
+      "high": 19.52,
+      "low": 18.73,
+      "close": 19.32,
+      "volume": 1947148
     }
   ]
 }

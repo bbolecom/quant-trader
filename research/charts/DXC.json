@@ -1,6 +1,6 @@
 {
   "ticker": "DXC",
-  "updated": "2026-07-29 22:28:41",
+  "updated": "2026-07-30 15:45:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-29",
       "open": 10.84,
-      "high": 11.865,
-      "low": 10.805,
+      "high": 11.87,
+      "low": 10.81,
       "close": 11.77,
-      "volume": 6164010
+      "volume": 6164300
+    },
+    {
+      "date": "2026-07-30",
+      "open": 11.28,
+      "high": 11.51,
+      "low": 10.865,
+      "close": 11.085,
+      "volume": 1384901
     }
   ]
 }

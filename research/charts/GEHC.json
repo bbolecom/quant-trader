@@ -1,6 +1,6 @@
 {
   "ticker": "GEHC",
-  "updated": "2026-07-29 22:28:52",
+  "updated": "2026-07-30 15:45:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-29",
-      "open": 68.9,
+      "open": 69.32,
       "high": 72.04,
       "low": 68.08,
       "close": 71.9,
-      "volume": 15217194
+      "volume": 15269600
+    },
+    {
+      "date": "2026-07-30",
+      "open": 71.5,
+      "high": 71.82,
+      "low": 68.26,
+      "close": 68.845,
+      "volume": 2420521
     }
   ]
 }

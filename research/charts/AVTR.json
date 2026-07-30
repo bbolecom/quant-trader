@@ -1,6 +1,6 @@
 {
   "ticker": "AVTR",
-  "updated": "2026-07-29 22:28:51",
+  "updated": "2026-07-30 15:45:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 14.62,
       "low": 13.63,
       "close": 14.38,
-      "volume": 39792379
+      "volume": 42792000
+    },
+    {
+      "date": "2026-07-30",
+      "open": 14.55,
+      "high": 14.5897,
+      "low": 13.82,
+      "close": 13.85,
+      "volume": 6776957
     }
   ]
 }

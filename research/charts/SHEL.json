@@ -1,6 +1,6 @@
 {
   "ticker": "SHEL",
-  "updated": "2026-07-29 22:28:53",
+  "updated": "2026-07-30 15:45:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-29",
       "open": 88.17,
-      "high": 88.84,
+      "high": 88.845,
       "low": 87.77,
       "close": 88.34,
-      "volume": 7988822
+      "volume": 8403433
+    },
+    {
+      "date": "2026-07-30",
+      "open": 90.0,
+      "high": 90.528,
+      "low": 89.21,
+      "close": 89.4,
+      "volume": 6935836
     }
   ]
 }

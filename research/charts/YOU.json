@@ -1,6 +1,6 @@
 {
   "ticker": "YOU",
-  "updated": "2026-07-29 22:28:41",
+  "updated": "2026-07-30 15:45:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 59.97,
       "low": 53.71,
       "close": 58.39,
-      "volume": 2145683
+      "volume": 2369800
+    },
+    {
+      "date": "2026-07-30",
+      "open": 57.56,
+      "high": 58.115,
+      "low": 56.26,
+      "close": 57.06,
+      "volume": 271684
     }
   ]
 }

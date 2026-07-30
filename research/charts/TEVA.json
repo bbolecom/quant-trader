@@ -1,6 +1,6 @@
 {
   "ticker": "TEVA",
-  "updated": "2026-07-29 22:28:42",
+  "updated": "2026-07-30 15:45:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-07-29",
       "open": 33.67,
-      "high": 35.68,
-      "low": 33.481,
+      "high": 35.69,
+      "low": 33.48,
       "close": 34.71,
-      "volume": 16856573
+      "volume": 17759400
+    },
+    {
+      "date": "2026-07-30",
+      "open": 34.35,
+      "high": 35.85,
+      "low": 34.27,
+      "close": 35.065,
+      "volume": 3313930
     }
   ]
 }

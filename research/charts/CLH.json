@@ -1,6 +1,6 @@
 {
   "ticker": "CLH",
-  "updated": "2026-07-29 22:28:42",
+  "updated": "2026-07-30 15:45:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 335.94,
       "low": 320.54,
       "close": 326.34,
-      "volume": 1352168
+      "volume": 1490200
+    },
+    {
+      "date": "2026-07-30",
+      "open": 327.05,
+      "high": 326.43,
+      "low": 310.5992,
+      "close": 311.98,
+      "volume": 200567
     }
   ]
 }

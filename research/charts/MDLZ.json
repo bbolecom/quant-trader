@@ -1,6 +1,6 @@
 {
   "ticker": "MDLZ",
-  "updated": "2026-07-29 22:28:53",
+  "updated": "2026-07-30 15:45:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-29",
-      "open": 63.95,
+      "open": 63.79,
       "high": 66.65,
-      "low": 63.87,
+      "low": 63.79,
       "close": 64.99,
-      "volume": 19207752
+      "volume": 20218600
+    },
+    {
+      "date": "2026-07-30",
+      "open": 63.86,
+      "high": 63.92,
+      "low": 62.48,
+      "close": 62.735,
+      "volume": 3191859
     }
   ]
 }

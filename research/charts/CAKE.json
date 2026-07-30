@@ -1,6 +1,6 @@
 {
   "ticker": "CAKE",
-  "updated": "2026-07-29 22:28:52",
+  "updated": "2026-07-30 15:45:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-29",
-      "open": 92.585,
+      "open": 92.94,
       "high": 101.81,
       "low": 92.53,
       "close": 101.14,
-      "volume": 5376674
+      "volume": 5378500
+    },
+    {
+      "date": "2026-07-30",
+      "open": 101.5,
+      "high": 102.64,
+      "low": 98.34,
+      "close": 99.63,
+      "volume": 741009
     }
   ]
 }
