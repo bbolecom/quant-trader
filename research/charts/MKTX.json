@@ -1,18 +1,10 @@
 {
   "ticker": "MKTX",
-  "updated": "2026-07-30 18:42:12",
+  "updated": "2026-07-30 20:05:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-30",
-      "open": 169.93,
-      "high": 170.43,
-      "low": 168.17,
-      "close": 169.23,
-      "volume": 332200
-    },
     {
       "date": "2026-02-02",
       "open": 168.75,
@@ -1002,8 +994,8 @@
       "open": 163.16,
       "high": 163.94,
       "low": 162.3,
-      "close": 162.9475,
-      "volume": 7451246
+      "close": 162.76,
+      "volume": 9412813
     }
   ]
 }

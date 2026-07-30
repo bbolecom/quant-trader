@@ -1,18 +1,10 @@
 {
   "ticker": "GLOB",
-  "updated": "2026-07-30 18:42:02",
+  "updated": "2026-07-30 20:05:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-01-30",
-      "open": 65.72,
-      "high": 67.81,
-      "low": 65.23,
-      "close": 66.88,
-      "volume": 2036800
-    },
     {
       "date": "2026-02-02",
       "open": 66.87,
@@ -1002,8 +994,8 @@
       "open": 36.71,
       "high": 37.4,
       "low": 35.3,
-      "close": 36.29,
-      "volume": 924060
+      "close": 36.37,
+      "volume": 1431310
     }
   ]
 }
