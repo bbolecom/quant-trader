@@ -1,21 +1,21 @@
 {
   "require_real_data": true,
-  "generated_at": "2026-07-29 22:17:34",
-  "pick_date": "2026-07-29",
+  "generated_at": "2026-07-30 22:23:06",
+  "pick_date": "2026-07-30",
   "headline": "今日无真实链/行情可推送 · 🔴 弱市（SPY<MA50）",
   "sort": "机会评分 = 真实数据 + 策略排名 + 胜率/审核分",
   "regime": {
     "label": "🔴 弱市（SPY<MA50）",
     "bull": false,
-    "spy": 729.46,
-    "ma50": 743.82
+    "spy": 741.69,
+    "ma50": 743.92
   },
   "count": 0,
   "stats": {
-    "total": 40,
+    "total": 33,
     "eligible": 0,
     "skipped_model": 0,
-    "skipped_watch": 40
+    "skipped_watch": 33
   },
   "lines": [],
   "picks": []
