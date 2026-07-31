@@ -1,6 +1,6 @@
 {
   "ticker": "COTY",
-  "updated": "2026-07-30 22:30:47",
+  "updated": "2026-07-31 15:54:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 2.71,
       "low": 2.64,
       "close": 2.69,
-      "volume": 5554397
+      "volume": 6276100
+    },
+    {
+      "date": "2026-07-31",
+      "open": 2.67,
+      "high": 2.74,
+      "low": 2.66,
+      "close": 2.71,
+      "volume": 3685314
     }
   ]
 }

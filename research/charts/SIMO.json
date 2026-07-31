@@ -1,6 +1,6 @@
 {
   "ticker": "SIMO",
-  "updated": "2026-07-30 22:30:49",
+  "updated": "2026-07-31 15:54:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 285.0,
       "low": 235.11,
       "close": 255.1,
-      "volume": 2587376
+      "volume": 2600500
+    },
+    {
+      "date": "2026-07-31",
+      "open": 270.0,
+      "high": 273.9357,
+      "low": 250.0,
+      "close": 263.9527,
+      "volume": 712246
     }
   ]
 }

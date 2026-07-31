@@ -1,6 +1,6 @@
 {
   "ticker": "STRL",
-  "updated": "2026-07-30 22:30:51",
+  "updated": "2026-07-31 15:54:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 584.26,
       "low": 542.0,
       "close": 580.73,
-      "volume": 1025132
+      "volume": 1027100
+    },
+    {
+      "date": "2026-07-31",
+      "open": 610.53,
+      "high": 622.0,
+      "low": 585.8308,
+      "close": 603.03,
+      "volume": 307724
     }
   ]
 }

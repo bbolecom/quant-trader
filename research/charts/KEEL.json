@@ -1,6 +1,6 @@
 {
   "ticker": "KEEL",
-  "updated": "2026-07-30 22:30:39",
+  "updated": "2026-07-31 15:53:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-30",
-      "open": 3.545,
+      "open": 3.55,
       "high": 4.28,
       "low": 3.54,
       "close": 4.05,
-      "volume": 64017458
+      "volume": 66114800
+    },
+    {
+      "date": "2026-07-31",
+      "open": 4.27,
+      "high": 4.335,
+      "low": 3.92,
+      "close": 3.92,
+      "volume": 19464407
     }
   ]
 }

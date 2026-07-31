@@ -1,6 +1,6 @@
 {
   "ticker": "CORZ",
-  "updated": "2026-07-30 22:30:50",
+  "updated": "2026-07-31 15:54:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-30",
-      "open": 19.898,
+      "open": 19.795,
       "high": 22.55,
       "low": 19.69,
       "close": 21.81,
-      "volume": 22572021
+      "volume": 22576700
+    },
+    {
+      "date": "2026-07-31",
+      "open": 22.96,
+      "high": 23.0,
+      "low": 20.79,
+      "close": 21.08,
+      "volume": 5570391
     }
   ]
 }

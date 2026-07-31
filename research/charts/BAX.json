@@ -1,6 +1,6 @@
 {
   "ticker": "BAX",
-  "updated": "2026-07-30 22:30:38",
+  "updated": "2026-07-31 15:53:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-07-30",
       "open": 29.07,
       "high": 30.0,
-      "low": 26.045,
+      "low": 26.05,
       "close": 26.75,
-      "volume": 21064684
+      "volume": 22670900
+    },
+    {
+      "date": "2026-07-31",
+      "open": 26.92,
+      "high": 27.145,
+      "low": 26.025,
+      "close": 26.275,
+      "volume": 2671600
     }
   ]
 }

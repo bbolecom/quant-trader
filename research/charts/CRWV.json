@@ -1,6 +1,6 @@
 {
   "ticker": "CRWV",
-  "updated": "2026-07-30 22:30:49",
+  "updated": "2026-07-31 15:54:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-07-30",
-      "open": 68.295,
+      "open": 68.3,
       "high": 75.87,
-      "low": 67.6,
+      "low": 67.55,
       "close": 73.9,
-      "volume": 43756329
+      "volume": 43973500
+    },
+    {
+      "date": "2026-07-31",
+      "open": 77.035,
+      "high": 78.5,
+      "low": 69.97,
+      "close": 71.405,
+      "volume": 14835642
     }
   ]
 }
