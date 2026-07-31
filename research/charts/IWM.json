@@ -1,6 +1,6 @@
 {
   "ticker": "IWM",
-  "updated": "2026-07-31 18:44:49",
+  "updated": "2026-07-31 20:08:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 292.84,
       "low": 288.96,
       "close": 292.59,
-      "volume": 22186100
+      "volume": 22198800
     },
     {
       "date": "2026-07-31",
       "open": 293.56,
       "high": 293.93,
       "low": 287.83,
-      "close": 291.66,
-      "volume": 20670146
+      "close": 291.24,
+      "volume": 26464670
     }
   ]
 }
