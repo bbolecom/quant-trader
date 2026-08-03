@@ -1,18 +1,10 @@
 {
   "ticker": "AVGO",
-  "updated": "2026-08-03 19:50:14",
+  "updated": "2026-08-03 20:47:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 336.74,
-      "high": 338.9,
-      "low": 308.65,
-      "close": 320.33,
-      "volume": 36914800
-    },
     {
       "date": "2026-02-04",
       "open": 319.51,
@@ -1002,8 +994,8 @@
       "open": 384.405,
       "high": 392.605,
       "low": 374.61,
-      "close": 391.54,
-      "volume": 12579125
+      "close": 392.23,
+      "volume": 17238778
     }
   ]
 }

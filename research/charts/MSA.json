@@ -1,18 +1,10 @@
 {
   "ticker": "MSA",
-  "updated": "2026-08-03 19:50:12",
+  "updated": "2026-08-03 20:47:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 180.69,
-      "high": 184.42,
-      "low": 180.69,
-      "close": 184.26,
-      "volume": 206800
-    },
     {
       "date": "2026-02-04",
       "open": 184.61,
@@ -1002,8 +994,8 @@
       "open": 190.28,
       "high": 195.745,
       "low": 188.49,
-      "close": 192.21,
-      "volume": 273577
+      "close": 192.46,
+      "volume": 330033
     }
   ]
 }

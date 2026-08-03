@@ -1,18 +1,10 @@
 {
   "ticker": "COHU",
-  "updated": "2026-08-03 19:50:12",
+  "updated": "2026-08-03 20:47:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 29.99,
-      "high": 30.83,
-      "low": 28.87,
-      "close": 29.77,
-      "volume": 1264900
-    },
     {
       "date": "2026-02-04",
       "open": 30.2,
@@ -1002,8 +994,8 @@
       "open": 46.55,
       "high": 50.0,
       "low": 45.5423,
-      "close": 48.64,
-      "volume": 755587
+      "close": 48.84,
+      "volume": 1111185
     }
   ]
 }

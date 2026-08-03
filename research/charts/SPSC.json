@@ -1,18 +1,10 @@
 {
   "ticker": "SPSC",
-  "updated": "2026-08-03 19:50:11",
+  "updated": "2026-08-03 20:47:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 86.92,
-      "high": 87.28,
-      "low": 80.84,
-      "close": 82.03,
-      "volume": 962000
-    },
     {
       "date": "2026-02-04",
       "open": 81.33,
@@ -1001,9 +993,9 @@
       "date": "2026-08-03",
       "open": 75.52,
       "high": 78.3299,
-      "low": 75.52,
-      "close": 76.0,
-      "volume": 665829
+      "low": 75.455,
+      "close": 75.54,
+      "volume": 885582
     }
   ]
 }

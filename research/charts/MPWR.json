@@ -1,18 +1,10 @@
 {
   "ticker": "MPWR",
-  "updated": "2026-08-03 19:50:12",
+  "updated": "2026-08-03 20:47:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 1185.01,
-      "high": 1199.76,
-      "low": 1142.71,
-      "close": 1164.83,
-      "volume": 840300
-    },
     {
       "date": "2026-02-04",
       "open": 1167.5,
@@ -1002,8 +994,8 @@
       "open": 1417.78,
       "high": 1421.605,
       "low": 1305.01,
-      "close": 1354.47,
-      "volume": 887104
+      "close": 1344.37,
+      "volume": 1214974
     }
   ]
 }

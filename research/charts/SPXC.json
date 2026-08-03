@@ -1,18 +1,10 @@
 {
   "ticker": "SPXC",
-  "updated": "2026-08-03 19:50:11",
+  "updated": "2026-08-03 20:47:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 213.86,
-      "high": 215.77,
-      "low": 210.6,
-      "close": 215.43,
-      "volume": 171100
-    },
     {
       "date": "2026-02-04",
       "open": 217.49,
@@ -1002,8 +994,8 @@
       "open": 218.22,
       "high": 222.545,
       "low": 211.66,
-      "close": 213.61,
-      "volume": 542821
+      "close": 214.13,
+      "volume": 656401
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "FERG",
-  "updated": "2026-08-03 19:50:26",
+  "updated": "2026-08-03 20:47:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 255.39,
-      "high": 262.88,
-      "low": 253.74,
-      "close": 257.65,
-      "volume": 1864700
-    },
     {
       "date": "2026-02-04",
       "open": 259.0,
@@ -1002,8 +994,8 @@
       "open": 252.0,
       "high": 256.91,
       "low": 247.52,
-      "close": 250.645,
-      "volume": 9578655
+      "close": 250.08,
+      "volume": 10348812
     }
   ]
 }
