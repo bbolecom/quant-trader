@@ -1,18 +1,10 @@
 {
   "ticker": "ISRG",
-  "updated": "2026-08-03 19:50:28",
+  "updated": "2026-08-03 22:44:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 495.21,
-      "high": 499.0,
-      "low": 476.79,
-      "close": 478.88,
-      "volume": 3796500
-    },
     {
       "date": "2026-02-04",
       "open": 480.11,
@@ -1002,8 +994,8 @@
       "open": 360.98,
       "high": 375.85,
       "low": 360.98,
-      "close": 373.065,
-      "volume": 2643551
+      "close": 375.41,
+      "volume": 3497673
     }
   ]
 }

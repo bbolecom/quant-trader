@@ -1,18 +1,10 @@
 {
   "ticker": "GLW",
-  "updated": "2026-08-03 19:50:28",
+  "updated": "2026-08-03 22:44:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-03",
-      "open": 117.3,
-      "high": 117.3,
-      "low": 109.6,
-      "close": 112.79,
-      "volume": 11596900
-    },
     {
       "date": "2026-02-04",
       "open": 113.57,
@@ -1002,8 +994,8 @@
       "open": 134.89,
       "high": 147.94,
       "low": 132.89,
-      "close": 146.974,
-      "volume": 10241423
+      "close": 146.64,
+      "volume": 11141556
     }
   ]
 }
