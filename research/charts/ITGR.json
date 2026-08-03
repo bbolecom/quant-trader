@@ -1,18 +1,10 @@
 {
   "ticker": "ITGR",
-  "updated": "2026-07-31 22:20:10",
+  "updated": "2026-08-03 16:14:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-02",
-      "open": 86.16,
-      "high": 87.31,
-      "low": 85.13,
-      "close": 85.55,
-      "volume": 650200
-    },
     {
       "date": "2026-02-03",
       "open": 85.16,
@@ -1003,7 +995,15 @@
       "high": 123.5,
       "low": 99.52,
       "close": 121.21,
-      "volume": 2355408
+      "volume": 2609000
+    },
+    {
+      "date": "2026-08-03",
+      "open": 125.1,
+      "high": 125.54,
+      "low": 124.39,
+      "close": 124.47,
+      "volume": 8639369
     }
   ]
 }

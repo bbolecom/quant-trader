@@ -1,18 +1,10 @@
 {
   "ticker": "AMBA",
-  "updated": "2026-07-31 22:20:10",
+  "updated": "2026-08-03 16:14:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-02",
-      "open": 63.18,
-      "high": 65.57,
-      "low": 62.55,
-      "close": 62.88,
-      "volume": 844600
-    },
     {
       "date": "2026-02-03",
       "open": 63.6,
@@ -1003,7 +995,15 @@
       "high": 91.34,
       "low": 74.07,
       "close": 86.0,
-      "volume": 9037920
+      "volume": 9177800
+    },
+    {
+      "date": "2026-08-03",
+      "open": 84.0,
+      "high": 85.62,
+      "low": 82.465,
+      "close": 83.625,
+      "volume": 1146846
     }
   ]
 }
