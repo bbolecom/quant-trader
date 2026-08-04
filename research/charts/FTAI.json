@@ -1,6 +1,6 @@
 {
   "ticker": "FTAI",
-  "updated": "2026-08-03 22:44:37",
+  "updated": "2026-08-04 16:07:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-03",
       "open": 211.25,
-      "high": 231.67,
+      "high": 231.68,
       "low": 209.85,
       "close": 225.15,
-      "volume": 2176493
+      "volume": 2195600
+    },
+    {
+      "date": "2026-08-04",
+      "open": 230.31,
+      "high": 232.185,
+      "low": 210.5301,
+      "close": 218.31,
+      "volume": 508606
     }
   ]
 }

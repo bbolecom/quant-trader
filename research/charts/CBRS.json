@@ -1,6 +1,6 @@
 {
   "ticker": "CBRS",
-  "updated": "2026-08-03 22:44:28",
+  "updated": "2026-08-04 16:06:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -435,15 +435,23 @@
       "high": 214.5,
       "low": 195.55,
       "close": 198.71,
-      "volume": 3782600
+      "volume": 3787400
     },
     {
       "date": "2026-08-03",
-      "open": 191.995,
+      "open": 190.49,
       "high": 222.5,
       "low": 184.85,
       "close": 219.97,
-      "volume": 4569759
+      "volume": 4884500
+    },
+    {
+      "date": "2026-08-04",
+      "open": 221.19,
+      "high": 230.98,
+      "low": 214.05,
+      "close": 218.76,
+      "volume": 2687937
     }
   ]
 }

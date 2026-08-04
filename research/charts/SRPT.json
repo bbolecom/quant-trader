@@ -1,6 +1,6 @@
 {
   "ticker": "SRPT",
-  "updated": "2026-08-03 22:44:34",
+  "updated": "2026-08-04 16:06:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 15.65,
       "low": 14.84,
       "close": 14.86,
-      "volume": 3591400
+      "volume": 3603400
     },
     {
       "date": "2026-08-03",
-      "open": 14.965,
+      "open": 15.09,
       "high": 15.89,
       "low": 14.75,
       "close": 15.88,
-      "volume": 3760540
+      "volume": 3793700
+    },
+    {
+      "date": "2026-08-04",
+      "open": 16.13,
+      "high": 16.235,
+      "low": 15.64,
+      "close": 16.12,
+      "volume": 1079247
     }
   ]
 }

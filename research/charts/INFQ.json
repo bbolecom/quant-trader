@@ -1,6 +1,6 @@
 {
   "ticker": "INFQ",
-  "updated": "2026-08-03 22:44:29",
+  "updated": "2026-08-04 16:06:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -923,15 +923,23 @@
       "high": 10.26,
       "low": 9.57,
       "close": 9.83,
-      "volume": 6519600
+      "volume": 6577100
     },
     {
       "date": "2026-08-03",
       "open": 9.87,
       "high": 11.02,
-      "low": 9.7371,
+      "low": 9.72,
       "close": 10.98,
-      "volume": 8038035
+      "volume": 8055600
+    },
+    {
+      "date": "2026-08-04",
+      "open": 11.43,
+      "high": 11.5157,
+      "low": 11.1,
+      "close": 11.325,
+      "volume": 5274073
     }
   ]
 }

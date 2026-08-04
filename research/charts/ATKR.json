@@ -1,6 +1,6 @@
 {
   "ticker": "ATKR",
-  "updated": "2026-08-03 22:44:36",
+  "updated": "2026-08-04 16:06:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-08-03",
       "open": 93.4,
       "high": 93.6,
-      "low": 93.32,
+      "low": 93.3,
       "close": 93.55,
-      "volume": 8858273
+      "volume": 8858500
+    },
+    {
+      "date": "2026-08-04",
+      "open": 93.45,
+      "high": 93.53,
+      "low": 93.35,
+      "close": 93.415,
+      "volume": 1942318
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "FSLR",
-  "updated": "2026-08-03 22:44:36",
+  "updated": "2026-08-04 16:06:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 217.13,
       "low": 206.39,
       "close": 211.03,
-      "volume": 3424300
+      "volume": 3426100
     },
     {
       "date": "2026-08-03",
-      "open": 218.02,
-      "high": 242.17,
+      "open": 217.99,
+      "high": 242.18,
       "low": 213.55,
       "close": 232.73,
-      "volume": 5054094
+      "volume": 5068100
+    },
+    {
+      "date": "2026-08-04",
+      "open": 233.58,
+      "high": 245.53,
+      "low": 230.05,
+      "close": 243.01,
+      "volume": 1573689
     }
   ]
 }

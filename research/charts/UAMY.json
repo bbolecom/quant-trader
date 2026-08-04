@@ -1,6 +1,6 @@
 {
   "ticker": "UAMY",
-  "updated": "2026-08-03 22:44:29",
+  "updated": "2026-08-04 16:06:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,7 @@
       "high": 5.37,
       "low": 4.92,
       "close": 5.07,
-      "volume": 4689600
+      "volume": 4695200
     },
     {
       "date": "2026-08-03",
@@ -995,7 +995,15 @@
       "high": 5.69,
       "low": 4.9,
       "close": 5.66,
-      "volume": 5791743
+      "volume": 6314100
+    },
+    {
+      "date": "2026-08-04",
+      "open": 5.87,
+      "high": 6.05,
+      "low": 5.8375,
+      "close": 5.965,
+      "volume": 1993362
     }
   ]
 }

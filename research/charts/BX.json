@@ -1,6 +1,6 @@
 {
   "ticker": "BX",
-  "updated": "2026-08-03 22:44:39",
+  "updated": "2026-08-04 16:07:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 129.09,
       "low": 127.19,
       "close": 127.75,
-      "volume": 4894700
+      "volume": 4897900
     },
     {
       "date": "2026-08-03",
       "open": 128.1,
       "high": 135.21,
-      "low": 128.0,
+      "low": 127.54,
       "close": 134.68,
-      "volume": 4674074
+      "volume": 5503100
+    },
+    {
+      "date": "2026-08-04",
+      "open": 135.0,
+      "high": 137.32,
+      "low": 134.5,
+      "close": 136.935,
+      "volume": 2190556
     }
   ]
 }
