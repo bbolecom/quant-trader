@@ -1,18 +1,10 @@
 {
   "ticker": "IT",
-  "updated": "2026-08-04 19:41:54",
+  "updated": "2026-08-04 20:54:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-04",
-      "open": 157.18,
-      "high": 161.62,
-      "low": 149.0,
-      "close": 157.83,
-      "volume": 3661600
-    },
     {
       "date": "2026-02-05",
       "open": 155.21,
@@ -1002,8 +994,8 @@
       "open": 157.58,
       "high": 191.865,
       "low": 155.97,
-      "close": 187.585,
-      "volume": 2810366
+      "close": 185.79,
+      "volume": 3353039
     }
   ]
 }
