@@ -1,6 +1,6 @@
 {
   "ticker": "TER",
-  "updated": "2026-08-04 22:30:12",
+  "updated": "2026-08-05 15:54:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-04",
-      "open": 389.76,
+      "open": 388.61,
       "high": 409.72,
       "low": 382.87,
       "close": 403.56,
-      "volume": 4061520
+      "volume": 4139900
+    },
+    {
+      "date": "2026-08-05",
+      "open": 402.0,
+      "high": 409.4,
+      "low": 386.08,
+      "close": 395.18,
+      "volume": 752857
     }
   ]
 }

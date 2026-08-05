@@ -1,6 +1,6 @@
 {
   "ticker": "ENTG",
-  "updated": "2026-08-04 22:34:28",
+  "updated": "2026-08-05 15:54:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-04",
-      "open": 137.4,
+      "open": 137.0,
       "high": 145.27,
       "low": 134.01,
       "close": 144.56,
-      "volume": 4363967
+      "volume": 4417900
+    },
+    {
+      "date": "2026-08-05",
+      "open": 146.4,
+      "high": 148.3,
+      "low": 141.88,
+      "close": 145.28,
+      "volume": 793697
     }
   ]
 }

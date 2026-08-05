@@ -1,6 +1,6 @@
 {
   "ticker": "PAY",
-  "updated": "2026-08-04 22:30:13",
+  "updated": "2026-08-05 15:54:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-08-04",
       "open": 40.48,
       "high": 45.31,
-      "low": 37.54,
+      "low": 37.24,
       "close": 44.6,
-      "volume": 4597086
+      "volume": 4597500
+    },
+    {
+      "date": "2026-08-05",
+      "open": 43.13,
+      "high": 43.68,
+      "low": 39.52,
+      "close": 40.79,
+      "volume": 1440198
     }
   ]
 }

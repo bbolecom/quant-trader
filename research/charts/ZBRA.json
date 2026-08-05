@@ -1,6 +1,6 @@
 {
   "ticker": "ZBRA",
-  "updated": "2026-08-04 22:34:28",
+  "updated": "2026-08-05 15:54:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-08-04",
       "open": 330.1,
       "high": 369.79,
-      "low": 329.4725,
+      "low": 329.47,
       "close": 368.83,
-      "volume": 2600505
+      "volume": 2614500
+    },
+    {
+      "date": "2026-08-05",
+      "open": 368.64,
+      "high": 374.07,
+      "low": 361.83,
+      "close": 365.85,
+      "volume": 434918
     }
   ]
 }

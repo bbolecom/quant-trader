@@ -1,6 +1,6 @@
 {
   "ticker": "ASTS",
-  "updated": "2026-08-04 22:30:12",
+  "updated": "2026-08-05 15:54:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 71.27,
       "low": 66.87,
       "close": 70.31,
-      "volume": 19070171
+      "volume": 20354100
+    },
+    {
+      "date": "2026-08-05",
+      "open": 67.86,
+      "high": 70.38,
+      "low": 66.45,
+      "close": 69.02,
+      "volume": 6749032
     }
   ]
 }

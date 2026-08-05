@@ -1,6 +1,6 @@
 {
   "ticker": "PVLA",
-  "updated": "2026-08-04 22:34:20",
+  "updated": "2026-08-05 15:54:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 155.8,
       "low": 135.3,
       "close": 151.99,
-      "volume": 266109
+      "volume": 279000
+    },
+    {
+      "date": "2026-08-05",
+      "open": 155.25,
+      "high": 156.83,
+      "low": 151.37,
+      "close": 152.3,
+      "volume": 52037
     }
   ]
 }

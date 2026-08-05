@@ -1,6 +1,6 @@
 {
   "ticker": "MRVL",
-  "updated": "2026-08-04 22:30:11",
+  "updated": "2026-08-05 15:54:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-04",
-      "open": 209.8,
+      "open": 210.01,
       "high": 222.67,
       "low": 208.0,
       "close": 218.59,
-      "volume": 33061182
+      "volume": 33795100
+    },
+    {
+      "date": "2026-08-05",
+      "open": 216.0,
+      "high": 222.38,
+      "low": 211.74,
+      "close": 215.715,
+      "volume": 7982680
     }
   ]
 }

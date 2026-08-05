@@ -1,6 +1,6 @@
 {
   "ticker": "QXO",
-  "updated": "2026-08-04 22:30:14",
+  "updated": "2026-08-05 15:54:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-04",
-      "open": 14.605,
+      "open": 14.61,
       "high": 15.53,
       "low": 14.47,
       "close": 15.34,
-      "volume": 38536354
+      "volume": 38545800
+    },
+    {
+      "date": "2026-08-05",
+      "open": 15.35,
+      "high": 15.84,
+      "low": 15.1204,
+      "close": 15.78,
+      "volume": 5257022
     }
   ]
 }

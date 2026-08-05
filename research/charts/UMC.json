@@ -1,6 +1,6 @@
 {
   "ticker": "UMC",
-  "updated": "2026-08-04 22:30:13",
+  "updated": "2026-08-05 15:54:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 20.85,
       "low": 19.59,
       "close": 20.63,
-      "volume": 20060279
+      "volume": 20069700
+    },
+    {
+      "date": "2026-08-05",
+      "open": 19.66,
+      "high": 19.945,
+      "low": 19.27,
+      "close": 19.42,
+      "volume": 5000013
     }
   ]
 }

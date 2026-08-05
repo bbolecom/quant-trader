@@ -1,6 +1,6 @@
 {
   "ticker": "DELL",
-  "updated": "2026-08-04 22:30:14",
+  "updated": "2026-08-05 15:54:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 476.9,
       "low": 443.83,
       "close": 467.27,
-      "volume": 7399596
+      "volume": 7564800
+    },
+    {
+      "date": "2026-08-05",
+      "open": 466.595,
+      "high": 485.7,
+      "low": 459.19,
+      "close": 469.655,
+      "volume": 3228307
     }
   ]
 }
