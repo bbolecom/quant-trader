@@ -1,18 +1,10 @@
 {
   "ticker": "FCX",
-  "updated": "2026-08-05 17:14:43",
+  "updated": "2026-08-05 20:18:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 59.95,
-      "high": 60.93,
-      "low": 58.23,
-      "close": 59.22,
-      "volume": 22330400
-    },
     {
       "date": "2026-02-06",
       "open": 60.36,
@@ -995,15 +987,15 @@
       "high": 67.85,
       "low": 65.75,
       "close": 67.3,
-      "volume": 16300000
+      "volume": 16305900
     },
     {
       "date": "2026-08-05",
       "open": 68.95,
       "high": 70.56,
       "low": 68.62,
-      "close": 68.92,
-      "volume": 8947776
+      "close": 69.39,
+      "volume": 13622727
     }
   ]
 }

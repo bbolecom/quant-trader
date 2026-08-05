@@ -1,18 +1,10 @@
 {
   "ticker": "ZETA",
-  "updated": "2026-08-05 18:53:10",
+  "updated": "2026-08-05 20:18:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 16.94,
-      "high": 17.17,
-      "low": 15.85,
-      "close": 16.0,
-      "volume": 12631000
-    },
     {
       "date": "2026-02-06",
       "open": 16.15,
@@ -995,15 +987,15 @@
       "high": 24.48,
       "low": 23.01,
       "close": 24.26,
-      "volume": 19289100
+      "volume": 19591900
     },
     {
       "date": "2026-08-05",
       "open": 24.65,
       "high": 28.5,
       "low": 24.46,
-      "close": 27.04,
-      "volume": 31217633
+      "close": 27.07,
+      "volume": 35155879
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "FIS",
-  "updated": "2026-08-05 18:52:53",
+  "updated": "2026-08-05 20:18:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 51.91,
-      "high": 52.73,
-      "low": 50.48,
-      "close": 50.82,
-      "volume": 5462600
-    },
     {
       "date": "2026-02-06",
       "open": 50.91,
@@ -995,15 +987,15 @@
       "high": 44.56,
       "low": 39.0,
       "close": 44.26,
-      "volume": 16457200
+      "volume": 16458500
     },
     {
       "date": "2026-08-05",
       "open": 43.89,
       "high": 44.45,
-      "low": 42.53,
-      "close": 42.94,
-      "volume": 4460779
+      "low": 42.1,
+      "close": 42.84,
+      "volume": 7237056
     }
   ]
 }

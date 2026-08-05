@@ -1,18 +1,10 @@
 {
   "ticker": "WBS",
-  "updated": "2026-08-05 18:53:12",
+  "updated": "2026-08-05 20:18:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 71.76,
-      "high": 72.55,
-      "low": 71.54,
-      "close": 72.02,
-      "volume": 9052900
-    },
     {
       "date": "2026-02-06",
       "open": 72.86,
@@ -1003,7 +995,7 @@
       "high": 79.23,
       "low": 78.92,
       "close": 79.12,
-      "volume": 7914230
+      "volume": 9047807
     }
   ]
 }

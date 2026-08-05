@@ -1,18 +1,10 @@
 {
   "ticker": "DT",
-  "updated": "2026-08-05 18:53:10",
+  "updated": "2026-08-05 20:18:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 34.49,
-      "high": 35.055,
-      "low": 33.38,
-      "close": 33.47,
-      "volume": 9848200
-    },
     {
       "date": "2026-02-06",
       "open": 33.43,
@@ -995,15 +987,15 @@
       "high": 45.93,
       "low": 44.0,
       "close": 45.71,
-      "volume": 5727900
+      "volume": 5732000
     },
     {
       "date": "2026-08-05",
       "open": 51.505,
       "high": 53.285,
-      "low": 51.01,
-      "close": 51.11,
-      "volume": 11320944
+      "low": 50.22,
+      "close": 50.86,
+      "volume": 15341916
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "SHAK",
-  "updated": "2026-08-05 18:53:13",
+  "updated": "2026-08-05 20:18:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 95.8,
-      "high": 97.185,
-      "low": 91.839,
-      "close": 93.07,
-      "volume": 1217600
-    },
     {
       "date": "2026-02-06",
       "open": 93.42,
@@ -995,15 +987,15 @@
       "high": 66.77,
       "low": 64.135,
       "close": 66.22,
-      "volume": 3273300
+      "volume": 3274600
     },
     {
       "date": "2026-08-05",
       "open": 67.0,
-      "high": 74.44,
+      "high": 74.47,
       "low": 64.01,
-      "close": 71.35,
-      "volume": 6582501
+      "close": 74.33,
+      "volume": 8467338
     }
   ]
 }

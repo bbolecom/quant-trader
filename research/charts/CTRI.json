@@ -1,18 +1,10 @@
 {
   "ticker": "CTRI",
-  "updated": "2026-08-05 18:52:53",
+  "updated": "2026-08-05 20:18:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-05",
-      "open": 27.44,
-      "high": 27.98,
-      "low": 27.18,
-      "close": 27.71,
-      "volume": 900600
-    },
     {
       "date": "2026-02-06",
       "open": 28.5,
@@ -995,15 +987,15 @@
       "high": 27.08,
       "low": 21.73,
       "close": 21.88,
-      "volume": 7712600
+      "volume": 7720400
     },
     {
       "date": "2026-08-05",
       "open": 22.21,
       "high": 23.25,
       "low": 21.35,
-      "close": 22.26,
-      "volume": 3840098
+      "close": 22.23,
+      "volume": 4990139
     }
   ]
 }
