@@ -1,18 +1,10 @@
 {
   "ticker": "TVTX",
-  "updated": "2026-08-05 22:38:42",
+  "updated": "2026-08-06 22:35:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-06",
-      "open": 29.91,
-      "high": 30.65,
-      "low": 29.45,
-      "close": 29.71,
-      "volume": 1333400
-    },
     {
       "date": "2026-02-09",
       "open": 29.68,
@@ -995,7 +987,15 @@
       "high": 66.24,
       "low": 61.0,
       "close": 62.76,
-      "volume": 6308104
+      "volume": 6308500
+    },
+    {
+      "date": "2026-08-06",
+      "open": 63.69,
+      "high": 65.45,
+      "low": 62.12,
+      "close": 62.45,
+      "volume": 2586748
     }
   ]
 }

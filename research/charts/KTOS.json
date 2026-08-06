@@ -1,18 +1,10 @@
 {
   "ticker": "KTOS",
-  "updated": "2026-08-05 22:38:29",
+  "updated": "2026-08-06 22:35:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-06",
-      "open": 89.1,
-      "high": 94.67,
-      "low": 88.0,
-      "close": 94.41,
-      "volume": 4227000
-    },
     {
       "date": "2026-02-09",
       "open": 94.6,
@@ -995,7 +987,15 @@
       "high": 62.34,
       "low": 54.51,
       "close": 55.34,
-      "volume": 9175935
+      "volume": 9212100
+    },
+    {
+      "date": "2026-08-06",
+      "open": 54.262,
+      "high": 59.095,
+      "low": 54.04,
+      "close": 57.41,
+      "volume": 5252073
     }
   ]
 }

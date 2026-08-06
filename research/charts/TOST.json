@@ -1,18 +1,10 @@
 {
   "ticker": "TOST",
-  "updated": "2026-08-05 22:38:45",
+  "updated": "2026-08-06 22:35:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-06",
-      "open": 27.69,
-      "high": 28.1,
-      "low": 26.99,
-      "close": 27.73,
-      "volume": 14962600
-    },
     {
       "date": "2026-02-09",
       "open": 27.45,
@@ -995,7 +987,15 @@
       "high": 36.36,
       "low": 34.55,
       "close": 34.8,
-      "volume": 20687400
+      "volume": 20694000
+    },
+    {
+      "date": "2026-08-06",
+      "open": 34.81,
+      "high": 35.4195,
+      "low": 34.43,
+      "close": 34.72,
+      "volume": 7666737
     }
   ]
 }
