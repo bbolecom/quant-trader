@@ -1,6 +1,6 @@
 {
   "ticker": "CART",
-  "updated": "2026-08-07 19:11:01",
+  "updated": "2026-08-07 19:57:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 46.36,
       "low": 44.6,
       "close": 45.03,
-      "volume": 6059700
+      "volume": 6105900
     },
     {
       "date": "2026-08-07",
       "open": 50.0,
       "high": 51.06,
       "low": 46.3525,
-      "close": 50.05,
-      "volume": 10214896
+      "close": 50.165,
+      "volume": 12508481
     }
   ]
 }
