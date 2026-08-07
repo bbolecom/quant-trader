@@ -1,6 +1,6 @@
 {
   "ticker": "INSM",
-  "updated": "2026-08-07 01:04:34",
+  "updated": "2026-08-07 14:44:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-08-06",
       "open": 128.22,
       "high": 137.7,
-      "low": 126.48,
+      "low": 126.15,
       "close": 132.55,
-      "volume": 12029853
+      "volume": 12031700
+    },
+    {
+      "date": "2026-08-07",
+      "open": 135.0,
+      "high": 135.06,
+      "low": 128.465,
+      "close": 129.31,
+      "volume": 1005143
     }
   ]
 }

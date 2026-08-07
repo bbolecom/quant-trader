@@ -1,6 +1,6 @@
 {
   "ticker": "PRAX",
-  "updated": "2026-08-07 01:04:35",
+  "updated": "2026-08-07 14:44:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 382.54,
       "low": 343.73,
       "close": 370.16,
-      "volume": 1394770
+      "volume": 1507100
+    },
+    {
+      "date": "2026-08-07",
+      "open": 372.26,
+      "high": 380.96,
+      "low": 356.52,
+      "close": 357.46,
+      "volume": 125784
     }
   ]
 }

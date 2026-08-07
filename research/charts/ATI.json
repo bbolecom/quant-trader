@@ -1,6 +1,6 @@
 {
   "ticker": "ATI",
-  "updated": "2026-08-07 01:02:23",
+  "updated": "2026-08-07 14:44:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 236.98,
       "low": 219.99,
       "close": 223.43,
-      "volume": 3104138
+      "volume": 3104200
+    },
+    {
+      "date": "2026-08-07",
+      "open": 223.25,
+      "high": 229.1495,
+      "low": 222.15,
+      "close": 222.675,
+      "volume": 325883
     }
   ]
 }

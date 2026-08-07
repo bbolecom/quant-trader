@@ -1,6 +1,6 @@
 {
   "ticker": "ACHR",
-  "updated": "2026-08-07 01:04:33",
+  "updated": "2026-08-07 14:44:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 5.355,
       "low": 5.08,
       "close": 5.23,
-      "volume": 24621198
+      "volume": 26042200
+    },
+    {
+      "date": "2026-08-07",
+      "open": 5.36,
+      "high": 5.505,
+      "low": 5.3001,
+      "close": 5.43,
+      "volume": 7040557
     }
   ]
 }

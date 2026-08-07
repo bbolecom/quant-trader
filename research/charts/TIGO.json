@@ -1,6 +1,6 @@
 {
   "ticker": "TIGO",
-  "updated": "2026-08-07 01:02:23",
+  "updated": "2026-08-07 14:44:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 107.13,
       "low": 99.5,
       "close": 104.31,
-      "volume": 3259867
+      "volume": 3299500
+    },
+    {
+      "date": "2026-08-07",
+      "open": 103.1,
+      "high": 104.5,
+      "low": 99.2,
+      "close": 99.965,
+      "volume": 362550
     }
   ]
 }
