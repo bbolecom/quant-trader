@@ -1,18 +1,10 @@
 {
   "ticker": "DV",
-  "updated": "2026-08-07 21:57:20",
+  "updated": "2026-08-10 14:50:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-09",
-      "open": 9.41,
-      "high": 9.41,
-      "low": 9.13,
-      "close": 9.36,
-      "volume": 4469000
-    },
     {
       "date": "2026-02-10",
       "open": 9.48,
@@ -1003,7 +995,15 @@
       "high": 13.355,
       "low": 13.2,
       "close": 13.21,
-      "volume": 37173865
+      "volume": 38401700
+    },
+    {
+      "date": "2026-08-10",
+      "open": 13.25,
+      "high": 13.26,
+      "low": 13.23,
+      "close": 13.245,
+      "volume": 1745938
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "VATE",
-  "updated": "2026-08-07 22:01:54",
+  "updated": "2026-08-10 14:50:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-09",
-      "open": 5.36,
-      "high": 5.66,
-      "low": 5.21,
-      "close": 5.33,
-      "volume": 24700
-    },
     {
       "date": "2026-02-10",
       "open": 5.26,
@@ -1001,9 +993,17 @@
       "date": "2026-08-07",
       "open": 11.04,
       "high": 14.0,
-      "low": 10.0208,
+      "low": 10.02,
       "close": 12.11,
-      "volume": 14206287
+      "volume": 14231500
+    },
+    {
+      "date": "2026-08-10",
+      "open": 9.16,
+      "high": 9.85,
+      "low": 6.41,
+      "close": 7.66,
+      "volume": 1401333
     }
   ]
 }

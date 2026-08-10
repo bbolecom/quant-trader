@@ -1,18 +1,10 @@
 {
   "ticker": "FLR",
-  "updated": "2026-08-07 21:57:21",
+  "updated": "2026-08-10 14:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-09",
-      "open": 47.3,
-      "high": 48.66,
-      "low": 47.0,
-      "close": 48.25,
-      "volume": 2588900
-    },
     {
       "date": "2026-02-10",
       "open": 48.32,
@@ -1003,7 +995,15 @@
       "high": 57.65,
       "low": 53.63,
       "close": 57.0,
-      "volume": 7381881
+      "volume": 7957500
+    },
+    {
+      "date": "2026-08-10",
+      "open": 57.06,
+      "high": 57.89,
+      "low": 54.69,
+      "close": 54.72,
+      "volume": 865317
     }
   ]
 }
