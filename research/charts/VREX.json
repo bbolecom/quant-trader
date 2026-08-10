@@ -1,18 +1,10 @@
 {
   "ticker": "VREX",
-  "updated": "2026-08-10 19:15:19",
+  "updated": "2026-08-10 20:03:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 14.05,
-      "high": 14.48,
-      "low": 13.91,
-      "close": 14.15,
-      "volume": 513800
-    },
     {
       "date": "2026-02-11",
       "open": 12.69,
@@ -1002,8 +994,8 @@
       "open": 18.395,
       "high": 18.49,
       "low": 18.365,
-      "close": 18.455,
-      "volume": 11600850
+      "close": 18.46,
+      "volume": 13178728
     }
   ]
 }

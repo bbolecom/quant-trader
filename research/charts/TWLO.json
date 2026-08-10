@@ -1,18 +1,10 @@
 {
   "ticker": "TWLO",
-  "updated": "2026-08-10 19:15:20",
+  "updated": "2026-08-10 20:03:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 118.79,
-      "high": 121.6,
-      "low": 115.0,
-      "close": 118.76,
-      "volume": 2953400
-    },
     {
       "date": "2026-02-11",
       "open": 120.0,
@@ -1002,8 +994,8 @@
       "open": 244.5,
       "high": 255.5499,
       "low": 243.1,
-      "close": 254.58,
-      "volume": 2212242
+      "close": 250.2,
+      "volume": 2856446
     }
   ]
 }

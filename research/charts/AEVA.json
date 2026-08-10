@@ -1,18 +1,10 @@
 {
   "ticker": "AEVA",
-  "updated": "2026-08-10 19:15:14",
+  "updated": "2026-08-10 20:02:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 13.89,
-      "high": 13.99,
-      "low": 12.87,
-      "close": 12.94,
-      "volume": 1812500
-    },
     {
       "date": "2026-02-11",
       "open": 13.36,
@@ -1002,8 +994,8 @@
       "open": 25.86,
       "high": 25.86,
       "low": 22.9119,
-      "close": 24.07,
-      "volume": 1662222
+      "close": 23.69,
+      "volume": 2230279
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "HZO",
-  "updated": "2026-08-10 19:15:19",
+  "updated": "2026-08-10 20:03:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 29.4,
-      "high": 30.19,
-      "low": 29.02,
-      "close": 29.12,
-      "volume": 326700
-    },
     {
       "date": "2026-02-11",
       "open": 29.11,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-08-10",
       "open": 51.885,
-      "high": 52.1,
+      "high": 52.12,
       "low": 51.87,
-      "close": 52.09,
-      "volume": 6880180
+      "close": 52.12,
+      "volume": 7501674
     }
   ]
 }

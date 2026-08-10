@@ -1,18 +1,10 @@
 {
   "ticker": "MP",
-  "updated": "2026-08-10 19:15:21",
+  "updated": "2026-08-10 20:03:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 62.27,
-      "high": 63.9,
-      "low": 61.6,
-      "close": 62.34,
-      "volume": 4096500
-    },
     {
       "date": "2026-02-11",
       "open": 62.75,
@@ -1002,8 +994,8 @@
       "open": 52.805,
       "high": 55.67,
       "low": 52.66,
-      "close": 54.53,
-      "volume": 8588485
+      "close": 54.635,
+      "volume": 9782396
     }
   ]
 }

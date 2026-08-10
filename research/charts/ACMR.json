@@ -1,18 +1,10 @@
 {
   "ticker": "ACMR",
-  "updated": "2026-08-10 19:15:14",
+  "updated": "2026-08-10 20:02:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 62.56,
-      "high": 64.596,
-      "low": 60.62,
-      "close": 62.92,
-      "volume": 844900
-    },
     {
       "date": "2026-02-11",
       "open": 65.12,
@@ -1001,9 +993,9 @@
       "date": "2026-08-10",
       "open": 87.28,
       "high": 88.81,
-      "low": 80.95,
-      "close": 81.48,
-      "volume": 805540
+      "low": 79.33,
+      "close": 79.41,
+      "volume": 1270712
     }
   ]
 }

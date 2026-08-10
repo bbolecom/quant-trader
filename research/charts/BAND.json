@@ -1,18 +1,10 @@
 {
   "ticker": "BAND",
-  "updated": "2026-08-10 19:15:14",
+  "updated": "2026-08-10 20:02:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 13.32,
-      "high": 13.93,
-      "low": 13.13,
-      "close": 13.56,
-      "volume": 269400
-    },
     {
       "date": "2026-02-11",
       "open": 13.68,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-08-10",
       "open": 49.18,
-      "high": 53.32,
+      "high": 53.55,
       "low": 49.18,
-      "close": 53.32,
-      "volume": 498262
+      "close": 52.71,
+      "volume": 925518
     }
   ]
 }
