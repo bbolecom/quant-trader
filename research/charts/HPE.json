@@ -1,18 +1,10 @@
 {
   "ticker": "HPE",
-  "updated": "2026-08-10 19:15:20",
+  "updated": "2026-08-10 20:54:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-10",
-      "open": 24.01,
-      "high": 24.25,
-      "low": 23.905,
-      "close": 23.97,
-      "volume": 12868400
-    },
     {
       "date": "2026-02-11",
       "open": 24.23,
@@ -1002,8 +994,8 @@
       "open": 55.4,
       "high": 56.463,
       "low": 54.18,
-      "close": 55.5,
-      "volume": 11703550
+      "close": 54.68,
+      "volume": 15670822
     }
   ]
 }
