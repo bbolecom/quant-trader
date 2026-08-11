@@ -1,18 +1,10 @@
 {
   "ticker": "AAL",
-  "updated": "2026-08-11 19:33:58",
+  "updated": "2026-08-11 20:19:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 15.18,
-      "high": 15.38,
-      "low": 14.2,
-      "close": 14.35,
-      "volume": 44579100
-    },
     {
       "date": "2026-02-12",
       "open": 14.62,
@@ -1002,8 +994,8 @@
       "open": 15.12,
       "high": 15.49,
       "low": 15.06,
-      "close": 15.385,
-      "volume": 40994423
+      "close": 15.29,
+      "volume": 47849984
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "APO",
-  "updated": "2026-08-11 19:33:57",
+  "updated": "2026-08-11 20:19:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 131.91,
-      "high": 133.29,
-      "low": 126.35,
-      "close": 126.95,
-      "volume": 6313700
-    },
     {
       "date": "2026-02-12",
       "open": 127.16,
@@ -1002,8 +994,8 @@
       "open": 132.5,
       "high": 140.9834,
       "low": 132.26,
-      "close": 140.34,
-      "volume": 3840520
+      "close": 140.28,
+      "volume": 4779034
     }
   ]
 }

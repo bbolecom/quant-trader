@@ -1,18 +1,10 @@
 {
   "ticker": "KKR",
-  "updated": "2026-08-11 19:33:57",
+  "updated": "2026-08-11 20:19:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 107.6,
-      "high": 109.25,
-      "low": 104.28,
-      "close": 105.06,
-      "volume": 6812600
-    },
     {
       "date": "2026-02-12",
       "open": 106.93,
@@ -1002,8 +994,8 @@
       "open": 104.01,
       "high": 111.34,
       "low": 103.66,
-      "close": 111.03,
-      "volume": 4704482
+      "close": 110.97,
+      "volume": 8309737
     }
   ]
 }

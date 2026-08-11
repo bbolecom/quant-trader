@@ -1,18 +1,10 @@
 {
   "ticker": "AAOI",
-  "updated": "2026-08-11 16:35:41",
+  "updated": "2026-08-11 20:19:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 49.115,
-      "high": 50.8,
-      "low": 45.3,
-      "close": 48.4,
-      "volume": 3537900
-    },
     {
       "date": "2026-02-12",
       "open": 48.86,
@@ -995,15 +987,15 @@
       "high": 148.9,
       "low": 128.8,
       "close": 132.81,
-      "volume": 18453000
+      "volume": 18508700
     },
     {
       "date": "2026-08-11",
-      "open": 134.0,
+      "open": 133.97,
       "high": 137.23,
       "low": 127.5,
-      "close": 132.3799,
-      "volume": 5905210
+      "close": 134.33,
+      "volume": 8721031
     }
   ]
 }

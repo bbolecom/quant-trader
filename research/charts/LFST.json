@@ -1,18 +1,10 @@
 {
   "ticker": "LFST",
-  "updated": "2026-08-11 19:33:47",
+  "updated": "2026-08-11 20:18:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 7.01,
-      "high": 7.025,
-      "low": 6.755,
-      "close": 6.93,
-      "volume": 1308700
-    },
     {
       "date": "2026-02-12",
       "open": 7.01,
@@ -1002,8 +994,8 @@
       "open": 11.79,
       "high": 11.93,
       "low": 11.36,
-      "close": 11.485,
-      "volume": 3298050
+      "close": 11.5,
+      "volume": 5530414
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "MELI",
-  "updated": "2026-08-11 19:33:57",
+  "updated": "2026-08-11 20:19:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 2053.23,
-      "high": 2060.0,
-      "low": 1972.0,
-      "close": 2018.1801,
-      "volume": 471000
-    },
     {
       "date": "2026-02-12",
       "open": 2092.6201,
@@ -1002,8 +994,8 @@
       "open": 1850.0,
       "high": 1946.0,
       "low": 1830.27,
-      "close": 1938.735,
-      "volume": 548786
+      "close": 1940.0,
+      "volume": 792919
     }
   ]
 }

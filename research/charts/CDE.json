@@ -1,18 +1,10 @@
 {
   "ticker": "CDE",
-  "updated": "2026-08-11 19:34:00",
+  "updated": "2026-08-11 20:19:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 23.66,
-      "high": 23.71,
-      "low": 22.05,
-      "close": 23.08,
-      "volume": 16614800
-    },
     {
       "date": "2026-02-12",
       "open": 22.95,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-08-11",
       "open": 18.07,
-      "high": 18.47,
+      "high": 18.605,
       "low": 17.95,
-      "close": 18.36,
-      "volume": 28813205
+      "close": 18.58,
+      "volume": 33260488
     }
   ]
 }

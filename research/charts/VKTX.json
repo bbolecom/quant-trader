@@ -1,18 +1,10 @@
 {
   "ticker": "VKTX",
-  "updated": "2026-08-11 19:33:55",
+  "updated": "2026-08-11 20:19:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 28.52,
-      "high": 28.98,
-      "low": 27.165,
-      "close": 28.55,
-      "volume": 4126600
-    },
     {
       "date": "2026-02-12",
       "open": 33.745,
@@ -999,11 +991,11 @@
     },
     {
       "date": "2026-08-11",
-      "open": 34.74,
+      "open": 34.71,
       "high": 34.85,
       "low": 33.64,
-      "close": 33.82,
-      "volume": 673080
+      "close": 33.8,
+      "volume": 988870
     }
   ]
 }

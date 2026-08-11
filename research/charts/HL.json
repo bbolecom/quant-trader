@@ -1,18 +1,10 @@
 {
   "ticker": "HL",
-  "updated": "2026-08-11 14:50:05",
+  "updated": "2026-08-11 20:19:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 24.06,
-      "high": 24.26,
-      "low": 22.51,
-      "close": 23.69,
-      "volume": 18293400
-    },
     {
       "date": "2026-02-12",
       "open": 23.42,
@@ -995,15 +987,15 @@
       "high": 17.58,
       "low": 16.67,
       "close": 17.55,
-      "volume": 45608800
+      "volume": 45637600
     },
     {
       "date": "2026-08-11",
       "open": 17.37,
-      "high": 17.71,
+      "high": 17.7754,
       "low": 17.25,
-      "close": 17.6299,
-      "volume": 4562345
+      "close": 17.76,
+      "volume": 34509490
     }
   ]
 }
