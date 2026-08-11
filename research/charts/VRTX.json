@@ -1,6 +1,6 @@
 {
   "ticker": "VRTX",
-  "updated": "2026-08-10 22:06:27",
+  "updated": "2026-08-11 14:50:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-10",
-      "open": 539.99,
+      "open": 539.5,
       "high": 546.17,
       "low": 519.82,
       "close": 523.91,
-      "volume": 2671532
+      "volume": 2682200
+    },
+    {
+      "date": "2026-08-11",
+      "open": 525.0,
+      "high": 531.01,
+      "low": 522.0102,
+      "close": 530.45,
+      "volume": 221361
     }
   ]
 }

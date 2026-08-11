@@ -1,6 +1,6 @@
 {
   "ticker": "SM",
-  "updated": "2026-08-10 22:06:17",
+  "updated": "2026-08-11 14:49:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -993,9 +993,17 @@
       "date": "2026-08-10",
       "open": 29.63,
       "high": 31.88,
-      "low": 29.75,
+      "low": 29.63,
       "close": 31.76,
-      "volume": 4428298
+      "volume": 5168300
+    },
+    {
+      "date": "2026-08-11",
+      "open": 31.49,
+      "high": 32.02,
+      "low": 31.5,
+      "close": 31.85,
+      "volume": 654104
     }
   ]
 }

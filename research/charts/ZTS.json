@@ -1,6 +1,6 @@
 {
   "ticker": "ZTS",
-  "updated": "2026-08-10 22:06:28",
+  "updated": "2026-08-11 14:50:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 79.25,
       "low": 72.19,
       "close": 72.66,
-      "volume": 12773300
+      "volume": 12784600
     },
     {
       "date": "2026-08-10",
       "open": 72.4,
       "high": 74.98,
-      "low": 71.4514,
+      "low": 71.45,
       "close": 74.83,
-      "volume": 8557914
+      "volume": 9605400
+    },
+    {
+      "date": "2026-08-11",
+      "open": 74.24,
+      "high": 75.83,
+      "low": 74.095,
+      "close": 75.15,
+      "volume": 962166
     }
   ]
 }

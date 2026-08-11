@@ -1,6 +1,6 @@
 {
   "ticker": "ABNB",
-  "updated": "2026-08-10 21:28:33",
+  "updated": "2026-08-11 14:50:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,15 +987,23 @@
       "high": 178.48,
       "low": 163.45,
       "close": 178.07,
-      "volume": 15890600
+      "volume": 15915000
     },
     {
       "date": "2026-08-10",
-      "open": 178.7,
+      "open": 178.69,
       "high": 185.99,
       "low": 177.43,
       "close": 184.7,
-      "volume": 8603091
+      "volume": 9981900
+    },
+    {
+      "date": "2026-08-11",
+      "open": 179.485,
+      "high": 183.82,
+      "low": 178.45,
+      "close": 183.65,
+      "volume": 2457890
     }
   ]
 }
