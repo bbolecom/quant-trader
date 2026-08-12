@@ -1,6 +1,6 @@
 {
   "ticker": "WIX",
-  "updated": "2026-08-12 18:30:05",
+  "updated": "2026-08-12 19:38:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,20 +990,12 @@
       "volume": 907600
     },
     {
-      "date": "2026-08-11",
-      "open": 61.67,
-      "high": 67.38,
-      "low": 61.27,
-      "close": 66.71,
-      "volume": 1261800
-    },
-    {
       "date": "2026-08-12",
       "open": 65.78,
-      "high": 67.5,
+      "high": 68.92,
       "low": 64.7,
-      "close": 67.15,
-      "volume": 609664
+      "close": 68.855,
+      "volume": 850734
     }
   ]
 }

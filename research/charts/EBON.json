@@ -1,6 +1,6 @@
 {
   "ticker": "EBON",
-  "updated": "2026-08-12 18:30:10",
+  "updated": "2026-08-12 19:38:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,20 +990,12 @@
       "volume": 34300
     },
     {
-      "date": "2026-08-11",
-      "open": 1.93,
-      "high": 2.105,
-      "low": 1.93,
-      "close": 2.105,
-      "volume": 1500
-    },
-    {
       "date": "2026-08-12",
       "open": 1.9,
       "high": 2.21,
       "low": 1.8964,
       "close": 2.21,
-      "volume": 2558
+      "volume": 2745
     }
   ]
 }
