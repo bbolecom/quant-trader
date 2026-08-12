@@ -1,18 +1,10 @@
 {
   "ticker": "NOK",
-  "updated": "2026-08-12 19:38:25",
+  "updated": "2026-08-12 20:20:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 7.17,
-      "high": 7.21,
-      "low": 6.93,
-      "close": 6.97,
-      "volume": 35874700
-    },
     {
       "date": "2026-02-13",
       "open": 6.95,
@@ -1002,8 +994,8 @@
       "open": 10.395,
       "high": 10.5,
       "low": 10.2,
-      "close": 10.295,
-      "volume": 102245644
+      "close": 10.32,
+      "volume": 114680053
     }
   ]
 }

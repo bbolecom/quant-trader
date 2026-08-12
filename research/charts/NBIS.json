@@ -1,18 +1,10 @@
 {
   "ticker": "NBIS",
-  "updated": "2026-08-12 19:38:15",
+  "updated": "2026-08-12 20:20:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 84.1,
-      "high": 90.76,
-      "low": 79.69,
-      "close": 89.73,
-      "volume": 25735500
-    },
     {
       "date": "2026-02-13",
       "open": 89.86,
@@ -1000,10 +992,10 @@
     {
       "date": "2026-08-12",
       "open": 226.0,
-      "high": 253.3,
+      "high": 259.44,
       "low": 216.11,
-      "close": 252.03,
-      "volume": 51892128
+      "close": 259.2,
+      "volume": 62364592
     }
   ]
 }

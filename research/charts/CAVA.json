@@ -1,18 +1,10 @@
 {
   "ticker": "CAVA",
-  "updated": "2026-08-12 19:38:24",
+  "updated": "2026-08-12 20:20:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 68.54,
-      "high": 69.3,
-      "low": 63.2,
-      "close": 63.61,
-      "volume": 2407500
-    },
     {
       "date": "2026-02-13",
       "open": 64.65,
@@ -1002,8 +994,8 @@
       "open": 69.46,
       "high": 71.7,
       "low": 67.03,
-      "close": 68.93,
-      "volume": 8418020
+      "close": 69.47,
+      "volume": 11478747
     }
   ]
 }

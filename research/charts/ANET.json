@@ -1,18 +1,10 @@
 {
   "ticker": "ANET",
-  "updated": "2026-08-12 18:30:16",
+  "updated": "2026-08-12 20:20:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 138.0,
-      "high": 138.5,
-      "low": 132.01,
-      "close": 135.12,
-      "volume": 16322100
-    },
     {
       "date": "2026-02-13",
       "open": 145.82,
@@ -995,15 +987,15 @@
       "high": 198.92,
       "low": 190.48,
       "close": 197.85,
-      "volume": 6268900
+      "volume": 6277300
     },
     {
       "date": "2026-08-12",
       "open": 205.47,
       "high": 211.45,
       "low": 203.76,
-      "close": 211.035,
-      "volume": 5751932
+      "close": 210.5,
+      "volume": 9978720
     }
   ]
 }

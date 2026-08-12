@@ -1,18 +1,10 @@
 {
   "ticker": "CLS",
-  "updated": "2026-08-12 19:38:25",
+  "updated": "2026-08-12 20:20:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 295.11,
-      "high": 295.15,
-      "low": 274.25,
-      "close": 274.79,
-      "volume": 3632900
-    },
     {
       "date": "2026-02-13",
       "open": 279.28,
@@ -1002,8 +994,8 @@
       "open": 320.08,
       "high": 339.7413,
       "low": 318.83,
-      "close": 335.715,
-      "volume": 2489443
+      "close": 339.46,
+      "volume": 3034104
     }
   ]
 }
