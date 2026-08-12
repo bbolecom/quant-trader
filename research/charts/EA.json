@@ -1,18 +1,10 @@
 {
   "ticker": "EA",
-  "updated": "2026-08-11 18:28:52",
+  "updated": "2026-08-12 15:43:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-11",
-      "open": 202.56,
-      "high": 202.8,
-      "low": 201.29,
-      "close": 202.24,
-      "volume": 2806067
-    },
     {
       "date": "2026-02-12",
       "open": 202.5,
