@@ -1,18 +1,10 @@
 {
   "ticker": "NIQ",
-  "updated": "2026-08-12 19:38:23",
+  "updated": "2026-08-12 21:07:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-12",
-      "open": 10.8,
-      "high": 11.15,
-      "low": 10.45,
-      "close": 10.67,
-      "volume": 1517500
-    },
     {
       "date": "2026-02-13",
       "open": 10.84,
@@ -1002,8 +994,8 @@
       "open": 16.5,
       "high": 16.95,
       "low": 15.75,
-      "close": 16.72,
-      "volume": 2479495
+      "close": 16.81,
+      "volume": 3081614
     }
   ]
 }
