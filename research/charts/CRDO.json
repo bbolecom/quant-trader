@@ -1,6 +1,6 @@
 {
   "ticker": "CRDO",
-  "updated": "2026-08-12 16:35:50",
+  "updated": "2026-08-12 17:35:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,20 +990,12 @@
       "volume": 4320600
     },
     {
-      "date": "2026-08-11",
-      "open": 243.0,
-      "high": 247.78,
-      "low": 237.66,
-      "close": 247.69,
-      "volume": 2444900
-    },
-    {
       "date": "2026-08-12",
       "open": 264.49,
-      "high": 271.8899,
+      "high": 273.7,
       "low": 254.58,
-      "close": 270.66,
-      "volume": 2261706
+      "close": 273.45,
+      "volume": 2555065
     }
   ]
 }

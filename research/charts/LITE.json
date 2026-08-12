@@ -1,6 +1,6 @@
 {
   "ticker": "LITE",
-  "updated": "2026-08-12 16:35:49",
+  "updated": "2026-08-12 17:35:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,20 +990,12 @@
       "volume": 6155000
     },
     {
-      "date": "2026-08-11",
-      "open": 815.67,
-      "high": 823.7,
-      "low": 787.01,
-      "close": 820.59,
-      "volume": 5795800
-    },
-    {
       "date": "2026-08-12",
       "open": 900.0,
-      "high": 949.64,
+      "high": 953.64,
       "low": 836.31,
-      "close": 946.205,
-      "volume": 7558422
+      "close": 950.9801,
+      "volume": 8411713
     }
   ]
 }
