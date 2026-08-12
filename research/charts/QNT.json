@@ -1,6 +1,6 @@
 {
   "ticker": "QNT",
-  "updated": "2026-08-12 17:35:20",
+  "updated": "2026-08-12 18:30:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -374,12 +374,20 @@
       "volume": 737900
     },
     {
+      "date": "2026-08-11",
+      "open": 56.82,
+      "high": 57.4,
+      "low": 53.89,
+      "close": 56.06,
+      "volume": 1531200
+    },
+    {
       "date": "2026-08-12",
       "open": 59.56,
       "high": 71.4699,
       "low": 57.52,
-      "close": 69.12,
-      "volume": 3159762
+      "close": 68.821,
+      "volume": 3378236
     }
   ]
 }

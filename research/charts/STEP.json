@@ -1,6 +1,6 @@
 {
   "ticker": "STEP",
-  "updated": "2026-08-12 17:35:03",
+  "updated": "2026-08-12 18:30:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 1257700
     },
     {
+      "date": "2026-08-11",
+      "open": 46.36,
+      "high": 49.87,
+      "low": 45.705,
+      "close": 49.51,
+      "volume": 1574000
+    },
+    {
       "date": "2026-08-12",
       "open": 49.64,
       "high": 50.08,
       "low": 47.665,
-      "close": 48.21,
-      "volume": 344628
+      "close": 48.515,
+      "volume": 433594
     }
   ]
 }
