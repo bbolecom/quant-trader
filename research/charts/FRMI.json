@@ -1,6 +1,6 @@
 {
   "ticker": "FRMI",
-  "updated": "2026-08-11 22:09:08",
+  "updated": "2026-08-12 14:50:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-11",
-      "open": 7.085,
-      "high": 7.3899,
+      "open": 7.07,
+      "high": 7.39,
       "low": 6.78,
       "close": 7.12,
-      "volume": 48888459
+      "volume": 50543100
+    },
+    {
+      "date": "2026-08-12",
+      "open": 7.478,
+      "high": 7.58,
+      "low": 7.17,
+      "close": 7.255,
+      "volume": 12042640
     }
   ]
 }

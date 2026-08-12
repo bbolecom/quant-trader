@@ -1,6 +1,6 @@
 {
   "ticker": "MPC",
-  "updated": "2026-08-11 22:06:10",
+  "updated": "2026-08-12 14:50:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-11",
       "open": 319.0,
-      "high": 336.42,
+      "high": 336.45,
       "low": 318.0,
       "close": 336.42,
-      "volume": 2268699
+      "volume": 3181200
+    },
+    {
+      "date": "2026-08-12",
+      "open": 335.045,
+      "high": 343.1,
+      "low": 331.99,
+      "close": 339.28,
+      "volume": 543461
     }
   ]
 }

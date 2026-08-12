@@ -1,6 +1,6 @@
 {
   "ticker": "AA",
-  "updated": "2026-08-11 22:06:11",
+  "updated": "2026-08-12 14:50:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-11",
       "open": 53.5,
-      "high": 54.87,
+      "high": 54.9,
       "low": 52.89,
       "close": 54.08,
-      "volume": 8867015
+      "volume": 9010900
+    },
+    {
+      "date": "2026-08-12",
+      "open": 54.4,
+      "high": 55.0499,
+      "low": 52.89,
+      "close": 53.13,
+      "volume": 2023149
     }
   ]
 }

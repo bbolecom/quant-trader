@@ -1,6 +1,6 @@
 {
   "ticker": "HTZ",
-  "updated": "2026-08-11 22:06:11",
+  "updated": "2026-08-12 14:50:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-11",
-      "open": 2.1099,
+      "open": 2.105,
       "high": 2.74,
       "low": 2.1,
       "close": 2.45,
-      "volume": 112143923
+      "volume": 115451400
+    },
+    {
+      "date": "2026-08-12",
+      "open": 2.475,
+      "high": 2.56,
+      "low": 2.38,
+      "close": 2.4201,
+      "volume": 18412591
     }
   ]
 }
