@@ -1,18 +1,10 @@
 {
   "ticker": "SPY",
-  "updated": "2026-08-13 19:34:59",
+  "updated": "2026-08-13 20:07:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-13",
-      "open": 681.69,
-      "high": 686.28,
-      "low": 677.52,
-      "close": 681.75,
-      "volume": 96267500
-    },
     {
       "date": "2026-02-17",
       "open": 680.14,
@@ -1002,8 +994,8 @@
       "open": 774.87,
       "high": 779.37,
       "low": 774.111,
-      "close": 778.04,
-      "volume": 23898916
+      "close": 777.82,
+      "volume": 30258928
     }
   ]
 }

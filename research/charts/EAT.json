@@ -1,18 +1,10 @@
 {
   "ticker": "EAT",
-  "updated": "2026-08-13 19:34:57",
+  "updated": "2026-08-13 20:07:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-13",
-      "open": 163.33,
-      "high": 165.33,
-      "low": 158.64,
-      "close": 161.07,
-      "volume": 832800
-    },
     {
       "date": "2026-02-17",
       "open": 164.05,
@@ -1002,8 +994,8 @@
       "open": 248.76,
       "high": 253.7095,
       "low": 236.515,
-      "close": 239.43,
-      "volume": 1045473
+      "close": 238.43,
+      "volume": 1366261
     }
   ]
 }

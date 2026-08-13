@@ -1,18 +1,10 @@
 {
   "ticker": "WDAY",
-  "updated": "2026-08-13 19:35:06",
+  "updated": "2026-08-13 20:07:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-13",
-      "open": 144.26,
-      "high": 147.38,
-      "low": 141.7,
-      "close": 144.42,
-      "volume": 5648200
-    },
     {
       "date": "2026-02-17",
       "open": 145.23,
@@ -1002,8 +994,8 @@
       "open": 177.44,
       "high": 227.49,
       "low": 174.62,
-      "close": 207.79,
-      "volume": 11566353
+      "close": 206.45,
+      "volume": 15220598
     }
   ]
 }

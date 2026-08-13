@@ -1,18 +1,10 @@
 {
   "ticker": "PATH",
-  "updated": "2026-08-13 19:35:06",
+  "updated": "2026-08-13 20:07:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-13",
-      "open": 11.26,
-      "high": 11.68,
-      "low": 11.21,
-      "close": 11.32,
-      "volume": 23819000
-    },
     {
       "date": "2026-02-17",
       "open": 11.23,
@@ -995,15 +987,15 @@
       "high": 15.53,
       "low": 14.98,
       "close": 15.26,
-      "volume": 66619800
+      "volume": 66648000
     },
     {
       "date": "2026-08-13",
       "open": 15.3,
-      "high": 16.49,
+      "high": 16.74,
       "low": 14.86,
-      "close": 16.465,
-      "volume": 89978097
+      "close": 16.685,
+      "volume": 101859614
     }
   ]
 }
