@@ -1,6 +1,6 @@
 {
   "ticker": "WEN",
-  "updated": "2026-08-12 22:06:24",
+  "updated": "2026-08-13 14:49:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -991,11 +991,19 @@
     },
     {
       "date": "2026-08-12",
-      "open": 7.52,
+      "open": 7.51,
       "high": 8.8,
-      "low": 7.5077,
+      "low": 7.5,
       "close": 8.66,
-      "volume": 44454452
+      "volume": 44831200
+    },
+    {
+      "date": "2026-08-13",
+      "open": 8.6,
+      "high": 8.68,
+      "low": 8.3702,
+      "close": 8.5,
+      "volume": 3787948
     }
   ]
 }

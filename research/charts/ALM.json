@@ -1,6 +1,6 @@
 {
   "ticker": "ALM",
-  "updated": "2026-08-12 22:06:19",
+  "updated": "2026-08-13 14:49:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-12",
       "open": 13.97,
-      "high": 14.66,
+      "high": 14.67,
       "low": 13.06,
       "close": 14.37,
-      "volume": 8157909
+      "volume": 8165100
+    },
+    {
+      "date": "2026-08-13",
+      "open": 14.0,
+      "high": 14.26,
+      "low": 13.67,
+      "close": 14.185,
+      "volume": 947914
     }
   ]
 }
