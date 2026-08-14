@@ -1,6 +1,6 @@
 {
   "ticker": "BAC",
-  "updated": "2026-08-14 17:24:55",
+  "updated": "2026-08-14 18:11:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,10 @@
     {
       "date": "2026-08-14",
       "open": 64.04,
-      "high": 64.53,
+      "high": 64.55,
       "low": 63.81,
-      "close": 64.52,
-      "volume": 9066416
+      "close": 64.425,
+      "volume": 10761018
     }
   ]
 }
