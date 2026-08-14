@@ -1,6 +1,6 @@
 {
   "ticker": "FDXF",
-  "updated": "2026-08-13 22:22:54",
+  "updated": "2026-08-14 14:44:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -435,7 +435,15 @@
       "high": 152.02,
       "low": 140.7,
       "close": 151.99,
-      "volume": 3145038
+      "volume": 3146700
+    },
+    {
+      "date": "2026-08-14",
+      "open": 151.09,
+      "high": 152.67,
+      "low": 146.08,
+      "close": 147.575,
+      "volume": 232252
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "TTD",
-  "updated": "2026-08-13 22:22:53",
+  "updated": "2026-08-14 14:44:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 14.7,
       "low": 13.57,
       "close": 14.56,
-      "volume": 34109966
+      "volume": 34542000
+    },
+    {
+      "date": "2026-08-14",
+      "open": 14.5,
+      "high": 14.628,
+      "low": 14.18,
+      "close": 14.2383,
+      "volume": 4614165
     }
   ]
 }

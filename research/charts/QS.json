@@ -1,6 +1,6 @@
 {
   "ticker": "QS",
-  "updated": "2026-08-13 22:22:49",
+  "updated": "2026-08-14 14:44:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-13",
       "open": 6.35,
-      "high": 6.4599,
+      "high": 6.46,
       "low": 6.08,
       "close": 6.16,
-      "volume": 14111865
+      "volume": 14150000
+    },
+    {
+      "date": "2026-08-14",
+      "open": 6.24,
+      "high": 6.3437,
+      "low": 6.2,
+      "close": 6.24,
+      "volume": 3135285
     }
   ]
 }

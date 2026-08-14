@@ -1,6 +1,6 @@
 {
   "ticker": "HPQ",
-  "updated": "2026-08-13 22:22:54",
+  "updated": "2026-08-14 14:44:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 32.19,
       "low": 29.49,
       "close": 31.3,
-      "volume": 23433238
+      "volume": 23440100
+    },
+    {
+      "date": "2026-08-14",
+      "open": 31.3,
+      "high": 31.4,
+      "low": 30.5,
+      "close": 30.58,
+      "volume": 2213630
     }
   ]
 }

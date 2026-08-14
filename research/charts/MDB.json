@@ -1,6 +1,6 @@
 {
   "ticker": "MDB",
-  "updated": "2026-08-13 22:22:53",
+  "updated": "2026-08-14 14:44:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 472.32,
       "low": 442.75,
       "close": 472.29,
-      "volume": 2144986
+      "volume": 2155300
+    },
+    {
+      "date": "2026-08-14",
+      "open": 470.0,
+      "high": 473.1,
+      "low": 458.65,
+      "close": 463.76,
+      "volume": 395951
     }
   ]
 }

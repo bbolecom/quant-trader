@@ -1,6 +1,6 @@
 {
   "ticker": "NET",
-  "updated": "2026-08-13 22:22:54",
+  "updated": "2026-08-14 14:44:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,7 +995,15 @@
       "high": 332.22,
       "low": 313.02,
       "close": 330.83,
-      "volume": 4490572
+      "volume": 5230700
+    },
+    {
+      "date": "2026-08-14",
+      "open": 331.0,
+      "high": 331.83,
+      "low": 318.26,
+      "close": 319.23,
+      "volume": 1084968
     }
   ]
 }

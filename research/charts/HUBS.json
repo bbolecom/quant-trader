@@ -1,6 +1,6 @@
 {
   "ticker": "HUBS",
-  "updated": "2026-08-13 22:22:53",
+  "updated": "2026-08-14 14:44:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -984,10 +984,18 @@
     {
       "date": "2026-08-13",
       "open": 211.54,
-      "high": 242.75,
+      "high": 242.815,
       "low": 209.94,
       "close": 240.51,
-      "volume": 3420175
+      "volume": 3424600
+    },
+    {
+      "date": "2026-08-14",
+      "open": 240.51,
+      "high": 241.5384,
+      "low": 228.38,
+      "close": 229.19,
+      "volume": 379984
     }
   ]
 }
