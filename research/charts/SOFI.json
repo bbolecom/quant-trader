@@ -1,6 +1,6 @@
 {
   "ticker": "SOFI",
-  "updated": "2026-08-14 19:11:32",
+  "updated": "2026-08-14 19:54:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 18.65,
       "low": 17.88,
       "close": 18.43,
-      "volume": 61732100
+      "volume": 61870100
     },
     {
       "date": "2026-08-14",
       "open": 18.47,
       "high": 18.58,
       "low": 18.28,
-      "close": 18.3101,
-      "volume": 21669869
+      "close": 18.355,
+      "volume": 25900217
     }
   ]
 }

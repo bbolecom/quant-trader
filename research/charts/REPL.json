@@ -1,6 +1,6 @@
 {
   "ticker": "REPL",
-  "updated": "2026-08-14 19:11:36",
+  "updated": "2026-08-14 19:54:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 15.705,
       "low": 14.98,
       "close": 15.19,
-      "volume": 3220100
+      "volume": 3220700
     },
     {
       "date": "2026-08-14",
       "open": 15.19,
       "high": 15.39,
-      "low": 14.84,
-      "close": 15.015,
-      "volume": 1385141
+      "low": 14.77,
+      "close": 14.79,
+      "volume": 1740489
     }
   ]
 }

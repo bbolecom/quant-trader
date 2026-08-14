@@ -1,6 +1,6 @@
 {
   "ticker": "MNDY",
-  "updated": "2026-08-14 19:11:31",
+  "updated": "2026-08-14 19:54:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,15 @@
       "high": 95.15,
       "low": 83.51,
       "close": 94.29,
-      "volume": 2189200
+      "volume": 2191800
     },
     {
       "date": "2026-08-14",
       "open": 94.1,
       "high": 94.1,
-      "low": 87.62,
-      "close": 87.68,
-      "volume": 806412
+      "low": 87.36,
+      "close": 88.11,
+      "volume": 948252
     }
   ]
 }
