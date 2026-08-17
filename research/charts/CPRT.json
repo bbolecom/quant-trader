@@ -1,6 +1,6 @@
 {
   "ticker": "CPRT",
-  "updated": "2026-08-14 22:09:32",
+  "updated": "2026-08-17 14:17:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-14",
-      "open": 29.63,
-      "high": 31.735,
+      "open": 29.7,
+      "high": 31.74,
       "low": 29.6,
       "close": 31.61,
-      "volume": 17095233
+      "volume": 17353400
+    },
+    {
+      "date": "2026-08-17",
+      "open": 31.34,
+      "high": 32.15,
+      "low": 31.28,
+      "close": 31.935,
+      "volume": 2308553
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "BLSH",
-  "updated": "2026-08-14 22:09:20",
+  "updated": "2026-08-17 14:17:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,18 @@
     {
       "date": "2026-08-14",
       "open": 27.41,
-      "high": 26.8343,
-      "low": 24.26,
+      "high": 27.42,
+      "low": 24.255,
       "close": 24.39,
-      "volume": 3098978
+      "volume": 3106900
+    },
+    {
+      "date": "2026-08-17",
+      "open": 24.34,
+      "high": 24.96,
+      "low": 24.305,
+      "close": 24.67,
+      "volume": 380735
     }
   ]
 }

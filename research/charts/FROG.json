@@ -1,6 +1,6 @@
 {
   "ticker": "FROG",
-  "updated": "2026-08-14 22:09:22",
+  "updated": "2026-08-17 14:17:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-14",
-      "open": 95.81,
+      "open": 95.67,
       "high": 98.47,
-      "low": 94.5812,
+      "low": 94.581,
       "close": 96.17,
-      "volume": 2427417
+      "volume": 2427800
+    },
+    {
+      "date": "2026-08-17",
+      "open": 96.325,
+      "high": 96.81,
+      "low": 93.46,
+      "close": 95.2,
+      "volume": 259494
     }
   ]
 }
