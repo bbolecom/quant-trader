@@ -1,18 +1,10 @@
 {
   "ticker": "BETA",
-  "updated": "2026-08-17 19:58:36",
+  "updated": "2026-08-17 20:23:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 17.36,
-      "high": 19.085,
-      "low": 17.32,
-      "close": 18.6,
-      "volume": 1157900
-    },
     {
       "date": "2026-02-18",
       "open": 18.71,
@@ -1008,10 +1000,10 @@
     {
       "date": "2026-08-17",
       "open": 24.61,
-      "high": 25.5,
+      "high": 25.615,
       "low": 24.345,
-      "close": 25.475,
-      "volume": 1802414
+      "close": 25.6,
+      "volume": 1922853
     }
   ]
 }

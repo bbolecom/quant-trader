@@ -1,18 +1,10 @@
 {
   "ticker": "ARGX",
-  "updated": "2026-08-17 19:58:50",
+  "updated": "2026-08-17 20:24:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 827.5,
-      "high": 852.83,
-      "low": 823.17,
-      "close": 843.55,
-      "volume": 288600
-    },
     {
       "date": "2026-02-18",
       "open": 838.51,
@@ -1002,8 +994,8 @@
       "open": 927.33,
       "high": 1002.1566,
       "low": 925.62,
-      "close": 990.25,
-      "volume": 636202
+      "close": 987.84,
+      "volume": 678896
     }
   ]
 }

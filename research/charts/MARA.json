@@ -1,18 +1,10 @@
 {
   "ticker": "MARA",
-  "updated": "2026-08-17 19:58:52",
+  "updated": "2026-08-17 20:24:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 7.68,
-      "high": 7.88,
-      "low": 7.33,
-      "close": 7.51,
-      "volume": 41177900
-    },
     {
       "date": "2026-02-18",
       "open": 7.48,
@@ -1010,8 +1002,8 @@
       "open": 9.22,
       "high": 9.805,
       "low": 9.195,
-      "close": 9.71,
-      "volume": 52109326
+      "close": 9.715,
+      "volume": 54091144
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "AMZN",
-  "updated": "2026-08-17 19:58:39",
+  "updated": "2026-08-17 20:23:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 198.13,
-      "high": 201.74,
-      "low": 196.0,
-      "close": 201.15,
-      "volume": 69879200
-    },
     {
       "date": "2026-02-18",
       "open": 202.07,
@@ -1010,8 +1002,8 @@
       "open": 265.44,
       "high": 265.75,
       "low": 258.339,
-      "close": 261.015,
-      "volume": 36823408
+      "close": 261.31,
+      "volume": 41504334
     }
   ]
 }

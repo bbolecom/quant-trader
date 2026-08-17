@@ -1,18 +1,10 @@
 {
   "ticker": "HTFL",
-  "updated": "2026-08-17 19:58:48",
+  "updated": "2026-08-17 20:24:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 20.5,
-      "high": 22.46,
-      "low": 20.3,
-      "close": 22.27,
-      "volume": 2990300
-    },
     {
       "date": "2026-02-18",
       "open": 22.27,
@@ -1002,8 +994,8 @@
       "open": 41.24,
       "high": 43.28,
       "low": 41.0046,
-      "close": 41.95,
-      "volume": 3305622
+      "close": 41.94,
+      "volume": 4098896
     }
   ]
 }

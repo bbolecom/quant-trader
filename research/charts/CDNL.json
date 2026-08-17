@@ -1,18 +1,10 @@
 {
   "ticker": "CDNL",
-  "updated": "2026-08-17 19:58:48",
+  "updated": "2026-08-17 20:24:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 25.0,
-      "high": 26.225,
-      "low": 24.2,
-      "close": 24.83,
-      "volume": 89800
-    },
     {
       "date": "2026-02-18",
       "open": 24.89,
@@ -1010,8 +1002,8 @@
       "open": 39.85,
       "high": 41.0,
       "low": 38.0101,
-      "close": 39.175,
-      "volume": 543337
+      "close": 39.23,
+      "volume": 620935
     }
   ]
 }

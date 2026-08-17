@@ -1,18 +1,10 @@
 {
   "ticker": "PWR",
-  "updated": "2026-08-17 19:58:52",
+  "updated": "2026-08-17 20:24:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-17",
-      "open": 520.0,
-      "high": 534.78,
-      "low": 518.62,
-      "close": 525.13,
-      "volume": 930500
-    },
     {
       "date": "2026-02-18",
       "open": 527.74,
@@ -1010,8 +1002,8 @@
       "open": 695.0,
       "high": 724.62,
       "low": 690.51,
-      "close": 723.63,
-      "volume": 1122681
+      "close": 722.31,
+      "volume": 1201695
     }
   ]
 }
