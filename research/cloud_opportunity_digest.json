@@ -1,21 +1,21 @@
 {
-  "date": "2026-08-13",
-  "updated": "2026-08-13 22:08:44",
-  "title": "📊 量化机会 59条 · 2026-08-13",
-  "total_actionable": 59,
+  "date": "2026-08-18",
+  "updated": "2026-08-18 21:42:45",
+  "title": "📊 量化机会 52条 · 2026-08-18",
+  "total_actionable": 52,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 7,
+      "actionable": 2,
       "symbols": [
         "—",
-        "KVYO",
-        "XE"
+        "UGI",
+        "CCC"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "fleet_csp",
@@ -37,7 +37,7 @@
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "vrp",
@@ -45,12 +45,12 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "CRM",
         "GOOGL",
-        "QCOM"
+        "MSFT",
+        "AMZN"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "GLOB",
-        "FDXF",
-        "FDX"
+        "BETA",
+        "BRZE",
+        "XOM"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "flow_strategy",
@@ -78,14 +78,12 @@
       "id": "gainer10",
       "name": "涨幅榜多空",
       "path": "research/gainer10_today.json",
-      "actionable": 3,
+      "actionable": 1,
       "symbols": [
-        "ARX",
-        "EROC",
-        "XE"
+        "AMLX"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "extreme20",
@@ -94,7 +92,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "meme_long",
@@ -107,16 +105,18 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "whipsaw_short",
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [],
+      "symbols": [
+        "WEAV"
+      ],
       "has_data": true,
-      "data_date": "2026-08-13"
+      "data_date": "2026-08-18"
     },
     {
       "id": "short_squeeze",
@@ -133,7 +133,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 59条 · 2026-08-13",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、KVYO、XE\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · CRM、GOOGL、QCOM\n• 资金流向操盘痕迹: 3 · GLOB、FDXF、FDX\n• 涨幅榜多空: 3 · ARX、EROC、XE\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 52条 · 2026-08-18",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、UGI、CCC\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · GOOGL、MSFT、AMZN\n• 资金流向操盘痕迹: 3 · BETA、BRZE、XOM\n• 涨幅榜多空: 1 · AMLX\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
