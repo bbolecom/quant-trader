@@ -1,18 +1,10 @@
 {
   "ticker": "PM",
-  "updated": "2026-08-18 19:41:22",
+  "updated": "2026-08-18 21:56:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-18",
-      "open": 184.67,
-      "high": 185.0,
-      "low": 182.15,
-      "close": 182.67,
-      "volume": 3549800
-    },
     {
       "date": "2026-02-19",
       "open": 181.99,
@@ -1010,8 +1002,8 @@
       "open": 187.03,
       "high": 188.87,
       "low": 186.01,
-      "close": 187.231,
-      "volume": 5289446
+      "close": 187.62,
+      "volume": 5991304
     }
   ]
 }
