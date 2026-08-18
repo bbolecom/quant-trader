@@ -1,6 +1,6 @@
 {
   "ticker": "AMLX",
-  "updated": "2026-08-18 15:24:41",
+  "updated": "2026-08-18 15:53:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 1588600
     },
     {
+      "date": "2026-08-17",
+      "open": 21.96,
+      "high": 22.468,
+      "low": 21.28,
+      "close": 21.43,
+      "volume": 1224200
+    },
+    {
       "date": "2026-08-18",
       "open": 29.93,
       "high": 32.81,
       "low": 28.0,
-      "close": 32.655,
-      "volume": 14304223
+      "close": 32.14,
+      "volume": 15277863
     }
   ]
 }

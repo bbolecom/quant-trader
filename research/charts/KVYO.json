@@ -1,6 +1,6 @@
 {
   "ticker": "KVYO",
-  "updated": "2026-08-18 15:24:20",
+  "updated": "2026-08-18 15:52:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -998,12 +998,20 @@
       "volume": 5012500
     },
     {
+      "date": "2026-08-17",
+      "open": 18.485,
+      "high": 18.485,
+      "low": 17.41,
+      "close": 17.54,
+      "volume": 4385500
+    },
+    {
       "date": "2026-08-18",
       "open": 17.78,
       "high": 18.31,
       "low": 17.7951,
-      "close": 18.24,
-      "volume": 1225479
+      "close": 18.25,
+      "volume": 1389041
     }
   ]
 }

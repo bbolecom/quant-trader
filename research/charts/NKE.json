@@ -1,6 +1,6 @@
 {
   "ticker": "NKE",
-  "updated": "2026-08-18 15:24:42",
+  "updated": "2026-08-18 15:53:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -998,12 +998,20 @@
       "volume": 23639800
     },
     {
+      "date": "2026-08-17",
+      "open": 40.35,
+      "high": 40.6,
+      "low": 38.86,
+      "close": 39.09,
+      "volume": 58449300
+    },
+    {
       "date": "2026-08-18",
       "open": 39.65,
       "high": 40.4399,
       "low": 39.225,
-      "close": 40.135,
-      "volume": 17251606
+      "close": 40.075,
+      "volume": 20881785
     }
   ]
 }

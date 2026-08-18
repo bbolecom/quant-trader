@@ -1,6 +1,6 @@
 {
   "ticker": "BL",
-  "updated": "2026-08-18 15:24:21",
+  "updated": "2026-08-18 15:53:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 782000
     },
     {
+      "date": "2026-08-17",
+      "open": 30.0,
+      "high": 30.5,
+      "low": 29.21,
+      "close": 29.3,
+      "volume": 855800
+    },
+    {
       "date": "2026-08-18",
       "open": 29.82,
       "high": 30.83,
       "low": 29.59,
       "close": 30.69,
-      "volume": 229276
+      "volume": 255162
     }
   ]
 }

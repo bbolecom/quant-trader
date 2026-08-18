@@ -1,6 +1,6 @@
 {
   "ticker": "WEAV",
-  "updated": "2026-08-18 15:24:41",
+  "updated": "2026-08-18 15:53:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 1431700
     },
     {
+      "date": "2026-08-17",
+      "open": 5.38,
+      "high": 5.585,
+      "low": 5.355,
+      "close": 5.53,
+      "volume": 1423000
+    },
+    {
       "date": "2026-08-18",
       "open": 7.29,
       "high": 7.315,
       "low": 7.28,
-      "close": 7.285,
-      "volume": 29446835
+      "close": 7.29,
+      "volume": 31757300
     }
   ]
 }

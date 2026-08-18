@@ -1,6 +1,6 @@
 {
   "ticker": "ESTC",
-  "updated": "2026-08-18 15:24:21",
+  "updated": "2026-08-18 15:53:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -990,12 +990,20 @@
       "volume": 3349400
     },
     {
+      "date": "2026-08-17",
+      "open": 85.51,
+      "high": 86.38,
+      "low": 82.18,
+      "close": 83.44,
+      "volume": 3442500
+    },
+    {
       "date": "2026-08-18",
       "open": 84.11,
-      "high": 85.55,
+      "high": 85.81,
       "low": 83.56,
-      "close": 85.14,
-      "volume": 637551
+      "close": 85.78,
+      "volume": 834275
     }
   ]
 }
