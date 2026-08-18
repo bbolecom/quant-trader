@@ -1,18 +1,10 @@
 {
   "ticker": "BABA",
-  "updated": "2026-08-18 19:56:04",
+  "updated": "2026-08-18 20:13:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-18",
-      "open": 156.88,
-      "high": 157.5,
-      "low": 155.57,
-      "close": 155.77,
-      "volume": 4506600
-    },
     {
       "date": "2026-02-19",
       "open": 155.225,
@@ -1010,8 +1002,8 @@
       "open": 127.76,
       "high": 128.78,
       "low": 126.34,
-      "close": 128.31,
-      "volume": 10784931
+      "close": 128.18,
+      "volume": 11488292
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "MO",
-  "updated": "2026-08-18 19:56:06",
+  "updated": "2026-08-18 20:13:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-18",
-      "open": 66.65,
-      "high": 67.12,
-      "low": 66.41,
-      "close": 66.77,
-      "volume": 7135100
-    },
     {
       "date": "2026-02-19",
       "open": 66.99,
@@ -1008,10 +1000,10 @@
     {
       "date": "2026-08-18",
       "open": 64.9,
-      "high": 65.345,
+      "high": 65.45,
       "low": 64.62,
-      "close": 65.335,
-      "volume": 8976194
+      "close": 65.19,
+      "volume": 9667051
     }
   ]
 }

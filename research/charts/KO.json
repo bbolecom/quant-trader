@@ -1,18 +1,10 @@
 {
   "ticker": "KO",
-  "updated": "2026-08-18 19:56:05",
+  "updated": "2026-08-18 20:13:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-18",
-      "open": 79.5,
-      "high": 79.84,
-      "low": 78.92,
-      "close": 79.49,
-      "volume": 16304900
-    },
     {
       "date": "2026-02-19",
       "open": 79.46,
@@ -1010,8 +1002,8 @@
       "open": 88.4,
       "high": 88.96,
       "low": 87.8937,
-      "close": 88.85,
-      "volume": 8637597
+      "close": 88.835,
+      "volume": 9545530
     }
   ]
 }
