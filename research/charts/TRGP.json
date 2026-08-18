@@ -1,6 +1,6 @@
 {
   "ticker": "TRGP",
-  "updated": "2026-08-18 20:57:28",
+  "updated": "2026-08-18 21:18:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -838,6 +838,22 @@
       "volume": 969400
     },
     {
+      "date": "2026-07-21",
+      "open": 285.0,
+      "high": 285.08,
+      "low": 277.17,
+      "close": 280.22,
+      "volume": 1283600
+    },
+    {
+      "date": "2026-07-22",
+      "open": 282.95,
+      "high": 284.94,
+      "low": 280.54,
+      "close": 284.45,
+      "volume": 842500
+    },
+    {
       "date": "2026-07-23",
       "open": 286.22,
       "high": 289.66,
@@ -887,11 +903,11 @@
     },
     {
       "date": "2026-07-31",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
+      "open": 268.81,
+      "high": 270.86,
+      "low": 264.72,
+      "close": 270.37,
+      "volume": 1115100
     },
     {
       "date": "2026-08-03",

@@ -1,6 +1,6 @@
 {
   "ticker": "BETA",
-  "updated": "2026-08-18 20:57:05",
+  "updated": "2026-08-18 21:17:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -900,6 +900,14 @@
       "low": 16.81,
       "close": 17.57,
       "volume": 1328100
+    },
+    {
+      "date": "2026-07-31",
+      "open": 17.77,
+      "high": 19.1,
+      "low": 17.316,
+      "close": 18.93,
+      "volume": 1338100
     },
     {
       "date": "2026-08-03",
