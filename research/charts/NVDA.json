@@ -1,6 +1,6 @@
 {
   "ticker": "NVDA",
-  "updated": "2026-08-19 19:18:19",
+  "updated": "2026-08-19 19:42:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,15 @@
       "high": 221.64,
       "low": 218.69,
       "close": 219.74,
-      "volume": 102769900
+      "volume": 103128200
     },
     {
       "date": "2026-08-19",
       "open": 221.67,
       "high": 222.87,
       "low": 216.76,
-      "close": 219.69,
-      "volume": 64156771
+      "close": 218.995,
+      "volume": 67634107
     }
   ]
 }
