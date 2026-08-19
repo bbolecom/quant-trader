@@ -1,6 +1,6 @@
 {
   "ticker": "OPEN",
-  "updated": "2026-08-19 14:57:34",
+  "updated": "2026-08-19 15:26:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,10 @@
     {
       "date": "2026-08-19",
       "open": 3.49,
-      "high": 3.62,
+      "high": 3.64,
       "low": 3.46,
-      "close": 3.61,
-      "volume": 13472673
+      "close": 3.595,
+      "volume": 16775989
     }
   ]
 }
