@@ -1,6 +1,6 @@
 {
   "ticker": "CMCSA",
-  "updated": "2026-08-18 21:56:15",
+  "updated": "2026-08-19 14:22:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-18",
-      "open": 25.87,
-      "high": 26.275,
-      "low": 25.695,
+      "open": 25.9,
+      "high": 26.28,
+      "low": 25.7,
       "close": 26.2,
-      "volume": 26214400
+      "volume": 26603200
+    },
+    {
+      "date": "2026-08-19",
+      "open": 26.14,
+      "high": 26.94,
+      "low": 26.14,
+      "close": 26.895,
+      "volume": 3356628
     }
   ]
 }

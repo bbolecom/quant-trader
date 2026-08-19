@@ -1,6 +1,6 @@
 {
   "ticker": "BYND",
-  "updated": "2026-08-18 21:56:08",
+  "updated": "2026-08-19 14:22:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -987,7 +987,15 @@
       "high": 12.74,
       "low": 10.71,
       "close": 12.74,
-      "volume": 3498051
+      "volume": 3523300
+    },
+    {
+      "date": "2026-08-19",
+      "open": 12.61,
+      "high": 13.126,
+      "low": 12.2901,
+      "close": 12.84,
+      "volume": 546992
     }
   ]
 }

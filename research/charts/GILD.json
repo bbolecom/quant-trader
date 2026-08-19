@@ -1,6 +1,6 @@
 {
   "ticker": "GILD",
-  "updated": "2026-08-18 21:18:01",
+  "updated": "2026-08-19 14:22:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 143.89,
       "low": 139.54,
       "close": 143.44,
-      "volume": 5549176
+      "volume": 5756500
+    },
+    {
+      "date": "2026-08-19",
+      "open": 145.1,
+      "high": 148.97,
+      "low": 144.3,
+      "close": 148.66,
+      "volume": 1227699
     }
   ]
 }

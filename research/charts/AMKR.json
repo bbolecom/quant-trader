@@ -1,6 +1,6 @@
 {
   "ticker": "AMKR",
-  "updated": "2026-08-18 21:56:14",
+  "updated": "2026-08-19 14:22:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-18",
-      "open": 57.403,
-      "high": 59.1999,
+      "open": 57.49,
+      "high": 59.2,
       "low": 53.82,
       "close": 54.84,
-      "volume": 5163127
+      "volume": 5171300
+    },
+    {
+      "date": "2026-08-19",
+      "open": 55.06,
+      "high": 55.49,
+      "low": 50.85,
+      "close": 51.13,
+      "volume": 1303925
     }
   ]
 }

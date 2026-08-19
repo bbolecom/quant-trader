@@ -1,6 +1,6 @@
 {
   "ticker": "MNST",
-  "updated": "2026-08-18 21:39:46",
+  "updated": "2026-08-19 14:22:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -992,10 +992,18 @@
     {
       "date": "2026-08-18",
       "open": 45.93,
-      "high": 47.545,
+      "high": 47.55,
       "low": 45.78,
       "close": 47.38,
-      "volume": 14928773
+      "volume": 16316700
+    },
+    {
+      "date": "2026-08-19",
+      "open": 47.275,
+      "high": 47.7979,
+      "low": 47.245,
+      "close": 47.705,
+      "volume": 1493578
     }
   ]
 }

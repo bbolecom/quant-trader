@@ -1,6 +1,6 @@
 {
   "ticker": "JNJ",
-  "updated": "2026-08-18 20:13:11",
+  "updated": "2026-08-19 14:22:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1002,8 +1002,16 @@
       "open": 267.67,
       "high": 271.73,
       "low": 266.33,
-      "close": 271.13,
-      "volume": 5585999
+      "close": 271.11,
+      "volume": 7835500
+    },
+    {
+      "date": "2026-08-19",
+      "open": 272.995,
+      "high": 276.47,
+      "low": 270.56,
+      "close": 275.64,
+      "volume": 1749213
     }
   ]
 }
