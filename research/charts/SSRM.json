@@ -1,6 +1,6 @@
 {
   "ticker": "SSRM",
-  "updated": "2026-08-20 21:04:25",
+  "updated": "2026-08-20 21:37:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -820,6 +820,22 @@
       "low": 24.91,
       "close": 25.05,
       "volume": 2976600
+    },
+    {
+      "date": "2026-07-21",
+      "open": 25.78,
+      "high": 27.3,
+      "low": 25.64,
+      "close": 27.21,
+      "volume": 3458900
+    },
+    {
+      "date": "2026-07-22",
+      "open": 27.73,
+      "high": 28.74,
+      "low": 27.73,
+      "close": 28.08,
+      "volume": 2570200
     },
     {
       "date": "2026-07-23",
