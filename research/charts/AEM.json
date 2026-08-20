@@ -1,18 +1,10 @@
 {
   "ticker": "AEM",
-  "updated": "2026-08-20 19:48:33",
+  "updated": "2026-08-20 20:10:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 224.85,
-      "high": 229.09,
-      "low": 221.0,
-      "close": 228.26,
-      "volume": 2389900
-    },
     {
       "date": "2026-02-23",
       "open": 230.4,
@@ -1010,8 +1002,8 @@
       "open": 204.45,
       "high": 213.521,
       "low": 204.36,
-      "close": 210.33,
-      "volume": 3931637
+      "close": 212.01,
+      "volume": 5100506
     }
   ]
 }

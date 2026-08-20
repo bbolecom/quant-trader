@@ -1,18 +1,10 @@
 {
   "ticker": "AUGO",
-  "updated": "2026-08-20 19:48:33",
+  "updated": "2026-08-20 20:10:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 70.75,
-      "high": 74.8,
-      "low": 70.32,
-      "close": 74.59,
-      "volume": 592400
-    },
     {
       "date": "2026-02-23",
       "open": 75.98,
@@ -986,8 +978,8 @@
       "open": 83.58,
       "high": 87.74,
       "low": 83.04,
-      "close": 86.14,
-      "volume": 1340985
+      "close": 86.69,
+      "volume": 1800549
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "WPM",
-  "updated": "2026-08-20 19:48:33",
+  "updated": "2026-08-20 20:10:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 145.59,
-      "high": 150.61,
-      "low": 143.82,
-      "close": 150.38,
-      "volume": 2040900
-    },
     {
       "date": "2026-02-23",
       "open": 152.41,
@@ -994,8 +986,8 @@
       "open": 144.54,
       "high": 150.685,
       "low": 144.535,
-      "close": 149.54,
-      "volume": 2011415
+      "close": 150.24,
+      "volume": 2360323
     }
   ]
 }

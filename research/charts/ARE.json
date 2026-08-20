@@ -1,18 +1,10 @@
 {
   "ticker": "ARE",
-  "updated": "2026-08-20 19:48:33",
+  "updated": "2026-08-20 20:10:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 53.45,
-      "high": 53.9,
-      "low": 52.62,
-      "close": 53.65,
-      "volume": 1270500
-    },
     {
       "date": "2026-02-23",
       "open": 53.36,
@@ -984,10 +976,10 @@
     {
       "date": "2026-08-20",
       "open": 50.78,
-      "high": 52.8938,
+      "high": 53.295,
       "low": 50.145,
-      "close": 52.8938,
-      "volume": 1680113
+      "close": 52.94,
+      "volume": 2221062
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "DUOL",
-  "updated": "2026-08-20 19:48:22",
+  "updated": "2026-08-20 20:10:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 111.04,
-      "high": 114.5,
-      "low": 109.31,
-      "close": 112.94,
-      "volume": 1831500
-    },
     {
       "date": "2026-02-23",
       "open": 112.35,
@@ -1002,8 +994,8 @@
       "open": 145.14,
       "high": 148.89,
       "low": 144.62,
-      "close": 147.61,
-      "volume": 516872
+      "close": 147.03,
+      "volume": 685335
     }
   ]
 }

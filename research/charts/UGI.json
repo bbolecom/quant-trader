@@ -1,18 +1,10 @@
 {
   "ticker": "UGI",
-  "updated": "2026-08-20 19:48:21",
+  "updated": "2026-08-20 20:10:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 38.59,
-      "high": 38.64,
-      "low": 38.04,
-      "close": 38.29,
-      "volume": 1182600
-    },
     {
       "date": "2026-02-23",
       "open": 38.34,
@@ -985,9 +977,9 @@
       "date": "2026-08-20",
       "open": 38.41,
       "high": 38.68,
-      "low": 37.848,
-      "close": 38.08,
-      "volume": 2024345
+      "low": 37.845,
+      "close": 37.88,
+      "volume": 2391518
     }
   ]
 }

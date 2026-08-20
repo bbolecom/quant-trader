@@ -1,18 +1,10 @@
 {
   "ticker": "TWST",
-  "updated": "2026-08-20 19:48:32",
+  "updated": "2026-08-20 20:10:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 49.9,
-      "high": 50.94,
-      "low": 47.16,
-      "close": 48.59,
-      "volume": 2055700
-    },
     {
       "date": "2026-02-23",
       "open": 47.43,
@@ -985,9 +977,9 @@
       "date": "2026-08-20",
       "open": 136.84,
       "high": 145.51,
-      "low": 136.15,
-      "close": 139.07,
-      "volume": 1962715
+      "low": 136.04,
+      "close": 136.33,
+      "volume": 2377808
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "MSFT",
-  "updated": "2026-08-20 19:48:24",
+  "updated": "2026-08-20 20:10:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-20",
-      "open": 396.11,
-      "high": 400.12,
-      "low": 395.16,
-      "close": 397.23,
-      "volume": 34015200
-    },
     {
       "date": "2026-02-23",
       "open": 395.0,
@@ -1010,8 +1002,8 @@
       "open": 483.0,
       "high": 484.16,
       "low": 479.5,
-      "close": 481.78,
-      "volume": 9485496
+      "close": 481.15,
+      "volume": 15813081
     }
   ]
 }
