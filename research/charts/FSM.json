@@ -1,6 +1,6 @@
 {
   "ticker": "FSM",
-  "updated": "2026-08-20 15:01:37",
+  "updated": "2026-08-20 15:38:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,10 @@
     {
       "date": "2026-08-20",
       "open": 11.44,
-      "high": 11.885,
+      "high": 11.97,
       "low": 11.41,
-      "close": 11.865,
-      "volume": 1296800
+      "close": 11.795,
+      "volume": 2029661
     }
   ]
 }
