@@ -1,6 +1,6 @@
 {
   "ticker": "BMNR",
-  "updated": "2026-08-19 21:56:58",
+  "updated": "2026-08-20 14:25:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 20.895,
       "low": 18.37,
       "close": 20.24,
-      "volume": 70708418
+      "volume": 74759700
+    },
+    {
+      "date": "2026-08-20",
+      "open": 21.46,
+      "high": 21.76,
+      "low": 20.73,
+      "close": 21.4214,
+      "volume": 25234672
     }
   ]
 }

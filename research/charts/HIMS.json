@@ -1,6 +1,6 @@
 {
   "ticker": "HIMS",
-  "updated": "2026-08-19 21:56:57",
+  "updated": "2026-08-20 14:25:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1001,9 +1001,17 @@
       "date": "2026-08-19",
       "open": 27.55,
       "high": 31.27,
-      "low": 27.43,
+      "low": 27.41,
       "close": 31.09,
-      "volume": 19742993
+      "volume": 19950500
+    },
+    {
+      "date": "2026-08-20",
+      "open": 30.66,
+      "high": 33.16,
+      "low": 30.71,
+      "close": 32.7583,
+      "volume": 6140844
     }
   ]
 }
