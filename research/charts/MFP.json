@@ -1,6 +1,6 @@
 {
   "ticker": "MFP",
-  "updated": "2026-08-21 14:58:51",
+  "updated": "2026-08-21 15:31:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -320,10 +320,10 @@
     {
       "date": "2026-08-21",
       "open": 49.48,
-      "high": 51.575,
+      "high": 51.62,
       "low": 49.213,
-      "close": 51.385,
-      "volume": 88461
+      "close": 51.38,
+      "volume": 126632
     }
   ]
 }
