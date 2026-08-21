@@ -1,6 +1,6 @@
 {
   "ticker": "CRM",
-  "updated": "2026-08-21 14:24:07",
+  "updated": "2026-08-21 14:58:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,10 @@
     {
       "date": "2026-08-21",
       "open": 205.58,
-      "high": 208.71,
+      "high": 210.525,
       "low": 204.7261,
-      "close": 207.72,
-      "volume": 1833345
+      "close": 210.2525,
+      "volume": 2703848
     }
   ]
 }
