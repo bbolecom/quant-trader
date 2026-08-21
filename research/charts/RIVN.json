@@ -1,6 +1,6 @@
 {
   "ticker": "RIVN",
-  "updated": "2026-08-21 19:35:46",
+  "updated": "2026-08-21 19:51:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,10 @@
     {
       "date": "2026-08-21",
       "open": 16.08,
-      "high": 17.125,
+      "high": 17.15,
       "low": 16.06,
-      "close": 17.0101,
-      "volume": 28848757
+      "close": 16.965,
+      "volume": 31237666
     }
   ]
 }
