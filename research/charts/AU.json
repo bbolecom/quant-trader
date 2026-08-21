@@ -1,6 +1,6 @@
 {
   "ticker": "AU",
-  "updated": "2026-08-21 14:24:19",
+  "updated": "2026-08-21 20:37:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,15 @@
       "high": 115.73,
       "low": 107.51,
       "close": 115.14,
-      "volume": 5239000
+      "volume": 5240500
     },
     {
       "date": "2026-08-21",
       "open": 119.43,
-      "high": 121.27,
+      "high": 121.8582,
       "low": 118.14,
-      "close": 121.25,
-      "volume": 1247923
+      "close": 121.22,
+      "volume": 4402845
     }
   ]
 }
