@@ -1,6 +1,6 @@
 {
   "ticker": "MSTR",
-  "updated": "2026-08-20 21:57:26",
+  "updated": "2026-08-21 14:24:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 113.74,
       "low": 108.35,
       "close": 112.39,
-      "volume": 46401257
+      "volume": 46921300
+    },
+    {
+      "date": "2026-08-21",
+      "open": 119.78,
+      "high": 120.97,
+      "low": 115.85,
+      "close": 118.77,
+      "volume": 19114059
     }
   ]
 }
