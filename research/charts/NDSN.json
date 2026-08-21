@@ -1,6 +1,6 @@
 {
   "ticker": "NDSN",
-  "updated": "2026-08-21 19:11:03",
+  "updated": "2026-08-21 19:35:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,15 @@
       "high": 336.7,
       "low": 308.42,
       "close": 334.7,
-      "volume": 1255400
+      "volume": 1255900
     },
     {
       "date": "2026-08-21",
       "open": 338.05,
       "high": 338.4,
       "low": 328.8695,
-      "close": 332.465,
-      "volume": 373981
+      "close": 332.6625,
+      "volume": 407193
     }
   ]
 }

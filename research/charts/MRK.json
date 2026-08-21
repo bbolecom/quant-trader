@@ -1,6 +1,6 @@
 {
   "ticker": "MRK",
-  "updated": "2026-08-21 19:11:16",
+  "updated": "2026-08-21 19:35:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,15 @@
       "high": 152.52,
       "low": 148.52,
       "close": 148.99,
-      "volume": 16200800
+      "volume": 16204700
     },
     {
       "date": "2026-08-21",
       "open": 149.12,
       "high": 154.49,
       "low": 148.59,
-      "close": 152.595,
-      "volume": 9653200
+      "close": 152.52,
+      "volume": 10242525
     }
   ]
 }
