@@ -1,18 +1,10 @@
 {
   "ticker": "BTDR",
-  "updated": "2026-08-24 19:45:02",
+  "updated": "2026-08-24 20:03:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-24",
-      "open": 8.02,
-      "high": 8.67,
-      "low": 7.9,
-      "close": 8.38,
-      "volume": 7862300
-    },
     {
       "date": "2026-02-25",
       "open": 8.81,
@@ -1010,8 +1002,8 @@
       "open": 11.58,
       "high": 11.73,
       "low": 10.8101,
-      "close": 10.8599,
-      "volume": 10994922
+      "close": 10.91,
+      "volume": 12774816
     }
   ]
 }

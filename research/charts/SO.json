@@ -1,18 +1,10 @@
 {
   "ticker": "SO",
-  "updated": "2026-08-24 19:45:25",
+  "updated": "2026-08-24 20:03:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-24",
-      "open": 95.15,
-      "high": 95.98,
-      "low": 94.14,
-      "close": 95.81,
-      "volume": 5087100
-    },
     {
       "date": "2026-02-25",
       "open": 95.65,
@@ -1010,8 +1002,8 @@
       "open": 89.06,
       "high": 90.47,
       "low": 89.055,
-      "close": 90.249,
-      "volume": 5924693
+      "close": 90.08,
+      "volume": 7537258
     }
   ]
 }

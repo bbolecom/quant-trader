@@ -1,18 +1,10 @@
 {
   "ticker": "DNN",
-  "updated": "2026-08-24 19:45:01",
+  "updated": "2026-08-24 20:03:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-24",
-      "open": 4.15,
-      "high": 4.31,
-      "low": 4.04,
-      "close": 4.3,
-      "volume": 38629500
-    },
     {
       "date": "2026-02-25",
       "open": 4.36,
@@ -1010,8 +1002,8 @@
       "open": 3.5,
       "high": 3.6,
       "low": 3.43,
-      "close": 3.545,
-      "volume": 30404513
+      "close": 3.53,
+      "volume": 32746338
     }
   ]
 }

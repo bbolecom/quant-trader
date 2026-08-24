@@ -1,18 +1,10 @@
 {
   "ticker": "NU",
-  "updated": "2026-08-24 19:45:27",
+  "updated": "2026-08-24 20:03:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-24",
-      "open": 16.19,
-      "high": 16.59,
-      "low": 15.87,
-      "close": 16.53,
-      "volume": 49705900
-    },
     {
       "date": "2026-02-25",
       "open": 16.515,
@@ -1010,8 +1002,8 @@
       "open": 14.41,
       "high": 15.05,
       "low": 14.34,
-      "close": 14.71,
-      "volume": 35245179
+      "close": 14.75,
+      "volume": 38834829
     }
   ]
 }
