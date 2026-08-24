@@ -1,6 +1,6 @@
 {
   "ticker": "FCFS",
-  "updated": "2026-08-24 17:58:20",
+  "updated": "2026-08-24 18:35:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,10 @@
     {
       "date": "2026-08-24",
       "open": 225.28,
-      "high": 231.27,
+      "high": 231.29,
       "low": 223.3,
-      "close": 229.965,
-      "volume": 216021
+      "close": 230.39,
+      "volume": 264958
     }
   ]
 }
