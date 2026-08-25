@@ -1,6 +1,6 @@
 {
   "ticker": "IBKR",
-  "updated": "2026-08-25 20:47:22",
+  "updated": "2026-08-25 21:09:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,11 @@
     },
     {
       "date": "2026-08-25",
-      "open": 93.1001,
+      "open": 93.545,
       "high": 98.7,
       "low": 92.8,
       "close": 98.19,
-      "volume": 5147766
+      "volume": 5149475
     }
   ]
 }
