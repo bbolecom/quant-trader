@@ -1,6 +1,6 @@
 {
   "ticker": "EZPW",
-  "updated": "2026-08-24 21:57:12",
+  "updated": "2026-08-25 14:34:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-24",
-      "open": 32.13,
-      "high": 35.245,
+      "open": 32.44,
+      "high": 35.25,
       "low": 32.13,
       "close": 35.05,
-      "volume": 2693032
+      "volume": 2693600
+    },
+    {
+      "date": "2026-08-25",
+      "open": 35.05,
+      "high": 35.3131,
+      "low": 34.39,
+      "close": 34.74,
+      "volume": 175069
     }
   ]
 }

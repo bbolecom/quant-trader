@@ -1,6 +1,6 @@
 {
   "ticker": "CVNA",
-  "updated": "2026-08-24 21:57:35",
+  "updated": "2026-08-25 14:34:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 72.77,
       "low": 69.82,
       "close": 72.33,
-      "volume": 9539156
+      "volume": 9542900
+    },
+    {
+      "date": "2026-08-25",
+      "open": 72.9,
+      "high": 75.25,
+      "low": 72.2,
+      "close": 74.34,
+      "volume": 1961475
     }
   ]
 }

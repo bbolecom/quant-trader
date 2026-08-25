@@ -1,6 +1,6 @@
 {
   "ticker": "VZ",
-  "updated": "2026-08-24 21:57:38",
+  "updated": "2026-08-25 14:34:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 50.28,
       "low": 49.36,
       "close": 50.15,
-      "volume": 19429718
+      "volume": 19498700
+    },
+    {
+      "date": "2026-08-25",
+      "open": 49.995,
+      "high": 50.255,
+      "low": 49.79,
+      "close": 50.16,
+      "volume": 3266306
     }
   ]
 }

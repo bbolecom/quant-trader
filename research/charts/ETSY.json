@@ -1,6 +1,6 @@
 {
   "ticker": "ETSY",
-  "updated": "2026-08-24 21:57:12",
+  "updated": "2026-08-25 14:34:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 87.06,
       "low": 80.31,
       "close": 87.03,
-      "volume": 4500892
+      "volume": 4501100
+    },
+    {
+      "date": "2026-08-25",
+      "open": 87.0,
+      "high": 87.407,
+      "low": 85.4301,
+      "close": 87.08,
+      "volume": 580566
     }
   ]
 }

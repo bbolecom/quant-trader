@@ -1,6 +1,6 @@
 {
   "ticker": "NG",
-  "updated": "2026-08-24 21:57:12",
+  "updated": "2026-08-25 14:34:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -995,15 +995,23 @@
       "high": 9.07,
       "low": 8.65,
       "close": 8.72,
-      "volume": 4687400
+      "volume": 4700600
     },
     {
       "date": "2026-08-24",
       "open": 8.89,
       "high": 9.53,
-      "low": 8.835,
+      "low": 8.84,
       "close": 9.35,
-      "volume": 9284398
+      "volume": 9313500
+    },
+    {
+      "date": "2026-08-25",
+      "open": 9.31,
+      "high": 9.53,
+      "low": 9.202,
+      "close": 9.48,
+      "volume": 1641893
     }
   ]
 }

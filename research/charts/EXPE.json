@@ -1,6 +1,6 @@
 {
   "ticker": "EXPE",
-  "updated": "2026-08-24 21:57:35",
+  "updated": "2026-08-25 14:34:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1002,8 +1002,16 @@
       "open": 323.55,
       "high": 341.09,
       "low": 323.55,
-      "close": 339.125,
-      "volume": 1562298
+      "close": 339.13,
+      "volume": 1563400
+    },
+    {
+      "date": "2026-08-25",
+      "open": 337.0,
+      "high": 340.19,
+      "low": 335.295,
+      "close": 335.63,
+      "volume": 146752
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "LIFE",
-  "updated": "2026-08-24 21:57:11",
+  "updated": "2026-08-25 14:34:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 37.17,
       "low": 32.0,
       "close": 36.72,
-      "volume": 2614965
+      "volume": 2615100
+    },
+    {
+      "date": "2026-08-25",
+      "open": 36.87,
+      "high": 37.47,
+      "low": 36.62,
+      "close": 37.12,
+      "volume": 410880
     }
   ]
 }

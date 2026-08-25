@@ -1,6 +1,6 @@
 {
   "ticker": "SFM",
-  "updated": "2026-08-24 21:57:14",
+  "updated": "2026-08-25 14:34:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,18 @@
     {
       "date": "2026-08-24",
       "open": 81.64,
-      "high": 86.255,
+      "high": 86.26,
       "low": 81.08,
       "close": 86.13,
-      "volume": 1366583
+      "volume": 1367700
+    },
+    {
+      "date": "2026-08-25",
+      "open": 85.8,
+      "high": 86.46,
+      "low": 85.1575,
+      "close": 85.43,
+      "volume": 180516
     }
   ]
 }
