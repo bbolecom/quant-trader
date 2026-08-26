@@ -1,18 +1,10 @@
 {
   "ticker": "ACHR",
-  "updated": "2026-08-26 18:36:10",
+  "updated": "2026-08-26 20:38:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-26",
-      "open": 7.1,
-      "high": 7.4,
-      "low": 6.96,
-      "close": 7.38,
-      "volume": 37141100
-    },
     {
       "date": "2026-02-27",
       "open": 7.16,
@@ -1003,15 +995,15 @@
       "high": 6.15,
       "low": 5.88,
       "close": 5.96,
-      "volume": 26714300
+      "volume": 26774700
     },
     {
       "date": "2026-08-26",
       "open": 5.905,
       "high": 6.14,
       "low": 5.86,
-      "close": 5.935,
-      "volume": 14459128
+      "close": 5.9,
+      "volume": 20472078
     }
   ]
 }

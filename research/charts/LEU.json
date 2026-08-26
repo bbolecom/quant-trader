@@ -1,18 +1,10 @@
 {
   "ticker": "LEU",
-  "updated": "2026-08-26 18:36:04",
+  "updated": "2026-08-26 20:38:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-26",
-      "open": 208.47,
-      "high": 216.9,
-      "low": 204.09,
-      "close": 210.96,
-      "volume": 670900
-    },
     {
       "date": "2026-02-27",
       "open": 203.7,
@@ -1010,8 +1002,8 @@
       "open": 193.12,
       "high": 208.57,
       "low": 185.27,
-      "close": 186.39,
-      "volume": 750528
+      "close": 187.63,
+      "volume": 956997
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "ANF",
-  "updated": "2026-08-26 18:36:16",
+  "updated": "2026-08-26 20:38:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-26",
-      "open": 96.99,
-      "high": 101.78,
-      "low": 96.66,
-      "close": 98.99,
-      "volume": 1502900
-    },
     {
       "date": "2026-02-27",
       "open": 97.45,
@@ -1010,8 +1002,8 @@
       "open": 131.37,
       "high": 154.58,
       "low": 130.235,
-      "close": 148.1173,
-      "volume": 13996592
+      "close": 147.75,
+      "volume": 17165535
     }
   ]
 }

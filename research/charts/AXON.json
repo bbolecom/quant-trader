@@ -1,18 +1,10 @@
 {
   "ticker": "AXON",
-  "updated": "2026-08-26 18:36:15",
+  "updated": "2026-08-26 20:38:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-26",
-      "open": 528.07,
-      "high": 555.36,
-      "low": 517.07,
-      "close": 550.19,
-      "volume": 2090200
-    },
     {
       "date": "2026-02-27",
       "open": 540.5,
@@ -1010,8 +1002,8 @@
       "open": 609.0,
       "high": 613.4603,
       "low": 597.0909,
-      "close": 608.59,
-      "volume": 208928
+      "close": 607.48,
+      "volume": 413385
     }
   ]
 }
