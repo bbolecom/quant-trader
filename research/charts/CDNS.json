@@ -1,6 +1,6 @@
 {
   "ticker": "CDNS",
-  "updated": "2026-08-25 21:58:19",
+  "updated": "2026-08-26 14:34:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1001,9 +1001,17 @@
       "date": "2026-08-25",
       "open": 318.43,
       "high": 333.34,
-      "low": 317.695,
+      "low": 317.18,
       "close": 331.9,
-      "volume": 2980731
+      "volume": 2984300
+    },
+    {
+      "date": "2026-08-26",
+      "open": 327.46,
+      "high": 340.31,
+      "low": 327.46,
+      "close": 333.12,
+      "volume": 291455
     }
   ]
 }

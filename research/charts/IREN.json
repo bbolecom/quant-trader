@@ -1,6 +1,6 @@
 {
   "ticker": "IREN",
-  "updated": "2026-08-25 21:58:18",
+  "updated": "2026-08-26 14:34:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 42.405,
       "low": 40.03,
       "close": 42.21,
-      "volume": 32015763
+      "volume": 32378000
+    },
+    {
+      "date": "2026-08-26",
+      "open": 41.235,
+      "high": 41.57,
+      "low": 40.1401,
+      "close": 40.4,
+      "volume": 8837714
     }
   ]
 }

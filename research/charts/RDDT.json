@@ -1,6 +1,6 @@
 {
   "ticker": "RDDT",
-  "updated": "2026-08-25 21:58:18",
+  "updated": "2026-08-26 14:34:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 162.625,
       "low": 152.77,
       "close": 162.45,
-      "volume": 4373935
+      "volume": 4378800
+    },
+    {
+      "date": "2026-08-26",
+      "open": 161.0,
+      "high": 165.91,
+      "low": 158.1107,
+      "close": 158.96,
+      "volume": 791237
     }
   ]
 }

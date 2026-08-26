@@ -1,6 +1,6 @@
 {
   "ticker": "RUM",
-  "updated": "2026-08-25 21:58:03",
+  "updated": "2026-08-26 14:34:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 10.595,
       "low": 9.23,
       "close": 10.23,
-      "volume": 8910731
+      "volume": 8939600
+    },
+    {
+      "date": "2026-08-26",
+      "open": 10.07,
+      "high": 10.07,
+      "low": 9.2812,
+      "close": 9.3835,
+      "volume": 1907753
     }
   ]
 }

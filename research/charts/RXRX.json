@@ -1,6 +1,6 @@
 {
   "ticker": "RXRX",
-  "updated": "2026-08-25 21:58:04",
+  "updated": "2026-08-26 14:34:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -999,11 +999,19 @@
     },
     {
       "date": "2026-08-25",
-      "open": 3.2725,
+      "open": 3.27,
       "high": 3.59,
       "low": 3.26,
       "close": 3.56,
-      "volume": 22412224
+      "volume": 22434900
+    },
+    {
+      "date": "2026-08-26",
+      "open": 3.5,
+      "high": 3.55,
+      "low": 3.43,
+      "close": 3.475,
+      "volume": 4072865
     }
   ]
 }
