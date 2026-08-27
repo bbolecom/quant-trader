@@ -1,18 +1,10 @@
 {
   "ticker": "BBWI",
-  "updated": "2026-08-27 00:52:25",
+  "updated": "2026-08-27 23:20:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-27",
-      "open": 22.75,
-      "high": 23.1,
-      "low": 22.36,
-      "close": 22.76,
-      "volume": 5314900
-    },
     {
       "date": "2026-03-02",
       "open": 22.06,
@@ -1003,7 +995,15 @@
       "high": 19.14,
       "low": 17.41,
       "close": 18.9,
-      "volume": 16367004
+      "volume": 16373000
+    },
+    {
+      "date": "2026-08-27",
+      "open": 18.685,
+      "high": 18.836,
+      "low": 17.835,
+      "close": 18.65,
+      "volume": 7682433
     }
   ]
 }

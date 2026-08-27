@@ -1,18 +1,10 @@
 {
   "ticker": "BTSG",
-  "updated": "2026-08-27 00:52:25",
+  "updated": "2026-08-27 23:20:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-02-27",
-      "open": 41.2,
-      "high": 44.87,
-      "low": 40.46,
-      "close": 41.43,
-      "volume": 6195400
-    },
     {
       "date": "2026-03-02",
       "open": 41.83,
@@ -1003,7 +995,15 @@
       "high": 61.37,
       "low": 56.75,
       "close": 61.35,
-      "volume": 2549823
+      "volume": 2551300
+    },
+    {
+      "date": "2026-08-27",
+      "open": 61.41,
+      "high": 63.14,
+      "low": 60.53,
+      "close": 60.9,
+      "volume": 3221500
     }
   ]
 }
