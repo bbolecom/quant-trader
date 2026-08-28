@@ -1,16 +1,16 @@
 {
-  "扫描时间": "2026-08-28 23:17:13",
+  "扫描时间": "2026-08-28 23:29:16",
   "扫描日期": "2026-08-28",
   "scan_mode": "fast_market",
   "budget_sec": 300.0,
-  "elapsed_sec": 5.41,
+  "elapsed_sec": 6.67,
   "within_budget": true,
   "scan_stats": {
     "universe": 762,
     "after_liquidity_filter": 624,
     "signals": 149,
-    "phase1_sec": 0.31,
-    "phase2_sec": 5.05,
+    "phase1_sec": 0.36,
+    "phase2_sec": 6.26,
     "presets": [
       "当日涨幅榜",
       "当日跌幅榜",
@@ -32,7 +32,7 @@
     "总信号": 149,
     "Gainer10+": 3,
     "极端波动": 2,
-    "说明": "全市场 762 只 · 5s 内完成"
+    "说明": "全市场 762 只 · 7s 内完成"
   },
   "signals": [
     {
