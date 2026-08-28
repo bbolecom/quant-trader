@@ -1,6 +1,6 @@
 {
   "ticker": "PURR",
-  "updated": "2026-08-28 05:28:53",
+  "updated": "2026-08-28 23:16:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,7 +1003,15 @@
       "high": 14.14,
       "low": 11.961,
       "close": 12.83,
-      "volume": 42574200
+      "volume": 42837000
+    },
+    {
+      "date": "2026-08-28",
+      "open": 12.665,
+      "high": 13.86,
+      "low": 11.57,
+      "close": 11.61,
+      "volume": 37743064
     }
   ]
 }

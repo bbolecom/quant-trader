@@ -1,6 +1,6 @@
 {
   "ticker": "XMTR",
-  "updated": "2026-08-28 05:28:53",
+  "updated": "2026-08-28 23:16:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 89.4,
       "close": 96.26,
       "volume": 642800
+    },
+    {
+      "date": "2026-08-28",
+      "open": 96.75,
+      "high": 97.25,
+      "low": 93.72,
+      "close": 94.11,
+      "volume": 516885
     }
   ]
 }

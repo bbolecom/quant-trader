@@ -1,6 +1,6 @@
 {
   "ticker": "VEEV",
-  "updated": "2026-08-28 05:25:50",
+  "updated": "2026-08-28 23:17:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 274.81,
       "close": 282.13,
       "volume": 6408800
+    },
+    {
+      "date": "2026-08-28",
+      "open": 280.0,
+      "high": 284.61,
+      "low": 276.48,
+      "close": 276.69,
+      "volume": 3638382
     }
   ]
 }
