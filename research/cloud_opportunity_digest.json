@@ -1,21 +1,21 @@
 {
-  "date": "2026-08-27",
-  "updated": "2026-08-27 00:52:36",
-  "title": "📊 量化机会 56条 · 2026-08-27",
-  "total_actionable": 56,
+  "date": "2026-08-28",
+  "updated": "2026-08-28 05:28:58",
+  "title": "📊 量化机会 48条 · 2026-08-28",
+  "total_actionable": 48,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 7,
+      "actionable": 2,
       "symbols": [
         "—",
-        "SMTC",
-        "SEDG"
+        "SRPT",
+        "PURR"
       ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "fleet_csp",
@@ -30,14 +30,14 @@
       "id": "sndk_iron",
       "name": "SNDK铁鹰收租",
       "path": "research/sndk_iron_today.json",
-      "actionable": 5,
+      "actionable": 0,
       "symbols": [
         "SNDK",
         "SOFI",
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "vrp",
@@ -45,12 +45,12 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "MSFT",
+        "AMD",
         "AMZN",
         "INTC"
       ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "SEDG",
+        "TYL",
         "HPQ",
-        "AEO"
+        "AFRM"
       ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "flow_strategy",
@@ -78,10 +78,13 @@
       "id": "gainer10",
       "name": "涨幅榜多空",
       "path": "research/gainer10_today.json",
-      "actionable": 0,
-      "symbols": [],
+      "actionable": 2,
+      "symbols": [
+        "RBRK",
+        "PURR"
+      ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "extreme20",
@@ -90,7 +93,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "meme_long",
@@ -103,18 +106,16 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "whipsaw_short",
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [
-        "ANF"
-      ],
+      "symbols": [],
       "has_data": true,
-      "data_date": "2026-08-27"
+      "data_date": "2026-08-28"
     },
     {
       "id": "short_squeeze",
@@ -131,7 +132,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 56条 · 2026-08-27",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、SMTC、SEDG\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · MSFT、AMZN、INTC\n• 资金流向操盘痕迹: 3 · SEDG、HPQ、AEO\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 48条 · 2026-08-28",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、SRPT、PURR\n• VRP波动率溢价: 5 · AMD、AMZN、INTC\n• 资金流向操盘痕迹: 3 · TYL、HPQ、AFRM\n• 涨幅榜多空: 2 · RBRK、PURR\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "SMTC",
-  "updated": "2026-08-27 23:20:41",
+  "updated": "2026-08-28 05:25:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1000,10 +1000,10 @@
     {
       "date": "2026-08-27",
       "open": 149.4,
-      "high": 150.3712,
-      "low": 139.435,
+      "high": 150.37,
+      "low": 139.44,
       "close": 142.43,
-      "volume": 3632169
+      "volume": 3645600
     }
   ]
 }
