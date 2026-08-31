@@ -1,6 +1,6 @@
 {
   "ticker": "NWL",
-  "updated": "2026-08-31 19:44:37",
+  "updated": "2026-08-31 23:24:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1006,12 +1006,20 @@
       "volume": 6031300
     },
     {
+      "date": "2026-08-28",
+      "open": 5.98,
+      "high": 6.25,
+      "low": 5.93,
+      "close": 6.17,
+      "volume": 5832000
+    },
+    {
       "date": "2026-08-31",
       "open": 6.07,
-      "high": 6.25,
+      "high": 6.305,
       "low": 5.96,
-      "close": 6.245,
-      "volume": 5326531
+      "close": 6.25,
+      "volume": 11852658
     }
   ]
 }

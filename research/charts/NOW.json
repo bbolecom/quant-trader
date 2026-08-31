@@ -1,6 +1,6 @@
 {
   "ticker": "NOW",
-  "updated": "2026-08-31 19:44:37",
+  "updated": "2026-08-31 23:24:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1006,12 +1006,20 @@
       "volume": 27815500
     },
     {
+      "date": "2026-08-28",
+      "open": 138.48,
+      "high": 145.72,
+      "low": 137.8,
+      "close": 144.71,
+      "volume": 28982600
+    },
+    {
       "date": "2026-08-31",
       "open": 142.08,
       "high": 149.6,
       "low": 141.69,
-      "close": 148.95,
-      "volume": 18738891
+      "close": 147.99,
+      "volume": 25851359
     }
   ]
 }

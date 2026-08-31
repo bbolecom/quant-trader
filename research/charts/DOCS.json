@@ -1,6 +1,6 @@
 {
   "ticker": "DOCS",
-  "updated": "2026-08-31 19:44:37",
+  "updated": "2026-08-31 23:24:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1006,12 +1006,20 @@
       "volume": 2466500
     },
     {
+      "date": "2026-08-28",
+      "open": 25.61,
+      "high": 26.868,
+      "low": 25.33,
+      "close": 26.73,
+      "volume": 3288600
+    },
+    {
       "date": "2026-08-31",
       "open": 25.84,
-      "high": 26.8,
+      "high": 26.846,
       "low": 25.84,
-      "close": 26.69,
-      "volume": 1154321
+      "close": 26.71,
+      "volume": 2194184
     }
   ]
 }

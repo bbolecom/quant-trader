@@ -1,6 +1,6 @@
 {
   "ticker": "JBLU",
-  "updated": "2026-08-31 19:44:43",
+  "updated": "2026-08-31 23:25:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1006,12 +1006,20 @@
       "volume": 21451500
     },
     {
+      "date": "2026-08-28",
+      "open": 4.87,
+      "high": 4.95,
+      "low": 4.8,
+      "close": 4.8,
+      "volume": 14371800
+    },
+    {
       "date": "2026-08-31",
       "open": 4.702,
       "high": 4.71,
       "low": 4.57,
-      "close": 4.62,
-      "volume": 19214750
+      "close": 4.6,
+      "volume": 23430965
     }
   ]
 }
