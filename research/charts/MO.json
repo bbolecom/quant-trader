@@ -1,6 +1,6 @@
 {
   "ticker": "MO",
-  "updated": "2026-09-01 22:32:56",
+  "updated": "2026-09-01 23:20:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 67.41,
       "close": 67.67,
       "volume": 5854300
+    },
+    {
+      "date": "2026-08-28",
+      "open": 68.08,
+      "high": 68.75,
+      "low": 67.7,
+      "close": 68.65,
+      "volume": 5863500
     },
     {
       "date": "2026-08-31",

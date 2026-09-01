@@ -1,6 +1,6 @@
 {
   "ticker": "T",
-  "updated": "2026-09-01 22:32:57",
+  "updated": "2026-09-01 23:20:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 25.28,
       "close": 25.43,
       "volume": 26110900
+    },
+    {
+      "date": "2026-08-28",
+      "open": 25.56,
+      "high": 26.03,
+      "low": 25.51,
+      "close": 26.01,
+      "volume": 22677400
     },
     {
       "date": "2026-08-31",

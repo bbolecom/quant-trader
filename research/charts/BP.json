@@ -1,6 +1,6 @@
 {
   "ticker": "BP",
-  "updated": "2026-09-01 22:32:54",
+  "updated": "2026-09-01 23:20:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 41.87,
       "close": 42.34,
       "volume": 11738500
+    },
+    {
+      "date": "2026-08-28",
+      "open": 42.01,
+      "high": 42.16,
+      "low": 41.72,
+      "close": 42.15,
+      "volume": 12326100
     },
     {
       "date": "2026-08-31",

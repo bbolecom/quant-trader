@@ -1,6 +1,6 @@
 {
   "ticker": "EIX",
-  "updated": "2026-09-01 22:32:53",
+  "updated": "2026-09-01 23:23:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 72.66,
       "close": 73.68,
       "volume": 3375700
+    },
+    {
+      "date": "2026-08-28",
+      "open": 74.64,
+      "high": 75.3,
+      "low": 68.94,
+      "close": 70.17,
+      "volume": 7395200
     },
     {
       "date": "2026-08-31",

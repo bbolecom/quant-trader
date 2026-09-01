@@ -1,6 +1,6 @@
 {
   "ticker": "NVS",
-  "updated": "2026-09-01 22:32:54",
+  "updated": "2026-09-01 23:20:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1004,6 +1004,14 @@
       "low": 154.43,
       "close": 154.65,
       "volume": 1220600
+    },
+    {
+      "date": "2026-08-28",
+      "open": 154.51,
+      "high": 154.57,
+      "low": 152.77,
+      "close": 153.81,
+      "volume": 1165900
     },
     {
       "date": "2026-08-31",

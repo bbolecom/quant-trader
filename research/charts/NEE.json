@@ -1,6 +1,6 @@
 {
   "ticker": "NEE",
-  "updated": "2026-09-01 22:32:57",
+  "updated": "2026-09-01 23:20:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1007,11 +1007,11 @@
     },
     {
       "date": "2026-08-28",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
+      "open": 82.92,
+      "high": 82.98,
+      "low": 81.33,
+      "close": 81.84,
+      "volume": 13950900
     },
     {
       "date": "2026-08-31",

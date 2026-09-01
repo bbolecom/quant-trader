@@ -1,18 +1,18 @@
 {
   "date": "2026-09-01",
-  "updated": "2026-09-01 00:40:53",
-  "title": "📊 量化机会 56条 · 2026-09-01",
-  "total_actionable": 56,
+  "updated": "2026-09-01 23:23:06",
+  "title": "📊 量化机会 25条 · 2026-09-01",
+  "total_actionable": 25,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 7,
+      "actionable": 8,
       "symbols": [
         "—",
-        "AMPX",
-        "KEEL"
+        "MMED",
+        "MRNA"
       ],
       "has_data": true,
       "data_date": "2026-09-01"
@@ -45,9 +45,9 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "MU",
         "AMD",
-        "INTC"
+        "MU",
+        "NVDA"
       ],
       "has_data": true,
       "data_date": "2026-09-01"
@@ -58,9 +58,9 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "FFIV",
-        "DAR",
-        "PANW"
+        "DG",
+        "CF",
+        "CLMT"
       ],
       "has_data": true,
       "data_date": "2026-09-01"
@@ -87,8 +87,10 @@
       "id": "extreme20",
       "name": "暴涨暴跌20%事件",
       "path": "research/extreme20_today.json",
-      "actionable": 0,
-      "symbols": [],
+      "actionable": 1,
+      "symbols": [
+        "FRVO"
+      ],
       "has_data": true,
       "data_date": "2026-09-01"
     },
@@ -96,7 +98,7 @@
       "id": "meme_long",
       "name": "Meme规律 · Ultra80",
       "path": "research/ticker_pattern_today.json",
-      "actionable": 35,
+      "actionable": 2,
       "symbols": [
         "PLTR",
         "SMCI",
@@ -110,7 +112,9 @@
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [],
+      "symbols": [
+        "GPRO"
+      ],
       "has_data": true,
       "data_date": "2026-09-01"
     },
@@ -129,7 +133,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 56条 · 2026-09-01",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、AMPX、KEEL\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · MU、AMD、INTC\n• 资金流向操盘痕迹: 3 · FFIV、DAR、PANW\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 25条 · 2026-09-01",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 8\n• 每日选股 · 统一入口: 8 · —、MMED、MRNA\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AMD、MU、NVDA\n• 资金流向操盘痕迹: 3 · DG、CF、CLMT\n• 暴涨暴跌20%事件: 1 · FRVO\n• Meme规律 · Ultra80: 2 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
