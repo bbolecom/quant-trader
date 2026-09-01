@@ -1,6 +1,6 @@
 {
   "ticker": "WFC",
-  "updated": "2026-08-31 19:44:49",
+  "updated": "2026-09-01 20:04:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,16 @@
       "open": 86.29,
       "high": 87.09,
       "low": 85.88,
-      "close": 86.805,
-      "volume": 10549345
+      "close": 86.39,
+      "volume": 19125600
+    },
+    {
+      "date": "2026-09-01",
+      "open": 86.44,
+      "high": 87.94,
+      "low": 86.01,
+      "close": 87.05,
+      "volume": 13638133
     }
   ]
 }
