@@ -1,6 +1,6 @@
 {
   "ticker": "INTC",
-  "updated": "2026-09-01 00:40:46",
+  "updated": "2026-09-01 17:30:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,15 +1011,23 @@
       "high": 93.7,
       "low": 89.05,
       "close": 89.47,
-      "volume": 86001600
+      "volume": 86172600
     },
     {
       "date": "2026-08-31",
       "open": 90.0,
-      "high": 91.8431,
+      "high": 91.85,
       "low": 88.97,
       "close": 89.51,
-      "volume": 64515383
+      "volume": 65015500
+    },
+    {
+      "date": "2026-09-01",
+      "open": 86.8975,
+      "high": 89.41,
+      "low": 85.72,
+      "close": 88.72,
+      "volume": 47341541
     }
   ]
 }

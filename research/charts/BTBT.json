@@ -1,6 +1,6 @@
 {
   "ticker": "BTBT",
-  "updated": "2026-09-01 00:40:48",
+  "updated": "2026-09-01 17:30:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,7 +1011,7 @@
       "high": 1.58,
       "low": 1.42,
       "close": 1.43,
-      "volume": 23024500
+      "volume": 23153600
     },
     {
       "date": "2026-08-31",
@@ -1019,7 +1019,15 @@
       "high": 1.45,
       "low": 1.38,
       "close": 1.43,
-      "volume": 14955243
+      "volume": 14990800
+    },
+    {
+      "date": "2026-09-01",
+      "open": 1.38,
+      "high": 1.39,
+      "low": 1.35,
+      "close": 1.351,
+      "volume": 8686034
     }
   ]
 }
