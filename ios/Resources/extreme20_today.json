@@ -1,12 +1,12 @@
 {
-  "date": "2026-08-29",
+  "date": "2026-09-01",
   "title": "暴涨暴跌20%事件策略",
   "market": {
-    "SPY": 769.35,
-    "MA20": 769.22,
-    "spy_bull": true,
-    "站上MA20": true,
-    "regime": "顺风(MA20上)"
+    "SPY": 767.05,
+    "MA20": 769.68,
+    "spy_bull": false,
+    "站上MA20": false,
+    "regime": "逆风(MA20下)"
   },
   "config": {
     "threshold_pct": 20.0,
