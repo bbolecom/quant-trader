@@ -1,6 +1,6 @@
 {
   "ticker": "QURE",
-  "updated": "2026-09-01 23:23:04",
+  "updated": "2026-09-02 17:30:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-09-01",
       "open": 48.63,
-      "high": 48.8475,
-      "low": 47.3088,
+      "high": 48.848,
+      "low": 47.29,
       "close": 47.86,
-      "volume": 748790
+      "volume": 748800
+    },
+    {
+      "date": "2026-09-02",
+      "open": 50.72,
+      "high": 50.97,
+      "low": 45.28,
+      "close": 45.415,
+      "volume": 1445906
     }
   ]
 }

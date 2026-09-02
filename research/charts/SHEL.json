@@ -1,6 +1,6 @@
 {
   "ticker": "SHEL",
-  "updated": "2026-09-01 23:20:09",
+  "updated": "2026-09-02 17:30:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,15 +1019,23 @@
       "high": 92.55,
       "low": 91.02,
       "close": 91.45,
-      "volume": 6127835
+      "volume": 6148075
     },
     {
       "date": "2026-09-01",
       "open": 92.72,
       "high": 93.86,
-      "low": 92.48,
+      "low": 92.47,
       "close": 93.51,
-      "volume": 11083582
+      "volume": 11050227
+    },
+    {
+      "date": "2026-09-02",
+      "open": 92.98,
+      "high": 93.47,
+      "low": 92.76,
+      "close": 93.415,
+      "volume": 4630298
     }
   ]
 }
