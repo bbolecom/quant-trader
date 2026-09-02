@@ -1,18 +1,10 @@
 {
   "ticker": "SPCE",
-  "updated": "2026-09-02 17:30:01",
+  "updated": "2026-09-02 20:00:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-02",
-      "open": 2.49,
-      "high": 2.64,
-      "low": 2.45,
-      "close": 2.6,
-      "volume": 2653700
-    },
     {
       "date": "2026-03-03",
       "open": 2.52,
@@ -1032,10 +1024,10 @@
     {
       "date": "2026-09-02",
       "open": 2.9,
-      "high": 2.99,
+      "high": 3.025,
       "low": 2.9,
-      "close": 2.985,
-      "volume": 2957393
+      "close": 2.955,
+      "volume": 5029415
     }
   ]
 }
