@@ -1,6 +1,6 @@
 {
   "ticker": "AUR",
-  "updated": "2026-09-02 23:22:58",
+  "updated": "2026-09-03 17:22:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 5.86,
       "low": 5.4,
       "close": 5.85,
-      "volume": 27908124
+      "volume": 27921400
+    },
+    {
+      "date": "2026-09-03",
+      "open": 5.92,
+      "high": 6.26,
+      "low": 5.91,
+      "close": 6.2551,
+      "volume": 27016091
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "BBY",
-  "updated": "2026-09-02 22:27:32",
+  "updated": "2026-09-03 17:23:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-09-02",
       "open": 82.86,
       "high": 88.44,
-      "low": 82.88,
+      "low": 82.85,
       "close": 87.0,
-      "volume": 7390163
+      "volume": 7453200
+    },
+    {
+      "date": "2026-09-03",
+      "open": 87.56,
+      "high": 88.215,
+      "low": 87.02,
+      "close": 87.515,
+      "volume": 1476233
     }
   ]
 }

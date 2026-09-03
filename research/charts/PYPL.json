@@ -1,6 +1,6 @@
 {
   "ticker": "PYPL",
-  "updated": "2026-09-02 22:27:32",
+  "updated": "2026-09-03 17:23:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1027,7 +1027,15 @@
       "high": 55.19,
       "low": 52.35,
       "close": 54.67,
-      "volume": 15016378
+      "volume": 15045300
+    },
+    {
+      "date": "2026-09-03",
+      "open": 54.82,
+      "high": 55.815,
+      "low": 54.01,
+      "close": 55.7672,
+      "volume": 7414617
     }
   ]
 }

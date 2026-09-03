@@ -1,6 +1,6 @@
 {
   "ticker": "EXK",
-  "updated": "2026-09-02 23:22:57",
+  "updated": "2026-09-03 17:22:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-02",
       "open": 10.68,
-      "high": 11.195,
+      "high": 11.2,
       "low": 10.43,
       "close": 11.13,
-      "volume": 10597326
+      "volume": 10630800
+    },
+    {
+      "date": "2026-09-03",
+      "open": 11.6,
+      "high": 11.649,
+      "low": 11.12,
+      "close": 11.4001,
+      "volume": 6718185
     }
   ]
 }

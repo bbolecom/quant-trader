@@ -1,6 +1,6 @@
 {
   "ticker": "ALNY",
-  "updated": "2026-09-02 23:20:26",
+  "updated": "2026-09-03 17:23:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 269.94,
       "low": 246.48,
       "close": 267.4,
-      "volume": 3286090
+      "volume": 3286200
+    },
+    {
+      "date": "2026-09-03",
+      "open": 267.4,
+      "high": 271.12,
+      "low": 261.54,
+      "close": 265.81,
+      "volume": 604682
     }
   ]
 }
