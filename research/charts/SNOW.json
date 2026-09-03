@@ -1,18 +1,10 @@
 {
   "ticker": "SNOW",
-  "updated": "2026-09-03 19:57:41",
+  "updated": "2026-09-03 22:11:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-03",
-      "open": 164.95,
-      "high": 169.7,
-      "low": 156.87,
-      "close": 165.79,
-      "volume": 7890300
-    },
     {
       "date": "2026-03-04",
       "open": 165.66,
@@ -1034,8 +1026,8 @@
       "open": 377.245,
       "high": 384.55,
       "low": 355.5,
-      "close": 356.14,
-      "volume": 20280320
+      "close": 356.47,
+      "volume": 21794631
     }
   ]
 }

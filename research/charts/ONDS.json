@@ -1,18 +1,10 @@
 {
   "ticker": "ONDS",
-  "updated": "2026-09-03 19:57:31",
+  "updated": "2026-09-03 22:11:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-03",
-      "open": 10.69,
-      "high": 11.0,
-      "low": 9.76,
-      "close": 10.02,
-      "volume": 100359300
-    },
     {
       "date": "2026-03-04",
       "open": 10.36,
@@ -1034,8 +1026,8 @@
       "open": 7.685,
       "high": 7.9495,
       "low": 7.53,
-      "close": 7.635,
-      "volume": 69819559
+      "close": 7.63,
+      "volume": 72988431
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "GTLB",
-  "updated": "2026-09-03 19:57:30",
+  "updated": "2026-09-03 22:11:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-03",
-      "open": 25.55,
-      "high": 27.28,
-      "low": 24.77,
-      "close": 26.7,
-      "volume": 13243000
-    },
     {
       "date": "2026-03-04",
       "open": 23.6,
@@ -1034,8 +1026,8 @@
       "open": 49.98,
       "high": 50.7434,
       "low": 48.89,
-      "close": 49.285,
-      "volume": 6417213
+      "close": 49.31,
+      "volume": 7904800
     }
   ]
 }
