@@ -1,18 +1,10 @@
 {
   "ticker": "BULL",
-  "updated": "2026-09-04 19:37:14",
+  "updated": "2026-09-04 21:46:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-04",
-      "open": 6.22,
-      "high": 6.46,
-      "low": 5.99,
-      "close": 6.07,
-      "volume": 30022100
-    },
     {
       "date": "2026-03-05",
       "open": 5.82,
@@ -1034,8 +1026,8 @@
       "open": 9.75,
       "high": 9.92,
       "low": 9.56,
-      "close": 9.7699,
-      "volume": 10204636
+      "close": 9.74,
+      "volume": 13037563
     }
   ]
 }

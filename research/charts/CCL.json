@@ -1,18 +1,10 @@
 {
   "ticker": "CCL",
-  "updated": "2026-09-04 19:37:24",
+  "updated": "2026-09-04 21:46:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-04",
-      "open": 28.6,
-      "high": 28.95,
-      "low": 27.88,
-      "close": 28.01,
-      "volume": 21974000
-    },
     {
       "date": "2026-03-05",
       "open": 27.71,
@@ -1034,8 +1026,8 @@
       "open": 23.45,
       "high": 23.64,
       "low": 23.29,
-      "close": 23.515,
-      "volume": 11853749
+      "close": 23.51,
+      "volume": 16174235
     }
   ]
 }

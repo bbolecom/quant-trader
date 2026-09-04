@@ -1,18 +1,10 @@
 {
   "ticker": "COHR",
-  "updated": "2026-09-04 19:37:26",
+  "updated": "2026-09-04 21:46:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-04",
-      "open": 295.79,
-      "high": 300.2,
-      "low": 260.65,
-      "close": 274.86,
-      "volume": 10520100
-    },
     {
       "date": "2026-03-05",
       "open": 262.71,
@@ -1034,8 +1026,8 @@
       "open": 269.69,
       "high": 283.8525,
       "low": 264.1,
-      "close": 281.04,
-      "volume": 4150779
+      "close": 281.86,
+      "volume": 4999192
     }
   ]
 }

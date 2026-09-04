@@ -1,18 +1,10 @@
 {
   "ticker": "HSAI",
-  "updated": "2026-09-04 19:37:15",
+  "updated": "2026-09-04 21:46:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-04",
-      "open": 25.44,
-      "high": 25.46,
-      "low": 24.5,
-      "close": 25.36,
-      "volume": 1594800
-    },
     {
       "date": "2026-03-05",
       "open": 24.62,
@@ -1032,10 +1024,10 @@
     {
       "date": "2026-09-04",
       "open": 18.45,
-      "high": 18.87,
+      "high": 18.905,
       "low": 18.32,
-      "close": 18.835,
-      "volume": 1195258
+      "close": 18.89,
+      "volume": 1528076
     }
   ]
 }
