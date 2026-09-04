@@ -1,6 +1,6 @@
 {
   "ticker": "ASST",
-  "updated": "2026-09-03 23:20:39",
+  "updated": "2026-09-04 17:15:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,19 @@
     },
     {
       "date": "2026-09-03",
-      "open": 25.63,
+      "open": 25.625,
       "high": 27.23,
       "low": 25.145,
       "close": 26.82,
-      "volume": 17095771
+      "volume": 17104500
+    },
+    {
+      "date": "2026-09-04",
+      "open": 25.18,
+      "high": 27.35,
+      "low": 25.18,
+      "close": 26.895,
+      "volume": 6235911
     }
   ]
 }
