@@ -1,8 +1,8 @@
 {
-  "date": "2026-09-03",
-  "updated": "2026-09-03 23:20:43",
-  "title": "📊 量化机会 56条 · 2026-09-03",
-  "total_actionable": 56,
+  "date": "2026-09-07",
+  "updated": "2026-09-07 23:34:04",
+  "title": "📊 量化机会 55条 · 2026-09-07",
+  "total_actionable": 55,
   "strategies": [
     {
       "id": "daily_pick",
@@ -11,11 +11,11 @@
       "actionable": 2,
       "symbols": [
         "—",
-        "CLS",
-        "ALMS"
+        "CBRS",
+        "SNDK"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "fleet_csp",
@@ -37,7 +37,7 @@
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "vrp",
@@ -45,12 +45,12 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "MU",
         "INTC",
-        "NVDA"
+        "MU",
+        "AMD"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "C",
-        "TDS",
-        "SMFG"
+        "DHT",
+        "FIVE",
+        "CCC"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "flow_strategy",
@@ -78,14 +78,14 @@
       "id": "gainer10",
       "name": "涨幅榜多空",
       "path": "research/gainer10_today.json",
-      "actionable": 5,
+      "actionable": 3,
       "symbols": [
-        "CHPT",
-        "ASST",
-        "CIFR"
+        "GPRO",
+        "TYRA",
+        "GOLD"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "extreme20",
@@ -94,7 +94,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "meme_long",
@@ -107,16 +107,18 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "whipsaw_short",
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
-      "actionable": 0,
-      "symbols": [],
+      "actionable": 1,
+      "symbols": [
+        "GPRO"
+      ],
       "has_data": true,
-      "data_date": "2026-09-03"
+      "data_date": "2026-09-07"
     },
     {
       "id": "short_squeeze",
@@ -133,7 +135,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 56条 · 2026-09-03",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、CLS、ALMS\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · MU、INTC、NVDA\n• 资金流向操盘痕迹: 3 · C、TDS、SMFG\n• 涨幅榜多空: 5 · CHPT、ASST、CIFR\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 55条 · 2026-09-07",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、CBRS、SNDK\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · INTC、MU、AMD\n• 资金流向操盘痕迹: 3 · DHT、FIVE、CCC\n• 涨幅榜多空: 3 · GPRO、TYRA、GOLD\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 做空涨幅榜·卖Call价差: 1 · GPRO\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
