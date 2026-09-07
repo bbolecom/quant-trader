@@ -1,6 +1,6 @@
 {
   "ticker": "SKHY",
-  "updated": "2026-09-04 23:22:27",
+  "updated": "2026-09-07 18:28:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -327,11 +327,11 @@
     },
     {
       "date": "2026-09-04",
-      "open": 164.795,
-      "high": 177.6999,
-      "low": 164.795,
+      "open": 164.61,
+      "high": 177.7,
+      "low": 164.61,
       "close": 177.0,
-      "volume": 20570076
+      "volume": 20657300
     }
   ]
 }
