@@ -1,6 +1,6 @@
 {
   "ticker": "ALAB",
-  "updated": "2026-09-08 23:24:54",
+  "updated": "2026-09-09 17:25:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,15 +1011,23 @@
       "high": 321.65,
       "low": 285.84,
       "close": 310.4,
-      "volume": 6503400
+      "volume": 6536300
     },
     {
       "date": "2026-09-08",
-      "open": 303.94,
+      "open": 303.99,
       "high": 312.24,
-      "low": 287.0,
+      "low": 286.97,
       "close": 288.85,
-      "volume": 5700460
+      "volume": 5705900
+    },
+    {
+      "date": "2026-09-09",
+      "open": 286.12,
+      "high": 309.5,
+      "low": 286.11,
+      "close": 302.03,
+      "volume": 1896178
     }
   ]
 }

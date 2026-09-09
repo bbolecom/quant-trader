@@ -1,6 +1,6 @@
 {
   "ticker": "SEI",
-  "updated": "2026-09-08 23:25:11",
+  "updated": "2026-09-09 17:25:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-09-08",
       "open": 61.85,
       "high": 65.26,
-      "low": 60.45,
+      "low": 60.3,
       "close": 63.96,
-      "volume": 4992002
+      "volume": 4993200
+    },
+    {
+      "date": "2026-09-09",
+      "open": 66.88,
+      "high": 67.52,
+      "low": 65.22,
+      "close": 67.42,
+      "volume": 2863154
     }
   ]
 }

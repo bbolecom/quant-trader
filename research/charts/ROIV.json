@@ -1,6 +1,6 @@
 {
   "ticker": "ROIV",
-  "updated": "2026-09-08 23:25:11",
+  "updated": "2026-09-09 17:25:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-08",
-      "open": 39.995,
+      "open": 39.98,
       "high": 42.5,
       "low": 38.41,
       "close": 41.48,
-      "volume": 24595112
+      "volume": 24662900
+    },
+    {
+      "date": "2026-09-09",
+      "open": 41.39,
+      "high": 42.135,
+      "low": 41.0808,
+      "close": 42.105,
+      "volume": 4230664
     }
   ]
 }

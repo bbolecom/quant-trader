@@ -1,6 +1,6 @@
 {
   "ticker": "HUT",
-  "updated": "2026-09-08 17:39:48",
+  "updated": "2026-09-09 17:25:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-08",
       "open": 95.85,
-      "high": 100.25,
+      "high": 100.45,
       "low": 92.67,
-      "close": 100.02,
-      "volume": 3325563
+      "close": 99.49,
+      "volume": 5635500
+    },
+    {
+      "date": "2026-09-09",
+      "open": 99.49,
+      "high": 101.83,
+      "low": 94.15,
+      "close": 94.8401,
+      "volume": 1534108
     }
   ]
 }

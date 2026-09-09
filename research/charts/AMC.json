@@ -1,6 +1,6 @@
 {
   "ticker": "AMC",
-  "updated": "2026-09-08 23:29:11",
+  "updated": "2026-09-09 17:24:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,7 +1011,7 @@
       "high": 2.8,
       "low": 2.59,
       "close": 2.65,
-      "volume": 57065800
+      "volume": 57213400
     },
     {
       "date": "2026-09-08",
@@ -1019,7 +1019,15 @@
       "high": 2.63,
       "low": 2.48,
       "close": 2.56,
-      "volume": 27901636
+      "volume": 27960500
+    },
+    {
+      "date": "2026-09-09",
+      "open": 2.55,
+      "high": 2.625,
+      "low": 2.53,
+      "close": 2.565,
+      "volume": 12247155
     }
   ]
 }
