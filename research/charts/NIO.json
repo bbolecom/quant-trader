@@ -1,18 +1,10 @@
 {
   "ticker": "NIO",
-  "updated": "2026-09-09 19:54:03",
+  "updated": "2026-09-09 22:01:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-09",
-      "open": 4.79,
-      "high": 4.98,
-      "low": 4.74,
-      "close": 4.94,
-      "volume": 44238200
-    },
     {
       "date": "2026-03-10",
       "open": 5.26,
@@ -1019,15 +1011,15 @@
       "high": 3.85,
       "low": 3.72,
       "close": 3.79,
-      "volume": 37169700
+      "volume": 37249400
     },
     {
       "date": "2026-09-09",
       "open": 3.78,
       "high": 3.7798,
       "low": 3.68,
-      "close": 3.695,
-      "volume": 44040462
+      "close": 3.7,
+      "volume": 50108128
     }
   ]
 }

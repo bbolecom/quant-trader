@@ -1,18 +1,10 @@
 {
   "ticker": "XOM",
-  "updated": "2026-09-09 19:54:05",
+  "updated": "2026-09-09 22:01:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-09",
-      "open": 152.02,
-      "high": 153.89,
-      "low": 149.47,
-      "close": 150.44,
-      "volume": 25532700
-    },
     {
       "date": "2026-03-10",
       "open": 149.25,
@@ -1026,8 +1018,8 @@
       "open": 162.875,
       "high": 165.18,
       "low": 162.55,
-      "close": 164.34,
-      "volume": 9666520
+      "close": 164.23,
+      "volume": 12905422
     }
   ]
 }
