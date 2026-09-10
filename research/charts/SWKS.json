@@ -1,18 +1,10 @@
 {
   "ticker": "SWKS",
-  "updated": "2026-09-10 19:51:51",
+  "updated": "2026-09-10 21:58:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-10",
-      "open": 55.15,
-      "high": 55.91,
-      "low": 53.41,
-      "close": 54.93,
-      "volume": 3209400
-    },
     {
       "date": "2026-03-11",
       "open": 55.64,
@@ -1026,8 +1018,8 @@
       "open": 76.11,
       "high": 85.89,
       "low": 74.79,
-      "close": 84.665,
-      "volume": 9006140
+      "close": 84.03,
+      "volume": 11321612
     }
   ]
 }

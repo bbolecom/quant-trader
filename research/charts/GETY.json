@@ -1,18 +1,10 @@
 {
   "ticker": "GETY",
-  "updated": "2026-09-10 19:51:49",
+  "updated": "2026-09-10 21:58:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-10",
-      "open": 0.789,
-      "high": 0.827,
-      "low": 0.741,
-      "close": 0.746,
-      "volume": 3602700
-    },
     {
       "date": "2026-03-11",
       "open": 0.76,
@@ -1026,8 +1018,8 @@
       "open": 0.2401,
       "high": 0.2726,
       "low": 0.2457,
-      "close": 0.27,
-      "volume": 2420105
+      "close": 0.2701,
+      "volume": 2555875
     }
   ]
 }

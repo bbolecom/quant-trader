@@ -1,18 +1,10 @@
 {
   "ticker": "INSP",
-  "updated": "2026-09-10 19:51:41",
+  "updated": "2026-09-10 21:58:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-10",
-      "open": 61.97,
-      "high": 62.265,
-      "low": 58.86,
-      "close": 59.44,
-      "volume": 893400
-    },
     {
       "date": "2026-03-11",
       "open": 60.29,
@@ -1024,10 +1016,10 @@
     {
       "date": "2026-09-10",
       "open": 64.35,
-      "high": 68.41,
+      "high": 68.5,
       "low": 64.08,
-      "close": 67.805,
-      "volume": 747617
+      "close": 68.12,
+      "volume": 1136349
     }
   ]
 }
