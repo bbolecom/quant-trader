@@ -1,6 +1,6 @@
 {
   "ticker": "JMKE",
-  "updated": "2026-09-09 23:19:21",
+  "updated": "2026-09-10 17:23:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -233,9 +233,17 @@
       "date": "2026-09-09",
       "open": 22.06,
       "high": 23.79,
-      "low": 21.52,
+      "low": 21.51,
       "close": 22.37,
-      "volume": 7985047
+      "volume": 8012600
+    },
+    {
+      "date": "2026-09-10",
+      "open": 22.39,
+      "high": 22.6061,
+      "low": 21.65,
+      "close": 22.19,
+      "volume": 1759020
     }
   ]
 }

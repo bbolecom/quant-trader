@@ -1,6 +1,6 @@
 {
   "ticker": "SUNB",
-  "updated": "2026-09-09 23:17:23",
+  "updated": "2026-09-10 17:23:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-09",
       "open": 71.04,
-      "high": 77.56,
+      "high": 77.57,
       "low": 70.6,
       "close": 73.42,
-      "volume": 15479463
+      "volume": 15682500
+    },
+    {
+      "date": "2026-09-10",
+      "open": 72.14,
+      "high": 74.14,
+      "low": 71.61,
+      "close": 72.21,
+      "volume": 2482899
     }
   ]
 }

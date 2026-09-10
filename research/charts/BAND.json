@@ -1,6 +1,6 @@
 {
   "ticker": "BAND",
-  "updated": "2026-09-09 23:19:21",
+  "updated": "2026-09-10 17:23:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-09",
       "open": 43.6,
-      "high": 49.52,
+      "high": 49.59,
       "low": 43.5,
       "close": 48.83,
-      "volume": 1197528
+      "volume": 1197600
+    },
+    {
+      "date": "2026-09-10",
+      "open": 48.1,
+      "high": 50.2,
+      "low": 47.05,
+      "close": 50.115,
+      "volume": 416575
     }
   ]
 }

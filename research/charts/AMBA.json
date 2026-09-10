@@ -1,6 +1,6 @@
 {
   "ticker": "AMBA",
-  "updated": "2026-09-09 23:19:21",
+  "updated": "2026-09-10 17:23:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-09-09",
       "open": 63.07,
       "high": 71.24,
-      "low": 63.0101,
+      "low": 63.01,
       "close": 68.8,
-      "volume": 5064246
+      "volume": 5084800
+    },
+    {
+      "date": "2026-09-10",
+      "open": 67.439,
+      "high": 68.8,
+      "low": 64.71,
+      "close": 68.055,
+      "volume": 1082578
     }
   ]
 }
