@@ -1,18 +1,10 @@
 {
   "ticker": "SEDG",
-  "updated": "2026-09-11 19:52:58",
+  "updated": "2026-09-11 22:02:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 36.4,
-      "high": 38.93,
-      "low": 35.6,
-      "close": 36.09,
-      "volume": 4352400
-    },
     {
       "date": "2026-03-12",
       "open": 35.43,
@@ -1026,8 +1018,8 @@
       "open": 36.73,
       "high": 37.5297,
       "low": 34.556,
-      "close": 34.67,
-      "volume": 4286459
+      "close": 34.68,
+      "volume": 4913054
     }
   ]
 }

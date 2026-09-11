@@ -1,18 +1,10 @@
 {
   "ticker": "WDC",
-  "updated": "2026-09-11 19:53:01",
+  "updated": "2026-09-11 22:02:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 269.8,
-      "high": 273.0,
-      "low": 263.76,
-      "close": 268.81,
-      "volume": 5672200
-    },
     {
       "date": "2026-03-12",
       "open": 265.66,
@@ -1026,8 +1018,8 @@
       "open": 464.85,
       "high": 472.4292,
       "low": 442.78,
-      "close": 447.71,
-      "volume": 3828066
+      "close": 447.18,
+      "volume": 4974862
     }
   ]
 }

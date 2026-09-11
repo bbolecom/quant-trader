@@ -1,18 +1,10 @@
 {
   "ticker": "ASO",
-  "updated": "2026-09-11 19:52:58",
+  "updated": "2026-09-11 22:02:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 59.58,
-      "high": 60.245,
-      "low": 57.8,
-      "close": 57.81,
-      "volume": 1577000
-    },
     {
       "date": "2026-03-12",
       "open": 57.1,
@@ -1026,8 +1018,8 @@
       "open": 54.71,
       "high": 56.85,
       "low": 54.54,
-      "close": 55.525,
-      "volume": 2531974
+      "close": 55.36,
+      "volume": 3161119
     }
   ]
 }

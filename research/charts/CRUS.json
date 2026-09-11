@@ -1,18 +1,10 @@
 {
   "ticker": "CRUS",
-  "updated": "2026-09-11 19:52:59",
+  "updated": "2026-09-11 22:02:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 134.91,
-      "high": 137.01,
-      "low": 133.94,
-      "close": 135.38,
-      "volume": 456200
-    },
     {
       "date": "2026-03-12",
       "open": 133.76,
@@ -1026,8 +1018,8 @@
       "open": 117.0,
       "high": 120.46,
       "low": 116.83,
-      "close": 118.62,
-      "volume": 680819
+      "close": 118.79,
+      "volume": 1056387
     }
   ]
 }

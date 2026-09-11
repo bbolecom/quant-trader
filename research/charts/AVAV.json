@@ -1,18 +1,10 @@
 {
   "ticker": "AVAV",
-  "updated": "2026-09-11 19:52:58",
+  "updated": "2026-09-11 22:02:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 204.5,
-      "high": 213.56,
-      "low": 199.37,
-      "close": 207.73,
-      "volume": 5230300
-    },
     {
       "date": "2026-03-12",
       "open": 212.71,
@@ -1026,8 +1018,8 @@
       "open": 145.66,
       "high": 147.13,
       "low": 138.31,
-      "close": 144.58,
-      "volume": 3304961
+      "close": 146.71,
+      "volume": 4591898
     }
   ]
 }

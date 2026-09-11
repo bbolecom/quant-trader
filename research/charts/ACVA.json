@@ -1,18 +1,10 @@
 {
   "ticker": "ACVA",
-  "updated": "2026-09-11 19:53:08",
+  "updated": "2026-09-11 22:02:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": 5.16,
-      "high": 5.23,
-      "low": 4.86,
-      "close": 5.0,
-      "volume": 2147100
-    },
     {
       "date": "2026-03-12",
       "open": 5.05,
@@ -1027,7 +1019,7 @@
       "high": 10.46,
       "low": 10.41,
       "close": 10.41,
-      "volume": 108958085
+      "volume": 114897510
     }
   ]
 }
