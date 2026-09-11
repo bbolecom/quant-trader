@@ -1,6 +1,6 @@
 {
   "ticker": "VIST",
-  "updated": "2026-09-10 23:14:13",
+  "updated": "2026-09-11 17:24:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-10",
       "open": 76.01,
-      "high": 79.72,
-      "low": 74.965,
+      "high": 79.77,
+      "low": 74.9,
       "close": 78.95,
-      "volume": 2285844
+      "volume": 2289800
+    },
+    {
+      "date": "2026-09-11",
+      "open": 77.33,
+      "high": 78.4,
+      "low": 76.47,
+      "close": 76.55,
+      "volume": 566031
     }
   ]
 }
