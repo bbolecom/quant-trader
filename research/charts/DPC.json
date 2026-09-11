@@ -1,6 +1,6 @@
 {
   "ticker": "DPC",
-  "updated": "2026-09-11 17:24:55",
+  "updated": "2026-09-11 19:52:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -441,9 +441,9 @@
       "date": "2026-09-11",
       "open": 42.98,
       "high": 44.72,
-      "low": 42.77,
-      "close": 43.955,
-      "volume": 291063
+      "low": 41.875,
+      "close": 41.975,
+      "volume": 761097
     }
   ]
 }
