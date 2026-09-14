@@ -1,34 +1,10 @@
 {
   "ticker": "HPQ",
-  "updated": "2026-09-11 23:21:11",
+  "updated": "2026-09-14 18:57:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-11",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
-    },
-    {
-      "date": "2026-03-12",
-      "open": 18.55,
-      "high": 19.18,
-      "low": 18.45,
-      "close": 18.95,
-      "volume": 26132000
-    },
-    {
-      "date": "2026-03-13",
-      "open": 19.1,
-      "high": 19.16,
-      "low": 18.62,
-      "close": 18.93,
-      "volume": 12918900
-    },
     {
       "date": "2026-03-16",
       "open": 19.0,
@@ -1024,10 +1000,18 @@
     {
       "date": "2026-09-11",
       "open": 32.95,
-      "high": 36.225,
+      "high": 36.23,
       "low": 32.93,
       "close": 35.48,
-      "volume": 26507780
+      "volume": 26522500
+    },
+    {
+      "date": "2026-09-14",
+      "open": 35.115,
+      "high": 35.19,
+      "low": 33.5735,
+      "close": 34.405,
+      "volume": 14520973
     }
   ]
 }

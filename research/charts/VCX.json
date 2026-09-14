@@ -1,6 +1,6 @@
 {
   "ticker": "VCX",
-  "updated": "2026-09-11 23:21:16",
+  "updated": "2026-09-14 18:57:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -976,10 +976,18 @@
     {
       "date": "2026-09-11",
       "open": 34.5,
-      "high": 34.68,
+      "high": 34.79,
       "low": 33.5,
       "close": 33.5,
-      "volume": 358313
+      "volume": 360100
+    },
+    {
+      "date": "2026-09-14",
+      "open": 32.79,
+      "high": 33.4,
+      "low": 32.15,
+      "close": 32.55,
+      "volume": 397266
     }
   ]
 }
