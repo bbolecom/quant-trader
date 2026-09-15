@@ -1,6 +1,6 @@
 {
   "ticker": "IOT",
-  "updated": "2026-09-14 23:57:16",
+  "updated": "2026-09-15 17:49:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,7 +1011,15 @@
       "high": 43.185,
       "low": 38.97,
       "close": 42.91,
-      "volume": 10059361
+      "volume": 10095200
+    },
+    {
+      "date": "2026-09-15",
+      "open": 42.7,
+      "high": 43.18,
+      "low": 41.47,
+      "close": 42.35,
+      "volume": 2864415
     }
   ]
 }

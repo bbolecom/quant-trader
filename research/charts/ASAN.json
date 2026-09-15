@@ -1,6 +1,6 @@
 {
   "ticker": "ASAN",
-  "updated": "2026-09-14 23:57:16",
+  "updated": "2026-09-15 17:49:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,7 +1011,15 @@
       "high": 9.795,
       "low": 9.11,
       "close": 9.66,
-      "volume": 6926524
+      "volume": 6927900
+    },
+    {
+      "date": "2026-09-15",
+      "open": 9.43,
+      "high": 9.745,
+      "low": 9.35,
+      "close": 9.525,
+      "volume": 1929957
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "APPN",
-  "updated": "2026-09-14 23:57:16",
+  "updated": "2026-09-15 17:49:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1009,9 +1009,17 @@
       "date": "2026-09-14",
       "open": 35.35,
       "high": 38.41,
-      "low": 35.2224,
+      "low": 35.222,
       "close": 38.31,
-      "volume": 1199321
+      "volume": 1207100
+    },
+    {
+      "date": "2026-09-15",
+      "open": 38.03,
+      "high": 39.26,
+      "low": 37.36,
+      "close": 38.45,
+      "volume": 392470
     }
   ]
 }
