@@ -1,18 +1,10 @@
 {
   "ticker": "RIG",
-  "updated": "2026-09-16 17:50:10",
+  "updated": "2026-09-16 20:27:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-16",
-      "open": 6.34,
-      "high": 6.36,
-      "low": 6.14,
-      "close": 6.2,
-      "volume": 33356100
-    },
     {
       "date": "2026-03-17",
       "open": 6.25,
@@ -1019,15 +1011,15 @@
       "high": 5.95,
       "low": 5.51,
       "close": 5.94,
-      "volume": 68752700
+      "volume": 68814700
     },
     {
       "date": "2026-09-16",
       "open": 5.87,
       "high": 5.95,
-      "low": 5.5801,
-      "close": 5.7,
-      "volume": 27852301
+      "low": 5.47,
+      "close": 5.54,
+      "volume": 52722420
     }
   ]
 }

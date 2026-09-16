@@ -1,18 +1,10 @@
 {
   "ticker": "RVTY",
-  "updated": "2026-09-16 17:50:10",
+  "updated": "2026-09-16 20:27:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-16",
-      "open": 86.67,
-      "high": 87.9,
-      "low": 85.4,
-      "close": 86.48,
-      "volume": 1459800
-    },
     {
       "date": "2026-03-17",
       "open": 87.62,
@@ -1026,8 +1018,8 @@
       "open": 140.88,
       "high": 147.491,
       "low": 140.2,
-      "close": 146.11,
-      "volume": 1670018
+      "close": 145.73,
+      "volume": 3403551
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "DDD",
-  "updated": "2026-09-16 17:50:16",
+  "updated": "2026-09-16 20:28:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-16",
-      "open": 2.46,
-      "high": 2.57,
-      "low": 2.41,
-      "close": 2.43,
-      "volume": 2004000
-    },
     {
       "date": "2026-03-17",
       "open": 2.44,
@@ -1025,9 +1017,9 @@
       "date": "2026-09-16",
       "open": 3.17,
       "high": 3.2,
-      "low": 3.155,
-      "close": 3.175,
-      "volume": 596288
+      "low": 3.095,
+      "close": 3.14,
+      "volume": 1505201
     }
   ]
 }

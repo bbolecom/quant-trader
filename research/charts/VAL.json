@@ -1,18 +1,10 @@
 {
   "ticker": "VAL",
-  "updated": "2026-09-16 17:50:11",
+  "updated": "2026-09-16 20:27:56",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-16",
-      "open": 93.73,
-      "high": 93.73,
-      "low": 90.74,
-      "close": 91.54,
-      "volume": 1320600
-    },
     {
       "date": "2026-03-17",
       "open": 93.18,
@@ -1025,9 +1017,9 @@
       "date": "2026-09-16",
       "open": 87.4,
       "high": 88.23,
-      "low": 83.32,
-      "close": 84.61,
-      "volume": 670370
+      "low": 81.41,
+      "close": 82.52,
+      "volume": 1238595
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "FPS",
-  "updated": "2026-09-16 17:50:10",
+  "updated": "2026-09-16 20:27:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-16",
-      "open": 32.0,
-      "high": 36.35,
-      "low": 30.81,
-      "close": 34.56,
-      "volume": 4843200
-    },
     {
       "date": "2026-03-17",
       "open": 34.82,
@@ -1019,15 +1011,15 @@
       "high": 33.09,
       "low": 29.5,
       "close": 31.36,
-      "volume": 32371200
+      "volume": 32398100
     },
     {
       "date": "2026-09-16",
       "open": 33.14,
-      "high": 35.44,
+      "high": 36.12,
       "low": 33.05,
-      "close": 35.25,
-      "volume": 11336111
+      "close": 34.84,
+      "volume": 20676451
     }
   ]
 }
