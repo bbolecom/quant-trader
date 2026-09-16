@@ -1,6 +1,6 @@
 {
   "ticker": "OXY",
-  "updated": "2026-09-15 23:32:32",
+  "updated": "2026-09-16 17:50:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-09-15",
       "open": 62.11,
       "high": 63.77,
-      "low": 62.21,
+      "low": 62.11,
       "close": 63.52,
-      "volume": 10290626
+      "volume": 10379700
+    },
+    {
+      "date": "2026-09-16",
+      "open": 62.4,
+      "high": 62.4,
+      "low": 59.737,
+      "close": 60.35,
+      "volume": 6484487
     }
   ]
 }

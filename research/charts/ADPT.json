@@ -1,6 +1,6 @@
 {
   "ticker": "ADPT",
-  "updated": "2026-09-15 23:36:02",
+  "updated": "2026-09-16 17:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 27.34,
       "low": 24.71,
       "close": 26.68,
-      "volume": 4122904
+      "volume": 4123800
+    },
+    {
+      "date": "2026-09-16",
+      "open": 27.09,
+      "high": 28.72,
+      "low": 27.03,
+      "close": 27.73,
+      "volume": 2183152
     }
   ]
 }

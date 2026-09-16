@@ -1,6 +1,6 @@
 {
   "ticker": "QRVO",
-  "updated": "2026-09-15 23:36:01",
+  "updated": "2026-09-16 17:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 118.46,
       "low": 108.11,
       "close": 118.06,
-      "volume": 2287650
+      "volume": 2292700
+    },
+    {
+      "date": "2026-09-16",
+      "open": 118.18,
+      "high": 118.18,
+      "low": 114.16,
+      "close": 115.665,
+      "volume": 785646
     }
   ]
 }

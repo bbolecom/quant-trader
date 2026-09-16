@@ -1,6 +1,6 @@
 {
   "ticker": "TEM",
-  "updated": "2026-09-15 23:36:01",
+  "updated": "2026-09-16 17:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-15",
-      "open": 61.94,
+      "open": 61.905,
       "high": 68.939,
       "low": 61.88,
       "close": 68.85,
-      "volume": 8208324
+      "volume": 8227400
+    },
+    {
+      "date": "2026-09-16",
+      "open": 68.77,
+      "high": 71.48,
+      "low": 68.4201,
+      "close": 70.57,
+      "volume": 5080464
     }
   ]
 }

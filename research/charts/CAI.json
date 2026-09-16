@@ -1,6 +1,6 @@
 {
   "ticker": "CAI",
-  "updated": "2026-09-15 23:36:01",
+  "updated": "2026-09-16 17:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 28.675,
       "low": 25.8,
       "close": 28.5,
-      "volume": 8649060
+      "volume": 8839000
+    },
+    {
+      "date": "2026-09-16",
+      "open": 28.16,
+      "high": 29.085,
+      "low": 27.91,
+      "close": 28.655,
+      "volume": 2031161
     }
   ]
 }

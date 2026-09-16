@@ -1,6 +1,6 @@
 {
   "ticker": "KRMN",
-  "updated": "2026-09-15 23:36:02",
+  "updated": "2026-09-16 17:50:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 38.38,
       "low": 35.06,
       "close": 37.47,
-      "volume": 4271369
+      "volume": 4312700
+    },
+    {
+      "date": "2026-09-16",
+      "open": 38.01,
+      "high": 38.065,
+      "low": 36.72,
+      "close": 37.0,
+      "volume": 1855863
     }
   ]
 }

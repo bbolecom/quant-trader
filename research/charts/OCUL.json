@@ -1,6 +1,6 @@
 {
   "ticker": "OCUL",
-  "updated": "2026-09-15 23:36:10",
+  "updated": "2026-09-16 17:50:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-15",
-      "open": 10.89,
+      "open": 10.795,
       "high": 10.89,
       "low": 10.13,
       "close": 10.19,
-      "volume": 2094215
+      "volume": 2098600
+    },
+    {
+      "date": "2026-09-16",
+      "open": 10.21,
+      "high": 10.32,
+      "low": 9.935,
+      "close": 9.945,
+      "volume": 2110246
     }
   ]
 }

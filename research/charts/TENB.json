@@ -1,6 +1,6 @@
 {
   "ticker": "TENB",
-  "updated": "2026-09-15 23:36:01",
+  "updated": "2026-09-16 17:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 38.89,
       "low": 34.01,
       "close": 38.09,
-      "volume": 7349679
+      "volume": 7354700
+    },
+    {
+      "date": "2026-09-16",
+      "open": 36.86,
+      "high": 38.15,
+      "low": 35.99,
+      "close": 36.55,
+      "volume": 3893227
     }
   ]
 }
