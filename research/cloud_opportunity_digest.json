@@ -1,21 +1,21 @@
 {
-  "date": "2026-09-16",
-  "updated": "2026-09-16 23:42:18",
-  "title": "📊 量化机会 64条 · 2026-09-16",
-  "total_actionable": 64,
+  "date": "2026-09-17",
+  "updated": "2026-09-17 23:38:16",
+  "title": "📊 量化机会 17条 · 2026-09-17",
+  "total_actionable": 17,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 10,
+      "actionable": 2,
       "symbols": [
         "—",
-        "AXTI",
-        "ARQT"
+        "CHPT",
+        "OKLO"
       ],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "fleet_csp",
@@ -37,7 +37,7 @@
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "vrp",
@@ -45,25 +45,25 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "MU",
         "AMD",
+        "MU",
         "WDC"
       ],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "capital_flow",
       "name": "资金流向操盘痕迹",
       "path": "research/flow_daily_today.json",
-      "actionable": 8,
+      "actionable": 3,
       "symbols": [
-        "AGNC",
-        "CRCL",
-        "AAL"
+        "ATRC",
+        "PSX",
+        "GRAL"
       ],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "flow_strategy",
@@ -81,7 +81,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "extreme20",
@@ -90,20 +90,20 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "meme_long",
       "name": "Meme规律 · Ultra80",
       "path": "research/ticker_pattern_today.json",
-      "actionable": 35,
+      "actionable": 1,
       "symbols": [
         "PLTR",
         "SMCI",
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "whipsaw_short",
@@ -112,7 +112,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-16"
+      "data_date": "2026-09-17"
     },
     {
       "id": "short_squeeze",
@@ -129,7 +129,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 64条 · 2026-09-16",
-    "body": "大盘 🔴 弱市（SPY<MA50） · 每日选股可开 10\n• 每日选股 · 统一入口: 10 · —、AXTI、ARQT\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · MU、AMD、WDC\n• 资金流向操盘痕迹: 8 · AGNC、CRCL、AAL\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 17条 · 2026-09-17",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、CHPT、OKLO\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AMD、MU、WDC\n• 资金流向操盘痕迹: 3 · ATRC、PSX、GRAL\n• Meme规律 · Ultra80: 1 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
