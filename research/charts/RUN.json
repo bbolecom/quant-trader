@@ -1,6 +1,6 @@
 {
   "ticker": "RUN",
-  "updated": "2026-09-16 23:42:16",
+  "updated": "2026-09-17 17:50:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-16",
-      "open": 8.57,
-      "high": 8.61,
+      "open": 8.55,
+      "high": 8.62,
       "low": 8.185,
       "close": 8.27,
-      "volume": 8767457
+      "volume": 8766300
+    },
+    {
+      "date": "2026-09-17",
+      "open": 8.51,
+      "high": 8.91,
+      "low": 8.51,
+      "close": 8.815,
+      "volume": 3524821
     }
   ]
 }

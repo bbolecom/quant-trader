@@ -1,6 +1,6 @@
 {
   "ticker": "AMRX",
-  "updated": "2026-09-16 23:42:14",
+  "updated": "2026-09-17 17:50:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-16",
       "open": 16.65,
-      "high": 18.2999,
+      "high": 18.3,
       "low": 16.56,
       "close": 18.08,
-      "volume": 5123472
+      "volume": 5123500
+    },
+    {
+      "date": "2026-09-17",
+      "open": 18.56,
+      "high": 19.18,
+      "low": 18.18,
+      "close": 18.25,
+      "volume": 1254148
     }
   ]
 }

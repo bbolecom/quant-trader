@@ -1,6 +1,6 @@
 {
   "ticker": "ARQT",
-  "updated": "2026-09-16 23:42:13",
+  "updated": "2026-09-17 17:50:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 26.39,
       "low": 23.63,
       "close": 26.14,
-      "volume": 5155490
+      "volume": 5155400
+    },
+    {
+      "date": "2026-09-17",
+      "open": 25.835,
+      "high": 25.95,
+      "low": 24.35,
+      "close": 24.96,
+      "volume": 2535000
     }
   ]
 }
