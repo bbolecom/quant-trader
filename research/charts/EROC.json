@@ -1,6 +1,6 @@
 {
   "ticker": "EROC",
-  "updated": "2026-09-17 17:50:39",
+  "updated": "2026-09-17 20:35:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -547,15 +547,15 @@
       "high": 12.3,
       "low": 11.05,
       "close": 12.21,
-      "volume": 3316300
+      "volume": 3330500
     },
     {
       "date": "2026-09-17",
       "open": 12.64,
       "high": 13.39,
       "low": 12.64,
-      "close": 13.07,
-      "volume": 1831252
+      "close": 12.9,
+      "volume": 2853783
     }
   ]
 }

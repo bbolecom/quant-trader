@@ -1,18 +1,10 @@
 {
   "ticker": "BRKR",
-  "updated": "2026-09-17 17:50:39",
+  "updated": "2026-09-17 20:35:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-17",
-      "open": 33.08,
-      "high": 34.24,
-      "low": 33.08,
-      "close": 33.74,
-      "volume": 1858800
-    },
     {
       "date": "2026-03-18",
       "open": 33.6,
@@ -1026,8 +1018,8 @@
       "open": 61.9,
       "high": 64.4,
       "low": 61.3,
-      "close": 63.91,
-      "volume": 1467845
+      "close": 63.05,
+      "volume": 3036088
     }
   ]
 }
