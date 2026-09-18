@@ -1,18 +1,10 @@
 {
   "ticker": "OKLO",
-  "updated": "2026-09-18 19:44:45",
+  "updated": "2026-09-18 21:53:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-18",
-      "open": 60.19,
-      "high": 61.75,
-      "low": 56.68,
-      "close": 56.7,
-      "volume": 11984800
-    },
     {
       "date": "2026-03-19",
       "open": 55.64,
@@ -1019,15 +1011,15 @@
       "high": 40.65,
       "low": 36.62,
       "close": 39.65,
-      "volume": 17390800
+      "volume": 17426500
     },
     {
       "date": "2026-09-18",
       "open": 39.9,
       "high": 40.3,
       "low": 37.51,
-      "close": 38.135,
-      "volume": 8561606
+      "close": 38.0,
+      "volume": 13758787
     }
   ]
 }

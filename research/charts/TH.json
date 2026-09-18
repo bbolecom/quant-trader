@@ -1,18 +1,10 @@
 {
   "ticker": "TH",
-  "updated": "2026-09-18 19:44:47",
+  "updated": "2026-09-18 21:53:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-18",
-      "open": 9.32,
-      "high": 9.42,
-      "low": 9.12,
-      "close": 9.19,
-      "volume": 483400
-    },
     {
       "date": "2026-03-19",
       "open": 9.06,
@@ -1024,10 +1016,10 @@
     {
       "date": "2026-09-18",
       "open": 20.68,
-      "high": 21.3799,
+      "high": 21.415,
       "low": 20.68,
-      "close": 21.375,
-      "volume": 1596447
+      "close": 21.19,
+      "volume": 4948408
     }
   ]
 }

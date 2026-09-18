@@ -1,18 +1,10 @@
 {
   "ticker": "NFE",
-  "updated": "2026-09-18 19:44:59",
+  "updated": "2026-09-18 21:53:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-18",
-      "open": 1.2,
-      "high": 1.21,
-      "low": 0.86,
-      "close": 0.916,
-      "volume": 101083500
-    },
     {
       "date": "2026-03-19",
       "open": 0.874,
@@ -1018,8 +1010,8 @@
       "open": 12.23,
       "high": 12.7366,
       "low": 12.0534,
-      "close": 12.465,
-      "volume": 291603
+      "close": 12.22,
+      "volume": 388386
     }
   ]
 }
