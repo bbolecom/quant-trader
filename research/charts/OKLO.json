@@ -1,6 +1,6 @@
 {
   "ticker": "OKLO",
-  "updated": "2026-09-17 23:38:05",
+  "updated": "2026-09-18 17:21:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-09-17",
       "open": 36.98,
-      "high": 40.64,
+      "high": 40.65,
       "low": 36.62,
       "close": 39.65,
-      "volume": 17132404
+      "volume": 17390800
+    },
+    {
+      "date": "2026-09-18",
+      "open": 39.9,
+      "high": 40.3,
+      "low": 37.51,
+      "close": 37.83,
+      "volume": 5663466
     }
   ]
 }

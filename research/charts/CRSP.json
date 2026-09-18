@@ -1,6 +1,6 @@
 {
   "ticker": "CRSP",
-  "updated": "2026-09-17 23:38:05",
+  "updated": "2026-09-18 17:21:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-17",
-      "open": 53.12,
+      "open": 53.9,
       "high": 59.21,
       "low": 53.12,
       "close": 57.325,
-      "volume": 2995890
+      "volume": 2997100
+    },
+    {
+      "date": "2026-09-18",
+      "open": 58.0,
+      "high": 59.34,
+      "low": 55.6343,
+      "close": 56.7,
+      "volume": 737860
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ABCL",
-  "updated": "2026-09-17 23:38:06",
+  "updated": "2026-09-18 17:21:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 13.18,
       "low": 11.99,
       "close": 12.73,
-      "volume": 8024789
+      "volume": 8029200
+    },
+    {
+      "date": "2026-09-18",
+      "open": 12.562,
+      "high": 12.96,
+      "low": 12.37,
+      "close": 12.45,
+      "volume": 2378018
     }
   ]
 }
