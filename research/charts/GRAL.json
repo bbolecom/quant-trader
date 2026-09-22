@@ -1,6 +1,6 @@
 {
   "ticker": "GRAL",
-  "updated": "2026-09-21 22:25:01",
+  "updated": "2026-09-22 00:08:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 93.475,
       "high": 111.49,
       "low": 92.0,
-      "close": 107.97,
+      "close": NaN,
       "volume": 3519996
     }
   ]

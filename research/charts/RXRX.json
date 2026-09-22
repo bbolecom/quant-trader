@@ -1,6 +1,6 @@
 {
   "ticker": "RXRX",
-  "updated": "2026-09-21 22:24:51",
+  "updated": "2026-09-22 00:12:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 3.915,
       "high": 4.015,
       "low": 3.83,
-      "close": 3.97,
+      "close": NaN,
       "volume": 37657107
     }
   ]

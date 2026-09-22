@@ -1,6 +1,6 @@
 {
   "ticker": "MU",
-  "updated": "2026-09-21 22:24:53",
+  "updated": "2026-09-22 00:12:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 1044.75,
       "high": 1064.49,
       "low": 1030.6801,
-      "close": 1043.96,
+      "close": NaN,
       "volume": 27268696
     }
   ]
