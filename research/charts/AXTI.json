@@ -1,6 +1,6 @@
 {
   "ticker": "AXTI",
-  "updated": "2026-09-22 00:08:46",
+  "updated": "2026-09-22 17:49:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,23 @@
       "high": 71.31,
       "low": 67.67,
       "close": 70.03,
-      "volume": 16793000
+      "volume": 16819900
     },
     {
       "date": "2026-09-21",
       "open": 73.45,
-      "high": 81.4999,
+      "high": 81.5,
       "low": 72.77,
-      "close": NaN,
-      "volume": 12507096
+      "close": 79.93,
+      "volume": 12523900
+    },
+    {
+      "date": "2026-09-22",
+      "open": 76.635,
+      "high": 79.39,
+      "low": 74.9,
+      "close": 76.16,
+      "volume": 5338908
     }
   ]
 }

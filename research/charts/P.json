@@ -1,6 +1,6 @@
 {
   "ticker": "P",
-  "updated": "2026-09-22 00:08:47",
+  "updated": "2026-09-22 17:49:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,18 @@
     {
       "date": "2026-09-21",
       "open": 105.5,
-      "high": 113.715,
+      "high": 113.8,
       "low": 104.4,
-      "close": NaN,
-      "volume": 7090749
+      "close": 113.66,
+      "volume": 7332200
+    },
+    {
+      "date": "2026-09-22",
+      "open": 111.39,
+      "high": 111.39,
+      "low": 107.28,
+      "close": 108.42,
+      "volume": 2596464
     }
   ]
 }
