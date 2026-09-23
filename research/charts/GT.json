@@ -1,18 +1,10 @@
 {
   "ticker": "GT",
-  "updated": "2026-09-23 18:03:26",
+  "updated": "2026-09-23 21:25:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-23",
-      "open": 6.34,
-      "high": 6.53,
-      "low": 6.27,
-      "close": 6.35,
-      "volume": 8413600
-    },
     {
       "date": "2026-03-24",
       "open": 6.32,
@@ -1018,8 +1010,8 @@
       "open": 5.44,
       "high": 5.44,
       "low": 5.275,
-      "close": 5.325,
-      "volume": 2893771
+      "close": 5.34,
+      "volume": 6466527
     }
   ]
 }
