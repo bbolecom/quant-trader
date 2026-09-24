@@ -1,6 +1,6 @@
 {
   "ticker": "FORM",
-  "updated": "2026-09-23 23:48:56",
+  "updated": "2026-09-24 18:02:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,7 +1011,15 @@
       "high": 131.48,
       "low": 123.64,
       "close": 131.26,
-      "volume": 1239755
+      "volume": 1273700
+    },
+    {
+      "date": "2026-09-24",
+      "open": 126.98,
+      "high": 129.86,
+      "low": 124.36,
+      "close": 127.43,
+      "volume": 490266
     }
   ]
 }
