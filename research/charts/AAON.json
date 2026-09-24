@@ -1,18 +1,10 @@
 {
   "ticker": "AAON",
-  "updated": "2026-09-24 18:02:23",
+  "updated": "2026-09-24 21:26:18",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-24",
-      "open": 79.29,
-      "high": 84.64,
-      "low": 79.0,
-      "close": 84.01,
-      "volume": 646500
-    },
     {
       "date": "2026-03-25",
       "open": 85.27,
@@ -1016,10 +1008,10 @@
     {
       "date": "2026-09-24",
       "open": 80.395,
-      "high": 84.13,
+      "high": 84.77,
       "low": 80.025,
-      "close": 83.125,
-      "volume": 520535
+      "close": 84.27,
+      "volume": 1297526
     }
   ]
 }

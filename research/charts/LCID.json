@@ -1,18 +1,10 @@
 {
   "ticker": "LCID",
-  "updated": "2026-09-24 18:02:26",
+  "updated": "2026-09-24 21:26:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-24",
-      "open": 10.2,
-      "high": 10.55,
-      "low": 10.16,
-      "close": 10.36,
-      "volume": 3614500
-    },
     {
       "date": "2026-03-25",
       "open": 10.525,
@@ -1019,15 +1011,15 @@
       "high": 4.28,
       "low": 4.09,
       "close": 4.16,
-      "volume": 10857900
+      "volume": 10907800
     },
     {
       "date": "2026-09-24",
       "open": 4.14,
-      "high": 4.2,
+      "high": 4.21,
       "low": 4.03,
-      "close": 4.18,
-      "volume": 5374580
+      "close": 4.15,
+      "volume": 7648195
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "DVN",
-  "updated": "2026-09-24 18:02:33",
+  "updated": "2026-09-24 21:26:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-24",
-      "open": 48.97,
-      "high": 50.71,
-      "low": 48.96,
-      "close": 50.27,
-      "volume": 20009800
-    },
     {
       "date": "2026-03-25",
       "open": 49.92,
@@ -1018,8 +1010,8 @@
       "open": 48.55,
       "high": 49.71,
       "low": 48.23,
-      "close": 49.36,
-      "volume": 9977204
+      "close": 48.9,
+      "volume": 17524643
     }
   ]
 }
