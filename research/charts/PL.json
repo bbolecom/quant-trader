@@ -1,6 +1,6 @@
 {
   "ticker": "PL",
-  "updated": "2026-09-24 23:56:05",
+  "updated": "2026-09-25 18:08:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 17.71,
       "low": 16.13,
       "close": 17.62,
-      "volume": 15476864
+      "volume": 15548600
+    },
+    {
+      "date": "2026-09-25",
+      "open": 17.91,
+      "high": 18.18,
+      "low": 17.41,
+      "close": 17.615,
+      "volume": 9698800
     }
   ]
 }
