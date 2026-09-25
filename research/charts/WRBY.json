@@ -1,18 +1,10 @@
 {
   "ticker": "WRBY",
-  "updated": "2026-09-25 18:08:27",
+  "updated": "2026-09-25 21:31:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-25",
-      "open": 23.39,
-      "high": 24.29,
-      "low": 22.85,
-      "close": 23.38,
-      "volume": 1620600
-    },
     {
       "date": "2026-03-26",
       "open": 22.95,
@@ -1026,8 +1018,8 @@
       "open": 26.27,
       "high": 26.898,
       "low": 25.5,
-      "close": 26.625,
-      "volume": 1803902
+      "close": 26.71,
+      "volume": 3832605
     }
   ]
 }

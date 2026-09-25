@@ -1,18 +1,10 @@
 {
   "ticker": "ILMN",
-  "updated": "2026-09-25 18:08:17",
+  "updated": "2026-09-25 21:30:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-25",
-      "open": 126.21,
-      "high": 128.74,
-      "low": 122.04,
-      "close": 126.2,
-      "volume": 1408500
-    },
     {
       "date": "2026-03-26",
       "open": 125.27,
@@ -1026,8 +1018,8 @@
       "open": 272.16,
       "high": 276.97,
       "low": 267.66,
-      "close": 274.805,
-      "volume": 2064750
+      "close": 270.0,
+      "volume": 5029817
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "BLLN",
-  "updated": "2026-09-25 18:08:17",
+  "updated": "2026-09-25 21:30:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-25",
-      "open": 74.46,
-      "high": 77.31,
-      "low": 72.29,
-      "close": 77.0,
-      "volume": 236500
-    },
     {
       "date": "2026-03-26",
       "open": 75.47,
@@ -1025,9 +1017,9 @@
       "date": "2026-09-25",
       "open": 125.19,
       "high": 127.5,
-      "low": 123.115,
-      "close": 124.42,
-      "volume": 295006
+      "low": 123.0,
+      "close": 123.08,
+      "volume": 528033
     }
   ]
 }

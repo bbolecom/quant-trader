@@ -1,18 +1,10 @@
 {
   "ticker": "GDDY",
-  "updated": "2026-09-25 18:08:17",
+  "updated": "2026-09-25 21:30:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-25",
-      "open": 81.59,
-      "high": 82.56,
-      "low": 78.57,
-      "close": 81.58,
-      "volume": 1728300
-    },
     {
       "date": "2026-03-26",
       "open": 81.3,
@@ -1026,8 +1018,8 @@
       "open": 99.3,
       "high": 100.37,
       "low": 96.3297,
-      "close": 96.91,
-      "volume": 1500762
+      "close": 97.14,
+      "volume": 2679851
     }
   ]
 }
