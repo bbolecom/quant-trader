@@ -1,6 +1,6 @@
 {
   "ticker": "DAL",
-  "updated": "2026-09-25 23:58:04",
+  "updated": "2026-09-26 00:03:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 84.0,
       "high": 85.47,
       "low": 82.3325,
-      "close": 84.94,
+      "close": NaN,
       "volume": 7053475
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "MCHP",
-  "updated": "2026-09-25 23:58:03",
+  "updated": "2026-09-26 00:03:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 75.2,
       "high": 78.93,
       "low": 74.945,
-      "close": 78.69,
+      "close": NaN,
       "volume": 9622192
     }
   ]
