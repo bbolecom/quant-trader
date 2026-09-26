@@ -1,6 +1,6 @@
 {
   "ticker": "SRPT",
-  "updated": "2026-09-25 21:31:01",
+  "updated": "2026-09-26 00:00:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 18.49,
       "high": 18.77,
       "low": 18.015,
-      "close": 18.67,
+      "close": NaN,
       "volume": 2204175
     }
   ]
