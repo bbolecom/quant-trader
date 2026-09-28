@@ -1,26 +1,10 @@
 {
   "ticker": "CVS",
-  "updated": "2026-09-26 00:03:21",
+  "updated": "2026-09-28 20:18:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-26",
-      "open": 72.02,
-      "high": 72.63,
-      "low": 71.02,
-      "close": 71.18,
-      "volume": 4129100
-    },
-    {
-      "date": "2026-03-27",
-      "open": 71.1,
-      "high": 71.43,
-      "low": 69.67,
-      "close": 70.08,
-      "volume": 6105500
-    },
     {
       "date": "2026-03-30",
       "open": 71.13,
@@ -1018,8 +1002,16 @@
       "open": 85.35,
       "high": 89.35,
       "low": 84.7,
-      "close": NaN,
-      "volume": 15762746
+      "close": 89.13,
+      "volume": 15767300
+    },
+    {
+      "date": "2026-09-28",
+      "open": 89.51,
+      "high": 90.01,
+      "low": 87.84,
+      "close": 87.85,
+      "volume": 7889413
     }
   ]
 }

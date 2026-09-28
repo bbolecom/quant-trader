@@ -1,26 +1,10 @@
 {
   "ticker": "RUN",
-  "updated": "2026-09-26 00:03:13",
+  "updated": "2026-09-28 20:18:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-26",
-      "open": 12.74,
-      "high": 13.2,
-      "low": 12.35,
-      "close": 12.4,
-      "volume": 5762400
-    },
-    {
-      "date": "2026-03-27",
-      "open": 12.19,
-      "high": 12.7,
-      "low": 12.18,
-      "close": 12.6,
-      "volume": 5406400
-    },
     {
       "date": "2026-03-30",
       "open": 12.89,
@@ -1018,8 +1002,16 @@
       "open": 7.79,
       "high": 8.23,
       "low": 7.75,
-      "close": NaN,
-      "volume": 7294816
+      "close": 8.11,
+      "volume": 7343600
+    },
+    {
+      "date": "2026-09-28",
+      "open": 7.96,
+      "high": 7.98,
+      "low": 7.66,
+      "close": 7.67,
+      "volume": 6383890
     }
   ]
 }

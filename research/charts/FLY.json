@@ -1,26 +1,10 @@
 {
   "ticker": "FLY",
-  "updated": "2026-09-26 00:03:07",
+  "updated": "2026-09-28 20:18:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-26",
-      "open": 26.9,
-      "high": 28.12,
-      "low": 25.72,
-      "close": 26.81,
-      "volume": 6404000
-    },
-    {
-      "date": "2026-03-27",
-      "open": 26.2,
-      "high": 26.67,
-      "low": 23.03,
-      "close": 23.705,
-      "volume": 6455000
-    },
     {
       "date": "2026-03-30",
       "open": 24.02,
@@ -1018,8 +1002,16 @@
       "open": 23.31,
       "high": 25.58,
       "low": 23.3,
-      "close": NaN,
-      "volume": 5285172
+      "close": 24.36,
+      "volume": 5289900
+    },
+    {
+      "date": "2026-09-28",
+      "open": 23.95,
+      "high": 25.08,
+      "low": 23.75,
+      "close": 24.11,
+      "volume": 3495112
     }
   ]
 }
