@@ -1,7 +1,7 @@
 {
-  "date": "2026-09-26",
-  "updated": "2026-09-26 00:01:01",
-  "title": "📊 量化机会 57条 · 2026-09-26",
+  "date": "2026-09-29",
+  "updated": "2026-09-29 01:03:39",
+  "title": "📊 量化机会 57条 · 2026-09-29",
   "total_actionable": 57,
   "strategies": [
     {
@@ -11,11 +11,11 @@
       "actionable": 8,
       "symbols": [
         "—",
-        "P",
-        "PL"
+        "GENI",
+        "BE"
       ],
       "has_data": true,
-      "data_date": "2026-09-26"
+      "data_date": "2026-09-29"
     },
     {
       "id": "fleet_csp",
@@ -37,7 +37,7 @@
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "vrp",
@@ -50,7 +50,7 @@
         "META"
       ],
       "has_data": true,
-      "data_date": "2026-09-26"
+      "data_date": "2026-09-29"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "PRGO",
         "SMCI",
-        "GENI"
+        "GENI",
+        "CVS"
       ],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "flow_strategy",
@@ -81,7 +81,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "extreme20",
@@ -90,7 +90,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "meme_long",
@@ -103,7 +103,7 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "whipsaw_short",
@@ -112,7 +112,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-09-25"
+      "data_date": "2026-09-29"
     },
     {
       "id": "short_squeeze",
@@ -129,7 +129,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 57条 · 2026-09-26",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 8\n• 每日选股 · 统一入口: 8 · —、P、PL\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · QCOM、MU、META\n• 资金流向操盘痕迹: 3 · PRGO、SMCI、GENI\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 57条 · 2026-09-29",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 8\n• 每日选股 · 统一入口: 8 · —、GENI、BE\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · QCOM、MU、META\n• 资金流向操盘痕迹: 3 · SMCI、GENI、CVS\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
