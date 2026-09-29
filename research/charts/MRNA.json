@@ -1,6 +1,6 @@
 {
   "ticker": "MRNA",
-  "updated": "2026-09-28 20:18:43",
+  "updated": "2026-09-29 00:24:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1007,11 +1007,11 @@
     },
     {
       "date": "2026-09-28",
-      "open": 195.155,
+      "open": 195.68,
       "high": 199.82,
       "low": 189.1001,
-      "close": 197.28,
-      "volume": 12795649
+      "close": NaN,
+      "volume": 12810377
     }
   ]
 }

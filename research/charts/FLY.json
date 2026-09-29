@@ -1,6 +1,6 @@
 {
   "ticker": "FLY",
-  "updated": "2026-09-28 20:18:44",
+  "updated": "2026-09-29 00:24:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,8 @@
       "open": 23.95,
       "high": 25.08,
       "low": 23.75,
-      "close": 24.11,
-      "volume": 3495112
+      "close": NaN,
+      "volume": 3496163
     }
   ]
 }

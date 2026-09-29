@@ -1,6 +1,6 @@
 {
   "ticker": "NIO",
-  "updated": "2026-09-28 20:18:52",
+  "updated": "2026-09-29 00:24:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,8 @@
       "open": 3.64,
       "high": 3.67,
       "low": 3.57,
-      "close": 3.59,
-      "volume": 22559722
+      "close": NaN,
+      "volume": 23847523
     }
   ]
 }
