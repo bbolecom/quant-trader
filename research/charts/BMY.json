@@ -1,6 +1,6 @@
 {
   "ticker": "BMY",
-  "updated": "2026-09-29 01:00:46",
+  "updated": "2026-09-29 18:59:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1009,9 +1009,17 @@
       "date": "2026-09-28",
       "open": 62.77,
       "high": 63.93,
-      "low": 62.42,
-      "close": NaN,
-      "volume": 13394164
+      "low": 62.3,
+      "close": 63.88,
+      "volume": 13394700
+    },
+    {
+      "date": "2026-09-29",
+      "open": 63.58,
+      "high": 63.89,
+      "low": 62.85,
+      "close": 63.6,
+      "volume": 4084651
     }
   ]
 }

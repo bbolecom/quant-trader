@@ -1,6 +1,6 @@
 {
   "ticker": "LFCR",
-  "updated": "2026-09-29 01:00:45",
+  "updated": "2026-09-29 18:59:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,18 @@
     {
       "date": "2026-09-28",
       "open": 6.52,
-      "high": 6.6454,
+      "high": 6.65,
       "low": 6.4,
-      "close": NaN,
-      "volume": 4003471
+      "close": 6.52,
+      "volume": 4005300
+    },
+    {
+      "date": "2026-09-29",
+      "open": 6.525,
+      "high": 6.605,
+      "low": 6.51,
+      "close": 6.595,
+      "volume": 555681
     }
   ]
 }

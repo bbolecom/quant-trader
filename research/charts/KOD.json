@@ -1,6 +1,6 @@
 {
   "ticker": "KOD",
-  "updated": "2026-09-29 01:00:45",
+  "updated": "2026-09-29 18:59:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,23 @@
       "high": 33.71,
       "low": 31.0,
       "close": 32.35,
-      "volume": 2201500
+      "volume": 2277300
     },
     {
       "date": "2026-09-28",
-      "open": 61.28,
+      "open": 61.71,
       "high": 95.77,
-      "low": 60.5,
-      "close": NaN,
-      "volume": 38398805
+      "low": 60.49,
+      "close": 89.92,
+      "volume": 38463100
+    },
+    {
+      "date": "2026-09-29",
+      "open": 87.5,
+      "high": 93.1386,
+      "low": 83.6401,
+      "close": 90.825,
+      "volume": 4704833
     }
   ]
 }

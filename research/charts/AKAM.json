@@ -1,6 +1,6 @@
 {
   "ticker": "AKAM",
-  "updated": "2026-09-29 01:03:30",
+  "updated": "2026-09-29 18:58:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,23 @@
       "high": 128.46,
       "low": 113.84,
       "close": 113.94,
-      "volume": 31872400
+      "volume": 31946800
     },
     {
       "date": "2026-09-28",
-      "open": 112.75,
-      "high": 115.08,
+      "open": 112.85,
+      "high": 115.1,
       "low": 108.8,
-      "close": NaN,
-      "volume": 8051102
+      "close": 108.99,
+      "volume": 8078900
+    },
+    {
+      "date": "2026-09-29",
+      "open": 110.78,
+      "high": 111.43,
+      "low": 105.752,
+      "close": 107.255,
+      "volume": 4107724
     }
   ]
 }

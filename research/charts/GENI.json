@@ -1,6 +1,6 @@
 {
   "ticker": "GENI",
-  "updated": "2026-09-29 01:03:30",
+  "updated": "2026-09-29 18:58:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1003,15 +1003,23 @@
       "high": 6.57,
       "low": 5.96,
       "close": 6.44,
-      "volume": 13214500
+      "volume": 13891800
     },
     {
       "date": "2026-09-28",
       "open": 6.32,
       "high": 6.4,
       "low": 6.1,
-      "close": NaN,
-      "volume": 6672001
+      "close": 6.15,
+      "volume": 6672300
+    },
+    {
+      "date": "2026-09-29",
+      "open": 6.25,
+      "high": 6.34,
+      "low": 6.12,
+      "close": 6.125,
+      "volume": 4990399
     }
   ]
 }
