@@ -1,26 +1,10 @@
 {
   "ticker": "PLUG",
-  "updated": "2026-09-30 18:41:53",
+  "updated": "2026-09-30 22:37:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-03-30",
-      "open": 2.19,
-      "high": 2.25,
-      "low": 2.11,
-      "close": 2.14,
-      "volume": 50764400
-    },
-    {
-      "date": "2026-03-31",
-      "open": 2.16,
-      "high": 2.27,
-      "low": 2.14,
-      "close": 2.26,
-      "volume": 46982600
-    },
     {
       "date": "2026-04-01",
       "open": 2.28,
@@ -1019,15 +1003,15 @@
       "high": 1.94,
       "low": 1.88,
       "close": 1.91,
-      "volume": 52626500
+      "volume": 52774000
     },
     {
       "date": "2026-09-30",
       "open": 1.94,
       "high": 2.04,
       "low": 1.93,
-      "close": 1.955,
-      "volume": 35831216
+      "close": 1.94,
+      "volume": 49008100
     }
   ]
 }
