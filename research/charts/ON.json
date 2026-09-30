@@ -1,6 +1,6 @@
 {
   "ticker": "ON",
-  "updated": "2026-09-29 22:50:31",
+  "updated": "2026-09-30 00:29:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 77.12,
       "high": 77.39,
       "low": 75.1,
-      "close": 75.95,
+      "close": NaN,
       "volume": 8554429
     }
   ]

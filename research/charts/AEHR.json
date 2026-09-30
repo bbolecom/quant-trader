@@ -1,6 +1,6 @@
 {
   "ticker": "AEHR",
-  "updated": "2026-09-29 22:50:36",
+  "updated": "2026-09-30 00:31:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 101.94,
       "high": 108.3995,
       "low": 98.05,
-      "close": 100.78,
+      "close": NaN,
       "volume": 2436382
     }
   ]

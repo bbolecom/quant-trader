@@ -1,6 +1,6 @@
 {
   "ticker": "HHH",
-  "updated": "2026-09-29 22:50:30",
+  "updated": "2026-09-30 00:29:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 73.87,
       "high": 74.925,
       "low": 72.37,
-      "close": 74.88,
+      "close": NaN,
       "volume": 1129196
     }
   ]

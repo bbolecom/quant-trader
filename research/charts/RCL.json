@@ -1,6 +1,6 @@
 {
   "ticker": "RCL",
-  "updated": "2026-09-29 22:50:42",
+  "updated": "2026-09-30 00:29:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 257.2,
       "high": 261.99,
       "low": 254.21,
-      "close": 260.67,
+      "close": NaN,
       "volume": 4022769
     }
   ]

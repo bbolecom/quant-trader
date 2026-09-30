@@ -1,6 +1,6 @@
 {
   "ticker": "SHOP",
-  "updated": "2026-09-29 22:50:43",
+  "updated": "2026-09-30 00:29:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 144.025,
       "high": 149.34,
       "low": 142.43,
-      "close": 148.26,
+      "close": NaN,
       "volume": 8571374
     }
   ]

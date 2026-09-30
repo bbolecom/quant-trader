@@ -1,6 +1,6 @@
 {
   "ticker": "PS",
-  "updated": "2026-09-29 22:50:30",
+  "updated": "2026-09-30 00:29:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -850,7 +850,7 @@
       "open": 58.85,
       "high": 59.0,
       "low": 52.9301,
-      "close": 53.56,
+      "close": NaN,
       "volume": 333589
     }
   ]

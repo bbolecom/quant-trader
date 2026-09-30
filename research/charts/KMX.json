@@ -1,6 +1,6 @@
 {
   "ticker": "KMX",
-  "updated": "2026-09-29 22:50:42",
+  "updated": "2026-09-30 00:29:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 60.405,
       "high": 63.67,
       "low": 58.04,
-      "close": 59.23,
+      "close": NaN,
       "volume": 12230508
     }
   ]
