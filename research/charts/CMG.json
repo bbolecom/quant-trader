@@ -1,6 +1,6 @@
 {
   "ticker": "CMG",
-  "updated": "2026-09-30 00:31:23",
+  "updated": "2026-09-30 18:41:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 31.57,
       "high": 32.35,
       "low": 31.27,
-      "close": NaN,
-      "volume": 13770504
+      "close": 31.88,
+      "volume": 13882500
+    },
+    {
+      "date": "2026-09-30",
+      "open": 31.945,
+      "high": 32.115,
+      "low": 31.54,
+      "close": 31.8799,
+      "volume": 6725018
     }
   ]
 }

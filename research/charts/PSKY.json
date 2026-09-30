@@ -1,6 +1,6 @@
 {
   "ticker": "PSKY",
-  "updated": "2026-09-30 00:31:22",
+  "updated": "2026-09-30 18:41:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 10.2,
       "high": 10.31,
       "low": 9.89,
-      "close": NaN,
-      "volume": 18886994
+      "close": 9.99,
+      "volume": 18970800
+    },
+    {
+      "date": "2026-09-30",
+      "open": 10.12,
+      "high": 10.42,
+      "low": 10.065,
+      "close": 10.165,
+      "volume": 14980260
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ORCL-PD",
-  "updated": "2026-09-30 00:31:22",
+  "updated": "2026-09-30 18:41:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-09-29",
       "open": 42.3,
       "high": 45.13,
-      "low": 42.75,
+      "low": 42.3,
       "close": 44.02,
       "volume": 6204359
+    },
+    {
+      "date": "2026-09-30",
+      "open": 43.51,
+      "high": 44.02,
+      "low": 43.23,
+      "close": 43.955,
+      "volume": 254459
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "AMAT",
-  "updated": "2026-09-30 00:29:22",
+  "updated": "2026-09-30 18:42:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 504.71,
       "high": 513.28,
       "low": 499.17,
-      "close": NaN,
-      "volume": 7129511
+      "close": 512.01,
+      "volume": 7150000
+    },
+    {
+      "date": "2026-09-30",
+      "open": 513.42,
+      "high": 515.42,
+      "low": 506.78,
+      "close": 512.13,
+      "volume": 3136252
     }
   ]
 }

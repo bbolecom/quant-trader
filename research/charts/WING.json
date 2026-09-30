@@ -1,6 +1,6 @@
 {
   "ticker": "WING",
-  "updated": "2026-09-30 00:31:22",
+  "updated": "2026-09-30 18:41:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 103.26,
       "high": 109.2,
       "low": 103.0,
-      "close": NaN,
-      "volume": 1887908
+      "close": 108.62,
+      "volume": 1888500
+    },
+    {
+      "date": "2026-09-30",
+      "open": 107.74,
+      "high": 107.81,
+      "low": 104.03,
+      "close": 105.87,
+      "volume": 908465
     }
   ]
 }

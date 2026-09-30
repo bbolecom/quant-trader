@@ -1,6 +1,6 @@
 {
   "ticker": "TTAN",
-  "updated": "2026-09-30 00:31:22",
+  "updated": "2026-09-30 18:41:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-09-29",
-      "open": 60.05,
+      "open": 60.045,
       "high": 64.55,
-      "low": 59.1301,
-      "close": NaN,
-      "volume": 2980114
+      "low": 59.13,
+      "close": 63.52,
+      "volume": 2980400
+    },
+    {
+      "date": "2026-09-30",
+      "open": 63.96,
+      "high": 65.75,
+      "low": 63.345,
+      "close": 64.955,
+      "volume": 795753
     }
   ]
 }
