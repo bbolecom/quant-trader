@@ -1,6 +1,6 @@
 {
   "ticker": "AEO",
-  "updated": "2026-09-30 22:37:04",
+  "updated": "2026-10-01 00:34:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 18.155,
       "high": 18.67,
       "low": 17.659,
-      "close": 17.78,
+      "close": NaN,
       "volume": 5320247
     }
   ]

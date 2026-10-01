@@ -1,6 +1,6 @@
 {
   "ticker": "NAVN",
-  "updated": "2026-09-30 22:37:05",
+  "updated": "2026-10-01 00:34:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 20.86,
       "high": 21.38,
       "low": 20.66,
-      "close": 20.99,
+      "close": NaN,
       "volume": 3328579
     }
   ]
