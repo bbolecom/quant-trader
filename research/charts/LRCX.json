@@ -1,6 +1,6 @@
 {
   "ticker": "LRCX",
-  "updated": "2026-10-01 00:34:54",
+  "updated": "2026-10-01 19:07:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1007,11 +1007,19 @@
     },
     {
       "date": "2026-09-30",
-      "open": 324.77,
-      "high": 330.499,
+      "open": 324.65,
+      "high": 330.5,
       "low": 322.06,
-      "close": NaN,
-      "volume": 7659183
+      "close": 328.51,
+      "volume": 7685900
+    },
+    {
+      "date": "2026-10-01",
+      "open": 331.98,
+      "high": 340.55,
+      "low": 331.045,
+      "close": 339.325,
+      "volume": 5722643
     }
   ]
 }

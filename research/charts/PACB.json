@@ -1,6 +1,6 @@
 {
   "ticker": "PACB",
-  "updated": "2026-10-01 00:34:53",
+  "updated": "2026-10-01 19:07:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1008,10 +1008,18 @@
     {
       "date": "2026-09-30",
       "open": 1.84,
-      "high": 2.455,
+      "high": 2.46,
       "low": 1.84,
-      "close": NaN,
-      "volume": 80169235
+      "close": 2.37,
+      "volume": 80309300
+    },
+    {
+      "date": "2026-10-01",
+      "open": 2.34,
+      "high": 2.55,
+      "low": 2.32,
+      "close": 2.525,
+      "volume": 25306832
     }
   ]
 }
