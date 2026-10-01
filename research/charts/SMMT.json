@@ -1,18 +1,10 @@
 {
   "ticker": "SMMT",
-  "updated": "2026-10-01 19:07:51",
+  "updated": "2026-10-01 23:07:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-01",
-      "open": 19.17,
-      "high": 19.59,
-      "low": 18.57,
-      "close": 18.92,
-      "volume": 2374900
-    },
     {
       "date": "2026-04-02",
       "open": 18.4,
@@ -1011,15 +1003,15 @@
       "high": 17.72,
       "low": 16.17,
       "close": 16.91,
-      "volume": 13046700
+      "volume": 13060400
     },
     {
       "date": "2026-10-01",
       "open": 16.82,
       "high": 17.49,
       "low": 16.59,
-      "close": 16.98,
-      "volume": 5203658
+      "close": 16.69,
+      "volume": 7893799
     }
   ]
 }

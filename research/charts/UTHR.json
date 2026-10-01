@@ -1,18 +1,10 @@
 {
   "ticker": "UTHR",
-  "updated": "2026-10-01 19:07:58",
+  "updated": "2026-10-01 23:08:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-01",
-      "open": 596.88,
-      "high": 597.0,
-      "low": 570.22,
-      "close": 570.27,
-      "volume": 754900
-    },
     {
       "date": "2026-04-02",
       "open": 565.0,
@@ -1011,15 +1003,15 @@
       "high": 557.37,
       "low": 475.46,
       "close": 541.89,
-      "volume": 3300700
+      "volume": 3336700
     },
     {
       "date": "2026-10-01",
       "open": 557.53,
       "high": 585.71,
       "low": 556.7632,
-      "close": 582.53,
-      "volume": 1243712
+      "close": 571.38,
+      "volume": 1691478
     }
   ]
 }

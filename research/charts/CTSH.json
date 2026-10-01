@@ -1,18 +1,10 @@
 {
   "ticker": "CTSH",
-  "updated": "2026-10-01 19:07:59",
+  "updated": "2026-10-01 23:08:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-01",
-      "open": 61.32,
-      "high": 61.72,
-      "low": 59.73,
-      "close": 61.25,
-      "volume": 3767200
-    },
     {
       "date": "2026-04-02",
       "open": 61.29,
@@ -1018,8 +1010,8 @@
       "open": 61.91,
       "high": 64.74,
       "low": 60.43,
-      "close": 61.94,
-      "volume": 9485023
+      "close": 60.88,
+      "volume": 13252573
     }
   ]
 }
