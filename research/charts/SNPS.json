@@ -1,6 +1,6 @@
 {
   "ticker": "SNPS",
-  "updated": "2026-10-01 23:08:04",
+  "updated": "2026-10-02 00:51:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 467.848,
       "high": 496.95,
       "low": 462.0,
-      "close": 490.54,
+      "close": NaN,
       "volume": 6317284
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "SMMT",
-  "updated": "2026-10-01 23:07:48",
+  "updated": "2026-10-02 00:51:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 16.82,
       "high": 17.49,
       "low": 16.59,
-      "close": 16.69,
+      "close": NaN,
       "volume": 7893799
     }
   ]

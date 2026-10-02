@@ -1,6 +1,6 @@
 {
   "ticker": "CIEN",
-  "updated": "2026-10-01 23:08:05",
+  "updated": "2026-10-02 00:49:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 355.19,
       "high": 381.0,
       "low": 350.68,
-      "close": 379.14,
+      "close": NaN,
       "volume": 2561201
     }
   ]

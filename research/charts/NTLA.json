@@ -1,6 +1,6 @@
 {
   "ticker": "NTLA",
-  "updated": "2026-10-01 23:07:59",
+  "updated": "2026-10-02 00:51:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 11.98,
       "high": 12.655,
       "low": 11.82,
-      "close": 12.12,
+      "close": NaN,
       "volume": 7441872
     }
   ]

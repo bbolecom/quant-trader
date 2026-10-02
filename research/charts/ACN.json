@@ -1,6 +1,6 @@
 {
   "ticker": "ACN",
-  "updated": "2026-10-01 23:08:04",
+  "updated": "2026-10-02 00:49:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 215.98,
       "high": 227.58,
       "low": 211.035,
-      "close": 212.3,
+      "close": NaN,
       "volume": 28957560
     }
   ]
