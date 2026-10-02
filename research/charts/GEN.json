@@ -1,6 +1,6 @@
 {
   "ticker": "GEN",
-  "updated": "2026-10-02 00:51:49",
+  "updated": "2026-10-02 18:47:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1007,11 +1007,19 @@
     },
     {
       "date": "2026-10-01",
-      "open": 22.39,
-      "high": 22.555,
+      "open": 22.49,
+      "high": 22.56,
       "low": 21.82,
-      "close": NaN,
-      "volume": 10775030
+      "close": 22.25,
+      "volume": 11050900
+    },
+    {
+      "date": "2026-10-02",
+      "open": 22.41,
+      "high": 22.875,
+      "low": 22.085,
+      "close": 22.185,
+      "volume": 4341887
     }
   ]
 }

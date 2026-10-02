@@ -1,6 +1,6 @@
 {
   "ticker": "CNXC",
-  "updated": "2026-10-02 00:51:49",
+  "updated": "2026-10-02 18:47:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1007,11 +1007,19 @@
     },
     {
       "date": "2026-10-01",
-      "open": 26.06,
+      "open": 25.97,
       "high": 28.24,
       "low": 25.96,
-      "close": NaN,
-      "volume": 2197858
+      "close": 27.01,
+      "volume": 2197900
+    },
+    {
+      "date": "2026-10-02",
+      "open": 26.93,
+      "high": 26.9576,
+      "low": 24.61,
+      "close": 25.0875,
+      "volume": 1102219
     }
   ]
 }

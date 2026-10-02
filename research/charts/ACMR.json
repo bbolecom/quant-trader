@@ -1,6 +1,6 @@
 {
   "ticker": "ACMR",
-  "updated": "2026-10-02 00:51:48",
+  "updated": "2026-10-02 18:47:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1009,9 +1009,17 @@
       "date": "2026-10-01",
       "open": 81.5,
       "high": 85.23,
-      "low": 81.2501,
-      "close": NaN,
-      "volume": 1405081
+      "low": 81.25,
+      "close": 83.58,
+      "volume": 1430700
+    },
+    {
+      "date": "2026-10-02",
+      "open": 86.09,
+      "high": 86.1454,
+      "low": 83.0,
+      "close": 83.3,
+      "volume": 414266
     }
   ]
 }
