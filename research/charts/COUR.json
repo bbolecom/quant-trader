@@ -1,6 +1,6 @@
 {
   "ticker": "COUR",
-  "updated": "2026-10-02 22:35:43",
+  "updated": "2026-10-03 00:31:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 5.1,
       "high": 5.23,
       "low": 5.01,
-      "close": 5.02,
+      "close": NaN,
       "volume": 6468126
     }
   ]

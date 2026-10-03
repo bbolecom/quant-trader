@@ -1,6 +1,6 @@
 {
   "ticker": "MPWR",
-  "updated": "2026-10-02 22:35:54",
+  "updated": "2026-10-03 00:31:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 1393.132,
       "high": 1455.99,
       "low": 1393.132,
-      "close": 1439.73,
+      "close": NaN,
       "volume": 690356
     }
   ]

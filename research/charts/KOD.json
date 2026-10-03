@@ -1,6 +1,6 @@
 {
   "ticker": "KOD",
-  "updated": "2026-10-02 22:35:43",
+  "updated": "2026-10-03 00:31:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 98.15,
       "high": 98.15,
       "low": 88.6303,
-      "close": 94.45,
+      "close": NaN,
       "volume": 2672738
     }
   ]

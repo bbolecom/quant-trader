@@ -1,6 +1,6 @@
 {
   "ticker": "SYNA",
-  "updated": "2026-10-02 22:35:53",
+  "updated": "2026-10-03 00:31:26",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,7 +1010,7 @@
       "open": 121.66,
       "high": 121.98,
       "low": 119.91,
-      "close": 121.1,
+      "close": NaN,
       "volume": 7666638
     }
   ]

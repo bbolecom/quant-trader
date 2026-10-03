@@ -1,6 +1,6 @@
 {
   "ticker": "NTAP",
-  "updated": "2026-10-02 22:35:54",
+  "updated": "2026-10-03 00:31:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 216.43,
       "high": 231.895,
       "low": 216.25,
-      "close": 226.27,
+      "close": NaN,
       "volume": 4741673
     }
   ]

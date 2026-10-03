@@ -1,6 +1,6 @@
 {
   "ticker": "ITUB",
-  "updated": "2026-10-02 22:35:44",
+  "updated": "2026-10-03 00:31:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 8.48,
       "high": 8.59,
       "low": 8.19,
-      "close": 8.59,
+      "close": NaN,
       "volume": 44951884
     }
   ]
