@@ -1,6 +1,6 @@
 {
   "ticker": "VSH",
-  "updated": "2026-10-03 00:31:27",
+  "updated": "2026-10-05 21:17:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1009,9 +1009,17 @@
       "date": "2026-10-02",
       "open": 35.73,
       "high": 38.94,
-      "low": 35.55,
-      "close": NaN,
-      "volume": 8869484
+      "low": 35.5,
+      "close": 38.18,
+      "volume": 9385700
+    },
+    {
+      "date": "2026-10-05",
+      "open": 37.64,
+      "high": 37.8632,
+      "low": 36.58,
+      "close": 37.1,
+      "volume": 3859472
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "HRI",
-  "updated": "2026-10-03 00:33:22",
+  "updated": "2026-10-05 21:17:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,16 @@
       "open": 133.74,
       "high": 139.35,
       "low": 132.46,
-      "close": NaN,
-      "volume": 519837
+      "close": 138.37,
+      "volume": 519800
+    },
+    {
+      "date": "2026-10-05",
+      "open": 140.05,
+      "high": 140.885,
+      "low": 134.9525,
+      "close": 135.51,
+      "volume": 547567
     }
   ]
 }

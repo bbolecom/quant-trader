@@ -1,6 +1,6 @@
 {
   "ticker": "MTRN",
-  "updated": "2026-10-03 00:33:22",
+  "updated": "2026-10-05 21:17:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1009,9 +1009,17 @@
       "date": "2026-10-02",
       "open": 292.25,
       "high": 314.24,
-      "low": 289.695,
-      "close": NaN,
-      "volume": 404221
+      "low": 289.7,
+      "close": 312.16,
+      "volume": 407300
+    },
+    {
+      "date": "2026-10-05",
+      "open": 309.55,
+      "high": 324.985,
+      "low": 301.15,
+      "close": 319.18,
+      "volume": 609910
     }
   ]
 }

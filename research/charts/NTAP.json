@@ -1,18 +1,10 @@
 {
   "ticker": "NTAP",
-  "updated": "2026-10-03 00:31:27",
+  "updated": "2026-10-05 21:17:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-02",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
-    },
     {
       "date": "2026-04-06",
       "open": 103.22,
@@ -1016,10 +1008,18 @@
     {
       "date": "2026-10-02",
       "open": 216.43,
-      "high": 231.895,
+      "high": 231.9,
       "low": 216.25,
-      "close": NaN,
-      "volume": 4741673
+      "close": 226.27,
+      "volume": 5062600
+    },
+    {
+      "date": "2026-10-05",
+      "open": 225.47,
+      "high": 229.99,
+      "low": 218.29,
+      "close": 223.77,
+      "volume": 3357933
     }
   ]
 }

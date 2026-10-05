@@ -1,6 +1,6 @@
 {
   "ticker": "TE",
-  "updated": "2026-10-03 00:33:25",
+  "updated": "2026-10-05 21:17:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,16 @@
       "open": 3.89,
       "high": 4.05,
       "low": 3.85,
-      "close": NaN,
-      "volume": 16348193
+      "close": 3.92,
+      "volume": 16368300
+    },
+    {
+      "date": "2026-10-05",
+      "open": 3.91,
+      "high": 3.89,
+      "low": 3.6,
+      "close": 3.7,
+      "volume": 19693362
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "STM",
-  "updated": "2026-10-03 00:31:27",
+  "updated": "2026-10-05 21:17:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,16 @@
       "open": 55.35,
       "high": 57.43,
       "low": 55.26,
-      "close": NaN,
-      "volume": 15927595
+      "close": 57.26,
+      "volume": 16335100
+    },
+    {
+      "date": "2026-10-05",
+      "open": 56.6,
+      "high": 57.705,
+      "low": 56.11,
+      "close": 57.68,
+      "volume": 8840314
     }
   ]
 }

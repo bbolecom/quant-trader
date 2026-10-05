@@ -1,6 +1,6 @@
 {
   "ticker": "VIAV",
-  "updated": "2026-10-03 00:33:21",
+  "updated": "2026-10-05 21:17:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1010,8 +1010,16 @@
       "open": 45.91,
       "high": 48.42,
       "low": 45.7,
-      "close": NaN,
-      "volume": 10059066
+      "close": 47.1,
+      "volume": 10061900
+    },
+    {
+      "date": "2026-10-05",
+      "open": 47.39,
+      "high": 47.685,
+      "low": 46.33,
+      "close": 46.91,
+      "volume": 4801584
     }
   ]
 }
