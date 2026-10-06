@@ -1,6 +1,6 @@
 {
   "ticker": "PTC",
-  "updated": "2026-10-06 01:46:30",
+  "updated": "2026-10-06 19:13:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 191.92,
       "close": 192.26,
       "volume": 29552500
+    },
+    {
+      "date": "2026-10-06",
+      "open": 193.21,
+      "high": 193.42,
+      "low": 192.58,
+      "close": 193.015,
+      "volume": 4933859
     }
   ]
 }

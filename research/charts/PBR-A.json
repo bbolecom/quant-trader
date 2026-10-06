@@ -1,6 +1,6 @@
 {
   "ticker": "PBR-A",
-  "updated": "2026-10-06 01:46:30",
+  "updated": "2026-10-06 19:13:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 21.54,
       "close": 22.12,
       "volume": 37589700
+    },
+    {
+      "date": "2026-10-06",
+      "open": 21.99,
+      "high": 21.9992,
+      "low": 21.6,
+      "close": 21.735,
+      "volume": 8838951
     }
   ]
 }

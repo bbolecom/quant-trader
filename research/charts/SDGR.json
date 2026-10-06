@@ -1,6 +1,6 @@
 {
   "ticker": "SDGR",
-  "updated": "2026-10-06 01:48:55",
+  "updated": "2026-10-06 19:13:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 29.56,
       "close": 32.6,
       "volume": 4613600
+    },
+    {
+      "date": "2026-10-06",
+      "open": 32.78,
+      "high": 33.78,
+      "low": 28.56,
+      "close": 28.9,
+      "volume": 4096742
     }
   ]
 }

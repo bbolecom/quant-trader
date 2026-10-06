@@ -1,6 +1,6 @@
 {
   "ticker": "PCVX",
-  "updated": "2026-10-06 01:46:30",
+  "updated": "2026-10-06 19:13:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 71.6,
       "close": 73.82,
       "volume": 14896300
+    },
+    {
+      "date": "2026-10-06",
+      "open": 73.35,
+      "high": 73.395,
+      "low": 63.8997,
+      "close": 64.95,
+      "volume": 6169853
     }
   ]
 }

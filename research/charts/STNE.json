@@ -1,6 +1,6 @@
 {
   "ticker": "STNE",
-  "updated": "2026-10-06 01:46:31",
+  "updated": "2026-10-06 19:13:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 10.88,
       "close": 11.54,
       "volume": 29443000
+    },
+    {
+      "date": "2026-10-06",
+      "open": 11.68,
+      "high": 11.96,
+      "low": 11.345,
+      "close": 11.795,
+      "volume": 7228365
     }
   ]
 }
