@@ -1,18 +1,10 @@
 {
   "ticker": "AZTA",
-  "updated": "2026-10-06 19:13:10",
+  "updated": "2026-10-06 23:03:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-06",
-      "open": 22.61,
-      "high": 23.12,
-      "low": 22.53,
-      "close": 22.59,
-      "volume": 961300
-    },
     {
       "date": "2026-04-07",
       "open": 22.43,
@@ -1023,11 +1015,11 @@
     },
     {
       "date": "2026-10-06",
-      "open": 43.81,
+      "open": 43.755,
       "high": 46.4,
-      "low": 39.53,
-      "close": 40.39,
-      "volume": 1711677
+      "low": 39.33,
+      "close": 39.35,
+      "volume": 2538798
     }
   ]
 }

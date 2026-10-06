@@ -1,18 +1,10 @@
 {
   "ticker": "GMAB",
-  "updated": "2026-10-06 19:13:09",
+  "updated": "2026-10-06 23:03:11",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-06",
-      "open": 27.38,
-      "high": 27.785,
-      "low": 27.38,
-      "close": 27.75,
-      "volume": 1242700
-    },
     {
       "date": "2026-04-07",
       "open": 27.19,
@@ -1026,8 +1018,8 @@
       "open": 39.11,
       "high": 39.15,
       "low": 37.07,
-      "close": 37.87,
-      "volume": 5234999
+      "close": 37.8,
+      "volume": 6595872
     }
   ]
 }
