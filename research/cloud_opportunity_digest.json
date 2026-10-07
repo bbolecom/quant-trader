@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-06",
-  "updated": "2026-10-06 01:49:01",
-  "title": "📊 量化机会 53条 · 2026-10-06",
-  "total_actionable": 53,
+  "date": "2026-10-07",
+  "updated": "2026-10-07 00:47:11",
+  "title": "📊 量化机会 52条 · 2026-10-07",
+  "total_actionable": 52,
   "strategies": [
     {
       "id": "daily_pick",
@@ -11,11 +11,11 @@
       "actionable": 2,
       "symbols": [
         "—",
-        "GMAB",
-        "XERS"
+        "TEM",
+        "TWST"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "fleet_csp",
@@ -37,7 +37,7 @@
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "vrp",
@@ -50,7 +50,7 @@
         "META"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "UMC",
-        "KSS",
-        "OLN"
+        "CX",
+        "CCJ",
+        "PEG"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "flow_strategy",
@@ -78,12 +78,10 @@
       "id": "gainer10",
       "name": "涨幅榜多空",
       "path": "research/gainer10_today.json",
-      "actionable": 1,
-      "symbols": [
-        "XP"
-      ],
+      "actionable": 0,
+      "symbols": [],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "extreme20",
@@ -91,10 +89,10 @@
       "path": "research/extreme20_today.json",
       "actionable": 1,
       "symbols": [
-        "PTC"
+        "OPCH"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "meme_long",
@@ -107,7 +105,7 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "whipsaw_short",
@@ -115,11 +113,10 @@
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
       "symbols": [
-        "PTC",
-        "XP"
+        "OPCH"
       ],
       "has_data": true,
-      "data_date": "2026-10-06"
+      "data_date": "2026-10-07"
     },
     {
       "id": "short_squeeze",
@@ -136,7 +133,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 53条 · 2026-10-06",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、GMAB、XERS\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AMD、MU、META\n• 资金流向操盘痕迹: 3 · UMC、KSS、OLN\n• 涨幅榜多空: 1 · XP\n• 暴涨暴跌20%事件: 1 · PTC\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 52条 · 2026-10-07",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 2\n• 每日选股 · 统一入口: 2 · —、TEM、TWST\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AMD、MU、META\n• 资金流向操盘痕迹: 3 · CX、CCJ、PEG\n• 暴涨暴跌20%事件: 1 · OPCH\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }

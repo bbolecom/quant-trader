@@ -1,6 +1,6 @@
 {
   "ticker": "CTVA",
-  "updated": "2026-10-06 23:03:33",
+  "updated": "2026-10-07 00:44:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 13.08,
       "high": 14.055,
       "low": 12.9,
-      "close": 13.91,
+      "close": NaN,
       "volume": 45113936
     }
   ]

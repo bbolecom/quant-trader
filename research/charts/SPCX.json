@@ -1,6 +1,6 @@
 {
   "ticker": "SPCX",
-  "updated": "2026-10-05 21:17:40",
+  "updated": "2026-10-07 00:47:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -627,15 +627,23 @@
       "high": 159.84,
       "low": 149.34,
       "close": 158.96,
-      "volume": 119446900
+      "volume": 119859100
     },
     {
       "date": "2026-10-05",
-      "open": 158.985,
+      "open": 158.99,
       "high": 172.47,
       "low": 158.62,
       "close": 171.09,
-      "volume": 134420923
+      "volume": 135688900
+    },
+    {
+      "date": "2026-10-06",
+      "open": 172.095,
+      "high": 176.4199,
+      "low": 171.3854,
+      "close": NaN,
+      "volume": 106392820
     }
   ]
 }

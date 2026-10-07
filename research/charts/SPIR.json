@@ -1,6 +1,6 @@
 {
   "ticker": "SPIR",
-  "updated": "2026-10-06 23:03:26",
+  "updated": "2026-10-07 00:47:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 10.8,
       "high": 11.18,
       "low": 10.7,
-      "close": 10.98,
+      "close": NaN,
       "volume": 914313
     }
   ]
