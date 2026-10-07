@@ -1,6 +1,6 @@
 {
   "ticker": "OPCH",
-  "updated": "2026-10-07 00:44:24",
+  "updated": "2026-10-07 19:38:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 30.97,
       "close": 31.0,
       "volume": 65081100
+    },
+    {
+      "date": "2026-10-07",
+      "open": 31.01,
+      "high": 31.06,
+      "low": 30.99,
+      "close": 31.005,
+      "volume": 13623275
     }
   ]
 }
