@@ -1,6 +1,6 @@
 {
   "ticker": "TWST",
-  "updated": "2026-10-07 23:47:02",
+  "updated": "2026-10-08 01:01:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 158.26,
       "high": 167.2948,
       "low": 152.5,
-      "close": 155.65,
+      "close": NaN,
       "volume": 5894998
     }
   ]

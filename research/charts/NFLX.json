@@ -1,6 +1,6 @@
 {
   "ticker": "NFLX",
-  "updated": "2026-10-07 23:47:25",
+  "updated": "2026-10-08 01:01:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 68.8,
       "high": 69.79,
       "low": 68.405,
-      "close": 69.7,
+      "close": NaN,
       "volume": 29990515
     }
   ]

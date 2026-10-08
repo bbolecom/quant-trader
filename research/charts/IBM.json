@@ -1,6 +1,6 @@
 {
   "ticker": "IBM",
-  "updated": "2026-10-07 23:47:23",
+  "updated": "2026-10-08 01:01:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 221.9,
       "high": 222.41,
       "low": 218.79,
-      "close": 220.51,
+      "close": NaN,
       "volume": 3864661
     }
   ]
