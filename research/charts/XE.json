@@ -1,6 +1,6 @@
 {
   "ticker": "XE",
-  "updated": "2026-10-08 01:04:12",
+  "updated": "2026-10-08 19:33:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -921,9 +921,17 @@
       "date": "2026-10-07",
       "open": 14.79,
       "high": 14.93,
-      "low": 14.085,
-      "close": NaN,
-      "volume": 7050005
+      "low": 14.09,
+      "close": 14.39,
+      "volume": 7092800
+    },
+    {
+      "date": "2026-10-08",
+      "open": 14.1,
+      "high": 14.23,
+      "low": 13.22,
+      "close": 13.63,
+      "volume": 6077094
     }
   ]
 }

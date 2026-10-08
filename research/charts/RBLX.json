@@ -1,6 +1,6 @@
 {
   "ticker": "RBLX",
-  "updated": "2026-10-08 01:01:55",
+  "updated": "2026-10-08 19:33:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-07",
       "open": 44.03,
       "high": 46.655,
-      "low": 43.8651,
-      "close": NaN,
-      "volume": 12598314
+      "low": 43.865,
+      "close": 46.41,
+      "volume": 12600400
+    },
+    {
+      "date": "2026-10-08",
+      "open": 45.7,
+      "high": 45.93,
+      "low": 44.215,
+      "close": 45.41,
+      "volume": 6720278
     }
   ]
 }

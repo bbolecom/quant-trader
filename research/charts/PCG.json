@@ -1,6 +1,6 @@
 {
   "ticker": "PCG",
-  "updated": "2026-10-08 01:01:54",
+  "updated": "2026-10-08 19:33:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 12.46,
       "high": 12.85,
       "low": 12.45,
-      "close": NaN,
-      "volume": 39387230
+      "close": 12.79,
+      "volume": 39546200
+    },
+    {
+      "date": "2026-10-08",
+      "open": 12.76,
+      "high": 12.825,
+      "low": 12.55,
+      "close": 12.6545,
+      "volume": 22470948
     }
   ]
 }
