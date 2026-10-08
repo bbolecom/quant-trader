@@ -1,18 +1,10 @@
 {
   "ticker": "UEC",
-  "updated": "2026-10-08 19:33:41",
+  "updated": "2026-10-08 23:54:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-08",
-      "open": 14.25,
-      "high": 14.61,
-      "low": 13.63,
-      "close": 13.96,
-      "volume": 9652500
-    },
     {
       "date": "2026-04-09",
       "open": 13.62,
@@ -1026,8 +1018,8 @@
       "open": 9.39,
       "high": 9.49,
       "low": 9.0,
-      "close": 9.065,
-      "volume": 6411969
+      "close": 9.14,
+      "volume": 10888578
     }
   ]
 }
