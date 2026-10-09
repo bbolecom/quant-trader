@@ -1,6 +1,6 @@
 {
   "ticker": "INTR",
-  "updated": "2026-10-08 23:54:15",
+  "updated": "2026-10-09 01:14:17",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 7.12,
       "high": 7.4,
       "low": 7.1,
-      "close": 7.24,
+      "close": NaN,
       "volume": 14367593
     }
   ]

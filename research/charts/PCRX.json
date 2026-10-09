@@ -1,6 +1,6 @@
 {
   "ticker": "PCRX",
-  "updated": "2026-10-08 23:54:31",
+  "updated": "2026-10-09 01:14:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 36.32,
       "high": 36.4,
       "low": 36.27,
-      "close": 36.39,
+      "close": NaN,
       "volume": 28880136
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "VST",
-  "updated": "2026-10-08 23:54:13",
+  "updated": "2026-10-09 01:17:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 165.81,
       "high": 168.748,
       "low": 155.2153,
-      "close": 156.14,
+      "close": NaN,
       "volume": 11278074
     }
   ]
