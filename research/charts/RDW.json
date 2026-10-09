@@ -1,18 +1,10 @@
 {
   "ticker": "RDW",
-  "updated": "2026-10-09 19:08:42",
+  "updated": "2026-10-09 23:12:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-09",
-      "open": 9.53,
-      "high": 9.76,
-      "low": 9.1,
-      "close": 9.22,
-      "volume": 12846600
-    },
     {
       "date": "2026-04-10",
       "open": 9.45,
@@ -1019,15 +1011,15 @@
       "high": 10.24,
       "low": 9.56,
       "close": 9.76,
-      "volume": 11103800
+      "volume": 11155300
     },
     {
       "date": "2026-10-09",
       "open": 9.83,
       "high": 9.9,
       "low": 9.4,
-      "close": 9.5198,
-      "volume": 7056732
+      "close": 9.58,
+      "volume": 9108081
     }
   ]
 }
