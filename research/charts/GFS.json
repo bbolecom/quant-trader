@@ -1,6 +1,6 @@
 {
   "ticker": "GFS",
-  "updated": "2026-10-09 01:14:31",
+  "updated": "2026-10-09 19:08:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-08",
-      "open": 49.01,
+      "open": 49.24,
       "high": 51.45,
       "low": 47.68,
-      "close": NaN,
-      "volume": 10416572
+      "close": 49.36,
+      "volume": 10466300
+    },
+    {
+      "date": "2026-10-09",
+      "open": 50.4,
+      "high": 50.8981,
+      "low": 47.55,
+      "close": 47.79,
+      "volume": 3334380
     }
   ]
 }

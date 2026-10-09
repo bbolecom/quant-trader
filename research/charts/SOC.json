@@ -1,6 +1,6 @@
 {
   "ticker": "SOC",
-  "updated": "2026-10-09 01:17:58",
+  "updated": "2026-10-09 19:08:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 3.78,
       "high": 4.1,
       "low": 3.71,
-      "close": NaN,
-      "volume": 14642008
+      "close": 3.86,
+      "volume": 14772100
+    },
+    {
+      "date": "2026-10-09",
+      "open": 3.84,
+      "high": 3.84,
+      "low": 3.67,
+      "close": 3.705,
+      "volume": 3128007
     }
   ]
 }

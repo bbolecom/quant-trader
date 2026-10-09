@@ -1,6 +1,6 @@
 {
   "ticker": "HAE",
-  "updated": "2026-10-09 01:14:29",
+  "updated": "2026-10-09 19:08:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-08",
       "open": 115.0,
-      "high": 120.72,
+      "high": 121.0,
       "low": 111.66,
-      "close": NaN,
-      "volume": 2765558
+      "close": 119.47,
+      "volume": 2775200
+    },
+    {
+      "date": "2026-10-09",
+      "open": 119.81,
+      "high": 121.1925,
+      "low": 116.515,
+      "close": 120.125,
+      "volume": 640445
     }
   ]
 }

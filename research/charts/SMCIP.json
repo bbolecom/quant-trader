@@ -1,6 +1,6 @@
 {
   "ticker": "SMCIP",
-  "updated": "2026-10-09 01:17:58",
+  "updated": "2026-10-09 19:08:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -665,9 +665,17 @@
       "date": "2026-10-08",
       "open": 73.37,
       "high": 73.37,
-      "low": 70.085,
-      "close": NaN,
-      "volume": 419427
+      "low": 70.09,
+      "close": 71.27,
+      "volume": 419800
+    },
+    {
+      "date": "2026-10-09",
+      "open": 71.89,
+      "high": 72.21,
+      "low": 68.51,
+      "close": 69.585,
+      "volume": 43487
     }
   ]
 }

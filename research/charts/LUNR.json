@@ -1,6 +1,6 @@
 {
   "ticker": "LUNR",
-  "updated": "2026-10-09 01:18:01",
+  "updated": "2026-10-09 19:08:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-08",
-      "open": 14.215,
+      "open": 14.22,
       "high": 14.38,
       "low": 13.4,
-      "close": NaN,
-      "volume": 9284614
+      "close": 13.7,
+      "volume": 9298800
+    },
+    {
+      "date": "2026-10-09",
+      "open": 13.885,
+      "high": 13.91,
+      "low": 13.0702,
+      "close": 13.215,
+      "volume": 5009850
     }
   ]
 }

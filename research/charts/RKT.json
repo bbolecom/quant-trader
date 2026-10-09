@@ -1,6 +1,6 @@
 {
   "ticker": "RKT",
-  "updated": "2026-10-09 01:14:31",
+  "updated": "2026-10-09 19:08:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 11.248,
       "high": 11.82,
       "low": 11.17,
-      "close": NaN,
-      "volume": 42974696
+      "close": 11.76,
+      "volume": 42994600
+    },
+    {
+      "date": "2026-10-09",
+      "open": 11.71,
+      "high": 11.72,
+      "low": 11.3024,
+      "close": 11.47,
+      "volume": 20525440
     }
   ]
 }
