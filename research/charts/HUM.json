@@ -1,6 +1,6 @@
 {
   "ticker": "HUM",
-  "updated": "2026-10-09 23:12:26",
+  "updated": "2026-10-10 00:54:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 450.49,
       "high": 456.5,
       "low": 428.4461,
-      "close": 431.87,
+      "close": NaN,
       "volume": 4989138
     }
   ]

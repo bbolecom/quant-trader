@@ -1,6 +1,6 @@
 {
   "ticker": "AMT",
-  "updated": "2026-10-09 23:12:27",
+  "updated": "2026-10-10 00:54:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 176.91,
       "high": 182.52,
       "low": 175.02,
-      "close": 182.24,
+      "close": NaN,
       "volume": 8468306
     }
   ]
