@@ -1,18 +1,10 @@
 {
   "ticker": "DOCS",
-  "updated": "2026-10-10 00:56:46",
+  "updated": "2026-10-12 21:55:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-10",
-      "open": 21.09,
-      "high": 21.59,
-      "low": 20.87,
-      "close": 21.05,
-      "volume": 3635200
-    },
     {
       "date": "2026-04-13",
       "open": 21.06,
@@ -1018,8 +1010,16 @@
       "open": 29.45,
       "high": 30.5,
       "low": 29.165,
-      "close": NaN,
-      "volume": 4940945
+      "close": 30.5,
+      "volume": 4941500
+    },
+    {
+      "date": "2026-10-12",
+      "open": 30.64,
+      "high": 30.875,
+      "low": 30.2,
+      "close": 30.58,
+      "volume": 3389636
     }
   ]
 }

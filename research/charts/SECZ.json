@@ -1,6 +1,6 @@
 {
   "ticker": "SECZ",
-  "updated": "2026-10-10 00:56:45",
+  "updated": "2026-10-12 21:55:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -562,8 +562,16 @@
       "open": 13.2,
       "high": 13.87,
       "low": 12.63,
-      "close": NaN,
-      "volume": 5671442
+      "close": 13.82,
+      "volume": 5677400
+    },
+    {
+      "date": "2026-10-12",
+      "open": 13.8,
+      "high": 13.87,
+      "low": 11.5101,
+      "close": 11.86,
+      "volume": 6258238
     }
   ]
 }

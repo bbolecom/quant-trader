@@ -1,18 +1,10 @@
 {
   "ticker": "COCO",
-  "updated": "2026-10-10 00:56:45",
+  "updated": "2026-10-12 21:55:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-10",
-      "open": 49.77,
-      "high": 51.09,
-      "low": 48.73,
-      "close": 51.0,
-      "volume": 851200
-    },
     {
       "date": "2026-04-13",
       "open": 50.97,
@@ -1018,8 +1010,16 @@
       "open": 55.38,
       "high": 58.49,
       "low": 54.34,
-      "close": NaN,
-      "volume": 1386566
+      "close": 58.39,
+      "volume": 1386600
+    },
+    {
+      "date": "2026-10-12",
+      "open": 58.5,
+      "high": 58.67,
+      "low": 56.87,
+      "close": 57.72,
+      "volume": 840724
     }
   ]
 }

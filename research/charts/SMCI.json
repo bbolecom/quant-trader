@@ -1,18 +1,10 @@
 {
   "ticker": "SMCI",
-  "updated": "2026-10-10 00:56:52",
+  "updated": "2026-10-12 21:55:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-10",
-      "open": 23.64,
-      "high": 25.55,
-      "low": 23.64,
-      "close": 25.26,
-      "volume": 43565800
-    },
     {
       "date": "2026-04-13",
       "open": 25.06,
@@ -1018,8 +1010,16 @@
       "open": 43.37,
       "high": 43.45,
       "low": 40.63,
-      "close": NaN,
-      "volume": 27216188
+      "close": 41.86,
+      "volume": 27279400
+    },
+    {
+      "date": "2026-10-12",
+      "open": 41.29,
+      "high": 41.38,
+      "low": 39.235,
+      "close": 39.98,
+      "volume": 25362407
     }
   ]
 }

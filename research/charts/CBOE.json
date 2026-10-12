@@ -1,18 +1,10 @@
 {
   "ticker": "CBOE",
-  "updated": "2026-10-10 00:56:46",
+  "updated": "2026-10-12 21:55:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-10",
-      "open": 295.0,
-      "high": 297.62,
-      "low": 293.65,
-      "close": 295.95,
-      "volume": 705000
-    },
     {
       "date": "2026-04-13",
       "open": 295.65,
@@ -1018,8 +1010,16 @@
       "open": 301.5,
       "high": 307.84,
       "low": 298.02,
-      "close": NaN,
-      "volume": 1443147
+      "close": 304.16,
+      "volume": 1443200
+    },
+    {
+      "date": "2026-10-12",
+      "open": 308.34,
+      "high": 310.99,
+      "low": 297.0,
+      "close": 297.38,
+      "volume": 1589710
     }
   ]
 }

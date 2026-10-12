@@ -1,18 +1,10 @@
 {
   "ticker": "SKYD",
-  "updated": "2026-10-10 00:56:46",
+  "updated": "2026-10-12 21:55:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-10",
-      "open": 10.9,
-      "high": 11.01,
-      "low": 10.49,
-      "close": 10.62,
-      "volume": 9474500
-    },
     {
       "date": "2026-04-13",
       "open": 10.53,
@@ -1017,9 +1009,17 @@
       "date": "2026-10-09",
       "open": 9.35,
       "high": 9.62,
-      "low": 9.135,
-      "close": NaN,
-      "volume": 24498704
+      "low": 9.13,
+      "close": 9.16,
+      "volume": 24622500
+    },
+    {
+      "date": "2026-10-12",
+      "open": 9.13,
+      "high": 9.285,
+      "low": 8.77,
+      "close": 9.16,
+      "volume": 22662412
     }
   ]
 }
