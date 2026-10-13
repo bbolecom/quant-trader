@@ -1,6 +1,6 @@
 {
   "ticker": "DT",
-  "updated": "2026-10-13 02:45:50",
+  "updated": "2026-10-13 19:59:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 64.16,
       "close": 65.25,
       "volume": 8287500
+    },
+    {
+      "date": "2026-10-13",
+      "open": 65.0,
+      "high": 66.2874,
+      "low": 63.88,
+      "close": 64.36,
+      "volume": 7550242
     }
   ]
 }

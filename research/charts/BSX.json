@@ -1,6 +1,6 @@
 {
   "ticker": "BSX",
-  "updated": "2026-10-13 02:45:50",
+  "updated": "2026-10-13 19:59:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 42.67,
       "close": 43.84,
       "volume": 13596400
+    },
+    {
+      "date": "2026-10-13",
+      "open": 43.95,
+      "high": 44.1522,
+      "low": 42.455,
+      "close": 43.345,
+      "volume": 11758260
     }
   ]
 }

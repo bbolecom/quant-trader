@@ -1,6 +1,6 @@
 {
   "ticker": "BMBL",
-  "updated": "2026-10-13 02:45:49",
+  "updated": "2026-10-13 19:59:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 3.975,
       "low": 2.5,
       "close": 3.8,
-      "volume": 40789200
+      "volume": 42333800
+    },
+    {
+      "date": "2026-10-13",
+      "open": 5.972,
+      "high": 5.98,
+      "low": 5.92,
+      "close": 5.95,
+      "volume": 115226509
     }
   ]
 }

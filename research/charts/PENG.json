@@ -1,6 +1,6 @@
 {
   "ticker": "PENG",
-  "updated": "2026-10-13 02:45:31",
+  "updated": "2026-10-13 19:59:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 80.1,
       "low": 72.83,
       "close": 79.155,
-      "volume": 5271100
+      "volume": 5290800
+    },
+    {
+      "date": "2026-10-13",
+      "open": 76.33,
+      "high": 80.47,
+      "low": 75.47,
+      "close": 78.26,
+      "volume": 3160745
     }
   ]
 }

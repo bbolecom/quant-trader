@@ -1,6 +1,6 @@
 {
   "ticker": "TMUS",
-  "updated": "2026-10-13 02:45:51",
+  "updated": "2026-10-13 19:59:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 149.58,
       "close": 151.87,
       "volume": 9028900
+    },
+    {
+      "date": "2026-10-13",
+      "open": 152.05,
+      "high": 154.75,
+      "low": 152.05,
+      "close": 153.78,
+      "volume": 4947790
     }
   ]
 }
