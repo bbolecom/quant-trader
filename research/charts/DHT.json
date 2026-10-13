@@ -1,18 +1,10 @@
 {
   "ticker": "DHT",
-  "updated": "2026-10-13 19:59:20",
+  "updated": "2026-10-13 23:37:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-13",
-      "open": 17.66,
-      "high": 18.01,
-      "low": 17.46,
-      "close": 17.57,
-      "volume": 4710700
-    },
     {
       "date": "2026-04-14",
       "open": 17.52,
@@ -1026,8 +1018,8 @@
       "open": 26.14,
       "high": 26.885,
       "low": 26.0,
-      "close": 26.595,
-      "volume": 5675817
+      "close": 26.59,
+      "volume": 6280072
     }
   ]
 }

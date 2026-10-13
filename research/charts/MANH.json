@@ -1,18 +1,10 @@
 {
   "ticker": "MANH",
-  "updated": "2026-10-13 19:59:19",
+  "updated": "2026-10-13 23:37:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-13",
-      "open": 121.07,
-      "high": 127.65,
-      "low": 119.14,
-      "close": 126.11,
-      "volume": 923300
-    },
     {
       "date": "2026-04-14",
       "open": 127.44,
@@ -1026,8 +1018,8 @@
       "open": 218.22,
       "high": 225.805,
       "low": 218.22,
-      "close": 222.92,
-      "volume": 408844
+      "close": 222.71,
+      "volume": 546880
     }
   ]
 }

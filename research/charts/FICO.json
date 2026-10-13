@@ -1,18 +1,10 @@
 {
   "ticker": "FICO",
-  "updated": "2026-10-13 19:59:18",
+  "updated": "2026-10-13 23:37:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-13",
-      "open": 927.41,
-      "high": 1013.51,
-      "low": 923.0,
-      "close": 1000.91,
-      "volume": 636500
-    },
     {
       "date": "2026-04-14",
       "open": 1010.0,
@@ -1026,8 +1018,8 @@
       "open": 742.0,
       "high": 764.0045,
       "low": 719.665,
-      "close": 721.195,
-      "volume": 1019108
+      "close": 723.03,
+      "volume": 1142392
     }
   ]
 }

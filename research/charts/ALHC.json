@@ -1,18 +1,10 @@
 {
   "ticker": "ALHC",
-  "updated": "2026-10-13 19:59:19",
+  "updated": "2026-10-13 23:37:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-13",
-      "open": 20.28,
-      "high": 21.01,
-      "low": 20.26,
-      "close": 20.98,
-      "volume": 1754000
-    },
     {
       "date": "2026-04-14",
       "open": 20.94,
@@ -1026,8 +1018,8 @@
       "open": 8.31,
       "high": 8.4899,
       "low": 8.112,
-      "close": 8.32,
-      "volume": 4915267
+      "close": 8.3,
+      "volume": 7095599
     }
   ]
 }

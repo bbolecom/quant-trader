@@ -1,18 +1,10 @@
 {
   "ticker": "TTMI",
-  "updated": "2026-10-13 19:59:35",
+  "updated": "2026-10-13 23:37:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-13",
-      "open": 120.85,
-      "high": 124.81,
-      "low": 119.62,
-      "close": 123.49,
-      "volume": 1342100
-    },
     {
       "date": "2026-04-14",
       "open": 126.53,
@@ -1026,8 +1018,8 @@
       "open": 106.3,
       "high": 116.35,
       "low": 104.1,
-      "close": 116.23,
-      "volume": 3236412
+      "close": 116.1,
+      "volume": 3732329
     }
   ]
 }
