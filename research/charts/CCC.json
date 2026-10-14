@@ -1,6 +1,6 @@
 {
   "ticker": "CCC",
-  "updated": "2026-10-13 23:37:23",
+  "updated": "2026-10-14 00:22:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 7.63,
       "high": 7.91,
       "low": 7.615,
-      "close": 7.82,
+      "close": NaN,
       "volume": 16455198
     }
   ]

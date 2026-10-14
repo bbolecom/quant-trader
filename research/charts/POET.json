@@ -1,6 +1,6 @@
 {
   "ticker": "POET",
-  "updated": "2026-10-13 23:37:33",
+  "updated": "2026-10-14 00:22:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 6.21,
       "high": 6.37,
       "low": 6.13,
-      "close": 6.32,
+      "close": NaN,
       "volume": 8103390
     }
   ]

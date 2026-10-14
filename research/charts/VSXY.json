@@ -1,6 +1,6 @@
 {
   "ticker": "VSXY",
-  "updated": "2026-10-13 23:37:22",
+  "updated": "2026-10-14 00:19:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 90.73,
       "high": 93.39,
       "low": 88.245,
-      "close": 88.82,
+      "close": NaN,
       "volume": 1587487
     }
   ]
