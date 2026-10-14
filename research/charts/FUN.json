@@ -1,6 +1,6 @@
 {
   "ticker": "FUN",
-  "updated": "2026-10-14 00:22:30",
+  "updated": "2026-10-14 18:13:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 10.9,
       "high": 11.26,
       "low": 9.8,
-      "close": NaN,
-      "volume": 14542666
+      "close": 10.2,
+      "volume": 14514100
+    },
+    {
+      "date": "2026-10-14",
+      "open": 9.96,
+      "high": 10.02,
+      "low": 9.145,
+      "close": 9.16,
+      "volume": 4409399
     }
   ]
 }

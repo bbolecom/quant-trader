@@ -1,6 +1,6 @@
 {
   "ticker": "AVXL",
-  "updated": "2026-10-14 00:22:35",
+  "updated": "2026-10-14 18:13:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 1.53,
       "high": 1.53,
       "low": 1.475,
-      "close": NaN,
-      "volume": 1194609
+      "close": 1.48,
+      "volume": 1194600
+    },
+    {
+      "date": "2026-10-14",
+      "open": 1.45,
+      "high": 1.55,
+      "low": 1.45,
+      "close": 1.53,
+      "volume": 653254
     }
   ]
 }

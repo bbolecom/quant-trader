@@ -1,6 +1,6 @@
 {
   "ticker": "LW",
-  "updated": "2026-10-14 00:22:30",
+  "updated": "2026-10-14 18:13:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-13",
       "open": 50.83,
-      "high": 52.5,
-      "low": 50.0401,
-      "close": NaN,
-      "volume": 2766229
+      "high": 52.51,
+      "low": 50.04,
+      "close": 51.96,
+      "volume": 2766200
+    },
+    {
+      "date": "2026-10-14",
+      "open": 52.02,
+      "high": 53.16,
+      "low": 51.28,
+      "close": 53.035,
+      "volume": 1810466
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ENOV",
-  "updated": "2026-10-14 00:22:30",
+  "updated": "2026-10-14 18:13:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-13",
       "open": 18.5,
       "high": 19.12,
-      "low": 18.19,
-      "close": NaN,
-      "volume": 1405754
+      "low": 18.18,
+      "close": 18.99,
+      "volume": 1405800
+    },
+    {
+      "date": "2026-10-14",
+      "open": 18.74,
+      "high": 18.85,
+      "low": 18.235,
+      "close": 18.34,
+      "volume": 311063
     }
   ]
 }
