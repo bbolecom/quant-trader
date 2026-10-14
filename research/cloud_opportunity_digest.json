@@ -1,18 +1,18 @@
 {
   "date": "2026-10-14",
-  "updated": "2026-10-14 00:22:41",
-  "title": "📊 量化机会 56条 · 2026-10-14",
-  "total_actionable": 56,
+  "updated": "2026-10-14 23:59:27",
+  "title": "📊 量化机会 55条 · 2026-10-14",
+  "total_actionable": 55,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 7,
+      "actionable": 6,
       "symbols": [
         "—",
-        "CCC",
-        "VFC"
+        "TRAX",
+        "NRIX"
       ],
       "has_data": true,
       "data_date": "2026-10-14"
@@ -30,11 +30,11 @@
       "id": "sndk_iron",
       "name": "SNDK铁鹰收租",
       "path": "research/sndk_iron_today.json",
-      "actionable": 5,
+      "actionable": 4,
       "symbols": [
-        "SNDK",
         "SOFI",
-        "QQQ"
+        "QQQ",
+        "SPY"
       ],
       "has_data": true,
       "data_date": "2026-10-14"
@@ -45,9 +45,9 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "AMD",
-        "META",
-        "QCOM"
+        "MU",
+        "QCOM",
+        "META"
       ],
       "has_data": true,
       "data_date": "2026-10-14"
@@ -58,9 +58,9 @@
       "path": "research/flow_daily_today.json",
       "actionable": 3,
       "symbols": [
-        "SHOP",
         "ACI",
-        "TALO"
+        "PRGO",
+        "FAST"
       ],
       "has_data": true,
       "data_date": "2026-10-14"
@@ -87,8 +87,10 @@
       "id": "extreme20",
       "name": "暴涨暴跌20%事件",
       "path": "research/extreme20_today.json",
-      "actionable": 0,
-      "symbols": [],
+      "actionable": 1,
+      "symbols": [
+        "LQDA"
+      ],
       "has_data": true,
       "data_date": "2026-10-14"
     },
@@ -110,7 +112,11 @@
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [],
+      "symbols": [
+        "AMTD",
+        "YRD",
+        "BSP"
+      ],
       "has_data": true,
       "data_date": "2026-10-14"
     },
@@ -129,7 +135,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 56条 · 2026-10-14",
-    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 7\n• 每日选股 · 统一入口: 7 · —、CCC、VFC\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · AMD、META、QCOM\n• 资金流向操盘痕迹: 3 · SHOP、ACI、TALO\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 55条 · 2026-10-14",
+    "body": "大盘 🟢 牛市（SPY>MA50） · 每日选股可开 6\n• 每日选股 · 统一入口: 6 · —、TRAX、NRIX\n• SNDK铁鹰收租: 4 · SOFI、QQQ、SPY\n• VRP波动率溢价: 5 · MU、QCOM、META\n• 资金流向操盘痕迹: 3 · ACI、PRGO、FAST\n• 暴涨暴跌20%事件: 1 · LQDA\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
