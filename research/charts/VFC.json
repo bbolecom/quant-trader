@@ -1,18 +1,10 @@
 {
   "ticker": "VFC",
-  "updated": "2026-10-14 18:13:22",
+  "updated": "2026-10-14 21:40:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-14",
-      "open": 19.04,
-      "high": 19.27,
-      "low": 18.64,
-      "close": 18.8,
-      "volume": 7115300
-    },
     {
       "date": "2026-04-15",
       "open": 19.24,
@@ -1024,10 +1016,10 @@
     {
       "date": "2026-10-14",
       "open": 16.03,
-      "high": 16.285,
+      "high": 16.51,
       "low": 15.835,
-      "close": 16.23,
-      "volume": 8672567
+      "close": 16.48,
+      "volume": 18946693
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "SOUN",
-  "updated": "2026-10-14 18:13:28",
+  "updated": "2026-10-14 21:40:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-14",
-      "open": 7.07,
-      "high": 7.14,
-      "low": 6.92,
-      "close": 6.97,
-      "volume": 20860200
-    },
     {
       "date": "2026-04-15",
       "open": 7.195,
@@ -1019,15 +1011,15 @@
       "high": 4.995,
       "low": 4.85,
       "close": 4.88,
-      "volume": 16662600
+      "volume": 16706300
     },
     {
       "date": "2026-10-14",
       "open": 4.75,
       "high": 4.78,
-      "low": 4.56,
-      "close": 4.58,
-      "volume": 13630237
+      "low": 4.53,
+      "close": 4.53,
+      "volume": 19228222
     }
   ]
 }
