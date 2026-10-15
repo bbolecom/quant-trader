@@ -1,6 +1,6 @@
 {
   "ticker": "PFE",
-  "updated": "2026-10-15 00:05:50",
+  "updated": "2026-10-15 17:56:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 28.6,
       "high": 29.49,
       "low": 28.55,
-      "close": NaN,
-      "volume": 39330520
+      "close": 29.21,
+      "volume": 39330100
+    },
+    {
+      "date": "2026-10-15",
+      "open": 29.57,
+      "high": 29.88,
+      "low": 29.51,
+      "close": 29.7724,
+      "volume": 18610359
     }
   ]
 }

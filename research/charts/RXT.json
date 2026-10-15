@@ -1,6 +1,6 @@
 {
   "ticker": "RXT",
-  "updated": "2026-10-15 00:05:41",
+  "updated": "2026-10-15 17:56:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 3.55,
       "high": 3.65,
       "low": 3.14,
-      "close": NaN,
-      "volume": 5922338
+      "close": 3.145,
+      "volume": 5919400
+    },
+    {
+      "date": "2026-10-15",
+      "open": 3.06,
+      "high": 3.13,
+      "low": 2.93,
+      "close": 3.125,
+      "volume": 4839680
     }
   ]
 }

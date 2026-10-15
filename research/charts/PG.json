@@ -1,6 +1,6 @@
 {
   "ticker": "PG",
-  "updated": "2026-10-15 00:05:51",
+  "updated": "2026-10-15 17:56:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-14",
       "open": 154.64,
       "high": 156.63,
-      "low": 154.285,
-      "close": NaN,
-      "volume": 10668310
+      "low": 154.29,
+      "close": 156.53,
+      "volume": 10668100
+    },
+    {
+      "date": "2026-10-15",
+      "open": 158.325,
+      "high": 159.95,
+      "low": 157.65,
+      "close": 157.92,
+      "volume": 6990993
     }
   ]
 }

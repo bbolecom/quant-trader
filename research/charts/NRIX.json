@@ -1,6 +1,6 @@
 {
   "ticker": "NRIX",
-  "updated": "2026-10-15 00:05:29",
+  "updated": "2026-10-15 17:56:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 22.012,
       "high": 24.01,
       "low": 21.4,
-      "close": NaN,
-      "volume": 3820989
+      "close": 23.67,
+      "volume": 3820700
+    },
+    {
+      "date": "2026-10-15",
+      "open": 23.66,
+      "high": 25.135,
+      "low": 23.6117,
+      "close": 24.93,
+      "volume": 1386603
     }
   ]
 }

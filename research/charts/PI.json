@@ -1,6 +1,6 @@
 {
   "ticker": "PI",
-  "updated": "2026-10-15 00:05:30",
+  "updated": "2026-10-15 17:56:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 177.88,
       "high": 192.82,
       "low": 177.88,
-      "close": NaN,
-      "volume": 561679
+      "close": 192.14,
+      "volume": 561600
+    },
+    {
+      "date": "2026-10-15",
+      "open": 187.18,
+      "high": 190.49,
+      "low": 183.1885,
+      "close": 187.05,
+      "volume": 155915
     }
   ]
 }

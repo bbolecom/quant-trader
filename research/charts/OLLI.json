@@ -1,6 +1,6 @@
 {
   "ticker": "OLLI",
-  "updated": "2026-10-15 00:05:31",
+  "updated": "2026-10-15 17:56:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 88.43,
       "high": 93.225,
       "low": 88.09,
-      "close": NaN,
-      "volume": 2148276
+      "close": 93.12,
+      "volume": 2148300
+    },
+    {
+      "date": "2026-10-15",
+      "open": 94.05,
+      "high": 95.77,
+      "low": 93.28,
+      "close": 94.35,
+      "volume": 1025186
     }
   ]
 }

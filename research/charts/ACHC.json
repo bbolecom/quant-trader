@@ -1,6 +1,6 @@
 {
   "ticker": "ACHC",
-  "updated": "2026-10-15 00:05:31",
+  "updated": "2026-10-15 17:56:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-14",
-      "open": 29.955,
-      "high": 31.89,
+      "open": 29.84,
+      "high": 31.9,
       "low": 29.84,
-      "close": NaN,
-      "volume": 1926683
+      "close": 31.67,
+      "volume": 1926700
+    },
+    {
+      "date": "2026-10-15",
+      "open": 31.67,
+      "high": 32.02,
+      "low": 31.12,
+      "close": 31.305,
+      "volume": 666454
     }
   ]
 }
