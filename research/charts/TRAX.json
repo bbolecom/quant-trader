@@ -1,6 +1,6 @@
 {
   "ticker": "TRAX",
-  "updated": "2026-10-14 23:59:18",
+  "updated": "2026-10-15 00:05:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 31.28,
       "high": 34.3199,
       "low": 30.88,
-      "close": 34.13,
+      "close": NaN,
       "volume": 982082
     }
   ]

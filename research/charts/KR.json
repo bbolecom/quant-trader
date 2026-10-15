@@ -1,6 +1,6 @@
 {
   "ticker": "KR",
-  "updated": "2026-10-14 23:56:29",
+  "updated": "2026-10-15 00:05:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 61.16,
       "high": 63.1,
       "low": 60.9,
-      "close": 63.09,
+      "close": NaN,
       "volume": 10292234
     }
   ]

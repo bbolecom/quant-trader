@@ -1,6 +1,6 @@
 {
   "ticker": "HALO",
-  "updated": "2026-10-14 23:59:18",
+  "updated": "2026-10-15 00:05:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 109.84,
       "high": 119.21,
       "low": 109.42,
-      "close": 116.82,
+      "close": NaN,
       "volume": 3769034
     }
   ]

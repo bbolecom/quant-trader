@@ -1,6 +1,6 @@
 {
   "ticker": "KO",
-  "updated": "2026-10-14 23:56:31",
+  "updated": "2026-10-15 00:05:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 90.895,
       "high": 91.93,
       "low": 90.55,
-      "close": 91.78,
+      "close": NaN,
       "volume": 14523087
     }
   ]

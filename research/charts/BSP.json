@@ -1,6 +1,6 @@
 {
   "ticker": "BSP",
-  "updated": "2026-10-14 23:56:28",
+  "updated": "2026-10-15 00:05:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -594,7 +594,7 @@
       "open": 50.28,
       "high": 58.56,
       "low": 49.21,
-      "close": 53.46,
+      "close": NaN,
       "volume": 19644698
     }
   ]

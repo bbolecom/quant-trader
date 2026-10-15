@@ -1,6 +1,6 @@
 {
   "ticker": "LEGN",
-  "updated": "2026-10-14 23:59:18",
+  "updated": "2026-10-15 00:05:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 17.94,
       "high": 19.7319,
       "low": 17.745,
-      "close": 19.04,
+      "close": NaN,
       "volume": 3534842
     }
   ]
