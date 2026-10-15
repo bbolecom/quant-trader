@@ -1,18 +1,10 @@
 {
   "ticker": "CHWY",
-  "updated": "2026-10-15 17:56:03",
+  "updated": "2026-10-15 20:44:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-15",
-      "open": 26.47,
-      "high": 27.24,
-      "low": 26.383,
-      "close": 27.17,
-      "volume": 8423200
-    },
     {
       "date": "2026-04-16",
       "open": 27.46,
@@ -1026,8 +1018,8 @@
       "open": 21.0,
       "high": 21.74,
       "low": 20.9935,
-      "close": 21.4975,
-      "volume": 4599630
+      "close": 21.31,
+      "volume": 8506115
     }
   ]
 }
