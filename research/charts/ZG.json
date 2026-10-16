@@ -1,18 +1,10 @@
 {
   "ticker": "ZG",
-  "updated": "2026-10-16 17:44:30",
+  "updated": "2026-10-16 20:05:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-16",
-      "open": 43.95,
-      "high": 44.59,
-      "low": 43.36,
-      "close": 44.1,
-      "volume": 633600
-    },
     {
       "date": "2026-04-17",
       "open": 45.35,
@@ -1025,9 +1017,9 @@
       "date": "2026-10-16",
       "open": 32.78,
       "high": 33.04,
-      "low": 31.57,
-      "close": 31.73,
-      "volume": 505186
+      "low": 31.485,
+      "close": 31.88,
+      "volume": 1071714
     }
   ]
 }

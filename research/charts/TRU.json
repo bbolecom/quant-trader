@@ -1,18 +1,10 @@
 {
   "ticker": "TRU",
-  "updated": "2026-10-16 17:44:29",
+  "updated": "2026-10-16 20:05:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-16",
-      "open": 75.49,
-      "high": 76.67,
-      "low": 75.01,
-      "close": 75.64,
-      "volume": 1644800
-    },
     {
       "date": "2026-04-17",
       "open": 77.43,
@@ -1026,8 +1018,8 @@
       "open": 74.9,
       "high": 75.84,
       "low": 72.68,
-      "close": 73.25,
-      "volume": 1230188
+      "close": 74.07,
+      "volume": 2839817
     }
   ]
 }
