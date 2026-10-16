@@ -1,16 +1,16 @@
 {
-  "扫描时间": "2026-10-16 22:46:07",
+  "扫描时间": "2026-10-16 23:00:39",
   "扫描日期": "2026-10-16",
   "scan_mode": "fast_market",
   "budget_sec": 300.0,
-  "elapsed_sec": 4.56,
+  "elapsed_sec": 5.13,
   "within_budget": true,
   "scan_stats": {
     "universe": 742,
     "after_liquidity_filter": 627,
     "signals": 160,
-    "phase1_sec": 0.29,
-    "phase2_sec": 4.23,
+    "phase1_sec": 0.3,
+    "phase2_sec": 4.79,
     "presets": [
       "当日涨幅榜",
       "当日跌幅榜",
