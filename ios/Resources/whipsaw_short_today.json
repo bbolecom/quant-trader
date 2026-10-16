@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "market": {
-    "SPY": 771.79,
-    "MA20": 771.11,
-    "弱市": false
+    "SPY": 763.25,
+    "MA20": 771.18,
+    "弱市": true
   },
   "mode": "aggressive",
-  "仓位倍数": 1.0,
+  "仓位倍数": 2.0,
   "config": {
     "min_gain_pct": 15.0,
     "min_vol_ratio": 3.0,
