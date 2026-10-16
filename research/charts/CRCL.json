@@ -1,6 +1,6 @@
 {
   "ticker": "CRCL",
-  "updated": "2026-10-15 23:46:42",
+  "updated": "2026-10-16 17:44:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 87.76,
       "low": 75.27,
       "close": 86.97,
-      "volume": 15994300
+      "volume": 16037700
+    },
+    {
+      "date": "2026-10-16",
+      "open": 86.35,
+      "high": 87.52,
+      "low": 81.72,
+      "close": 82.91,
+      "volume": 6760045
     }
   ]
 }

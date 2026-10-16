@@ -1,6 +1,6 @@
 {
   "ticker": "KD",
-  "updated": "2026-10-15 23:46:42",
+  "updated": "2026-10-16 17:44:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-15",
       "open": 11.91,
       "high": 13.235,
-      "low": 11.915,
+      "low": 11.84,
       "close": 13.19,
-      "volume": 5281323
+      "volume": 5283700
+    },
+    {
+      "date": "2026-10-16",
+      "open": 13.29,
+      "high": 13.6,
+      "low": 12.9401,
+      "close": 13.055,
+      "volume": 2640697
     }
   ]
 }

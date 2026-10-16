@@ -1,6 +1,6 @@
 {
   "ticker": "SVIX",
-  "updated": "2026-10-15 23:46:43",
+  "updated": "2026-10-16 17:44:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-15",
       "open": 28.59,
-      "high": 29.645,
+      "high": 29.65,
       "low": 28.32,
       "close": 29.41,
-      "volume": 3342451
+      "volume": 3344000
+    },
+    {
+      "date": "2026-10-16",
+      "open": 29.89,
+      "high": 30.11,
+      "low": 25.73,
+      "close": 27.55,
+      "volume": 5404815
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "FIGR",
-  "updated": "2026-10-15 23:46:42",
+  "updated": "2026-10-16 17:44:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 27.7,
       "low": 24.1,
       "close": 27.67,
-      "volume": 5053889
+      "volume": 5058200
+    },
+    {
+      "date": "2026-10-16",
+      "open": 27.65,
+      "high": 28.77,
+      "low": 27.53,
+      "close": 27.99,
+      "volume": 2445400
     }
   ]
 }
