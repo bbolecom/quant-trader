@@ -1,6 +1,6 @@
 {
   "ticker": "AR",
-  "updated": "2026-10-19 23:02:10",
+  "updated": "2026-10-20 00:22:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 38.67,
       "high": 39.2,
       "low": 38.0,
-      "close": 38.83,
+      "close": NaN,
       "volume": 3953058
     }
   ]

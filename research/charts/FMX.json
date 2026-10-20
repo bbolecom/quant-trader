@@ -1,6 +1,6 @@
 {
   "ticker": "FMX",
-  "updated": "2026-10-19 23:02:12",
+  "updated": "2026-10-20 00:22:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 126.79,
       "high": 128.85,
       "low": 126.425,
-      "close": 126.93,
+      "close": NaN,
       "volume": 999055
     }
   ]

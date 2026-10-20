@@ -1,6 +1,6 @@
 {
   "ticker": "MTDR",
-  "updated": "2026-10-19 23:02:10",
+  "updated": "2026-10-20 00:22:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 57.24,
       "high": 58.002,
       "low": 57.01,
-      "close": 57.38,
+      "close": NaN,
       "volume": 1001031
     }
   ]

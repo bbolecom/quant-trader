@@ -1,6 +1,6 @@
 {
   "ticker": "NOG",
-  "updated": "2026-10-19 23:02:10",
+  "updated": "2026-10-20 00:22:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 27.0,
       "high": 27.87,
       "low": 26.86,
-      "close": 27.75,
+      "close": NaN,
       "volume": 1861126
     }
   ]

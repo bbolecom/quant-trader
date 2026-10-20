@@ -1,6 +1,6 @@
 {
   "ticker": "OVV",
-  "updated": "2026-10-19 23:02:11",
+  "updated": "2026-10-20 00:22:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 69.01,
       "high": 70.13,
       "low": 68.75,
-      "close": 70.04,
+      "close": NaN,
       "volume": 2764258
     }
   ]

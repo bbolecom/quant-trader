@@ -1,6 +1,6 @@
 {
   "ticker": "TALO",
-  "updated": "2026-10-19 23:02:11",
+  "updated": "2026-10-20 00:22:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 17.67,
       "high": 18.3,
       "low": 17.67,
-      "close": 18.05,
+      "close": NaN,
       "volume": 6001891
     }
   ]

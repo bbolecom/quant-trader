@@ -1,6 +1,6 @@
 {
   "ticker": "AMZN",
-  "updated": "2026-10-19 23:02:34",
+  "updated": "2026-10-20 00:22:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 255.34,
       "high": 263.71,
       "low": 255.22,
-      "close": 262.45,
+      "close": NaN,
       "volume": 54744203
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "ARM",
-  "updated": "2026-10-19 23:02:30",
+  "updated": "2026-10-20 00:22:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 236.0,
       "high": 236.42,
       "low": 227.7,
-      "close": 228.05,
+      "close": NaN,
       "volume": 4095537
     }
   ]
