@@ -1,18 +1,10 @@
 {
   "ticker": "NI",
-  "updated": "2026-10-20 18:10:59",
+  "updated": "2026-10-20 21:34:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-20",
-      "open": 48.17,
-      "high": 48.46,
-      "low": 47.64,
-      "close": 47.78,
-      "volume": 4389100
-    },
     {
       "date": "2026-04-21",
       "open": 48.09,
@@ -1026,8 +1018,8 @@
       "open": 42.39,
       "high": 42.935,
       "low": 42.19,
-      "close": 42.845,
-      "volume": 2035520
+      "close": 42.76,
+      "volume": 4990688
     }
   ]
 }

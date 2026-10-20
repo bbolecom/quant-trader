@@ -1,18 +1,10 @@
 {
   "ticker": "PR",
-  "updated": "2026-10-20 18:10:59",
+  "updated": "2026-10-20 21:34:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-20",
-      "open": 19.62,
-      "high": 19.75,
-      "low": 19.44,
-      "close": 19.6,
-      "volume": 6759200
-    },
     {
       "date": "2026-04-21",
       "open": 19.75,
@@ -1026,8 +1018,8 @@
       "open": 25.16,
       "high": 25.2123,
       "low": 24.385,
-      "close": 24.865,
-      "volume": 7079980
+      "close": 24.84,
+      "volume": 11120663
     }
   ]
 }

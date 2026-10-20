@@ -1,18 +1,10 @@
 {
   "ticker": "KMI",
-  "updated": "2026-10-20 18:10:58",
+  "updated": "2026-10-20 21:34:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-20",
-      "open": 31.75,
-      "high": 32.42,
-      "low": 31.71,
-      "close": 31.94,
-      "volume": 10838400
-    },
     {
       "date": "2026-04-21",
       "open": 31.95,
@@ -1026,8 +1018,8 @@
       "open": 33.59,
       "high": 33.6787,
       "low": 33.365,
-      "close": 33.525,
-      "volume": 4982824
+      "close": 33.57,
+      "volume": 11940232
     }
   ]
 }

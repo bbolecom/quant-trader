@@ -1,18 +1,10 @@
 {
   "ticker": "XERS",
-  "updated": "2026-10-20 18:11:00",
+  "updated": "2026-10-20 21:34:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-20",
-      "open": 6.31,
-      "high": 6.36,
-      "low": 6.19,
-      "close": 6.25,
-      "volume": 1491700
-    },
     {
       "date": "2026-04-21",
       "open": 6.25,
@@ -1026,8 +1018,8 @@
       "open": 10.99,
       "high": 11.35,
       "low": 10.9639,
-      "close": 11.135,
-      "volume": 1519209
+      "close": 11.13,
+      "volume": 2900510
     }
   ]
 }

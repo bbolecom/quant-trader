@@ -1,18 +1,10 @@
 {
   "ticker": "CRGY",
-  "updated": "2026-10-20 18:10:58",
+  "updated": "2026-10-20 21:34:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-20",
-      "open": 12.02,
-      "high": 12.15,
-      "low": 11.805,
-      "close": 11.98,
-      "volume": 7866200
-    },
     {
       "date": "2026-04-21",
       "open": 12.08,
@@ -1026,8 +1018,8 @@
       "open": 13.99,
       "high": 13.99,
       "low": 13.4,
-      "close": 13.585,
-      "volume": 4999822
+      "close": 13.51,
+      "volume": 10398268
     }
   ]
 }
