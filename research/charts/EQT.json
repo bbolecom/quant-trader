@@ -1,6 +1,6 @@
 {
   "ticker": "EQT",
-  "updated": "2026-10-20 00:24:35",
+  "updated": "2026-10-20 18:10:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 54.49,
       "high": 54.93,
       "low": 54.11,
-      "close": NaN,
-      "volume": 7416053
+      "close": 54.42,
+      "volume": 7416700
+    },
+    {
+      "date": "2026-10-20",
+      "open": 54.5,
+      "high": 54.92,
+      "low": 54.08,
+      "close": 54.895,
+      "volume": 2568029
     }
   ]
 }

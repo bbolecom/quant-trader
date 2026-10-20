@@ -1,6 +1,6 @@
 {
   "ticker": "EOSE",
-  "updated": "2026-10-20 00:24:38",
+  "updated": "2026-10-20 18:11:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,15 +1011,23 @@
       "high": 2.11,
       "low": 1.805,
       "close": 1.82,
-      "volume": 31098300
+      "volume": 31322100
     },
     {
       "date": "2026-10-19",
-      "open": 2.01,
+      "open": 2.015,
       "high": 2.02,
       "low": 1.72,
-      "close": NaN,
-      "volume": 41300754
+      "close": 1.81,
+      "volume": 41451700
+    },
+    {
+      "date": "2026-10-20",
+      "open": 1.75,
+      "high": 1.8299,
+      "low": 1.71,
+      "close": 1.7407,
+      "volume": 15383905
     }
   ]
 }

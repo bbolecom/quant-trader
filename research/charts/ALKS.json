@@ -1,6 +1,6 @@
 {
   "ticker": "ALKS",
-  "updated": "2026-10-20 00:24:35",
+  "updated": "2026-10-20 18:10:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 41.46,
       "high": 43.64,
       "low": 41.35,
-      "close": NaN,
-      "volume": 2713433
+      "close": 42.97,
+      "volume": 2792900
+    },
+    {
+      "date": "2026-10-20",
+      "open": 43.38,
+      "high": 45.2,
+      "low": 43.205,
+      "close": 44.31,
+      "volume": 1080222
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "BTG",
-  "updated": "2026-10-20 00:24:35",
+  "updated": "2026-10-20 18:10:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-19",
       "open": 5.26,
-      "high": 5.325,
+      "high": 5.33,
       "low": 5.21,
-      "close": NaN,
-      "volume": 13317117
+      "close": 5.21,
+      "volume": 13597500
+    },
+    {
+      "date": "2026-10-20",
+      "open": 5.13,
+      "high": 5.37,
+      "low": 5.1,
+      "close": 5.2594,
+      "volume": 9864811
     }
   ]
 }

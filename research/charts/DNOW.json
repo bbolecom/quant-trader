@@ -1,6 +1,6 @@
 {
   "ticker": "DNOW",
-  "updated": "2026-10-20 00:24:35",
+  "updated": "2026-10-20 18:10:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 15.74,
       "high": 16.43,
       "low": 15.62,
-      "close": NaN,
-      "volume": 3712499
+      "close": 16.21,
+      "volume": 3739500
+    },
+    {
+      "date": "2026-10-20",
+      "open": 16.26,
+      "high": 16.43,
+      "low": 15.64,
+      "close": 15.815,
+      "volume": 990659
     }
   ]
 }

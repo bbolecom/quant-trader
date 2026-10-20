@@ -1,6 +1,6 @@
 {
   "ticker": "PLNT",
-  "updated": "2026-10-20 00:24:35",
+  "updated": "2026-10-20 18:10:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 51.08,
       "high": 52.91,
       "low": 50.52,
-      "close": NaN,
-      "volume": 2206783
+      "close": 52.89,
+      "volume": 2206900
+    },
+    {
+      "date": "2026-10-20",
+      "open": 53.21,
+      "high": 53.76,
+      "low": 52.9575,
+      "close": 53.42,
+      "volume": 797458
     }
   ]
 }
