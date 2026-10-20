@@ -1,6 +1,6 @@
 {
   "选股日期": "2026-10-20",
-  "选股时间": "2026-10-20 00:24:00",
+  "选股时间": "2026-10-20 23:57:15",
   "min_win_rate": 0.8,
   "summary": {
     "可开仓高胜率": 0,
@@ -8,11 +8,11 @@
     "模块": []
   },
   "regime": {
-    "bull": false,
-    "label": "🔴 弱市（SPY<MA50）",
-    "spy": 763.25,
-    "ma50": 767.4,
-    "mode": "bear",
+    "bull": true,
+    "label": "🟢 牛市（SPY>MA50）",
+    "spy": 769.05,
+    "ma50": 767.26,
+    "mode": "bull",
     "playbook": "高频：卖Call×10 + CSP舰队（动量/铁鹰已关）",
     "frequency_profile": "high_freq"
   },
