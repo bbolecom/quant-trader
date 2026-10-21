@@ -1,6 +1,6 @@
 {
   "ticker": "MYGN",
-  "updated": "2026-10-20 23:54:37",
+  "updated": "2026-10-21 00:05:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 5.34,
       "high": 5.95,
       "low": 5.25,
-      "close": 5.54,
+      "close": NaN,
       "volume": 23908490
     }
   ]

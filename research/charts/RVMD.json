@@ -1,6 +1,6 @@
 {
   "ticker": "RVMD",
-  "updated": "2026-10-20 23:54:35",
+  "updated": "2026-10-21 00:05:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 181.96,
       "high": 197.14,
       "low": 180.0,
-      "close": 196.55,
+      "close": NaN,
       "volume": 2732215
     }
   ]
