@@ -1,18 +1,10 @@
 {
   "ticker": "RCUS",
-  "updated": "2026-10-21 18:18:29",
+  "updated": "2026-10-21 21:47:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 21.64,
-      "high": 24.78,
-      "low": 20.25,
-      "close": 24.52,
-      "volume": 3647700
-    },
     {
       "date": "2026-04-22",
       "open": 25.0,
@@ -1025,9 +1017,9 @@
       "date": "2026-10-21",
       "open": 24.47,
       "high": 24.35,
-      "low": 19.59,
-      "close": 19.785,
-      "volume": 2205763
+      "low": 18.98,
+      "close": 19.1,
+      "volume": 4511541
     }
   ]
 }

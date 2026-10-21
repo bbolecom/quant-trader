@@ -1,18 +1,10 @@
 {
   "ticker": "MNDY",
-  "updated": "2026-10-21 18:18:42",
+  "updated": "2026-10-21 21:48:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 69.19,
-      "high": 73.58,
-      "low": 67.42,
-      "close": 67.86,
-      "volume": 1554700
-    },
     {
       "date": "2026-04-22",
       "open": 68.91,
@@ -1025,9 +1017,9 @@
       "date": "2026-10-21",
       "open": 100.0,
       "high": 103.09,
-      "low": 99.535,
-      "close": 99.8,
-      "volume": 507361
+      "low": 98.45,
+      "close": 100.15,
+      "volume": 904664
     }
   ]
 }

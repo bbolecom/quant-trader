@@ -1,18 +1,10 @@
 {
   "ticker": "KVYO",
-  "updated": "2026-10-21 18:18:30",
+  "updated": "2026-10-21 21:47:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 20.49,
-      "high": 21.561,
-      "low": 19.875,
-      "close": 20.31,
-      "volume": 5074200
-    },
     {
       "date": "2026-04-22",
       "open": 20.4,
@@ -1024,10 +1016,10 @@
     {
       "date": "2026-10-21",
       "open": 19.59,
-      "high": 20.22,
+      "high": 20.275,
       "low": 19.3642,
-      "close": 20.075,
-      "volume": 1943683
+      "close": 20.19,
+      "volume": 3849870
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "QUBT",
-  "updated": "2026-10-21 18:18:31",
+  "updated": "2026-10-21 21:47:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 10.005,
-      "high": 10.1,
-      "low": 9.39,
-      "close": 9.41,
-      "volume": 18006600
-    },
     {
       "date": "2026-04-22",
       "open": 9.59,
@@ -1019,15 +1011,15 @@
       "high": 6.77,
       "low": 6.32,
       "close": 6.5,
-      "volume": 6200700
+      "volume": 6240400
     },
     {
       "date": "2026-10-21",
       "open": 6.65,
-      "high": 6.785,
+      "high": 6.855,
       "low": 6.555,
-      "close": 6.775,
-      "volume": 2718183
+      "close": 6.82,
+      "volume": 5146505
     }
   ]
 }

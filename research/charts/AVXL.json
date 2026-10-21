@@ -1,18 +1,10 @@
 {
   "ticker": "AVXL",
-  "updated": "2026-10-21 18:18:35",
+  "updated": "2026-10-21 21:47:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 3.67,
-      "high": 3.685,
-      "low": 3.485,
-      "close": 3.5,
-      "volume": 769800
-    },
     {
       "date": "2026-04-22",
       "open": 3.58,
@@ -1019,15 +1011,15 @@
       "high": 1.4,
       "low": 1.225,
       "close": 1.36,
-      "volume": 1661000
+      "volume": 1672700
     },
     {
       "date": "2026-10-21",
       "open": 1.4,
       "high": 1.4,
       "low": 1.31,
-      "close": 1.355,
-      "volume": 694939
+      "close": 1.36,
+      "volume": 1051446
     }
   ]
 }

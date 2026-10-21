@@ -1,18 +1,10 @@
 {
   "ticker": "SBS",
-  "updated": "2026-10-21 18:18:41",
+  "updated": "2026-10-21 21:48:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 7.106,
-      "high": 7.158,
-      "low": 7.042,
-      "close": 7.082,
-      "volume": 10437500
-    },
     {
       "date": "2026-04-22",
       "open": 7.05,
@@ -1025,9 +1017,9 @@
       "date": "2026-10-21",
       "open": 6.44,
       "high": 6.48,
-      "low": 6.355,
-      "close": 6.375,
-      "volume": 4823381
+      "low": 6.32,
+      "close": 6.32,
+      "volume": 8027721
     }
   ]
 }

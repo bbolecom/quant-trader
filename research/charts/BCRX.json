@@ -1,18 +1,10 @@
 {
   "ticker": "BCRX",
-  "updated": "2026-10-21 18:18:42",
+  "updated": "2026-10-21 21:48:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-21",
-      "open": 9.2,
-      "high": 9.27,
-      "low": 8.56,
-      "close": 8.58,
-      "volume": 5079100
-    },
     {
       "date": "2026-04-22",
       "open": 8.58,
@@ -1025,9 +1017,9 @@
       "date": "2026-10-21",
       "open": 8.04,
       "high": 8.05,
-      "low": 7.76,
-      "close": 7.795,
-      "volume": 2520970
+      "low": 7.73,
+      "close": 7.75,
+      "volume": 5031960
     }
   ]
 }
