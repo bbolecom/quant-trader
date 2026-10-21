@@ -1,6 +1,6 @@
 {
   "ticker": "BRZE",
-  "updated": "2026-10-21 00:05:03",
+  "updated": "2026-10-21 18:18:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 45.53,
       "high": 45.61,
       "low": 45.26,
-      "close": NaN,
-      "volume": 64608302
+      "close": 45.57,
+      "volume": 64612000
+    },
+    {
+      "date": "2026-10-21",
+      "open": 45.49,
+      "high": 45.635,
+      "low": 45.445,
+      "close": 45.63,
+      "volume": 14225597
     }
   ]
 }

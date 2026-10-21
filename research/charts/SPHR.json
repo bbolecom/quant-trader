@@ -1,6 +1,6 @@
 {
   "ticker": "SPHR",
-  "updated": "2026-10-21 00:04:44",
+  "updated": "2026-10-21 18:18:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-20",
       "open": 102.98,
       "high": 113.94,
-      "low": 102.98,
-      "close": NaN,
-      "volume": 1486630
+      "low": 102.75,
+      "close": 112.84,
+      "volume": 1486600
+    },
+    {
+      "date": "2026-10-21",
+      "open": 114.12,
+      "high": 117.11,
+      "low": 112.85,
+      "close": 116.745,
+      "volume": 449356
     }
   ]
 }

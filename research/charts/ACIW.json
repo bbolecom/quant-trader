@@ -1,6 +1,6 @@
 {
   "ticker": "ACIW",
-  "updated": "2026-10-20 23:58:20",
+  "updated": "2026-10-21 18:18:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-20",
       "open": 52.76,
-      "high": 54.66,
+      "high": 54.7,
       "low": 52.76,
       "close": 54.54,
-      "volume": 1122936
+      "volume": 1199100
+    },
+    {
+      "date": "2026-10-21",
+      "open": 54.54,
+      "high": 54.7,
+      "low": 53.89,
+      "close": 54.1,
+      "volume": 276992
     }
   ]
 }

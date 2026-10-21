@@ -1,6 +1,6 @@
 {
   "ticker": "EFX",
-  "updated": "2026-10-21 00:04:45",
+  "updated": "2026-10-21 18:18:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-20",
       "open": 166.11,
       "high": 177.8,
-      "low": 166.71,
-      "close": NaN,
-      "volume": 3985790
+      "low": 166.11,
+      "close": 176.54,
+      "volume": 3986100
+    },
+    {
+      "date": "2026-10-21",
+      "open": 175.775,
+      "high": 177.255,
+      "low": 173.31,
+      "close": 175.19,
+      "volume": 1218687
     }
   ]
 }
