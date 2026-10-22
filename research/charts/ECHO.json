@@ -1,6 +1,6 @@
 {
   "ticker": "ECHO",
-  "updated": "2026-10-22 00:16:05",
+  "updated": "2026-10-22 18:13:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-21",
       "open": 90.44,
       "high": 93.98,
-      "low": 90.26,
-      "close": NaN,
-      "volume": 5558892
+      "low": 90.2,
+      "close": 92.64,
+      "volume": 5559100
+    },
+    {
+      "date": "2026-10-22",
+      "open": 90.5,
+      "high": 90.85,
+      "low": 85.51,
+      "close": 86.085,
+      "volume": 2506981
     }
   ]
 }

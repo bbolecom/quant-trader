@@ -1,6 +1,6 @@
 {
   "ticker": "TNGX",
-  "updated": "2026-10-22 00:15:48",
+  "updated": "2026-10-22 18:12:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-21",
-      "open": 25.61,
-      "high": 27.46,
+      "open": 25.55,
+      "high": 27.6,
       "low": 25.35,
-      "close": NaN,
+      "close": 26.98,
       "volume": 5557300
+    },
+    {
+      "date": "2026-10-22",
+      "open": 26.67,
+      "high": 27.39,
+      "low": 25.94,
+      "close": 27.34,
+      "volume": 3174082
     }
   ]
 }

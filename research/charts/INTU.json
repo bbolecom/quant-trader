@@ -1,6 +1,6 @@
 {
   "ticker": "INTU",
-  "updated": "2026-10-22 00:16:00",
+  "updated": "2026-10-22 18:13:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 335.0,
       "high": 336.26,
       "low": 331.57,
-      "close": NaN,
-      "volume": 1767217
+      "close": 335.61,
+      "volume": 1806200
+    },
+    {
+      "date": "2026-10-22",
+      "open": 340.34,
+      "high": 358.03,
+      "low": 337.4446,
+      "close": 353.905,
+      "volume": 2500465
     }
   ]
 }

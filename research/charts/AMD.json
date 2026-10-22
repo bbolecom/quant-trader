@@ -1,6 +1,6 @@
 {
   "ticker": "AMD",
-  "updated": "2026-10-22 00:15:50",
+  "updated": "2026-10-22 18:12:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-21",
-      "open": 545.692,
+      "open": 545.93,
       "high": 556.79,
       "low": 537.3,
-      "close": NaN,
-      "volume": 17756841
+      "close": 552.72,
+      "volume": 17868300
+    },
+    {
+      "date": "2026-10-22",
+      "open": 523.62,
+      "high": 529.98,
+      "low": 507.15,
+      "close": 510.71,
+      "volume": 16139302
     }
   ]
 }
