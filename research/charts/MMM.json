@@ -1,6 +1,6 @@
 {
   "ticker": "MMM",
-  "updated": "2026-10-21 21:48:07",
+  "updated": "2026-10-22 00:01:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 172.0,
       "high": 174.77,
       "low": 167.705,
-      "close": 174.74,
+      "close": NaN,
       "volume": 5630418
     }
   ]

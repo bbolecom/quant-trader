@@ -1,6 +1,6 @@
 {
   "ticker": "CRL",
-  "updated": "2026-10-21 21:48:08",
+  "updated": "2026-10-22 00:01:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 313.83,
       "high": 348.95,
       "low": 315.825,
-      "close": 344.87,
+      "close": NaN,
       "volume": 2733709
     }
   ]

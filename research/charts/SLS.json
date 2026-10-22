@@ -1,6 +1,6 @@
 {
   "ticker": "SLS",
-  "updated": "2026-10-21 21:48:08",
+  "updated": "2026-10-22 00:01:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 12.07,
       "high": 12.335,
       "low": 11.81,
-      "close": 12.14,
+      "close": NaN,
       "volume": 5637259
     }
   ]

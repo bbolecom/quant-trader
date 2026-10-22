@@ -1,6 +1,6 @@
 {
   "ticker": "SHO",
-  "updated": "2026-10-21 21:48:06",
+  "updated": "2026-10-22 00:01:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 12.52,
       "high": 12.78,
       "low": 12.43,
-      "close": 12.61,
+      "close": NaN,
       "volume": 5885613
     }
   ]
