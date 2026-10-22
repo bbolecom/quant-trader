@@ -1,18 +1,10 @@
 {
   "ticker": "SRPT",
-  "updated": "2026-10-22 18:12:41",
+  "updated": "2026-10-22 21:33:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-22",
-      "open": 21.06,
-      "high": 21.1,
-      "low": 20.39,
-      "close": 20.64,
-      "volume": 2565100
-    },
     {
       "date": "2026-04-23",
       "open": 20.4,
@@ -1026,8 +1018,8 @@
       "open": 18.4,
       "high": 18.9369,
       "low": 18.12,
-      "close": 18.23,
-      "volume": 484134
+      "close": 18.18,
+      "volume": 1235359
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "QS",
-  "updated": "2026-10-22 18:12:48",
+  "updated": "2026-10-22 21:33:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-22",
-      "open": 7.17,
-      "high": 7.33,
-      "low": 7.07,
-      "close": 7.31,
-      "volume": 25475300
-    },
     {
       "date": "2026-04-23",
       "open": 9.657,
@@ -1019,15 +1011,15 @@
       "high": 4.085,
       "low": 3.98,
       "close": 3.98,
-      "volume": 18162600
+      "volume": 19001200
     },
     {
       "date": "2026-10-22",
       "open": 4.33,
       "high": 4.51,
       "low": 3.9,
-      "close": 4.05,
-      "volume": 22139922
+      "close": 4.15,
+      "volume": 33408972
     }
   ]
 }
