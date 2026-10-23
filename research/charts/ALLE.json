@@ -1,6 +1,6 @@
 {
   "ticker": "ALLE",
-  "updated": "2026-10-23 00:07:12",
+  "updated": "2026-10-23 18:01:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-22",
       "open": 170.0,
-      "high": 176.9,
+      "high": 176.94,
       "low": 167.62,
-      "close": NaN,
-      "volume": 2097511
+      "close": 176.52,
+      "volume": 2097500
+    },
+    {
+      "date": "2026-10-23",
+      "open": 178.85,
+      "high": 180.31,
+      "low": 176.015,
+      "close": 179.625,
+      "volume": 875848
     }
   ]
 }

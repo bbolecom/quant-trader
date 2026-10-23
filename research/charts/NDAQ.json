@@ -1,6 +1,6 @@
 {
   "ticker": "NDAQ",
-  "updated": "2026-10-23 00:07:13",
+  "updated": "2026-10-23 18:01:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-22",
       "open": 98.15,
       "high": 103.39,
-      "low": 97.3915,
-      "close": NaN,
-      "volume": 7146953
+      "low": 97.39,
+      "close": 103.3,
+      "volume": 7146600
+    },
+    {
+      "date": "2026-10-23",
+      "open": 102.7,
+      "high": 104.21,
+      "low": 101.75,
+      "close": 103.385,
+      "volume": 2045093
     }
   ]
 }

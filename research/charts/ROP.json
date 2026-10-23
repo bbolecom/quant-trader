@@ -1,6 +1,6 @@
 {
   "ticker": "ROP",
-  "updated": "2026-10-23 00:07:11",
+  "updated": "2026-10-23 18:01:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-22",
       "open": 407.78,
       "high": 439.93,
-      "low": 406.455,
-      "close": NaN,
-      "volume": 1976290
+      "low": 406.46,
+      "close": 436.23,
+      "volume": 1976300
+    },
+    {
+      "date": "2026-10-23",
+      "open": 439.998,
+      "high": 444.77,
+      "low": 433.54,
+      "close": 435.7675,
+      "volume": 684382
     }
   ]
 }

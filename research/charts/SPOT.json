@@ -1,6 +1,6 @@
 {
   "ticker": "SPOT",
-  "updated": "2026-10-23 00:07:11",
+  "updated": "2026-10-23 18:01:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-22",
       "open": 561.29,
       "high": 588.88,
-      "low": 562.94,
-      "close": NaN,
-      "volume": 4735322
+      "low": 555.32,
+      "close": 583.66,
+      "volume": 4735300
+    },
+    {
+      "date": "2026-10-23",
+      "open": 582.78,
+      "high": 593.8,
+      "low": 571.94,
+      "close": 586.54,
+      "volume": 1574026
     }
   ]
 }

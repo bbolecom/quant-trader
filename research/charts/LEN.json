@@ -1,18 +1,10 @@
 {
   "ticker": "LEN",
-  "updated": "2026-10-23 00:07:12",
+  "updated": "2026-10-23 18:01:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-22",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
-    },
     {
       "date": "2026-04-23",
       "open": 94.6,
@@ -1026,8 +1018,16 @@
       "open": 77.57,
       "high": 84.63,
       "low": 77.55,
-      "close": NaN,
-      "volume": 6475683
+      "close": 84.45,
+      "volume": 6475700
+    },
+    {
+      "date": "2026-10-23",
+      "open": 83.4,
+      "high": 84.86,
+      "low": 83.28,
+      "close": 84.4151,
+      "volume": 2137144
     }
   ]
 }

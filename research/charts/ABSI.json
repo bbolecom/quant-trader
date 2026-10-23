@@ -1,6 +1,6 @@
 {
   "ticker": "ABSI",
-  "updated": "2026-10-23 00:06:49",
+  "updated": "2026-10-23 18:01:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-22",
       "open": 9.69,
-      "high": 9.9495,
+      "high": 9.95,
       "low": 8.93,
-      "close": NaN,
-      "volume": 3704869
+      "close": 9.37,
+      "volume": 3703900
+    },
+    {
+      "date": "2026-10-23",
+      "open": 9.28,
+      "high": 9.35,
+      "low": 8.965,
+      "close": 9.185,
+      "volume": 926126
     }
   ]
 }

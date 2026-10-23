@@ -1,6 +1,6 @@
 {
   "ticker": "LULU",
-  "updated": "2026-10-23 00:07:13",
+  "updated": "2026-10-23 18:01:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-22",
-      "open": 95.37,
+      "open": 95.39,
       "high": 104.16,
-      "low": 95.3059,
-      "close": NaN,
-      "volume": 6804629
+      "low": 95.25,
+      "close": 104.06,
+      "volume": 6804300
+    },
+    {
+      "date": "2026-10-23",
+      "open": 101.75,
+      "high": 102.75,
+      "low": 98.56,
+      "close": 99.67,
+      "volume": 1940608
     }
   ]
 }

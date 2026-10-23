@@ -1,6 +1,6 @@
 {
   "ticker": "WCN",
-  "updated": "2026-10-23 00:07:11",
+  "updated": "2026-10-23 18:01:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-22",
-      "open": 166.345,
+      "open": 166.35,
       "high": 186.93,
-      "low": 170.99,
-      "close": NaN,
-      "volume": 5315843
+      "low": 166.35,
+      "close": 184.88,
+      "volume": 5315800
+    },
+    {
+      "date": "2026-10-23",
+      "open": 184.46,
+      "high": 187.22,
+      "low": 184.165,
+      "close": 186.615,
+      "volume": 1393978
     }
   ]
 }

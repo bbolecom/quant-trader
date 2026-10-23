@@ -1,6 +1,6 @@
 {
   "ticker": "CMPS",
-  "updated": "2026-10-23 00:06:49",
+  "updated": "2026-10-23 18:01:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-22",
       "open": 11.73,
-      "high": 11.9699,
-      "low": 11.4299,
-      "close": NaN,
-      "volume": 1341131
+      "high": 11.97,
+      "low": 11.43,
+      "close": 11.63,
+      "volume": 1340900
+    },
+    {
+      "date": "2026-10-23",
+      "open": 11.45,
+      "high": 11.515,
+      "low": 11.025,
+      "close": 11.105,
+      "volume": 645950
     }
   ]
 }

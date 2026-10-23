@@ -1,6 +1,6 @@
 {
   "ticker": "BBBY",
-  "updated": "2026-10-23 00:06:58",
+  "updated": "2026-10-23 18:01:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -548,6 +548,14 @@
       "low": 1.38,
       "close": 1.4,
       "volume": 4411100
+    },
+    {
+      "date": "2026-10-22",
+      "open": 1.38,
+      "high": 1.55,
+      "low": 1.38,
+      "close": 1.48,
+      "volume": 2958300
     }
   ]
 }
