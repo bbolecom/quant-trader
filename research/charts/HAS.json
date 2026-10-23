@@ -1,6 +1,6 @@
 {
   "ticker": "HAS",
-  "updated": "2026-10-22 21:33:37",
+  "updated": "2026-10-23 00:06:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,8 @@
       "open": 113.85,
       "high": 117.25,
       "low": 112.7601,
-      "close": 117.23,
-      "volume": 3429075
+      "close": NaN,
+      "volume": 3429545
     }
   ]
 }

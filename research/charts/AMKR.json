@@ -1,6 +1,6 @@
 {
   "ticker": "AMKR",
-  "updated": "2026-10-22 21:33:53",
+  "updated": "2026-10-23 00:07:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,8 @@
       "open": 41.3,
       "high": 41.77,
       "low": 38.685,
-      "close": 39.05,
-      "volume": 6343648
+      "close": NaN,
+      "volume": 6373259
     }
   ]
 }

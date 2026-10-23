@@ -1,6 +1,6 @@
 {
   "ticker": "LMT",
-  "updated": "2026-10-22 21:33:56",
+  "updated": "2026-10-23 00:07:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,8 @@
       "open": 579.505,
       "high": 607.9895,
       "low": 577.5,
-      "close": 589.91,
-      "volume": 2953934
+      "close": NaN,
+      "volume": 2957699
     }
   ]
 }
