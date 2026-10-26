@@ -1,6 +1,6 @@
 {
   "ticker": "CART",
-  "updated": "2026-10-26 19:39:14",
+  "updated": "2026-10-26 23:19:05",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,10 @@
     {
       "date": "2026-10-26",
       "open": 54.31,
-      "high": 59.54,
+      "high": 62.0,
       "low": 52.61,
-      "close": 59.1816,
-      "volume": 18443880
+      "close": 60.88,
+      "volume": 32158667
     }
   ]
 }
