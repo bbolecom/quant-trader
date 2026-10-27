@@ -1,6 +1,6 @@
 {
   "ticker": "RRC",
-  "updated": "2026-10-27 00:27:32",
+  "updated": "2026-10-27 19:03:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1015,11 +1015,19 @@
     },
     {
       "date": "2026-10-26",
-      "open": 50.805,
-      "high": 53.6499,
+      "open": 50.81,
+      "high": 53.65,
       "low": 50.0,
-      "close": NaN,
-      "volume": 26468450
+      "close": 53.56,
+      "volume": 26471100
+    },
+    {
+      "date": "2026-10-27",
+      "open": 53.67,
+      "high": 54.79,
+      "low": 53.5125,
+      "close": 54.43,
+      "volume": 8473323
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "FSLY",
-  "updated": "2026-10-27 00:30:50",
+  "updated": "2026-10-27 19:03:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 24.65,
       "high": 26.03,
       "low": 24.04,
-      "close": NaN,
-      "volume": 4928273
+      "close": 25.61,
+      "volume": 4930500
+    },
+    {
+      "date": "2026-10-27",
+      "open": 25.68,
+      "high": 27.88,
+      "low": 25.63,
+      "close": 27.78,
+      "volume": 3025811
     }
   ]
 }

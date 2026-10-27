@@ -1,6 +1,6 @@
 {
   "ticker": "BE",
-  "updated": "2026-10-27 00:27:34",
+  "updated": "2026-10-27 19:03:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,15 +1011,23 @@
       "high": 206.0,
       "low": 189.0,
       "close": 193.3,
-      "volume": 35877300
+      "volume": 36015900
     },
     {
       "date": "2026-10-26",
       "open": 193.0,
-      "high": 210.8599,
+      "high": 210.86,
       "low": 192.15,
-      "close": NaN,
-      "volume": 20985163
+      "close": 203.92,
+      "volume": 21025200
+    },
+    {
+      "date": "2026-10-27",
+      "open": 214.12,
+      "high": 224.16,
+      "low": 211.2871,
+      "close": 219.705,
+      "volume": 12733921
     }
   ]
 }

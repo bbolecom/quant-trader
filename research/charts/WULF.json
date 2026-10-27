@@ -1,6 +1,6 @@
 {
   "ticker": "WULF",
-  "updated": "2026-10-27 00:27:34",
+  "updated": "2026-10-27 19:03:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1011,15 +1011,23 @@
       "high": 11.95,
       "low": 11.07,
       "close": 11.32,
-      "volume": 36282000
+      "volume": 36319300
     },
     {
       "date": "2026-10-26",
-      "open": 11.35,
-      "high": 12.46,
+      "open": 11.3,
+      "high": 12.47,
       "low": 11.08,
-      "close": NaN,
-      "volume": 50378285
+      "close": 11.98,
+      "volume": 50411900
+    },
+    {
+      "date": "2026-10-27",
+      "open": 12.22,
+      "high": 12.8497,
+      "low": 11.95,
+      "close": 12.775,
+      "volume": 28348378
     }
   ]
 }
