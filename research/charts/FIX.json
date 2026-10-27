@@ -1,6 +1,6 @@
 {
   "ticker": "FIX",
-  "updated": "2026-10-26 23:19:04",
+  "updated": "2026-10-27 00:27:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 1175.01,
       "high": 1265.8,
       "low": 1173.775,
-      "close": 1244.1899,
+      "close": NaN,
       "volume": 809643
     }
   ]

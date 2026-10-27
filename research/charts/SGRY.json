@@ -1,6 +1,6 @@
 {
   "ticker": "SGRY",
-  "updated": "2026-10-26 23:19:03",
+  "updated": "2026-10-27 00:27:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 23.03,
       "high": 23.29,
       "low": 22.945,
-      "close": 23.25,
+      "close": NaN,
       "volume": 58812318
     }
   ]

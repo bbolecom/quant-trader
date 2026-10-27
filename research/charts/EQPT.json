@@ -1,6 +1,6 @@
 {
   "ticker": "EQPT",
-  "updated": "2026-10-26 23:18:43",
+  "updated": "2026-10-27 00:27:16",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 15.98,
       "high": 16.45,
       "low": 15.896,
-      "close": 16.26,
+      "close": NaN,
       "volume": 1400857
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "RBRK",
-  "updated": "2026-10-26 19:39:16",
+  "updated": "2026-10-27 00:30:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,8 @@
       "open": 131.37,
       "high": 136.19,
       "low": 130.0,
-      "close": 134.265,
-      "volume": 3560847
+      "close": NaN,
+      "volume": 4318832
     }
   ]
 }
