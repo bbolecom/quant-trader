@@ -1,18 +1,10 @@
 {
   "ticker": "NTSK",
-  "updated": "2026-10-27 19:03:21",
+  "updated": "2026-10-27 22:54:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-27",
-      "open": 9.63,
-      "high": 10.045,
-      "low": 9.43,
-      "close": 9.79,
-      "volume": 3320100
-    },
     {
       "date": "2026-04-28",
       "open": 9.65,
@@ -1026,8 +1018,8 @@
       "open": 25.12,
       "high": 26.41,
       "low": 24.8352,
-      "close": 26.33,
-      "volume": 5473816
+      "close": 26.15,
+      "volume": 8531647
     }
   ]
 }
