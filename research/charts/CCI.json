@@ -1,6 +1,6 @@
 {
   "ticker": "CCI",
-  "updated": "2026-10-27 22:54:47",
+  "updated": "2026-10-28 00:31:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 86.5,
       "high": 87.93,
       "low": 85.63,
-      "close": 87.87,
+      "close": NaN,
       "volume": 4444165
     }
   ]

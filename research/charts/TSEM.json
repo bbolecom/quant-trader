@@ -1,18 +1,10 @@
 {
   "ticker": "TSEM",
-  "updated": "2026-10-27 19:03:35",
+  "updated": "2026-10-28 00:34:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-27",
-      "open": 201.28,
-      "high": 205.29,
-      "low": 194.91,
-      "close": 203.33,
-      "volume": 2518300
-    },
     {
       "date": "2026-04-28",
       "open": 194.0,
@@ -1024,10 +1016,10 @@
     {
       "date": "2026-10-27",
       "open": 180.0,
-      "high": 190.07,
+      "high": 190.9,
       "low": 177.765,
-      "close": 188.79,
-      "volume": 1321620
+      "close": NaN,
+      "volume": 2621888
     }
   ]
 }

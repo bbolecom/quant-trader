@@ -1,6 +1,6 @@
 {
   "ticker": "RNG",
-  "updated": "2026-10-27 22:54:45",
+  "updated": "2026-10-28 00:31:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 85.06,
       "high": 88.01,
       "low": 85.06,
-      "close": 85.6,
+      "close": NaN,
       "volume": 1843940
     }
   ]

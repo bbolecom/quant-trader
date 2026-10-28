@@ -1,6 +1,6 @@
 {
   "ticker": "FLEX",
-  "updated": "2026-10-27 22:55:04",
+  "updated": "2026-10-28 00:32:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 79.59,
       "high": 85.0,
       "low": 77.75,
-      "close": 83.35,
+      "close": NaN,
       "volume": 11507206
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "VG",
-  "updated": "2026-10-27 22:54:46",
+  "updated": "2026-10-28 00:31:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 13.65,
       "high": 13.97,
       "low": 13.63,
-      "close": 13.81,
+      "close": NaN,
       "volume": 8584159
     }
   ]

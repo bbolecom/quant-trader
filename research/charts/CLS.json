@@ -1,6 +1,6 @@
 {
   "ticker": "CLS",
-  "updated": "2026-10-27 22:55:04",
+  "updated": "2026-10-28 00:32:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 264.305,
       "high": 283.0,
       "low": 261.5,
-      "close": 276.54,
+      "close": NaN,
       "volume": 8079779
     }
   ]
