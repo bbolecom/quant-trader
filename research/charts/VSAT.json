@@ -1,18 +1,10 @@
 {
   "ticker": "VSAT",
-  "updated": "2026-10-28 19:11:36",
+  "updated": "2026-10-28 23:11:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-28",
-      "open": 57.99,
-      "high": 58.82,
-      "low": 56.62,
-      "close": 58.06,
-      "volume": 1545600
-    },
     {
       "date": "2026-04-29",
       "open": 58.45,
@@ -1026,8 +1018,8 @@
       "open": 71.81,
       "high": 79.12,
       "low": 69.86,
-      "close": 76.305,
-      "volume": 3160911
+      "close": 78.26,
+      "volume": 4589583
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "DOCN",
-  "updated": "2026-10-28 19:11:36",
+  "updated": "2026-10-28 23:11:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-28",
-      "open": 98.5,
-      "high": 98.59,
-      "low": 92.91,
-      "close": 94.38,
-      "volume": 2647100
-    },
     {
       "date": "2026-04-29",
       "open": 96.73,
@@ -1026,8 +1018,8 @@
       "open": 107.55,
       "high": 107.8038,
       "low": 102.14,
-      "close": 104.72,
-      "volume": 1088835
+      "close": 105.07,
+      "volume": 1709151
     }
   ]
 }
