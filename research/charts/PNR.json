@@ -1,6 +1,6 @@
 {
   "ticker": "PNR",
-  "updated": "2026-10-28 00:32:06",
+  "updated": "2026-10-28 19:11:49",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-27",
       "open": 61.01,
-      "high": 62.655,
+      "high": 62.67,
       "low": 58.36,
-      "close": NaN,
-      "volume": 7859333
+      "close": 62.29,
+      "volume": 7860400
+    },
+    {
+      "date": "2026-10-28",
+      "open": 62.75,
+      "high": 65.565,
+      "low": 62.81,
+      "close": 64.34,
+      "volume": 4760091
     }
   ]
 }

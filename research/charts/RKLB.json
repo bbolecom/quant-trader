@@ -1,6 +1,6 @@
 {
   "ticker": "RKLB",
-  "updated": "2026-10-28 00:32:07",
+  "updated": "2026-10-28 19:11:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1016,10 +1016,18 @@
     {
       "date": "2026-10-27",
       "open": 54.1,
-      "high": 59.1799,
+      "high": 59.18,
       "low": 53.57,
-      "close": NaN,
-      "volume": 21203618
+      "close": 58.31,
+      "volume": 21247200
+    },
+    {
+      "date": "2026-10-28",
+      "open": 58.5,
+      "high": 59.1288,
+      "low": 56.95,
+      "close": 57.775,
+      "volume": 9148564
     }
   ]
 }
