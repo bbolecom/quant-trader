@@ -1,6 +1,6 @@
 {
   "ticker": "ICLR",
-  "updated": "2026-10-29 00:59:31",
+  "updated": "2026-10-29 19:20:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-28",
       "open": 199.19,
       "high": 214.94,
-      "low": 195.99,
-      "close": NaN,
-      "volume": 3944352
+      "low": 195.8,
+      "close": 214.16,
+      "volume": 3947000
+    },
+    {
+      "date": "2026-10-29",
+      "open": 211.19,
+      "high": 219.0,
+      "low": 207.535,
+      "close": 214.665,
+      "volume": 1309485
     }
   ]
 }
