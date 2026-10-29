@@ -1,6 +1,6 @@
 {
   "ticker": "FICO",
-  "updated": "2026-10-28 23:11:38",
+  "updated": "2026-10-29 00:59:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 686.82,
       "high": 717.765,
       "low": 685.19,
-      "close": 698.18,
+      "close": NaN,
       "volume": 890249
     }
   ]

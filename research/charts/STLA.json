@@ -1,6 +1,6 @@
 {
   "ticker": "STLA",
-  "updated": "2026-10-28 23:11:41",
+  "updated": "2026-10-29 00:59:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 4.58,
       "high": 4.83,
       "low": 4.54,
-      "close": 4.68,
+      "close": NaN,
       "volume": 119492056
     }
   ]

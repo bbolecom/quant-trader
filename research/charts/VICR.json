@@ -1,6 +1,6 @@
 {
   "ticker": "VICR",
-  "updated": "2026-10-28 23:11:26",
+  "updated": "2026-10-29 00:59:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 218.61,
       "high": 221.915,
       "low": 213.021,
-      "close": 216.65,
+      "close": NaN,
       "volume": 868382
     }
   ]

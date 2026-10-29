@@ -1,6 +1,6 @@
 {
   "ticker": "GGB",
-  "updated": "2026-10-28 23:11:39",
+  "updated": "2026-10-29 00:59:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 4.6,
       "high": 4.6,
       "low": 4.4001,
-      "close": 4.51,
+      "close": NaN,
       "volume": 29919730
     }
   ]

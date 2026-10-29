@@ -1,6 +1,6 @@
 {
   "ticker": "BHVN",
-  "updated": "2026-10-28 23:11:39",
+  "updated": "2026-10-29 00:59:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 15.11,
       "high": 15.87,
       "low": 14.955,
-      "close": 15.52,
+      "close": NaN,
       "volume": 3149206
     }
   ]
