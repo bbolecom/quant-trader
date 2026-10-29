@@ -1,18 +1,10 @@
 {
   "ticker": "BFLY",
-  "updated": "2026-10-29 19:20:16",
+  "updated": "2026-10-29 23:22:36",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-29",
-      "open": 5.14,
-      "high": 5.14,
-      "low": 4.81,
-      "close": 4.92,
-      "volume": 6240200
-    },
     {
       "date": "2026-04-30",
       "open": 4.65,
@@ -1026,8 +1018,8 @@
       "open": 7.045,
       "high": 7.93,
       "low": 6.93,
-      "close": 7.42,
-      "volume": 4385496
+      "close": 7.51,
+      "volume": 5874705
     }
   ]
 }

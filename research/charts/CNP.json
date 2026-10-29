@@ -1,18 +1,10 @@
 {
   "ticker": "CNP",
-  "updated": "2026-10-29 19:20:31",
+  "updated": "2026-10-29 23:22:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-29",
-      "open": 42.99,
-      "high": 43.3,
-      "low": 42.76,
-      "close": 42.82,
-      "volume": 5427300
-    },
     {
       "date": "2026-04-30",
       "open": 42.96,
@@ -1026,8 +1018,8 @@
       "open": 42.03,
       "high": 42.465,
       "low": 41.95,
-      "close": 42.085,
-      "volume": 5441332
+      "close": 42.21,
+      "volume": 8606420
     }
   ]
 }
