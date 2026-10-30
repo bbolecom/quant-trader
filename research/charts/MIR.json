@@ -1,6 +1,6 @@
 {
   "ticker": "MIR",
-  "updated": "2026-10-30 01:06:38",
+  "updated": "2026-10-30 18:55:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,17 @@
       "date": "2026-10-29",
       "open": 16.91,
       "high": 18.765,
-      "low": 16.755,
-      "close": NaN,
-      "volume": 8722772
+      "low": 16.75,
+      "close": 18.67,
+      "volume": 8723300
+    },
+    {
+      "date": "2026-10-30",
+      "open": 18.23,
+      "high": 18.7,
+      "low": 17.9,
+      "close": 18.01,
+      "volume": 3789041
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "CHPT",
-  "updated": "2026-10-30 01:06:43",
+  "updated": "2026-10-30 18:55:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,8 +1018,16 @@
       "open": 9.15,
       "high": 9.39,
       "low": 9.02,
-      "close": NaN,
-      "volume": 594189
+      "close": 9.27,
+      "volume": 594600
+    },
+    {
+      "date": "2026-10-30",
+      "open": 8.9,
+      "high": 9.215,
+      "low": 8.6543,
+      "close": 9.11,
+      "volume": 517767
     }
   ]
 }
