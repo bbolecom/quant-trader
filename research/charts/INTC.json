@@ -1,6 +1,6 @@
 {
   "ticker": "INTC",
-  "updated": "2026-10-29 23:22:38",
+  "updated": "2026-10-30 01:06:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 93.0,
       "high": 93.5,
       "low": 90.838,
-      "close": 92.07,
+      "close": NaN,
       "volume": 112052896
     }
   ]

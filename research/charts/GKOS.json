@@ -1,6 +1,6 @@
 {
   "ticker": "GKOS",
-  "updated": "2026-10-29 23:22:53",
+  "updated": "2026-10-30 01:02:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 211.0,
       "high": 243.7124,
       "low": 207.41,
-      "close": 242.48,
+      "close": NaN,
       "volume": 5410354
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "WMB",
-  "updated": "2026-10-29 23:22:50",
+  "updated": "2026-10-30 01:02:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 75.0,
       "high": 76.0,
       "low": 74.61,
-      "close": 74.88,
+      "close": NaN,
       "volume": 6918457
     }
   ]

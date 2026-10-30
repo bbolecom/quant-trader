@@ -1,6 +1,6 @@
 {
   "ticker": "NXPI",
-  "updated": "2026-10-29 23:22:50",
+  "updated": "2026-10-30 01:02:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 249.54,
       "high": 266.98,
       "low": 246.6,
-      "close": 266.0,
+      "close": NaN,
       "volume": 5956349
     }
   ]

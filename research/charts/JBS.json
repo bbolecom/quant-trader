@@ -1,6 +1,6 @@
 {
   "ticker": "JBS",
-  "updated": "2026-10-29 23:22:50",
+  "updated": "2026-10-30 01:02:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 12.04,
       "high": 12.185,
       "low": 11.905,
-      "close": 12.16,
+      "close": NaN,
       "volume": 6233139
     }
   ]

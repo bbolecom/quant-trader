@@ -1,6 +1,6 @@
 {
   "ticker": "ENSG",
-  "updated": "2026-10-29 23:22:51",
+  "updated": "2026-10-30 01:02:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 187.99,
       "high": 188.21,
       "low": 183.9125,
-      "close": 186.32,
+      "close": NaN,
       "volume": 465445
     }
   ]

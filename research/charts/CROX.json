@@ -1,6 +1,6 @@
 {
   "ticker": "CROX",
-  "updated": "2026-10-29 23:22:53",
+  "updated": "2026-10-30 01:02:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 139.75,
       "high": 151.82,
       "low": 139.325,
-      "close": 150.26,
+      "close": NaN,
       "volume": 4894006
     }
   ]

@@ -1,6 +1,6 @@
 {
   "ticker": "BW",
-  "updated": "2026-10-29 23:22:45",
+  "updated": "2026-10-30 01:06:43",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1018,7 +1018,7 @@
       "open": 4.41,
       "high": 4.6767,
       "low": 4.4,
-      "close": 4.56,
+      "close": NaN,
       "volume": 3195720
     }
   ]
