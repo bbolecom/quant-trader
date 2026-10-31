@@ -1,6 +1,6 @@
 {
   "ticker": "CR",
-  "updated": "2026-10-30 22:43:19",
+  "updated": "2026-10-31 00:48:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 202.56,
       "high": 204.64,
       "low": 197.02,
-      "close": 198.02,
+      "close": NaN,
       "volume": 458799
     }
   ]

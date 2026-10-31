@@ -1,6 +1,6 @@
 {
   "ticker": "FDXF",
-  "updated": "2026-10-30 22:43:21",
+  "updated": "2026-10-31 00:48:15",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -882,7 +882,7 @@
       "open": 115.2,
       "high": 128.0,
       "low": 117.0,
-      "close": 126.04,
+      "close": NaN,
       "volume": 3596222
     }
   ]

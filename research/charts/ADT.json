@@ -1,6 +1,6 @@
 {
   "ticker": "ADT",
-  "updated": "2026-10-30 22:43:03",
+  "updated": "2026-10-31 00:48:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 9.87,
       "high": 9.88,
       "low": 9.845,
-      "close": 9.86,
+      "close": NaN,
       "volume": 53889993
     }
   ]

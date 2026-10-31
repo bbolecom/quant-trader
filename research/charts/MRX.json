@@ -1,6 +1,6 @@
 {
   "ticker": "MRX",
-  "updated": "2026-10-30 22:43:18",
+  "updated": "2026-10-31 00:48:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 64.27,
       "high": 64.555,
       "low": 62.46,
-      "close": 64.41,
+      "close": NaN,
       "volume": 774926
     }
   ]

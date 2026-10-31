@@ -1,6 +1,6 @@
 {
   "ticker": "PWR",
-  "updated": "2026-10-30 22:43:18",
+  "updated": "2026-10-31 00:48:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 608.0,
       "high": 638.79,
       "low": 607.25,
-      "close": 620.73,
+      "close": NaN,
       "volume": 1476143
     }
   ]

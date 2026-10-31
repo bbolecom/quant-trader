@@ -1,6 +1,6 @@
 {
   "ticker": "TYL",
-  "updated": "2026-10-30 22:43:19",
+  "updated": "2026-10-31 00:48:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 382.28,
       "high": 397.23,
       "low": 376.21,
-      "close": 394.3,
+      "close": NaN,
       "volume": 1315387
     }
   ]
