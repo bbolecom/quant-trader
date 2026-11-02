@@ -1,26 +1,10 @@
 {
   "ticker": "SPIR",
-  "updated": "2026-10-31 00:51:06",
+  "updated": "2026-11-02 22:31:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-30",
-      "open": 15.99,
-      "high": 17.86,
-      "low": 15.99,
-      "close": 17.83,
-      "volume": 1318800
-    },
-    {
-      "date": "2026-05-01",
-      "open": 17.94,
-      "high": 18.64,
-      "low": 17.633,
-      "close": 18.18,
-      "volume": 956400
-    },
     {
       "date": "2026-05-04",
       "open": 18.265,
@@ -1024,10 +1008,18 @@
     {
       "date": "2026-10-30",
       "open": 9.46,
-      "high": 9.48,
+      "high": 9.56,
       "low": 8.78,
-      "close": NaN,
-      "volume": 608604
+      "close": 8.87,
+      "volume": 608600
+    },
+    {
+      "date": "2026-11-02",
+      "open": 9.46,
+      "high": 8.98,
+      "low": 8.43,
+      "close": 8.54,
+      "volume": 555117
     }
   ]
 }

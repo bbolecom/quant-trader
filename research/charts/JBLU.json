@@ -1,26 +1,10 @@
 {
   "ticker": "JBLU",
-  "updated": "2026-10-31 00:51:05",
+  "updated": "2026-11-02 22:31:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-04-30",
-      "open": 4.93,
-      "high": 4.94,
-      "low": 4.65,
-      "close": 4.66,
-      "volume": 21817700
-    },
-    {
-      "date": "2026-05-01",
-      "open": 4.66,
-      "high": 5.3,
-      "low": 4.55,
-      "close": 4.86,
-      "volume": 48475500
-    },
     {
       "date": "2026-05-04",
       "open": 5.1,
@@ -1025,9 +1009,17 @@
       "date": "2026-10-30",
       "open": 2.97,
       "high": 3.03,
-      "low": 2.795,
-      "close": NaN,
-      "volume": 20807152
+      "low": 2.8,
+      "close": 2.85,
+      "volume": 20830900
+    },
+    {
+      "date": "2026-11-02",
+      "open": 2.99,
+      "high": 3.225,
+      "low": 2.97,
+      "close": 3.17,
+      "volume": 31865207
     }
   ]
 }
