@@ -1,6 +1,6 @@
 {
   "ticker": "SAM",
-  "updated": "2026-11-03 02:59:25",
+  "updated": "2026-11-03 20:20:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 200.81,
       "close": 221.37,
       "volume": 346000
+    },
+    {
+      "date": "2026-11-03",
+      "open": 217.47,
+      "high": 219.045,
+      "low": 209.22,
+      "close": 216.22,
+      "volume": 155261
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "HWM",
-  "updated": "2026-11-03 02:56:07",
+  "updated": "2026-11-03 20:20:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 201.95,
       "close": 212.99,
       "volume": 5315000
+    },
+    {
+      "date": "2026-11-03",
+      "open": 217.0,
+      "high": 225.7,
+      "low": 216.51,
+      "close": 223.73,
+      "volume": 3780092
     }
   ]
 }

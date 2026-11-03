@@ -1,6 +1,6 @@
 {
   "ticker": "DASH",
-  "updated": "2026-11-03 02:56:08",
+  "updated": "2026-11-03 20:20:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 177.0,
       "close": 190.07,
       "volume": 6208600
+    },
+    {
+      "date": "2026-11-03",
+      "open": 187.07,
+      "high": 187.15,
+      "low": 180.835,
+      "close": 182.325,
+      "volume": 4153417
     }
   ]
 }

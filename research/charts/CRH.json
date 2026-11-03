@@ -1,6 +1,6 @@
 {
   "ticker": "CRH",
-  "updated": "2026-11-03 02:56:08",
+  "updated": "2026-11-03 20:20:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 92.39,
       "close": 96.59,
       "volume": 10837300
+    },
+    {
+      "date": "2026-11-03",
+      "open": 96.37,
+      "high": 96.8299,
+      "low": 93.77,
+      "close": 93.96,
+      "volume": 2329745
     }
   ]
 }

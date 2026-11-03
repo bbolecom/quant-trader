@@ -1,6 +1,6 @@
 {
   "ticker": "NXT",
-  "updated": "2026-11-03 02:56:06",
+  "updated": "2026-11-03 20:20:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 83.325,
       "close": 91.13,
       "volume": 5507800
+    },
+    {
+      "date": "2026-11-03",
+      "open": 93.35,
+      "high": 98.38,
+      "low": 92.795,
+      "close": 96.17,
+      "volume": 2760075
     }
   ]
 }

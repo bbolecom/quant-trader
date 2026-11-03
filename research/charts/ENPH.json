@@ -1,6 +1,6 @@
 {
   "ticker": "ENPH",
-  "updated": "2026-11-03 02:59:25",
+  "updated": "2026-11-03 20:20:41",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 26.27,
       "close": 27.93,
       "volume": 8884900
+    },
+    {
+      "date": "2026-11-03",
+      "open": 28.29,
+      "high": 30.8181,
+      "low": 28.05,
+      "close": 30.135,
+      "volume": 5910122
     }
   ]
 }

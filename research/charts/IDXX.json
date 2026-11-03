@@ -1,6 +1,6 @@
 {
   "ticker": "IDXX",
-  "updated": "2026-11-03 02:56:06",
+  "updated": "2026-11-03 20:20:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 620.2,
       "close": 671.64,
       "volume": 1976100
+    },
+    {
+      "date": "2026-11-03",
+      "open": 662.26,
+      "high": 681.495,
+      "low": 655.515,
+      "close": 674.34,
+      "volume": 495406
     }
   ]
 }
