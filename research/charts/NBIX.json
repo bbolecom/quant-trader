@@ -1,6 +1,6 @@
 {
   "ticker": "NBIX",
-  "updated": "2026-11-04 01:24:16",
+  "updated": "2026-11-04 20:36:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-03",
       "open": 159.0,
-      "high": 169.5299,
+      "high": 169.53,
       "low": 157.91,
-      "close": NaN,
-      "volume": 4056105
+      "close": 164.85,
+      "volume": 4057100
+    },
+    {
+      "date": "2026-11-04",
+      "open": 166.5,
+      "high": 169.015,
+      "low": 162.02,
+      "close": 166.27,
+      "volume": 1706754
     }
   ]
 }
