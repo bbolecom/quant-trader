@@ -1,6 +1,6 @@
 {
   "ticker": "GOOGL",
-  "updated": "2026-11-04 00:40:38",
+  "updated": "2026-11-04 01:25:53",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 280.23,
       "high": 281.6,
       "low": 277.2,
-      "close": 280.03,
+      "close": NaN,
       "volume": 34646571
     }
   ]
