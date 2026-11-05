@@ -1,6 +1,6 @@
 {
   "ticker": "VKTX",
-  "updated": "2026-11-05 01:30:19",
+  "updated": "2026-11-05 20:52:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 26.905,
       "high": 28.0,
       "low": 26.09,
-      "close": NaN,
-      "volume": 4033942
+      "close": 27.97,
+      "volume": 4390800
+    },
+    {
+      "date": "2026-11-05",
+      "open": 27.61,
+      "high": 27.7623,
+      "low": 25.365,
+      "close": 25.78,
+      "volume": 3946392
     }
   ]
 }

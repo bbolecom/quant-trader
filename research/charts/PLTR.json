@@ -1,6 +1,6 @@
 {
   "ticker": "PLTR",
-  "updated": "2026-11-05 01:30:19",
+  "updated": "2026-11-05 20:53:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 164.95,
       "high": 177.43,
       "low": 164.6,
-      "close": NaN,
-      "volume": 34890153
+      "close": 171.7,
+      "volume": 35044600
+    },
+    {
+      "date": "2026-11-05",
+      "open": 166.72,
+      "high": 167.25,
+      "low": 152.6009,
+      "close": 154.955,
+      "volume": 40374726
     }
   ]
 }

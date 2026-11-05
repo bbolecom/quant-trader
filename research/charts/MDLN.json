@@ -1,6 +1,6 @@
 {
   "ticker": "MDLN",
-  "updated": "2026-11-05 01:28:20",
+  "updated": "2026-11-05 20:53:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 37.37,
       "high": 40.8,
       "low": 37.06,
-      "close": NaN,
-      "volume": 25463700
+      "close": 40.35,
+      "volume": 25464700
+    },
+    {
+      "date": "2026-11-05",
+      "open": 40.35,
+      "high": 41.6,
+      "low": 38.93,
+      "close": 39.97,
+      "volume": 9904913
     }
   ]
 }

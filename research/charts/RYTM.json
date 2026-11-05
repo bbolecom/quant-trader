@@ -1,6 +1,6 @@
 {
   "ticker": "RYTM",
-  "updated": "2026-11-05 01:28:20",
+  "updated": "2026-11-05 20:53:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 85.94,
       "high": 110.68,
       "low": 85.04,
-      "close": NaN,
-      "volume": 5401040
+      "close": 110.68,
+      "volume": 5485800
+    },
+    {
+      "date": "2026-11-05",
+      "open": 108.76,
+      "high": 110.66,
+      "low": 103.06,
+      "close": 103.68,
+      "volume": 4571111
     }
   ]
 }

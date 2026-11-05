@@ -1,6 +1,6 @@
 {
   "ticker": "GRAB",
-  "updated": "2026-11-05 01:30:14",
+  "updated": "2026-11-05 20:52:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 3.22,
       "high": 3.39,
       "low": 3.2,
-      "close": NaN,
-      "volume": 96532446
+      "close": 3.36,
+      "volume": 98859600
+    },
+    {
+      "date": "2026-11-05",
+      "open": 3.35,
+      "high": 3.5,
+      "low": 3.27,
+      "close": 3.4838,
+      "volume": 117634631
     }
   ]
 }
