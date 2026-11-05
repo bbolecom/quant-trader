@@ -1,18 +1,10 @@
 {
   "ticker": "GM",
-  "updated": "2026-11-04 20:36:29",
+  "updated": "2026-11-05 01:02:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-04",
-      "open": 75.91,
-      "high": 77.01,
-      "low": 75.21,
-      "close": 75.7,
-      "volume": 7765400
-    },
     {
       "date": "2026-05-05",
       "open": 76.27,
@@ -1034,8 +1026,8 @@
       "open": 89.555,
       "high": 93.7,
       "low": 89.3,
-      "close": 92.66,
-      "volume": 5226814
+      "close": NaN,
+      "volume": 7606295
     }
   ]
 }

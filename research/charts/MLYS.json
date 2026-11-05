@@ -1,18 +1,10 @@
 {
   "ticker": "MLYS",
-  "updated": "2026-11-04 20:36:30",
+  "updated": "2026-11-05 01:02:01",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-04",
-      "open": 28.71,
-      "high": 29.73,
-      "low": 28.18,
-      "close": 29.65,
-      "volume": 1297900
-    },
     {
       "date": "2026-05-05",
       "open": 30.0,
@@ -1032,10 +1024,10 @@
     {
       "date": "2026-11-04",
       "open": 16.41,
-      "high": 16.87,
+      "high": 17.02,
       "low": 15.53,
-      "close": 16.825,
-      "volume": 1329732
+      "close": NaN,
+      "volume": 1924142
     }
   ]
 }

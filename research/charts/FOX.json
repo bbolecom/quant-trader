@@ -1,18 +1,10 @@
 {
   "ticker": "FOX",
-  "updated": "2026-11-04 20:36:29",
+  "updated": "2026-11-05 01:02:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-04",
-      "open": 56.97,
-      "high": 57.13,
-      "low": 55.925,
-      "close": 56.07,
-      "volume": 818700
-    },
     {
       "date": "2026-05-05",
       "open": 56.07,
@@ -1034,8 +1026,8 @@
       "open": 60.04,
       "high": 62.06,
       "low": 59.902,
-      "close": 61.78,
-      "volume": 510413
+      "close": NaN,
+      "volume": 1417754
     }
   ]
 }
