@@ -1,6 +1,6 @@
 {
   "ticker": "INIO",
-  "updated": "2026-11-05 20:52:46",
+  "updated": "2026-11-06 01:10:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -847,11 +847,11 @@
     },
     {
       "date": "2026-11-05",
-      "open": 14.15,
+      "open": 14.17,
       "high": 14.28,
       "low": 12.95,
-      "close": 13.34,
-      "volume": 9153264
+      "close": NaN,
+      "volume": 10439200
     }
   ]
 }

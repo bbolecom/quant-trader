@@ -1,18 +1,10 @@
 {
   "ticker": "KD",
-  "updated": "2026-11-05 20:53:04",
+  "updated": "2026-11-06 01:10:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-05",
-      "open": 14.47,
-      "high": 14.775,
-      "low": 14.3,
-      "close": 14.7,
-      "volume": 4940200
-    },
     {
       "date": "2026-05-06",
       "open": 13.18,
@@ -1034,8 +1026,8 @@
       "open": 17.0,
       "high": 17.14,
       "low": 16.02,
-      "close": 16.335,
-      "volume": 4701087
+      "close": NaN,
+      "volume": 6533123
     }
   ]
 }

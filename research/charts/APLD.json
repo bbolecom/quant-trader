@@ -1,18 +1,10 @@
 {
   "ticker": "APLD",
-  "updated": "2026-11-05 20:52:46",
+  "updated": "2026-11-06 01:10:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-05",
-      "open": 36.5,
-      "high": 39.94,
-      "low": 35.687,
-      "close": 39.88,
-      "volume": 32489800
-    },
     {
       "date": "2026-05-06",
       "open": 40.27,
@@ -1031,11 +1023,11 @@
     },
     {
       "date": "2026-11-05",
-      "open": 15.91,
+      "open": 15.925,
       "high": 16.03,
       "low": 13.115,
-      "close": 14.385,
-      "volume": 44767060
+      "close": NaN,
+      "volume": 49493997
     }
   ]
 }

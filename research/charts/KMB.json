@@ -1,18 +1,10 @@
 {
   "ticker": "KMB",
-  "updated": "2026-11-05 20:53:06",
+  "updated": "2026-11-06 01:10:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-05",
-      "open": 95.65,
-      "high": 97.68,
-      "low": 94.67,
-      "close": 97.2,
-      "volume": 4259900
-    },
     {
       "date": "2026-05-06",
       "open": 97.95,
@@ -1031,11 +1023,11 @@
     },
     {
       "date": "2026-11-05",
-      "open": 110.378,
+      "open": 108.3,
       "high": 112.85,
       "low": 108.45,
-      "close": 110.845,
-      "volume": 5483836
+      "close": NaN,
+      "volume": 8600039
     }
   ]
 }

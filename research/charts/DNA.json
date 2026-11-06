@@ -1,18 +1,10 @@
 {
   "ticker": "DNA",
-  "updated": "2026-11-05 20:52:47",
+  "updated": "2026-11-06 01:10:25",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-05",
-      "open": 10.13,
-      "high": 10.21,
-      "low": 9.51,
-      "close": 9.71,
-      "volume": 1414500
-    },
     {
       "date": "2026-05-06",
       "open": 9.62,
@@ -1034,8 +1026,8 @@
       "open": 11.0,
       "high": 11.21,
       "low": 9.925,
-      "close": 10.05,
-      "volume": 2008011
+      "close": NaN,
+      "volume": 2359234
     }
   ]
 }
