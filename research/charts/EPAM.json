@@ -1,6 +1,6 @@
 {
   "ticker": "EPAM",
-  "updated": "2026-11-06 01:34:15",
+  "updated": "2026-11-06 20:09:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 156.2,
       "high": 168.56,
       "low": 154.1,
-      "close": NaN,
-      "volume": 3672402
+      "close": 165.7,
+      "volume": 3673000
+    },
+    {
+      "date": "2026-11-06",
+      "open": 160.09,
+      "high": 161.805,
+      "low": 152.87,
+      "close": 157.19,
+      "volume": 2412116
     }
   ]
 }

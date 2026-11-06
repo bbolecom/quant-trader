@@ -1,6 +1,6 @@
 {
   "ticker": "APP",
-  "updated": "2026-11-06 01:35:28",
+  "updated": "2026-11-06 20:08:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 349.83,
       "high": 365.33,
       "low": 338.88,
-      "close": NaN,
-      "volume": 22122914
+      "close": 356.1,
+      "volume": 22224300
+    },
+    {
+      "date": "2026-11-06",
+      "open": 353.5,
+      "high": 397.998,
+      "low": 348.95,
+      "close": 397.695,
+      "volume": 8431564
     }
   ]
 }

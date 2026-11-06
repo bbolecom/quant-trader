@@ -1,6 +1,6 @@
 {
   "ticker": "SEZL",
-  "updated": "2026-11-06 01:35:28",
+  "updated": "2026-11-06 20:08:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1025,9 +1025,17 @@
       "date": "2026-11-05",
       "open": 172.76,
       "high": 178.55,
-      "low": 152.1164,
-      "close": NaN,
-      "volume": 1966664
+      "low": 152.116,
+      "close": 155.0,
+      "volume": 1967900
+    },
+    {
+      "date": "2026-11-06",
+      "open": 155.24,
+      "high": 163.0,
+      "low": 148.78,
+      "close": 150.39,
+      "volume": 548586
     }
   ]
 }
