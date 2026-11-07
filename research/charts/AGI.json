@@ -1,18 +1,10 @@
 {
   "ticker": "AGI",
-  "updated": "2026-11-06 20:08:51",
+  "updated": "2026-11-07 00:04:02",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-06",
-      "open": 40.86,
-      "high": 42.89,
-      "low": 40.71,
-      "close": 42.0,
-      "volume": 4776300
-    },
     {
       "date": "2026-05-07",
       "open": 43.22,
@@ -1032,10 +1024,10 @@
     {
       "date": "2026-11-06",
       "open": 30.45,
-      "high": 31.815,
+      "high": 31.87,
       "low": 30.38,
-      "close": 31.725,
-      "volume": 2584590
+      "close": 31.83,
+      "volume": 3656067
     }
   ]
 }
