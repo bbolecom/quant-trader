@@ -1,6 +1,6 @@
 {
   "ticker": "COP",
-  "updated": "2026-11-10 03:37:27",
+  "updated": "2026-11-10 20:39:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 133.4,
       "close": 134.47,
       "volume": 10566400
+    },
+    {
+      "date": "2026-11-10",
+      "open": 132.97,
+      "high": 136.2891,
+      "low": 131.12,
+      "close": 135.78,
+      "volume": 5932878
     }
   ]
 }

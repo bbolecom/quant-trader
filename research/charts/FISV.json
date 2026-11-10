@@ -1,6 +1,6 @@
 {
   "ticker": "FISV",
-  "updated": "2026-11-10 03:37:28",
+  "updated": "2026-11-10 20:39:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 62.89,
       "close": 63.52,
       "volume": 8522800
+    },
+    {
+      "date": "2026-11-10",
+      "open": 63.4,
+      "high": 63.85,
+      "low": 62.305,
+      "close": 63.31,
+      "volume": 4749682
     }
   ]
 }

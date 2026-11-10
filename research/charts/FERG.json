@@ -1,6 +1,6 @@
 {
   "ticker": "FERG",
-  "updated": "2026-11-10 03:35:33",
+  "updated": "2026-11-10 20:39:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 246.4,
       "close": 259.93,
       "volume": 3759400
+    },
+    {
+      "date": "2026-11-10",
+      "open": 258.59,
+      "high": 260.51,
+      "low": 253.435,
+      "close": 259.035,
+      "volume": 924400
     }
   ]
 }
