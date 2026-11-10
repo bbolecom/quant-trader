@@ -1,21 +1,21 @@
 {
-  "date": "2026-11-07",
-  "updated": "2026-11-07 00:59:10",
-  "title": "📊 量化机会 54条 · 2026-11-07",
-  "total_actionable": 54,
+  "date": "2026-11-10",
+  "updated": "2026-11-10 03:37:29",
+  "title": "📊 量化机会 65条 · 2026-11-10",
+  "total_actionable": 65,
   "strategies": [
     {
       "id": "daily_pick",
       "name": "每日选股 · 统一入口",
       "path": "research/daily_pick_today.json",
-      "actionable": 4,
+      "actionable": 10,
       "symbols": [
         "—",
-        "ASTS",
-        "MCHP"
+        "ACHR",
+        "SPY"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "fleet_csp",
@@ -30,14 +30,14 @@
       "id": "sndk_iron",
       "name": "SNDK铁鹰收租",
       "path": "research/sndk_iron_today.json",
-      "actionable": 0,
+      "actionable": 5,
       "symbols": [
         "SNDK",
         "SOFI",
         "QQQ"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "vrp",
@@ -45,12 +45,12 @@
       "path": "research/vrp_today.json",
       "actionable": 5,
       "symbols": [
-        "QCOM",
-        "AMZN",
-        "CRM"
+        "TSLA",
+        "META",
+        "AMZN"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "capital_flow",
@@ -58,12 +58,12 @@
       "path": "research/flow_daily_today.json",
       "actionable": 8,
       "symbols": [
-        "FSLY",
-        "DXPE",
-        "SNDK"
+        "COP",
+        "PPL",
+        "LB"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "flow_strategy",
@@ -81,7 +81,7 @@
       "actionable": 0,
       "symbols": [],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "extreme20",
@@ -89,10 +89,10 @@
       "path": "research/extreme20_today.json",
       "actionable": 1,
       "symbols": [
-        "IREN"
+        "FRVO"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "meme_long",
@@ -105,16 +105,18 @@
         "TTMI"
       ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "whipsaw_short",
       "name": "做空涨幅榜·卖Call价差",
       "path": "research/whipsaw_short_today.json",
       "actionable": 0,
-      "symbols": [],
+      "symbols": [
+        "GFR"
+      ],
       "has_data": true,
-      "data_date": "2026-11-07"
+      "data_date": "2026-11-10"
     },
     {
       "id": "short_squeeze",
@@ -131,7 +133,7 @@
     }
   ],
   "push_preview": {
-    "title": "📊 量化机会 54条 · 2026-11-07",
-    "body": "大盘 🔴 弱市（SPY<MA50） · 每日选股可开 4\n• 每日选股 · 统一入口: 4 · —、ASTS、MCHP\n• VRP波动率溢价: 5 · QCOM、AMZN、CRM\n• 资金流向操盘痕迹: 8 · FSLY、DXPE、SNDK\n• 暴涨暴跌20%事件: 1 · IREN\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
+    "title": "📊 量化机会 65条 · 2026-11-10",
+    "body": "大盘 🔴 弱市（SPY<MA50） · 每日选股可开 10\n• 每日选股 · 统一入口: 10 · —、ACHR、SPY\n• SNDK铁鹰收租: 5 · SNDK、SOFI、QQQ\n• VRP波动率溢价: 5 · TSLA、META、AMZN\n• 资金流向操盘痕迹: 8 · COP、PPL、LB\n• 暴涨暴跌20%事件: 1 · FRVO\n• Meme规律 · Ultra80: 35 · PLTR、SMCI、TTMI\n• 安飞士做空: 1 · SPCE、MBX、ORKA"
   }
 }
