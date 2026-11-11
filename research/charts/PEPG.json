@@ -1,6 +1,6 @@
 {
   "ticker": "PEPG",
-  "updated": "2026-11-11 01:15:31",
+  "updated": "2026-11-11 20:58:42",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-10",
       "open": 5.545,
-      "high": 6.4399,
+      "high": 6.45,
       "low": 4.42,
-      "close": NaN,
-      "volume": 105958196
+      "close": 4.61,
+      "volume": 106515900
+    },
+    {
+      "date": "2026-11-11",
+      "open": 5.4,
+      "high": 5.88,
+      "low": 5.105,
+      "close": 5.27,
+      "volume": 15484853
     }
   ]
 }

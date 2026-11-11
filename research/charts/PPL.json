@@ -1,6 +1,6 @@
 {
   "ticker": "PPL",
-  "updated": "2026-11-11 01:15:28",
+  "updated": "2026-11-11 20:58:40",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-10",
       "open": 35.5,
-      "high": 35.75,
+      "high": 35.76,
       "low": 35.17,
-      "close": NaN,
-      "volume": 11877807
+      "close": 35.72,
+      "volume": 11877800
+    },
+    {
+      "date": "2026-11-11",
+      "open": 35.57,
+      "high": 35.665,
+      "low": 35.29,
+      "close": 35.39,
+      "volume": 5824257
     }
   ]
 }

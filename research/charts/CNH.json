@@ -1,6 +1,6 @@
 {
   "ticker": "CNH",
-  "updated": "2026-11-11 01:17:14",
+  "updated": "2026-11-11 20:58:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1025,9 +1025,17 @@
       "date": "2026-11-10",
       "open": 12.64,
       "high": 12.83,
-      "low": 12.045,
-      "close": NaN,
-      "volume": 21312219
+      "low": 12.05,
+      "close": 12.26,
+      "volume": 21312200
+    },
+    {
+      "date": "2026-11-11",
+      "open": 12.22,
+      "high": 12.54,
+      "low": 12.16,
+      "close": 12.495,
+      "volume": 7097203
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "SMR",
-  "updated": "2026-11-11 01:17:16",
+  "updated": "2026-11-11 20:58:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-10",
       "open": 5.26,
-      "high": 5.3699,
+      "high": 5.37,
       "low": 5.075,
-      "close": NaN,
-      "volume": 35778870
+      "close": 5.22,
+      "volume": 35825200
+    },
+    {
+      "date": "2026-11-11",
+      "open": 5.52,
+      "high": 5.54,
+      "low": 5.18,
+      "close": 5.225,
+      "volume": 33913795
     }
   ]
 }
