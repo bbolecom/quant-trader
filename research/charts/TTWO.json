@@ -1,6 +1,6 @@
 {
   "ticker": "TTWO",
-  "updated": "2026-11-11 00:53:27",
+  "updated": "2026-11-11 01:15:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 218.18,
       "high": 229.4626,
       "low": 214.29,
-      "close": 224.64,
+      "close": NaN,
       "volume": 8434598
     }
   ]

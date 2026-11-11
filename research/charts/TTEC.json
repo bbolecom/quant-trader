@@ -1,6 +1,6 @@
 {
   "ticker": "TTEC",
-  "updated": "2026-11-11 00:53:27",
+  "updated": "2026-11-11 01:15:31",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 1.68,
       "high": 2.5199,
       "low": 1.66,
-      "close": 2.4,
+      "close": NaN,
       "volume": 22189816
     }
   ]

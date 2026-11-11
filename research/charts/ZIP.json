@@ -1,6 +1,6 @@
 {
   "ticker": "ZIP",
-  "updated": "2026-11-11 00:53:28",
+  "updated": "2026-11-11 01:15:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 4.705,
       "high": 6.59,
       "low": 4.595,
-      "close": 6.59,
+      "close": NaN,
       "volume": 6161088
     }
   ]

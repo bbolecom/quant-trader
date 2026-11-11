@@ -1,6 +1,6 @@
 {
   "ticker": "AAON",
-  "updated": "2026-11-11 00:53:27",
+  "updated": "2026-11-11 01:15:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 71.64,
       "high": 80.1,
       "low": 67.87,
-      "close": 75.01,
+      "close": NaN,
       "volume": 5024111
     }
   ]

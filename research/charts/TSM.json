@@ -1,6 +1,6 @@
 {
   "ticker": "TSM",
-  "updated": "2026-11-11 00:53:29",
+  "updated": "2026-11-11 01:15:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 388.42,
       "high": 400.21,
       "low": 387.2,
-      "close": 396.48,
+      "close": NaN,
       "volume": 14288484
     }
   ]

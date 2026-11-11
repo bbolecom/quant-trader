@@ -1,6 +1,6 @@
 {
   "ticker": "LB",
-  "updated": "2026-11-11 00:53:24",
+  "updated": "2026-11-11 01:15:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,7 +1026,7 @@
       "open": 64.01,
       "high": 67.77,
       "low": 63.17,
-      "close": 66.24,
+      "close": NaN,
       "volume": 562054
     }
   ]
