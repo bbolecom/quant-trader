@@ -1,18 +1,10 @@
 {
   "ticker": "RGTI",
-  "updated": "2026-11-11 20:58:23",
+  "updated": "2026-11-12 02:01:35",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-11",
-      "open": 18.665,
-      "high": 20.85,
-      "low": 18.332,
-      "close": 20.51,
-      "volume": 44620300
-    },
     {
       "date": "2026-05-12",
       "open": 20.5,
@@ -1034,8 +1026,8 @@
       "open": 12.92,
       "high": 12.93,
       "low": 11.07,
-      "close": 11.145,
-      "volume": 28621125
+      "close": NaN,
+      "volume": 32674202
     }
   ]
 }

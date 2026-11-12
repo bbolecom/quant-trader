@@ -1,18 +1,10 @@
 {
   "ticker": "SANM",
-  "updated": "2026-11-11 20:58:23",
+  "updated": "2026-11-12 02:01:34",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-11",
-      "open": 244.37,
-      "high": 253.47,
-      "low": 243.16,
-      "close": 245.44,
-      "volume": 778300
-    },
     {
       "date": "2026-05-12",
       "open": 241.79,
@@ -1034,8 +1026,8 @@
       "open": 163.5,
       "high": 165.79,
       "low": 157.2501,
-      "close": 159.62,
-      "volume": 992476
+      "close": NaN,
+      "volume": 1212847
     }
   ]
 }

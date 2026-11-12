@@ -1,17 +1,17 @@
 {
   "ticker": "COP",
-  "updated": "2026-11-11 20:58:40",
+  "updated": "2026-11-12 02:01:46",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
     {
       "date": "2026-05-11",
-      "open": 114.43,
-      "high": 115.97,
-      "low": 113.8,
-      "close": 115.55,
-      "volume": 6200100
+      "open": NaN,
+      "high": NaN,
+      "low": NaN,
+      "close": NaN,
+      "volume": 0
     },
     {
       "date": "2026-05-12",
@@ -1034,8 +1034,8 @@
       "open": 136.43,
       "high": 137.94,
       "low": 135.43,
-      "close": 137.76,
-      "volume": 3454882
+      "close": NaN,
+      "volume": 4760939
     }
   ]
 }

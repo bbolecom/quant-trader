@@ -1,18 +1,10 @@
 {
   "ticker": "EQX",
-  "updated": "2026-11-11 20:58:41",
+  "updated": "2026-11-12 02:01:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-11",
-      "open": 14.5,
-      "high": 15.04,
-      "low": 14.495,
-      "close": 14.86,
-      "volume": 7174100
-    },
     {
       "date": "2026-05-12",
       "open": 14.52,
@@ -1034,8 +1026,8 @@
       "open": 11.23,
       "high": 11.23,
       "low": 10.65,
-      "close": 10.8,
-      "volume": 10970604
+      "close": NaN,
+      "volume": 11944311
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "FN",
-  "updated": "2026-11-11 20:58:41",
+  "updated": "2026-11-12 02:01:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-11",
-      "open": 619.41,
-      "high": 666.57,
-      "low": 618.63,
-      "close": 649.53,
-      "volume": 981100
-    },
     {
       "date": "2026-05-12",
       "open": 638.78,
@@ -1034,8 +1026,8 @@
       "open": 373.0,
       "high": 379.43,
       "low": 359.595,
-      "close": 369.135,
-      "volume": 925638
+      "close": NaN,
+      "volume": 1025981
     }
   ]
 }
