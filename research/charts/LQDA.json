@@ -1,18 +1,10 @@
 {
   "ticker": "LQDA",
-  "updated": "2026-11-12 02:18:21",
+  "updated": "2026-11-12 21:14:20",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-12",
-      "open": 53.8,
-      "high": 57.0,
-      "low": 50.4,
-      "close": 56.6,
-      "volume": 3928800
-    },
     {
       "date": "2026-05-13",
       "open": 56.0,
@@ -1026,8 +1018,16 @@
       "open": 54.0,
       "high": 56.79,
       "low": 52.76,
-      "close": NaN,
-      "volume": 3777378
+      "close": 55.21,
+      "volume": 3873800
+    },
+    {
+      "date": "2026-11-12",
+      "open": 55.0,
+      "high": 58.74,
+      "low": 54.01,
+      "close": 58.12,
+      "volume": 2771442
     }
   ]
 }

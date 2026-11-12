@@ -1,18 +1,10 @@
 {
   "ticker": "MRCY",
-  "updated": "2026-11-12 02:18:21",
+  "updated": "2026-11-12 21:14:21",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-12",
-      "open": 91.1,
-      "high": 92.57,
-      "low": 87.93,
-      "close": 92.32,
-      "volume": 462800
-    },
     {
       "date": "2026-05-13",
       "open": 91.79,
@@ -1023,11 +1015,19 @@
     },
     {
       "date": "2026-11-11",
-      "open": 86.42,
-      "high": 88.92,
+      "open": 86.14,
+      "high": 88.93,
       "low": 85.35,
-      "close": NaN,
-      "volume": 1602693
+      "close": 88.33,
+      "volume": 1602800
+    },
+    {
+      "date": "2026-11-12",
+      "open": 87.07,
+      "high": 89.08,
+      "low": 83.13,
+      "close": 83.43,
+      "volume": 1360928
     }
   ]
 }
