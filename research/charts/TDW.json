@@ -1,6 +1,6 @@
 {
   "ticker": "TDW",
-  "updated": "2026-11-12 21:14:22",
+  "updated": "2026-11-13 01:49:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 79.17,
       "high": 79.58,
       "low": 77.41,
-      "close": 77.83,
-      "volume": 517495
+      "close": NaN,
+      "volume": 661663
     }
   ]
 }

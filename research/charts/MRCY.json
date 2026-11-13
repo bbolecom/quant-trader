@@ -1,6 +1,6 @@
 {
   "ticker": "MRCY",
-  "updated": "2026-11-12 21:14:21",
+  "updated": "2026-11-13 01:49:50",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 87.07,
       "high": 89.08,
       "low": 83.13,
-      "close": 83.43,
-      "volume": 1360928
+      "close": NaN,
+      "volume": 1529370
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "ZETA",
-  "updated": "2026-11-12 21:14:20",
+  "updated": "2026-11-13 01:49:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 36.51,
       "high": 38.245,
       "low": 36.48,
-      "close": 37.28,
-      "volume": 4422079
+      "close": NaN,
+      "volume": 5074878
     }
   ]
 }

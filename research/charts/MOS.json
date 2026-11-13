@@ -1,6 +1,6 @@
 {
   "ticker": "MOS",
-  "updated": "2026-11-12 21:14:43",
+  "updated": "2026-11-13 01:50:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 22.33,
       "high": 22.4,
       "low": 21.425,
-      "close": 21.75,
-      "volume": 6136012
+      "close": NaN,
+      "volume": 7452266
     }
   ]
 }
