@@ -1,6 +1,6 @@
 {
   "ticker": "FMC",
-  "updated": "2026-11-13 01:49:49",
+  "updated": "2026-11-13 20:41:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-12",
       "open": 5.4,
-      "high": 5.525,
-      "low": 4.765,
-      "close": NaN,
-      "volume": 11315443
+      "high": 5.53,
+      "low": 4.77,
+      "close": 5.06,
+      "volume": 11316100
+    },
+    {
+      "date": "2026-11-13",
+      "open": 5.14,
+      "high": 5.26,
+      "low": 4.92,
+      "close": 5.115,
+      "volume": 3422204
     }
   ]
 }

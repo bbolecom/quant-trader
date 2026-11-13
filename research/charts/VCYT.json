@@ -1,6 +1,6 @@
 {
   "ticker": "VCYT",
-  "updated": "2026-11-13 01:50:09",
+  "updated": "2026-11-13 20:42:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-12",
       "open": 24.6,
-      "high": 25.29,
+      "high": 25.3,
       "low": 24.07,
-      "close": NaN,
-      "volume": 2507764
+      "close": 24.63,
+      "volume": 2507800
+    },
+    {
+      "date": "2026-11-13",
+      "open": 24.6,
+      "high": 24.65,
+      "low": 23.47,
+      "close": 24.33,
+      "volume": 1199650
     }
   ]
 }

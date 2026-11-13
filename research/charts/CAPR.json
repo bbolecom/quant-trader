@@ -1,6 +1,6 @@
 {
   "ticker": "CAPR",
-  "updated": "2026-11-13 01:50:02",
+  "updated": "2026-11-13 20:42:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1025,9 +1025,17 @@
       "date": "2026-11-12",
       "open": 10.95,
       "high": 10.95,
-      "low": 9.8675,
-      "close": NaN,
-      "volume": 4687472
+      "low": 9.87,
+      "close": 10.24,
+      "volume": 4779300
+    },
+    {
+      "date": "2026-11-13",
+      "open": 10.21,
+      "high": 10.21,
+      "low": 9.255,
+      "close": 9.575,
+      "volume": 3126022
     }
   ]
 }

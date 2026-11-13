@@ -1,6 +1,6 @@
 {
   "ticker": "WK",
-  "updated": "2026-11-13 01:50:08",
+  "updated": "2026-11-13 20:42:07",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-12",
       "open": 70.13,
-      "high": 69.52,
-      "low": 68.11,
-      "close": NaN,
-      "volume": 817406
+      "high": 70.48,
+      "low": 68.09,
+      "close": 68.51,
+      "volume": 817400
+    },
+    {
+      "date": "2026-11-13",
+      "open": 70.19,
+      "high": 69.785,
+      "low": 68.2,
+      "close": 68.4,
+      "volume": 288939
     }
   ]
 }

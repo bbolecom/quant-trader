@@ -1,6 +1,6 @@
 {
   "ticker": "IONS",
-  "updated": "2026-11-13 01:50:09",
+  "updated": "2026-11-13 20:42:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,18 @@
     {
       "date": "2026-11-12",
       "open": 28.07,
-      "high": 28.555,
-      "low": 27.282,
-      "close": NaN,
-      "volume": 6196054
+      "high": 28.56,
+      "low": 27.28,
+      "close": 27.31,
+      "volume": 6198900
+    },
+    {
+      "date": "2026-11-13",
+      "open": 27.3,
+      "high": 28.85,
+      "low": 27.25,
+      "close": 28.695,
+      "volume": 3668561
     }
   ]
 }

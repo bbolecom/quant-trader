@@ -1,6 +1,6 @@
 {
   "ticker": "IMVT",
-  "updated": "2026-11-13 01:50:10",
+  "updated": "2026-11-13 20:42:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,16 @@
       "open": 36.92,
       "high": 36.92,
       "low": 34.86,
-      "close": NaN,
-      "volume": 1182848
+      "close": 35.05,
+      "volume": 1182900
+    },
+    {
+      "date": "2026-11-13",
+      "open": 34.2427,
+      "high": 34.765,
+      "low": 33.935,
+      "close": 34.175,
+      "volume": 472377
     }
   ]
 }

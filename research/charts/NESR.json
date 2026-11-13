@@ -1,6 +1,6 @@
 {
   "ticker": "NESR",
-  "updated": "2026-11-13 01:49:50",
+  "updated": "2026-11-13 20:41:55",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,19 @@
     },
     {
       "date": "2026-11-12",
-      "open": 21.51,
+      "open": 21.69,
       "high": 22.08,
       "low": 20.93,
-      "close": NaN,
-      "volume": 1700346
+      "close": 21.23,
+      "volume": 1731600
+    },
+    {
+      "date": "2026-11-13",
+      "open": 21.32,
+      "high": 21.68,
+      "low": 20.4,
+      "close": 21.07,
+      "volume": 525614
     }
   ]
 }
