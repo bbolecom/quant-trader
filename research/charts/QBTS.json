@@ -1,18 +1,10 @@
 {
   "ticker": "QBTS",
-  "updated": "2026-11-13 20:42:06",
+  "updated": "2026-11-14 01:02:19",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-13",
-      "open": 22.38,
-      "high": 22.39,
-      "low": 20.7,
-      "close": 21.44,
-      "volume": 25576500
-    },
     {
       "date": "2026-05-14",
       "open": 20.86,
@@ -1034,8 +1026,8 @@
       "open": 9.82,
       "high": 9.83,
       "low": 9.275,
-      "close": 9.565,
-      "volume": 8917725
+      "close": NaN,
+      "volume": 11132046
     }
   ]
 }

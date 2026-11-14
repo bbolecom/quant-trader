@@ -1,18 +1,10 @@
 {
   "ticker": "ONTO",
-  "updated": "2026-11-13 20:42:07",
+  "updated": "2026-11-14 01:02:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-13",
-      "open": 285.73,
-      "high": 285.73,
-      "low": 269.13,
-      "close": 276.97,
-      "volume": 1102400
-    },
     {
       "date": "2026-05-14",
       "open": 279.55,
@@ -1034,8 +1026,8 @@
       "open": 207.57,
       "high": 210.48,
       "low": 194.72,
-      "close": 202.53,
-      "volume": 609592
+      "close": NaN,
+      "volume": 806864
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "AMPX",
-  "updated": "2026-11-13 20:41:56",
+  "updated": "2026-11-14 01:02:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-13",
-      "open": 18.78,
-      "high": 19.05,
-      "low": 17.38,
-      "close": 17.52,
-      "volume": 8956400
-    },
     {
       "date": "2026-05-14",
       "open": 17.41,
@@ -1034,8 +1026,8 @@
       "open": 8.3,
       "high": 8.2845,
       "low": 7.7839,
-      "close": 7.905,
-      "volume": 4664945
+      "close": NaN,
+      "volume": 6073748
     }
   ]
 }

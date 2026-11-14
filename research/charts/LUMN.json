@@ -1,18 +1,10 @@
 {
   "ticker": "LUMN",
-  "updated": "2026-11-13 20:41:54",
+  "updated": "2026-11-14 01:02:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-13",
-      "open": 8.76,
-      "high": 9.48,
-      "low": 8.72,
-      "close": 9.4,
-      "volume": 18255600
-    },
     {
       "date": "2026-05-14",
       "open": 9.5,
@@ -1034,8 +1026,8 @@
       "open": 4.18,
       "high": 4.3,
       "low": 4.05,
-      "close": 4.135,
-      "volume": 10944144
+      "close": NaN,
+      "volume": 19050757
     }
   ]
 }

@@ -1,18 +1,10 @@
 {
   "ticker": "CLF",
-  "updated": "2026-11-13 20:41:55",
+  "updated": "2026-11-14 01:02:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-13",
-      "open": 10.82,
-      "high": 11.24,
-      "low": 10.81,
-      "close": 10.99,
-      "volume": 9856000
-    },
     {
       "date": "2026-05-14",
       "open": 11.0,
@@ -1034,8 +1026,8 @@
       "open": 13.16,
       "high": 13.16,
       "low": 12.43,
-      "close": 12.62,
-      "volume": 8644032
+      "close": NaN,
+      "volume": 11608312
     }
   ]
 }
