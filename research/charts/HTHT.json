@@ -1,6 +1,6 @@
 {
   "ticker": "HTHT",
-  "updated": "2026-11-17 03:56:55",
+  "updated": "2026-11-17 21:57:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 52.06,
       "close": 54.88,
       "volume": 3736700
+    },
+    {
+      "date": "2026-11-17",
+      "open": 54.13,
+      "high": 54.735,
+      "low": 53.59,
+      "close": 53.65,
+      "volume": 4215384
     }
   ]
 }

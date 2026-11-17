@@ -1,6 +1,6 @@
 {
   "ticker": "CGON",
-  "updated": "2026-11-17 03:55:38",
+  "updated": "2026-11-17 21:57:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 78.27,
       "close": 84.78,
       "volume": 9881900
+    },
+    {
+      "date": "2026-11-17",
+      "open": 82.51,
+      "high": 83.9688,
+      "low": 73.0,
+      "close": 78.94,
+      "volume": 3160185
     }
   ]
 }

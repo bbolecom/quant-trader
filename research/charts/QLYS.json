@@ -1,6 +1,6 @@
 {
   "ticker": "QLYS",
-  "updated": "2026-11-17 03:56:55",
+  "updated": "2026-11-17 21:57:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 169.17,
       "close": 182.01,
       "volume": 976100
+    },
+    {
+      "date": "2026-11-17",
+      "open": 179.6,
+      "high": 182.16,
+      "low": 169.79,
+      "close": 174.67,
+      "volume": 858998
     }
   ]
 }

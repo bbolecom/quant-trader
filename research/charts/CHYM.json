@@ -1,6 +1,6 @@
 {
   "ticker": "CHYM",
-  "updated": "2026-11-17 03:55:39",
+  "updated": "2026-11-17 21:57:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 33.97,
       "close": 34.29,
       "volume": 15960300
+    },
+    {
+      "date": "2026-11-17",
+      "open": 33.71,
+      "high": 34.23,
+      "low": 32.9,
+      "close": 32.97,
+      "volume": 40262369
     }
   ]
 }

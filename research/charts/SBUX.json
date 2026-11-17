@@ -1,6 +1,6 @@
 {
   "ticker": "SBUX",
-  "updated": "2026-11-17 03:55:39",
+  "updated": "2026-11-17 21:57:48",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 107.59,
       "close": 108.72,
       "volume": 7940500
+    },
+    {
+      "date": "2026-11-17",
+      "open": 107.62,
+      "high": 110.15,
+      "low": 107.0301,
+      "close": 107.49,
+      "volume": 6660335
     }
   ]
 }

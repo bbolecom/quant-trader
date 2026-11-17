@@ -1,6 +1,6 @@
 {
   "ticker": "TU",
-  "updated": "2026-11-17 03:55:38",
+  "updated": "2026-11-17 21:57:47",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 9.73,
       "low": 9.1,
       "close": 9.57,
-      "volume": 47239400
+      "volume": 47251000
+    },
+    {
+      "date": "2026-11-17",
+      "open": 9.5,
+      "high": 9.65,
+      "low": 9.25,
+      "close": 9.26,
+      "volume": 23263445
     }
   ]
 }

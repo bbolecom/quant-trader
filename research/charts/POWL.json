@@ -1,6 +1,6 @@
 {
   "ticker": "POWL",
-  "updated": "2026-11-17 03:56:55",
+  "updated": "2026-11-17 21:57:29",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 138.5,
       "close": 151.2,
       "volume": 2510500
+    },
+    {
+      "date": "2026-11-17",
+      "open": 150.84,
+      "high": 156.0,
+      "low": 144.06,
+      "close": 150.86,
+      "volume": 1345171
     }
   ]
 }

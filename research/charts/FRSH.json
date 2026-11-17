@@ -1,6 +1,6 @@
 {
   "ticker": "FRSH",
-  "updated": "2026-11-17 03:56:55",
+  "updated": "2026-11-17 21:57:30",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 12.51,
       "close": 13.23,
       "volume": 5360700
+    },
+    {
+      "date": "2026-11-17",
+      "open": 12.99,
+      "high": 13.49,
+      "low": 12.38,
+      "close": 12.95,
+      "volume": 16951373
     }
   ]
 }
