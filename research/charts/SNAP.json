@@ -1,18 +1,10 @@
 {
   "ticker": "SNAP",
-  "updated": "2026-11-18 02:56:40",
+  "updated": "2026-11-18 21:39:27",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-18",
-      "open": 5.52,
-      "high": 5.71,
-      "low": 5.455,
-      "close": 5.67,
-      "volume": 45028100
-    },
     {
       "date": "2026-05-19",
       "open": 5.67,
@@ -1027,7 +1019,15 @@
       "high": 5.51,
       "low": 5.068,
       "close": 5.5,
-      "volume": 75135100
+      "volume": 75276100
+    },
+    {
+      "date": "2026-11-18",
+      "open": 5.5,
+      "high": 5.62,
+      "low": 5.425,
+      "close": 5.44,
+      "volume": 59129074
     }
   ]
 }

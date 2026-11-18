@@ -1,18 +1,10 @@
 {
   "ticker": "TME",
-  "updated": "2026-11-18 02:56:41",
+  "updated": "2026-11-18 21:39:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-18",
-      "open": 8.71,
-      "high": 9.1,
-      "low": 8.7,
-      "close": 9.06,
-      "volume": 16893800
-    },
     {
       "date": "2026-05-19",
       "open": 9.01,
@@ -1028,6 +1020,14 @@
       "low": 9.11,
       "close": 9.47,
       "volume": 13728000
+    },
+    {
+      "date": "2026-11-18",
+      "open": 9.58,
+      "high": 9.79,
+      "low": 9.32,
+      "close": 9.35,
+      "volume": 15000776
     }
   ]
 }
