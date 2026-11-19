@@ -1,18 +1,10 @@
 {
   "ticker": "VIR",
-  "updated": "2026-11-19 02:47:26",
+  "updated": "2026-11-19 21:55:13",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-19",
-      "open": 8.69,
-      "high": 8.83,
-      "low": 8.52,
-      "close": 8.53,
-      "volume": 1867000
-    },
     {
       "date": "2026-05-20",
       "open": 8.64,
@@ -1028,6 +1020,14 @@
       "low": 9.015,
       "close": 9.15,
       "volume": 2154400
+    },
+    {
+      "date": "2026-11-19",
+      "open": 9.25,
+      "high": 9.398,
+      "low": 8.87,
+      "close": 8.87,
+      "volume": 1886839
     }
   ]
 }
