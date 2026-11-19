@@ -1,6 +1,6 @@
 {
   "ticker": "FRVO",
-  "updated": "2026-11-18 21:39:28",
+  "updated": "2026-11-19 02:35:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,11 @@
     },
     {
       "date": "2026-11-18",
-      "open": 11.9069,
-      "high": 12.0298,
-      "low": 11.2143,
+      "open": 11.71,
+      "high": 12.03,
+      "low": 11.21,
       "close": 11.4,
-      "volume": 8359296
+      "volume": 8371000
     }
   ]
 }
