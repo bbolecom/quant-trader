@@ -1,18 +1,10 @@
 {
   "ticker": "OKTA",
-  "updated": "2026-11-20 02:44:12",
+  "updated": "2026-11-20 21:37:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-20",
-      "open": 83.76,
-      "high": 89.21,
-      "low": 83.35,
-      "close": 89.04,
-      "volume": 2969900
-    },
     {
       "date": "2026-05-21",
       "open": 88.5,
@@ -1026,8 +1018,16 @@
       "open": 203.25,
       "high": 214.89,
       "low": 202.0,
-      "close": NaN,
-      "volume": 6145873
+      "close": 206.85,
+      "volume": 6151300
+    },
+    {
+      "date": "2026-11-20",
+      "open": 203.71,
+      "high": 207.35,
+      "low": 189.75,
+      "close": 191.46,
+      "volume": 3324496
     }
   ]
 }

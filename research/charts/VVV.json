@@ -1,18 +1,10 @@
 {
   "ticker": "VVV",
-  "updated": "2026-11-20 02:44:12",
+  "updated": "2026-11-20 21:37:08",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-20",
-      "open": 32.14,
-      "high": 33.44,
-      "low": 31.41,
-      "close": 33.27,
-      "volume": 1856500
-    },
     {
       "date": "2026-05-21",
       "open": 32.87,
@@ -1026,8 +1018,16 @@
       "open": 34.08,
       "high": 38.0,
       "low": 33.685,
-      "close": NaN,
-      "volume": 8923180
+      "close": 36.84,
+      "volume": 8925500
+    },
+    {
+      "date": "2026-11-20",
+      "open": 36.5,
+      "high": 38.07,
+      "low": 36.01,
+      "close": 36.25,
+      "volume": 5268243
     }
   ]
 }

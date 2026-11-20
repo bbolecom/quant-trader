@@ -1,26 +1,10 @@
 {
   "ticker": "CVX",
-  "updated": "2026-11-20 02:44:13",
+  "updated": "2026-11-20 21:37:09",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-19",
-      "open": NaN,
-      "high": NaN,
-      "low": NaN,
-      "close": NaN,
-      "volume": 0
-    },
-    {
-      "date": "2026-05-20",
-      "open": 196.25,
-      "high": 198.19,
-      "low": 191.27,
-      "close": 191.33,
-      "volume": 14564900
-    },
     {
       "date": "2026-05-21",
       "open": 193.79,
@@ -1036,6 +1020,14 @@
       "low": 205.57,
       "close": 206.5,
       "volume": 8582400
+    },
+    {
+      "date": "2026-11-20",
+      "open": 206.44,
+      "high": 210.13,
+      "low": 205.9392,
+      "close": 208.37,
+      "volume": 11786263
     }
   ]
 }

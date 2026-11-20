@@ -1,18 +1,10 @@
 {
   "ticker": "PANW",
-  "updated": "2026-11-20 02:44:05",
+  "updated": "2026-11-20 21:36:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-20",
-      "open": 236.21,
-      "high": 250.0,
-      "low": 235.26,
-      "close": 246.66,
-      "volume": 8698900
-    },
     {
       "date": "2026-05-21",
       "open": 241.34,
@@ -1026,8 +1018,16 @@
       "open": 355.81,
       "high": 370.0,
       "low": 350.52,
-      "close": NaN,
-      "volume": 19109488
+      "close": 361.73,
+      "volume": 19184200
+    },
+    {
+      "date": "2026-11-20",
+      "open": 359.04,
+      "high": 366.79,
+      "low": 341.53,
+      "close": 343.32,
+      "volume": 12232201
     }
   ]
 }

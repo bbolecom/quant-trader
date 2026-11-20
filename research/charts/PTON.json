@@ -1,18 +1,10 @@
 {
   "ticker": "PTON",
-  "updated": "2026-11-20 02:44:09",
+  "updated": "2026-11-20 21:37:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-20",
-      "open": 5.195,
-      "high": 5.26,
-      "low": 5.12,
-      "close": 5.17,
-      "volume": 9878700
-    },
     {
       "date": "2026-05-21",
       "open": 5.09,
@@ -1026,8 +1018,16 @@
       "open": 5.31,
       "high": 5.34,
       "low": 5.055,
-      "close": NaN,
-      "volume": 7931825
+      "close": 5.07,
+      "volume": 7934200
+    },
+    {
+      "date": "2026-11-20",
+      "open": 5.01,
+      "high": 5.33,
+      "low": 4.905,
+      "close": 4.98,
+      "volume": 15801424
     }
   ]
 }

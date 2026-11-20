@@ -1,18 +1,10 @@
 {
   "ticker": "SRRK",
-  "updated": "2026-11-20 02:44:05",
+  "updated": "2026-11-20 21:37:00",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-20",
-      "open": 47.67,
-      "high": 49.72,
-      "low": 47.39,
-      "close": 48.38,
-      "volume": 915200
-    },
     {
       "date": "2026-05-21",
       "open": 48.01,
@@ -1026,8 +1018,16 @@
       "open": 47.95,
       "high": 50.72,
       "low": 47.95,
-      "close": NaN,
-      "volume": 2452803
+      "close": 50.37,
+      "volume": 2452800
+    },
+    {
+      "date": "2026-11-20",
+      "open": 49.63,
+      "high": 52.17,
+      "low": 47.94,
+      "close": 48.13,
+      "volume": 2058601
     }
   ]
 }
