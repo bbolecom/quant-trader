@@ -1,6 +1,6 @@
 {
   "ticker": "SAIL",
-  "updated": "2026-11-19 21:55:04",
+  "updated": "2026-11-20 02:20:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 22.54,
       "high": 23.52,
       "low": 22.01,
-      "close": 22.04,
-      "volume": 5079570
+      "close": NaN,
+      "volume": 5424260
     }
   ]
 }

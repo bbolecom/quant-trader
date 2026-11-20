@@ -1,6 +1,6 @@
 {
   "ticker": "QQQ",
-  "updated": "2026-11-19 21:55:06",
+  "updated": "2026-11-20 02:21:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 671.05,
       "high": 676.46,
       "low": 644.34,
-      "close": 645.04,
-      "volume": 68668715
+      "close": NaN,
+      "volume": 70328281
     }
   ]
 }

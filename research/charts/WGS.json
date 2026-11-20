@@ -1,6 +1,6 @@
 {
   "ticker": "WGS",
-  "updated": "2026-11-19 21:55:04",
+  "updated": "2026-11-20 02:20:32",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 52.74,
       "high": 54.8,
       "low": 49.09,
-      "close": 49.24,
-      "volume": 914051
+      "close": NaN,
+      "volume": 917420
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "ticker": "GNRC",
-  "updated": "2026-11-19 21:55:05",
+  "updated": "2026-11-20 02:20:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 211.04,
       "high": 218.74,
       "low": 204.51,
-      "close": 205.09,
-      "volume": 1771538
+      "close": NaN,
+      "volume": 1772721
     }
   ]
 }

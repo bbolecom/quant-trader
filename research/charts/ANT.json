@@ -1,0 +1,17 @@
+{
+  "ticker": "ANT",
+  "updated": "2026-11-20 02:20:55",
+  "period": "6mo",
+  "interval": "1d",
+  "source": "yfinance-live",
+  "bars": [
+    {
+      "date": "2026-11-19",
+      "open": 111.5,
+      "high": 115.1,
+      "low": 92.72,
+      "close": 97.17,
+      "volume": 851818130
+    }
+  ]
+}

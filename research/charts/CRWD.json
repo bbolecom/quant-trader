@@ -1,6 +1,6 @@
 {
   "ticker": "CRWD",
-  "updated": "2026-11-19 21:55:15",
+  "updated": "2026-11-20 02:21:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 246.745,
       "high": 256.73,
       "low": 239.7,
-      "close": 243.46,
-      "volume": 11537080
+      "close": NaN,
+      "volume": 11554903
     }
   ]
 }

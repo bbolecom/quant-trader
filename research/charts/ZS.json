@@ -1,6 +1,6 @@
 {
   "ticker": "ZS",
-  "updated": "2026-11-19 21:55:16",
+  "updated": "2026-11-20 02:21:59",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 202.0,
       "high": 218.07,
       "low": 201.46,
-      "close": 205.71,
-      "volume": 3700665
+      "close": NaN,
+      "volume": 3705014
     }
   ]
 }

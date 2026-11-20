@@ -1,6 +1,6 @@
 {
   "ticker": "ATEN",
-  "updated": "2026-11-19 21:55:04",
+  "updated": "2026-11-20 02:20:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 33.01,
       "high": 33.965,
       "low": 32.2441,
-      "close": 32.54,
-      "volume": 1887542
+      "close": NaN,
+      "volume": 1944918
     }
   ]
 }
