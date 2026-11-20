@@ -1,6 +1,6 @@
 {
   "ticker": "WWD",
-  "updated": "2026-11-20 02:20:56",
+  "updated": "2026-11-20 02:44:12",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,11 @@
     },
     {
       "date": "2026-11-19",
-      "open": 332.49,
+      "open": 330.51,
       "high": 350.0,
-      "low": 327.665,
-      "close": NaN,
-      "volume": 2296801
+      "low": 327.67,
+      "close": 335.72,
+      "volume": 2314900
     }
   ]
 }
