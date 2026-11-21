@@ -1,6 +1,6 @@
 {
   "ticker": "PEP",
-  "updated": "2026-11-21 02:19:00",
+  "updated": "2026-11-21 02:47:39",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,11 @@
     },
     {
       "date": "2026-11-20",
-      "open": 140.51,
+      "open": 140.39,
       "high": 143.28,
       "low": 139.85,
-      "close": NaN,
-      "volume": 13742470
+      "close": 140.54,
+      "volume": 13742600
     }
   ]
 }

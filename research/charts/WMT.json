@@ -1,6 +1,6 @@
 {
   "ticker": "WMT",
-  "updated": "2026-11-21 02:18:59",
+  "updated": "2026-11-21 02:47:38",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1023,11 +1023,11 @@
     },
     {
       "date": "2026-11-20",
-      "open": 127.285,
+      "open": 127.26,
       "high": 130.52,
-      "low": 127.22,
-      "close": NaN,
-      "volume": 42631719
+      "low": 127.18,
+      "close": 127.95,
+      "volume": 42631700
     }
   ]
 }

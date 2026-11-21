@@ -1,6 +1,6 @@
 {
   "ticker": "GAP",
-  "updated": "2026-11-21 02:18:58",
+  "updated": "2026-11-21 02:47:37",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,10 @@
     {
       "date": "2026-11-20",
       "open": 20.25,
-      "high": 22.155,
+      "high": 22.16,
       "low": 20.05,
-      "close": NaN,
-      "volume": 28018446
+      "close": 20.94,
+      "volume": 28018800
     }
   ]
 }
