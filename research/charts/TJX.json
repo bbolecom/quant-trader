@@ -1,6 +1,6 @@
 {
   "ticker": "TJX",
-  "updated": "2026-11-20 21:37:00",
+  "updated": "2026-11-21 02:18:44",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 140.47,
       "high": 142.45,
       "low": 139.14,
-      "close": 139.62,
-      "volume": 9577271
+      "close": NaN,
+      "volume": 9645554
     }
   ]
 }

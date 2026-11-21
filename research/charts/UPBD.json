@@ -1,6 +1,6 @@
 {
   "ticker": "UPBD",
-  "updated": "2026-11-20 21:37:00",
+  "updated": "2026-11-21 02:18:45",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 25.04,
       "high": 25.87,
       "low": 25.01,
-      "close": 25.44,
-      "volume": 1669792
+      "close": NaN,
+      "volume": 1699850
     }
   ]
 }

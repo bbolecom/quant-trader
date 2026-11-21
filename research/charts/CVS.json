@@ -1,6 +1,6 @@
 {
   "ticker": "CVS",
-  "updated": "2026-11-20 21:37:07",
+  "updated": "2026-11-21 02:18:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 80.95,
       "high": 82.3,
       "low": 80.67,
-      "close": 80.84,
-      "volume": 10413941
+      "close": NaN,
+      "volume": 10705498
     }
   ]
 }

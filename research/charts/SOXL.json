@@ -1,6 +1,6 @@
 {
   "ticker": "SOXL",
-  "updated": "2026-11-20 21:37:07",
+  "updated": "2026-11-21 02:18:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 42.4,
       "high": 42.57,
       "low": 29.82,
-      "close": 30.88,
-      "volume": 518804810
+      "close": NaN,
+      "volume": 533762471
     }
   ]
 }

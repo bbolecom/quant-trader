@@ -1,6 +1,6 @@
 {
   "ticker": "PDD",
-  "updated": "2026-11-20 21:37:08",
+  "updated": "2026-11-21 02:20:06",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 87.016,
       "high": 87.64,
       "low": 83.46,
-      "close": 83.68,
-      "volume": 15502509
+      "close": NaN,
+      "volume": 15890854
     }
   ]
 }

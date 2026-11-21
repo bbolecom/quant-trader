@@ -1,6 +1,6 @@
 {
   "ticker": "UNH",
-  "updated": "2026-11-20 21:37:08",
+  "updated": "2026-11-21 02:18:58",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1026,8 +1026,8 @@
       "open": 339.94,
       "high": 347.45,
       "low": 338.24,
-      "close": 339.85,
-      "volume": 12702431
+      "close": NaN,
+      "volume": 12772826
     }
   ]
 }
