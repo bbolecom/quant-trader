@@ -1,6 +1,6 @@
 {
   "ticker": "KYMR",
-  "updated": "2026-11-24 05:19:58",
+  "updated": "2026-11-24 23:19:23",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 135.95,
       "close": 150.37,
       "volume": 7867900
+    },
+    {
+      "date": "2026-11-24",
+      "open": 161.0,
+      "high": 179.8,
+      "low": 160.96,
+      "close": 173.92,
+      "volume": 6518871
     }
   ]
 }

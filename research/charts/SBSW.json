@@ -1,6 +1,6 @@
 {
   "ticker": "SBSW",
-  "updated": "2026-11-24 05:21:31",
+  "updated": "2026-11-24 23:19:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 7.71,
       "close": 7.76,
       "volume": 9666400
+    },
+    {
+      "date": "2026-11-24",
+      "open": 7.62,
+      "high": 7.675,
+      "low": 7.495,
+      "close": 7.53,
+      "volume": 7277199
     }
   ]
 }

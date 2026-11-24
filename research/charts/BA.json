@@ -1,6 +1,6 @@
 {
   "ticker": "BA",
-  "updated": "2026-11-24 05:21:27",
+  "updated": "2026-11-24 23:19:10",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 159.1,
       "close": 162.39,
       "volume": 7637600
+    },
+    {
+      "date": "2026-11-24",
+      "open": 161.87,
+      "high": 165.7739,
+      "low": 161.08,
+      "close": 163.59,
+      "volume": 5619762
     }
   ]
 }

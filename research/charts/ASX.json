@@ -1,6 +1,6 @@
 {
   "ticker": "ASX",
-  "updated": "2026-11-24 05:19:59",
+  "updated": "2026-11-24 23:19:24",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 33.38,
       "low": 31.06,
       "close": 31.88,
-      "volume": 19099300
+      "volume": 19115700
+    },
+    {
+      "date": "2026-11-24",
+      "open": 30.6,
+      "high": 30.872,
+      "low": 28.75,
+      "close": 29.33,
+      "volume": 16528679
     }
   ]
 }

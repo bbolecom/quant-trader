@@ -1,6 +1,6 @@
 {
   "ticker": "CNQ",
-  "updated": "2026-11-24 05:21:31",
+  "updated": "2026-11-24 23:19:22",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1020,6 +1020,14 @@
       "low": 43.54,
       "close": 43.74,
       "volume": 11528100
+    },
+    {
+      "date": "2026-11-24",
+      "open": 44.065,
+      "high": 45.04,
+      "low": 43.83,
+      "close": 44.78,
+      "volume": 7055097
     }
   ]
 }
