@@ -1,26 +1,10 @@
 {
   "ticker": "USAR",
-  "updated": "2026-11-21 02:47:29",
+  "updated": "2026-11-24 01:21:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-21",
-      "open": 22.92,
-      "high": 24.95,
-      "low": 22.8,
-      "close": 24.29,
-      "volume": 17766900
-    },
-    {
-      "date": "2026-05-22",
-      "open": 24.605,
-      "high": 26.709,
-      "low": 24.605,
-      "close": 25.3,
-      "volume": 18252700
-    },
     {
       "date": "2026-05-26",
       "open": 25.65,
@@ -1028,6 +1012,14 @@
       "low": 6.18,
       "close": 6.27,
       "volume": 25846300
+    },
+    {
+      "date": "2026-11-23",
+      "open": 7.12,
+      "high": 7.19,
+      "low": 6.6,
+      "close": NaN,
+      "volume": 20097193
     }
   ]
 }

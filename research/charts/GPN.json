@@ -1,26 +1,10 @@
 {
   "ticker": "GPN",
-  "updated": "2026-11-21 02:47:38",
+  "updated": "2026-11-24 01:21:28",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-21",
-      "open": 70.12,
-      "high": 73.0,
-      "low": 69.15,
-      "close": 72.59,
-      "volume": 4881100
-    },
-    {
-      "date": "2026-05-22",
-      "open": 72.64,
-      "high": 74.0,
-      "low": 72.53,
-      "close": 73.26,
-      "volume": 2094100
-    },
     {
       "date": "2026-05-26",
       "open": 73.23,
@@ -1028,6 +1012,14 @@
       "low": 83.33,
       "close": 91.83,
       "volume": 9535900
+    },
+    {
+      "date": "2026-11-23",
+      "open": 93.0,
+      "high": 93.37,
+      "low": 91.22,
+      "close": NaN,
+      "volume": 3571523
     }
   ]
 }

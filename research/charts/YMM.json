@@ -1,26 +1,10 @@
 {
   "ticker": "YMM",
-  "updated": "2026-11-21 02:47:29",
+  "updated": "2026-11-24 01:21:14",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
   "bars": [
-    {
-      "date": "2026-05-21",
-      "open": 8.65,
-      "high": 8.84,
-      "low": 8.4,
-      "close": 8.82,
-      "volume": 11290600
-    },
-    {
-      "date": "2026-05-22",
-      "open": 8.34,
-      "high": 8.63,
-      "low": 8.27,
-      "close": 8.36,
-      "volume": 12657200
-    },
     {
       "date": "2026-05-26",
       "open": 8.52,
@@ -1028,6 +1012,14 @@
       "low": 8.77,
       "close": 8.82,
       "volume": 11824500
+    },
+    {
+      "date": "2026-11-23",
+      "open": 9.02,
+      "high": 9.09,
+      "low": 8.885,
+      "close": NaN,
+      "volume": 11136979
     }
   ]
 }
