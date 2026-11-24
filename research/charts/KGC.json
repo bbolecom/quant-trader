@@ -1,6 +1,6 @@
 {
   "ticker": "KGC",
-  "updated": "2026-11-24 01:21:26",
+  "updated": "2026-11-24 05:19:57",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1017,9 +1017,9 @@
       "date": "2026-11-23",
       "open": 18.6,
       "high": 18.85,
-      "low": 18.035,
-      "close": NaN,
-      "volume": 10795430
+      "low": 18.03,
+      "close": 18.27,
+      "volume": 11062800
     }
   ]
 }
