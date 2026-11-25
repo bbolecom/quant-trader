@@ -1,6 +1,6 @@
 {
   "ticker": "BORR",
-  "updated": "2026-11-24 23:19:22",
+  "updated": "2026-11-25 04:14:03",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1024,10 +1024,10 @@
     {
       "date": "2026-11-24",
       "open": 3.9,
-      "high": 3.9899,
-      "low": 3.8083,
+      "high": 3.99,
+      "low": 3.808,
       "close": 3.96,
-      "volume": 10722866
+      "volume": 10723100
     }
   ]
 }

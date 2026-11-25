@@ -1,6 +1,6 @@
 {
   "ticker": "ABVX",
-  "updated": "2026-11-24 05:19:58",
+  "updated": "2026-11-25 04:15:33",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1019,7 +1019,15 @@
       "high": 76.0,
       "low": 70.42,
       "close": 70.49,
-      "volume": 2976700
+      "volume": 2987500
+    },
+    {
+      "date": "2026-11-24",
+      "open": 70.73,
+      "high": 80.195,
+      "low": 70.73,
+      "close": 77.61,
+      "volume": 3435900
     }
   ]
 }
