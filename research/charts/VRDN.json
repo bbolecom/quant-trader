@@ -1,6 +1,6 @@
 {
   "ticker": "VRDN",
-  "updated": "2026-11-25 04:15:33",
+  "updated": "2026-11-25 22:51:51",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1028,6 +1028,14 @@
       "low": 31.915,
       "close": 35.7,
       "volume": 3562100
+    },
+    {
+      "date": "2026-11-25",
+      "open": 35.63,
+      "high": 38.265,
+      "low": 34.79,
+      "close": 37.91,
+      "volume": 3673721
     }
   ]
 }

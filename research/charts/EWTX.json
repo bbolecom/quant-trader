@@ -1,6 +1,6 @@
 {
   "ticker": "EWTX",
-  "updated": "2026-11-25 04:15:33",
+  "updated": "2026-11-25 22:51:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1028,6 +1028,14 @@
       "low": 41.49,
       "close": 46.73,
       "volume": 1521500
+    },
+    {
+      "date": "2026-11-25",
+      "open": 46.09,
+      "high": 48.06,
+      "low": 44.89,
+      "close": 47.56,
+      "volume": 1254934
     }
   ]
 }

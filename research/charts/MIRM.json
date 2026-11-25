@@ -1,6 +1,6 @@
 {
   "ticker": "MIRM",
-  "updated": "2026-11-25 04:15:33",
+  "updated": "2026-11-25 22:51:52",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1028,6 +1028,14 @@
       "low": 99.27,
       "close": 109.71,
       "volume": 942600
+    },
+    {
+      "date": "2026-11-25",
+      "open": 109.4,
+      "high": 109.9,
+      "low": 105.155,
+      "close": 109.14,
+      "volume": 674831
     }
   ]
 }

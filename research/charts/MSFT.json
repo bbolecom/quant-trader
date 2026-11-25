@@ -1,6 +1,6 @@
 {
   "ticker": "MSFT",
-  "updated": "2026-11-25 04:15:34",
+  "updated": "2026-11-25 22:51:54",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1027,7 +1027,15 @@
       "high": 501.82,
       "low": 488.43,
       "close": 496.13,
-      "volume": 23086900
+      "volume": 23104500
+    },
+    {
+      "date": "2026-11-25",
+      "open": 485.42,
+      "high": 493.437,
+      "low": 477.39,
+      "close": 489.93,
+      "volume": 26095270
     }
   ]
 }

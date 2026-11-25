@@ -1,6 +1,6 @@
 {
   "ticker": "SNY",
-  "updated": "2026-11-25 04:14:04",
+  "updated": "2026-11-25 22:52:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1028,6 +1028,14 @@
       "low": 50.29,
       "close": 51.9,
       "volume": 13797500
+    },
+    {
+      "date": "2026-11-25",
+      "open": 53.62,
+      "high": 54.66,
+      "low": 53.47,
+      "close": 54.39,
+      "volume": 9832717
     }
   ]
 }

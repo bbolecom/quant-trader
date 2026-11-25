@@ -1,6 +1,6 @@
 {
   "ticker": "DLTR",
-  "updated": "2026-11-25 04:14:04",
+  "updated": "2026-11-25 22:52:04",
   "period": "6mo",
   "interval": "1d",
   "source": "yfinance-live",
@@ -1028,6 +1028,14 @@
       "low": 147.83,
       "close": 154.65,
       "volume": 6396500
+    },
+    {
+      "date": "2026-11-25",
+      "open": 155.4625,
+      "high": 156.0,
+      "low": 150.9526,
+      "close": 152.21,
+      "volume": 3424316
     }
   ]
 }
